@@ -1,0 +1,7 @@
+#ifndef CHAOSCORE_BASE_HPP_
+#   define CHAOSCORE_BASE_HPP_
+
+#define CHAOSCORE_BASE_NAMESPACE_BEGIN namespace base {
+#define CHAOSCORE_BASE_NAMESPACE_END }
+
+#endif
