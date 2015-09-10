@@ -1,6 +1,8 @@
 #ifndef CHAOSCORE_BASE_STRING_UTF8STRING_HPP_
 #   define CHAOSCORE_BASE_STRING_UTF8STRING_HPP_
 
+#include <string>
+
 #include "base/string/__string.hpp"
 
 namespace chaos
@@ -19,7 +21,7 @@ class UTF8String
 public:
 
     /** TEST CONSTRUCTOR */
-    UTF8String();
+    UTF8String( const char* data );
 };
 
 
