@@ -1,7 +1,23 @@
 #ifndef CHAOSCORE_BASE_STRING_HPP_
 #   define CHAOSCORE_BASE_STRING_HPP_
 
-#define CHAOSCORE_BASE_STRING_NAMESPACE_BEGIN namespace str {
-#define CHAOSCORE_BASE_STRING_NAMESPACE_END }
+namespace chaos
+{
+namespace base
+{
+
+/** \brief String related classes and operations.
+  *
+  * ChaosCore's string module contains classes and functions for handling and
+  * performing operations on strings. Most importantly the string module defines
+  * the UTF8String type, a string type with full Unicode support encoded with
+  * utf-8.
+  */
+namespace str
+{
+} // namespace
+
+} // namespace base
+} // namespace chaos
 
 #endif
