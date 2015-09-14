@@ -1,2 +1,9 @@
+# Windows
 ChaosCore.vcxproj
 ChaosCore.vcxproj.filters
+
+# Linux
+CMakeFiles
+CMakeCache.txt
+Makefile
+cmake_install.cmake

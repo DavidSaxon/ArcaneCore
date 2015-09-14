@@ -7,8 +7,6 @@
 
 namespace chaos
 {
-namespace base
-{
 namespace str
 {
 
@@ -20,13 +18,12 @@ class UTF8String
 {
 public:
 
-    /** TEST CONSTRUCTOR */
+    /** Creates a new utf-8 encoded string from the given string literal */
     UTF8String( const char* data );
 };
 
 
 } // namespace str
-} // namespace base
 } // namespace chaos
 
 #endif

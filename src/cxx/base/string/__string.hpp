@@ -3,8 +3,6 @@
 
 namespace chaos
 {
-namespace base
-{
 
 /** \brief String related classes and operations.
   *
@@ -17,7 +15,6 @@ namespace str
 {
 } // namespace
 
-} // namespace base
 } // namespace chaos
 
 #endif
