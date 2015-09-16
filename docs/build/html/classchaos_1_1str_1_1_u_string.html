@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>ChaosCore: chaos::str Namespace Reference</title>
+<title>ChaosCore: chaos::str::UString Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -61,7 +61,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="namespaces.html"><span>Namespace&#160;List</span></a></li>
+      <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
+      <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -80,30 +81,63 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacechaos.html">chaos</a></li><li class="navelem"><a class="el" href="namespacechaos_1_1str.html">str</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacechaos.html">chaos</a></li><li class="navelem"><a class="el" href="namespacechaos_1_1str.html">str</a></li><li class="navelem"><a class="el" href="classchaos_1_1str_1_1_u_string.html">UString</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-types">Public Types</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classchaos_1_1str_1_1_u_string-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">chaos::str Namespace Reference</div>  </div>
+<div class="title">chaos::str::UString Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>String related classes and operations.  
-<a href="#details">More...</a></p>
+<p>A generic string type for storing Unicode data.  
+ <a href="classchaos_1_1str_1_1_u_string.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_u_string_8hpp_source.html">UString.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_string.html">UString</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic string type for storing Unicode data.  <a href="classchaos_1_1str_1_1_u_string.html#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ae852e0d6ff252ec583cb06fb929d3215"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Encoding</b> { <b>ENCODING_UTF8</b>, 
+<b>ENCODING_UTF16</b>
+ }</td></tr>
+<tr class="separator:ae852e0d6ff252ec583cb06fb929d3215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae010f3153b2a66e10222d1e3bf4689f8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DataWidth</b> { <b>DATAWIDTH_8</b>, 
+<b>DATAWIDTH_16</b>, 
+<b>DATAWIDTH_32</b>
+ }</td></tr>
+<tr class="separator:ae010f3153b2a66e10222d1e3bf4689f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaaf726058bf5d0a6f486ba38777dfd2"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Packing</b> { <b>PACK_TIGHT</b>, 
+<b>PACK_ALIGNED</b>
+ }</td></tr>
+<tr class="separator:acaaf726058bf5d0a6f486ba38777dfd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a1da05f1add70f58c4a8e4b5258db2e01"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1da05f1add70f58c4a8e4b5258db2e01"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UString</b> (const void *data)</td></tr>
+<tr class="separator:a1da05f1add70f58c4a8e4b5258db2e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace81f026f57f1db18fa893d1ae474b6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace81f026f57f1db18fa893d1ae474b6b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UString</b> (const void *data, const <a class="el" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a> &amp;definition)</td></tr>
+<tr class="separator:ace81f026f57f1db18fa893d1ae474b6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>String related classes and operations. </p>
-<p>ChaosCore's string module contains classes and functions for handling and performing operations on strings. Most importantly the string module defines the UTF8String type, a string type with full Unicode support encoded with utf-8. </p>
-</div></div><!-- contents -->
+<div class="textblock"><p>A generic string type for storing Unicode data. </p>
+<p>TODO: detailed description </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/david/Dropbox/Development/ChaosCore/ChaosCore/src/cxx/base/string/<a class="el" href="_u_string_8hpp_source.html">UString.hpp</a></li>
+<li>/home/david/Dropbox/Development/ChaosCore/ChaosCore/src/cxx/base/string/UString.cpp</li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Thu Sep 17 2015 10:11:37 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">

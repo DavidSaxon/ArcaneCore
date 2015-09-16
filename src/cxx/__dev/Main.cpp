@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "base/string/UTF8String.hpp"
+#include "base/string/UString.hpp"
 
 int main( int argc, char* argv[] )
 {
-    // create a new UTF8String
-    chaos::str::UTF8String s( "Olé" );
+    // create a new UString
+    chaos::str::UString s( "Olé" );
 
     return 0;
 }
