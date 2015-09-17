@@ -5,7 +5,7 @@
 int main( int argc, char* argv[] )
 {
     // create a new UString
-    chaos::str::UString s( "Olé" );
+    chaos::str::UString s( "Ἦλθον, εἶδον, ἐνίκησα" );
 
     return 0;
 }

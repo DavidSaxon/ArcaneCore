@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,68 +101,101 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>str</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classchaos_1_1str_1_1_u_string.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">//                                ENUMERATORS</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classchaos_1_1str_1_1_u_string.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">enum</span> Encoding</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        ENCODING_UTF8,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        ENCODING_UTF16</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="comment">// TODO: UTF4, UTF7, UTF32</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">enum</span> DataWidth</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        DATAWIDTH_8,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        DATAWIDTH_16,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        DATAWIDTH_32</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">enum</span> Packing</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        PACK_TIGHT,</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        PACK_ALIGNED</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">//                               INNER CLASSES</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">//                                ENUMERATORS</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">enum</span> Encoding</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        ENCODING_UTF8,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        ENCODING_UTF16</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">// TODO: UTF7, UTF32</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    };</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">enum</span> DataWidth</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        DATAWIDTH_8,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        DATAWIDTH_16,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        DATAWIDTH_32</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    };</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">enum</span> Packing</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        PACK_TIGHT,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        PACK_ALIGNED</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    };</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">   52</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        Encoding  inputEncoding;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        DataWidth inputWidth;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        Encoding  storedEncoding;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        DataWidth storedWidth;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        Packing   storedPacking;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    };</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//                                CONSTRUCTORS</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a>( <span class="keyword">const</span> <span class="keywordtype">void</span>* data );</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//                               INNER CLASSES</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">   54</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="comment">//---------------------------PUBLIC VARIABLES---------------------------</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#a2f920e8c20c0c6e0a0a473e9772d99e1">   59</a></span>&#160;        Encoding  <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#a2f920e8c20c0c6e0a0a473e9772d99e1">inputEncoding</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#ad8799df92d7d3ec4668675d918654df8">   61</a></span>&#160;        DataWidth <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#ad8799df92d7d3ec4668675d918654df8">inputWidth</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#affc7bf4241c9d762501b8273e7c5536d">   63</a></span>&#160;        Encoding  <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#affc7bf4241c9d762501b8273e7c5536d">storedEncoding</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#acdc0f7cef212180b4a3b6180bdd3b1bb">   65</a></span>&#160;        Packing   <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#acdc0f7cef212180b4a3b6180bdd3b1bb">storedPacking</a>;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a>( <span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keyword">const</span> <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a>&amp; definition );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">//-----------------------------CONSTRUCTORS-----------------------------</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} <span class="comment">// namespace str</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="structchaos_1_1str_1_1_u_string_1_1_data_definition_html"><div class="ttname"><a href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">chaos::str::UString::DataDefinition</a></div><div class="ttdef"><b>Definition:</b> UString.hpp:52</div></div>
-<div class="ttc" id="classchaos_1_1str_1_1_u_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html">chaos::str::UString</a></div><div class="ttdoc">A generic string type for storing Unicode data. </div><div class="ttdef"><b>Definition:</b> UString.hpp:19</div></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a>()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            :</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#a2f920e8c20c0c6e0a0a473e9772d99e1">inputEncoding</a> ( <a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a>::<a class="code" href="classchaos_1_1str_1_1_u_string.html#a67b8f0f4465be46fa0035f617b438bce">defaultInputEncoding</a> ),</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#ad8799df92d7d3ec4668675d918654df8">inputWidth</a>    ( <a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a>::<a class="code" href="classchaos_1_1str_1_1_u_string.html#af2df9ef0080748c1ca4802fd8285d5bc">defaultInputWidth</a> ),</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#affc7bf4241c9d762501b8273e7c5536d">storedEncoding</a>( <a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a>::<a class="code" href="classchaos_1_1str_1_1_u_string.html#aca40d2341d3b5011070beede74fb3c05">defaultStoredEncoding</a> ),</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#acdc0f7cef212180b4a3b6180bdd3b1bb">storedPacking</a> ( <a class="code" href="classchaos_1_1str_1_1_u_string.html">UString</a>::<a class="code" href="classchaos_1_1str_1_1_u_string.html#a50b3a17a117ae0739d845489727745f5">defaultStoredPacking</a> )</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">//------------------------------OPERATORS-------------------------------</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    };</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//                              PUBLIC VARIABLES</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">//-------------------------DEFAULT DATA DEFINITIONS-------------------------</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="classchaos_1_1str_1_1_u_string.html#a67b8f0f4465be46fa0035f617b438bce">   98</a></span>&#160;    <span class="keyword">static</span> Encoding <a class="code" href="classchaos_1_1str_1_1_u_string.html#a67b8f0f4465be46fa0035f617b438bce">defaultInputEncoding</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="classchaos_1_1str_1_1_u_string.html#af2df9ef0080748c1ca4802fd8285d5bc">  120</a></span>&#160;    <span class="keyword">static</span> DataWidth <a class="code" href="classchaos_1_1str_1_1_u_string.html#af2df9ef0080748c1ca4802fd8285d5bc">defaultInputWidth</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classchaos_1_1str_1_1_u_string.html#aca40d2341d3b5011070beede74fb3c05">  122</a></span>&#160;    <span class="keyword">static</span> Encoding <a class="code" href="classchaos_1_1str_1_1_u_string.html#aca40d2341d3b5011070beede74fb3c05">defaultStoredEncoding</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="classchaos_1_1str_1_1_u_string.html#a50b3a17a117ae0739d845489727745f5">  124</a></span>&#160;    <span class="keyword">static</span> Packing <a class="code" href="classchaos_1_1str_1_1_u_string.html#a50b3a17a117ae0739d845489727745f5">defaultStoredPacking</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="comment">//                                CONSTRUCTORS</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_string.html#a1da05f1add70f58c4a8e4b5258db2e01">UString</a>( <span class="keyword">const</span> <span class="keywordtype">void</span>* data );</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_string.html#a1da05f1add70f58c4a8e4b5258db2e01">UString</a>( <span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keyword">const</span> <a class="code" href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">DataDefinition</a>&amp; definition );</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;} <span class="comment">// namespace str</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="structchaos_1_1str_1_1_u_string_1_1_data_definition_html_affc7bf4241c9d762501b8273e7c5536d"><div class="ttname"><a href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#affc7bf4241c9d762501b8273e7c5536d">chaos::str::UString::DataDefinition::storedEncoding</a></div><div class="ttdeci">Encoding storedEncoding</div><div class="ttdef"><b>Definition:</b> UString.hpp:63</div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_string_html_aca40d2341d3b5011070beede74fb3c05"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html#aca40d2341d3b5011070beede74fb3c05">chaos::str::UString::defaultStoredEncoding</a></div><div class="ttdeci">static Encoding defaultStoredEncoding</div><div class="ttdef"><b>Definition:</b> UString.hpp:122</div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_string_html_a67b8f0f4465be46fa0035f617b438bce"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html#a67b8f0f4465be46fa0035f617b438bce">chaos::str::UString::defaultInputEncoding</a></div><div class="ttdeci">static Encoding defaultInputEncoding</div><div class="ttdef"><b>Definition:</b> UString.hpp:98</div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_string_html_a1da05f1add70f58c4a8e4b5258db2e01"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html#a1da05f1add70f58c4a8e4b5258db2e01">chaos::str::UString::UString</a></div><div class="ttdeci">UString(const void *data)</div><div class="ttdef"><b>Definition:</b> UString.cpp:48</div></div>
+<div class="ttc" id="structchaos_1_1str_1_1_u_string_1_1_data_definition_html_a2f920e8c20c0c6e0a0a473e9772d99e1"><div class="ttname"><a href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#a2f920e8c20c0c6e0a0a473e9772d99e1">chaos::str::UString::DataDefinition::inputEncoding</a></div><div class="ttdeci">Encoding inputEncoding</div><div class="ttdef"><b>Definition:</b> UString.hpp:59</div></div>
+<div class="ttc" id="structchaos_1_1str_1_1_u_string_1_1_data_definition_html_ad8799df92d7d3ec4668675d918654df8"><div class="ttname"><a href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#ad8799df92d7d3ec4668675d918654df8">chaos::str::UString::DataDefinition::inputWidth</a></div><div class="ttdeci">DataWidth inputWidth</div><div class="ttdef"><b>Definition:</b> UString.hpp:61</div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_string_html_af2df9ef0080748c1ca4802fd8285d5bc"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html#af2df9ef0080748c1ca4802fd8285d5bc">chaos::str::UString::defaultInputWidth</a></div><div class="ttdeci">static DataWidth defaultInputWidth</div><div class="ttdef"><b>Definition:</b> UString.hpp:120</div></div>
+<div class="ttc" id="structchaos_1_1str_1_1_u_string_1_1_data_definition_html_acdc0f7cef212180b4a3b6180bdd3b1bb"><div class="ttname"><a href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html#acdc0f7cef212180b4a3b6180bdd3b1bb">chaos::str::UString::DataDefinition::storedPacking</a></div><div class="ttdeci">Packing storedPacking</div><div class="ttdef"><b>Definition:</b> UString.hpp:65</div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_string_html_a50b3a17a117ae0739d845489727745f5"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html#a50b3a17a117ae0739d845489727745f5">chaos::str::UString::defaultStoredPacking</a></div><div class="ttdeci">static Packing defaultStoredPacking</div><div class="ttdef"><b>Definition:</b> UString.hpp:124</div></div>
+<div class="ttc" id="structchaos_1_1str_1_1_u_string_1_1_data_definition_html"><div class="ttname"><a href="structchaos_1_1str_1_1_u_string_1_1_data_definition.html">chaos::str::UString::DataDefinition</a></div><div class="ttdef"><b>Definition:</b> UString.hpp:54</div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_string.html">chaos::str::UString</a></div><div class="ttdoc">A generic string type for storing Unicode data. </div><div class="ttdef"><b>Definition:</b> UString.hpp:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 17 2015 10:11:37 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 17 2015 20:52:59 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
