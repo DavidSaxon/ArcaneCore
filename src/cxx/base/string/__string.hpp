@@ -4,7 +4,8 @@
 namespace chaos
 {
 
-/** \brief String related classes and operations.
+/**
+  * \brief String related classes and operations.
   *
   * ChaosCore's string module contains classes and functions for handling and
   * performing operations on strings. Most importantly the string module defines

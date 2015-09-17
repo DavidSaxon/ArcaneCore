@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -86,8 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classchaos_1_1str_1_1_u_t_f8_string-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -95,43 +93,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A generic string type that fully supports Unicode encoded with utf-8.  
+<p>A generic string type for storing Unicode data. TODO.  
  <a href="classchaos_1_1str_1_1_u_t_f8_string.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_u_t_f8_string_8hpp_source.html">UTF8String.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structchaos_1_1str_1_1_u_t_f8_string_1_1_data_definition.html">DataDefinition</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:a520ed443c976da55ab31eee151ac0086"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Encoding</b> { <b>ENCODING_UTF8</b>, 
-<b>ENCODING_UTF16</b>
- }</td></tr>
-<tr class="separator:a520ed443c976da55ab31eee151ac0086"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bb5b18c1f16a5a4400bc4d4f8e1811f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>DataWidth</b> { <b>DATAWIDTH_8</b>, 
-<b>DATAWIDTH_16</b>, 
-<b>DATAWIDTH_32</b>
- }</td></tr>
-<tr class="separator:a2bb5b18c1f16a5a4400bc4d4f8e1811f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2d955ddd973005809f66ec7a1bf925d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Packing</b> { <b>PACK_TIGHT</b>, 
-<b>PACK_ALIGNED</b>
- }</td></tr>
-<tr class="separator:af2d955ddd973005809f66ec7a1bf925d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2e3c55adf04b4c2370b97e2f7d9b51d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2e3c55adf04b4c2370b97e2f7d9b51d6"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UTF8String</b> (const void *data)</td></tr>
-<tr class="separator:a2e3c55adf04b4c2370b97e2f7d9b51d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5582dc5e2644ceb895a5d577c08cc72b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5582dc5e2644ceb895a5d577c08cc72b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UTF8String</b> (const void *data, const <a class="el" href="structchaos_1_1str_1_1_u_t_f8_string_1_1_data_definition.html">DataDefinition</a> &amp;definition)</td></tr>
-<tr class="separator:a5582dc5e2644ceb895a5d577c08cc72b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af506696bfe777057c4a7e6b6acf19dab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af506696bfe777057c4a7e6b6acf19dab"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UTF8String</b> (const char *data)</td></tr>
+<tr class="separator:af506696bfe777057c4a7e6b6acf19dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A generic string type that fully supports Unicode encoded with utf-8. </p>
+<div class="textblock"><p>A generic string type for storing Unicode data. TODO. </p>
 <p>TODO: detailed description </p>
 </div><hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/david/Dropbox/Development/ChaosCore/ChaosCore/src/cxx/base/string/<a class="el" href="_u_t_f8_string_8hpp_source.html">UTF8String.hpp</a></li>
@@ -140,7 +114,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Sep 17 2015 09:57:45 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 18 2015 11:35:25 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

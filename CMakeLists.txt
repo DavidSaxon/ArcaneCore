@@ -6,7 +6,7 @@ set(SRCS
     src/cxx/__dev/Main.cpp
 
 
-    src/cxx/base/string/UString.cpp
+    src/cxx/base/string/UTF8String.cpp
 )
 
 set(BASEPATH "${CMAKE_SOURCE_DIR}")
