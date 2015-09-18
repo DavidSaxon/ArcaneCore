@@ -1,8 +1,6 @@
 /** \file
-  * \brief This file is contains a collection of general preprocessor directives
-  *        and macros.
+  * \brief A collection of general preprocessor directives and macros.
   */
-
 #ifndef CHAOSCORE_BASE_PREPROC_HPP_
 #define CHAOSCORE_BASE_PREPROC_HPP_
 
