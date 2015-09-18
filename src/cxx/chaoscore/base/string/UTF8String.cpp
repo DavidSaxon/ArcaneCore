@@ -1,8 +1,7 @@
-#include "base/string/UTF8String.hpp"
+#include "chaoscore/base/string/UTF8String.hpp"
 
 // TODO: REMOVE ME
 #include <iostream>
-#include "base/Types.hpp"
 
 namespace chaos
 {
@@ -34,8 +33,6 @@ UTF8String::UTF8String( const char* data )
         std::cout << "|_" << static_cast< int >( s[ i ] ) << "_| ";
     }
     std::cout << std::endl;
-
-    std::cout << "SIZE: " << sizeof( chaos::int64 ) << std::endl;
 }
 
 } // namespace str

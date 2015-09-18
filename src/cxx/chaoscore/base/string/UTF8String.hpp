@@ -6,8 +6,6 @@
 
 #include <string>
 
-#include "base/string/__string.hpp"
-
 namespace chaos
 {
 namespace str

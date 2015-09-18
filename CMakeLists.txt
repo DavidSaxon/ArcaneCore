@@ -6,9 +6,9 @@ set(SRCS
     src/cxx/__dev/Main.cpp
 
 
-    src/cxx/base/string/UTF8String.cpp
+    src/cxx/chaoscore/base/string/UTF8String.cpp
 
-    src/cxx/test/LaunchPad.cpp
+    src/cxx/chaoscore/test/LaunchPad.cpp
 )
 
 set(BASEPATH "${CMAKE_SOURCE_DIR}")

@@ -6,7 +6,7 @@
 #ifndef CHAOSCORE_BASE_TYPES_HPP_
 #define CHAOSCORE_BASE_TYPES_HPP_
 
-#include "base/Preproc.hpp"
+#include "chaoscore/base/Preproc.hpp"
 
 // If we are running documentation we will not include the platform directives
 // and pretend this running under Unix based platform in order to pick up the

@@ -4,7 +4,7 @@
 #ifndef CHAOSCORE_TEST_LAUNCHPAD_HPP_
 #define CHAOSCORE_TEST_LAUNCHPAD_HPP_
 
-#include "base/Types.hpp"
+#include "chaoscore/base/Types.hpp"
 
 namespace chaos
 {

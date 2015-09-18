@@ -1,4 +1,4 @@
-#include "test/LaunchPad.hpp"
+#include "chaoscore/test/LaunchPad.hpp"
 
 int main( int argc, char* argv )
 {
