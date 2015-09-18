@@ -1,4 +1,6 @@
-/*! \file */
+/**
+  * \file
+  */
 #ifndef CHAOSCORE_BASE_STRING_USTRING_HPP_
 #define CHAOSCORE_BASE_STRING_USTRING_HPP_
 

@@ -7,12 +7,14 @@
 
 var indexSectionsWithContent =
 {
-  0: "ciptu",
-  1: "u",
+  0: "cilptu",
+  1: "lu",
   2: "c",
-  3: "ptu",
-  4: "iu",
-  5: "c"
+  3: "lptu",
+  4: "l",
+  5: "iu",
+  6: "c",
+  7: "t"
 };
 
 var indexSectionNames =
@@ -21,8 +23,10 @@ var indexSectionNames =
   1: "classes",
   2: "namespaces",
   3: "files",
-  4: "typedefs",
-  5: "defines"
+  4: "functions",
+  5: "typedefs",
+  6: "defines",
+  7: "pages"
 };
 
 function convertToId(search)

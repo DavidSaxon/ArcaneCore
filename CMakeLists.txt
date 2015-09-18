@@ -7,6 +7,8 @@ set(SRCS
 
 
     src/cxx/base/string/UTF8String.cpp
+
+    src/cxx/test/LaunchPad.cpp
 )
 
 set(BASEPATH "${CMAKE_SOURCE_DIR}")

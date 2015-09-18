@@ -1,4 +1,6 @@
-/** \file
+/**
+  * \file
+  *
   * \brief A collection of general preprocessor directives and macros.
   */
 #ifndef CHAOSCORE_BASE_PREPROC_HPP_

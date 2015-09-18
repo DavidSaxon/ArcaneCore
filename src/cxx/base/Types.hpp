@@ -1,36 +1,26 @@
-/** \file
+/**
+  * \file
+  *
   * \brief A collection of `typedefs` for primitive types.
   */
 #ifndef CHAOSCORE_BASE_TYPES_HPP_
 #define CHAOSCORE_BASE_TYPES_HPP_
+
+#include "base/Preproc.hpp"
 
 // If we are running documentation we will not include the platform directives
 // and pretend this running under Unix based platform in order to pick up the
 // c++ 11 style types for documentation
 #ifdef IN_DOXYGEN
   #define CHAOS_OS_UNIX
-#else
-    #include "base/Preproc.hpp"
 #endif
 
 namespace chaos
 {
 
-#ifdef CHAOS_OS_WINDOWS
+#ifdef CHAOS_OS_UNIX
 
     #include <inttypes.h>
-
-    // typedef the windows types
-    typedef signed   __int8  int8;
-    typedef unsigned __int8  uint8;
-    typedef signed   __int16 int16;
-    typedef unsigned __int16 uint16;
-    typedef signed   __int32 int32;
-    typedef unsigned __int32 uint32;
-    typedef signed   __int64 int64;
-    typedef unsigned __int64 uint64;
-
-#elif defined( CHAOS_OS_UNIX )
 
     // typedefs for the built-in C++ types
 
@@ -105,6 +95,18 @@ namespace chaos
       *       `typedef` an `unsigned long`.
       */
     typedef uint64_t uint64;
+
+#elif defined( CHAOS_OS_WINDOWS )
+
+    // typedef the windows types
+    typedef signed   __int8  int8;
+    typedef unsigned __int8  uint8;
+    typedef signed   __int16 int16;
+    typedef unsigned __int16 uint16;
+    typedef signed   __int32 int32;
+    typedef unsigned __int32 uint32;
+    typedef signed   __int64 int64;
+    typedef unsigned __int64 uint64;
 
 #else
 

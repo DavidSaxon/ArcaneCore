@@ -8,5 +8,6 @@ var searchData=
   ['chaos_5fos_5funix',['CHAOS_OS_UNIX',['../_preproc_8hpp.html#aa95ddbdb0bb581ee7b81309c761e039a',1,'Preproc.hpp']]],
   ['chaos_5fos_5funknown',['CHAOS_OS_UNKNOWN',['../_preproc_8hpp.html#ad397cab0ba48918884a517609d66881d',1,'Preproc.hpp']]],
   ['chaos_5fos_5fwindows',['CHAOS_OS_WINDOWS',['../_preproc_8hpp.html#a3391fa429b57c110dbf3336e41a515fb',1,'Preproc.hpp']]],
-  ['str',['str',['../namespacechaos_1_1str.html',1,'chaos']]]
+  ['str',['str',['../namespacechaos_1_1str.html',1,'chaos']]],
+  ['test',['test',['../namespacechaos_1_1test.html',1,'chaos']]]
 ];
