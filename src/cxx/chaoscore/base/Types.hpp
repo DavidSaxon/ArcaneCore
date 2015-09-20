@@ -2,6 +2,8 @@
   * \file
   *
   * \brief A collection of `typedefs` for primitive types.
+  *
+  * \author David Saxon
   */
 #ifndef CHAOSCORE_BASE_TYPES_HPP_
 #define CHAOSCORE_BASE_TYPES_HPP_

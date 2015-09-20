@@ -2,6 +2,8 @@
   * \file
   *
   * \brief A collection of general preprocessor directives and macros.
+  *
+  * \author David Saxon
   */
 #ifndef CHAOSCORE_BASE_PREPROC_HPP_
 #define CHAOSCORE_BASE_PREPROC_HPP_
