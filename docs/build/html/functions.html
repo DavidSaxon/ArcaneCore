@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -78,7 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -89,8 +88,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="contents">
 <div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div><ul>
+<li>assign()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a483e71ec1090e346c63bf2b13b37ad7a">chaos::str::UTF8String</a>
+</li>
 <li>execute()
 : <a class="el" href="classchaos_1_1test_1_1_launch_pad.html#af337fda27dab02981153a14192ab4471">chaos::test::LaunchPad</a>
+</li>
+<li>getName()
+: <a class="el" href="classchaos_1_1test_1_1_test_suite.html#a4710c28a3ba388d613320a8e1e71014a">chaos::test::TestSuite</a>
+, <a class="el" href="classchaos_1_1test_1_1_test_unit.html#a83d464bf139412c1fdaae047e7153b0a">chaos::test::TestUnit</a>
 </li>
 <li>init()
 : <a class="el" href="classchaos_1_1test_1_1_launch_pad.html#a88d5fc05d7275813e1f61bb5a90ff6ee">chaos::test::LaunchPad</a>
@@ -98,23 +104,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>LaunchPad()
 : <a class="el" href="classchaos_1_1test_1_1_launch_pad.html#aefa41b649cbe72a3922ece910216a9ff">chaos::test::LaunchPad</a>
 </li>
+<li>lexicographicalCompare()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a7ebd679be03584050bd1ef200797c1fd">chaos::str::UTF8String</a>
+</li>
+<li>operator&lt;()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac7b54ed9c42a9c9a0a386d453d2c1daa">chaos::str::UTF8String</a>
+</li>
+<li>operator=()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#afcf35cf97971d9d38104745e6160b942">chaos::str::UTF8String</a>
+</li>
+<li>operator==()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ae4446150398d498e8aa9ebbc05ca7b52">chaos::str::UTF8String</a>
+</li>
 <li>registerTestSuite()
 : <a class="el" href="classchaos_1_1test_1_1_launch_pad.html#aa1d283bca075fca020ba21fa2b1b3b34">chaos::test::LaunchPad</a>
+</li>
+<li>registerTestUnit()
+: <a class="el" href="classchaos_1_1test_1_1_test_suite.html#a44f5bda25f408b4d05571d749b7802be">chaos::test::TestSuite</a>
 </li>
 <li>registerTestUnits()
 : <a class="el" href="classchaos_1_1test_1_1_test_suite.html#a3d9c8c7f0ff3f7b1f74717abc747b3fd">chaos::test::TestSuite</a>
 </li>
+<li>run()
+: <a class="el" href="classchaos_1_1test_1_1_test_unit.html#a7c46611836ac7a9a527115098f83564c">chaos::test::TestUnit</a>
+</li>
 <li>setup()
 : <a class="el" href="classchaos_1_1test_1_1_test_suite.html#ad0a1e7224769042c7ef55c1cd6192982">chaos::test::TestSuite</a>
+, <a class="el" href="classchaos_1_1test_1_1_test_unit.html#a2aecefcc01a9a7fa64bc8108af22f355">chaos::test::TestUnit</a>
 </li>
 <li>teardown()
 : <a class="el" href="classchaos_1_1test_1_1_test_suite.html#a6ff5bccbbc0f6590f9c921734ed40029">chaos::test::TestSuite</a>
+, <a class="el" href="classchaos_1_1test_1_1_test_unit.html#ad19e85804ac830e411a696acad7d03e6">chaos::test::TestUnit</a>
+</li>
+<li>TestSuite()
+: <a class="el" href="classchaos_1_1test_1_1_test_suite.html#ac5a8385941fb08aa26c0735d45252747">chaos::test::TestSuite</a>
+</li>
+<li>TestUnit()
+: <a class="el" href="classchaos_1_1test_1_1_test_unit.html#a08d73d7b6ad46db691afbd6b066567f3">chaos::test::TestUnit</a>
+</li>
+<li>toStdString()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4febd35eab6e30bbcf2bdf38097a2fd6">chaos::str::UTF8String</a>
+</li>
+<li>UTF8String()
+: <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a173513bf2d62d742bee337b00716bf82">chaos::str::UTF8String</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 12:45:39 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 23 2015 01:15:39 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

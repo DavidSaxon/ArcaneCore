@@ -6,9 +6,10 @@
 #ifndef CHAOSCORE_TEST_LAUNCHPAD_HPP_
 #define CHAOSCORE_TEST_LAUNCHPAD_HPP_
 
-#include <vector>
+#include <map>
 
 #include "chaoscore/base/Types.hpp"
+#include "chaoscore/base/string/UTF8String.hpp"
 
 namespace chaos
 {
@@ -46,6 +47,12 @@ public:
     LaunchPad( chaos::uint64 options = 0UL );
 
     //--------------------------------------------------------------------------
+    //                                 DESTRUCTOR
+    //--------------------------------------------------------------------------
+
+    ~LaunchPad();
+
+    //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
 
@@ -72,7 +79,7 @@ private:
     //--------------------------------------------------------------------------
 
     // the list of test suites registered by this launch pad
-    std::vector< TestSuite* > m_registeredSuites;
+    std::map< chaos::str::UTF8String, TestSuite* > m_registeredSuites;
 
 };
 

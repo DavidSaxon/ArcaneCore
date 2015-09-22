@@ -13,12 +13,21 @@ T\-O\-D\-O\-: D\-O\-C.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classchaos_1_1test_1_1_test_suite_ac5a8385941fb08aa26c0735d45252747}{Test\-Suite} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{str\-::\-U\-T\-F8\-String} \&name)
+\item 
 virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_a3d9c8c7f0ff3f7b1f74717abc747b3fd}{register\-Test\-Units} ()=0
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to register unit tests within this suite. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_ad0a1e7224769042c7ef55c1cd6192982}{setup} ()
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to setup the fixture for this suite. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_a6ff5bccbbc0f6590f9c921734ed40029}{teardown} ()
-\begin{DoxyCompactList}\small\item\em Member function intended to be overridden to clean up the fixture setup by this suite. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Member function intended to be overridden to clean up the fixture setup by this suite. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{str\-::\-U\-T\-F8\-String} \& \hyperlink{classchaos_1_1test_1_1_test_suite_a4710c28a3ba388d613320a8e1e71014a}{get\-Name} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classchaos_1_1test_1_1_test_suite_a44f5bda25f408b4d05571d749b7802be}{register\-Test\-Unit} (\hyperlink{classchaos_1_1test_1_1_test_unit}{Test\-Unit} $\ast$unit)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -26,8 +35,35 @@ T\-O\-D\-O\-: D\-O\-C.
 
 T\-O\-D\-O\-: D\-O\-C 
 
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classchaos_1_1test_1_1_test_suite_ac5a8385941fb08aa26c0735d45252747}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!Test\-Suite@{Test\-Suite}}
+\index{Test\-Suite@{Test\-Suite}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
+\subsubsection[{Test\-Suite}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::test\-::\-Test\-Suite\-::\-Test\-Suite (
+\begin{DoxyParamCaption}
+\item[{const {\bf str\-::\-U\-T\-F8\-String} \&}]{name}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1test_1_1_test_suite_ac5a8385941fb08aa26c0735d45252747}
+T\-O\-D\-O\-: D\-O\-C 
+
 \subsection{Member Function Documentation}
-\hypertarget{classchaos_1_1test_1_1_test_suite_a3d9c8c7f0ff3f7b1f74717abc747b3fd}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!register\-Test\-Units@{register\-Test\-Units}}
+\hypertarget{classchaos_1_1test_1_1_test_suite_a4710c28a3ba388d613320a8e1e71014a}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!get\-Name@{get\-Name}}
+\index{get\-Name@{get\-Name}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf str\-::\-U\-T\-F8\-String} \& chaos\-::test\-::\-Test\-Suite\-::get\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1test_1_1_test_suite_a4710c28a3ba388d613320a8e1e71014a}
+\begin{DoxyReturn}{Returns}
+The name of this test suite 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1test_1_1_test_suite_a44f5bda25f408b4d05571d749b7802be}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!register\-Test\-Unit@{register\-Test\-Unit}}
+\index{register\-Test\-Unit@{register\-Test\-Unit}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
+\subsubsection[{register\-Test\-Unit}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Suite\-::register\-Test\-Unit (
+\begin{DoxyParamCaption}
+\item[{{\bf Test\-Unit} $\ast$}]{unit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classchaos_1_1test_1_1_test_suite_a44f5bda25f408b4d05571d749b7802be}
+T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1test_1_1_test_suite_a3d9c8c7f0ff3f7b1f74717abc747b3fd}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!register\-Test\-Units@{register\-Test\-Units}}
 \index{register\-Test\-Units@{register\-Test\-Units}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
 \subsubsection[{register\-Test\-Units}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::test\-::\-Test\-Suite\-::register\-Test\-Units (
 \begin{DoxyParamCaption}
@@ -38,7 +74,7 @@ T\-O\-D\-O\-: D\-O\-C
 
 Member function intended to be overridden to register unit tests within this suite. 
 
-This function will be called once the \hyperlink{classchaos_1_1test_1_1_launch_pad}{Launch\-Pad} has constructed an instance of this object. This process should not perform an actions that can fail, simply register subsequent Test\-Unit objects.
+This function will be called once the \hyperlink{classchaos_1_1test_1_1_launch_pad}{Launch\-Pad} has constructed an instance of this object. This process should not perform an actions that can fail, simply register subsequent \hyperlink{classchaos_1_1test_1_1_test_unit}{Test\-Unit} objects.
 
 \begin{DoxyAttention}{Attention}
 This function is abstract so must be overridden. 
@@ -54,7 +90,7 @@ This function is abstract so must be overridden.
 
 Member function intended to be overridden to setup the fixture for this suite. 
 
-This function will be called just before the Test\-Unit objects registered by this suite are run. This function should not perform actions that can suffer from critical failure, but may fail to setup the environment.
+This function will be called just before the \hyperlink{classchaos_1_1test_1_1_test_unit}{Test\-Unit} objects registered by this suite are run. This function should not perform actions that can suffer from critical failure, but may fail to setup the environment.
 
 T\-O\-D\-O\-: how to deal with failure? Exception or function call, bool return \hypertarget{classchaos_1_1test_1_1_test_suite_a6ff5bccbbc0f6590f9c921734ed40029}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!teardown@{teardown}}
 \index{teardown@{teardown}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
@@ -67,7 +103,7 @@ T\-O\-D\-O\-: how to deal with failure? Exception or function call, bool return 
 
 Member function intended to be overridden to clean up the fixture setup by this suite. 
 
-This function will be called after execution of all Test\-Unit objects registered by this suite have finished execution, whether or not they have executed successfully. This function should not risk critical failure, but may fail to clean up the environment.
+This function will be called after execution of all \hyperlink{classchaos_1_1test_1_1_test_unit}{Test\-Unit} objects registered by this suite have finished execution, whether or not they have executed successfully. This function should not risk critical failure, but may fail to clean up the environment.
 
 T\-O\-D\-O\-: how to deal with failure? 
 

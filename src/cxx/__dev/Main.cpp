@@ -6,8 +6,9 @@ int main( int argc, char* argv[] )
 {
     // create a new UTF8String
     // chaos::str::UTF8String s( "Ἦλθον, εἶδον, ἐνίκησα" );
-    chaos::str::UTF8String s( "λ" );
-    // chaos::str::UTF8String s1( s );
+    // chaos::str::UTF8String s( "Ἦ" );
+    chaos::str::UTF8String s( "a" );
+    // chaos::str::UTF8String s( "Hello World" );
 
     return 0;
 }

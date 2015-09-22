@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -71,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,12 +81,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespacechaos.html">chaos</a></li><li class="navelem"><a class="el" href="namespacechaos_1_1test.html">test</a></li><li class="navelem"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">TestSuite</a></li>  </ul>
+<li class="navelem"><b>chaos</b></li><li class="navelem"><b>test</b></li><li class="navelem"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">TestSuite</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classchaos_1_1test_1_1_test_suite-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">chaos::test::TestSuite Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -101,6 +101,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:ac5a8385941fb08aa26c0735d45252747"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#ac5a8385941fb08aa26c0735d45252747">TestSuite</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">str::UTF8String</a> &amp;name)</td></tr>
+<tr class="separator:ac5a8385941fb08aa26c0735d45252747"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d9c8c7f0ff3f7b1f74717abc747b3fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a3d9c8c7f0ff3f7b1f74717abc747b3fd">registerTestUnits</a> ()=0</td></tr>
 <tr class="memdesc:a3d9c8c7f0ff3f7b1f74717abc747b3fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Member function intended to be overridden to register unit tests within this suite.  <a href="#a3d9c8c7f0ff3f7b1f74717abc747b3fd">More...</a><br/></td></tr>
 <tr class="separator:a3d9c8c7f0ff3f7b1f74717abc747b3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,11 +112,77 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ff5bccbbc0f6590f9c921734ed40029"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a6ff5bccbbc0f6590f9c921734ed40029">teardown</a> ()</td></tr>
 <tr class="memdesc:a6ff5bccbbc0f6590f9c921734ed40029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Member function intended to be overridden to clean up the fixture setup by this suite.  <a href="#a6ff5bccbbc0f6590f9c921734ed40029">More...</a><br/></td></tr>
 <tr class="separator:a6ff5bccbbc0f6590f9c921734ed40029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4710c28a3ba388d613320a8e1e71014a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">str::UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a4710c28a3ba388d613320a8e1e71014a">getName</a> () const </td></tr>
+<tr class="separator:a4710c28a3ba388d613320a8e1e71014a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a44f5bda25f408b4d05571d749b7802be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a44f5bda25f408b4d05571d749b7802be">registerTestUnit</a> (<a class="el" href="classchaos_1_1test_1_1_test_unit.html">TestUnit</a> *unit)</td></tr>
+<tr class="separator:a44f5bda25f408b4d05571d749b7802be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>TODO: DOC. </p>
 <p>TODO: DOC </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ac5a8385941fb08aa26c0735d45252747"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">chaos::test::TestSuite::TestSuite </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>TODO: DOC </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4710c28a3ba388d613320a8e1e71014a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">str::UTF8String</a> &amp; chaos::test::TestSuite::getName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>The name of this test suite </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a44f5bda25f408b4d05571d749b7802be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::test::TestSuite::registerTestUnit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchaos_1_1test_1_1_test_unit.html">TestUnit</a> *&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>TODO: DOC </p>
+
+</div>
+</div>
 <a class="anchor" id="a3d9c8c7f0ff3f7b1f74717abc747b3fd"></a>
 <div class="memitem">
 <div class="memproto">
@@ -137,7 +205,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Member function intended to be overridden to register unit tests within this suite. </p>
-<p>This function will be called once the <a class="el" href="classchaos_1_1test_1_1_launch_pad.html" title="TODO: DOC. ">LaunchPad</a> has constructed an instance of this object. This process should not perform an actions that can fail, simply register subsequent TestUnit objects.</p>
+<p>This function will be called once the <a class="el" href="classchaos_1_1test_1_1_launch_pad.html" title="TODO: DOC. ">LaunchPad</a> has constructed an instance of this object. This process should not perform an actions that can fail, simply register subsequent <a class="el" href="classchaos_1_1test_1_1_test_unit.html" title="TODO: DOC. ">TestUnit</a> objects.</p>
 <dl class="section attention"><dt>Attention</dt><dd>This function is abstract so must be overridden. </dd></dl>
 
 </div>
@@ -164,7 +232,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Member function intended to be overridden to setup the fixture for this suite. </p>
-<p>This function will be called just before the TestUnit objects registered by this suite are run. This function should not perform actions that can suffer from critical failure, but may fail to setup the environment.</p>
+<p>This function will be called just before the <a class="el" href="classchaos_1_1test_1_1_test_unit.html" title="TODO: DOC. ">TestUnit</a> objects registered by this suite are run. This function should not perform actions that can suffer from critical failure, but may fail to setup the environment.</p>
 <p>TODO: how to deal with failure? Exception or function call, bool return </p>
 
 </div>
@@ -191,7 +259,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Member function intended to be overridden to clean up the fixture setup by this suite. </p>
-<p>This function will be called after execution of all TestUnit objects registered by this suite have finished execution, whether or not they have executed successfully. This function should not risk critical failure, but may fail to clean up the environment.</p>
+<p>This function will be called after execution of all <a class="el" href="classchaos_1_1test_1_1_test_unit.html" title="TODO: DOC. ">TestUnit</a> objects registered by this suite have finished execution, whether or not they have executed successfully. This function should not risk critical failure, but may fail to clean up the environment.</p>
 <p>TODO: how to deal with failure? </p>
 
 </div>
@@ -203,7 +271,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 20 2015 12:45:39 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 23 2015 01:15:39 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

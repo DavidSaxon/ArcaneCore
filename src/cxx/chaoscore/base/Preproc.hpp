@@ -100,5 +100,10 @@
         TypeName( const TypeName& ) = delete;      \
         void operator=( const TypeName& ) = delete
 
+//-----------------------------------FOREACH------------------------------------
+
+#define CHAOS_FOREACH( it, collection ) \
+        auto it = collection.begin();   \
+        for ( ; it != collection.end(); ++it )
 
 #endif

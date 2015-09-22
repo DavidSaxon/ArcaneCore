@@ -7,11 +7,20 @@
 #define CHAOSCORE_TEST_TESTSUITE_HPP_
 
 #include "chaoscore/base/Preproc.hpp"
+#include "chaoscore/base/string/UTF8String.hpp"
+
+#include <vector>
 
 namespace chaos
 {
 namespace test
 {
+
+//------------------------------------------------------------------------------
+//                             FORWARD DECELERATIONS
+//------------------------------------------------------------------------------
+
+class TestUnit;
 
 /**
   * \brief TODO: DOC
@@ -30,7 +39,10 @@ public:
     //                                CONSTRUCTOR
     //--------------------------------------------------------------------------
 
-    TestSuite();
+    /**
+      * TODO: DOC
+      */
+    TestSuite( const chaos::str::UTF8String& name );
 
     //--------------------------------------------------------------------------
     //                                 DESTRUCTOR
@@ -38,11 +50,15 @@ public:
 
     virtual ~TestSuite()
     {
+        // TODO:
+        // delete the unit test registered under this suite
     }
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
+
+    //----------------------------VIRTUAL FUNCTIONS-----------------------------
 
     /**
       * \brief Member function intended to be overridden to register unit tests
@@ -80,6 +96,35 @@ public:
       * TODO: how to deal with failure?
       */
     virtual void teardown();
+
+    //--------------------------------------------------------------------------
+
+    /**
+      * \return The name of this test suite
+      */
+    const chaos::str::UTF8String& getName() const;
+
+protected:
+
+    //--------------------------------------------------------------------------
+    //                         PROTECTED MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /**
+      * TODO: DOC
+      */
+    void registerTestUnit( TestUnit* unit );
+
+private:
+
+    //--------------------------------------------------------------------------
+    //                             PRIVATE ATTRIBUTES
+    //--------------------------------------------------------------------------
+
+    // he name of this this test suite
+    chaos::str::UTF8String m_name;
+    // the list of test units registered under this suite
+    std::vector< TestUnit* > m_units;
 };
 
 } // namespace test

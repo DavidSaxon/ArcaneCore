@@ -7,6 +7,7 @@ set( CORE_SRC
 
     src/cxx/chaoscore/test/LaunchPad.cpp
     src/cxx/chaoscore/test/TestSuite.cpp
+    src/cxx/chaoscore/test/TestUnit.cpp
 )
 
 set( TEST_SRC

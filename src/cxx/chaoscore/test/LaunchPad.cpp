@@ -1,6 +1,7 @@
 #include "chaoscore/test/LaunchPad.hpp"
 
 #include "chaoscore/test/TestSuite.hpp"
+#include "chaoscore/test/__TestServices.hpp"
 
 namespace chaos
 {
@@ -16,12 +17,33 @@ LaunchPad::LaunchPad( chaos::uint64 options )
 }
 
 //------------------------------------------------------------------------------
+//                                   DESTRUCTOR
+//------------------------------------------------------------------------------
+
+LaunchPad::~LaunchPad()
+{
+    // delete the registered suites
+    CHAOS_FOREACH( suiteIt, m_registeredSuites )
+    {
+        delete suiteIt->second;
+    }
+    m_registeredSuites.clear();
+}
+
+//------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void LaunchPad::registerTestSuite( TestSuite* suites )
+void LaunchPad::registerTestSuite( TestSuite* suite )
 {
-    m_registeredSuites.push_back( suites );
+    // get the name of the suite
+    chaos::str::UTF8String suiteName( suite->getName() );
+    // validate the suite
+    service::validateInputTest( suiteName, m_registeredSuites );
+    // // register the suite
+    // suite->registerTestUnits();
+    // // store it
+    // m_registeredSuites[ suiteName ] = suite;
 }
 
 void LaunchPad::init( int argc, char* argv[] )
