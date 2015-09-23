@@ -38,6 +38,8 @@ void LaunchPad::registerTestSuite( TestSuite* suite )
 {
     // get the name of the suite
     chaos::str::UTF8String suiteName( suite->getName() );
+    const chaos::int8* raw = suiteName.getRawData();
+    raw = new chaos::int8[ 78 ];
     // validate the suite
     service::validateInputTest( suiteName, m_registeredSuites );
     // // register the suite

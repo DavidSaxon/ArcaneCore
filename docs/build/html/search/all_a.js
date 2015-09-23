@@ -2,7 +2,7 @@ var searchData=
 [
   ['teardown',['teardown',['../classchaos_1_1test_1_1_test_suite.html#a6ff5bccbbc0f6590f9c921734ed40029',1,'chaos::test::TestSuite::teardown()'],['../classchaos_1_1test_1_1_test_unit.html#ad19e85804ac830e411a696acad7d03e6',1,'chaos::test::TestUnit::teardown()']]],
   ['testsuite',['TestSuite',['../classchaos_1_1test_1_1_test_suite.html',1,'chaos::test']]],
-  ['testsuite',['TestSuite',['../classchaos_1_1test_1_1_test_suite.html#ac5a8385941fb08aa26c0735d45252747',1,'chaos::test::TestSuite']]],
+  ['testsuite',['TestSuite',['../classchaos_1_1test_1_1_test_suite.html#afcbbc804b722ef991edcff4841cc454e',1,'chaos::test::TestSuite']]],
   ['testsuite_2ehpp',['TestSuite.hpp',['../_test_suite_8hpp.html',1,'']]],
   ['testunit',['TestUnit',['../classchaos_1_1test_1_1_test_unit.html',1,'chaos::test']]],
   ['testunit',['TestUnit',['../classchaos_1_1test_1_1_test_unit.html#a08d73d7b6ad46db691afbd6b066567f3',1,'chaos::test::TestUnit']]],

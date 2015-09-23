@@ -23,7 +23,7 @@ UTF8String::UTF8String()
     m_holdsData ( false )
 {
     // assign the empty string
-    assign_internal( "", 1 );
+    assign_internal( "", 0 );
 }
 
 UTF8String::UTF8String( const char* data )
@@ -33,8 +33,16 @@ UTF8String::UTF8String( const char* data )
     // assign the data
     assign_internal( data );
 
-    // TESTING: let's inspect
+    //TODO: REMOVE ME
     dev_inspectContents();
+}
+
+UTF8String::UTF8String( const char* data, size_t length )
+    :
+    m_holdsData ( false )
+{
+    // assign the data
+    assign_internal( data, length );
 }
 
 UTF8String::UTF8String( const UTF8String& other )
@@ -76,6 +84,17 @@ bool UTF8String::operator==( const UTF8String& other ) const
     ) == 0;
 }
 
+bool UTF8String::operator<( const UTF8String& other ) const
+{
+    // TODO: fix this
+    std::string thisString ( toStdString() );
+    std::string otherString( other.toStdString() );
+    return std::lexicographical_compare(
+            thisString.begin(),  thisString.end(),
+            otherString.begin(), otherString.end()
+    );
+}
+
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
@@ -95,21 +114,29 @@ void UTF8String::assign( const UTF8String& other )
     assign_internal( other.m_data, other.m_dataLength );
 }
 
-bool UTF8String::lexicographicalCompare( const UTF8String& other ) const
+bool UTF8String::isEmpty() const
 {
-    // TODO: fix this
-    std::string thisString ( toStdString() );
-    std::string otherString( other.toStdString() );
-    return std::lexicographical_compare(
-            thisString.begin(),  thisString.end(),
-            otherString.begin(), otherString.end()
-    );
+    return !m_holdsData || m_dataLength == 0;
 }
 
 std::string UTF8String::toStdString() const
 {
-    return std::string( reinterpret_cast< char* >( m_data ) );
+    return std::string( reinterpret_cast< char* >( m_data ), m_dataLength );
 }
+
+//----------------------------------ACCESSORS-----------------------------------
+
+size_t UTF8String::getByteLength() const
+{
+    return m_dataLength;
+}
+
+const chaos::int8* UTF8String::getRawData() const
+{
+    return m_data;
+}
+
+//------------------------------------------------------------------------------
 
 //--------------------------------DEV FUNCTIONS---------------------------------
 
@@ -118,8 +145,10 @@ void UTF8String::dev_inspectContents()
     std::cout << "\n-----------------------------------------------------------"
               << "---------------------" << std::endl;
 
+    // TODO: USE TOSTDSTRING
+
     // put that shit in a standard string
-    std::string s( reinterpret_cast< char* >( m_data ) );
+    std::string s( toStdString() );
 
     std::cout << "DATA LENGTH         : " << m_dataLength << std::endl;
     std::cout << "STRING LENGTH:      : " << s.length() << std::endl;
@@ -175,6 +204,7 @@ void UTF8String::assign_internal( const void* data, size_t existingLength )
     // get number of bytes in the data
     if ( existingLength == std::string::npos )
     {
+        // this will not include the NULL terminator in the length
         m_dataLength = strlen( cData );
     }
     else
@@ -182,12 +212,19 @@ void UTF8String::assign_internal( const void* data, size_t existingLength )
         m_dataLength = existingLength;
     }
 
+    // is there actually any data?
+    if ( m_dataLength == 0 )
+    {
+        m_holdsData = false;
+        return;
+    }
+
     // allocate storage for the internal data buffer
     m_data = new chaos::int8[ m_dataLength ];
     // data has been allocated
     m_holdsData = true;
     // copy data to internal array
-    strcpy( reinterpret_cast< char* >( m_data ), cData );
+    memcpy( m_data, cData, m_dataLength );
 }
 
 } // namespace str

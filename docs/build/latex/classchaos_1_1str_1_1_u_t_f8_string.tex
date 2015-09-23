@@ -17,6 +17,8 @@ A generic string type for storing Unicode data. T\-O\-D\-O.
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_af506696bfe777057c4a7e6b6acf19dab}{U\-T\-F8\-String} (const char $\ast$data)
 \begin{DoxyCompactList}\small\item\em String literal constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac3077c0963a5f36dcaa2a87a1c02d05d}{U\-T\-F8\-String} (const char $\ast$data, size\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a194b76859245fdb815ce5d537f2e1db4}{U\-T\-F8\-String} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
 const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_afcf35cf97971d9d38104745e6160b942}{operator=} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
@@ -31,10 +33,14 @@ void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a145
 \begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the data buffer. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aff351b1a6276e5e59717bc6c3b67818c}{assign} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Assigns internal data from another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
-bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a7ebd679be03584050bd1ef200797c1fd}{lexicographical\-Compare} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other) const 
-\begin{DoxyCompactList}\small\item\em Compares whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} is less than the other given \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
+bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}{is\-Empty} () const 
+\item 
 std\-::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf2bdf38097a2fd6}{to\-Std\-String} () const 
 \begin{DoxyCompactList}\small\item\em Returns this as a standard library string. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{get\-Byte\-Length} () const 
+\begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
+chaos\-::int8 const $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4ec9850d87d8d2c8d970912e2b8c454e}{get\-Raw\-Data} () const 
+\begin{DoxyCompactList}\small\item\em Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}{void {\bfseries dev\-\_\-inspect\-Contents} ()}\label{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}
 
 \end{DoxyCompactItemize}
@@ -43,7 +49,9 @@ std\-::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf
 \subsection{Detailed Description}
 A generic string type for storing Unicode data. T\-O\-D\-O. 
 
-T\-O\-D\-O\-: detailed description 
+T\-O\-D\-O\-: detailed description
+
+T\-O\-D\-O\-: Non N\-U\-L\-L terminated data 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a173513bf2d62d742bee337b00716bf82}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
@@ -67,6 +75,18 @@ T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_af506696b
 
 
 String literal constructor. 
+
+T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac3077c0963a5f36dcaa2a87a1c02d05d}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
+\index{U\-T\-F8\-String@{U\-T\-F8\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{U\-T\-F8\-String}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::str\-::\-U\-T\-F8\-String\-::\-U\-T\-F8\-String (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data, }
+\item[{size\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_ac3077c0963a5f36dcaa2a87a1c02d05d}
+
+
+T\-O\-D\-O\-: D\-O\-C. 
 
 T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a194b76859245fdb815ce5d537f2e1db4}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
 \index{U\-T\-F8\-String@{U\-T\-F8\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
@@ -100,7 +120,7 @@ Creates a new \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} 
 
 Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given string literal. 
 
-This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded.
+This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded and N\-U\-L\-L terminated.
 
 
 \begin{DoxyParams}{Parameters}
@@ -118,7 +138,7 @@ This operation will delete any current internal data of this object. The input d
 
 Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the data buffer. 
 
-This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded.
+This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded and N\-U\-L\-L terminated.
 
 
 \begin{DoxyParams}{Parameters}
@@ -143,29 +163,46 @@ Assigns the internal of data this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string
 {\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to copy internal data from. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a7ebd679be03584050bd1ef200797c1fd}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!lexicographical\-Compare@{lexicographical\-Compare}}
-\index{lexicographical\-Compare@{lexicographical\-Compare}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
-\subsubsection[{lexicographical\-Compare}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::str\-::\-U\-T\-F8\-String\-::lexicographical\-Compare (
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Byte\-Length@{get\-Byte\-Length}}
+\index{get\-Byte\-Length@{get\-Byte\-Length}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{get\-Byte\-Length}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Byte\-Length (
 \begin{DoxyParamCaption}
-\item[{const {\bf U\-T\-F8\-String} \&}]{other}
+{}
 \end{DoxyParamCaption}
-) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a7ebd679be03584050bd1ef200797c1fd}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}
 
 
-Compares whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} is less than the other given \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. 
+Get the length of the internal buffer data in bytes. 
 
-Less than is defined by performing a value comparison between each Unicode code point in the string.
-
-\begin{DoxyWarning}{Warning}
-correct implementation in progress
-\end{DoxyWarning}
-
-\begin{DoxyParams}{Parameters}
-{\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to perform a lexicographical comparison with. \\
-\hline
-\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This is not equal to the character length of the string as utf-\/8 encoded characters can take up multiple bytes.
+\end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-Whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} is considered less than the other 
+The length of the internal data. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4ec9850d87d8d2c8d970912e2b8c454e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Raw\-Data@{get\-Raw\-Data}}
+\index{get\-Raw\-Data@{get\-Raw\-Data}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{get\-Raw\-Data}]{\setlength{\rightskip}{0pt plus 5cm}const chaos\-::int8 $\ast$ chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Raw\-Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a4ec9850d87d8d2c8d970912e2b8c454e}
+
+
+Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. 
+
+\begin{DoxyReturn}{Returns}
+a pointer to a constant representation of the internal data. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!is\-Empty@{is\-Empty}}
+\index{is\-Empty@{is\-Empty}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{is\-Empty}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::str\-::\-U\-T\-F8\-String\-::is\-Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}
+\begin{DoxyReturn}{Returns}
+Whether the this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} contains any characters or not. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac7b54ed9c42a9c9a0a386d453d2c1daa}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
@@ -180,8 +217,11 @@ Less than operator.
 
 Compares whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} is less than the other given \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}.
 
-Is the same as calling lexicographical\-Compare( const U\-T\-F8\-String\& ).
+Less than is defined by performing a value comparison between each Unicode code point in the string.
 
+\begin{DoxyWarning}{Warning}
+correct implementation in progress
+\end{DoxyWarning}
 
 \begin{DoxyParams}{Parameters}
 {\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to compare against. \\

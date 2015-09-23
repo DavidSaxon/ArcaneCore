@@ -19,6 +19,8 @@ namespace str
  * \brief A generic string type for storing Unicode data. TODO
  *
  * TODO: detailed description
+ *
+ * TODO: Non NULL terminated data
  */
 class UTF8String
 {
@@ -41,6 +43,13 @@ public:
      * TODO: DOC
      */
     UTF8String( const char* data );
+
+    /*!
+     * \brief TODO: DOC
+     *
+     * TODO: DOC
+     */
+    UTF8String( const char* data, size_t length );
 
     /*!
      * \brief Copy constructor.
@@ -93,7 +102,10 @@ public:
      *
      * Compares whether this UTF8String is less than the other given UTF8String.
      *
-     * Is the same as calling lexicographicalCompare( const UTF8String& ).
+     * Less than is defined by performing a value comparison between each
+     * Unicode code point in the string.
+     *
+     * \warning correct implementation in progress
      *
      * \param other UTF8String to compare against.
      * \return Whether this UTF8String is less than the other.
@@ -109,7 +121,7 @@ public:
      *        literal.
      *
      * This operation will delete any current internal data of this object. The
-     * input data is expected to be utf-8 encoded.
+     * input data is expected to be utf-8 encoded and NULL terminated.
      *
      * \param data Data buffer to copy from.
      */
@@ -119,7 +131,7 @@ public:
      * \brief Assigns the internal data of this UTF8String to the data buffer.
      *
      * This operation will delete any current internal data of this object. The
-     * input data is expected to be utf-8 encoded.
+     * input data is expected to be utf-8 encoded and NULL terminated.
      *
      * \param data Data buffer to copy from.
      */
@@ -136,17 +148,9 @@ public:
     void assign( const UTF8String& other );
 
     /*!
-     * \brief Compares whether this UTF8String is less than the other given
-              UTF8String.
-     *
-     * Less than is defined by performing a value comparison between each
-     * Unicode code point in the string.
-     *
-     * \warning correct implementation in progress
-     *
-     * \param other UTF8String to perform a lexicographical comparison with.
-     * \return Whether this UTF8String is considered less than the other */
-     bool lexicographicalCompare( const UTF8String& other ) const;
+     * \return Whether the this UTF8String contains any characters or not.
+     */
+    bool isEmpty() const;
 
      /*!
       * \brief Returns this as a standard library string.
@@ -154,6 +158,27 @@ public:
       * \return the std::string representation of this UTF8String.
       */
     std::string toStdString() const;
+
+    //--------------------------------ACCESSORS---------------------------------
+
+    /*!
+     * \brief Get the length of the internal buffer data in bytes.
+     *
+     * \note This is not equal to the character length of the string as utf-8
+     *       encoded characters can take up multiple bytes.
+     *
+     * \return The length of the internal data.
+     */
+    size_t getByteLength() const;
+
+    /*!
+     * \brief Get the raw byte data of this UTF8String.
+     *
+     * \return a pointer to a constant representation of the internal data.
+     */
+    const chaos::int8* getRawData() const;
+
+    //--------------------------------------------------------------------------
 
 
     //------------------------------DEV FUNCTIONS-------------------------------
