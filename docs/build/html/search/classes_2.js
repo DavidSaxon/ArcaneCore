@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utf8string',['UTF8String',['../classchaos_1_1str_1_1_u_t_f8_string.html',1,'chaos::str']]]
+  ['indexoutofboundserror',['IndexOutOfBoundsError',['../classchaos_1_1ex_1_1_index_out_of_bounds_error.html',1,'chaos::ex']]]
 ];

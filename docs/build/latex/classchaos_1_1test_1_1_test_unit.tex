@@ -15,13 +15,13 @@ T\-O\-D\-O\-: D\-O\-C.
 \item 
 \hyperlink{classchaos_1_1test_1_1_test_unit_a08d73d7b6ad46db691afbd6b066567f3}{Test\-Unit} (const std\-::string \&name)
 \item 
-virtual void \hyperlink{classchaos_1_1test_1_1_test_unit_a2aecefcc01a9a7fa64bc8108af22f355}{setup} ()
+virtual void \hyperlink{classchaos_1_1test_1_1_test_unit_abba8ef36b76b0780f331025e0721072e}{setup} ()
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to setup the fixture for this particular unit test. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classchaos_1_1test_1_1_test_unit_ad19e85804ac830e411a696acad7d03e6}{teardown} ()
+virtual void \hyperlink{classchaos_1_1test_1_1_test_unit_a9dd2b8814fe9b3f6753d464f5ddaa2a4}{teardown} ()
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to clean up the fixture set up by this unit test. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classchaos_1_1test_1_1_test_unit_a7c46611836ac7a9a527115098f83564c}{run} ()=0
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden in order to run this unit test. \end{DoxyCompactList}\item 
-const std\-::string \& \hyperlink{classchaos_1_1test_1_1_test_unit_a83d464bf139412c1fdaae047e7153b0a}{get\-Name} () const 
+const std\-::string \& \hyperlink{classchaos_1_1test_1_1_test_unit_a34bc9edcf21da9276d7798b3fde34244}{get\-Name} () const 
 \end{DoxyCompactItemize}
 
 
@@ -41,13 +41,13 @@ T\-O\-D\-O\-: D\-O\-C
 T\-O\-D\-O\-: D\-O\-C 
 
 \subsection{Member Function Documentation}
-\hypertarget{classchaos_1_1test_1_1_test_unit_a83d464bf139412c1fdaae047e7153b0a}{\index{chaos\-::test\-::\-Test\-Unit@{chaos\-::test\-::\-Test\-Unit}!get\-Name@{get\-Name}}
+\hypertarget{classchaos_1_1test_1_1_test_unit_a34bc9edcf21da9276d7798b3fde34244}{\index{chaos\-::test\-::\-Test\-Unit@{chaos\-::test\-::\-Test\-Unit}!get\-Name@{get\-Name}}
 \index{get\-Name@{get\-Name}!chaos::test::TestUnit@{chaos\-::test\-::\-Test\-Unit}}
-\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string \& chaos\-::test\-::\-Test\-Unit\-::get\-Name (
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::string\& chaos\-::test\-::\-Test\-Unit\-::get\-Name (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}}\label{classchaos_1_1test_1_1_test_unit_a83d464bf139412c1fdaae047e7153b0a}
+) const}}\label{classchaos_1_1test_1_1_test_unit_a34bc9edcf21da9276d7798b3fde34244}
 \begin{DoxyReturn}{Returns}
 The name of the unit test. 
 \end{DoxyReturn}
@@ -62,26 +62,26 @@ The name of the unit test.
 
 Member function intended to be overridden in order to run this unit test. 
 
-This function must be implemented in derived classes and is where you should do the actual testing. From here test results will be recorded to disk. A critical failure (such as a segmentation fault) in this function will not interfere with the test process as a whole, however it will cause this function to abort, therefore some test may not run. \hypertarget{classchaos_1_1test_1_1_test_unit_a2aecefcc01a9a7fa64bc8108af22f355}{\index{chaos\-::test\-::\-Test\-Unit@{chaos\-::test\-::\-Test\-Unit}!setup@{setup}}
+This function must be implemented in derived classes and is where you should do the actual testing. From here test results will be recorded to disk. A critical failure (such as a segmentation fault) in this function will not interfere with the test process as a whole, however it will cause this function to abort, therefore some test may not run. \hypertarget{classchaos_1_1test_1_1_test_unit_abba8ef36b76b0780f331025e0721072e}{\index{chaos\-::test\-::\-Test\-Unit@{chaos\-::test\-::\-Test\-Unit}!setup@{setup}}
 \index{setup@{setup}!chaos::test::TestUnit@{chaos\-::test\-::\-Test\-Unit}}
-\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Unit\-::setup (
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::test\-::\-Test\-Unit\-::setup (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_unit_a2aecefcc01a9a7fa64bc8108af22f355}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_unit_abba8ef36b76b0780f331025e0721072e}
 
 
 Member function intended to be overridden to setup the fixture for this particular unit test. 
 
 This function will be called just before the run member function is called.
 
-T\-O\-D\-O\-: how to deal with failure, through function or through exception? \hypertarget{classchaos_1_1test_1_1_test_unit_ad19e85804ac830e411a696acad7d03e6}{\index{chaos\-::test\-::\-Test\-Unit@{chaos\-::test\-::\-Test\-Unit}!teardown@{teardown}}
+T\-O\-D\-O\-: how to deal with failure, through function or through exception? \hypertarget{classchaos_1_1test_1_1_test_unit_a9dd2b8814fe9b3f6753d464f5ddaa2a4}{\index{chaos\-::test\-::\-Test\-Unit@{chaos\-::test\-::\-Test\-Unit}!teardown@{teardown}}
 \index{teardown@{teardown}!chaos::test::TestUnit@{chaos\-::test\-::\-Test\-Unit}}
-\subsubsection[{teardown}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Unit\-::teardown (
+\subsubsection[{teardown}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::test\-::\-Test\-Unit\-::teardown (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_unit_ad19e85804ac830e411a696acad7d03e6}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_unit_a9dd2b8814fe9b3f6753d464f5ddaa2a4}
 
 
 Member function intended to be overridden to clean up the fixture set up by this unit test. 
@@ -90,7 +90,6 @@ The function will be called after the run member function has been executed, whe
 
 T\-O\-D\-O\-: how to deal with error 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\hyperlink{_test_unit_8hpp}{Test\-Unit.\-hpp}\item 
-/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/Test\-Unit.\-cpp\end{DoxyCompactItemize}
+/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\hyperlink{_test_unit_8hpp}{Test\-Unit.\-hpp}\end{DoxyCompactItemize}

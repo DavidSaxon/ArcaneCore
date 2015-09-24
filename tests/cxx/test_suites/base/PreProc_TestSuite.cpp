@@ -1,19 +1,16 @@
-#include "test_suites/base/PreProc_TestSuite.hpp"
+#include "chaoscore/test/ChaosTest.hpp"
 
 //------------------------------------------------------------------------------
-//                                  CONSTRUCTOR
+//                                   UNIT TESTS
 //------------------------------------------------------------------------------
 
-PreProc_TestSuite::PreProc_TestSuite()
-    :
-    TestSuite( "preproc" )
+CHAOS_TEST_UNIT(  )
 {
+    std::cout << "RUN DISALLOW CONSTRUCTION" << std::endl;
 }
 
-//------------------------------------------------------------------------------
-//                            PUBLIC MEMBER FUNCTIONS
-//------------------------------------------------------------------------------
-
-void PreProc_TestSuite::registerTestUnits()
+CHAOS_TEST_UNIT( base.preproc.disallow_copy_and_assign )
 {
+    std::cout << "RUN DISALLOW COPY AND ASSIGN" << std::endl;
 }
+

@@ -1,6 +1,9 @@
 #include "chaoscore/base/string/UTF8String.hpp"
 
+#include <cstddef>
 #include <cstring>
+
+#include "chaoscore/base/BaseExceptions.hpp"
 
 // TODO: only used for lexicographical_compare
 // can be removed once implemented correctly
@@ -20,7 +23,9 @@ namespace str
 
 UTF8String::UTF8String()
     :
-    m_holdsData ( false )
+    m_data      ( nullptr ),
+    m_dataLength( 0 ),
+    m_length    ( 0 )
 {
     // assign the empty string
     assign_internal( "", 0 );
@@ -28,7 +33,9 @@ UTF8String::UTF8String()
 
 UTF8String::UTF8String( const char* data )
     :
-    m_holdsData ( false )
+    m_data      ( nullptr ),
+    m_dataLength( 0 ),
+    m_length    ( 0 )
 {
     // assign the data
     assign_internal( data );
@@ -39,7 +46,9 @@ UTF8String::UTF8String( const char* data )
 
 UTF8String::UTF8String( const char* data, size_t length )
     :
-    m_holdsData ( false )
+    m_data      ( nullptr ),
+    m_dataLength( 0 ),
+    m_length    ( 0 )
 {
     // assign the data
     assign_internal( data, length );
@@ -47,7 +56,9 @@ UTF8String::UTF8String( const char* data, size_t length )
 
 UTF8String::UTF8String( const UTF8String& other )
     :
-    m_holdsData ( false )
+    m_data      ( nullptr ),
+    m_dataLength( 0 ),
+    m_length    ( 0 )
 {
     // assign the data with the known length
    assign_internal( other.m_data, other.m_dataLength );
@@ -59,11 +70,8 @@ UTF8String::UTF8String( const UTF8String& other )
 
 UTF8String::~UTF8String()
 {
-    // ensure we delete the internal data buffer if it has been assigned
-    if ( m_holdsData )
-    {
-        delete[] m_data;
-    }
+    // ensure we delete the internal data buffer
+    delete[] m_data;
 }
 
 //------------------------------------------------------------------------------
@@ -82,6 +90,11 @@ bool UTF8String::operator==( const UTF8String& other ) const
             reinterpret_cast< const char* >( m_data ),
             reinterpret_cast< const char* >( other.m_data )
     ) == 0;
+}
+
+bool UTF8String::operator!=( const UTF8String& other ) const
+{
+    return !( ( *this ) == other );
 }
 
 bool UTF8String::operator<( const UTF8String& other ) const
@@ -116,7 +129,8 @@ void UTF8String::assign( const UTF8String& other )
 
 bool UTF8String::isEmpty() const
 {
-    return !m_holdsData || m_dataLength == 0;
+    // less than once since non-empty data will contain a NULL terminator
+    return m_dataLength <= 1;
 }
 
 std::string UTF8String::toStdString() const
@@ -125,6 +139,23 @@ std::string UTF8String::toStdString() const
 }
 
 //----------------------------------ACCESSORS-----------------------------------
+
+size_t UTF8String::getLength() const
+{
+    return m_length;
+}
+
+UTF8String UTF8String::getSymbol( size_t index )
+{
+    // TODO: fix
+
+    // is the index valid
+    if ( index != m_length )
+    {
+        // TODO:
+        throw chaos::ex::IndexOutOfBoundsError( "" );
+    }
+}
 
 size_t UTF8String::getByteLength() const
 {
@@ -144,8 +175,6 @@ void UTF8String::dev_inspectContents()
 {
     std::cout << "\n-----------------------------------------------------------"
               << "---------------------" << std::endl;
-
-    // TODO: USE TOSTDSTRING
 
     // put that shit in a standard string
     std::string s( toStdString() );
@@ -192,39 +221,45 @@ void UTF8String::dev_inspectContents()
 void UTF8String::assign_internal( const void* data, size_t existingLength )
 {
     // if there is already content in the internal buffer delete it
-    if ( m_holdsData )
-    {
-        delete[] m_data;
-    }
+    delete[] m_data;
 
     // cast the incoming data to a cstring
     const char* cData = static_cast< const char* >( data );
 
-    // TODO: can be optmised away in certain constructor cases
     // get number of bytes in the data
+    bool isNullTerminated = true;
     if ( existingLength == std::string::npos )
     {
-        // this will not include the NULL terminator in the length
-        m_dataLength = strlen( cData );
+        // the length includes the NULL terminator
+        existingLength = strlen( cData ) + 1;
+        m_dataLength = existingLength;
+    }
+    else if ( existingLength > 0 && cData[ existingLength - 1 ] == '\0' )
+    {
+        // the length includes a NULL terminator
+        isNullTerminated = true;
+        m_dataLength = existingLength;
     }
     else
     {
-        m_dataLength = existingLength;
-    }
-
-    // is there actually any data?
-    if ( m_dataLength == 0 )
-    {
-        m_holdsData = false;
-        return;
+        // the length doesn't include a NULL terminator
+        isNullTerminated = false;
+        m_dataLength = existingLength + 1;
     }
 
     // allocate storage for the internal data buffer
     m_data = new chaos::int8[ m_dataLength ];
-    // data has been allocated
-    m_holdsData = true;
     // copy data to internal array
-    memcpy( m_data, cData, m_dataLength );
+    memcpy( m_data, cData, existingLength );
+    // should a NULL terminator be added to the end?
+    if ( !isNullTerminated )
+    {
+        m_data[ m_dataLength - 1 ] = '\0';
+    }
+
+    // to calculate the number of utf-8 symbols in the string
+    // TODO:
+    m_length = m_dataLength;
 }
 
 } // namespace str

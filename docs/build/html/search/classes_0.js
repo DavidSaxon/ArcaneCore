@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['launchpad',['LaunchPad',['../classchaos_1_1test_1_1_launch_pad.html',1,'chaos::test']]]
+  ['chaosexception',['ChaosException',['../classchaos_1_1ex_1_1_chaos_exception.html',1,'chaos::ex']]]
 ];

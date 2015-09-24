@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['registertestsuite',['registerTestSuite',['../classchaos_1_1test_1_1_launch_pad.html#aa1d283bca075fca020ba21fa2b1b3b34',1,'chaos::test::LaunchPad']]],
-  ['registertestunit',['registerTestUnit',['../classchaos_1_1test_1_1_test_suite.html#a44f5bda25f408b4d05571d749b7802be',1,'chaos::test::TestSuite']]],
-  ['registertestunits',['registerTestUnits',['../classchaos_1_1test_1_1_test_suite.html#a3d9c8c7f0ff3f7b1f74717abc747b3fd',1,'chaos::test::TestSuite']]],
-  ['run',['run',['../classchaos_1_1test_1_1_test_unit.html#a7c46611836ac7a9a527115098f83564c',1,'chaos::test::TestUnit']]]
+  ['utf8string',['UTF8String',['../classchaos_1_1str_1_1_u_t_f8_string.html#a173513bf2d62d742bee337b00716bf82',1,'chaos::str::UTF8String::UTF8String()'],['../classchaos_1_1str_1_1_u_t_f8_string.html#af506696bfe777057c4a7e6b6acf19dab',1,'chaos::str::UTF8String::UTF8String(const char *data)'],['../classchaos_1_1str_1_1_u_t_f8_string.html#ac3077c0963a5f36dcaa2a87a1c02d05d',1,'chaos::str::UTF8String::UTF8String(const char *data, size_t length)'],['../classchaos_1_1str_1_1_u_t_f8_string.html#a194b76859245fdb815ce5d537f2e1db4',1,'chaos::str::UTF8String::UTF8String(const UTF8String &amp;other)']]]
 ];

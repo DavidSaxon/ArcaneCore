@@ -17,11 +17,11 @@ T\-O\-D\-O\-: D\-O\-C.
 \item 
 virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_a3d9c8c7f0ff3f7b1f74717abc747b3fd}{register\-Test\-Units} ()=0
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to register unit tests within this suite. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_ad0a1e7224769042c7ef55c1cd6192982}{setup} ()
+virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_aa4ed3bfe0389ad6d4647348bfe3f2281}{setup} ()
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to setup the fixture for this suite. \end{DoxyCompactList}\item 
-virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_a6ff5bccbbc0f6590f9c921734ed40029}{teardown} ()
+virtual void \hyperlink{classchaos_1_1test_1_1_test_suite_a4de0c29b1fc12621cb078104372c8f61}{teardown} ()
 \begin{DoxyCompactList}\small\item\em Member function intended to be overridden to clean up the fixture setup by this suite. \end{DoxyCompactList}\item 
-const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \& \hyperlink{classchaos_1_1test_1_1_test_suite_aeb9155de71eb9259c987a207bd297fe4}{get\-Name} () const 
+const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \& \hyperlink{classchaos_1_1test_1_1_test_suite_abc4093d7f0a7fbd47bd97fd45bd4c13e}{get\-Name} () const 
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -46,13 +46,13 @@ T\-O\-D\-O\-: D\-O\-C
 T\-O\-D\-O\-: D\-O\-C 
 
 \subsection{Member Function Documentation}
-\hypertarget{classchaos_1_1test_1_1_test_suite_aeb9155de71eb9259c987a207bd297fe4}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!get\-Name@{get\-Name}}
+\hypertarget{classchaos_1_1test_1_1_test_suite_abc4093d7f0a7fbd47bd97fd45bd4c13e}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!get\-Name@{get\-Name}}
 \index{get\-Name@{get\-Name}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
-\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\-::str\-::\-U\-T\-F8\-String} \& chaos\-::test\-::\-Test\-Suite\-::get\-Name (
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\-::str\-::\-U\-T\-F8\-String}\& chaos\-::test\-::\-Test\-Suite\-::get\-Name (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}}\label{classchaos_1_1test_1_1_test_suite_aeb9155de71eb9259c987a207bd297fe4}
+) const}}\label{classchaos_1_1test_1_1_test_suite_abc4093d7f0a7fbd47bd97fd45bd4c13e}
 \begin{DoxyReturn}{Returns}
 The name of this test suite 
 \end{DoxyReturn}
@@ -79,26 +79,26 @@ This function will be called once the \hyperlink{classchaos_1_1test_1_1_launch_p
 \begin{DoxyAttention}{Attention}
 This function is abstract so must be overridden. 
 \end{DoxyAttention}
-\hypertarget{classchaos_1_1test_1_1_test_suite_ad0a1e7224769042c7ef55c1cd6192982}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!setup@{setup}}
+\hypertarget{classchaos_1_1test_1_1_test_suite_aa4ed3bfe0389ad6d4647348bfe3f2281}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!setup@{setup}}
 \index{setup@{setup}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
-\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Suite\-::setup (
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::test\-::\-Test\-Suite\-::setup (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_suite_ad0a1e7224769042c7ef55c1cd6192982}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_suite_aa4ed3bfe0389ad6d4647348bfe3f2281}
 
 
 Member function intended to be overridden to setup the fixture for this suite. 
 
 This function will be called just before the \hyperlink{classchaos_1_1test_1_1_test_unit}{Test\-Unit} objects registered by this suite are run. This function should not perform actions that can suffer from critical failure, but may fail to setup the environment.
 
-T\-O\-D\-O\-: how to deal with failure? Exception or function call, bool return \hypertarget{classchaos_1_1test_1_1_test_suite_a6ff5bccbbc0f6590f9c921734ed40029}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!teardown@{teardown}}
+T\-O\-D\-O\-: how to deal with failure? Exception or function call, bool return \hypertarget{classchaos_1_1test_1_1_test_suite_a4de0c29b1fc12621cb078104372c8f61}{\index{chaos\-::test\-::\-Test\-Suite@{chaos\-::test\-::\-Test\-Suite}!teardown@{teardown}}
 \index{teardown@{teardown}!chaos::test::TestSuite@{chaos\-::test\-::\-Test\-Suite}}
-\subsubsection[{teardown}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Suite\-::teardown (
+\subsubsection[{teardown}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::test\-::\-Test\-Suite\-::teardown (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_suite_a6ff5bccbbc0f6590f9c921734ed40029}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classchaos_1_1test_1_1_test_suite_a4de0c29b1fc12621cb078104372c8f61}
 
 
 Member function intended to be overridden to clean up the fixture setup by this suite. 
@@ -107,7 +107,6 @@ This function will be called after execution of all \hyperlink{classchaos_1_1tes
 
 T\-O\-D\-O\-: how to deal with failure? 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\hyperlink{_test_suite_8hpp}{Test\-Suite.\-hpp}\item 
-/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/Test\-Suite.\-cpp\end{DoxyCompactItemize}
+/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\hyperlink{_test_suite_8hpp}{Test\-Suite.\-hpp}\end{DoxyCompactItemize}

@@ -38,6 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -62,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>chaos</b></li><li class="navelem"><b>test</b></li><li class="navelem"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">TestSuite</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacechaos.html">chaos</a></li><li class="navelem"><a class="el" href="namespacechaos_1_1test.html">test</a></li><li class="navelem"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">TestSuite</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -92,17 +95,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#aeb9155de71eb9259c987a207bd297fe4">getName</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#abc4093d7f0a7fbd47bd97fd45bd4c13e">getName</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a44f5bda25f408b4d05571d749b7802be">registerTestUnit</a>(TestUnit *unit)</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a3d9c8c7f0ff3f7b1f74717abc747b3fd">registerTestUnits</a>()=0</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#ad0a1e7224769042c7ef55c1cd6192982">setup</a>()</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a6ff5bccbbc0f6590f9c921734ed40029">teardown</a>()</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#aa4ed3bfe0389ad6d4647348bfe3f2281">setup</a>()</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#a4de0c29b1fc12621cb078104372c8f61">teardown</a>()</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html#afcbbc804b722ef991edcff4841cc454e">TestSuite</a>(const chaos::str::UTF8String &amp;name)</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~TestSuite</b>() (defined in <a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a>)</td><td class="entry"><a class="el" href="classchaos_1_1test_1_1_test_suite.html">chaos::test::TestSuite</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 23 2015 14:35:53 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 24 2015 09:57:47 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

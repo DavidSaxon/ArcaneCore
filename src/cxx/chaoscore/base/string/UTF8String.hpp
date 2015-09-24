@@ -20,7 +20,7 @@ namespace str
  *
  * TODO: detailed description
  *
- * TODO: Non NULL terminated data
+ * TODO: Is NULL terminated data
  */
 class UTF8String
 {
@@ -98,6 +98,16 @@ public:
     bool operator==( const UTF8String& other ) const;
 
     /*!
+     * \brief Inequality operator.
+     *
+     * Compares whether this UTF8String and the other given UTF8String are
+     * considered not equal.
+     * \param other UTF8String to compare this against.
+     * \return Whether the strings are not equal.
+     */
+    bool operator!=( const UTF8String& other ) const;
+
+    /*!
      * \brief Less than operator.
      *
      * Compares whether this UTF8String is less than the other given UTF8String.
@@ -162,7 +172,38 @@ public:
     //--------------------------------ACCESSORS---------------------------------
 
     /*!
+     * /brief Return the length of this UTF8String
+     *
+     * The length is defined how many utf-8 symbols there are in the string,
+     * this length doesn't not necessarily equal the byte length of the string.
+     *
+     * \return The number of utf-8 symbols in this UTF8String.
+     */
+    size_t getLength() const;
+
+    // TODO: add [] operators
+    /*!
+     * \brief Get the utf-8 symbol defined at the given index.
+     *
+     * \todo implement correctly
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+                                                bounds of the string length.
+     *
+     * \param index Position of the symbol to retrieve in the string with
+     *              respect to the length returned by getLength()
+     * \return A UTF8String containing the single utf-8 symbol at the given
+     *         index.
+     */
+    UTF8String getSymbol( size_t index );
+
+    /*!
      * \brief Get the length of the internal buffer data in bytes.
+     *
+     * This is exactly the number of bytes in the internal raw data of this
+     * UTF8String which can be accessed through getRawData(). Note that this
+     * data is NULL ('\0') terminated and this length includes the NULL
+     * terminator. Therefore if UTF8String == "" then getByteLength() == 1.
      *
      * \note This is not equal to the character length of the string as utf-8
      *       encoded characters can take up multiple bytes.
@@ -193,13 +234,13 @@ private:
     //                             PRIVATE ATTRIBUTES
     //--------------------------------------------------------------------------
 
-    // internal attribute that represents whether this has any data assigned yet
-    bool m_holdsData;
-
     // the array containing the data stored as consecutive bytes
     chaos::int8* m_data;
     // the length of the data int bytes (not the length of the string)
     size_t m_dataLength;
+
+    // the number of utf-8 symbols in this string
+    size_t m_length;
 
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS

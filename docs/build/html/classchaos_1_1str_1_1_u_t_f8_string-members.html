@@ -38,6 +38,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -62,6 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -81,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>chaos</b></li><li class="navelem"><b>str</b></li><li class="navelem"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacechaos.html">chaos</a></li><li class="navelem"><a class="el" href="namespacechaos_1_1str.html">str</a></li><li class="navelem"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -97,21 +100,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#aff351b1a6276e5e59717bc6c3b67818c">assign</a>(const UTF8String &amp;other)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>dev_inspectContents</b>() (defined in <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a848f2364bfff00544463f9f08748cdc2">getByteLength</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4ec9850d87d8d2c8d970912e2b8c454e">getRawData</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a16c5dc861a7a62d1595af424b3b4f58e">getLength</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#aa994b507f25989757e41a65fe02e6f35">getRawData</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ade4edaf258efc5ee0b63aa888fcee932">getSymbol</a>(size_t index)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a6011a783e7fdc46a39996729651ccd76">isEmpty</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac7b54ed9c42a9c9a0a386d453d2c1daa">operator&lt;</a>(const UTF8String &amp;other) const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#afcf35cf97971d9d38104745e6160b942">operator=</a>(const UTF8String &amp;other)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ae4446150398d498e8aa9ebbc05ca7b52">operator==</a>(const UTF8String &amp;other) const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4febd35eab6e30bbcf2bdf38097a2fd6">toStdString</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a173513bf2d62d742bee337b00716bf82">UTF8String</a>()</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#af506696bfe777057c4a7e6b6acf19dab">UTF8String</a>(const char *data)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac3077c0963a5f36dcaa2a87a1c02d05d">UTF8String</a>(const char *data, size_t length)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a194b76859245fdb815ce5d537f2e1db4">UTF8String</a>(const UTF8String &amp;other)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>~UTF8String</b>() (defined in <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a166394399a4d200494b40e034aa330da">operator!=</a>(const UTF8String &amp;other) const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac7b54ed9c42a9c9a0a386d453d2c1daa">operator&lt;</a>(const UTF8String &amp;other) const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a050b804cc8978a4a55a5bc0a8cad2553">operator=</a>(const UTF8String &amp;other)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ae4446150398d498e8aa9ebbc05ca7b52">operator==</a>(const UTF8String &amp;other) const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4febd35eab6e30bbcf2bdf38097a2fd6">toStdString</a>() const </td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a173513bf2d62d742bee337b00716bf82">UTF8String</a>()</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#af506696bfe777057c4a7e6b6acf19dab">UTF8String</a>(const char *data)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac3077c0963a5f36dcaa2a87a1c02d05d">UTF8String</a>(const char *data, size_t length)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a194b76859245fdb815ce5d537f2e1db4">UTF8String</a>(const UTF8String &amp;other)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~UTF8String</b>() (defined in <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>)</td><td class="entry"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 23 2015 14:35:53 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 25 2015 00:05:52 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

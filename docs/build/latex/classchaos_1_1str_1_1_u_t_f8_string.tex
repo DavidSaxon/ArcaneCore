@@ -21,10 +21,12 @@ A generic string type for storing Unicode data. T\-O\-D\-O.
 \begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a194b76859245fdb815ce5d537f2e1db4}{U\-T\-F8\-String} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
-const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_afcf35cf97971d9d38104745e6160b942}{operator=} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
+const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a050b804cc8978a4a55a5bc0a8cad2553}{operator=} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
 bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ae4446150398d498e8aa9ebbc05ca7b52}{operator==} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other) const 
 \begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a166394399a4d200494b40e034aa330da}{operator!=} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other) const 
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
 bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac7b54ed9c42a9c9a0a386d453d2c1daa}{operator$<$} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other) const 
 \begin{DoxyCompactList}\small\item\em Less than operator. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a483e71ec1090e346c63bf2b13b37ad7a}{assign} (const char $\ast$data)
@@ -37,9 +39,13 @@ bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651
 \item 
 std\-::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf2bdf38097a2fd6}{to\-Std\-String} () const 
 \begin{DoxyCompactList}\small\item\em Returns this as a standard library string. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{get\-Length} () const 
+\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}{get\-Symbol} (size\-\_\-t index)
+\begin{DoxyCompactList}\small\item\em Get the utf-\/8 symbol defined at the given index. \end{DoxyCompactList}\item 
 size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{get\-Byte\-Length} () const 
 \begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
-chaos\-::int8 const $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4ec9850d87d8d2c8d970912e2b8c454e}{get\-Raw\-Data} () const 
+const chaos\-::int8 $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{get\-Raw\-Data} () const 
 \begin{DoxyCompactList}\small\item\em Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}{void {\bfseries dev\-\_\-inspect\-Contents} ()}\label{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}
 
@@ -51,7 +57,7 @@ A generic string type for storing Unicode data. T\-O\-D\-O.
 
 T\-O\-D\-O\-: detailed description
 
-T\-O\-D\-O\-: Non N\-U\-L\-L terminated data 
+T\-O\-D\-O\-: Is N\-U\-L\-L terminated data 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a173513bf2d62d742bee337b00716bf82}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
@@ -174,25 +180,69 @@ Assigns the internal of data this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string
 
 Get the length of the internal buffer data in bytes. 
 
+This is exactly the number of bytes in the internal raw data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} which can be accessed through \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{get\-Raw\-Data()}. Note that this data is N\-U\-L\-L ('\textbackslash{}0') terminated and this length includes the N\-U\-L\-L terminator. Therefore if \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} == \char`\"{}\char`\"{} then \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{get\-Byte\-Length()} == 1.
+
 \begin{DoxyNote}{Note}
 This is not equal to the character length of the string as utf-\/8 encoded characters can take up multiple bytes.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The length of the internal data. 
 \end{DoxyReturn}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4ec9850d87d8d2c8d970912e2b8c454e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Raw\-Data@{get\-Raw\-Data}}
-\index{get\-Raw\-Data@{get\-Raw\-Data}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
-\subsubsection[{get\-Raw\-Data}]{\setlength{\rightskip}{0pt plus 5cm}const chaos\-::int8 $\ast$ chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Raw\-Data (
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Length@{get\-Length}}
+\index{get\-Length@{get\-Length}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{get\-Length}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Length (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a4ec9850d87d8d2c8d970912e2b8c454e}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}
+/brief Return the length of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}
+
+The length is defined how many utf-\/8 symbols there are in the string, this length doesn't not necessarily equal the byte length of the string.
+
+\begin{DoxyReturn}{Returns}
+The number of utf-\/8 symbols in this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Raw\-Data@{get\-Raw\-Data}}
+\index{get\-Raw\-Data@{get\-Raw\-Data}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{get\-Raw\-Data}]{\setlength{\rightskip}{0pt plus 5cm}const chaos\-::int8$\ast$ chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Raw\-Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}
 
 
 Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. 
 
 \begin{DoxyReturn}{Returns}
 a pointer to a constant representation of the internal data. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Symbol@{get\-Symbol}}
+\index{get\-Symbol@{get\-Symbol}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{get\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\-T\-F8\-String} chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Symbol (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{index}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}
+
+
+Get the utf-\/8 symbol defined at the given index. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]implement correctly\end{DoxyRefDesc}
+
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\-::ex\-::\-Index\-Out\-Of\-Bounds\-Error}} & If the provided index is out of bounds of the string length.\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Position of the symbol to retrieve in the string with respect to the length returned by \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{get\-Length()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} containing the single utf-\/8 symbol at the given index. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!is\-Empty@{is\-Empty}}
 \index{is\-Empty@{is\-Empty}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
@@ -203,6 +253,25 @@ a pointer to a constant representation of the internal data.
 ) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}
 \begin{DoxyReturn}{Returns}
 Whether the this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} contains any characters or not. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a166394399a4d200494b40e034aa330da}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::str\-::\-U\-T\-F8\-String\-::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a166394399a4d200494b40e034aa330da}
+
+
+Inequality operator. 
+
+Compares whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} and the other given \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} are considered not equal. 
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to compare this against. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether the strings are not equal. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac7b54ed9c42a9c9a0a386d453d2c1daa}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
@@ -230,13 +299,13 @@ correct implementation in progress
 \begin{DoxyReturn}{Returns}
 Whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} is less than the other. 
 \end{DoxyReturn}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_afcf35cf97971d9d38104745e6160b942}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator=@{operator=}}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a050b804cc8978a4a55a5bc0a8cad2553}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator=@{operator=}}
 \index{operator=@{operator=}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String} \& chaos\-::str\-::\-U\-T\-F8\-String\-::operator= (
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String}\& chaos\-::str\-::\-U\-T\-F8\-String\-::operator= (
 \begin{DoxyParamCaption}
 \item[{const {\bf U\-T\-F8\-String} \&}]{other}
 \end{DoxyParamCaption}
-)}}\label{classchaos_1_1str_1_1_u_t_f8_string_afcf35cf97971d9d38104745e6160b942}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a050b804cc8978a4a55a5bc0a8cad2553}
 
 
 Assignment operator. 
@@ -290,7 +359,6 @@ the std\-::string representation of this \hyperlink{classchaos_1_1str_1_1_u_t_f8
 \end{DoxyReturn}
 
 
-The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 
-/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/base/string/\hyperlink{_u_t_f8_string_8hpp}{U\-T\-F8\-String.\-hpp}\item 
-/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/base/string/U\-T\-F8\-String.\-cpp\end{DoxyCompactItemize}
+/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/base/string/\hyperlink{_u_t_f8_string_8hpp}{U\-T\-F8\-String.\-hpp}\end{DoxyCompactItemize}
