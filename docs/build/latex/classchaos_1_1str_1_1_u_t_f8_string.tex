@@ -19,6 +19,10 @@ A generic string type for storing Unicode data. T\-O\-D\-O.
 \begin{DoxyCompactList}\small\item\em String literal constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac3077c0963a5f36dcaa2a87a1c02d05d}{U\-T\-F8\-String} (const char $\ast$data, size\-\_\-t length)
 \begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a42f9c24b46964187a90d0da58c57949b}{U\-T\-F8\-String} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8} $\ast$data)
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a195c6d579796f70f28ab7f5b4d0e5cb5}{U\-T\-F8\-String} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8} $\ast$data, size\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a194b76859245fdb815ce5d537f2e1db4}{U\-T\-F8\-String} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
 const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a050b804cc8978a4a55a5bc0a8cad2553}{operator=} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
@@ -31,21 +35,27 @@ bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac7b54ed9c42a9c9a0a386d453d2
 \begin{DoxyCompactList}\small\item\em Less than operator. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a483e71ec1090e346c63bf2b13b37ad7a}{assign} (const char $\ast$data)
 \begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given string literal. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}{assign} (const chaos\-::int8 $\ast$data)
-\begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the data buffer. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a631f935a5b85214a2fa662a78f5693aa}{assign} (const char $\ast$data, size\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given string literal. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}{assign} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given data buffer. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122ea1883}{assign} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8} $\ast$data, size\-\_\-t length)
+\begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given data buffer. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aff351b1a6276e5e59717bc6c3b67818c}{assign} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Assigns internal data from another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
-bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}{is\-Empty} () const 
-\item 
+const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}{format} (...)
+\begin{DoxyCompactList}\small\item\em Applies formating to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by replacing formatting tokens in the string with the provided arguments. \end{DoxyCompactList}\item 
 std\-::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf2bdf38097a2fd6}{to\-Std\-String} () const 
 \begin{DoxyCompactList}\small\item\em Returns this as a standard library string. \end{DoxyCompactList}\item 
 size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{get\-Length} () const 
+\item 
+bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}{is\-Empty} () const 
 \item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}{get\-Symbol} (size\-\_\-t index)
 \begin{DoxyCompactList}\small\item\em Get the utf-\/8 symbol defined at the given index. \end{DoxyCompactList}\item 
 size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{get\-Byte\-Length} () const 
 \begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
-const chaos\-::int8 $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{get\-Raw\-Data} () const 
+const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8} $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{get\-Raw\-Data} () const 
 \begin{DoxyCompactList}\small\item\em Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}{void {\bfseries dev\-\_\-inspect\-Contents} ()}\label{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}
 
@@ -94,6 +104,29 @@ T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac3077c09
 
 T\-O\-D\-O\-: D\-O\-C. 
 
+T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a42f9c24b46964187a90d0da58c57949b}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
+\index{U\-T\-F8\-String@{U\-T\-F8\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{U\-T\-F8\-String}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::str\-::\-U\-T\-F8\-String\-::\-U\-T\-F8\-String (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::int8} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a42f9c24b46964187a90d0da58c57949b}
+
+
+T\-O\-D\-O\-: D\-O\-C. 
+
+T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a195c6d579796f70f28ab7f5b4d0e5cb5}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
+\index{U\-T\-F8\-String@{U\-T\-F8\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{U\-T\-F8\-String}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::str\-::\-U\-T\-F8\-String\-::\-U\-T\-F8\-String (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::int8} $\ast$}]{data, }
+\item[{size\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a195c6d579796f70f28ab7f5b4d0e5cb5}
+
+
+T\-O\-D\-O\-: D\-O\-C. 
+
 T\-O\-D\-O\-: D\-O\-C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a194b76859245fdb815ce5d537f2e1db4}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!U\-T\-F8\-String@{U\-T\-F8\-String}}
 \index{U\-T\-F8\-String@{U\-T\-F8\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
 \subsubsection[{U\-T\-F8\-String}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::str\-::\-U\-T\-F8\-String\-::\-U\-T\-F8\-String (
@@ -133,22 +166,64 @@ This operation will delete any current internal data of this object. The input d
 {\em data} & Data buffer to copy from. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a631f935a5b85214a2fa662a78f5693aa}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!assign@{assign}}
+\index{assign@{assign}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{assign}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::str\-::\-U\-T\-F8\-String\-::assign (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data, }
+\item[{size\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a631f935a5b85214a2fa662a78f5693aa}
+
+
+Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given string literal. 
+
+This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded. This function should be used when the input data is not N\-U\-L\-L terminated, or can be used for optimisation purposes if the length of data is already known. This will mean the length of the data will not need to be evaluated internally.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Data buffer to copy from. \\
+\hline
+{\em length} & Number of bytes in the provided data buffer. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!assign@{assign}}
 \index{assign@{assign}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
 \subsubsection[{assign}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::str\-::\-U\-T\-F8\-String\-::assign (
 \begin{DoxyParamCaption}
-\item[{const chaos\-::int8 $\ast$}]{data}
+\item[{const {\bf chaos\-::int8} $\ast$}]{data}
 \end{DoxyParamCaption}
 )}}\label{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}
 
 
-Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the data buffer. 
+Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given data buffer. 
 
 This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded and N\-U\-L\-L terminated.
 
 
 \begin{DoxyParams}{Parameters}
 {\em data} & Data buffer to copy from. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122ea1883}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!assign@{assign}}
+\index{assign@{assign}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{assign}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::str\-::\-U\-T\-F8\-String\-::assign (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::int8} $\ast$}]{data, }
+\item[{size\-\_\-t}]{length}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122ea1883}
+
+
+Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given data buffer. 
+
+This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded. This function should be used when the input data is not N\-U\-L\-L terminated, or can be used for optimisation purposes if the length of data is already known. This will mean the length of the data will not need to be evaluated internally.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Data buffer to copy from. \\
+\hline
+{\em length} & Number of bytes in the provided data buffer. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_aff351b1a6276e5e59717bc6c3b67818c}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!assign@{assign}}
@@ -169,6 +244,29 @@ Assigns the internal of data this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string
 {\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to copy internal data from. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!format@{format}}
+\index{format@{format}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{format}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String}\& chaos\-::str\-::\-U\-T\-F8\-String\-::format (
+\begin{DoxyParamCaption}
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}
+
+
+Applies formating to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by replacing formatting tokens in the string with the provided arguments. 
+
+This works the same as sprintf does for c strings. Example usage\-: 
+\begin{DoxyCode}
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos::str::UTF8String} s( \textcolor{stringliteral}{"Hello %d World %d"} );
+s.format( 0, 75 );
+\textcolor{comment}{// prints "Hello 0 World 75"}
+std::cout << s << std::endl;
+\end{DoxyCode}
+
+
+\begin{DoxyReturn}{Returns}
+Reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the format has taken place. 
+\end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Byte\-Length@{get\-Byte\-Length}}
 \index{get\-Byte\-Length@{get\-Byte\-Length}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
 \subsubsection[{get\-Byte\-Length}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Byte\-Length (
@@ -204,7 +302,7 @@ The number of utf-\/8 symbols in this \hyperlink{classchaos_1_1str_1_1_u_t_f8_st
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Raw\-Data@{get\-Raw\-Data}}
 \index{get\-Raw\-Data@{get\-Raw\-Data}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
-\subsubsection[{get\-Raw\-Data}]{\setlength{\rightskip}{0pt plus 5cm}const chaos\-::int8$\ast$ chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Raw\-Data (
+\subsubsection[{get\-Raw\-Data}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\-::int8}$\ast$ chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Raw\-Data (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}

@@ -11,9 +11,10 @@ var indexSectionsWithContent =
   1: "cfitu",
   2: "c",
   3: "bcptu",
-  4: "acgiotuw",
-  5: "c",
-  6: "t"
+  4: "acfgiotuw",
+  5: "iu",
+  6: "c",
+  7: "t"
 };
 
 var indexSectionNames =
@@ -23,8 +24,9 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "defines",
-  6: "pages"
+  5: "typedefs",
+  6: "defines",
+  7: "pages"
 };
 
 function convertToId(search)

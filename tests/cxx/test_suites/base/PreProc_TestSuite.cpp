@@ -4,7 +4,7 @@
 //                                   UNIT TESTS
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT(  )
+CHAOS_TEST_UNIT( base.preproc.disallow_construction )
 {
     std::cout << "RUN DISALLOW CONSTRUCTION" << std::endl;
 }

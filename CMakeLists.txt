@@ -21,7 +21,7 @@ set(BASEPATH "${CMAKE_SOURCE_DIR}")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs")
 
 include_directories("${BASEPATH}" ${INCLUDE_DIRECTORIES} src/cxx/ tests/cxx/ )
 

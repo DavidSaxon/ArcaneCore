@@ -6,6 +6,7 @@
 #ifndef CHAOSCORE_BASE_STRING_USTRING_HPP_
 #define CHAOSCORE_BASE_STRING_USTRING_HPP_
 
+#include <ostream>
 #include <string>
 
 #include "chaoscore/base/Types.hpp"
@@ -50,6 +51,20 @@ public:
      * TODO: DOC
      */
     UTF8String( const char* data, size_t length );
+
+    /*!
+     * \brief TODO: DOC
+     *
+     * TODO: DOC
+     */
+    UTF8String( const chaos::int8* data );
+
+    /*!
+     * \brief TODO: DOC
+     *
+     * TODO: DOC
+     */
+    UTF8String( const chaos::int8* data, size_t length );
 
     /*!
      * \brief Copy constructor.
@@ -138,7 +153,23 @@ public:
     void assign( const char* data );
 
     /*!
-     * \brief Assigns the internal data of this UTF8String to the data buffer.
+     * \brief Assigns the internal data of this UTF8String to the given string
+     *        literal.
+     *
+     * This operation will delete any current internal data of this object. The
+     * input data is expected to be utf-8 encoded. This function should be used
+     * when the input data is not NULL terminated, or can be used for
+     * optimisation purposes if the length of data is already known. This will
+     * mean the length of the data will not need to be evaluated internally.
+     *
+     * \param data Data buffer to copy from.
+     * \param length Number of bytes in the provided data buffer.
+     */
+    void assign( const char* data, size_t length );
+
+    /*!
+     * \brief Assigns the internal data of this UTF8String to the given data
+     *        buffer.
      *
      * This operation will delete any current internal data of this object. The
      * input data is expected to be utf-8 encoded and NULL terminated.
@@ -146,6 +177,21 @@ public:
      * \param data Data buffer to copy from.
      */
     void assign( const chaos::int8* data );
+
+    /*!
+     * \brief Assigns the internal data of this UTF8String to the given data
+     *        buffer.
+     *
+     * This operation will delete any current internal data of this object. The
+     * input data is expected to be utf-8 encoded. This function should be used
+     * when the input data is not NULL terminated, or can be used for
+     * optimisation purposes if the length of data is already known. This will
+     * mean the length of the data will not need to be evaluated internally.
+     *
+     * \param data Data buffer to copy from.
+     * \param length Number of bytes in the provided data buffer.
+     */
+    void assign( const chaos::int8* data, size_t length );
 
     /*!
      * \brief Assigns internal data from another UTF8String.
@@ -158,9 +204,20 @@ public:
     void assign( const UTF8String& other );
 
     /*!
-     * \return Whether the this UTF8String contains any characters or not.
+     * \brief Applies formating to this UTF8String by replacing formatting
+     *        tokens in the string with the provided arguments.
+     *
+     * This works the same as sprintf does for c strings. Example usage:
+     * \code
+     * chaos::str::UTF8String s( "Hello %d World %d" );
+     * s.format( 0, 75 );
+     * // prints "Hello 0 World 75"
+     * std::cout << s << std::endl;
+     * \endcode
+     *
+     * \return Reference to this UTF8String after the format has taken place.
      */
-    bool isEmpty() const;
+    const UTF8String& format( ... );
 
      /*!
       * \brief Returns this as a standard library string.
@@ -181,7 +238,11 @@ public:
      */
     size_t getLength() const;
 
-    // TODO: add [] operators
+    /*!
+     * \return Whether the this UTF8String contains any characters or not.
+     */
+    bool isEmpty() const;
+
     /*!
      * \brief Get the utf-8 symbol defined at the given index.
      *
@@ -265,8 +326,15 @@ private:
             size_t existingLength = std::string::npos );
 };
 
+//------------------------------------------------------------------------------
+//                               EXTERNAL OPERATORS
+//------------------------------------------------------------------------------
+
+std::ostream& operator<<( std::ostream& stream, const UTF8String& str );
 
 } // namespace str
 } // namespace chaos
+
+
 
 #endif

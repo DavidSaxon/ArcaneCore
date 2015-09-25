@@ -81,7 +81,7 @@ namespace chaos
       * \note This may not necessarily `typedef` a `uint32_t` as it is platform
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `unsigned int`.
-
+      */
     typedef uint32_t uint32;
 
     /**

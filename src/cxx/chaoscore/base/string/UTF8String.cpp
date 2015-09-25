@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstring>
+#include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
 
@@ -39,12 +40,29 @@ UTF8String::UTF8String( const char* data )
 {
     // assign the data
     assign_internal( data );
-
-    //TODO: REMOVE ME
-    dev_inspectContents();
 }
 
 UTF8String::UTF8String( const char* data, size_t length )
+    :
+    m_data      ( nullptr ),
+    m_dataLength( 0 ),
+    m_length    ( 0 )
+{
+    // assign the data
+    assign_internal( data, length );
+}
+
+UTF8String::UTF8String( const chaos::int8* data )
+    :
+    m_data      ( nullptr ),
+    m_dataLength( 0 ),
+    m_length    ( 0 )
+{
+    // assign the data
+    assign_internal( data );
+}
+
+UTF8String::UTF8String( const chaos::int8* data, size_t length )
     :
     m_data      ( nullptr ),
     m_dataLength( 0 ),
@@ -117,9 +135,19 @@ void UTF8String::assign( const char* data )
     assign_internal( data );
 }
 
+void UTF8String::assign( const char* data, size_t length )
+{
+    assign_internal( data, length );
+}
+
 void UTF8String::assign( const chaos::int8* data )
 {
     assign_internal( data );
+}
+
+void UTF8String::assign( const chaos::int8* data, size_t length )
+{
+    assign_internal( data, length );
 }
 
 void UTF8String::assign( const UTF8String& other )
@@ -127,10 +155,24 @@ void UTF8String::assign( const UTF8String& other )
     assign_internal( other.m_data, other.m_dataLength );
 }
 
-bool UTF8String::isEmpty() const
+
+const UTF8String& UTF8String::format( ... )
 {
-    // less than once since non-empty data will contain a NULL terminator
-    return m_dataLength <= 1;
+    // copy the current data
+    char* newData = new char[ m_dataLength ];
+
+    va_list args;
+    va_start( args, reinterpret_cast< char* >( m_data ) );
+    vsprintf( newData, reinterpret_cast< char* >( m_data ), args );
+    va_end( args );
+
+    // assign the new data to this string
+    assign_internal( newData );
+    // delete the copied data
+    delete[] newData;
+
+    // return this
+    return *this;
 }
 
 std::string UTF8String::toStdString() const
@@ -145,16 +187,27 @@ size_t UTF8String::getLength() const
     return m_length;
 }
 
+bool UTF8String::isEmpty() const
+{
+    // less than once since non-empty data will contain a NULL terminator
+    return m_dataLength <= 1;
+}
+
 UTF8String UTF8String::getSymbol( size_t index )
 {
     // TODO: fix
 
     // is the index valid
-    if ( index != m_length )
+    if ( index >= m_length )
     {
         // TODO:
-        throw chaos::ex::IndexOutOfBoundsError( "" );
+        throw chaos::ex::IndexOutOfBoundsError( chaos::str::UTF8String(
+                "Provided index: %d is greater or equal to the number of "
+                "symbols in the string: %d"
+        ).format( index, m_length ) ); // TODO: .format( index, m_length )
     }
+
+    return UTF8String( &m_data[ index ], 1 );
 }
 
 size_t UTF8String::getByteLength() const
@@ -262,5 +315,17 @@ void UTF8String::assign_internal( const void* data, size_t existingLength )
     m_length = m_dataLength;
 }
 
+//------------------------------------------------------------------------------
+//                               EXTERNAL OPERATORS
+//------------------------------------------------------------------------------
+
+std::ostream& operator<<( std::ostream& stream, const UTF8String& str )
+{
+    // TODO: proper printing
+    stream << str.toStdString() << std::endl;
+    return stream;
+}
+
 } // namespace str
 } // namespace chaos
+
