@@ -12,10 +12,14 @@
 #include <vector>
 
 #include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/BaseLiterals.hpp"
 #include "chaoscore/base/string/UTF8String.hpp"
 
 // TODO: REMOVE ME
 #include <iostream>
+
+// use ChaosCore literals
+CHAOS_BASE_USE_LITERALS
 
 namespace chaos
 {
@@ -123,19 +127,42 @@ public:
                   UnitTest*               unitTest,
                   Fixture*                fixture   )
     {
-        // TODO: REMOVE ME
-        std::cout << "DECLARE: " << path.toStdString() << std::endl;
-
         // validate
         // ensure the path is not empty
         if ( path.isEmpty() )
         {
-            throw TestError( "Unit test declared with no path." );
+            throw TestError( "Unit test declared with no path."_utf8 );
         }
-        // DOESN'T START AND END WTH .
-        // TODO:
-        // ISN'T ALREADY IN THE MAP
-        // TODO:
+        // check that first or last symbols are not a periods
+        if ( path.getSymbol( 0 )                    == "."_utf8 ||
+             path.getSymbol( path.getLength() - 1 ) == "."_utf8    )
+        {
+            throw TestError(
+                    "Invalid test path: \""_utf8 + path +
+                    "\". Test paths cannot start or end with \'.\'"
+            );
+        }
+        // check that there are not two consecutive periods
+        for ( size_t i = 0; i < path.getLength() - 1; ++i )
+        {
+            if ( path.getSymbol( i )     == "."_utf8 &&
+                 path.getSymbol( i + 1 ) == "."_utf8    )
+            {
+                throw TestError(
+                        "Invalid test path: \""_utf8 + path +
+                        "\". Test paths cannot contain two or more "_utf8 +
+                        "consecutive \'.\'"
+                );
+            }
+        }
+        // check that path is not already in the map
+        if ( testMap.find( path ) != testMap.end() )
+        {
+            throw TestError(
+                    "Test path: \""_utf8 + path +
+                    "\" has multiple definitions"_utf8
+            );
+        }
 
         // pass the test unit into the global mapping
         testMap[ path ] = unitTest;

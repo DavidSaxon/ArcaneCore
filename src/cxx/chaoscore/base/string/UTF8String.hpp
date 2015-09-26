@@ -137,6 +137,29 @@ public:
      */
     bool operator<( const UTF8String& other ) const;
 
+    /*!
+     * \brief Addition operator.
+     *
+     * Performs the same function as concatenate() but does not cause any
+     * modifications to this string, instead returns a new string which contains
+     * the results of the concatenation.
+     *
+     * \param other UTF8String to append to the end of a copy of this string.
+     * \return UTF8String that contains the results of the concatenation.
+     */
+    UTF8String operator+( const UTF8String& other ) const;
+
+    /*!
+     * \brief Compound addition operator.
+     *
+     * Performs the same function as concatenate().
+     *
+     * \other UTF8String to append to the end of this string.
+     * \return A reference to this UTF8String after the concatenation has taken
+     *         place.
+     */
+    const UTF8String& operator+=( const UTF8String& other );
+
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
@@ -219,6 +242,15 @@ public:
      */
     const UTF8String& format( ... );
 
+    /*!
+     * \brief Concatenates another UTF8String on to the end of this string.
+     *
+     * \other UTF8String to append to the end of this string.
+     * \return A reference to this UTF8String after the concatenation has taken
+     *         place.
+     */
+    const UTF8String& concatenate( const UTF8String& other );
+
      /*!
       * \brief Returns this as a standard library string.
       *
@@ -256,7 +288,7 @@ public:
      * \return A UTF8String containing the single utf-8 symbol at the given
      *         index.
      */
-    UTF8String getSymbol( size_t index );
+    UTF8String getSymbol( size_t index ) const;
 
     /*!
      * \brief Get the length of the internal buffer data in bytes.

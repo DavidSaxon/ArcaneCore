@@ -126,6 +126,16 @@ bool UTF8String::operator<( const UTF8String& other ) const
     );
 }
 
+UTF8String UTF8String::operator+( const UTF8String& other ) const
+{
+    return UTF8String( *this ).concatenate( other );
+}
+
+const UTF8String& UTF8String::operator+=( const UTF8String& other )
+{
+    return this->concatenate( other );
+}
+
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
@@ -171,7 +181,23 @@ const UTF8String& UTF8String::format( ... )
     // delete the copied data
     delete[] newData;
 
-    // return this
+    // return reference
+    return *this;
+}
+
+const UTF8String& UTF8String::concatenate( const UTF8String& other )
+{
+    // calculate the new size of the data (but remove the first string's NULL
+    // terminator)
+    size_t newLength = ( m_dataLength - 1 ) + other.m_dataLength;
+    // allocate a new array to hold the increase data size, ignoring one of the
+    // NULL terminators
+    chaos::int8* newData = new chaos::int8[ newLength ];
+    // copy over the data from the strings
+    memcpy( newData, m_data, m_dataLength - 1 );
+    memcpy( newData + ( m_dataLength - 1 ), other.m_data, other.m_dataLength );
+    // finally assign and return
+    assign_internal( newData, newLength );
     return *this;
 }
 
@@ -193,7 +219,7 @@ bool UTF8String::isEmpty() const
     return m_dataLength <= 1;
 }
 
-UTF8String UTF8String::getSymbol( size_t index )
+UTF8String UTF8String::getSymbol( size_t index ) const
 {
     // TODO: fix
 
@@ -312,7 +338,7 @@ void UTF8String::assign_internal( const void* data, size_t existingLength )
 
     // to calculate the number of utf-8 symbols in the string
     // TODO:
-    m_length = m_dataLength;
+    m_length = m_dataLength - 1;
 }
 
 //------------------------------------------------------------------------------
@@ -322,7 +348,7 @@ void UTF8String::assign_internal( const void* data, size_t existingLength )
 std::ostream& operator<<( std::ostream& stream, const UTF8String& str )
 {
     // TODO: proper printing
-    stream << str.toStdString() << std::endl;
+    stream << str.toStdString();
     return stream;
 }
 

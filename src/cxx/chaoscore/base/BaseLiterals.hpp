@@ -25,7 +25,9 @@ namespace literal
  * "Hello World!"_utf8
  * \endcode
  */
-chaos::str::UTF8String operator"" _utf8 ( const char* literal, size_t length )
+inline chaos::str::UTF8String operator"" _utf8(
+        const char*  literal,
+              size_t length )
 {
     return chaos::str::UTF8String( literal, length );
 }

@@ -33,6 +33,10 @@ bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a166394399a4d200494b40e034aa
 \begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
 bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac7b54ed9c42a9c9a0a386d453d2c1daa}{operator$<$} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other) const 
 \begin{DoxyCompactList}\small\item\em Less than operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a0d624a8e308b9a04511d31558ae37d8d}{operator+} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other) const 
+\begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9ce7f005abc581590ff3823db749873f}{operator+=} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
+\begin{DoxyCompactList}\small\item\em Compound addition operator. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a483e71ec1090e346c63bf2b13b37ad7a}{assign} (const char $\ast$data)
 \begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given string literal. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a631f935a5b85214a2fa662a78f5693aa}{assign} (const char $\ast$data, size\-\_\-t length)
@@ -45,13 +49,15 @@ void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aff351b1a6276e5e59717bc6c3b6
 \begin{DoxyCompactList}\small\item\em Assigns internal data from another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
 const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}{format} (...)
 \begin{DoxyCompactList}\small\item\em Applies formating to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by replacing formatting tokens in the string with the provided arguments. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}{concatenate} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
+\begin{DoxyCompactList}\small\item\em Concatenates another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} on to the end of this string. \end{DoxyCompactList}\item 
 std\-::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf2bdf38097a2fd6}{to\-Std\-String} () const 
 \begin{DoxyCompactList}\small\item\em Returns this as a standard library string. \end{DoxyCompactList}\item 
 size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{get\-Length} () const 
 \item 
 bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6011a783e7fdc46a39996729651ccd76}{is\-Empty} () const 
 \item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}{get\-Symbol} (size\-\_\-t index)
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_afb0f987b7ac632ec223b118d58fe1bca}{get\-Symbol} (size\-\_\-t index) const 
 \begin{DoxyCompactList}\small\item\em Get the utf-\/8 symbol defined at the given index. \end{DoxyCompactList}\item 
 size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{get\-Byte\-Length} () const 
 \begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
@@ -244,6 +250,20 @@ Assigns the internal of data this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string
 {\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to copy internal data from. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!concatenate@{concatenate}}
+\index{concatenate@{concatenate}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{concatenate}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String}\& chaos\-::str\-::\-U\-T\-F8\-String\-::concatenate (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}
+
+
+Concatenates another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} on to the end of this string. 
+
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to append to the end of this string. \begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the concatenation has taken place. 
+\end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!format@{format}}
 \index{format@{format}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
 \subsubsection[{format}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String}\& chaos\-::str\-::\-U\-T\-F8\-String\-::format (
@@ -314,13 +334,13 @@ Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\
 \begin{DoxyReturn}{Returns}
 a pointer to a constant representation of the internal data. 
 \end{DoxyReturn}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Symbol@{get\-Symbol}}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_afb0f987b7ac632ec223b118d58fe1bca}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Symbol@{get\-Symbol}}
 \index{get\-Symbol@{get\-Symbol}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
 \subsubsection[{get\-Symbol}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\-T\-F8\-String} chaos\-::str\-::\-U\-T\-F8\-String\-::get\-Symbol (
 \begin{DoxyParamCaption}
 \item[{size\-\_\-t}]{index}
 \end{DoxyParamCaption}
-)}}\label{classchaos_1_1str_1_1_u_t_f8_string_ade4edaf258efc5ee0b63aa888fcee932}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_afb0f987b7ac632ec223b118d58fe1bca}
 
 
 Get the utf-\/8 symbol defined at the given index. 
@@ -370,6 +390,43 @@ Compares whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Whether the strings are not equal. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a0d624a8e308b9a04511d31558ae37d8d}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator+@{operator+}}
+\index{operator+@{operator+}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\-T\-F8\-String} chaos\-::str\-::\-U\-T\-F8\-String\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a0d624a8e308b9a04511d31558ae37d8d}
+
+
+Addition operator. 
+
+Performs the same function as \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}{concatenate()} but does not cause any modifications to this string, instead returns a new string which contains the results of the concatenation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to append to the end of a copy of this string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} that contains the results of the concatenation. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a9ce7f005abc581590ff3823db749873f}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String}\& chaos\-::str\-::\-U\-T\-F8\-String\-::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a9ce7f005abc581590ff3823db749873f}
+
+
+Compound addition operator. 
+
+Performs the same function as \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}{concatenate()}.
+
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to append to the end of this string. \begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the concatenation has taken place. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac7b54ed9c42a9c9a0a386d453d2c1daa}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
