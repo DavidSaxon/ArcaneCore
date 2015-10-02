@@ -2,6 +2,6 @@
 
 int main( int argc, char* argv[] )
 {
-    chaos::test::internal::TestCore( "", NULL, true );
+    chaos::test::internal::TestCore( "", NULL, "", 0, false, true );
     return 0;
 }

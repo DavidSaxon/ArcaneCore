@@ -11,6 +11,7 @@
 #include "chaoscore/base/Preproc.hpp"
 
 #include <map>
+#include <sstream>
 #include <vector>
 
 #ifdef CHAOS_OS_UNIX
@@ -116,26 +117,13 @@ typedef std::map< chaos::str::UTF8String, UnitTest* > TestMap;
 //                                    CLASSES
 //------------------------------------------------------------------------------
 
-/*!
- * \internal
- *
- * Templated object which means a static TestMap can be defined from purely
- * within a header.
- */
-// template < typename T >
-// struct StaticHeaderDefine
-// {
-//     static T testMap;
-// };
-// template < typename T >
-// T StaticHeaderDefine< T >::testMap;
-
-static TestMap testMap;
+static TestMap                               testMap;
+static std::vector< chaos::str::UTF8String > knownModules;
+static chaos::str::UTF8String                currentModule;
 
 /*!
  * \internal
  */
-// class TestCore : private StaticHeaderDefine< TestMap >
 class TestCore
 {
 public:
@@ -151,6 +139,9 @@ public:
     TestCore(
             const chaos::str::UTF8String& path,
                   UnitTest*               unitTest,
+            const chaos::str::UTF8String& file,
+                  int                     line,
+                  bool                    module   = false,
                   bool                    runTests = false )
     {
         // is this the run key?
@@ -160,47 +151,114 @@ public:
             return;
         }
 
+        // is this a module deceleration?
+        if ( module )
+        {
+            // does the path need checking?
+            if ( path.getLength() > 1 )
+            {
+                // check that first or last symbols are not a periods
+                if ( path.getSymbol( 0 )                    == "." ||
+                     path.getSymbol( path.getLength() - 1 ) == "."    )
+                {
+                    chaos::str::UTF8String errorMessage( "Invalid test " );
+                    errorMessage += "module path: \"";
+                    errorMessage += path;
+                    errorMessage += "\". Test paths cannot start or end with";
+                    errorMessage += " \'.\'";
+                    TestCore::throwError( errorMessage, file, line );
+                }
+                // check that there are not two consecutive periods
+                for ( size_t i = 0; i < path.getLength() - 1; ++i )
+                {
+                    if ( path.getSymbol( i )     == "." &&
+                         path.getSymbol( i + 1 ) == "."    )
+                    {
+                        chaos::str::UTF8String errorMessage( "Invalid test " );
+                        errorMessage += "moudle path: \"";
+                        errorMessage += path;
+                        errorMessage += "\". Test paths cannot contain two or ";
+                        errorMessage += "more consecutive \'.\'";
+                        TestCore::throwError( errorMessage, file, line );
+                    }
+                }
+                // check any variation of the path exists in the map
+                std::vector< chaos::str::UTF8String > elements =
+                        path.split( "." );
+                chaos::str::UTF8String checkPath;
+                CHAOS_FOR_EACH( it, elements )
+                {
+                    if ( !checkPath.isEmpty() )
+                    {
+                        checkPath += ".";
+                    }
+                    checkPath += *it;
+                    // add to the list of known modules
+                    knownModules.push_back( checkPath );
+
+                    if ( testMap.find( checkPath ) != testMap.end() )
+                    {
+                        chaos::str::UTF8String errorMessage( "Ambiguous " );
+                        errorMessage += "test module path: \"";
+                        errorMessage += checkPath;
+                        errorMessage +=  "\". Unit test already defined with ";
+                        errorMessage += "this exact path.";
+                        TestCore::throwError( errorMessage, file, line );
+                    }
+                }
+            }
+
+            currentModule = path;
+            return;
+        }
 
         // validate
+        // ensure a module has been declared
+        if ( currentModule.isEmpty() )
+        {
+            TestCore::throwError(
+                    "CHAOS_TEST_MODULE( <module_name> ) must be declared in "
+                    "file before any test decelerations.",
+                    file,
+                    line
+            );
+        }
         // ensure the path is not empty
         if ( path.isEmpty() )
         {
-            throw TestError( "Unit test declared with no path." );
+            TestCore::throwError(
+                    "Unit test declared with no path.",
+                    file,
+                    line
+            );
         }
-        // check that first or last symbols are not a periods
-        if ( path.getSymbol( 0 )                    == "." ||
-             path.getSymbol( path.getLength() - 1 ) == "."    )
-        {
-            // TODO: use format, but needs support for UTF8String
-            // TODO: add backwards + operator?
-            chaos::str::UTF8String errorMessage( "Invalid test path: \"" );
-            errorMessage += path;
-            errorMessage += "\". Test paths cannot start or end with \'.\'";
-            throw TestError( errorMessage );
-        }
-        // check that there are not two consecutive periods
-        for ( size_t i = 0; i < path.getLength() - 1; ++i )
-        {
-            if ( path.getSymbol( i )     == "." &&
-                 path.getSymbol( i + 1 ) == "."    )
-            {
-                chaos::str::UTF8String errorMessage( "Invalid test path: \"" );
-                errorMessage += path;
-                errorMessage += "\". Test paths cannot contain two or more "
-                                "consecutive \'.\'";
-                throw TestError( errorMessage );
-            }
-        }
+        // build the full path
+        chaos::str::UTF8String fullPath( currentModule );
+        fullPath += ".";
+        fullPath += path;
         // check that path is not already in the map
-        if ( testMap.find( path ) != testMap.end() )
+        if ( testMap.find( fullPath ) != testMap.end() )
         {
             chaos::str::UTF8String errorMessage( "Test path: \"" );
-            errorMessage += path;
+            errorMessage += fullPath;
             errorMessage +=  "\" has multiple definitions";
-            throw TestError( errorMessage );
+            TestCore::throwError( errorMessage, file, line );
+        }
+        // check that the full path doesn't match any known modules
+        CHAOS_FOR_EACH( it, knownModules )
+        {
+            if ( fullPath == *it )
+            {
+                chaos::str::UTF8String errorMessage( "Ambiguous test " );
+                errorMessage += "path: \"";
+                errorMessage += fullPath;
+                errorMessage +=  "\". Test module already defined with ";
+                errorMessage += "this exact path.";
+                TestCore::throwError( errorMessage, file, line );
+            }
         }
         // pass the test unit into the global mapping
-        testMap[ path ] = unitTest;
+        testMap[ fullPath ] = unitTest;
     }
 
     /*!
@@ -212,12 +270,8 @@ public:
     {
         // TODO: support args and parsing
 
-        std::cout << "RUN ALL: " << testMap.size() << std::endl;
-
         CHAOS_FOR_EACH( unitTestIt, testMap )
         {
-            std::cout << "TEST!" << std::endl;
-
             unitTestIt->second->execute();
 
             // TODO: support for running in a single process
@@ -262,6 +316,31 @@ public:
     /*!
      * \internal
      *
+     * Formats and throws a TestError.
+     */
+    static void throwError(
+            const chaos::str::UTF8String& message,
+            const chaos::str::UTF8String& file,
+                  int                     line )
+    {
+        // convert line to string
+        std::stringstream lineStr;
+        lineStr << line;
+
+        //format the error message.
+        chaos::str::UTF8String errorMessage( "\n\n\t" );
+        errorMessage += message;
+        errorMessage += "\n\n\tFILE: ";
+        errorMessage += file;
+        errorMessage += "\n\tLINE: ";
+        errorMessage += lineStr.str().c_str();
+        errorMessage += "\n";
+        throw TestError( errorMessage );
+    }
+
+    /*!
+     * \internal
+     *
      * Registers a failure at the given location.
      *
      * \param file Name of the file the failure occurred in.
@@ -294,15 +373,15 @@ public:
 //------------------------------------------------------------------------------
 
 /*!
- * \todo leave un-doc-ed?
+ * \brief TODO: DOC
+ *
+ * TODO: DOC
  */
-#define CHAOS_TEST_MAIN                                                        \
-    int main( int argc, char* argv[] )                                         \
-    {                                                                          \
-        chaos::test::internal::TestCore testCore;                              \
-        testCore.runAll();                                                     \
-        return 0;                                                              \
-    }
+#define CHAOS_TEST_MODULE( path )                                              \
+        namespace                                                              \
+        {                                                                      \
+        chaos::test::internal::TestCore t( #path, NULL, "", 0, true );         \
+        }
 
 /*!
  * \brief TODO: DOC
@@ -325,7 +404,8 @@ public:
         virtual ~path(){ delete fixture; }                                     \
         virtual void execute();                                                \
     };                                                                         \
-    chaos::test::internal::TestCore object_##path ( #path, new path() );       \
+    static chaos::test::internal::TestCore object_##path (                     \
+            #path, new path(), __FILE__, __LINE__ );                           \
     void path::execute()
 
 /*!
@@ -354,3 +434,9 @@ public:
 } // namespace chaos
 
 #endif
+
+// reset the current module
+namespace chaos_test_include
+{
+static chaos::test::internal::TestCore reset( "", NULL, "", 0, true );
+}

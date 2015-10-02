@@ -165,7 +165,6 @@ void UTF8String::assign( const UTF8String& other )
     assign_internal( other.m_data, other.m_dataLength );
 }
 
-
 // const UTF8String& UTF8String::format( ... )
 // {
 //     // copy the current data
@@ -199,6 +198,82 @@ const UTF8String& UTF8String::concatenate( const UTF8String& other )
     // finally assign and return
     assign_internal( newData, newLength );
     return *this;
+}
+
+bool UTF8String::startsWith( const UTF8String& substring ) const
+{
+    // the substring must be shorter than the actual string
+    if ( substring.m_length > m_length )
+    {
+        return false;
+    }
+    // check until we find a mismatch
+    for ( size_t i = 0; i < substring.m_length; ++i )
+    {
+        if ( substring.getSymbol( i ) != getSymbol( i ) )
+        {
+            return false;
+        }
+    }
+
+    // no mismatch
+    return true;
+}
+
+const std::vector< UTF8String > UTF8String::split(
+        const UTF8String& delimiter ) const
+{
+    // create the vector to return
+    std::vector< UTF8String > elements;
+
+    // iterate over the string until we reach the end
+    size_t currentIndex = 0;
+    size_t lastIndex = 0;
+    for ( ; currentIndex < m_length; ++currentIndex )
+    {
+        // is there  anymore to process
+        if ( currentIndex + delimiter.m_length >= m_length )
+        {
+            break;
+        }
+        // does the current index match the delimiter
+        bool match = true;
+        for ( size_t i = 0; i < delimiter.m_length; ++i )
+        {
+            if ( delimiter.getSymbol( i ) !=
+                 getSymbol( currentIndex + i  ) )
+            {
+                match = false;
+            }
+        }
+        // did the delimiter match?
+        if ( !match )
+        {
+            continue;
+        }
+        // add the string and discard the delimiter
+        elements.push_back( substring(
+                lastIndex, currentIndex - lastIndex
+        ) );
+        // since it's about to be incremented go one less than the length of the
+        // delimiter
+        currentIndex += delimiter.m_length - 1;
+        lastIndex = currentIndex + 1;
+    }
+
+    // add the final string
+    if ( lastIndex < m_length - 1 )
+    {
+        elements.push_back( substring( lastIndex, m_length ) );
+    }
+
+    return elements;
+}
+
+UTF8String UTF8String::substring( size_t start, size_t end ) const
+{
+    // TODO: FIX ME
+    return( UTF8String( toStdString().substr( start, end ).c_str() ) );
 }
 
 std::string UTF8String::toStdString() const

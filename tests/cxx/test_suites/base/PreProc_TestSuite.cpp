@@ -1,5 +1,7 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
+CHAOS_TEST_MODULE( base.preproc )
+
 #include <map>
 #include <stdlib.h>
 #include <time.h>

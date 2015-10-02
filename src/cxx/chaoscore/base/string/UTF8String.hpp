@@ -3,11 +3,12 @@
  *
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_STRING_USTRING_HPP_
-#define CHAOSCORE_BASE_STRING_USTRING_HPP_
+#ifndef CHAOSCORE_BASE_STRING_UTF8STRING_HPP_
+#define CHAOSCORE_BASE_STRING_UTF8STRING_HPP_
 
 #include <ostream>
 #include <string>
+#include <vector>
 
 #include "chaoscore/base/Types.hpp"
 
@@ -251,6 +252,31 @@ public:
      *         place.
      */
     const UTF8String& concatenate( const UTF8String& other );
+
+    /*!
+     * \brief Checks whether this UTF8String starts with the given string.
+     */
+    bool startsWith( const UTF8String& substring ) const;
+
+    /*!
+     * \brief Splits this UTF8String by the given delimiter and places devisions
+     *        into a vector.
+     *
+     * \param delimiter String to use as delimiter to split each sub-string on.
+     * \return std::vector containing the results of the split.
+     */
+    const std::vector< UTF8String > split( const UTF8String& delimiter ) const;
+
+    /*!
+     * \brief Returns a UTF8String composed of a substring of this string.
+     *
+     * \param start Index of the symbol to start the substring from.
+     * \param length the length of the substring. If greater than the possible
+     *               symbols to allocate it will be clamped to the maximum
+     *               length of the substring.
+     * \return new UTF8String containing the substring.
+     */
+    UTF8String substring( size_t start, size_t length ) const;
 
      /*!
       * \brief Returns this as a standard library string.

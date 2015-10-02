@@ -107,9 +107,23 @@
  *
  * TODO: DOC
  */
-#define CHAOS_FOR_EACH( it, collection ) \
-        auto it = collection.begin();   \
+#define CHAOS_FOR_EACH( it, collection )                                       \
+        auto it = collection.begin();                                          \
         for ( ; it != collection.end(); ++it )
+
+/*!
+ * \brief TODO: DOC
+ *
+ * TODO: DOC
+ */
+#define CHAOS_PRINT_ITERABLE( collection )                                     \
+        auto it = collection.begin();                                          \
+        std::cout << "[ ";                                                     \
+        for ( ; it != collection.end(); ++it )                                 \
+        {                                                                      \
+            std::cout << *it << ", ";                                          \
+        }                                                                      \
+        std::cout << "]" << std::endl
 
 //---------------------------------UNIQUE NAME----------------------------------
 
