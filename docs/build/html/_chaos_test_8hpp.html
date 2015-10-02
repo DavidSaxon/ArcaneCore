@@ -180,12 +180,13 @@ Macros</h2></td></tr>
 <div class="line">    {                                                                          \</div>
 <div class="line">    struct ThisUnitWrapper : <span class="keyword">public</span> chaos::test::internal::UnitTest            \</div>
 <div class="line">    {                                                                          \</div>
+<div class="line">        ThisUnitWrapper( <a class="code" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a>&amp; fixture ) : UnitTest( fixture ) \</div>
+<div class="line">        {}                                                                     \</div>
 <div class="line">        virtual <span class="keywordtype">void</span> execute( <a class="code" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a>&amp; fixture );                 \</div>
 <div class="line">    };                                                                         \</div>
-<div class="line">    chaos::test::internal::DeclareTest chaos_declare_test(                     \</div>
+<div class="line">    chaos::test::internal::TestCore chaos_declare_test(                        \</div>
 <div class="line">            #path,                                                             \</div>
-<div class="line">            <span class="keyword">new</span> ThisUnitWrapper(),                                             \</div>
-<div class="line">            <span class="keyword">new</span> fixtureType()                                                  \</div>
+<div class="line">            <span class="keyword">new</span> ThisUnitWrapper( fixtureType() ),                              \</div>
 <div class="line">    );                                                                         \</div>
 <div class="line">    }                                                                          \</div>
 <div class="line">    void <a class="code" href="_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8">CHAOS_UNIQUE_NAME</a>( chaos_unit_test )::ThisUnitWrapper::execute(       \</div>
@@ -201,7 +202,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 26 2015 14:25:56 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Sep 26 2015 17:06:33 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

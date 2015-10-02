@@ -107,7 +107,7 @@
  *
  * TODO: DOC
  */
-#define CHAOS_FOREACH( it, collection ) \
+#define CHAOS_FOR_EACH( it, collection ) \
         auto it = collection.begin();   \
         for ( ; it != collection.end(); ++it )
 
@@ -129,6 +129,6 @@
  *
  * TODO: DOC
  */
-#define CHAOS_UNIQUE_NAME( base ) PP_CAT( base, __LINE__ )
+#define CHAOS_UNIQUE_NAME( base ) PP_CAT( base, __COUNTER__ )
 
 #endif

@@ -240,7 +240,8 @@ public:
      *
      * \return Reference to this UTF8String after the format has taken place.
      */
-    const UTF8String& format( ... );
+    // TODO: replace with some form of the named parameter idiom or a stream?
+    // const UTF8String& format( ... );
 
     /*!
      * \brief Concatenates another UTF8String on to the end of this string.
