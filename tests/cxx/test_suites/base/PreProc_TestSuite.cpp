@@ -11,7 +11,7 @@ CHAOS_TEST_MODULE( base.preproc )
 //                                    FOREACH
 //------------------------------------------------------------------------------
 
-class ForEachFixture : chaos::test::Fixture
+class ForEachFixture : public chaos::test::Fixture
 {
 public:
 
@@ -41,6 +41,13 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
 {
+    std::cout << "RUN FOR EACH" << std::endl;
+
+    char* seg = new char[ 2 ];
+    seg[ 56 ] = 12;
+    delete[] seg;
+    delete[] seg;
+
     // test on a vector
     std::vector< chaos::int32 > v1 = fixture->getIntVector( 100 );
     std::vector< chaos::int32 > v2;
@@ -51,6 +58,4 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     }
     // is the size the same?
     CHAOS_TEST_EQUAL( v1.size(), v2.size() + 2 );
-
-    std::cout << "RUN DISALLOW COPY AND ASSIGN" << std::endl;
 }

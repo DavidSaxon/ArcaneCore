@@ -29,6 +29,17 @@ class UTF8String
 public:
 
     //--------------------------------------------------------------------------
+    //                          PUBLIC STATIC ATTRIBUTES
+    //--------------------------------------------------------------------------
+
+
+    /*!
+     * \brief Value that is used to return an index that does not exists within
+     *        the UTF8String.
+     */
+    static const size_t npos;
+
+    //--------------------------------------------------------------------------
     //                                CONSTRUCTORS
     //--------------------------------------------------------------------------
 
@@ -257,6 +268,30 @@ public:
      * \brief Checks whether this UTF8String starts with the given string.
      */
     bool startsWith( const UTF8String& substring ) const;
+
+    /*!
+     * \brief Finds the first occurrence of the given substring and returns the
+     *        index of it.
+     *
+     * \param substring UTF8String to find the first occurrence of in this
+     *                  string.
+     * \return The index of the beginning of the first occurrence of the
+     *         substring in this string. If the substring could not be found,
+     *         chaos::str::UTF8String::npos is returned instead.
+     */
+    size_t findFirst( const UTF8String& substring ) const;
+
+    /*!
+     * \brief Finds the last occurrence of the given substring and returns the
+     *        index of it.
+     *
+     * \param substring UTF8String to find the last occurrence of in this
+     *                  string.
+     * \return The index of the beginning of the last occurrence of the
+     *         substring in this string. If the substring could not be found,
+     *         chaos::str::UTF8String::npos is returned instead.
+     */
+    size_t findLast( const UTF8String& substring ) const;
 
     /*!
      * \brief Splits this UTF8String by the given delimiter and places devisions

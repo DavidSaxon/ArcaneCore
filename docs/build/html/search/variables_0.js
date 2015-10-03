@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['int64',['int64',['../namespacechaos.html#ad73020e905697f3dee8b63f7c0046a93',1,'chaos']]]
+  ['npos',['npos',['../classchaos_1_1str_1_1_u_t_f8_string.html#a7e301ebfad4cd1b14e3a13cb0595b43b',1,'chaos::str::UTF8String']]]
 ];

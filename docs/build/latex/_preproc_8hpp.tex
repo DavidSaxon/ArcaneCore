@@ -28,7 +28,9 @@ A collection of general preprocessor directives and macros.
 \begin{DoxyCompactList}\small\item\em Used to disable the copy constructor and assignment operator for a class. \end{DoxyCompactList}\item 
 \#define \hyperlink{_preproc_8hpp_a5962ce6c0e98167e9b88c753f769d9e4}{C\-H\-A\-O\-S\-\_\-\-F\-O\-R\-\_\-\-E\-A\-C\-H}(it, collection)
 \begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
-\#define \hyperlink{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E}(base)~P\-P\-\_\-\-C\-A\-T( base, \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- )
+\#define \hyperlink{_preproc_8hpp_a9ba867555c7d13a317d00662e068c8bc}{C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E}(collection)
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
+\#define \hyperlink{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E}(base)~P\-P\-\_\-\-C\-A\-T( base, \-\_\-\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-\_\- )
 \begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -86,7 +88,7 @@ To use this macro it must be declared in the base of the desired class and the n
 )}}\label{_preproc_8hpp_a5962ce6c0e98167e9b88c753f769d9e4}
 {\bfseries Value\-:}
 \begin{DoxyCode}
-\textcolor{keyword}{auto} it = collection.begin();   \(\backslash\)
+\textcolor{keyword}{auto} it = collection.begin();                                          \(\backslash\)
         for ( ; it != collection.end(); ++it )
 \end{DoxyCode}
 
@@ -113,13 +115,34 @@ Directive that is defined if the current platform is a Mac operating system.
 \begin{DoxyNote}{Note}
 The C\-H\-A\-O\-S\-\_\-\-O\-S\-\_\-\-U\-N\-I\-X directive will also be defined in this case. 
 \end{DoxyNote}
-\hypertarget{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{\index{Preproc.\-hpp@{Preproc.\-hpp}!C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E@{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E}}
+\hypertarget{_preproc_8hpp_a9ba867555c7d13a317d00662e068c8bc}{\index{Preproc.\-hpp@{Preproc.\-hpp}!C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E@{C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E}}
+\index{C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E@{C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E}!Preproc.hpp@{Preproc.\-hpp}}
+\subsubsection[{C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-A\-O\-S\-\_\-\-P\-R\-I\-N\-T\-\_\-\-I\-T\-E\-R\-A\-B\-L\-E(
+\begin{DoxyParamCaption}
+\item[{}]{collection}
+\end{DoxyParamCaption}
+)}}\label{_preproc_8hpp_a9ba867555c7d13a317d00662e068c8bc}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keyword}{auto} it = collection.begin();                                          \(\backslash\)
+        std::cout << \textcolor{stringliteral}{"[ "};                                                     \(\backslash\)
+        for ( ; it != collection.end(); ++it )                                 \(\backslash\)
+        \{                                                                      \(\backslash\)
+            std::cout << *it << \textcolor{stringliteral}{", "};                                          \(\backslash\)
+        \}                                                                      \(\backslash\)
+        std::cout << \textcolor{stringliteral}{"]"} << std::endl
+\end{DoxyCode}
+
+
+T\-O\-D\-O\-: D\-O\-C. 
+
+T\-O\-D\-O\-: D\-O\-C \hypertarget{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{\index{Preproc.\-hpp@{Preproc.\-hpp}!C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E@{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E}}
 \index{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E@{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E}!Preproc.hpp@{Preproc.\-hpp}}
 \subsubsection[{C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-A\-O\-S\-\_\-\-U\-N\-I\-Q\-U\-E\-\_\-\-N\-A\-M\-E(
 \begin{DoxyParamCaption}
 \item[{}]{base}
 \end{DoxyParamCaption}
-)~P\-P\-\_\-\-C\-A\-T( base, \-\_\-\-\_\-\-L\-I\-N\-E\-\_\-\-\_\- )}}\label{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}
+)~P\-P\-\_\-\-C\-A\-T( base, \-\_\-\-\_\-\-C\-O\-U\-N\-T\-E\-R\-\_\-\-\_\- )}}\label{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}
 
 
 T\-O\-D\-O\-: D\-O\-C. 

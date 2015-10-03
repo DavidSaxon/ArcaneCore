@@ -47,10 +47,19 @@ void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122e
 \begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to the given data buffer. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aff351b1a6276e5e59717bc6c3b67818c}{assign} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
 \begin{DoxyCompactList}\small\item\em Assigns internal data from another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
-const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}{format} (...)
-\begin{DoxyCompactList}\small\item\em Applies formating to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by replacing formatting tokens in the string with the provided arguments. \end{DoxyCompactList}\item 
 const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}{concatenate} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&other)
-\begin{DoxyCompactList}\small\item\em Concatenates another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} on to the end of this string. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Applies formating to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by replacing formatting tokens in the string with the provided arguments. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a1c184c731e4fa232f8ed329d4a745e2b}{bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a1c184c731e4fa232f8ed329d4a745e2b}{starts\-With} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}{substring}) const }\label{classchaos_1_1str_1_1_u_t_f8_string_a1c184c731e4fa232f8ed329d4a745e2b}
+
+\begin{DoxyCompactList}\small\item\em Checks whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} starts with the given string. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac74d0b63abf982070756af2731af5820}{find\-First} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}{substring}) const 
+\begin{DoxyCompactList}\small\item\em Finds the first occurrence of the given substring and returns the index of it. \end{DoxyCompactList}\item 
+size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a7e077146466c7cbe0647bc1b0d1744ec}{find\-Last} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}{substring}) const 
+\begin{DoxyCompactList}\small\item\em Finds the last occurrence of the given substring and returns the index of it. \end{DoxyCompactList}\item 
+const std\-::vector$<$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} $>$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac5da4c989f6394c38b0fb82a252099db}{split} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \&delimiter) const 
+\begin{DoxyCompactList}\small\item\em Splits this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by the given delimiter and places devisions into a vector. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}{substring} (size\-\_\-t start, size\-\_\-t length) const 
+\begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} composed of a substring of this string. \end{DoxyCompactList}\item 
 std\-::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf2bdf38097a2fd6}{to\-Std\-String} () const 
 \begin{DoxyCompactList}\small\item\em Returns this as a standard library string. \end{DoxyCompactList}\item 
 size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{get\-Length} () const 
@@ -66,6 +75,12 @@ const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}{void {\bfseries dev\-\_\-inspect\-Contents} ()}\label{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}
 
 \end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a7e301ebfad4cd1b14e3a13cb0595b43b}{static const size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a7e301ebfad4cd1b14e3a13cb0595b43b}{npos}}\label{classchaos_1_1str_1_1_u_t_f8_string_a7e301ebfad4cd1b14e3a13cb0595b43b}
+
+\begin{DoxyCompactList}\small\item\em Value that is used to return an index that does not exists within the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -259,20 +274,6 @@ Assigns the internal of data this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string
 )}}\label{classchaos_1_1str_1_1_u_t_f8_string_a53b11f980ab48e43df4964945b31f7c7}
 
 
-Concatenates another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} on to the end of this string. 
-
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to append to the end of this string. \begin{DoxyReturn}{Returns}
-A reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the concatenation has taken place. 
-\end{DoxyReturn}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!format@{format}}
-\index{format@{format}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
-\subsubsection[{format}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf U\-T\-F8\-String}\& chaos\-::str\-::\-U\-T\-F8\-String\-::format (
-\begin{DoxyParamCaption}
-\item[{}]{...}
-\end{DoxyParamCaption}
-)}}\label{classchaos_1_1str_1_1_u_t_f8_string_a4103c2df515893977bed1f8fbdc6ff4e}
-
-
 Applies formating to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by replacing formatting tokens in the string with the provided arguments. 
 
 This works the same as sprintf does for c strings. Example usage\-: 
@@ -285,7 +286,50 @@ std::cout << s << std::endl;
 
 
 \begin{DoxyReturn}{Returns}
-Reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the format has taken place. 
+Reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the format has taken place.
+\end{DoxyReturn}
+Concatenates another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} on to the end of this string.
+
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to append to the end of this string. \begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} after the concatenation has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac74d0b63abf982070756af2731af5820}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!find\-First@{find\-First}}
+\index{find\-First@{find\-First}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{find\-First}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t chaos\-::str\-::\-U\-T\-F8\-String\-::find\-First (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{substring}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_ac74d0b63abf982070756af2731af5820}
+
+
+Finds the first occurrence of the given substring and returns the index of it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em substring} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to find the first occurrence of in this string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the beginning of the first occurrence of the substring in this string. If the substring could not be found, \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a7e301ebfad4cd1b14e3a13cb0595b43b}{chaos\-::str\-::\-U\-T\-F8\-String\-::npos} is returned instead. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a7e077146466c7cbe0647bc1b0d1744ec}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!find\-Last@{find\-Last}}
+\index{find\-Last@{find\-Last}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{find\-Last}]{\setlength{\rightskip}{0pt plus 5cm}size\-\_\-t chaos\-::str\-::\-U\-T\-F8\-String\-::find\-Last (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{substring}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a7e077146466c7cbe0647bc1b0d1744ec}
+
+
+Finds the last occurrence of the given substring and returns the index of it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em substring} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} to find the last occurrence of in this string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The index of the beginning of the last occurrence of the substring in this string. If the substring could not be found, \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a7e301ebfad4cd1b14e3a13cb0595b43b}{chaos\-::str\-::\-U\-T\-F8\-String\-::npos} is returned instead. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463f9f08748cdc2}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Byte\-Length@{get\-Byte\-Length}}
 \index{get\-Byte\-Length@{get\-Byte\-Length}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
@@ -497,6 +541,47 @@ Compares whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Whether the strings are equal. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac5da4c989f6394c38b0fb82a252099db}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!split@{split}}
+\index{split@{split}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{split}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::vector$<$ {\bf U\-T\-F8\-String} $>$ chaos\-::str\-::\-U\-T\-F8\-String\-::split (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\-T\-F8\-String} \&}]{delimiter}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_ac5da4c989f6394c38b0fb82a252099db}
+
+
+Splits this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} by the given delimiter and places devisions into a vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delimiter} & String to use as delimiter to split each sub-\/string on. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\-::vector containing the results of the split. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!substring@{substring}}
+\index{substring@{substring}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{substring}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\-T\-F8\-String} chaos\-::str\-::\-U\-T\-F8\-String\-::substring (
+\begin{DoxyParamCaption}
+\item[{size\-\_\-t}]{start, }
+\item[{size\-\_\-t}]{length}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}
+
+
+Returns a \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} composed of a substring of this string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & Index of the symbol to start the substring from. \\
+\hline
+{\em length} & the length of the substring. If greater than the possible symbols to allocate it will be clamped to the maximum length of the substring. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} containing the substring. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4febd35eab6e30bbcf2bdf38097a2fd6}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!to\-Std\-String@{to\-Std\-String}}
 \index{to\-Std\-String@{to\-Std\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}

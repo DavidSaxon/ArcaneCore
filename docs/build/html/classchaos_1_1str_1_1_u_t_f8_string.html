@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,6 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classchaos_1_1str_1_1_u_t_f8_string-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">chaos::str::UTF8String Class Reference</div>  </div>
@@ -154,12 +155,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aff351b1a6276e5e59717bc6c3b67818c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#aff351b1a6276e5e59717bc6c3b67818c">assign</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;other)</td></tr>
 <tr class="memdesc:aff351b1a6276e5e59717bc6c3b67818c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assigns internal data from another <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a>.  <a href="#aff351b1a6276e5e59717bc6c3b67818c">More...</a><br/></td></tr>
 <tr class="separator:aff351b1a6276e5e59717bc6c3b67818c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4103c2df515893977bed1f8fbdc6ff4e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4103c2df515893977bed1f8fbdc6ff4e">format</a> (...)</td></tr>
-<tr class="memdesc:a4103c2df515893977bed1f8fbdc6ff4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies formating to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> by replacing formatting tokens in the string with the provided arguments.  <a href="#a4103c2df515893977bed1f8fbdc6ff4e">More...</a><br/></td></tr>
-<tr class="separator:a4103c2df515893977bed1f8fbdc6ff4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53b11f980ab48e43df4964945b31f7c7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a53b11f980ab48e43df4964945b31f7c7">concatenate</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;other)</td></tr>
-<tr class="memdesc:a53b11f980ab48e43df4964945b31f7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concatenates another <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> on to the end of this string.  <a href="#a53b11f980ab48e43df4964945b31f7c7">More...</a><br/></td></tr>
+<tr class="memdesc:a53b11f980ab48e43df4964945b31f7c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies formating to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> by replacing formatting tokens in the string with the provided arguments.  <a href="#a53b11f980ab48e43df4964945b31f7c7">More...</a><br/></td></tr>
 <tr class="separator:a53b11f980ab48e43df4964945b31f7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c184c731e4fa232f8ed329d4a745e2b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c184c731e4fa232f8ed329d4a745e2b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a1c184c731e4fa232f8ed329d4a745e2b">startsWith</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;<a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c">substring</a>) const </td></tr>
+<tr class="memdesc:a1c184c731e4fa232f8ed329d4a745e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> starts with the given string. <br/></td></tr>
+<tr class="separator:a1c184c731e4fa232f8ed329d4a745e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac74d0b63abf982070756af2731af5820"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac74d0b63abf982070756af2731af5820">findFirst</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;<a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c">substring</a>) const </td></tr>
+<tr class="memdesc:ac74d0b63abf982070756af2731af5820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first occurrence of the given substring and returns the index of it.  <a href="#ac74d0b63abf982070756af2731af5820">More...</a><br/></td></tr>
+<tr class="separator:ac74d0b63abf982070756af2731af5820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e077146466c7cbe0647bc1b0d1744ec"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a7e077146466c7cbe0647bc1b0d1744ec">findLast</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;<a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c">substring</a>) const </td></tr>
+<tr class="memdesc:a7e077146466c7cbe0647bc1b0d1744ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the last occurrence of the given substring and returns the index of it.  <a href="#a7e077146466c7cbe0647bc1b0d1744ec">More...</a><br/></td></tr>
+<tr class="separator:a7e077146466c7cbe0647bc1b0d1744ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5da4c989f6394c38b0fb82a252099db"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac5da4c989f6394c38b0fb82a252099db">split</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;delimiter) const </td></tr>
+<tr class="memdesc:ac5da4c989f6394c38b0fb82a252099db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Splits this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> by the given delimiter and places devisions into a vector.  <a href="#ac5da4c989f6394c38b0fb82a252099db">More...</a><br/></td></tr>
+<tr class="separator:ac5da4c989f6394c38b0fb82a252099db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d50ab58715264ae175f521816bf670c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c">substring</a> (size_t start, size_t length) const </td></tr>
+<tr class="memdesc:a2d50ab58715264ae175f521816bf670c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> composed of a substring of this string.  <a href="#a2d50ab58715264ae175f521816bf670c">More...</a><br/></td></tr>
+<tr class="separator:a2d50ab58715264ae175f521816bf670c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4febd35eab6e30bbcf2bdf38097a2fd6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4febd35eab6e30bbcf2bdf38097a2fd6">toStdString</a> () const </td></tr>
 <tr class="memdesc:a4febd35eab6e30bbcf2bdf38097a2fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns this as a standard library string.  <a href="#a4febd35eab6e30bbcf2bdf38097a2fd6">More...</a><br/></td></tr>
 <tr class="separator:a4febd35eab6e30bbcf2bdf38097a2fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +193,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5c2746c3e90b6712e4977130266c79d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2746c3e90b6712e4977130266c79d1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</b> ()</td></tr>
 <tr class="separator:a5c2746c3e90b6712e4977130266c79d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a7e301ebfad4cd1b14e3a13cb0595b43b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e301ebfad4cd1b14e3a13cb0595b43b"></a>
+static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a7e301ebfad4cd1b14e3a13cb0595b43b">npos</a></td></tr>
+<tr class="memdesc:a7e301ebfad4cd1b14e3a13cb0595b43b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Value that is used to return an index that does not exists within the <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a>. <br/></td></tr>
+<tr class="separator:a7e301ebfad4cd1b14e3a13cb0595b43b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic string type for storing Unicode data. TODO. </p>
@@ -486,33 +507,66 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</
       </table>
 </div><div class="memdoc">
 
-<p>Concatenates another <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> on to the end of this string. </p>
-<p><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> to append to the end of this string. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> after the concatenation has taken place. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a4103c2df515893977bed1f8fbdc6ff4e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a>&amp; chaos::str::UTF8String::format </td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>...</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
 <p>Applies formating to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> by replacing formatting tokens in the string with the provided arguments. </p>
 <p>This works the same as sprintf does for c strings. Example usage: </p>
 <div class="fragment"><div class="line"><a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> s( <span class="stringliteral">&quot;Hello %d World %d&quot;</span> );</div>
 <div class="line">s.format( 0, 75 );</div>
 <div class="line"><span class="comment">// prints &quot;Hello 0 World 75&quot;</span></div>
 <div class="line">std::cout &lt;&lt; s &lt;&lt; std::endl;</div>
-</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>Reference to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> after the format has taken place. </dd></dl>
+</div><!-- fragment --><dl class="section return"><dt>Returns</dt><dd>Reference to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> after the format has taken place.</dd></dl>
+<p>Concatenates another <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> on to the end of this string.</p>
+<p><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> to append to the end of this string. </p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> after the concatenation has taken place. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac74d0b63abf982070756af2731af5820"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t chaos::str::UTF8String::findFirst </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>substring</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the first occurrence of the given substring and returns the index of it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">substring</td><td><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> to find the first occurrence of in this string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the beginning of the first occurrence of the substring in this string. If the substring could not be found, <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a7e301ebfad4cd1b14e3a13cb0595b43b" title="Value that is used to return an index that does not exists within the UTF8String. ...">chaos::str::UTF8String::npos</a> is returned instead. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7e077146466c7cbe0647bc1b0d1744ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t chaos::str::UTF8String::findLast </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>substring</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds the last occurrence of the given substring and returns the index of it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">substring</td><td><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> to find the last occurrence of in this string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The index of the beginning of the last occurrence of the substring in this string. If the substring could not be found, <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a7e301ebfad4cd1b14e3a13cb0595b43b" title="Value that is used to return an index that does not exists within the UTF8String. ...">chaos::str::UTF8String::npos</a> is returned instead. </dd></dl>
 
 </div>
 </div>
@@ -661,7 +715,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</
 </div><div class="memdoc">
 
 <p>Addition operator. </p>
-<p>Performs the same function as <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a53b11f980ab48e43df4964945b31f7c7" title="Concatenates another UTF8String on to the end of this string. ">concatenate()</a> but does not cause any modifications to this string, instead returns a new string which contains the results of the concatenation.</p>
+<p>Performs the same function as <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a53b11f980ab48e43df4964945b31f7c7" title="Applies formating to this UTF8String by replacing formatting tokens in the string with the provided a...">concatenate()</a> but does not cause any modifications to this string, instead returns a new string which contains the results of the concatenation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> to append to the end of a copy of this string. </td></tr>
@@ -687,7 +741,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</
 </div><div class="memdoc">
 
 <p>Compound addition operator. </p>
-<p>Performs the same function as <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a53b11f980ab48e43df4964945b31f7c7" title="Concatenates another UTF8String on to the end of this string. ">concatenate()</a>.</p>
+<p>Performs the same function as <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a53b11f980ab48e43df4964945b31f7c7" title="Applies formating to this UTF8String by replacing formatting tokens in the string with the provided a...">concatenate()</a>.</p>
 <p><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> to append to the end of this string. </p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> after the concatenation has taken place. </dd></dl>
 
@@ -774,6 +828,67 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</
 
 </div>
 </div>
+<a class="anchor" id="ac5da4c989f6394c38b0fb82a252099db"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &gt; chaos::str::UTF8String::split </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>delimiter</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Splits this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> by the given delimiter and places devisions into a vector. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delimiter</td><td>String to use as delimiter to split each sub-string on. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector containing the results of the split. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2d50ab58715264ae175f521816bf670c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> chaos::str::UTF8String::substring </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> composed of a substring of this string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>Index of the symbol to start the substring from. </td></tr>
+    <tr><td class="paramname">length</td><td>the length of the substring. If greater than the possible symbols to allocate it will be clamped to the maximum length of the substring. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>new <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> containing the substring. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a4febd35eab6e30bbcf2bdf38097a2fd6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -798,7 +913,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 26 2015 17:06:34 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 4 2015 01:14:55 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

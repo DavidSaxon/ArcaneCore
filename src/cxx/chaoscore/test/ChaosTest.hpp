@@ -11,6 +11,7 @@
 #include "chaoscore/base/Preproc.hpp"
 
 #include <map>
+#include <set>
 #include <sstream>
 #include <vector>
 
@@ -102,8 +103,9 @@ public:
     {
     }
 
-    virtual void execute() = 0;
+    virtual Fixture* getFixture() = 0;
 
+    virtual void execute() = 0;
 };
 
 //------------------------------------------------------------------------------
@@ -114,19 +116,48 @@ public:
 typedef std::map< chaos::str::UTF8String, UnitTest* > TestMap;
 
 //------------------------------------------------------------------------------
+//                                    GLOBALS
+//------------------------------------------------------------------------------
+
+static TestMap                            testMap;
+static std::set< chaos::str::UTF8String > baseModules;
+static std::set< chaos::str::UTF8String > knownModules;
+static chaos::str::UTF8String             currentModule;
+
+//------------------------------------------------------------------------------
 //                                    CLASSES
 //------------------------------------------------------------------------------
 
-static TestMap                               testMap;
-static std::vector< chaos::str::UTF8String > knownModules;
-static chaos::str::UTF8String                currentModule;
+/*!
+ * \internal
+ *
+ * \brief Structure containing information about the test run configuration,
+ */
+struct RunInfo
+{
+    // whether the tests should be run in a single process or not
+    bool singleProc;
+    // the paths to the tests to run
+    std::set< chaos::str::UTF8String > paths;
+
+    RunInfo()
+        :
+        singleProc( false )
+    {
+    }
+};
+
 
 /*!
  * \internal
+ *
+ * \brief Hacky object for performing test magic.
  */
 class TestCore
 {
 public:
+
+    // TODO: CAN FUNCTIONS BE MOVED TO C++?
 
     /*!
      * \internal
@@ -141,13 +172,14 @@ public:
                   UnitTest*               unitTest,
             const chaos::str::UTF8String& file,
                   int                     line,
-                  bool                    module   = false,
-                  bool                    runTests = false )
+                  bool                    module  = false,
+                  RunInfo*                runInfo = NULL )
     {
         // is this the run key?
-        if ( runTests )
+        if ( runInfo )
         {
-            TestCore::runAll();
+            TestCore::run( runInfo );
+            // TODO: clean up the static map
             return;
         }
 
@@ -186,6 +218,8 @@ public:
                 std::vector< chaos::str::UTF8String > elements =
                         path.split( "." );
                 chaos::str::UTF8String checkPath;
+                // add the first element to the base modules
+                baseModules.insert( elements[ 0 ] );
                 CHAOS_FOR_EACH( it, elements )
                 {
                     if ( !checkPath.isEmpty() )
@@ -194,7 +228,7 @@ public:
                     }
                     checkPath += *it;
                     // add to the list of known modules
-                    knownModules.push_back( checkPath );
+                    knownModules.insert( checkPath );
 
                     if ( testMap.find( checkPath ) != testMap.end() )
                     {
@@ -264,53 +298,237 @@ public:
     /*!
      * \internal
      *
-     * Runs all unit tests that have been declared.
+     * Runs tests defined by the run configuration information.
      */
-    static void runAll()
+    static void run( RunInfo* runInfo )
     {
-        // TODO: support args and parsing
-
-        CHAOS_FOR_EACH( unitTestIt, testMap )
+        // have any paths been supplied?
+        if ( runInfo->paths.empty() )
         {
-            unitTestIt->second->execute();
-
-            // TODO: support for running in a single process
-
-            // we don't have a platform independent way to support spawning a
-            // new process, so we need to branch here. Fork is preferred since
-            // it means we can skip the setup process of registering tests.
-            // However on Windows we need to use CreateProcess to run another
-            // instance of this binary with the specific args for that test
-
-            // TODO: this should be a thread for windows support
-            // run the test in a fork
-            // pid_t procId = fork();
-            // if ( procId == 0 )
-            // {
-            //     // TODO: REMOVE ME
-            //     std::cout << "CHILD PROC" << std::endl;
-            //     // TODO: fixture
-            //     unitTestIt->second->execute();
-            //     // char* seg = new char[ 2 ];
-            //     // seg[ 56 ] = 12;
-            //     // delete[] seg;
-            //     // delete[] seg;
-            //     // delete[] seg;
-            //     // test complete
-            //     exit( 0 );
-            // }
-            // else
-            // {
-            //     // TODO: REMOVE ME
-            //     std::cout << "PARENT PROC" << std::endl;
-
-            //     // wait for the test containing the fork to time out
-            //     int procStatus;
-            //     waitpid( procId, &procStatus, 0 );
-            //     std::cout << "CHILD STATUS: " << procStatus << std::endl;
-            // }
-
+            // run this function again with each of the base modules
+            CHAOS_FOR_EACH( it, baseModules )
+            {
+                RunInfo baseRunInfo( *runInfo );
+                baseRunInfo.paths.insert( *it );
+                TestCore::run( &baseRunInfo );
+            }
+            return;
         }
+
+        // sanitize the provided paths
+        std::set< chaos::str::UTF8String > paths;
+        CHAOS_FOR_EACH( pIt, runInfo->paths )
+        {
+            // TODO: check if any known modules or paths exist with name
+            // TODO: write to log or output
+
+            // check if this tests starts with any of the other paths
+            bool isSubPath = false;
+            CHAOS_FOR_EACH( pIt2, runInfo->paths )
+            {
+                // this is the same path
+                if ( *pIt == *pIt2 )
+                {
+                    continue;
+                }
+                // is this a sub-path?
+                if ( pIt->startsWith( *pIt2 ) )
+                {
+                    isSubPath = false;
+                    break;
+                }
+            }
+            // if this is not a sub-path then we shall use it
+            if ( !isSubPath )
+            {
+                paths.insert( *pIt );
+            }
+        }
+
+        // structure for grouping tests by path
+        struct PathGroup
+        {
+            chaos::str::UTF8String path;
+            std::set< chaos::str::UTF8String > testPaths;
+            std::set< chaos::str::UTF8String > modulePaths;
+        };
+        std::vector< PathGroup > pathGroups;
+
+        // run logic for each supplied path
+        CHAOS_FOR_EACH( it, paths )
+        {
+            // create a group for the path
+            PathGroup pathGroup;
+            pathGroup.path = *it;
+
+            // find tests that are directly under this module or match this
+            // exact module
+            CHAOS_FOR_EACH( mIt, testMap )
+            {
+                // is there an exact match?
+                if ( mIt->first == *it )
+                {
+                    pathGroup.testPaths.insert( mIt->first );
+                    continue;
+                }
+                // extract the path to the test
+                chaos::str::UTF8String path = mIt->first;
+                // find the last period
+                size_t lastIndex = path.findLast( "." );
+                if ( lastIndex == chaos::str::UTF8String::npos )
+                {
+                    throw TestError( "Unexpected error 67" );
+                }
+                // get the base path
+                path = path.substring( 0 , lastIndex );
+                // does it match the current path
+                if ( path == *it )
+                {
+                    pathGroup.testPaths.insert( mIt->first );
+                }
+            }
+
+            // find other modules that are directly under this path
+            CHAOS_FOR_EACH( mdIt, knownModules )
+            {
+                // ignore exact match
+                if ( *mdIt == *it )
+                {
+                    continue;
+                }
+                // extract the path to the module
+                chaos::str::UTF8String path = *mdIt;
+                // find the last period
+                size_t lastIndex = path.findLast( "." );
+                if ( lastIndex == chaos::str::UTF8String::npos )
+                {
+                    continue;
+                }
+                // get the base path
+                path = path.substring( 0 , lastIndex );
+                // does it match the current path
+                if ( path == *it )
+                {
+                    pathGroup.modulePaths.insert( *mdIt );
+                }
+            }
+
+            // record the path group
+            pathGroups.push_back( pathGroup );
+        }
+
+        // run each of the path groups
+        CHAOS_FOR_EACH( pgIt, pathGroups )
+        {
+            // run any of single tests we have
+            CHAOS_FOR_EACH( tpIt, pgIt->testPaths )
+            {
+                TestCore::runTest( testMap[ *tpIt ], runInfo );
+            }
+            // run any of the sub modules
+            CHAOS_FOR_EACH( mpIt, pgIt->modulePaths )
+            {
+                // build new run info
+                RunInfo moduleRunInfo( *runInfo );
+                moduleRunInfo.paths.clear();
+                moduleRunInfo.paths.insert( *mpIt );
+                TestCore::run( &moduleRunInfo );
+            }
+        }
+    }
+
+    /*!
+     * \internal
+     *
+     * \brief runs the single given unit test with the given run configuration.
+     */
+    static void runTest( UnitTest* unitTest, RunInfo* runInfo )
+    {
+        // run the test dependent on the mode
+        if ( runInfo->singleProc )
+        {
+            runSingleProc( unitTest, runInfo );
+        }
+        else
+        {
+            runInNewProc( unitTest, runInfo );
+        }
+    }
+
+    /*!
+     * \internal
+     *
+     * \brief Runs the test on this current process.
+     */
+    static void runSingleProc( UnitTest* unitTest, RunInfo* runInfo )
+    {
+        // set up fixture
+        unitTest->getFixture()->setup();
+        // execute
+        unitTest->execute();
+        // teardown
+        unitTest->getFixture()->teardown();
+    }
+
+    /*!
+     * \internal
+     *
+     * \brief Runs the current test in a new process.
+     */
+    static void runInNewProc( UnitTest* unitTest, RunInfo* runInfo )
+    {
+    // The method spawning a new process is platform dependent
+    #ifdef CHAOS_OS_UNIX
+
+        // for to run the new process
+        pid_t procId = fork();
+        if ( procId == 0 )
+        {
+            // we are now on a new process so just use the single proc function.
+            TestCore::runSingleProc( unitTest, runInfo );
+            exit( 0 );
+        }
+        else
+        {
+            // wait for the child process to end
+            int procStatus;
+            waitpid( procId, &procStatus, 0 );
+            // TODO: check child status
+        }
+
+    #else
+
+        // TODO: spawn new single_proc process
+        // TODO: update error to know Windows and Unix
+        throw TestError(
+                "Running tests on new processes is not yet supported for "
+                "non-UNIX platforms."
+        );
+
+    #endif
+    }
+
+    /*!
+     * \internal
+     *
+     * Registers a failure at the given location.
+     *
+     * \param file Name of the file the failure occurred in.
+     * \param line Line number where the failure occurred.
+     * \param message Explanation of the failure.
+     */
+    static void registerFailure(
+            const chaos::str::UTF8String& file,
+                  int                     line,
+            const chaos::str::UTF8String& message )
+    {
+        // create the key
+        std::stringstream keyStream;
+        keyStream << file << ":" << line;
+
+        std::cout << "FAILURE AT: " << keyStream.str() << ": "
+                  << message << std::endl;
+        // TODO: WRITE TO LOG OR OUTPUT
     }
 
     /*!
@@ -337,29 +555,6 @@ public:
         errorMessage += "\n";
         throw TestError( errorMessage );
     }
-
-    /*!
-     * \internal
-     *
-     * Registers a failure at the given location.
-     *
-     * \param file Name of the file the failure occurred in.
-     * \param line Line number where the failure occurred.
-     * \param message Explanation of the failure.
-     */
-    static void registerFailure(
-            const chaos::str::UTF8String& file,
-                  int                     line,
-            const chaos::str::UTF8String& message )
-    {
-        // create the key
-        std::stringstream keyStream;
-        keyStream << file << ":" << line;
-
-        std::cout << "FAILURE AT: " << keyStream.str() << ": "
-                  << message << std::endl;
-    }
-
 };
 
 } // namespace internal
@@ -371,6 +566,8 @@ public:
 //------------------------------------------------------------------------------
 //                                     MACROS
 //------------------------------------------------------------------------------
+
+// TODO: don't show macro value in docs..
 
 /*!
  * \brief TODO: DOC
@@ -402,18 +599,13 @@ public:
         fixtureType* fixture;                                                  \
         path() : fixture( new fixtureType() ){}                                \
         virtual ~path(){ delete fixture; }                                     \
+        virtual chaos::test::Fixture* getFixture() { return fixture; }         \
         virtual void execute();                                                \
     };                                                                         \
     static chaos::test::internal::TestCore object_##path (                     \
             #path, new path(), __FILE__, __LINE__ );                           \
     void path::execute()
 
-/*!
- * \brief TODO: DOC
- *
- * TODO: DOC
- */
-#define CHAOS_TEST_RUN_ALL() chaos::test::internal::TestCore::runAll()
 
 // TODO: TEST ARGS
 

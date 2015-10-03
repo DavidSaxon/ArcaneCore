@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,10 +94,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ChaosTest.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;map&gt;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="_preproc_8hpp_source.html">chaoscore/base/Preproc.hpp</a>&quot;</code><br/>
+<code>#include &lt;map&gt;</code><br/>
+<code>#include &lt;set&gt;</code><br/>
+<code>#include &lt;sstream&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_base_exceptions_8hpp_source.html">chaoscore/base/BaseExceptions.hpp</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_base_literals_8hpp_source.html">chaoscore/base/BaseLiterals.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_u_t_f8_string_8hpp_source.html">chaoscore/base/string/UTF8String.hpp</a>&quot;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
 </div>
@@ -123,17 +125,103 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a6e11bc6072a02d3220c5fca659bed95e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a6e11bc6072a02d3220c5fca659bed95e">CHAOS_TEST_MODULE</a>(path)</td></tr>
+<tr class="memdesc:a6e11bc6072a02d3220c5fca659bed95e"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#a6e11bc6072a02d3220c5fca659bed95e">More...</a><br/></td></tr>
+<tr class="separator:a6e11bc6072a02d3220c5fca659bed95e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99bafb580d6fe2036b9408c25012ffeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a99bafb580d6fe2036b9408c25012ffeb">CHAOS_TEST_UNIT</a>(path)&#160;&#160;&#160;<a class="el" href="_chaos_test_8hpp.html#aed518d0b99183e38b10a7f9c51304aef">CHAOS_TEST_UNIT_FIXTURE</a>( path, <a class="el" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a> )</td></tr>
 <tr class="memdesc:a99bafb580d6fe2036b9408c25012ffeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#a99bafb580d6fe2036b9408c25012ffeb">More...</a><br/></td></tr>
 <tr class="separator:a99bafb580d6fe2036b9408c25012ffeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed518d0b99183e38b10a7f9c51304aef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#aed518d0b99183e38b10a7f9c51304aef">CHAOS_TEST_UNIT_FIXTURE</a>(path, fixtureType)</td></tr>
 <tr class="memdesc:aed518d0b99183e38b10a7f9c51304aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#aed518d0b99183e38b10a7f9c51304aef">More...</a><br/></td></tr>
 <tr class="separator:aed518d0b99183e38b10a7f9c51304aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac927f91e1b8a911852bcb1b52062d295"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#ac927f91e1b8a911852bcb1b52062d295">CHAOS_TEST_RUN_ALL</a>()&#160;&#160;&#160;chaos::test::internal::TestCore::runAll()</td></tr>
+<tr class="memdesc:ac927f91e1b8a911852bcb1b52062d295"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#ac927f91e1b8a911852bcb1b52062d295">More...</a><br/></td></tr>
+<tr class="separator:ac927f91e1b8a911852bcb1b52062d295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54e1e8a8ac8073c53df1ba32bc10646d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>CHAOS_TEST_EQUAL</b>(a, b)</td></tr>
+<tr class="separator:a54e1e8a8ac8073c53df1ba32bc10646d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The ChaosCore testing module.</p>
 <dl class="section author"><dt>Author</dt><dd>David Saxon </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a54e1e8a8ac8073c53df1ba32bc10646d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHAOS_TEST_EQUAL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">a, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">b&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ( a == b )                                                          \</div>
+<div class="line">        {                                                                      \</div>
+<div class="line">        }                                                                      \</div>
+<div class="line">        else                                                                   \</div>
+<div class="line">        {                                                                      \</div>
+<div class="line">            chaos::test::internal::TestCore::registerFailure(                  \</div>
+<div class="line">                    __FILE__,                                                  \</div>
+<div class="line">                    __LINE__,                                                  \</div>
+<div class="line">                    <span class="stringliteral">&quot;CHAOS_TEST_EQUAL&quot;</span>                                         \</div>
+<div class="line">            );                                                                 \</div>
+<div class="line">        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a6e11bc6072a02d3220c5fca659bed95e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHAOS_TEST_MODULE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">path</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace                                                              </span>\</div>
+<div class="line">        {                                                                      \</div>
+<div class="line">        chaos::test::internal::TestCore t( #path, NULL, <span class="stringliteral">&quot;&quot;</span>, 0, <span class="keyword">true</span> );         \</div>
+<div class="line">        }</div>
+</div><!-- fragment -->
+<p>TODO: DOC. </p>
+<p>TODO: DOC </p>
+
+</div>
+</div>
+<a class="anchor" id="ac927f91e1b8a911852bcb1b52062d295"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CHAOS_TEST_RUN_ALL</td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td>&#160;&#160;&#160;chaos::test::internal::TestCore::runAll()</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TODO: DOC. </p>
+<p>TODO: DOC </p>
+
+</div>
+</div>
 <a class="anchor" id="a99bafb580d6fe2036b9408c25012ffeb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -176,23 +264,19 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code" href="_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8">CHAOS_UNIQUE_NAME</a>( chaos_unit_test )                             \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">struct </span>path : <span class="keyword">public</span> chaos::test::internal::UnitTest                       \</div>
 <div class="line">    {                                                                          \</div>
-<div class="line">    struct ThisUnitWrapper : <span class="keyword">public</span> chaos::test::internal::UnitTest            \</div>
-<div class="line">    {                                                                          \</div>
-<div class="line">        ThisUnitWrapper( <a class="code" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a>&amp; fixture ) : UnitTest( fixture ) \</div>
-<div class="line">        {}                                                                     \</div>
-<div class="line">        virtual <span class="keywordtype">void</span> execute( <a class="code" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a>&amp; fixture );                 \</div>
+<div class="line">    public:                                                                    \</div>
+<div class="line">        fixtureType* fixture;                                                  \</div>
+<div class="line">        path() : fixture( new fixtureType() ){}                                \</div>
+<div class="line">        virtual ~path(){ <span class="keyword">delete</span> fixture; }                                     \</div>
+<div class="line">        virtual <a class="code" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a>* getFixture() { <span class="keywordflow">return</span> fixture; }         \</div>
+<div class="line">        virtual <span class="keywordtype">void</span> execute();                                                \</div>
 <div class="line">    };                                                                         \</div>
-<div class="line">    chaos::test::internal::TestCore chaos_declare_test(                        \</div>
-<div class="line">            #path,                                                             \</div>
-<div class="line">            <span class="keyword">new</span> ThisUnitWrapper( fixtureType() ),                              \</div>
-<div class="line">    );                                                                         \</div>
-<div class="line">    }                                                                          \</div>
-<div class="line">    void <a class="code" href="_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8">CHAOS_UNIQUE_NAME</a>( chaos_unit_test )::ThisUnitWrapper::execute(       \</div>
-<div class="line">            chaos::test::Fixture&amp; fixture )</div>
-<div class="ttc" id="classchaos_1_1test_1_1_fixture_html"><div class="ttname"><a href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a></div><div class="ttdoc">TODO: DOC. </div><div class="ttdef"><b>Definition:</b> ChaosTest.hpp:41</div></div>
-<div class="ttc" id="_preproc_8hpp_html_a82a12e050037267a2d4015c9b0ee33c8"><div class="ttname"><a href="_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8">CHAOS_UNIQUE_NAME</a></div><div class="ttdeci">#define CHAOS_UNIQUE_NAME(base)</div><div class="ttdoc">TODO: DOC. </div><div class="ttdef"><b>Definition:</b> Preproc.hpp:132</div></div>
+<div class="line">    static chaos::test::internal::TestCore object_##path (                     \</div>
+<div class="line">            #path, <span class="keyword">new</span> path(), __FILE__, __LINE__ );                           \</div>
+<div class="line">    void path::execute()</div>
+<div class="ttc" id="classchaos_1_1test_1_1_fixture_html"><div class="ttname"><a href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a></div><div class="ttdoc">TODO: DOC. </div><div class="ttdef"><b>Definition:</b> ChaosTest.hpp:49</div></div>
 </div><!-- fragment -->
 <p>TODO: DOC. </p>
 <p>TODO: DOC </p>
@@ -202,7 +286,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 26 2015 17:06:33 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 4 2015 01:14:55 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

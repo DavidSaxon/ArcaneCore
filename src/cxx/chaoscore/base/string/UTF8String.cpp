@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <cstring>
+#include <limits>
 #include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
@@ -17,6 +18,12 @@ namespace chaos
 {
 namespace str
 {
+
+//------------------------------------------------------------------------------
+//                            PUBLIC STATIC ATTRIBUTES
+//------------------------------------------------------------------------------
+
+const size_t UTF8String::npos = std::numeric_limits< size_t >::min();
 
 //------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
@@ -220,6 +227,63 @@ bool UTF8String::startsWith( const UTF8String& substring ) const
     return true;
 }
 
+size_t UTF8String::findFirst( const UTF8String& substring ) const
+{
+    // the substring must be shorter than the actual string
+    if ( substring.m_length > m_length )
+    {
+        return false;
+    }
+    // check against each character
+    for( size_t i = 0; i < m_length - substring.m_length; ++i )
+    {
+        // check that each symbol matches
+        bool match = true;
+        for ( size_t j = 0; j < substring.m_length; ++j )
+        {
+            if ( substring.getSymbol( j ) != getSymbol( i + j ) )
+            {
+                match = false;
+                break;
+            }
+        }
+        if ( match )
+        {
+            return i;
+        }
+    }
+    return UTF8String::npos;
+}
+
+size_t UTF8String::findLast( const UTF8String& substring ) const
+{
+    // the substring must be shorter than the actual string
+    if ( substring.m_length > m_length )
+    {
+        return false;
+    }
+    // check against each character
+    for( size_t i = m_length - substring.m_length; i != UTF8String::npos; --i )
+    {
+        // check that each symbol matches
+        bool match = true;
+        for ( size_t j = 0; j < substring.m_length; ++j )
+        {
+            if ( substring.getSymbol( j ) != getSymbol( i + j ) )
+            {
+                match = false;
+                break;
+            }
+        }
+        if ( match )
+        {
+            return i;
+        }
+    }
+    return UTF8String::npos;
+}
+
+// TODO: this could use find
 const std::vector< UTF8String > UTF8String::split(
         const UTF8String& delimiter ) const
 {

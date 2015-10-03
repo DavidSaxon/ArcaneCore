@@ -1,10 +1,12 @@
 \hypertarget{_chaos_test_8hpp}{\section{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\-Chaos\-Test.hpp File Reference}
 \label{_chaos_test_8hpp}\index{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\-Chaos\-Test.\-hpp@{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/test/\-Chaos\-Test.\-hpp}}
 }
+{\ttfamily \#include \char`\"{}chaoscore/base/\-Preproc.\-hpp\char`\"{}}\\*
 {\ttfamily \#include $<$map$>$}\\*
+{\ttfamily \#include $<$set$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
 {\ttfamily \#include $<$vector$>$}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/\-Base\-Exceptions.\-hpp\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}chaoscore/base/\-Base\-Literals.\-hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/string/\-U\-T\-F8\-String.\-hpp\char`\"{}}\\*
 {\ttfamily \#include $<$iostream$>$}\\*
 \subsection*{Classes}
@@ -24,10 +26,16 @@ class \hyperlink{classchaos_1_1test_1_1_test_error}{chaos\-::test\-::\-Test\-Err
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
+\#define \hyperlink{_chaos_test_8hpp_a6e11bc6072a02d3220c5fca659bed95e}{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E}(path)
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
 \#define \hyperlink{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T}(path)~\hyperlink{_chaos_test_8hpp_aed518d0b99183e38b10a7f9c51304aef}{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T\-\_\-\-F\-I\-X\-T\-U\-R\-E}( path, \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\-::test\-::\-Fixture} )
 \begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
 \#define \hyperlink{_chaos_test_8hpp_aed518d0b99183e38b10a7f9c51304aef}{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T\-\_\-\-F\-I\-X\-T\-U\-R\-E}(path, fixture\-Type)
-\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
+\#define \hyperlink{_chaos_test_8hpp_ac927f91e1b8a911852bcb1b52062d295}{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L}()~chaos\-::test\-::internal\-::\-Test\-Core\-::run\-All()
+\begin{DoxyCompactList}\small\item\em T\-O\-D\-O\-: D\-O\-C. \end{DoxyCompactList}\item 
+\#define {\bfseries C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L}(a, b)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -39,7 +47,58 @@ David Saxon
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{\index{Chaos\-Test.\-hpp@{Chaos\-Test.\-hpp}!C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T}}
+\hypertarget{_chaos_test_8hpp_a54e1e8a8ac8073c53df1ba32bc10646d}{\index{Chaos\-Test.\-hpp@{Chaos\-Test.\-hpp}!C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L}}
+\index{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L}!ChaosTest.hpp@{Chaos\-Test.\-hpp}}
+\subsubsection[{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-E\-Q\-U\-A\-L(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)}}\label{_chaos_test_8hpp_a54e1e8a8ac8073c53df1ba32bc10646d}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if} ( a == b )                                                          \(\backslash\)
+        \{                                                                      \(\backslash\)
+        \}                                                                      \(\backslash\)
+        else                                                                   \(\backslash\)
+        \{                                                                      \(\backslash\)
+            chaos::test::internal::TestCore::registerFailure(                  \(\backslash\)
+                    \_\_FILE\_\_,                                                  \(\backslash\)
+                    \_\_LINE\_\_,                                                  \(\backslash\)
+                    \textcolor{stringliteral}{"CHAOS\_TEST\_EQUAL"}                                         \(\backslash\)
+            );                                                                 \(\backslash\)
+        \}
+\end{DoxyCode}
+\hypertarget{_chaos_test_8hpp_a6e11bc6072a02d3220c5fca659bed95e}{\index{Chaos\-Test.\-hpp@{Chaos\-Test.\-hpp}!C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E}}
+\index{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E}!ChaosTest.hpp@{Chaos\-Test.\-hpp}}
+\subsubsection[{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-M\-O\-D\-U\-L\-E(
+\begin{DoxyParamCaption}
+\item[{}]{path}
+\end{DoxyParamCaption}
+)}}\label{_chaos_test_8hpp_a6e11bc6072a02d3220c5fca659bed95e}
+{\bfseries Value\-:}
+\begin{DoxyCode}
+\textcolor{keyword}{namespace                                                              }\(\backslash\)
+        \{                                                                      \(\backslash\)
+        chaos::test::internal::TestCore t( #path, NULL, \textcolor{stringliteral}{""}, 0, \textcolor{keyword}{true} );         \(\backslash\)
+        \}
+\end{DoxyCode}
+
+
+T\-O\-D\-O\-: D\-O\-C. 
+
+T\-O\-D\-O\-: D\-O\-C \hypertarget{_chaos_test_8hpp_ac927f91e1b8a911852bcb1b52062d295}{\index{Chaos\-Test.\-hpp@{Chaos\-Test.\-hpp}!C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L}}
+\index{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L}!ChaosTest.hpp@{Chaos\-Test.\-hpp}}
+\subsubsection[{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-R\-U\-N\-\_\-\-A\-L\-L(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~chaos\-::test\-::internal\-::\-Test\-Core\-::run\-All()}}\label{_chaos_test_8hpp_ac927f91e1b8a911852bcb1b52062d295}
+
+
+T\-O\-D\-O\-: D\-O\-C. 
+
+T\-O\-D\-O\-: D\-O\-C \hypertarget{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{\index{Chaos\-Test.\-hpp@{Chaos\-Test.\-hpp}!C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T}}
 \index{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T@{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T}!ChaosTest.hpp@{Chaos\-Test.\-hpp}}
 \subsubsection[{C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\-H\-A\-O\-S\-\_\-\-T\-E\-S\-T\-\_\-\-U\-N\-I\-T(
 \begin{DoxyParamCaption}
@@ -60,21 +119,18 @@ T\-O\-D\-O\-: D\-O\-C \hypertarget{_chaos_test_8hpp_aed518d0b99183e38b10a7f9c513
 )}}\label{_chaos_test_8hpp_aed518d0b99183e38b10a7f9c51304aef}
 {\bfseries Value\-:}
 \begin{DoxyCode}
-\textcolor{keyword}{namespace }\hyperlink{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{CHAOS\_UNIQUE\_NAME}( chaos\_unit\_test )                             \(\backslash\)
+\textcolor{keyword}{struct }path : \textcolor{keyword}{public} chaos::test::internal::UnitTest                       \(\backslash\)
     \{                                                                          \(\backslash\)
-    struct ThisUnitWrapper : \textcolor{keyword}{public} chaos::test::internal::UnitTest            \(\backslash\)
-    \{                                                                          \(\backslash\)
-        ThisUnitWrapper( \hyperlink{classchaos_1_1test_1_1_fixture}{chaos::test::Fixture}& fixture ) : UnitTest( fixture ) \(\backslash\)
-        \{\}                                                                     \(\backslash\)
-        virtual \textcolor{keywordtype}{void} execute( \hyperlink{classchaos_1_1test_1_1_fixture}{chaos::test::Fixture}& fixture );                 \(\backslash\)
+    public:                                                                    \(\backslash\)
+        fixtureType* fixture;                                                  \(\backslash\)
+        path() : fixture( new fixtureType() )\{\}                                \(\backslash\)
+        virtual ~path()\{ \textcolor{keyword}{delete} fixture; \}                                     \(\backslash\)
+        virtual \hyperlink{classchaos_1_1test_1_1_fixture}{chaos::test::Fixture}* getFixture() \{ \textcolor{keywordflow}{return} fixture; \}         \(\backslash\)
+        virtual \textcolor{keywordtype}{void} execute();                                                \(\backslash\)
     \};                                                                         \(\backslash\)
-    chaos::test::internal::TestCore chaos\_declare\_test(                        \(\backslash\)
-            #path,                                                             \(\backslash\)
-            \textcolor{keyword}{new} ThisUnitWrapper( fixtureType() ),                              \(\backslash\)
-    );                                                                         \(\backslash\)
-    \}                                                                          \(\backslash\)
-    void \hyperlink{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{CHAOS\_UNIQUE\_NAME}( chaos\_unit\_test )::ThisUnitWrapper::execute(       \(\backslash\)
-            chaos::test::Fixture& fixture )
+    static chaos::test::internal::TestCore object\_##path (                     \(\backslash\)
+            #path, \textcolor{keyword}{new} path(), \_\_FILE\_\_, \_\_LINE\_\_ );                           \(\backslash\)
+    void path::execute()
 \end{DoxyCode}
 
 
