@@ -72,6 +72,8 @@ size\-\_\-t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a848f2364bfff00544463
 \begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
 const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\-::int8} $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{get\-Raw\-Data} () const 
 \begin{DoxyCompactList}\small\item\em Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String}. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6e2d1838a8557ee1a09a1fdfd6b1f84d}{get\-C\-String} () const 
+\begin{DoxyCompactList}\small\item\em Gets the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} as c style string (const char$\ast$). \end{DoxyCompactList}\item 
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}{void {\bfseries dev\-\_\-inspect\-Contents} ()}\label{classchaos_1_1str_1_1_u_t_f8_string_a5c2746c3e90b6712e4977130266c79d1}
 
 \end{DoxyCompactItemize}
@@ -349,6 +351,22 @@ This is not equal to the character length of the string as utf-\/8 encoded chara
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The length of the internal data. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a6e2d1838a8557ee1a09a1fdfd6b1f84d}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-C\-String@{get\-C\-String}}
+\index{get\-C\-String@{get\-C\-String}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}
+\subsubsection[{get\-C\-String}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ chaos\-::str\-::\-U\-T\-F8\-String\-::get\-C\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1str_1_1_u_t_f8_string_a6e2d1838a8557ee1a09a1fdfd6b1f84d}
+
+
+Gets the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\-T\-F8\-String} as c style string (const char$\ast$). 
+
+This function is the same as \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa994b507f25989757e41a65fe02e6f35}{get\-Raw\-Data()} except the data is casted to const char$\ast$.
+
+\begin{DoxyReturn}{Returns}
+a pointer to the c style string representation of the data. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a16c5dc861a7a62d1595af424b3b4f58e}{\index{chaos\-::str\-::\-U\-T\-F8\-String@{chaos\-::str\-::\-U\-T\-F8\-String}!get\-Length@{get\-Length}}
 \index{get\-Length@{get\-Length}!chaos::str::UTF8String@{chaos\-::str\-::\-U\-T\-F8\-String}}

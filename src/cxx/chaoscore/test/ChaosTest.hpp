@@ -8,20 +8,21 @@
 #ifndef CHAOSCORE_TEST_CHAOSTEST_HPP_
 #define CHAOSCORE_TEST_CHAOSTEST_HPP_
 
-#include "chaoscore/base/Preproc.hpp"
-
 #include <map>
 #include <set>
 #include <sstream>
 #include <vector>
 
+#include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/Preproc.hpp"
+#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/test/TestLogger.hpp"
+
+// fork
 #ifdef CHAOS_OS_UNIX
     #include <unistd.h>
     #include <sys/wait.h>
 #endif
-
-#include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/string/UTF8String.hpp"
 
 // TODO: currently used because format is not supported for UTF8Strings
 #include <sstream>
@@ -109,20 +110,14 @@ public:
 };
 
 //------------------------------------------------------------------------------
-//                                TYPE DEFINITIONS
-//------------------------------------------------------------------------------
-
-// the map type from test paths to the UnitTest pointer
-typedef std::map< chaos::str::UTF8String, UnitTest* > TestMap;
-
-//------------------------------------------------------------------------------
 //                                    GLOBALS
 //------------------------------------------------------------------------------
 
-static TestMap                            testMap;
-static std::set< chaos::str::UTF8String > baseModules;
-static std::set< chaos::str::UTF8String > knownModules;
-static chaos::str::UTF8String             currentModule;
+static TestLogger                                    logger;
+static std::map< chaos::str::UTF8String, UnitTest* > testMap;
+static std::set< chaos::str::UTF8String >            baseModules;
+static std::set< chaos::str::UTF8String >            knownModules;
+static chaos::str::UTF8String                        currentModule;
 
 //------------------------------------------------------------------------------
 //                                    CLASSES
@@ -152,12 +147,13 @@ struct RunInfo
  * \internal
  *
  * \brief Hacky object for performing test magic.
+ *
+ * For oddities relating to the static global variables used this object is
+ * declared entirely inline.
  */
 class TestCore
 {
 public:
-
-    // TODO: CAN FUNCTIONS BE MOVED TO C++?
 
     /*!
      * \internal
@@ -179,7 +175,11 @@ public:
         if ( runInfo )
         {
             TestCore::run( runInfo );
-            // TODO: clean up the static map
+            // clean up unit test pointer pointers
+            CHAOS_FOR_EACH( it, testMap )
+            {
+                delete it->second;
+            }
             return;
         }
 
@@ -319,8 +319,38 @@ public:
         std::set< chaos::str::UTF8String > paths;
         CHAOS_FOR_EACH( pIt, runInfo->paths )
         {
-            // TODO: check if any known modules or paths exist with name
-            // TODO: write to log or output
+            // check if the path is even valid
+            bool match = false;
+            // is the path a non-module
+            CHAOS_FOR_EACH( mIt, knownModules )
+            {
+                if ( *pIt == *mIt )
+                {
+                    // this path is a known module
+                    match = true;
+                    break;
+                }
+            }
+            // not a module, is it an exact path?
+            if ( !match )
+            {
+                CHAOS_FOR_EACH( upIt, testMap )
+                {
+                    if ( *pIt == upIt->first )
+                    {
+                        // this path is an exact test
+                        match = true;
+                        break;
+                    }
+                }
+            }
+            // this isn't a valid test path
+            if ( !match )
+            {
+                // TODO: write to log or output
+                std::cout << "Invalid test path!" << std::endl;
+                continue;
+            }
 
             // check if this tests starts with any of the other paths
             bool isSubPath = false;
@@ -344,6 +374,8 @@ public:
                 paths.insert( *pIt );
             }
         }
+
+        // TODO: no valid paths?
 
         // structure for grouping tests by path
         struct PathGroup
@@ -477,35 +509,36 @@ public:
      */
     static void runInNewProc( UnitTest* unitTest, RunInfo* runInfo )
     {
-    // The method spawning a new process is platform dependent
-    #ifdef CHAOS_OS_UNIX
+        // The method spawning a new process is platform dependent
+        #ifdef CHAOS_OS_UNIX
 
-        // for to run the new process
-        pid_t procId = fork();
-        if ( procId == 0 )
-        {
-            // we are now on a new process so just use the single proc function.
-            TestCore::runSingleProc( unitTest, runInfo );
-            exit( 0 );
-        }
-        else
-        {
-            // wait for the child process to end
-            int procStatus;
-            waitpid( procId, &procStatus, 0 );
-            // TODO: check child status
-        }
+            // for to run the new process
+            pid_t procId = fork();
+            if ( procId == 0 )
+            {
+                // we are now on a new process so just use the single proc
+                // function.
+                TestCore::runSingleProc( unitTest, runInfo );
+                exit( 0 );
+            }
+            else
+            {
+                // wait for the child process to end
+                int procStatus;
+                waitpid( procId, &procStatus, 0 );
+                // TODO: check child status
+            }
 
-    #else
+        #else
 
-        // TODO: spawn new single_proc process
-        // TODO: update error to know Windows and Unix
-        throw TestError(
-                "Running tests on new processes is not yet supported for "
-                "non-UNIX platforms."
-        );
+            // TODO: spawn new single_proc process
+            // TODO: update error to know Windows and Unix
+            throw TestError(
+                    "Running tests on new processes is not yet supported for "
+                    "non-UNIX platforms."
+            );
 
-    #endif
+        #endif
     }
 
     /*!

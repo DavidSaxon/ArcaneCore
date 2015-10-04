@@ -385,6 +385,11 @@ const chaos::int8* UTF8String::getRawData() const
     return m_data;
 }
 
+const char* UTF8String::getCString() const
+{
+    return reinterpret_cast< char* >( m_data );
+}
+
 //------------------------------------------------------------------------------
 
 //--------------------------------DEV FUNCTIONS---------------------------------

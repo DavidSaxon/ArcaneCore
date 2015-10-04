@@ -190,6 +190,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aa994b507f25989757e41a65fe02e6f35"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespacechaos.html#a56015674cfe4ad1fc583c3da6c724d8a">chaos::int8</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#aa994b507f25989757e41a65fe02e6f35">getRawData</a> () const </td></tr>
 <tr class="memdesc:aa994b507f25989757e41a65fe02e6f35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the raw byte data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a>.  <a href="#aa994b507f25989757e41a65fe02e6f35">More...</a><br/></td></tr>
 <tr class="separator:aa994b507f25989757e41a65fe02e6f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2d1838a8557ee1a09a1fdfd6b1f84d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#a6e2d1838a8557ee1a09a1fdfd6b1f84d">getCString</a> () const </td></tr>
+<tr class="memdesc:a6e2d1838a8557ee1a09a1fdfd6b1f84d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the raw byte data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> as c style string (const char*).  <a href="#a6e2d1838a8557ee1a09a1fdfd6b1f84d">More...</a><br/></td></tr>
+<tr class="separator:a6e2d1838a8557ee1a09a1fdfd6b1f84d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c2746c3e90b6712e4977130266c79d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c2746c3e90b6712e4977130266c79d1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dev_inspectContents</b> ()</td></tr>
 <tr class="separator:a5c2746c3e90b6712e4977130266c79d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -590,6 +593,25 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 </div>
 </div>
+<a class="anchor" id="a6e2d1838a8557ee1a09a1fdfd6b1f84d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* chaos::str::UTF8String::getCString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the raw byte data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A generic string type for storing Unicode data. TODO. ">UTF8String</a> as c style string (const char*). </p>
+<p>This function is the same as <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html#aa994b507f25989757e41a65fe02e6f35" title="Get the raw byte data of this UTF8String. ">getRawData()</a> except the data is casted to const char*.</p>
+<dl class="section return"><dt>Returns</dt><dd>a pointer to the c style string representation of the data. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a16c5dc861a7a62d1595af424b3b4f58e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -913,7 +935,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 4 2015 01:14:55 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 4 2015 23:37:48 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

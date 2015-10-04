@@ -5,6 +5,7 @@ set( CORE_SRC
 
     src/cxx/chaoscore/base/string/UTF8String.cpp
     src/cxx/chaoscore/test/ChaosTest.cpp
+    src/cxx/chaoscore/test/TestLogger.cpp
 )
 
 set( TEST_SRC

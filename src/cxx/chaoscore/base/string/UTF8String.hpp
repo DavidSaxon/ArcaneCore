@@ -374,6 +374,17 @@ public:
      */
     const chaos::int8* getRawData() const;
 
+    /*!
+     * \brief Gets the raw byte data of this UTF8String as c style string
+              (const char*).
+     *
+     * This function is the same as getRawData() except the data is casted to
+     * const char*.
+     *
+     * \return a pointer to the c style string representation of the data.
+     */
+    const char* getCString() const;
+
     //--------------------------------------------------------------------------
 
 
