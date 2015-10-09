@@ -134,10 +134,19 @@ struct RunInfo
     bool singleProc;
     // the paths to the tests to run
     std::set< chaos::str::UTF8String > paths;
+    // whether the standard output stream is being used
+    bool useStdout;
+    // the format of the standard output stream
+    TestLogger::OutFormat stdoutFormat;
+    // mapping from file path to write to, to the format to use
+    std::map< std::string, TestLogger::OutFormat > files;
+
 
     RunInfo()
         :
-        singleProc( false )
+        singleProc  ( false ),
+        useStdout   ( true ),
+        stdoutFormat( TestLogger::PRETTY_TEXT )
     {
     }
 };
@@ -154,6 +163,8 @@ struct RunInfo
 class TestCore
 {
 public:
+
+    // TODO: can we move to inline cpp functions?
 
     /*!
      * \internal
@@ -174,6 +185,13 @@ public:
         // is this the run key?
         if ( runInfo )
         {
+            // pass outputs to the logger
+            if ( runInfo->useStdout )
+            {
+                logger.addStdOut( runInfo->stdoutFormat );
+            }
+
+            // run the tests
             TestCore::run( runInfo );
             // clean up unit test pointer pointers
             CHAOS_FOR_EACH( it, testMap )

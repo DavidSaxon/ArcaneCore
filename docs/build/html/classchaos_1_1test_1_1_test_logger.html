@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -89,51 +89,139 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classchaos_1_1test_1_1_test_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">chaos::test::TestLogger Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>TODO: DOC.  
- <a href="classchaos_1_1test_1_1_test_logger.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="_test_logger_8hpp_source.html">TestLogger.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a8e6f679501d623e41ac0f0c445a7820d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">OutFormat</a> { <a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820da11d08f338d72ed03a3f6615fe8dfbdef">PLAIN_TEXT</a>, 
+<a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820da7ef26881e91521776c39dba0009cea82">PRETTY_TEXT</a>, 
+<a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820da3ccea8ca2579aed0861e20023d7bff07">XML</a>, 
+<a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820dae7bbb57ad848e1cd78035e57bbcb11b2">HTML</a>
+ }</td></tr>
+<tr class="memdesc:a8e6f679501d623e41ac0f0c445a7820d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The different possible log outputs.  <a href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">More...</a><br/></td></tr>
+<tr class="separator:a8e6f679501d623e41ac0f0c445a7820d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59b5462eea92053f301b8c5e9c61892f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59b5462eea92053f301b8c5e9c61892f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a59b5462eea92053f301b8c5e9c61892f">TestLogger</a> ()</td></tr>
-<tr class="memdesc:a59b5462eea92053f301b8c5e9c61892f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new <a class="el" href="classchaos_1_1test_1_1_test_logger.html" title="TODO: DOC. ">TestLogger</a> instance. <br/></td></tr>
+<tr class="memitem:a59b5462eea92053f301b8c5e9c61892f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a59b5462eea92053f301b8c5e9c61892f">TestLogger</a> ()</td></tr>
+<tr class="memdesc:a59b5462eea92053f301b8c5e9c61892f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a test logger interface.  <a href="#a59b5462eea92053f301b8c5e9c61892f">More...</a><br/></td></tr>
 <tr class="separator:a59b5462eea92053f301b8c5e9c61892f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fec82749e25ffad7ae6b4f47ee0c4ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a5fec82749e25ffad7ae6b4f47ee0c4ec">init</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;output)</td></tr>
-<tr class="memdesc:a5fec82749e25ffad7ae6b4f47ee0c4ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises this <a class="el" href="classchaos_1_1test_1_1_test_logger.html" title="TODO: DOC. ">TestLogger</a> instance.  <a href="#a5fec82749e25ffad7ae6b4f47ee0c4ec">More...</a><br/></td></tr>
-<tr class="separator:a5fec82749e25ffad7ae6b4f47ee0c4ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a187403a01b59676a955817fa39bafbbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a187403a01b59676a955817fa39bafbbb">addStdOut</a> (<a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">OutFormat</a> format)</td></tr>
+<tr class="memdesc:a187403a01b59676a955817fa39bafbbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a standard output for writing.  <a href="#a187403a01b59676a955817fa39bafbbb">More...</a><br/></td></tr>
+<tr class="separator:a187403a01b59676a955817fa39bafbbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0525b93567d29d8cf1f0de1b5b32be09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a0525b93567d29d8cf1f0de1b5b32be09">addFileOutput</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;path, <a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">OutFormat</a> format)</td></tr>
+<tr class="memdesc:a0525b93567d29d8cf1f0de1b5b32be09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a file output for writing.  <a href="#a0525b93567d29d8cf1f0de1b5b32be09">More...</a><br/></td></tr>
+<tr class="separator:a0525b93567d29d8cf1f0de1b5b32be09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>TODO: DOC. </p>
-<p>TODO: DOC </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a5fec82749e25ffad7ae6b4f47ee0c4ec"></a>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a8e6f679501d623e41ac0f0c445a7820d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void chaos::test::TestLogger::init </td>
+          <td class="memname">enum <a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">chaos::test::TestLogger::OutFormat</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The different possible log outputs. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8e6f679501d623e41ac0f0c445a7820da11d08f338d72ed03a3f6615fe8dfbdef"></a>PLAIN_TEXT</em>&#160;</td><td class="fielddoc">
+<p>Output plain text with no decoration or formatting. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8e6f679501d623e41ac0f0c445a7820da7ef26881e91521776c39dba0009cea82"></a>PRETTY_TEXT</em>&#160;</td><td class="fielddoc">
+<p>Output plain text with decoration and formatting. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8e6f679501d623e41ac0f0c445a7820da3ccea8ca2579aed0861e20023d7bff07"></a>XML</em>&#160;</td><td class="fielddoc">
+<p>Output in XML format. </p>
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8e6f679501d623e41ac0f0c445a7820dae7bbb57ad848e1cd78035e57bbcb11b2"></a>HTML</em>&#160;</td><td class="fielddoc">
+<p>Output in HTML format for viewing in a web browser. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a59b5462eea92053f301b8c5e9c61892f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">chaos::test::TestLogger::TestLogger </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
-          <td class="paramname"><em>output</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialises this <a class="el" href="classchaos_1_1test_1_1_test_logger.html" title="TODO: DOC. ">TestLogger</a> instance. </p>
-<p>This function should only be called once, before an other calls to the logger are made.</p>
+<p>Constructs a test logger interface. </p>
+<p>By default the logger has no defined outputs. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0525b93567d29d8cf1f0de1b5b32be09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::test::TestLogger::addFileOutput </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">OutFormat</a>&#160;</td>
+          <td class="paramname"><em>format</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a file output for writing. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">output</td><td>The output file to write test logs to. If output is set to "stdout" the logger will write to std::cout rather than to disk. </td></tr>
+    <tr><td class="paramname">path</td><td>Full path to the file to write to. This path does not need to exist beforehand. </td></tr>
+    <tr><td class="paramname">format</td><td>The format to write to the file in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a187403a01b59676a955817fa39bafbbb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::test::TestLogger::addStdOut </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a8e6f679501d623e41ac0f0c445a7820d">OutFormat</a>&#160;</td>
+          <td class="paramname"><em>format</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a standard output for writing. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Currently writing to only one standard output is supported. Calling this function multiple times will result in an exception. TODO:</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>The format to write standard output in. </td></tr>
   </table>
   </dd>
 </dl>
@@ -146,7 +234,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 4 2015 23:37:48 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 7 2015 00:01:35 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

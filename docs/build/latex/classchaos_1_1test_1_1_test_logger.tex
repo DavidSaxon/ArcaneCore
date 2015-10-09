@@ -1,47 +1,100 @@
 \hypertarget{classchaos_1_1test_1_1_test_logger}{\section{chaos\-:\-:test\-:\-:Test\-Logger Class Reference}
 \label{classchaos_1_1test_1_1_test_logger}\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}}
 }
-
-
-T\-O\-D\-O\-: D\-O\-C.  
-
-
-
-
-{\ttfamily \#include $<$Test\-Logger.\-hpp$>$}
-
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\-Format} \{ \hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da11d08f338d72ed03a3f6615fe8dfbdef}{P\-L\-A\-I\-N\-\_\-\-T\-E\-X\-T}, 
+\hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da7ef26881e91521776c39dba0009cea82}{P\-R\-E\-T\-T\-Y\-\_\-\-T\-E\-X\-T}, 
+\hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da3ccea8ca2579aed0861e20023d7bff07}{X\-M\-L}, 
+\hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820dae7bbb57ad848e1cd78035e57bbcb11b2}{H\-T\-M\-L}
+ \}
+\begin{DoxyCompactList}\small\item\em The different possible log outputs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}{\hyperlink{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}{Test\-Logger} ()}\label{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}
+\hyperlink{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}{Test\-Logger} ()
+\begin{DoxyCompactList}\small\item\em Constructs a test logger interface. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_a187403a01b59676a955817fa39bafbbb}{add\-Std\-Out} (\hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\-Format} format)
+\begin{DoxyCompactList}\small\item\em Adds a standard output for writing. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_a0525b93567d29d8cf1f0de1b5b32be09}{add\-File\-Output} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&path, \hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\-Format} format)
+\begin{DoxyCompactList}\small\item\em Adds a file output for writing. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\begin{DoxyCompactList}\small\item\em Creates a new \hyperlink{classchaos_1_1test_1_1_test_logger}{Test\-Logger} instance. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1test_1_1_test_logger_a5fec82749e25ffad7ae6b4f47ee0c4ec}{init} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&output)
-\begin{DoxyCompactList}\small\item\em Initialises this \hyperlink{classchaos_1_1test_1_1_test_logger}{Test\-Logger} instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!Out\-Format@{Out\-Format}}
+\index{Out\-Format@{Out\-Format}!chaos::test::TestLogger@{chaos\-::test\-::\-Test\-Logger}}
+\subsubsection[{Out\-Format}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf chaos\-::test\-::\-Test\-Logger\-::\-Out\-Format}}}\label{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}
 
 
-\subsection{Detailed Description}
-T\-O\-D\-O\-: D\-O\-C. 
+The different possible log outputs. 
 
-T\-O\-D\-O\-: D\-O\-C 
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{P\-L\-A\-I\-N\-\_\-\-T\-E\-X\-T@{P\-L\-A\-I\-N\-\_\-\-T\-E\-X\-T}!chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}}\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!P\-L\-A\-I\-N\-\_\-\-T\-E\-X\-T@{P\-L\-A\-I\-N\-\_\-\-T\-E\-X\-T}}\item[{\em 
+\hypertarget{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da11d08f338d72ed03a3f6615fe8dfbdef}{P\-L\-A\-I\-N\-\_\-\-T\-E\-X\-T}\label{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da11d08f338d72ed03a3f6615fe8dfbdef}
+}]Output plain text with no decoration or formatting. \index{P\-R\-E\-T\-T\-Y\-\_\-\-T\-E\-X\-T@{P\-R\-E\-T\-T\-Y\-\_\-\-T\-E\-X\-T}!chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}}\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!P\-R\-E\-T\-T\-Y\-\_\-\-T\-E\-X\-T@{P\-R\-E\-T\-T\-Y\-\_\-\-T\-E\-X\-T}}\item[{\em 
+\hypertarget{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da7ef26881e91521776c39dba0009cea82}{P\-R\-E\-T\-T\-Y\-\_\-\-T\-E\-X\-T}\label{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da7ef26881e91521776c39dba0009cea82}
+}]Output plain text with decoration and formatting. \index{X\-M\-L@{X\-M\-L}!chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}}\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!X\-M\-L@{X\-M\-L}}\item[{\em 
+\hypertarget{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da3ccea8ca2579aed0861e20023d7bff07}{X\-M\-L}\label{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820da3ccea8ca2579aed0861e20023d7bff07}
+}]Output in X\-M\-L format. \index{H\-T\-M\-L@{H\-T\-M\-L}!chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}}\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!H\-T\-M\-L@{H\-T\-M\-L}}\item[{\em 
+\hypertarget{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820dae7bbb57ad848e1cd78035e57bbcb11b2}{H\-T\-M\-L}\label{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820dae7bbb57ad848e1cd78035e57bbcb11b2}
+}]Output in H\-T\-M\-L format for viewing in a web browser. \end{description}
+\end{Desc}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}{\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!Test\-Logger@{Test\-Logger}}
+\index{Test\-Logger@{Test\-Logger}!chaos::test::TestLogger@{chaos\-::test\-::\-Test\-Logger}}
+\subsubsection[{Test\-Logger}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::test\-::\-Test\-Logger\-::\-Test\-Logger (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}
+
+
+Constructs a test logger interface. 
+
+By default the logger has no defined outputs. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classchaos_1_1test_1_1_test_logger_a5fec82749e25ffad7ae6b4f47ee0c4ec}{\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!init@{init}}
-\index{init@{init}!chaos::test::TestLogger@{chaos\-::test\-::\-Test\-Logger}}
-\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Logger\-::init (
+\hypertarget{classchaos_1_1test_1_1_test_logger_a0525b93567d29d8cf1f0de1b5b32be09}{\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!add\-File\-Output@{add\-File\-Output}}
+\index{add\-File\-Output@{add\-File\-Output}!chaos::test::TestLogger@{chaos\-::test\-::\-Test\-Logger}}
+\subsubsection[{add\-File\-Output}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Logger\-::add\-File\-Output (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::str\-::\-U\-T\-F8\-String} \&}]{output}
+\item[{const {\bf chaos\-::str\-::\-U\-T\-F8\-String} \&}]{path, }
+\item[{{\bf Out\-Format}}]{format}
 \end{DoxyParamCaption}
-)}}\label{classchaos_1_1test_1_1_test_logger_a5fec82749e25ffad7ae6b4f47ee0c4ec}
+)}}\label{classchaos_1_1test_1_1_test_logger_a0525b93567d29d8cf1f0de1b5b32be09}
 
 
-Initialises this \hyperlink{classchaos_1_1test_1_1_test_logger}{Test\-Logger} instance. 
-
-This function should only be called once, before an other calls to the logger are made.
+Adds a file output for writing. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em output} & The output file to write test logs to. If output is set to \char`\"{}stdout\char`\"{} the logger will write to std\-::cout rather than to disk. \\
+{\em path} & Full path to the file to write to. This path does not need to exist beforehand. \\
+\hline
+{\em format} & The format to write to the file in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1test_1_1_test_logger_a187403a01b59676a955817fa39bafbbb}{\index{chaos\-::test\-::\-Test\-Logger@{chaos\-::test\-::\-Test\-Logger}!add\-Std\-Out@{add\-Std\-Out}}
+\index{add\-Std\-Out@{add\-Std\-Out}!chaos::test::TestLogger@{chaos\-::test\-::\-Test\-Logger}}
+\subsubsection[{add\-Std\-Out}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::test\-::\-Test\-Logger\-::add\-Std\-Out (
+\begin{DoxyParamCaption}
+\item[{{\bf Out\-Format}}]{format}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1test_1_1_test_logger_a187403a01b59676a955817fa39bafbbb}
+
+
+Adds a standard output for writing. 
+
+\begin{DoxyWarning}{Warning}
+Currently writing to only one standard output is supported. Calling this function multiple times will result in an exception. T\-O\-D\-O\-:
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em format} & The format to write standard output in. \\
 \hline
 \end{DoxyParams}
 

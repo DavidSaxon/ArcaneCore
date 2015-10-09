@@ -1,7 +1,5 @@
 #include "chaoscore/test/TestLogger.hpp"
 
-#include <cstddef>
-#include <fstream>
 #include <iostream>
 
 namespace chaos
@@ -9,16 +7,13 @@ namespace chaos
 namespace test
 {
 
-// TODO: COLOUR!
-
 //------------------------------------------------------------------------------
 //                                  CONSTRUCTOR
 //------------------------------------------------------------------------------
 
 TestLogger::TestLogger()
     :
-    m_stream( nullptr ),
-    m_stdout( false )
+    m_usingStdout( false )
 {
 }
 
@@ -28,14 +23,9 @@ TestLogger::TestLogger()
 
 TestLogger::~TestLogger()
 {
-    if ( m_stream != nullptr )
+    CHAOS_FOR_EACH( it, m_fileStreams )
     {
-        // close the file stream if it's being used
-        if ( !m_stdout )
-        {
-            static_cast< std::ofstream* >( m_stream )->close();
-        }
-        delete m_stream;
+        delete *it;
     }
 }
 
@@ -43,21 +33,20 @@ TestLogger::~TestLogger()
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void TestLogger::init( const chaos::str::UTF8String& output )
+void TestLogger::addStdOut( OutFormat format )
 {
-    if ( output == "stdout" )
-    {
-        // use std::cout
-        m_stdout = true;
-        m_stream = &std::cout;
-    }
-    else
-    {
-        // open a file stream
-        std::ofstream* fileStream = new std::ofstream( output.getCString() );
-        // TODO: check if the file is open
-        m_stream = fileStream;
-    }
+    m_usingStdout = true;
+    m_stdoutFormat = format;
+
+    // TODO: REMOVE ME
+    std::cout << "ADDED STDOUT: " << format << std::endl;
+}
+
+void TestLogger::addFileOutput(
+        const chaos::str::UTF8String& path,
+              OutFormat               format )
+{
+    // TODO:
 }
 
 } // namespace test
