@@ -22,6 +22,9 @@
 #ifdef CHAOS_OS_UNIX
     #include <unistd.h>
     #include <sys/wait.h>
+// create process
+#elif defined( CHAOS_OS_WINDOWS )
+    #include <windows.h>
 #endif
 
 // TODO: currently used because format is not supported for UTF8Strings
@@ -139,14 +142,14 @@ struct RunInfo
     // the format of the standard output stream
     TestLogger::OutFormat stdoutFormat;
     // mapping from file path to write to, to the format to use
-    std::map< std::string, TestLogger::OutFormat > files;
+    std::map< chaos::str::UTF8String, TestLogger::OutFormat > files;
 
 
     RunInfo()
         :
         singleProc  ( false ),
         useStdout   ( true ),
-        stdoutFormat( TestLogger::PRETTY_TEXT )
+        stdoutFormat( TestLogger::OUT_PRETTY_TEXT )
     {
     }
 };
@@ -547,16 +550,108 @@ public:
                 // TODO: check child status
             }
 
+        #elif defined( CHAOS_OS_WINDOWS )
+
+            // rebuild the command line arguments
+            chaos::str::UTF8String commandLineArgs = " --single_proc";
+            // get the test to run
+            commandLineArgs += " --test ";
+            commandLineArgs += *runInfo->paths.begin();
+            // std out
+            if ( runInfo->useStdout )
+            {
+                commandLineArgs += " --stdout ";
+                commandLineArgs += logFormatToString( runInfo->stdoutFormat );
+            }
+            // file outputs
+            CHAOS_FOR_EACH( fileIt, runInfo->files )
+            {
+                commandLineArgs += " --fileout ";
+                commandLineArgs += fileIt->first + " ";
+                commandLineArgs += logFormatToString( fileIt->second );
+            }
+
+            // spawn a new instance of this process but with arguments to point
+            // to a single test case
+            STARTUPINFO startupInfo;
+            PROCESS_INFORMATION procInfo;
+            ZeroMemory( &startupInfo, sizeof( startupInfo ) );
+            startupInfo.cb = sizeof( startupInfo );
+            ZeroMemory( &procInfo, sizeof( procInfo ) );
+
+            // get the path to this executable
+            TCHAR exePath[ MAX_PATH ];
+            GetModuleFileName( NULL, exePath, MAX_PATH );
+
+            // start the child process
+            BOOL createSuccess = CreateProcess(
+                    exePath,
+                    const_cast< LPSTR >( commandLineArgs.getCString() ),
+                    NULL,
+                    NULL,
+                    FALSE,
+                    0,
+                    NULL,
+                    NULL,
+                    &startupInfo,
+                    &procInfo
+            );
+
+            // was there an error?
+            if ( !createSuccess )
+            {
+                // TOOD: error check
+                std::cout << "FAILED" << std::endl;
+            }
+
+            // wait until the child process has finished
+            WaitForSingleObject( procInfo.hProcess, INFINITE );
+            // close process and thread handles
+            CloseHandle( procInfo.hProcess );
+            CloseHandle( procInfo.hThread );
+
         #else
 
             // TODO: spawn new single_proc process
             // TODO: update error to know Windows and Unix
             throw TestError(
                     "Running tests on new processes is not yet supported for "
-                    "non-UNIX platforms."
+                    "non-UNIX non-Windows platforms."
             );
 
         #endif
+    }
+
+    /*!
+     * \internal
+     *
+     * Converts a test logger output format to a UTF8String for the command
+     * line.
+     */
+    static chaos::str::UTF8String logFormatToString(
+            TestLogger::OutFormat format )
+    {
+        switch( format )
+        {
+            case TestLogger::OUT_PLAIN_TEXT:
+            {
+                return "plain";
+            }
+            case TestLogger::OUT_PRETTY_TEXT:
+            {
+                return "pretty";
+            }
+            case TestLogger::OUT_XML:
+            {
+                return "xml";
+            }
+            case TestLogger::OUT_HTML:
+            {
+                return "html";
+            }
+        }
+
+        return "";
     }
 
     /*!

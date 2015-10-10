@@ -38,13 +38,13 @@ public:
     enum OutFormat
     {
         /// Output plain text with no decoration or formatting.
-        PLAIN_TEXT,
+        OUT_PLAIN_TEXT,
         /// Output plain text with decoration and formatting.
-        PRETTY_TEXT,
+        OUT_PRETTY_TEXT,
         /// Output in XML format.
-        XML,
+        OUT_XML,
         /// Output in HTML format for viewing in a web browser.
-        HTML
+        OUT_HTML
     };
 
     //--------------------------------------------------------------------------

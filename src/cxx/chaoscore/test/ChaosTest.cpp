@@ -116,14 +116,19 @@ int main( int argc, char* argv[] )
         else if ( ARG_FILEOUT == argv[ i ] )
         {
             // ensure there is another two arguments
-            if ( i == static_cast< size_t >( argc - 1 ) )
+            if ( i == static_cast< size_t >( argc - 2 ) )
             {
                 std::cerr << "\nERROR: Command line argument \'"
-                          << ARG_FILEOUT << "\' must be followed by a format to "
-                          << "use. Available formats are: plain, pretty, xml, "
-                          << "and html.\n" << std::endl;
+                          << ARG_FILEOUT << "\' must be followed by a the file "
+                          << "path to write to and the format to use.\n"
+                          << std::endl;
                 return -1;
             }
+
+            // get the file to write to
+            chaos::str::UTF8String filePath( argv[ ++i ] );
+
+            // TODO: check valid path
 
             // get the format to be use
             chaos::test::TestLogger::OutFormat outFormat;
@@ -138,10 +143,20 @@ int main( int argc, char* argv[] )
             }
 
             // does the file output already exist?
-            // if ( runInfo.files.find( ))
+            if ( runInfo.files.find( filePath ) != runInfo.files.end() )
+            {
+                std::cerr << "\nMultiple output definitions for the file: \'"
+                          << filePath << "\'.\n" << std::endl;
+                return -1;
+            }
 
             // add to run information
-            // runInfo->files[ ]
+            runInfo.files[ filePath ] = outFormat;
+            // if stdout hasn't be defined removed it
+            if ( !stdoutDefined )
+            {
+                runInfo.useStdout = false;
+            }
         }
         // unknown argument
         else
@@ -167,22 +182,22 @@ bool stringToFormat(
     // check against know types
     if ( str == OPT_FORMAT_PLAIN )
     {
-        format = chaos::test::TestLogger::PLAIN_TEXT;
+        format = chaos::test::TestLogger::OUT_PLAIN_TEXT;
         return true;
     }
     else if ( str == OPT_FORMAT_PRETTY )
     {
-        format = chaos::test::TestLogger::PRETTY_TEXT;
+        format = chaos::test::TestLogger::OUT_PRETTY_TEXT;
         return true;
     }
     else if ( str == OPT_FORMAT_XML )
     {
-        format = chaos::test::TestLogger::XML;
+        format = chaos::test::TestLogger::OUT_XML;
         return true;
     }
     else if ( str == OPT_FORMAT_HTML )
     {
-        format = chaos::test::TestLogger::HTML;
+        format = chaos::test::TestLogger::OUT_HTML;
         return true;
     }
 
