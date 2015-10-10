@@ -9,6 +9,7 @@
 //----------------------------COMMAND LINE ARGUMENTS----------------------------
 
 static chaos::str::UTF8String ARG_SINGLE_PROC   = "--single_proc";
+static chaos::str::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
 static chaos::str::UTF8String ARG_TEST_PATH     = "--test";
 static chaos::str::UTF8String ARG_STDOUT        = "--stdout";
 static chaos::str::UTF8String ARG_FILEOUT       = "--fileout";
@@ -56,6 +57,23 @@ int main( int argc, char* argv[] )
         if ( ARG_SINGLE_PROC == argv[ i ] )
         {
             runInfo.singleProc = true;
+        }
+        // --silent_crash
+        else if ( ARG_SILENT_CRASH == argv[ i ] )
+        {
+            #ifdef CHAOS_OS_WINDOWS
+
+                // we don't want show a dialog box when this crashes
+                SetErrorMode( SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX );
+                _set_abort_behavior( 0, _WRITE_ABORT_MSG );
+
+            #else
+
+                chaos::str::UTF8String errorMessage( ARG_SILENT_CRASH );
+                errorMessage += " only supported on Windows systems.";
+                throw chaos::test::TestError( errorMessage );
+
+            #endif
         }
         // --test
         else if ( ARG_TEST_PATH == argv[ i ] )

@@ -547,13 +547,14 @@ public:
                 // wait for the child process to end
                 int procStatus;
                 waitpid( procId, &procStatus, 0 );
-                // TODO: check child status
+                // TODO: check child status and log error message
             }
 
         #elif defined( CHAOS_OS_WINDOWS )
 
             // rebuild the command line arguments
             chaos::str::UTF8String commandLineArgs = " --single_proc";
+            commandLineArgs += " --silent_crash";
             // get the test to run
             commandLineArgs += " --test ";
             commandLineArgs += *runInfo->paths.begin();
@@ -577,6 +578,7 @@ public:
             PROCESS_INFORMATION procInfo;
             ZeroMemory( &startupInfo, sizeof( startupInfo ) );
             startupInfo.cb = sizeof( startupInfo );
+            startupInfo.hStdError = FALSE;
             ZeroMemory( &procInfo, sizeof( procInfo ) );
 
             // get the path to this executable
@@ -600,8 +602,23 @@ public:
             // was there an error?
             if ( !createSuccess )
             {
-                // TOOD: error check
-                std::cout << "FAILED" << std::endl;
+                // get the error code
+                DWORD lastError = GetLastError();
+                TCHAR errorMessage[ 512 ];
+                FormatMessage(
+                        FORMAT_MESSAGE_FROM_SYSTEM,
+                        NULL,
+                        lastError,
+                        MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),
+                        errorMessage,
+                        511,
+                        NULL
+                );
+                chaos::str::UTF8String message( "Spawning separate test " );
+                message += "process using CreateProcess (Windows) has failed ";
+                message += "with the error message: ";
+                message += errorMessage;
+                throw TestError( errorMessage );
             }
 
             // wait until the child process has finished
@@ -609,6 +626,8 @@ public:
             // close process and thread handles
             CloseHandle( procInfo.hProcess );
             CloseHandle( procInfo.hThread );
+
+            // TODO: check child process and log error message
 
         #else
 
