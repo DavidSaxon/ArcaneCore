@@ -1,6 +1,5 @@
 /*!
  * \file
- *
  * \author David Saxon
  */
 #ifndef CHAOSCORE_BASE_EXCEPTIONS_HPP_

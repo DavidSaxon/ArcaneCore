@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['testlogger',['TestLogger',['../classchaos_1_1test_1_1_test_logger.html#a59b5462eea92053f301b8c5e9c61892f',1,'chaos::test::TestLogger']]],
-  ['tostdstring',['toStdString',['../classchaos_1_1str_1_1_u_t_f8_string.html#a4febd35eab6e30bbcf2bdf38097a2fd6',1,'chaos::str::UTF8String']]]
+  ['split',['split',['../classchaos_1_1str_1_1_u_t_f8_string.html#ac5da4c989f6394c38b0fb82a252099db',1,'chaos::str::UTF8String']]],
+  ['startswith',['startsWith',['../classchaos_1_1str_1_1_u_t_f8_string.html#a1c184c731e4fa232f8ed329d4a745e2b',1,'chaos::str::UTF8String']]],
+  ['substring',['substring',['../classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c',1,'chaos::str::UTF8String']]]
 ];

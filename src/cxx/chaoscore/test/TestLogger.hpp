@@ -5,10 +5,14 @@
 #ifndef CHAOSCORE_TEST_TESTLOGGER_HPP_
 #define CHAOSCORE_TEST_TESTLOGGER_HPP_
 
-#include <fstream>
+#include <iosfwd>
 #include <vector>
 
 #include "chaoscore/base/string/UTF8String.hpp"
+
+//------------------------------------------------------------------------------
+//                             FORWARD DECELERATIONS
+//------------------------------------------------------------------------------
 
 namespace chaos
 {
@@ -88,6 +92,11 @@ public:
      */
     void addFileOutput( const chaos::str::UTF8String& path, OutFormat format );
 
+    /*!
+     * \brief Opens the logs and begins writing.
+     */
+    void openLog();
+
 private:
 
     //--------------------------------------------------------------------------
@@ -98,27 +107,20 @@ private:
      * \brief Internal structure for storing file streams and the format to
      *        write to them in.
      */
-    struct FileStreamInfo
+    struct StreamInfo
     {
         //--------------------------PUBLIC ATTRIBUTES---------------------------
 
-        std::ofstream* stream;
+        std::ostream* stream;
         OutFormat format;
 
         //------------------------------CONSTRUTOR------------------------------
 
-        FileStreamInfo( std::ofstream* a_stream, OutFormat a_format )
+        StreamInfo( std::ostream* a_stream, OutFormat a_format )
             :
             stream( a_stream ),
             format( a_format )
         {
-        }
-
-        //------------------------------DESTRUCTOR------------------------------
-
-        ~FileStreamInfo()
-        {
-            delete stream;
         }
     };
 
@@ -137,8 +139,15 @@ private:
 
     /*!
      * \brief List of the file streams being used by this logger.
+     *
+     * File streams are stored in a secondary list since they need to be
+     * deleted.
      */
-    std::vector< FileStreamInfo* > m_fileStreams;
+    std::vector< StreamInfo* > m_fileStreams;
+    /*!
+     * \brief the list of all streams being used by this logger.
+     */
+    std::vector< StreamInfo* > m_allStreams;
 };
 
 } // namespace test

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['what',['what',['../classchaos_1_1ex_1_1_chaos_exception.html#a5266c5ba1e7b6ab2bbfcb2a6c01fafea',1,'chaos::ex::ChaosException']]]
+  ['validatepath',['validatePath',['../namespacechaos_1_1file.html#aea03a5eedcd2c4039bbc25d57eed4f8b',1,'chaos::file']]]
 ];

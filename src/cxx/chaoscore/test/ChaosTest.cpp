@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include "chaoscore/base/file/FileExceptions.hpp"
+#include "chaoscore/base/file/FileSystem.hpp"
+
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
 //------------------------------------------------------------------------------
@@ -146,7 +149,30 @@ int main( int argc, char* argv[] )
             // get the file to write to
             chaos::str::UTF8String filePath( argv[ ++i ] );
 
-            // TODO: check valid path
+            // ensure the provided path is a file
+            if ( filePath.getSymbol( filePath.getLength() - 1 ) == "/" ||
+                 filePath.getSymbol( filePath.getLength() - 1 ) == "\\"   )
+            {
+                std::cerr << "\nERROR: Command line argument \'"
+                          << ARG_FILEOUT << "\' has been provided with an "
+                          << "invalid file path: \'" << filePath << "\' The "
+                          << "provided path must not be a directory.\n"
+                          << std::endl;
+                return -1;
+            }
+
+            // attempt to validate the path
+            try
+            {
+                chaos::file::validatePath( filePath );
+            }
+            catch( chaos::file::ex::FileSystemError e )
+            {
+                std::cerr << "\nERROR: validating the provided path \'"
+                          << filePath << "\' has failed with the reason:\n"
+                          << e.what() << "\n" << std::endl;
+                return -1;
+            }
 
             // get the format to be use
             chaos::test::TestLogger::OutFormat outFormat;

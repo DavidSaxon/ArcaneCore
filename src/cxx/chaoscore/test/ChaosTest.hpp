@@ -16,6 +16,7 @@
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/Preproc.hpp"
 #include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/TestLogger.hpp"
 
 // fork
@@ -63,20 +64,6 @@ public:
     }
 
     virtual void teardown()
-    {
-    }
-};
-
-/*!
- * \brief Warns of an unexpected error during testing procedures.
- */
-class TestError : public chaos::ex::ChaosException
-{
-public:
-
-    TestError( const chaos::str::UTF8String& message )
-        :
-        ChaosException( message )
     {
     }
 };
@@ -192,6 +179,10 @@ public:
             if ( runInfo->useStdout )
             {
                 logger.addStdOut( runInfo->stdoutFormat );
+            }
+            CHAOS_FOR_EACH( fIt, runInfo->files )
+            {
+                logger.addFileOutput( fIt->first, fIt->second );
             }
 
             // run the tests
@@ -336,6 +327,9 @@ public:
             return;
         }
 
+        // begin logging
+        logger.openLog();
+
         // sanitize the provided paths
         std::set< chaos::str::UTF8String > paths;
         CHAOS_FOR_EACH( pIt, runInfo->paths )
@@ -368,6 +362,7 @@ public:
             // this isn't a valid test path
             if ( !match )
             {
+                // TODO: throw exception? or...
                 // TODO: write to log or output
                 std::cout << "Invalid test path!" << std::endl;
                 continue;
@@ -430,7 +425,8 @@ public:
                 size_t lastIndex = path.findLast( "." );
                 if ( lastIndex == chaos::str::UTF8String::npos )
                 {
-                    throw TestError( "Unexpected error 67" );
+                    throw chaos::test::ex::TestRuntimeError(
+                            "Unexpected error 67" );
                 }
                 // get the base path
                 path = path.substring( 0 , lastIndex );
@@ -618,7 +614,7 @@ public:
                 message += "process using CreateProcess (Windows) has failed ";
                 message += "with the error message: ";
                 message += errorMessage;
-                throw TestError( errorMessage );
+                throw chaos::test::ex::TestRuntimeError( errorMessage );
             }
 
             // wait until the child process has finished
@@ -633,7 +629,7 @@ public:
 
             // TODO: spawn new single_proc process
             // TODO: update error to know Windows and Unix
-            throw TestError(
+            throw chaos::test::ex::TestRuntimeError(
                     "Running tests on new processes is not yet supported for "
                     "non-UNIX non-Windows platforms."
             );
@@ -699,7 +695,7 @@ public:
     /*!
      * \internal
      *
-     * Formats and throws a TestError.
+     * Formats and throws a TestDeclerationError.
      */
     static void throwError(
             const chaos::str::UTF8String& message,
@@ -718,7 +714,7 @@ public:
         errorMessage += "\n\tLINE: ";
         errorMessage += lineStr.str().c_str();
         errorMessage += "\n";
-        throw TestError( errorMessage );
+        throw chaos::test::ex::TestDeclerationError( errorMessage );
     }
 };
 

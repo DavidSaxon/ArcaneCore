@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['indexoutofboundserror',['IndexOutOfBoundsError',['../classchaos_1_1ex_1_1_index_out_of_bounds_error.html',1,'chaos::ex']]]
+  ['filesystemerror',['FileSystemError',['../classchaos_1_1file_1_1ex_1_1_file_system_error.html',1,'chaos::file::ex']]],
+  ['fixture',['Fixture',['../classchaos_1_1test_1_1_fixture.html',1,'chaos::test']]]
 ];

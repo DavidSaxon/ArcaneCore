@@ -1,0 +1,105 @@
+\hypertarget{namespacechaos_1_1file}{}\section{chaos\+:\+:file Namespace Reference}
+\label{namespacechaos_1_1file}\index{chaos\+::file@{chaos\+::file}}
+
+
+File\+System related classes and operations.  
+
+
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacechaos_1_1file_1_1ex}{ex}
+\begin{DoxyCompactList}\small\item\em Exceptions relating to the file system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacechaos_1_1file_adf7e73537e98788dd40ddf806d3b55be}{exists} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path)
+\begin{DoxyCompactList}\small\item\em Checks whether the given path exists on disk. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacechaos_1_1file_ac6aba245865040dcd1bd17e7ca82713d}{is\+File} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path)
+\begin{DoxyCompactList}\small\item\em Returns whether the given path is a file. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacechaos_1_1file_afb64377863f9ea4cb0497a341b1858b1}{is\+Directory} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path)
+\begin{DoxyCompactList}\small\item\em Returns whether the given path is a directory. \end{DoxyCompactList}\item 
+\hypertarget{namespacechaos_1_1file_ada4414852f3aab926d28955930fb03ff}{}void \hyperlink{namespacechaos_1_1file_ada4414852f3aab926d28955930fb03ff}{create\+Directory} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path)\label{namespacechaos_1_1file_ada4414852f3aab926d28955930fb03ff}
+
+\begin{DoxyCompactList}\small\item\em Attempts to create the directory with the given path. \end{DoxyCompactList}\item 
+void \hyperlink{namespacechaos_1_1file_aea03a5eedcd2c4039bbc25d57eed4f8b}{validate\+Path} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path)
+\begin{DoxyCompactList}\small\item\em Attempts to directories to the given path if they don\textquotesingle{}t exist. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File\+System related classes and operations. 
+
+\subsection{Function Documentation}
+\hypertarget{namespacechaos_1_1file_adf7e73537e98788dd40ddf806d3b55be}{}\index{chaos\+::file@{chaos\+::file}!exists@{exists}}
+\index{exists@{exists}!chaos\+::file@{chaos\+::file}}
+\subsubsection[{exists(const chaos\+::str\+::\+U\+T\+F8\+String \&path)}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::file\+::exists (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{path}
+\end{DoxyParamCaption}
+)}\label{namespacechaos_1_1file_adf7e73537e98788dd40ddf806d3b55be}
+
+
+Checks whether the given path exists on disk. 
+
+This check does not include the type of the path, i.\+e. it can be a directory, file, symbolic link, etc.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to check for existence. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns True if the path exists, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{namespacechaos_1_1file_afb64377863f9ea4cb0497a341b1858b1}{}\index{chaos\+::file@{chaos\+::file}!is\+Directory@{is\+Directory}}
+\index{is\+Directory@{is\+Directory}!chaos\+::file@{chaos\+::file}}
+\subsubsection[{is\+Directory(const chaos\+::str\+::\+U\+T\+F8\+String \&path)}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::file\+::is\+Directory (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{path}
+\end{DoxyParamCaption}
+)}\label{namespacechaos_1_1file_afb64377863f9ea4cb0497a341b1858b1}
+
+
+Returns whether the given path is a directory. 
+
+\begin{DoxyNote}{Note}
+If the path does not exist this operation will return false. 
+\end{DoxyNote}
+\hypertarget{namespacechaos_1_1file_ac6aba245865040dcd1bd17e7ca82713d}{}\index{chaos\+::file@{chaos\+::file}!is\+File@{is\+File}}
+\index{is\+File@{is\+File}!chaos\+::file@{chaos\+::file}}
+\subsubsection[{is\+File(const chaos\+::str\+::\+U\+T\+F8\+String \&path)}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::file\+::is\+File (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{path}
+\end{DoxyParamCaption}
+)}\label{namespacechaos_1_1file_ac6aba245865040dcd1bd17e7ca82713d}
+
+
+Returns whether the given path is a file. 
+
+\begin{DoxyNote}{Note}
+If the path does not exist this operation will return false. 
+\end{DoxyNote}
+\hypertarget{namespacechaos_1_1file_aea03a5eedcd2c4039bbc25d57eed4f8b}{}\index{chaos\+::file@{chaos\+::file}!validate\+Path@{validate\+Path}}
+\index{validate\+Path@{validate\+Path}!chaos\+::file@{chaos\+::file}}
+\subsubsection[{validate\+Path(const chaos\+::str\+::\+U\+T\+F8\+String \&path)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::file\+::validate\+Path (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{path}
+\end{DoxyParamCaption}
+)}\label{namespacechaos_1_1file_aea03a5eedcd2c4039bbc25d57eed4f8b}
+
+
+Attempts to directories to the given path if they don\textquotesingle{}t exist. 
+
+This operation will ensure that the given path is available for writing. For example, providing the path\+: 
+\begin{DoxyCode}
+\textcolor{stringliteral}{"example/path/to/file.txt"}
+\end{DoxyCode}
+ Will attempt ensure the this directory structure exists\+: 
+\begin{DoxyCode}
+\textcolor{stringliteral}{"example/path/to/}
+\end{DoxyCode}
+ If the path ends with a \textquotesingle{}/\textquotesingle{} (or \textquotesingle{}\textbackslash{}\textquotesingle{} only on Windows) the entire path will be validated. For example, providing the path\+: 
+\begin{DoxyCode}
+\textcolor{stringliteral}{"example/path/to/directory/"}
+\end{DoxyCode}
+ Will attempt to ensure that the entire path exists. 

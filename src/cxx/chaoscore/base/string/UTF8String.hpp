@@ -1,6 +1,5 @@
 /*!
  * \file
- *
  * \author David Saxon
  */
 #ifndef CHAOSCORE_BASE_STRING_UTF8STRING_HPP_
