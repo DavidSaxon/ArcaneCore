@@ -328,7 +328,12 @@ public:
         }
 
         // begin logging
-        logger.openLog();
+        static bool openLogOnce = true;
+        if ( openLogOnce )
+        {
+            logger.openLog();
+            openLogOnce = false;
+        }
 
         // sanitize the provided paths
         std::set< chaos::str::UTF8String > paths;

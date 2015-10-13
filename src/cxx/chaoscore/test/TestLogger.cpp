@@ -5,6 +5,10 @@
 
 #include "chaoscore/base/file/FileSystem.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
+#include "chaoscore/test/log_formatter/HTMLTestLogFormatter.hpp"
+#include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"
+#include "chaoscore/test/log_formatter/PrettyTestLogFormatter.hpp"
+#include "chaoscore/test/log_formatter/XMLTestLogFormatter.hpp"
 
 namespace chaos
 {
@@ -27,15 +31,16 @@ TestLogger::TestLogger()
 
 TestLogger::~TestLogger()
 {
-    // delete the file streams
+    // delete the formatters
+    CHAOS_FOR_EACH( ftIt, m_formatters )
+    {
+        delete *ftIt;
+    }
+    // close and delete the file streams
     CHAOS_FOR_EACH( fsIt, m_fileStreams )
     {
-        delete ( *fsIt )->stream;
-    }
-    // delete all stream info structures
-    CHAOS_FOR_EACH( sIt, m_allStreams )
-    {
-        delete *sIt;
+        static_cast< std::ofstream* >( *fsIt )->close();
+        delete *fsIt;
     }
 }
 
@@ -45,12 +50,20 @@ TestLogger::~TestLogger()
 
 void TestLogger::addStdOut( OutFormat format )
 {
-    m_usingStdout = true;
-    m_stdoutFormat = format;
+    // safety to ensure two std outs are not defined
+    if ( m_usingStdout )
+    {
+        throw chaos::test::ex::TestRuntimeError(
+                "A standard out test logger has already been defined. "
+                "Currently only one standard out test logger is supported."
+        );
+    }
 
-    // create and store a stream object
-    StreamInfo* streamInfo = new StreamInfo( &std::cout, format );
-    m_allStreams.push_back( streamInfo );
+    m_usingStdout = true;
+
+    // create formatter
+    createFormatter( &std::cout, format );
+
 }
 
 void TestLogger::addFileOutput(
@@ -63,7 +76,7 @@ void TestLogger::addFileOutput(
     // open a file stream
     std::ofstream* fileStream = new std::ofstream( path.getCString() );
     // did the stream open ok?
-    if ( ! fileStream->good() )
+    if ( !fileStream->good() )
     {
         fileStream->close();
         chaos::str::UTF8String errorMessage( "Failed to open path for " );
@@ -72,35 +85,62 @@ void TestLogger::addFileOutput(
         throw chaos::test::ex::TestRuntimeError( errorMessage );
     }
 
-    // store the open file handler and the format
-    StreamInfo* fileStreamInfo =
-            new StreamInfo( fileStream, format );
-    m_fileStreams.push_back( fileStreamInfo );
-    m_allStreams.push_back( fileStreamInfo );
+    // store the file stream
+    m_fileStreams.push_back( fileStream );
+
+    // create a formatter
+    createFormatter( fileStream, format );
 }
 
 void TestLogger::openLog()
 {
-    CHAOS_FOR_EACH( it, m_allStreams )
+    CHAOS_FOR_EACH( it, m_formatters )
     {
-        std::ostream& stream = *( *it )->stream;
+        ( *it )->openLog();
+    }
+}
 
-        switch( ( *it )->format )
+void TestLogger::closeLog()
+{
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->openLog();
+    }
+}
+
+//------------------------------------------------------------------------------
+//                            PRIVATE MEMBER FUNCTIONS
+//------------------------------------------------------------------------------
+
+void TestLogger::createFormatter( std::ostream* stream, OutFormat format )
+{
+    // create a new log formatter based on the output type
+    log_formatter::AbstractTestLogFormatter* formatter;
+    switch( format )
+    {
+        case OUT_PLAIN_TEXT:
         {
-            case OUT_PLAIN_TEXT:
-                // do nothing for plain text
-                break;
-            case OUT_PRETTY_TEXT:
-                stream << "Chaos Tests!" << std::endl;
-                break;
-            case OUT_XML:
-                stream << "<chaos_test>" << std::endl;
-                break;
-            case OUT_HTML:
-                // TODO:
-                break;
+            formatter = new log_formatter::PlainTestLogFormatter( stream );
+            break;
+        }
+        case OUT_PRETTY_TEXT:
+        {
+            formatter = new log_formatter::PrettyTestLogFormatter( stream );
+            break;
+        }
+        case OUT_XML:
+        {
+            formatter = new log_formatter::XMLTestLogFormatter( stream );
+            break;
+        }
+        case OUT_HTML:
+        {
+            formatter = new log_formatter::HTMLTestLogFormatter( stream );
+            break;
         }
     }
+    // store
+    m_formatters.push_back( formatter );
 }
 
 } // namespace test

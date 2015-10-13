@@ -10,14 +10,19 @@
 
 #include "chaoscore/base/string/UTF8String.hpp"
 
-//------------------------------------------------------------------------------
-//                             FORWARD DECELERATIONS
-//------------------------------------------------------------------------------
-
 namespace chaos
 {
 namespace test
 {
+
+//------------------------------------------------------------------------------
+//                             FORWARD DECELERATIONS
+//------------------------------------------------------------------------------
+
+namespace log_formatter
+{
+    class AbstractTestLogFormatter;
+} // namespace log_formatter
 
 /*!
  * \internal
@@ -93,61 +98,44 @@ public:
     void addFileOutput( const chaos::str::UTF8String& path, OutFormat format );
 
     /*!
-     * \brief Opens the logs and begins writing.
+     * \brief Opening statement of the log.
      */
     void openLog();
 
-private:
-
-    //--------------------------------------------------------------------------
-    //                            PRIVATE INNER STRUCT
-    //--------------------------------------------------------------------------
-
     /*!
-     * \brief Internal structure for storing file streams and the format to
-     *        write to them in.
+     * \brief Closing statement of the log.
      */
-    struct StreamInfo
-    {
-        //--------------------------PUBLIC ATTRIBUTES---------------------------
+    void closeLog();
 
-        std::ostream* stream;
-        OutFormat format;
-
-        //------------------------------CONSTRUTOR------------------------------
-
-        StreamInfo( std::ostream* a_stream, OutFormat a_format )
-            :
-            stream( a_stream ),
-            format( a_format )
-        {
-        }
-    };
+private:
 
     //--------------------------------------------------------------------------
     //                             PRIVATE ATTRIBUTES
     //--------------------------------------------------------------------------
 
     /*!
+     * \brief List of TestLogFormatters being used by this logger.
+     */
+    std::vector< log_formatter::AbstractTestLogFormatter* > m_formatters;
+    /*!
      * \brief Whether the logger is using the standard output stream.
      */
     bool m_usingStdout;
     /*!
-     * \brief the format of the standard stream output.
+     * \brief List of open file streams so they can be deleted at destruction
+     *        time.
      */
-    OutFormat m_stdoutFormat;
+    std::vector< std::ostream* > m_fileStreams;
+
+    //--------------------------------------------------------------------------
+    //                          PRIVATE MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
 
     /*!
-     * \brief List of the file streams being used by this logger.
-     *
-     * File streams are stored in a secondary list since they need to be
-     * deleted.
+     * \brief Internal function for creating and storing a formatter for the
+     *        given stream and format.
      */
-    std::vector< StreamInfo* > m_fileStreams;
-    /*!
-     * \brief the list of all streams being used by this logger.
-     */
-    std::vector< StreamInfo* > m_allStreams;
+    void createFormatter( std::ostream* stream, OutFormat format );
 };
 
 } // namespace test

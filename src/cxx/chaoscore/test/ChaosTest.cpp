@@ -74,7 +74,7 @@ int main( int argc, char* argv[] )
 
                 chaos::str::UTF8String errorMessage( ARG_SILENT_CRASH );
                 errorMessage += " only supported on Windows systems.";
-                throw chaos::test::TestError( errorMessage );
+                throw chaos::test::ex::TestRuntimeError( errorMessage );
 
             #endif
         }
