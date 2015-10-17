@@ -78,6 +78,15 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
+     * \brief Sets this logger as the parent logger.
+     *
+     * There should be only one parent  logger. The parent logger will merge in
+     * any sub logs made child processes and will also handle actions like
+     * opening and closing the log.
+     */
+    void setAsParent( bool state );
+
+    /*!
      * \brief Adds a standard output for writing.
      *
      * \warning Currently writing to only one standard output is supported.
@@ -112,6 +121,11 @@ private:
     //--------------------------------------------------------------------------
     //                             PRIVATE ATTRIBUTES
     //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Whether this is the parent logger or not.
+     */
+    bool m_isParent;
 
     /*!
      * \brief List of TestLogFormatters being used by this logger.

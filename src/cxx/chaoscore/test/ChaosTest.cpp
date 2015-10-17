@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "chaoscore/base/file/FileExceptions.hpp"
-#include "chaoscore/base/file/FileSystem.hpp"
+#include "chaoscore/base/file/FileUtil.hpp"
 
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
@@ -12,6 +12,7 @@
 //----------------------------COMMAND LINE ARGUMENTS----------------------------
 
 static chaos::str::UTF8String ARG_SINGLE_PROC   = "--single_proc";
+static chaos::str::UTF8String ARG_SUB_PROC      = "--sub_proc";
 static chaos::str::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
 static chaos::str::UTF8String ARG_TEST_PATH     = "--test";
 static chaos::str::UTF8String ARG_STDOUT        = "--stdout";
@@ -60,6 +61,11 @@ int main( int argc, char* argv[] )
         if ( ARG_SINGLE_PROC == argv[ i ] )
         {
             runInfo.singleProc = true;
+        }
+        // --sub_proc
+        else if ( ARG_SUB_PROC == argv[ i ] )
+        {
+            runInfo.subProc = true;
         }
         // --silent_crash
         else if ( ARG_SILENT_CRASH == argv[ i ] )

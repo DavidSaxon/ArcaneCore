@@ -171,6 +171,27 @@ public:
      */
     const UTF8String& operator+=( const UTF8String& other );
 
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given other UTF8String.
+     */
+    UTF8String& operator<<( const UTF8String& other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given string literal.
+     */
+    UTF8String& operator<<( const char* other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given unsigned int64.
+     */
+    UTF8String& operator<<( chaos::int64 other );
+
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
@@ -261,7 +282,7 @@ public:
      * \return A reference to this UTF8String after the concatenation has taken
      *         place.
      */
-    const UTF8String& concatenate( const UTF8String& other );
+    UTF8String& concatenate( const UTF8String& other );
 
     /*!
      * \brief Checks whether this UTF8String starts with the given string.

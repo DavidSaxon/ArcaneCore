@@ -16,6 +16,7 @@
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/Preproc.hpp"
 #include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/time/TimeUtil.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/TestLogger.hpp"
 
@@ -122,6 +123,9 @@ struct RunInfo
 {
     // whether the tests should be run in a single process or not
     bool singleProc;
+    // whether the test is being run as a sub-process of a parent testing
+    // process
+    bool subProc;
     // the paths to the tests to run
     std::set< chaos::str::UTF8String > paths;
     // whether the standard output stream is being used
@@ -135,6 +139,7 @@ struct RunInfo
     RunInfo()
         :
         singleProc  ( false ),
+        subProc     ( false ),
         useStdout   ( true ),
         stdoutFormat( TestLogger::OUT_PRETTY_TEXT )
     {
@@ -175,6 +180,12 @@ public:
         // is this the run key?
         if ( runInfo )
         {
+            // mark parent logger?
+            if ( !runInfo->subProc )
+            {
+                logger.setAsParent( true );
+            }
+
             // pass outputs to the logger
             if ( runInfo->useStdout )
             {
@@ -185,8 +196,15 @@ public:
                 logger.addFileOutput( fIt->first, fIt->second );
             }
 
+            // open the logger
+            logger.openLog();
+
             // run the tests
             TestCore::run( runInfo );
+
+            // close the logger
+            // TODO:
+
             // clean up unit test pointer pointers
             CHAOS_FOR_EACH( it, testMap )
             {
@@ -325,14 +343,6 @@ public:
                 TestCore::run( &baseRunInfo );
             }
             return;
-        }
-
-        // begin logging
-        static bool openLogOnce = true;
-        if ( openLogOnce )
-        {
-            logger.openLog();
-            openLogOnce = false;
         }
 
         // sanitize the provided paths
@@ -540,6 +550,7 @@ public:
             {
                 // we are now on a new process so just use the single proc
                 // function.
+                // TODO: do we need to open and close the test here?
                 TestCore::runSingleProc( unitTest, runInfo );
                 exit( 0 );
             }
@@ -553,8 +564,12 @@ public:
 
         #elif defined( CHAOS_OS_WINDOWS )
 
+            // generate the unique id for this this
+            chaos::str::UTF8String id = generateId( *runInfo->paths.begin() );
+
             // rebuild the command line arguments
             chaos::str::UTF8String commandLineArgs = " --single_proc";
+            commandLineArgs += " --sub_proc";
             commandLineArgs += " --silent_crash";
             // get the test to run
             commandLineArgs += " --test ";
@@ -569,7 +584,10 @@ public:
             CHAOS_FOR_EACH( fileIt, runInfo->files )
             {
                 commandLineArgs += " --fileout ";
-                commandLineArgs += fileIt->first + " ";
+                // generate a mangled file path
+                chaos::str::UTF8String filePath = fileIt->first;
+                filePath << "." << id;
+                commandLineArgs += filePath + " ";
                 commandLineArgs += logFormatToString( fileIt->second );
             }
 
@@ -585,6 +603,9 @@ public:
             // get the path to this executable
             TCHAR exePath[ MAX_PATH ];
             GetModuleFileName( NULL, exePath, MAX_PATH );
+
+            // open the test in the logger
+            // TODO:
 
             // start the child process
             BOOL createSuccess = CreateProcess(
@@ -630,6 +651,9 @@ public:
 
             // TODO: check child process and log error message
 
+            // close the test in the logger
+            // TODO:
+
         #else
 
             // TODO: spawn new single_proc process
@@ -640,6 +664,17 @@ public:
             );
 
         #endif
+    }
+
+    /*!
+     * \brief Generates a new unique id for the given unit test name.
+     */
+    static chaos::str::UTF8String generateId(
+            const chaos::str::UTF8String& name )
+    {
+        chaos::str::UTF8String id = name;
+        id << "_" << chaos::time::getCurrentTime();
+        return id;
     }
 
     /*!

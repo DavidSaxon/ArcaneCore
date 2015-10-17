@@ -3,6 +3,7 @@
 #include <cstddef>
 #include <cstring>
 #include <limits>
+#include <sstream>
 #include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
@@ -143,6 +144,24 @@ const UTF8String& UTF8String::operator+=( const UTF8String& other )
     return this->concatenate( other );
 }
 
+UTF8String& UTF8String::operator<<( const UTF8String& other )
+{
+    return this->concatenate( other );
+}
+
+UTF8String& UTF8String::operator<<( const char* other )
+{
+    return this->concatenate( UTF8String( other ) );
+}
+
+UTF8String& UTF8String::operator<<( chaos::int64 other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
@@ -191,7 +210,7 @@ void UTF8String::assign( const UTF8String& other )
 //     return *this;
 // }
 
-const UTF8String& UTF8String::concatenate( const UTF8String& other )
+UTF8String& UTF8String::concatenate( const UTF8String& other )
 {
     // calculate the new size of the data (but remove the first string's NULL
     // terminator)

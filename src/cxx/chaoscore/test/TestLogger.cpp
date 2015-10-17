@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "chaoscore/base/file/FileSystem.hpp"
+#include "chaoscore/base/file/FileUtil.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/log_formatter/HTMLTestLogFormatter.hpp"
 #include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"
@@ -21,6 +21,7 @@ namespace test
 
 TestLogger::TestLogger()
     :
+    m_isParent   ( false ),
     m_usingStdout( false )
 {
 }
@@ -47,6 +48,11 @@ TestLogger::~TestLogger()
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
+
+void TestLogger::setAsParent( bool state )
+{
+    m_isParent = state;
+}
 
 void TestLogger::addStdOut( OutFormat format )
 {
@@ -94,6 +100,14 @@ void TestLogger::addFileOutput(
 
 void TestLogger::openLog()
 {
+    // only handled by the parent logger
+    if ( !m_isParent )
+    {
+        return;
+    }
+
+    std::cout << "OPENING LOGGER" << std::endl;
+
     CHAOS_FOR_EACH( it, m_formatters )
     {
         ( *it )->openLog();
@@ -102,6 +116,12 @@ void TestLogger::openLog()
 
 void TestLogger::closeLog()
 {
+    // only handled by the parent logger
+    if ( !m_isParent )
+    {
+        return;
+    }
+
     CHAOS_FOR_EACH( it, m_formatters )
     {
         ( *it )->openLog();
