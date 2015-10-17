@@ -33,6 +33,18 @@ void PrettyTestLogFormatter::closeLog()
     // TODO:
 }
 
+void PrettyTestLogFormatter::open_test(
+        const chaos::str::UTF8String& path,
+        const chaos::str::UTF8String& id )
+{
+    // TODO:
+}
+
+void PrettyTestLogFormatter::close_test()
+{
+    // TODO:
+}
+
 } // namespace log_formatter
 } // namespace test
 } // namespace chaos

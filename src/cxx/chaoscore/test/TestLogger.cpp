@@ -128,6 +128,36 @@ void TestLogger::closeLog()
     }
 }
 
+void TestLogger::openTest(
+        const chaos::str::UTF8String& path,
+        const chaos::str::UTF8String& id )
+{
+    // only handled by the parent logger
+    if ( !m_isParent )
+    {
+        return;
+    }
+
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->open_test( path, id );
+    }
+}
+
+void TestLogger::closeTest( const chaos::str::UTF8String& id )
+{
+    // only handled by the parent logger
+    if ( !m_isParent )
+    {
+        return;
+    }
+
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->close_test();
+    }
+}
+
 //------------------------------------------------------------------------------
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------

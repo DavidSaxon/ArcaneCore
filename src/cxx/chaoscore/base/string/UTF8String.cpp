@@ -342,7 +342,7 @@ UTF8String UTF8String::substring( size_t start, size_t end ) const
 
 std::string UTF8String::toStdString() const
 {
-    return std::string( reinterpret_cast< char* >( m_data ), m_dataLength );
+    return std::string( reinterpret_cast< char* >( m_data ), m_dataLength - 1 );
 }
 
 //----------------------------------ACCESSORS-----------------------------------

@@ -116,6 +116,23 @@ public:
      */
     void closeLog();
 
+    /*!
+     * \brief Opening statement of a unit test.
+     *
+     * \param path The Path of this test
+     * \param id The unique id of this test.
+     */
+    void openTest(
+            const chaos::str::UTF8String& path,
+            const chaos::str::UTF8String& id );
+
+    /*!
+     * \brief Closing of a unit test.
+     *
+     * \param id The unique id of this test.
+     */
+    void closeTest( const chaos::str::UTF8String& id );
+
 private:
 
     //--------------------------------------------------------------------------

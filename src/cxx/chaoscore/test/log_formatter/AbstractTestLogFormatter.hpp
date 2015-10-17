@@ -8,6 +8,8 @@
 #include <iosfwd>
 #include <vector>
 
+#include "chaoscore/base/string/UTF8String.hpp"
+
 namespace chaos
 {
 namespace test
@@ -56,6 +58,12 @@ public:
     virtual void openLog() = 0;
 
     virtual void closeLog() = 0;
+
+    virtual void open_test(
+            const chaos::str::UTF8String& path,
+            const chaos::str::UTF8String& id ) = 0;
+
+    virtual void close_test() = 0;
 
 protected:
 

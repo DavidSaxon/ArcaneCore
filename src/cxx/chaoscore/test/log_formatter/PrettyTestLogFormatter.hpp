@@ -37,6 +37,12 @@ public:
     virtual void openLog();
 
     virtual void closeLog();
+
+    virtual void open_test(
+            const chaos::str::UTF8String& path,
+            const chaos::str::UTF8String& id );
+
+    virtual void close_test();
 };
 
 } // namespace log_formatter

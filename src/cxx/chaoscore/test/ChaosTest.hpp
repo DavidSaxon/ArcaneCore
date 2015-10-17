@@ -91,13 +91,26 @@ class UnitTest
 {
 public:
 
+    UnitTest( const chaos::str::UTF8String& name ) : m_name( name )
+    {
+    }
+
     virtual ~UnitTest()
     {
+    }
+
+    const chaos::str::UTF8String& getName()
+    {
+        return m_name;
     }
 
     virtual Fixture* getFixture() = 0;
 
     virtual void execute() = 0;
+
+private:
+
+    chaos::str::UTF8String m_name;
 };
 
 //------------------------------------------------------------------------------
@@ -203,7 +216,7 @@ public:
             TestCore::run( runInfo );
 
             // close the logger
-            // TODO:
+            logger.closeLog();
 
             // clean up unit test pointer pointers
             CHAOS_FOR_EACH( it, testMap )
@@ -511,7 +524,14 @@ public:
         // run the test dependent on the mode
         if ( runInfo->singleProc )
         {
-            runSingleProc( unitTest, runInfo );
+            if ( runInfo->subProc )
+            {
+                runCurrentProcNoOpen( unitTest );
+            }
+            else
+            {
+                runCurrentProc( unitTest, runInfo );
+            }
         }
         else
         {
@@ -524,7 +544,30 @@ public:
      *
      * \brief Runs the test on this current process.
      */
-    static void runSingleProc( UnitTest* unitTest, RunInfo* runInfo )
+    static void runCurrentProc( UnitTest* unitTest, RunInfo* runInfo )
+    {
+        // the path to this test
+        chaos::str::UTF8String testPath( *runInfo->paths.begin() );
+        // generate an unique id for this test
+        chaos::str::UTF8String id = generateId( testPath );
+        // open the test in logger
+        logger.openTest( testPath, id );
+        // set up fixture
+        unitTest->getFixture()->setup();
+        // execute
+        unitTest->execute();
+        // teardown
+        unitTest->getFixture()->teardown();
+        // close the test in logger
+        logger.closeTest( id );
+    }
+
+    /*!
+     * \internal
+     *
+     * \brief Runs the test on this current process with no log open and close.
+     */
+    static void runCurrentProcNoOpen( UnitTest* unitTest )
     {
         // set up fixture
         unitTest->getFixture()->setup();
@@ -544,14 +587,20 @@ public:
         // The method spawning a new process is platform dependent
         #ifdef CHAOS_OS_UNIX
 
+            // the path to this test
+            chaos::str::UTF8String testPath( *runInfo->paths.begin() );
+            // generate the unique id for this this test
+            chaos::str::UTF8String id = generateId( testPath );
+            // open the test in the logger
+            logger.openTest( testPath, id );
+
             // for to run the new process
             pid_t procId = fork();
             if ( procId == 0 )
             {
                 // we are now on a new process so just use the single proc
                 // function.
-                // TODO: do we need to open and close the test here?
-                TestCore::runSingleProc( unitTest, runInfo );
+                TestCore::runCurrentProcNoOpen( unitTest );
                 exit( 0 );
             }
             else
@@ -560,12 +609,17 @@ public:
                 int procStatus;
                 waitpid( procId, &procStatus, 0 );
                 // TODO: check child status and log error message
+
+                // close the test in the logger
+                logger.closeTest( id );
             }
 
         #elif defined( CHAOS_OS_WINDOWS )
 
-            // generate the unique id for this this
-            chaos::str::UTF8String id = generateId( *runInfo->paths.begin() );
+            // the path to this test
+            chaos::str::UTF8String testPath( *runInfo->paths.begin() );
+            // generate the unique id for this this test
+            chaos::str::UTF8String id = generateId( testPath );
 
             // rebuild the command line arguments
             chaos::str::UTF8String commandLineArgs = " --single_proc";
@@ -573,7 +627,7 @@ public:
             commandLineArgs += " --silent_crash";
             // get the test to run
             commandLineArgs += " --test ";
-            commandLineArgs += *runInfo->paths.begin();
+            commandLineArgs += testPath;
             // std out
             if ( runInfo->useStdout )
             {
@@ -605,7 +659,7 @@ public:
             GetModuleFileName( NULL, exePath, MAX_PATH );
 
             // open the test in the logger
-            // TODO:
+            logger.openTest( testPath, id );
 
             // start the child process
             BOOL createSuccess = CreateProcess(
@@ -652,7 +706,7 @@ public:
             // TODO: check child process and log error message
 
             // close the test in the logger
-            // TODO:
+            logger.closeTest( id );
 
         #else
 
@@ -798,7 +852,7 @@ public:
     struct path : public chaos::test::internal::UnitTest                       \
     {                                                                          \
         fixtureType* fixture;                                                  \
-        path() : fixture( new fixtureType() ){}                                \
+        path() : UnitTest( #path ), fixture( new fixtureType() ){}             \
         virtual ~path(){ delete fixture; }                                     \
         virtual chaos::test::Fixture* getFixture() { return fixture; }         \
         virtual void execute();                                                \
