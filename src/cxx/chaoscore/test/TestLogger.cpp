@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-#include "chaoscore/base/file/FileUtil.hpp"
+#include "chaoscore/io/file/FileUtil.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/log_formatter/HTMLTestLogFormatter.hpp"
 #include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"
@@ -77,7 +77,7 @@ void TestLogger::addFileOutput(
               OutFormat               format )
 {
     // the path should be validated at this point..
-    chaos::file::validatePath( path );
+    chaos::io::file::validatePath( path );
 
     // open a file stream
     std::ofstream* fileStream = new std::ofstream( path.getCString() );

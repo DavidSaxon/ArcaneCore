@@ -3,12 +3,14 @@
  * \brief Utility functions relating to the file system.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_FILE_FILEUTIL_HPP_
-#define CHAOSCORE_BASE_FILE_FILEUTIL_HPP_
+#ifndef CHAOSCORE_IO_FILE_FILEUTIL_HPP_
+#define CHAOSCORE_IO_FILE_FILEUTIL_HPP_
 
 #include "chaoscore/base/string/UTF8String.hpp"
 
 namespace chaos
+{
+namespace io
 {
 /*!
  * \brief FileSystem related classes and operations.
@@ -72,6 +74,7 @@ void createDirectory( const chaos::str::UTF8String& path );
 void validatePath( const chaos::str::UTF8String& path );
 
 } // namespace file
+} // namespace io
 } // namespace chaos
 
 #endif

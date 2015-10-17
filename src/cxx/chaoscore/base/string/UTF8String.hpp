@@ -259,23 +259,6 @@ public:
     void assign( const UTF8String& other );
 
     /*!
-     * \brief Applies formating to this UTF8String by replacing formatting
-     *        tokens in the string with the provided arguments.
-     *
-     * This works the same as sprintf does for c strings. Example usage:
-     * \code
-     * chaos::str::UTF8String s( "Hello %d World %d" );
-     * s.format( 0, 75 );
-     * // prints "Hello 0 World 75"
-     * std::cout << s << std::endl;
-     * \endcode
-     *
-     * \return Reference to this UTF8String after the format has taken place.
-     */
-    // TODO: replace with some form of the named parameter idiom or a stream?
-    // const UTF8String& format( ... );
-
-    /*!
      * \brief Concatenates another UTF8String on to the end of this string.
      *
      * \other UTF8String to append to the end of this string.

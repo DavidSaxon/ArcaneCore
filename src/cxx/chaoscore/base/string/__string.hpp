@@ -14,7 +14,7 @@ namespace chaos
  */
 namespace str
 {
-} // namespace
+} // namespace str
 
 } // namespace chaos
 

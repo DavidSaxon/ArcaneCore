@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "chaoscore/base/file/FileExceptions.hpp"
-#include "chaoscore/base/file/FileUtil.hpp"
+#include "chaoscore/io/file/FileExceptions.hpp"
+#include "chaoscore/io/file/FileUtil.hpp"
 
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
@@ -170,9 +170,9 @@ int main( int argc, char* argv[] )
             // attempt to validate the path
             try
             {
-                chaos::file::validatePath( filePath );
+                chaos::io::file::validatePath( filePath );
             }
-            catch( chaos::file::ex::FileSystemError e )
+            catch( chaos::io::file::ex::FileSystemError e )
             {
                 std::cerr << "\nERROR: validating the provided path \'"
                           << filePath << "\' has failed with the reason:\n"

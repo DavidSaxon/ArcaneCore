@@ -1,4 +1,4 @@
-#include "chaoscore/base/file/FileUtil.hpp"
+#include "chaoscore/io/file/FileUtil.hpp"
 
 #include <boost/filesystem.hpp>
 
@@ -8,12 +8,11 @@
     #include <direct.h>
 #endif
 
-#include "chaoscore/base/file/FileExceptions.hpp"
-
-// TODO: REMOVE ME
-#include <iostream>
+#include "chaoscore/io/file/FileExceptions.hpp"
 
 namespace chaos
+{
+namespace io
 {
 namespace file
 {
@@ -133,7 +132,7 @@ void validatePath( const chaos::str::UTF8String& path )
                 message += path + "\' because \'";
                 message += buildPath + "\' already exists but is not a ";
                 message += "directory.";
-                throw chaos::file::ex::AmbiguousPathError( message );
+                throw chaos::io::file::ex::AmbiguousPathError( message );
             }
             buildPath += "/";
             continue;
@@ -149,10 +148,11 @@ void validatePath( const chaos::str::UTF8String& path )
             chaos::str::UTF8String errorMessage( "Failed to create the " );
             errorMessage += "directory \'";
             errorMessage += buildPath + "\'";
-            throw chaos::file::ex::CreateDirectoryError( errorMessage );
+            throw chaos::io::file::ex::CreateDirectoryError( errorMessage );
         }
     }
 }
 
-} // namespace chaos
 } // namespace file
+} // namespace io
+} // namespace chaos

@@ -191,25 +191,6 @@ void UTF8String::assign( const UTF8String& other )
     assign_internal( other.m_data, other.m_dataLength );
 }
 
-// const UTF8String& UTF8String::format( ... )
-// {
-//     // copy the current data
-//     char* newData = new char[ m_dataLength ];
-
-//     va_list args;
-//     va_start( args, reinterpret_cast< char* >( m_data ) );
-//     vsprintf( newData, reinterpret_cast< char* >( m_data ), args );
-//     va_end( args );
-
-//     // assign the new data to this string
-//     assign_internal( newData );
-//     // delete the copied data
-//     delete[] newData;
-
-//     // return reference
-//     return *this;
-// }
-
 UTF8String& UTF8String::concatenate( const UTF8String& other )
 {
     // calculate the new size of the data (but remove the first string's NULL
