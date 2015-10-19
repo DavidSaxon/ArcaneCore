@@ -173,7 +173,7 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
             // close stream
             in_file.close();
             // delete the file
-            // TODO:
+            remove( sub_name.get_cstring() );
         }
     }
 
