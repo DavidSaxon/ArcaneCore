@@ -137,6 +137,18 @@ public:
     void close_test( const chaos::str::UTF8String& id );
 
     /*!
+     * \brief Reports a test success.
+     *
+     * \param type the Type of test that succeed.
+     * \param file The source file that the success occurred in.
+     * \param line The line in the file that success occurred at.
+     */
+    void report_success(
+            const chaos::str::UTF8String& type,
+            const chaos::str::UTF8String& file,
+                  chaos::int32            line );
+
+    /*!
      * \brief Reports a test failure.
      *
      * \param type the Type of test that failed.

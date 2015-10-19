@@ -46,6 +46,15 @@ void XMLTestLogFormatter::close_test()
     ( *m_stream ) << "  </UnitTest>" << std::endl;
 }
 
+void XMLTestLogFormatter::report_success(
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
+              chaos::int32            line )
+{
+    ( *m_stream ) << "    <Success type=" << type << " file=" << file
+                  << " line=" << line << "/>" << std::endl;
+}
+
 void XMLTestLogFormatter::report_failure(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,

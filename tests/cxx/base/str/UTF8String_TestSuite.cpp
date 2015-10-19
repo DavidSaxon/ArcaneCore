@@ -6,8 +6,12 @@ CHAOS_TEST_UNIT( test_run )
 {
     std::cout << "UTF8 TEST RUN" << std::endl;
 
+    CHAOS_TEST_EQUAL( 1, 2 );
+
     // char* seg = new char[ 2 ];
     // seg[ 56 ] = 12;
     // delete[] seg;
     // delete[] seg;
+
+    CHAOS_TEST_EQUAL( 1, 1 );
 }

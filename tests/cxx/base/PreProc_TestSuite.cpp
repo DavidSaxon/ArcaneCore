@@ -57,5 +57,8 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
         v2.push_back( *v_it );
     }
     // is the size the same?
-    CHAOS_TEST_EQUAL( v1.size(), v2.size() + 2 );
+    CHAOS_TEST_EQUAL( v1.size(), v2.size() );
+
+    CHAOS_TEST_EQUAL( 1, 2 );
+    CHAOS_TEST_EQUAL( 1, 1 );
 }

@@ -105,8 +105,6 @@ void TestLogger::open_log()
         return;
     }
 
-    std::cout << "OPENING LOGGER" << std::endl;
-
     CHAOS_FOR_EACH( it, m_formatters )
     {
         ( *it )->open_log();
@@ -184,17 +182,25 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
     }
 }
 
+void TestLogger::report_success(
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
+              chaos::int32            line )
+{
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->report_success( type, file, line );
+    }
+}
+
 void TestLogger::report_failure(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line,
         const chaos::str::UTF8String& message )
 {
-    std::cout << "REPORTING FAILURE" << std::endl;
-
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        std::cout << "REPORTING FAILURE FOR FORMATTER" << std::endl;
         ( *it )->report_failure( type, file, line, message );
     }
 }

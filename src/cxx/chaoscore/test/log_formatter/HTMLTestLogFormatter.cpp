@@ -45,6 +45,14 @@ void HTMLTestLogFormatter::close_test()
     // TODO:
 }
 
+void HTMLTestLogFormatter::report_success(
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
+              chaos::int32            line )
+{
+    // TODO:
+}
+
 void HTMLTestLogFormatter::report_failure(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
