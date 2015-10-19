@@ -188,9 +188,23 @@ public:
     /*!
      * \brief Stream operator.
      *
+     * Extends this UTF8String with the given char.
+     */
+    UTF8String& operator<<( char other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given int32.
+     */
+    UTF8String& operator<<( chaos::int32 other );
+
+    /*!
+     * \brief Stream operator.
+     *
      * Extends this UTF8String with the given unsigned int64.
      */
-    UTF8String& operator<<( chaos::int64 other );
+    UTF8String& operator<<( chaos::uint64 other );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -270,7 +284,7 @@ public:
     /*!
      * \brief Checks whether this UTF8String starts with the given string.
      */
-    bool startsWith( const UTF8String& substring ) const;
+    bool starts_with( const UTF8String& substring ) const;
 
     /*!
      * \brief Finds the first occurrence of the given substring and returns the
@@ -282,7 +296,7 @@ public:
      *         substring in this string. If the substring could not be found,
      *         chaos::str::UTF8String::npos is returned instead.
      */
-    size_t findFirst( const UTF8String& substring ) const;
+    size_t find_first( const UTF8String& substring ) const;
 
     /*!
      * \brief Finds the last occurrence of the given substring and returns the
@@ -294,7 +308,7 @@ public:
      *         substring in this string. If the substring could not be found,
      *         chaos::str::UTF8String::npos is returned instead.
      */
-    size_t findLast( const UTF8String& substring ) const;
+    size_t find_last( const UTF8String& substring ) const;
 
     /*!
      * \brief Splits this UTF8String by the given delimiter and places devisions
@@ -321,7 +335,7 @@ public:
       *
       * \return the std::string representation of this UTF8String.
       */
-    std::string toStdString() const;
+    std::string to_std_string() const;
 
     //--------------------------------ACCESSORS---------------------------------
 
@@ -333,12 +347,12 @@ public:
      *
      * \return The number of utf-8 symbols in this UTF8String.
      */
-    size_t getLength() const;
+    size_t get_length() const;
 
     /*!
      * \return Whether the this UTF8String contains any characters or not.
      */
-    bool isEmpty() const;
+    bool is_empty() const;
 
     /*!
      * \brief Get the utf-8 symbol defined at the given index.
@@ -349,44 +363,44 @@ public:
                                                 bounds of the string length.
      *
      * \param index Position of the symbol to retrieve in the string with
-     *              respect to the length returned by getLength()
+     *              respect to the length returned by get_length()
      * \return A UTF8String containing the single utf-8 symbol at the given
      *         index.
      */
-    UTF8String getSymbol( size_t index ) const;
+    UTF8String get_symbol( size_t index ) const;
 
     /*!
      * \brief Get the length of the internal buffer data in bytes.
      *
      * This is exactly the number of bytes in the internal raw data of this
-     * UTF8String which can be accessed through getRawData(). Note that this
+     * UTF8String which can be accessed through get_raw_data(). Note that this
      * data is NULL ('\0') terminated and this length includes the NULL
-     * terminator. Therefore if UTF8String == "" then getByteLength() == 1.
+     * terminator. Therefore if UTF8String == "" then get_byte_length() == 1.
      *
      * \note This is not equal to the character length of the string as utf-8
      *       encoded characters can take up multiple bytes.
      *
      * \return The length of the internal data.
      */
-    size_t getByteLength() const;
+    size_t get_byte_length() const;
 
     /*!
      * \brief Get the raw byte data of this UTF8String.
      *
      * \return a pointer to a constant representation of the internal data.
      */
-    const chaos::int8* getRawData() const;
+    const chaos::int8* get_raw_data() const;
 
     /*!
      * \brief Gets the raw byte data of this UTF8String as c style string
               (const char*).
      *
-     * This function is the same as getRawData() except the data is casted to
+     * This function is the same as get_raw_data() except the data is casted to
      * const char*.
      *
      * \return a pointer to the c style string representation of the data.
      */
-    const char* getCString() const;
+    const char* get_cstring() const;
 
     //--------------------------------------------------------------------------
 
@@ -395,7 +409,7 @@ public:
 
     // TODO: REMOVE ME
     // TESTING FUNCTION
-    void dev_inspectContents();
+    void dev_inspect_contents();
 
 private:
 
@@ -406,7 +420,7 @@ private:
     // the array containing the data stored as consecutive bytes
     chaos::int8* m_data;
     // the length of the data int bytes (not the length of the string)
-    size_t m_dataLength;
+    size_t m_data_length;
 
     // the number of utf-8 symbols in this string
     size_t m_length;
@@ -424,14 +438,14 @@ private:
      * for the new data.
      *
      * \param data The input data to assign to the internal buffer
-     * \param existingLength Optimisation parameter. If equal to
-     *                       std::string::npos the length of the data will be
-     *                       evaluated, however if already known the length can
-     *                       be passed in here to skip this step.
+     * \param existing_length Optimisation parameter. If equal to
+     *                        std::string::npos the length of the data will be
+     *                        evaluated, however if already known the length can
+     *                        be passed in here to skip this step.
      */
     void assign_internal(
-            const void* data,
-            size_t existingLength = std::string::npos );
+            const void*  data,
+                  size_t existing_length = std::string::npos );
 };
 
 //------------------------------------------------------------------------------

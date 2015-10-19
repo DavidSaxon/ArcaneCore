@@ -12,7 +12,7 @@ namespace time
 //                                   FUNCTIONS
 //------------------------------------------------------------------------------
 
-chaos::uint64 getCurrentTime()
+chaos::uint64 get_current_time()
 {
     // get epoch
     boost::posix_time::ptime epoch( boost::gregorian::date( 1970, 1, 1 ) );

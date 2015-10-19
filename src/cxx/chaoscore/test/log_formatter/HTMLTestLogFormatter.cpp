@@ -23,12 +23,12 @@ HTMLTestLogFormatter::HTMLTestLogFormatter( std::ostream* stream )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void HTMLTestLogFormatter::openLog()
+void HTMLTestLogFormatter::open_log()
 {
     // TODO:
 }
 
-void HTMLTestLogFormatter::closeLog()
+void HTMLTestLogFormatter::close_log()
 {
     // TODO:
 }

@@ -21,8 +21,8 @@ namespace test
 
 TestLogger::TestLogger()
     :
-    m_isParent   ( false ),
-    m_usingStdout( false )
+    m_is_parent   ( false ),
+    m_using_stdout( false )
 {
 }
 
@@ -33,15 +33,15 @@ TestLogger::TestLogger()
 TestLogger::~TestLogger()
 {
     // delete the formatters
-    CHAOS_FOR_EACH( ftIt, m_formatters )
+    CHAOS_FOR_EACH( f_it, m_formatters )
     {
-        delete *ftIt;
+        delete *f_it;
     }
     // close and delete the file streams
-    CHAOS_FOR_EACH( fsIt, m_fileStreams )
+    CHAOS_FOR_EACH( f_s_it, m_file_streams )
     {
-        static_cast< std::ofstream* >( *fsIt )->close();
-        delete *fsIt;
+        static_cast< std::ofstream* >( *f_s_it )->close();
+        delete *f_s_it;
     }
 }
 
@@ -49,15 +49,15 @@ TestLogger::~TestLogger()
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void TestLogger::setAsParent( bool state )
+void TestLogger::set_as_parent( bool state )
 {
-    m_isParent = state;
+    m_is_parent = state;
 }
 
-void TestLogger::addStdOut( OutFormat format )
+void TestLogger::add_stdout( OutFormat format )
 {
     // safety to ensure two std outs are not defined
-    if ( m_usingStdout )
+    if ( m_using_stdout )
     {
         throw chaos::test::ex::TestRuntimeError(
                 "A standard out test logger has already been defined. "
@@ -65,43 +65,42 @@ void TestLogger::addStdOut( OutFormat format )
         );
     }
 
-    m_usingStdout = true;
+    m_using_stdout = true;
 
     // create formatter
-    createFormatter( &std::cout, format );
+    create_formatter( &std::cout, format );
 
 }
 
-void TestLogger::addFileOutput(
+void TestLogger::add_file_output(
         const chaos::str::UTF8String& path,
-              OutFormat               format )
+        OutFormat format )
 {
     // the path should be validated at this point..
-    chaos::io::file::validatePath( path );
+    chaos::io::file::validate_path( path );
 
     // open a file stream
-    std::ofstream* fileStream = new std::ofstream( path.getCString() );
+    std::ofstream* file_stream = new std::ofstream( path.get_cstring() );
     // did the stream open ok?
-    if ( !fileStream->good() )
+    if ( !file_stream->good() )
     {
-        fileStream->close();
-        chaos::str::UTF8String errorMessage( "Failed to open path for " );
-        errorMessage += "logging: ";
-        errorMessage += path;
-        throw chaos::test::ex::TestRuntimeError( errorMessage );
+        file_stream->close();
+        chaos::str::UTF8String error_message;
+        error_message << "Failed to open path for logging: " << path;
+        throw chaos::test::ex::TestRuntimeError( error_message );
     }
 
     // store the file stream
-    m_fileStreams.push_back( fileStream );
+    m_file_streams.push_back( file_stream );
 
     // create a formatter
-    createFormatter( fileStream, format );
+    create_formatter( file_stream, format );
 }
 
-void TestLogger::openLog()
+void TestLogger::open_log()
 {
     // only handled by the parent logger
-    if ( !m_isParent )
+    if ( !m_is_parent )
     {
         return;
     }
@@ -110,30 +109,30 @@ void TestLogger::openLog()
 
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->openLog();
+        ( *it )->open_log();
     }
 }
 
-void TestLogger::closeLog()
+void TestLogger::close_log()
 {
     // only handled by the parent logger
-    if ( !m_isParent )
+    if ( !m_is_parent )
     {
         return;
     }
 
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->openLog();
+        ( *it )->close_log();
     }
 }
 
-void TestLogger::openTest(
+void TestLogger::open_test(
         const chaos::str::UTF8String& path,
         const chaos::str::UTF8String& id )
 {
     // only handled by the parent logger
-    if ( !m_isParent )
+    if ( !m_is_parent )
     {
         return;
     }
@@ -144,10 +143,10 @@ void TestLogger::openTest(
     }
 }
 
-void TestLogger::closeTest( const chaos::str::UTF8String& id )
+void TestLogger::close_test( const chaos::str::UTF8String& id )
 {
     // only handled by the parent logger
-    if ( !m_isParent )
+    if ( !m_is_parent )
     {
         return;
     }
@@ -162,7 +161,7 @@ void TestLogger::closeTest( const chaos::str::UTF8String& id )
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void TestLogger::createFormatter( std::ostream* stream, OutFormat format )
+void TestLogger::create_formatter( std::ostream* stream, OutFormat format )
 {
     // create a new log formatter based on the output type
     log_formatter::AbstractTestLogFormatter* formatter;

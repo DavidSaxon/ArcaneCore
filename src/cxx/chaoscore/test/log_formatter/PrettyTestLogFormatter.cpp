@@ -23,12 +23,12 @@ PrettyTestLogFormatter::PrettyTestLogFormatter( std::ostream* stream )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void PrettyTestLogFormatter::openLog()
+void PrettyTestLogFormatter::open_log()
 {
     ( *m_stream ) << "ChaosCore Tests" << std::endl;
 }
 
-void PrettyTestLogFormatter::closeLog()
+void PrettyTestLogFormatter::close_log()
 {
     // TODO:
 }

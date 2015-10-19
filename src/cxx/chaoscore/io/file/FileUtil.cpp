@@ -24,131 +24,132 @@ namespace file
 bool exists( const chaos::str::UTF8String& path )
 {
     return boost::filesystem::exists(
-            boost::filesystem::path( path.getCString() )
+            boost::filesystem::path( path.get_cstring() )
     );
 }
 
-bool isFile( const chaos::str::UTF8String& path )
+bool is_file( const chaos::str::UTF8String& path )
 {
     return boost::filesystem::is_regular_file(
-            boost::filesystem::path( path.getCString() )
+            boost::filesystem::path( path.get_cstring() )
     );
 }
 
-bool isDirectory( const chaos::str::UTF8String& path )
+bool is_directory( const chaos::str::UTF8String& path )
 {
     return boost::filesystem::is_directory(
-            boost::filesystem::path( path.getCString() )
+            boost::filesystem::path( path.get_cstring() )
     );
 }
 
-void createDirectory( const chaos::str::UTF8String& path )
+void create_directory( const chaos::str::UTF8String& path )
 {
 
 #ifdef CHAOS_OS_UNIX
 
-    mkdir( path.getCString(), 0777 );
+    mkdir( path.get_cstring(), 0777 );
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    _mkdir( path.getCString() );
+    _mkdir( path.get_cstring() );
 
 #endif
 
 }
 
-void validatePath( const chaos::str::UTF8String& path )
+void validate_path( const chaos::str::UTF8String& path )
 {
-    chaos::str::UTF8String sPath;
+    chaos::str::UTF8String s_path;
     // TODO: how to support '\' properly
     // if we are on windows, replace '\' for '/' if it's not followed by a space
 #ifdef CHAOS_OS_WINDOWS
 
-    for ( size_t i = 0; i < path.getLength(); ++i )
+    for ( size_t i = 0; i < path.get_length(); ++i )
     {
-        chaos::str::UTF8String symbol( path.getSymbol( i ) );
+        chaos::str::UTF8String symbol( path.get_symbol( i ) );
         // is this a '\'
         if ( symbol == "\\" )
         {
             // is there another symbol after this which is a space?
-            if ( i < path.getLength() - 1 && path.getSymbol( i + 1 ) != " " )
+            if ( i < path.get_length() - 1 && path.get_symbol( i + 1 ) != " " )
             {
                 symbol = "/";
             }
-            else if ( i == path.getLength() - 1 )
+            else if ( i == path.get_length() - 1 )
             {
                 symbol = "/";
             }
         }
         // append
-        sPath += symbol;
+        s_path += symbol;
     }
 
 #else
 
-    sPath = path;
+    s_path = path;
 
 #endif
 
     // does the path start with '/'?
-    bool rootPath = false;
-    if ( sPath.getSymbol( 0 ) == "/" )
+    bool root_path = false;
+    if ( s_path.get_symbol( 0 ) == "/" )
     {
-        rootPath = true;
+        root_path = true;
     }
 
     // does the path end with '/'?
-    bool directoryPath = false;
-    if ( sPath.getSymbol( sPath.getLength() - 1 ) == "/" )
+    bool directory_path = false;
+    if ( s_path.get_symbol( s_path.get_length() - 1 ) == "/" )
     {
-        directoryPath = true;
+        directory_path = true;
     }
 
     // split the file path at separators
-    std::vector< chaos::str::UTF8String > elements = sPath.split( "/" );
+    std::vector< chaos::str::UTF8String > elements = s_path.split( "/" );
 
     // traverse the path and validate it as we descend
-    chaos::str::UTF8String buildPath;
-    if ( rootPath )
+    chaos::str::UTF8String build_path;
+    if ( root_path )
     {
-        buildPath = "/";
+        build_path = "/";
     }
     for ( size_t i = 0; i < elements.size(); ++i )
     {
-        if ( !directoryPath && i == elements.size() - 1 )
+        if ( !directory_path && i == elements.size() - 1 )
         {
             break;
         }
 
         // extend the path
-        buildPath += elements[ i ];
+        build_path += elements[ i ];
         // does it exists as a directory?
-        if ( exists( buildPath ) )
+        if ( exists( build_path ) )
         {
             // is the existing path a directory?
-            if ( !isDirectory( buildPath ) )
+            if ( !is_directory( build_path ) )
             {
-                chaos::str::UTF8String message( "Failed to create path \'" );
-                message += path + "\' because \'";
-                message += buildPath + "\' already exists but is not a ";
-                message += "directory.";
-                throw chaos::io::file::ex::AmbiguousPathError( message );
+                // TODO: STREAM
+                chaos::str::UTF8String error_message;
+                error_message << "Failed to create path \'" << path << "\' "
+                              << "because \'" << build_path << "\' already "
+                              << "exists but is not a directory.";
+                throw chaos::io::file::ex::AmbiguousPathError( error_message );
             }
-            buildPath += "/";
+            build_path += "/";
             continue;
         }
-        buildPath += "/";
+        build_path += "/";
 
         // create the directory
-        createDirectory( buildPath );
+        create_directory( build_path );
 
         // ensure that it exists now
-        if ( !exists( buildPath ) )
+        if ( !exists( build_path ) )
         {
-            chaos::str::UTF8String errorMessage( "Failed to create the " );
-            errorMessage += "directory \'";
-            errorMessage += buildPath + "\'";
-            throw chaos::io::file::ex::CreateDirectoryError( errorMessage );
+            chaos::str::UTF8String error_message;
+            error_message << "Failed to create the directory \'" << build_path
+                          << "\'";
+            throw chaos::io::file::ex::CreateDirectoryError( error_message );
         }
     }
 }

@@ -38,19 +38,19 @@ bool exists( const chaos::str::UTF8String& path );
  *
  * \note If the path does not exist this operation will return false.
  */
-bool isFile( const chaos::str::UTF8String& path );
+bool is_file( const chaos::str::UTF8String& path );
 
 /*!
  * \brief Returns whether the given path is a directory.
  *
  * \note If the path does not exist this operation will return false.
  */
-bool isDirectory( const chaos::str::UTF8String& path );
+bool is_directory( const chaos::str::UTF8String& path );
 
 /*!
  * \brief Attempts to create the directory with the given path.
  */
-void createDirectory( const chaos::str::UTF8String& path );
+void create_directory( const chaos::str::UTF8String& path );
 
 /*!
  * \brief Attempts to directories to the given path if they don't exist.
@@ -71,7 +71,7 @@ void createDirectory( const chaos::str::UTF8String& path );
  * \endcode
  * Will attempt to ensure that the entire path exists.
  */
-void validatePath( const chaos::str::UTF8String& path );
+void validate_path( const chaos::str::UTF8String& path );
 
 } // namespace file
 } // namespace io

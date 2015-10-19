@@ -44,13 +44,13 @@ public:
      */
     virtual const char* what() const throw()
     {
-        return reinterpret_cast< const char* >( m_Message.getRawData() );
+        return m_Message.get_cstring();
     }
 
     /*!
      * \return The reason for the exception.
      */
-    const chaos::str::UTF8String& getMessage() const
+    const chaos::str::UTF8String& get_message() const
     {
         return m_Message;
     }

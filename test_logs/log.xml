@@ -1,6 +1,6 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc" id="base.preproc_1445104948877">
+  <UnitTest path="base.preproc" id="base.preproc_1445294100083">
   </UnitTest>
-  <UnitTest path="base.str.utf8" id="base.str.utf8_1445104948908">
+  <UnitTest path="base.str.utf8" id="base.str.utf8_1445294100112">
   </UnitTest>
-<ChaosCoreTests>
+</ChaosCoreTests>

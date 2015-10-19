@@ -99,12 +99,12 @@ public:
     {
     }
 
-    const chaos::str::UTF8String& getName()
+    const chaos::str::UTF8String& get_name()
     {
         return m_name;
     }
 
-    virtual Fixture* getFixture() = 0;
+    virtual Fixture* get_fixture() = 0;
 
     virtual void execute() = 0;
 
@@ -118,10 +118,10 @@ private:
 //------------------------------------------------------------------------------
 
 static TestLogger                                    logger;
-static std::map< chaos::str::UTF8String, UnitTest* > testMap;
-static std::set< chaos::str::UTF8String >            baseModules;
-static std::set< chaos::str::UTF8String >            knownModules;
-static chaos::str::UTF8String                        currentModule;
+static std::map< chaos::str::UTF8String, UnitTest* > test_map;
+static std::set< chaos::str::UTF8String >            base_modules;
+static std::set< chaos::str::UTF8String >            known_modules;
+static chaos::str::UTF8String                        current_module;
 
 //------------------------------------------------------------------------------
 //                                    CLASSES
@@ -135,26 +135,26 @@ static chaos::str::UTF8String                        currentModule;
 struct RunInfo
 {
     // whether the tests should be run in a single process or not
-    bool singleProc;
+    bool single_proc;
     // whether the test is being run as a sub-process of a parent testing
     // process
-    bool subProc;
+    bool sub_proc;
     // the paths to the tests to run
     std::set< chaos::str::UTF8String > paths;
     // whether the standard output stream is being used
-    bool useStdout;
+    bool use_stdout;
     // the format of the standard output stream
-    TestLogger::OutFormat stdoutFormat;
+    TestLogger::OutFormat stdout_format;
     // mapping from file path to write to, to the format to use
     std::map< chaos::str::UTF8String, TestLogger::OutFormat > files;
 
 
     RunInfo()
         :
-        singleProc  ( false ),
-        subProc     ( false ),
-        useStdout   ( true ),
-        stdoutFormat( TestLogger::OUT_PRETTY_TEXT )
+        single_proc  ( false ),
+        sub_proc     ( false ),
+        use_stdout   ( true ),
+        stdout_format( TestLogger::OUT_PRETTY_TEXT )
     {
     }
 };
@@ -184,42 +184,42 @@ public:
      */
     TestCore(
             const chaos::str::UTF8String& path,
-                  UnitTest*               unitTest,
+                  UnitTest*               unit_test,
             const chaos::str::UTF8String& file,
-                  int                     line,
+                  chaos::int32            line,
                   bool                    module  = false,
-                  RunInfo*                runInfo = NULL )
+                  RunInfo*                run_info = NULL )
     {
         // is this the run key?
-        if ( runInfo )
+        if ( run_info )
         {
             // mark parent logger?
-            if ( !runInfo->subProc )
+            if ( !run_info->sub_proc )
             {
-                logger.setAsParent( true );
+                logger.set_as_parent( true );
             }
 
             // pass outputs to the logger
-            if ( runInfo->useStdout )
+            if ( run_info->use_stdout )
             {
-                logger.addStdOut( runInfo->stdoutFormat );
+                logger.add_stdout( run_info->stdout_format );
             }
-            CHAOS_FOR_EACH( fIt, runInfo->files )
+            CHAOS_FOR_EACH( fIt, run_info->files )
             {
-                logger.addFileOutput( fIt->first, fIt->second );
+                logger.add_file_output( fIt->first, fIt->second );
             }
 
             // open the logger
-            logger.openLog();
+            logger.open_log();
 
             // run the tests
-            TestCore::run( runInfo );
+            TestCore::run( run_info );
 
             // close the logger
-            logger.closeLog();
+            logger.close_log();
 
             // clean up unit test pointer pointers
-            CHAOS_FOR_EACH( it, testMap )
+            CHAOS_FOR_EACH( it, test_map )
             {
                 delete it->second;
             }
@@ -230,70 +230,67 @@ public:
         if ( module )
         {
             // does the path need checking?
-            if ( path.getLength() > 1 )
+            if ( path.get_length() > 1 )
             {
                 // check that first or last symbols are not a periods
-                if ( path.getSymbol( 0 )                    == "." ||
-                     path.getSymbol( path.getLength() - 1 ) == "."    )
+                if ( path.get_symbol( 0 )                    == "." ||
+                     path.get_symbol( path.get_length() - 1 ) == "."    )
                 {
-                    chaos::str::UTF8String errorMessage( "Invalid test " );
-                    errorMessage += "module path: \"";
-                    errorMessage += path;
-                    errorMessage += "\". Test paths cannot start or end with";
-                    errorMessage += " \'.\'";
-                    TestCore::throwError( errorMessage, file, line );
+                    chaos::str::UTF8String error_message;
+                    error_message << "Invalid test module path: \"" << path
+                                  << "\". Test paths cannot start or end with "
+                                  << "\'.\'";
+                    TestCore::throw_error( error_message, file, line );
                 }
                 // check that there are not two consecutive periods
-                for ( size_t i = 0; i < path.getLength() - 1; ++i )
+                for ( size_t i = 0; i < path.get_length() - 1; ++i )
                 {
-                    if ( path.getSymbol( i )     == "." &&
-                         path.getSymbol( i + 1 ) == "."    )
+                    if ( path.get_symbol( i )     == "." &&
+                         path.get_symbol( i + 1 ) == "."    )
                     {
-                        chaos::str::UTF8String errorMessage( "Invalid test " );
-                        errorMessage += "moudle path: \"";
-                        errorMessage += path;
-                        errorMessage += "\". Test paths cannot contain two or ";
-                        errorMessage += "more consecutive \'.\'";
-                        TestCore::throwError( errorMessage, file, line );
+                        chaos::str::UTF8String error_message;
+                        error_message << "Invalid test module path: \"" << path
+                                      << "\". Test paths cannot contain two or "
+                                      << "more consecutive \'.\'";
+                        TestCore::throw_error( error_message, file, line );
                     }
                 }
                 // check any variation of the path exists in the map
                 std::vector< chaos::str::UTF8String > elements =
                         path.split( "." );
-                chaos::str::UTF8String checkPath;
+                chaos::str::UTF8String check_path;
                 // add the first element to the base modules
-                baseModules.insert( elements[ 0 ] );
+                base_modules.insert( elements[ 0 ] );
                 CHAOS_FOR_EACH( it, elements )
                 {
-                    if ( !checkPath.isEmpty() )
+                    if ( !check_path.is_empty() )
                     {
-                        checkPath += ".";
+                        check_path += ".";
                     }
-                    checkPath += *it;
+                    check_path += *it;
                     // add to the list of known modules
-                    knownModules.insert( checkPath );
+                    known_modules.insert( check_path );
 
-                    if ( testMap.find( checkPath ) != testMap.end() )
+                    if ( test_map.find( check_path ) != test_map.end() )
                     {
-                        chaos::str::UTF8String errorMessage( "Ambiguous " );
-                        errorMessage += "test module path: \"";
-                        errorMessage += checkPath;
-                        errorMessage +=  "\". Unit test already defined with ";
-                        errorMessage += "this exact path.";
-                        TestCore::throwError( errorMessage, file, line );
+                        chaos::str::UTF8String error_message;
+                        error_message << "Ambiguous test module path: \""
+                                     << check_path << "\". Unit test already "
+                                     << "defined with this exact path.";
+                        TestCore::throw_error( error_message, file, line );
                     }
                 }
             }
 
-            currentModule = path;
+            current_module = path;
             return;
         }
 
         // validate
         // ensure a module has been declared
-        if ( currentModule.isEmpty() )
+        if ( current_module.is_empty() )
         {
-            TestCore::throwError(
+            TestCore::throw_error(
                     "CHAOS_TEST_MODULE( <module_name> ) must be declared in "
                     "file before any test decelerations.",
                     file,
@@ -301,41 +298,40 @@ public:
             );
         }
         // ensure the path is not empty
-        if ( path.isEmpty() )
+        if ( path.is_empty() )
         {
-            TestCore::throwError(
+            TestCore::throw_error(
                     "Unit test declared with no path.",
                     file,
                     line
             );
         }
         // build the full path
-        chaos::str::UTF8String fullPath( currentModule );
-        fullPath += ".";
-        fullPath += path;
+        chaos::str::UTF8String full_path( current_module );
+        full_path += ".";
+        full_path += path;
         // check that path is not already in the map
-        if ( testMap.find( fullPath ) != testMap.end() )
+        if ( test_map.find( full_path ) != test_map.end() )
         {
-            chaos::str::UTF8String errorMessage( "Test path: \"" );
-            errorMessage += fullPath;
-            errorMessage +=  "\" has multiple definitions";
-            TestCore::throwError( errorMessage, file, line );
+            chaos::str::UTF8String error_message;
+            error_message << "Test path: \"" << full_path << "\" has multiple "
+                          << "definitions.";
+            TestCore::throw_error( error_message, file, line );
         }
         // check that the full path doesn't match any known modules
-        CHAOS_FOR_EACH( it, knownModules )
+        CHAOS_FOR_EACH( it, known_modules )
         {
-            if ( fullPath == *it )
+            if ( full_path == *it )
             {
-                chaos::str::UTF8String errorMessage( "Ambiguous test " );
-                errorMessage += "path: \"";
-                errorMessage += fullPath;
-                errorMessage +=  "\". Test module already defined with ";
-                errorMessage += "this exact path.";
-                TestCore::throwError( errorMessage, file, line );
+                chaos::str::UTF8String error_message;
+                error_message << "Ambiguous test path: \"" << full_path
+                              << "\". Test module already defined with this "
+                              << "exact path.";
+                TestCore::throw_error( error_message, file, line );
             }
         }
         // pass the test unit into the global mapping
-        testMap[ fullPath ] = unitTest;
+        test_map[ full_path ] = unit_test;
     }
 
     /*!
@@ -343,31 +339,31 @@ public:
      *
      * Runs tests defined by the run configuration information.
      */
-    static void run( RunInfo* runInfo )
+    static void run( RunInfo* run_info )
     {
         // have any paths been supplied?
-        if ( runInfo->paths.empty() )
+        if ( run_info->paths.empty() )
         {
             // run this function again with each of the base modules
-            CHAOS_FOR_EACH( it, baseModules )
+            CHAOS_FOR_EACH( it, base_modules )
             {
-                RunInfo baseRunInfo( *runInfo );
-                baseRunInfo.paths.insert( *it );
-                TestCore::run( &baseRunInfo );
+                RunInfo base_run_info( *run_info );
+                base_run_info.paths.insert( *it );
+                TestCore::run( &base_run_info );
             }
             return;
         }
 
         // sanitize the provided paths
         std::set< chaos::str::UTF8String > paths;
-        CHAOS_FOR_EACH( pIt, runInfo->paths )
+        CHAOS_FOR_EACH( p_it, run_info->paths )
         {
             // check if the path is even valid
             bool match = false;
             // is the path a non-module
-            CHAOS_FOR_EACH( mIt, knownModules )
+            CHAOS_FOR_EACH( mIt, known_modules )
             {
-                if ( *pIt == *mIt )
+                if ( *p_it == *mIt )
                 {
                     // this path is a known module
                     match = true;
@@ -377,9 +373,9 @@ public:
             // not a module, is it an exact path?
             if ( !match )
             {
-                CHAOS_FOR_EACH( upIt, testMap )
+                CHAOS_FOR_EACH( u_p_it, test_map )
                 {
-                    if ( *pIt == upIt->first )
+                    if ( *p_it == u_p_it->first )
                     {
                         // this path is an exact test
                         match = true;
@@ -397,25 +393,25 @@ public:
             }
 
             // check if this tests starts with any of the other paths
-            bool isSubPath = false;
-            CHAOS_FOR_EACH( pIt2, runInfo->paths )
+            bool is_sub_path = false;
+            CHAOS_FOR_EACH( p_it2, run_info->paths )
             {
                 // this is the same path
-                if ( *pIt == *pIt2 )
+                if ( *p_it == *p_it2 )
                 {
                     continue;
                 }
                 // is this a sub-path?
-                if ( pIt->startsWith( *pIt2 ) )
+                if ( p_it->starts_with( *p_it2 ) )
                 {
-                    isSubPath = false;
+                    is_sub_path = false;
                     break;
                 }
             }
             // if this is not a sub-path then we shall use it
-            if ( !isSubPath )
+            if ( !is_sub_path )
             {
-                paths.insert( *pIt );
+                paths.insert( *p_it );
             }
         }
 
@@ -425,32 +421,32 @@ public:
         struct PathGroup
         {
             chaos::str::UTF8String path;
-            std::set< chaos::str::UTF8String > testPaths;
-            std::set< chaos::str::UTF8String > modulePaths;
+            std::set< chaos::str::UTF8String > test_paths;
+            std::set< chaos::str::UTF8String > module_paths;
         };
-        std::vector< PathGroup > pathGroups;
+        std::vector< PathGroup > path_groups;
 
         // run logic for each supplied path
         CHAOS_FOR_EACH( it, paths )
         {
             // create a group for the path
-            PathGroup pathGroup;
-            pathGroup.path = *it;
+            PathGroup path_group;
+            path_group.path = *it;
 
             // find tests that are directly under this module or match this
             // exact module
-            CHAOS_FOR_EACH( mIt, testMap )
+            CHAOS_FOR_EACH( mIt, test_map )
             {
                 // is there an exact match?
                 if ( mIt->first == *it )
                 {
-                    pathGroup.testPaths.insert( mIt->first );
+                    path_group.test_paths.insert( mIt->first );
                     continue;
                 }
                 // extract the path to the test
                 chaos::str::UTF8String path = mIt->first;
                 // find the last period
-                size_t lastIndex = path.findLast( "." );
+                size_t lastIndex = path.find_last( "." );
                 if ( lastIndex == chaos::str::UTF8String::npos )
                 {
                     throw chaos::test::ex::TestRuntimeError(
@@ -461,12 +457,12 @@ public:
                 // does it match the current path
                 if ( path == *it )
                 {
-                    pathGroup.testPaths.insert( mIt->first );
+                    path_group.test_paths.insert( mIt->first );
                 }
             }
 
             // find other modules that are directly under this path
-            CHAOS_FOR_EACH( mdIt, knownModules )
+            CHAOS_FOR_EACH( mdIt, known_modules )
             {
                 // ignore exact match
                 if ( *mdIt == *it )
@@ -476,7 +472,7 @@ public:
                 // extract the path to the module
                 chaos::str::UTF8String path = *mdIt;
                 // find the last period
-                size_t lastIndex = path.findLast( "." );
+                size_t lastIndex = path.find_last( "." );
                 if ( lastIndex == chaos::str::UTF8String::npos )
                 {
                     continue;
@@ -486,30 +482,30 @@ public:
                 // does it match the current path
                 if ( path == *it )
                 {
-                    pathGroup.modulePaths.insert( *mdIt );
+                    path_group.module_paths.insert( *mdIt );
                 }
             }
 
             // record the path group
-            pathGroups.push_back( pathGroup );
+            path_groups.push_back( path_group );
         }
 
         // run each of the path groups
-        CHAOS_FOR_EACH( pgIt, pathGroups )
+        CHAOS_FOR_EACH( p_g_it, path_groups )
         {
             // run any of single tests we have
-            CHAOS_FOR_EACH( tpIt, pgIt->testPaths )
+            CHAOS_FOR_EACH( t_p_it, p_g_it->test_paths )
             {
-                TestCore::runTest( testMap[ *tpIt ], runInfo );
+                TestCore::run_test( test_map[ *t_p_it ], run_info );
             }
             // run any of the sub modules
-            CHAOS_FOR_EACH( mpIt, pgIt->modulePaths )
+            CHAOS_FOR_EACH( m_p_it, p_g_it->module_paths )
             {
                 // build new run info
-                RunInfo moduleRunInfo( *runInfo );
-                moduleRunInfo.paths.clear();
-                moduleRunInfo.paths.insert( *mpIt );
-                TestCore::run( &moduleRunInfo );
+                RunInfo module_run_info( *run_info );
+                module_run_info.paths.clear();
+                module_run_info.paths.insert( *m_p_it );
+                TestCore::run( &module_run_info );
             }
         }
     }
@@ -519,23 +515,23 @@ public:
      *
      * \brief runs the single given unit test with the given run configuration.
      */
-    static void runTest( UnitTest* unitTest, RunInfo* runInfo )
+    static void run_test( UnitTest* unit_test, RunInfo* run_info )
     {
         // run the test dependent on the mode
-        if ( runInfo->singleProc )
+        if ( run_info->single_proc )
         {
-            if ( runInfo->subProc )
+            if ( run_info->sub_proc )
             {
-                runCurrentProcNoOpen( unitTest );
+                run_current_proc_no_open( unit_test );
             }
             else
             {
-                runCurrentProc( unitTest, runInfo );
+                run_current_proc( unit_test, run_info );
             }
         }
         else
         {
-            runInNewProc( unitTest, runInfo );
+            run_new_proc( unit_test, run_info );
         }
     }
 
@@ -544,22 +540,22 @@ public:
      *
      * \brief Runs the test on this current process.
      */
-    static void runCurrentProc( UnitTest* unitTest, RunInfo* runInfo )
+    static void run_current_proc( UnitTest* unit_test, RunInfo* run_info )
     {
         // the path to this test
-        chaos::str::UTF8String testPath( *runInfo->paths.begin() );
+        chaos::str::UTF8String test_path( *run_info->paths.begin() );
         // generate an unique id for this test
-        chaos::str::UTF8String id = generateId( testPath );
+        chaos::str::UTF8String id = generate_id( test_path );
         // open the test in logger
-        logger.openTest( testPath, id );
+        logger.open_test( test_path, id );
         // set up fixture
-        unitTest->getFixture()->setup();
+        unit_test->get_fixture()->setup();
         // execute
-        unitTest->execute();
+        unit_test->execute();
         // teardown
-        unitTest->getFixture()->teardown();
+        unit_test->get_fixture()->teardown();
         // close the test in logger
-        logger.closeTest( id );
+        logger.close_test( id );
     }
 
     /*!
@@ -567,14 +563,14 @@ public:
      *
      * \brief Runs the test on this current process with no log open and close.
      */
-    static void runCurrentProcNoOpen( UnitTest* unitTest )
+    static void run_current_proc_no_open( UnitTest* unit_test )
     {
         // set up fixture
-        unitTest->getFixture()->setup();
+        unit_test->get_fixture()->setup();
         // execute
-        unitTest->execute();
+        unit_test->execute();
         // teardown
-        unitTest->getFixture()->teardown();
+        unit_test->get_fixture()->teardown();
     }
 
     /*!
@@ -582,131 +578,126 @@ public:
      *
      * \brief Runs the current test in a new process.
      */
-    static void runInNewProc( UnitTest* unitTest, RunInfo* runInfo )
+    static void run_new_proc( UnitTest* unit_test, RunInfo* run_info )
     {
         // The method spawning a new process is platform dependent
         #ifdef CHAOS_OS_UNIX
 
             // the path to this test
-            chaos::str::UTF8String testPath( *runInfo->paths.begin() );
+            chaos::str::UTF8String test_path( *run_info->paths.begin() );
             // generate the unique id for this this test
-            chaos::str::UTF8String id = generateId( testPath );
+            chaos::str::UTF8String id = generate_id( test_path );
             // open the test in the logger
-            logger.openTest( testPath, id );
+            logger.open_test( test_path, id );
 
             // for to run the new process
-            pid_t procId = fork();
-            if ( procId == 0 )
+            pid_t proc_id = fork();
+            if ( proc_id == 0 )
             {
                 // we are now on a new process so just use the single proc
                 // function.
-                TestCore::runCurrentProcNoOpen( unitTest );
+                TestCore::run_current_proc_no_open( unit_test );
                 exit( 0 );
             }
             else
             {
                 // wait for the child process to end
-                int procStatus;
-                waitpid( procId, &procStatus, 0 );
+                int proc_status;
+                waitpid( proc_id, &proc_status, 0 );
                 // TODO: check child status and log error message
 
                 // close the test in the logger
-                logger.closeTest( id );
+                logger.close_test( id );
             }
 
         #elif defined( CHAOS_OS_WINDOWS )
 
             // the path to this test
-            chaos::str::UTF8String testPath( *runInfo->paths.begin() );
+            chaos::str::UTF8String test_path( *run_info->paths.begin() );
             // generate the unique id for this this test
-            chaos::str::UTF8String id = generateId( testPath );
+            chaos::str::UTF8String id = generate_id( test_path );
 
             // rebuild the command line arguments
-            chaos::str::UTF8String commandLineArgs = " --single_proc";
-            commandLineArgs += " --sub_proc";
-            commandLineArgs += " --silent_crash";
-            // get the test to run
-            commandLineArgs += " --test ";
-            commandLineArgs += testPath;
+            chaos::str::UTF8String command_line_args;
+            command_line_args << " --single_proc --sub_proc --silent_crash "
+                              << " --test " << test_path;
             // std out
-            if ( runInfo->useStdout )
+            if ( run_info->use_stdout )
             {
-                commandLineArgs += " --stdout ";
-                commandLineArgs += logFormatToString( runInfo->stdoutFormat );
+                command_line_args << " --stdout " << log_format_to_string(
+                        run_info->stdout_format );
             }
             // file outputs
-            CHAOS_FOR_EACH( fileIt, runInfo->files )
+            CHAOS_FOR_EACH( fileIt, run_info->files )
             {
-                commandLineArgs += " --fileout ";
                 // generate a mangled file path
-                chaos::str::UTF8String filePath = fileIt->first;
-                filePath << "." << id;
-                commandLineArgs += filePath + " ";
-                commandLineArgs += logFormatToString( fileIt->second );
+                command_line_args << " --fileout " << fileIt->first << "."
+                                  << id << " "
+                                  << log_format_to_string( fileIt->second );
             }
 
             // spawn a new instance of this process but with arguments to point
             // to a single test case
-            STARTUPINFO startupInfo;
-            PROCESS_INFORMATION procInfo;
-            ZeroMemory( &startupInfo, sizeof( startupInfo ) );
-            startupInfo.cb = sizeof( startupInfo );
-            startupInfo.hStdError = FALSE;
-            ZeroMemory( &procInfo, sizeof( procInfo ) );
+            STARTUPINFO startup_info;
+            PROCESS_INFORMATION proc_info;
+            ZeroMemory( &startup_info, sizeof( startup_info ) );
+            startup_info.cb = sizeof( startup_info );
+            startup_info.hStdError = FALSE;
+            ZeroMemory( &proc_info, sizeof( proc_info ) );
 
             // get the path to this executable
-            TCHAR exePath[ MAX_PATH ];
-            GetModuleFileName( NULL, exePath, MAX_PATH );
+            TCHAR exe_path[ MAX_PATH ];
+            GetModuleFileName( NULL, exe_path, MAX_PATH );
 
             // open the test in the logger
-            logger.openTest( testPath, id );
+            logger.open_test( test_path, id );
 
             // start the child process
-            BOOL createSuccess = CreateProcess(
-                    exePath,
-                    const_cast< LPSTR >( commandLineArgs.getCString() ),
+            BOOL create_success = CreateProcess(
+                    exe_path,
+                    const_cast< LPSTR >( command_line_args.get_cstring() ),
                     NULL,
                     NULL,
                     FALSE,
                     0,
                     NULL,
                     NULL,
-                    &startupInfo,
-                    &procInfo
+                    &startup_info,
+                    &proc_info
             );
 
             // was there an error?
-            if ( !createSuccess )
+            if ( !create_success )
             {
                 // get the error code
-                DWORD lastError = GetLastError();
-                TCHAR errorMessage[ 512 ];
+                DWORD last_error = GetLastError();
+                TCHAR win_error_message[ 512 ];
                 FormatMessage(
                         FORMAT_MESSAGE_FROM_SYSTEM,
                         NULL,
-                        lastError,
+                        last_error,
                         MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),
-                        errorMessage,
+                        win_error_message,
                         511,
                         NULL
                 );
-                chaos::str::UTF8String message( "Spawning separate test " );
-                message += "process using CreateProcess (Windows) has failed ";
-                message += "with the error message: ";
-                message += errorMessage;
-                throw chaos::test::ex::TestRuntimeError( errorMessage );
+                chaos::str::UTF8String error_message;
+                error_message << "Spawning separate test process using "
+                              << "CreateProcess (Windows) has failed with the "
+                              << "error message: " << win_error_message;
+                throw chaos::test::ex::TestRuntimeError( error_message );
             }
 
             // wait until the child process has finished
-            WaitForSingleObject( procInfo.hProcess, INFINITE );
+            WaitForSingleObject( proc_info.hProcess, INFINITE );
             // close process and thread handles
-            CloseHandle( procInfo.hProcess );
-            CloseHandle( procInfo.hThread );
+            CloseHandle( proc_info.hProcess );
+            CloseHandle( proc_info.hThread );
 
             // TODO: check child process and log error message
 
             // close the test in the logger
-            logger.closeTest( id );
+            logger.close_test( id );
 
         #else
 
@@ -723,11 +714,11 @@ public:
     /*!
      * \brief Generates a new unique id for the given unit test name.
      */
-    static chaos::str::UTF8String generateId(
+    static chaos::str::UTF8String generate_id(
             const chaos::str::UTF8String& name )
     {
         chaos::str::UTF8String id = name;
-        id << "_" << chaos::time::getCurrentTime();
+        id << "_" << chaos::time::get_current_time();
         return id;
     }
 
@@ -737,7 +728,7 @@ public:
      * Converts a test logger output format to a UTF8String for the command
      * line.
      */
-    static chaos::str::UTF8String logFormatToString(
+    static chaos::str::UTF8String log_format_to_string(
             TestLogger::OutFormat format )
     {
         switch( format )
@@ -772,16 +763,16 @@ public:
      * \param line Line number where the failure occurred.
      * \param message Explanation of the failure.
      */
-    static void registerFailure(
+    static void register_failure(
             const chaos::str::UTF8String& file,
                   int                     line,
             const chaos::str::UTF8String& message )
     {
         // create the key
-        std::stringstream keyStream;
-        keyStream << file << ":" << line;
+        std::stringstream key_stream;
+        key_stream << file << ":" << line;
 
-        std::cout << "FAILURE AT: " << keyStream.str() << ": "
+        std::cout << "FAILURE AT: " << key_stream.str() << ": "
                   << message << std::endl;
         // TODO: WRITE TO LOG OR OUTPUT
     }
@@ -791,24 +782,21 @@ public:
      *
      * Formats and throws a TestDeclerationError.
      */
-    static void throwError(
+    static void throw_error(
             const chaos::str::UTF8String& message,
             const chaos::str::UTF8String& file,
-                  int                     line )
+                  chaos::int32            line )
     {
         // convert line to string
         std::stringstream lineStr;
+        // TODO: need operator to do this with UTF8String
         lineStr << line;
 
         //format the error message.
-        chaos::str::UTF8String errorMessage( "\n\n\t" );
-        errorMessage += message;
-        errorMessage += "\n\n\tFILE: ";
-        errorMessage += file;
-        errorMessage += "\n\tLINE: ";
-        errorMessage += lineStr.str().c_str();
-        errorMessage += "\n";
-        throw chaos::test::ex::TestDeclerationError( errorMessage );
+        chaos::str::UTF8String error_message;
+        error_message << "\n\n\t" << message << "\n\n\tFILE: " << file
+                      << "\n\tLINE: " << line << "\n";
+        throw chaos::test::ex::TestDeclerationError( error_message );
     }
 };
 
@@ -848,13 +836,13 @@ public:
  *
  * TODO: DOC
  */
-#define CHAOS_TEST_UNIT_FIXTURE( path, fixtureType )                           \
+#define CHAOS_TEST_UNIT_FIXTURE( path, fixture_type )                          \
     struct path : public chaos::test::internal::UnitTest                       \
     {                                                                          \
-        fixtureType* fixture;                                                  \
-        path() : UnitTest( #path ), fixture( new fixtureType() ){}             \
+        fixture_type* fixture;                                                 \
+        path() : UnitTest( #path ), fixture( new fixture_type() ){}            \
         virtual ~path(){ delete fixture; }                                     \
-        virtual chaos::test::Fixture* getFixture() { return fixture; }         \
+        virtual chaos::test::Fixture* get_fixture() { return fixture; }        \
         virtual void execute();                                                \
     };                                                                         \
     static chaos::test::internal::TestCore object_##path (                     \
@@ -870,7 +858,7 @@ public:
         }                                                                      \
         else                                                                   \
         {                                                                      \
-            chaos::test::internal::TestCore::registerFailure(                  \
+            chaos::test::internal::TestCore::register_failure(                 \
                     __FILE__,                                                  \
                     __LINE__,                                                  \
                     "CHAOS_TEST_EQUAL"                                         \

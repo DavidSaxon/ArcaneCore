@@ -35,9 +35,9 @@ public:
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
 
-    virtual void openLog();
+    virtual void open_log();
 
-    virtual void closeLog();
+    virtual void close_log();
 
     virtual void open_test(
             const chaos::str::UTF8String& path,

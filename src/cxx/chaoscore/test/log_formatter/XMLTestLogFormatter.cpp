@@ -23,12 +23,12 @@ XMLTestLogFormatter::XMLTestLogFormatter( std::ostream* stream )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void XMLTestLogFormatter::openLog()
+void XMLTestLogFormatter::open_log()
 {
     ( *m_stream ) << "<ChaosCoreTests>" << std::endl;
 }
 
-void XMLTestLogFormatter::closeLog()
+void XMLTestLogFormatter::close_log()
 {
     ( *m_stream ) << "</ChaosCoreTests>" << std::endl;
 }

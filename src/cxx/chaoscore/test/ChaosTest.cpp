@@ -36,7 +36,7 @@ static chaos::str::UTF8String OPT_FORMAT_HTML   = "html";
  * \param format Parameter that the format will be returned through.
  * \return Whether the input string was valid or not.
  */
-bool stringToFormat(
+bool string_to_format(
         const chaos::str::UTF8String&              str,
               chaos::test::TestLogger::OutFormat&  format );
 
@@ -49,10 +49,10 @@ bool stringToFormat(
 int main( int argc, char* argv[] )
 {
     // create run configuration information with default values
-    chaos::test::internal::RunInfo runInfo;
+    chaos::test::internal::RunInfo run_info;
 
     // whether a standard output has been defined
-    bool stdoutDefined = false;
+    bool stdout_defined = false;
 
     // parse args
     for ( size_t i = 1; i < static_cast< size_t >( argc ); ++i )
@@ -60,12 +60,12 @@ int main( int argc, char* argv[] )
         // --single_proc
         if ( ARG_SINGLE_PROC == argv[ i ] )
         {
-            runInfo.singleProc = true;
+            run_info.single_proc = true;
         }
         // --sub_proc
         else if ( ARG_SUB_PROC == argv[ i ] )
         {
-            runInfo.subProc = true;
+            run_info.sub_proc = true;
         }
         // --silent_crash
         else if ( ARG_SILENT_CRASH == argv[ i ] )
@@ -78,9 +78,10 @@ int main( int argc, char* argv[] )
 
             #else
 
-                chaos::str::UTF8String errorMessage( ARG_SILENT_CRASH );
-                errorMessage += " only supported on Windows systems.";
-                throw chaos::test::ex::TestRuntimeError( errorMessage );
+                chaos::str::UTF8String error_message( ARG_SILENT_CRASH );
+                error_message << ARG_SILENT_CRASH
+                              << " only supported on Windows systems.";
+                throw chaos::test::ex::TestRuntimeError( error_message );
 
             #endif
         }
@@ -97,7 +98,7 @@ int main( int argc, char* argv[] )
             }
 
             // get the next argument
-            runInfo.paths.insert( chaos::str::UTF8String( argv[ ++i ] ) );
+            run_info.paths.insert( chaos::str::UTF8String( argv[ ++i ] ) );
         }
         // --stdout
         else if ( ARG_STDOUT == argv[ i ] )
@@ -113,7 +114,7 @@ int main( int argc, char* argv[] )
             }
 
             // ensure that stdout has not already been defined
-            if ( stdoutDefined )
+            if ( stdout_defined )
             {
                 std::cerr << "\nERROR: Multiple definitions for stdout format. "
                           << "Currently only one stdout stream is supported "
@@ -122,9 +123,9 @@ int main( int argc, char* argv[] )
             }
 
             // get the format to be use
-            chaos::test::TestLogger::OutFormat outFormat;
+            chaos::test::TestLogger::OutFormat out_format;
             chaos::str::UTF8String opt( argv[ ++i ] );
-            if ( !stringToFormat( opt, outFormat ) )
+            if ( !string_to_format( opt, out_format ) )
             {
                 std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
                           << "command line argument: \'" << ARG_STDOUT << "\'. "
@@ -134,10 +135,10 @@ int main( int argc, char* argv[] )
             }
 
             // add to the run information
-            runInfo.useStdout = true;
-            runInfo.stdoutFormat = outFormat;
+            run_info.use_stdout = true;
+            run_info.stdout_format = out_format;
             // standard out has now been defined
-            stdoutDefined = true;
+            stdout_defined = true;
         }
         // --fileout
         else if ( ARG_FILEOUT == argv[ i ] )
@@ -153,15 +154,15 @@ int main( int argc, char* argv[] )
             }
 
             // get the file to write to
-            chaos::str::UTF8String filePath( argv[ ++i ] );
+            chaos::str::UTF8String file_path( argv[ ++i ] );
 
             // ensure the provided path is a file
-            if ( filePath.getSymbol( filePath.getLength() - 1 ) == "/" ||
-                 filePath.getSymbol( filePath.getLength() - 1 ) == "\\"   )
+            if ( file_path.get_symbol( file_path.get_length() - 1 ) == "/" ||
+                 file_path.get_symbol( file_path.get_length() - 1 ) == "\\"   )
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_FILEOUT << "\' has been provided with an "
-                          << "invalid file path: \'" << filePath << "\' The "
+                          << "invalid file path: \'" << file_path << "\' The "
                           << "provided path must not be a directory.\n"
                           << std::endl;
                 return -1;
@@ -170,20 +171,20 @@ int main( int argc, char* argv[] )
             // attempt to validate the path
             try
             {
-                chaos::io::file::validatePath( filePath );
+                chaos::io::file::validate_path( file_path );
             }
             catch( chaos::io::file::ex::FileSystemError e )
             {
                 std::cerr << "\nERROR: validating the provided path \'"
-                          << filePath << "\' has failed with the reason:\n"
+                          << file_path << "\' has failed with the reason:\n"
                           << e.what() << "\n" << std::endl;
                 return -1;
             }
 
             // get the format to be use
-            chaos::test::TestLogger::OutFormat outFormat;
+            chaos::test::TestLogger::OutFormat out_format;
             chaos::str::UTF8String opt( argv[ ++i ] );
-            if ( !stringToFormat( opt, outFormat ) )
+            if ( !string_to_format( opt, out_format ) )
             {
                 std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
                           << "command line argument: \'" << ARG_FILEOUT
@@ -193,19 +194,19 @@ int main( int argc, char* argv[] )
             }
 
             // does the file output already exist?
-            if ( runInfo.files.find( filePath ) != runInfo.files.end() )
+            if ( run_info.files.find( file_path ) != run_info.files.end() )
             {
                 std::cerr << "\nMultiple output definitions for the file: \'"
-                          << filePath << "\'.\n" << std::endl;
+                          << file_path << "\'.\n" << std::endl;
                 return -1;
             }
 
             // add to run information
-            runInfo.files[ filePath ] = outFormat;
+            run_info.files[ file_path ] = out_format;
             // if stdout hasn't be defined removed it
-            if ( !stdoutDefined )
+            if ( !stdout_defined )
             {
-                runInfo.useStdout = false;
+                run_info.use_stdout = false;
             }
         }
         // unknown argument
@@ -217,7 +218,7 @@ int main( int argc, char* argv[] )
         }
     }
 
-    chaos::test::internal::TestCore( "", NULL, "", 0, false, &runInfo );
+    chaos::test::internal::TestCore( "", NULL, "", 0, false, &run_info );
     return 0;
 }
 
@@ -225,7 +226,7 @@ int main( int argc, char* argv[] )
 //                                   FUNCTIONS
 //------------------------------------------------------------------------------
 
-bool stringToFormat(
+bool string_to_format(
         const chaos::str::UTF8String&              str,
               chaos::test::TestLogger::OutFormat&  format )
 {

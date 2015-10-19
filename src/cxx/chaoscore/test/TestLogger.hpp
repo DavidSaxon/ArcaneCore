@@ -84,7 +84,7 @@ public:
      * any sub logs made child processes and will also handle actions like
      * opening and closing the log.
      */
-    void setAsParent( bool state );
+    void set_as_parent( bool state );
 
     /*!
      * \brief Adds a standard output for writing.
@@ -95,7 +95,7 @@ public:
      *
      * \param format The format to write standard output in.
      */
-    void addStdOut( OutFormat format );
+    void add_stdout( OutFormat format );
 
     /*!
      * \brief Adds a file output for writing.
@@ -104,17 +104,19 @@ public:
      *             exist beforehand.
      * \param format The format to write to the file in.
      */
-    void addFileOutput( const chaos::str::UTF8String& path, OutFormat format );
+    void add_file_output(
+            const chaos::str::UTF8String& path,
+            OutFormat format );
 
     /*!
      * \brief Opening statement of the log.
      */
-    void openLog();
+    void open_log();
 
     /*!
      * \brief Closing statement of the log.
      */
-    void closeLog();
+    void close_log();
 
     /*!
      * \brief Opening statement of a unit test.
@@ -122,7 +124,7 @@ public:
      * \param path The Path of this test
      * \param id The unique id of this test.
      */
-    void openTest(
+    void open_test(
             const chaos::str::UTF8String& path,
             const chaos::str::UTF8String& id );
 
@@ -131,7 +133,7 @@ public:
      *
      * \param id The unique id of this test.
      */
-    void closeTest( const chaos::str::UTF8String& id );
+    void close_test( const chaos::str::UTF8String& id );
 
 private:
 
@@ -142,7 +144,7 @@ private:
     /*!
      * \brief Whether this is the parent logger or not.
      */
-    bool m_isParent;
+    bool m_is_parent;
 
     /*!
      * \brief List of TestLogFormatters being used by this logger.
@@ -151,12 +153,12 @@ private:
     /*!
      * \brief Whether the logger is using the standard output stream.
      */
-    bool m_usingStdout;
+    bool m_using_stdout;
     /*!
      * \brief List of open file streams so they can be deleted at destruction
      *        time.
      */
-    std::vector< std::ostream* > m_fileStreams;
+    std::vector< std::ostream* > m_file_streams;
 
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS
@@ -166,7 +168,7 @@ private:
      * \brief Internal function for creating and storing a formatter for the
      *        given stream and format.
      */
-    void createFormatter( std::ostream* stream, OutFormat format );
+    void create_formatter( std::ostream* stream, OutFormat format );
 };
 
 } // namespace test

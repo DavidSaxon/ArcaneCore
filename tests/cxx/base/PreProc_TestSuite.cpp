@@ -52,9 +52,9 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     std::vector< chaos::int32 > v1 = fixture->getIntVector( 100 );
     std::vector< chaos::int32 > v2;
     // copy using a for each loop
-    CHAOS_FOR_EACH( vIt, v1 )
+    CHAOS_FOR_EACH( v_it, v1 )
     {
-        v2.push_back( *vIt );
+        v2.push_back( *v_it );
     }
     // is the size the same?
     CHAOS_TEST_EQUAL( v1.size(), v2.size() + 2 );

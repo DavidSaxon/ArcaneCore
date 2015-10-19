@@ -79,12 +79,12 @@
  * for entirely static classes.
  *
  * To use this macro it must be declared in the base of the desired class and
- * the name of the class must be passed in as TypeName.
+ * the name of the class must be passed in as type_name.
   */
-#define CHAOS_DISALLOW_CONSTRUCTION( TypeName ) \
-        TypeName() = delete;                    \
-        TypeName( const TypeName& ) = delete;   \
-        void operator=( const TypeName& ) = delete
+#define CHAOS_DISALLOW_CONSTRUCTION( type_name )    \
+        type_name() = delete;                       \
+        type_name( const type_name& ) = delete;     \
+        void operator=( const type_name& ) = delete
 
 /*!
  * \brief Used to disable the copy constructor and assignment operator for a
@@ -94,11 +94,11 @@
  * explicitly deletes the copy constructor and the assignment operator.
  *
  * To use this macro it must be declared in the base of the desired class and
- * the name of the class must be passed in as TypeName.
+ * the name of the class must be passed in as type_name.
  */
-#define CHAOS_DISALLOW_COPY_AND_ASSIGN( TypeName ) \
-        TypeName( const TypeName& ) = delete;      \
-        void operator=( const TypeName& ) = delete
+#define CHAOS_DISALLOW_COPY_AND_ASSIGN( type_name )  \
+        type_name( const type_name& ) = delete;      \
+        void operator=( const type_name& ) = delete
 
 //-----------------------------------FOREACH------------------------------------
 

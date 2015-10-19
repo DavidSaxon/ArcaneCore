@@ -23,7 +23,7 @@ namespace time
 /*!
  * \brief Returns the time pass since epoch in milliseconds.
  */
-chaos::uint64 getCurrentTime();
+chaos::uint64 get_current_time();
 
 } // namespace time
 } // namespace chaos

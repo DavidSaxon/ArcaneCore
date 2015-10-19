@@ -23,12 +23,12 @@ PlainTestLogFormatter::PlainTestLogFormatter( std::ostream* stream )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void PlainTestLogFormatter::openLog()
+void PlainTestLogFormatter::open_log()
 {
     // do nothing for plain text
 }
 
-void PlainTestLogFormatter::closeLog()
+void PlainTestLogFormatter::close_log()
 {
     // do nothing for plain text
 }
