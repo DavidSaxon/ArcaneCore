@@ -117,7 +117,6 @@ private:
 //                                    GLOBALS
 //------------------------------------------------------------------------------
 
-static TestLogger                                    logger;
 static std::map< chaos::str::UTF8String, UnitTest* > test_map;
 static std::set< chaos::str::UTF8String >            base_modules;
 static std::set< chaos::str::UTF8String >            known_modules;
@@ -172,6 +171,8 @@ class TestCore
 {
 public:
 
+    static TestLogger logger;
+
     // TODO: can we move to inline cpp functions?
 
     /*!
@@ -196,27 +197,27 @@ public:
             // mark parent logger?
             if ( !run_info->sub_proc )
             {
-                logger.set_as_parent( true );
+                TestCore::logger.set_as_parent( true );
             }
 
             // pass outputs to the logger
             if ( run_info->use_stdout )
             {
-                logger.add_stdout( run_info->stdout_format );
+                TestCore::logger.add_stdout( run_info->stdout_format );
             }
             CHAOS_FOR_EACH( fIt, run_info->files )
             {
-                logger.add_file_output( fIt->first, fIt->second );
+                TestCore::logger.add_file_output( fIt->first, fIt->second );
             }
 
             // open the logger
-            logger.open_log();
+            TestCore::logger.open_log();
 
             // run the tests
             TestCore::run( run_info );
 
             // close the logger
-            logger.close_log();
+            TestCore::logger.close_log();
 
             // clean up unit test pointer pointers
             CHAOS_FOR_EACH( it, test_map )
@@ -547,7 +548,7 @@ public:
         // generate an unique id for this test
         chaos::str::UTF8String id = generate_id( test_path );
         // open the test in logger
-        logger.open_test( test_path, id );
+        TestCore::logger.open_test( test_path, id );
         // set up fixture
         unit_test->get_fixture()->setup();
         // execute
@@ -555,7 +556,7 @@ public:
         // teardown
         unit_test->get_fixture()->teardown();
         // close the test in logger
-        logger.close_test( id );
+        TestCore::logger.close_test( id );
     }
 
     /*!
@@ -588,7 +589,7 @@ public:
             // generate the unique id for this this test
             chaos::str::UTF8String id = generate_id( test_path );
             // open the test in the logger
-            logger.open_test( test_path, id );
+            TestCore::logger.open_test( test_path, id );
 
             // for to run the new process
             pid_t proc_id = fork();
@@ -607,7 +608,7 @@ public:
                 // TODO: check child status and log error message
 
                 // close the test in the logger
-                logger.close_test( id );
+                TestCore::logger.close_test( id );
             }
 
         #elif defined( CHAOS_OS_WINDOWS )
@@ -650,7 +651,7 @@ public:
             GetModuleFileName( NULL, exe_path, MAX_PATH );
 
             // open the test in the logger
-            logger.open_test( test_path, id );
+            TestCore::logger.open_test( test_path, id );
 
             // start the child process
             BOOL create_success = CreateProcess(
@@ -697,7 +698,7 @@ public:
             // TODO: check child process and log error message
 
             // close the test in the logger
-            logger.close_test( id );
+            TestCore::logger.close_test( id );
 
         #else
 
@@ -764,17 +765,15 @@ public:
      * \param message Explanation of the failure.
      */
     static void register_failure(
+            const chaos::str::UTF8String& type,
             const chaos::str::UTF8String& file,
                   int                     line,
             const chaos::str::UTF8String& message )
     {
-        // create the key
-        std::stringstream key_stream;
-        key_stream << file << ":" << line;
+        // TODO: count failures
 
-        std::cout << "FAILURE AT: " << key_stream.str() << ": "
-                  << message << std::endl;
-        // TODO: WRITE TO LOG OR OUTPUT
+        // send to logger
+        TestCore::logger.report_failure( type, file, line, message );
     }
 
     /*!
@@ -859,10 +858,7 @@ public:
         else                                                                   \
         {                                                                      \
             chaos::test::internal::TestCore::register_failure(                 \
-                    __FILE__,                                                  \
-                    __LINE__,                                                  \
-                    "CHAOS_TEST_EQUAL"                                         \
-            );                                                                 \
+                    "TEST_EQUAL", __FILE__, __LINE__, "" );                    \
         }
 
 } // namespace test

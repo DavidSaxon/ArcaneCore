@@ -1,6 +1,7 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc" id="base.preproc_1445294100083">
+  <UnitTest path="base.preproc" id="base.preproc_1445300754693">
+    <Failure type=TEST_EQUAL file=tests\cxx\base\PreProc_TestSuite.cpp line=60/>
   </UnitTest>
-  <UnitTest path="base.str.utf8" id="base.str.utf8_1445294100112">
+  <UnitTest path="base.str.utf8" id="base.str.utf8_1445300754711">
   </UnitTest>
 </ChaosCoreTests>

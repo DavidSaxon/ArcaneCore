@@ -5,6 +5,8 @@
 #include "chaoscore/io/file/FileExceptions.hpp"
 #include "chaoscore/io/file/FileUtil.hpp"
 
+chaos::test::TestLogger chaos::test::internal::TestCore::logger;
+
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
 //------------------------------------------------------------------------------

@@ -135,14 +135,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">//------------------------------CONSTRUCTOR MACROS------------------------------</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="_preproc_8hpp.html#a1dbb6cf785739a66694541bacde3c348">   84</a></span>&#160;<span class="preprocessor">#define CHAOS_DISALLOW_CONSTRUCTION( TypeName ) \</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">        TypeName() = delete;                    \</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        TypeName( const TypeName&amp; ) = delete;   \</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">        void operator=( const TypeName&amp; ) = delete</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="_preproc_8hpp.html#a44c8efbb53506f346dac708217b815ba">   84</a></span>&#160;<span class="preprocessor">#define CHAOS_DISALLOW_CONSTRUCTION( type_name )    \</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">        type_name() = delete;                       \</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        type_name( const type_name&amp; ) = delete;     \</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">        void operator=( const type_name&amp; ) = delete</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="_preproc_8hpp.html#a0989a3ffc8b50ec7d96bf6cc3f0f41a4">   99</a></span>&#160;<span class="preprocessor">#define CHAOS_DISALLOW_COPY_AND_ASSIGN( TypeName ) \</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">        TypeName( const TypeName&amp; ) = delete;      \</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">        void operator=( const TypeName&amp; ) = delete</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="_preproc_8hpp.html#afeb7437615dd8a77117dfd9e411c7235">   99</a></span>&#160;<span class="preprocessor">#define CHAOS_DISALLOW_COPY_AND_ASSIGN( type_name )  \</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">        type_name( const type_name&amp; ) = delete;      \</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">        void operator=( const type_name&amp; ) = delete</span></div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//-----------------------------------FOREACH------------------------------------</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
@@ -178,7 +178,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 11 2015 13:02:41 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

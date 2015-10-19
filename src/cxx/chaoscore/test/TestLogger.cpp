@@ -40,8 +40,8 @@ TestLogger::~TestLogger()
     // close and delete the file streams
     CHAOS_FOR_EACH( f_s_it, m_file_streams )
     {
-        static_cast< std::ofstream* >( *f_s_it )->close();
-        delete *f_s_it;
+        static_cast< std::ofstream* >( f_s_it->second )->close();
+        delete f_s_it->second;
     }
 }
 
@@ -74,7 +74,7 @@ void TestLogger::add_stdout( OutFormat format )
 
 void TestLogger::add_file_output(
         const chaos::str::UTF8String& path,
-        OutFormat format )
+              OutFormat               format )
 {
     // the path should be validated at this point..
     chaos::io::file::validate_path( path );
@@ -90,8 +90,8 @@ void TestLogger::add_file_output(
         throw chaos::test::ex::TestRuntimeError( error_message );
     }
 
-    // store the file stream
-    m_file_streams.push_back( file_stream );
+    // store the file name and stream
+    m_file_streams[ path ] = file_stream;
 
     // create a formatter
     create_formatter( file_stream, format );
@@ -151,9 +151,51 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
         return;
     }
 
+    // look for open sub files and append them into the main files
+    CHAOS_FOR_EACH( f_it, m_file_streams )
+    {
+        // add the id as to the filename
+        chaos::str::UTF8String sub_name( f_it->first + "." + id );
+        // does the sub file exist?
+        if ( chaos::io::file::exists ( sub_name ) &&
+             chaos::io::file::is_file( sub_name )    )
+        {
+            // open the file and read the contents into the matching stream
+            std::ifstream in_file( sub_name.get_cstring() );
+            if ( in_file.is_open() )
+            {
+                std::string line;
+                while( getline( in_file, line ) )
+                {
+                    ( *f_it->second ) << line << std::endl;
+                }
+            }
+            // close stream
+            in_file.close();
+            // delete the file
+            // TODO:
+        }
+    }
+
+    // send the close to formatters
     CHAOS_FOR_EACH( it, m_formatters )
     {
         ( *it )->close_test();
+    }
+}
+
+void TestLogger::report_failure(
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
+              chaos::int32            line,
+        const chaos::str::UTF8String& message )
+{
+    std::cout << "REPORTING FAILURE" << std::endl;
+
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        std::cout << "REPORTING FAILURE FOR FORMATTER" << std::endl;
+        ( *it )->report_failure( type, file, line, message );
     }
 }
 

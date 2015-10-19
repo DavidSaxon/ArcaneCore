@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['testlogger_2ehpp',['TestLogger.hpp',['../_test_logger_8hpp.html',1,'']]],
-  ['types_2ehpp',['Types.hpp',['../_types_8hpp.html',1,'']]]
+  ['htmltestlogformatter_2ehpp',['HTMLTestLogFormatter.hpp',['../_h_t_m_l_test_log_formatter_8hpp.html',1,'']]]
 ];

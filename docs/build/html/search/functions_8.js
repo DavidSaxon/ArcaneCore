@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['testlogger',['TestLogger',['../classchaos_1_1test_1_1_test_logger.html#a59b5462eea92053f301b8c5e9c61892f',1,'chaos::test::TestLogger']]],
-  ['tostdstring',['toStdString',['../classchaos_1_1str_1_1_u_t_f8_string.html#a4febd35eab6e30bbcf2bdf38097a2fd6',1,'chaos::str::UTF8String']]]
+  ['plaintestlogformatter',['PlainTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_plain_test_log_formatter.html#a728fd3a47d5ff50e84f2ab6a39cbfa87',1,'chaos::test::log_formatter::PlainTestLogFormatter']]],
+  ['prettytestlogformatter',['PrettyTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_pretty_test_log_formatter.html#ad537150be7fb4514fb9b47aba18ea73f',1,'chaos::test::log_formatter::PrettyTestLogFormatter']]]
 ];

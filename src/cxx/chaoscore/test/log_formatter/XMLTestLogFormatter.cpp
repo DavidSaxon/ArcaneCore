@@ -46,6 +46,23 @@ void XMLTestLogFormatter::close_test()
     ( *m_stream ) << "  </UnitTest>" << std::endl;
 }
 
+void XMLTestLogFormatter::report_failure(
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
+              chaos::int32            line,
+        const chaos::str::UTF8String& message )
+{
+
+
+    ( *m_stream ) << "    <Failure type=" << type << " file=" << file
+                  << " line=" << line;
+    if ( !message.is_empty() )
+    {
+        ( *m_stream ) << " message=" << message;
+    }
+    ( *m_stream ) << "/>" << std::endl;
+}
+
 } // namespace log_formatter
 } // namespace test
 } // namespace chaos

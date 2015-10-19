@@ -43,6 +43,12 @@ public:
             const chaos::str::UTF8String& id );
 
     virtual void close_test();
+
+    virtual void report_failure(
+            const chaos::str::UTF8String& type,
+            const chaos::str::UTF8String& file,
+                  chaos::int32            line,
+            const chaos::str::UTF8String& message );
 };
 
 } // namespace log_formatter

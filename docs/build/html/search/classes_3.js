@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['indexoutofboundserror',['IndexOutOfBoundsError',['../classchaos_1_1ex_1_1_index_out_of_bounds_error.html',1,'chaos::ex']]]
+  ['htmltestlogformatter',['HTMLTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_h_t_m_l_test_log_formatter.html',1,'chaos::test::log_formatter']]]
 ];

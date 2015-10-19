@@ -21,9 +21,9 @@ A collection of general preprocessor directives and macros.
 \hypertarget{_preproc_8hpp_ad397cab0ba48918884a517609d66881d}{}\#define \hyperlink{_preproc_8hpp_ad397cab0ba48918884a517609d66881d}{C\+H\+A\+O\+S\+\_\+\+O\+S\+\_\+\+U\+N\+K\+N\+O\+W\+N}\label{_preproc_8hpp_ad397cab0ba48918884a517609d66881d}
 
 \begin{DoxyCompactList}\small\item\em Directive that is defined if the current could not be detected. \end{DoxyCompactList}\item 
-\#define \hyperlink{_preproc_8hpp_a1dbb6cf785739a66694541bacde3c348}{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N}(Type\+Name)
+\#define \hyperlink{_preproc_8hpp_a44c8efbb53506f346dac708217b815ba}{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N}(type\+\_\+name)    
 \begin{DoxyCompactList}\small\item\em Used to disable all construction methods for a class. \end{DoxyCompactList}\item 
-\#define \hyperlink{_preproc_8hpp_a0989a3ffc8b50ec7d96bf6cc3f0f41a4}{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N}(Type\+Name)
+\#define \hyperlink{_preproc_8hpp_afeb7437615dd8a77117dfd9e411c7235}{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N}(type\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Used to disable the copy constructor and assignment operator for a class. \end{DoxyCompactList}\item 
 \#define \hyperlink{_preproc_8hpp_aaf29e8aa8b78db93e9b6757ba71ee231}{C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H}(it,  collection)                                                                          
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
@@ -42,18 +42,18 @@ David Saxon
 
 
 \subsection{Macro Definition Documentation}
-\hypertarget{_preproc_8hpp_a1dbb6cf785739a66694541bacde3c348}{}\index{Preproc.\+hpp@{Preproc.\+hpp}!C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N@{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N}}
+\hypertarget{_preproc_8hpp_a44c8efbb53506f346dac708217b815ba}{}\index{Preproc.\+hpp@{Preproc.\+hpp}!C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N@{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N}}
 \index{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N@{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N}!Preproc.\+hpp@{Preproc.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+N\+S\+T\+R\+U\+C\+T\+I\+O\+N(
 \begin{DoxyParamCaption}
-\item[{}]{Type\+Name}
+\item[{}]{type\+\_\+name}
 \end{DoxyParamCaption}
-)}\label{_preproc_8hpp_a1dbb6cf785739a66694541bacde3c348}
+)}\label{_preproc_8hpp_a44c8efbb53506f346dac708217b815ba}
 {\bfseries Value\+:}
 \begin{DoxyCode}
-TypeName() = \textcolor{keyword}{delete};                    \(\backslash\)
-        TypeName( \textcolor{keyword}{const} TypeName& ) = \textcolor{keyword}{delete};   \(\backslash\)
-        void operator=( \textcolor{keyword}{const} TypeName& ) = \textcolor{keyword}{delete}
+type\_name() = \textcolor{keyword}{delete};                       \(\backslash\)
+        type\_name( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete};     \(\backslash\)
+        void operator=( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete}
 \end{DoxyCode}
 
 
@@ -61,17 +61,17 @@ Used to disable all construction methods for a class.
 
 This macro will explicitly delete the default constructor, copy constructor, and the assignment operator. This is normally only needed in rare edge cases for entirely static classes.
 
-To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as Type\+Name. \hypertarget{_preproc_8hpp_a0989a3ffc8b50ec7d96bf6cc3f0f41a4}{}\index{Preproc.\+hpp@{Preproc.\+hpp}!C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N@{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N}}
+To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as type\+\_\+name. \hypertarget{_preproc_8hpp_afeb7437615dd8a77117dfd9e411c7235}{}\index{Preproc.\+hpp@{Preproc.\+hpp}!C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N@{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N}}
 \index{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N@{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N}!Preproc.\+hpp@{Preproc.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+D\+I\+S\+A\+L\+L\+O\+W\+\_\+\+C\+O\+P\+Y\+\_\+\+A\+N\+D\+\_\+\+A\+S\+S\+I\+G\+N(
 \begin{DoxyParamCaption}
-\item[{}]{Type\+Name}
+\item[{}]{type\+\_\+name}
 \end{DoxyParamCaption}
-)}\label{_preproc_8hpp_a0989a3ffc8b50ec7d96bf6cc3f0f41a4}
+)}\label{_preproc_8hpp_afeb7437615dd8a77117dfd9e411c7235}
 {\bfseries Value\+:}
 \begin{DoxyCode}
-TypeName( \textcolor{keyword}{const} TypeName& ) = \textcolor{keyword}{delete};      \(\backslash\)
-        void operator=( \textcolor{keyword}{const} TypeName& ) = \textcolor{keyword}{delete}
+type\_name( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete};      \(\backslash\)
+        void operator=( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete}
 \end{DoxyCode}
 
 
@@ -79,7 +79,7 @@ Used to disable the copy constructor and assignment operator for a class.
 
 The purpose of this macro is to define classes that should not be copied. It explicitly deletes the copy constructor and the assignment operator.
 
-To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as Type\+Name. \hypertarget{_preproc_8hpp_aaf29e8aa8b78db93e9b6757ba71ee231}{}\index{Preproc.\+hpp@{Preproc.\+hpp}!C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H@{C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H}}
+To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as type\+\_\+name. \hypertarget{_preproc_8hpp_aaf29e8aa8b78db93e9b6757ba71ee231}{}\index{Preproc.\+hpp@{Preproc.\+hpp}!C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H@{C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H}}
 \index{C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H@{C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H}!Preproc.\+hpp@{Preproc.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+F\+O\+R\+\_\+\+E\+A\+C\+H(
 \begin{DoxyParamCaption}

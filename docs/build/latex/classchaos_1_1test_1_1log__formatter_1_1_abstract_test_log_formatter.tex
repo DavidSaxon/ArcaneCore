@@ -1,0 +1,69 @@
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter}{}\section{chaos\+:\+:test\+:\+:log\+\_\+formatter\+:\+:Abstract\+Test\+Log\+Formatter Class Reference}
+\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter}\index{chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter@{chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter}}
+
+
+Abstract base class that all other Test Log Formatters will inherit from.  
+
+
+
+
+{\ttfamily \#include $<$Abstract\+Test\+Log\+Formatter.\+hpp$>$}
+
+Inheritance diagram for chaos\+:\+:test\+:\+:log\+\_\+formatter\+:\+:Abstract\+Test\+Log\+Formatter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.903226cm]{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a9b6256dad677274ae028f14a3f713ca0}{Abstract\+Test\+Log\+Formatter} (std\+::ostream $\ast$stream)
+\begin{DoxyCompactList}\small\item\em Super constructor for Test Log Formatters. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_ae60e3b695f6c2a7e26944c1b0b644136}{}virtual void {\bfseries open\+\_\+log} ()=0\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_ae60e3b695f6c2a7e26944c1b0b644136}
+
+\item 
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a2884dd5deee2b1f29b971493fdc3bca3}{}virtual void {\bfseries close\+\_\+log} ()=0\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a2884dd5deee2b1f29b971493fdc3bca3}
+
+\item 
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a506782a79c28119c9286bcbe6d0df855}{}virtual void {\bfseries open\+\_\+test} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&id)=0\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a506782a79c28119c9286bcbe6d0df855}
+
+\item 
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_ae88303d5d75855ed7f65fd4e73387704}{}virtual void {\bfseries close\+\_\+test} ()=0\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_ae88303d5d75855ed7f65fd4e73387704}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a39664df72c625247706e85fe7a7d3272}{}std\+::ostream $\ast$ \hyperlink{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a39664df72c625247706e85fe7a7d3272}{m\+\_\+stream}\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a39664df72c625247706e85fe7a7d3272}
+
+\begin{DoxyCompactList}\small\item\em The stream this logger is writing to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Abstract base class that all other Test Log Formatters will inherit from. 
+
+Test Log Formatters provided functions for formatting data to log and then writing it to it\textquotesingle{}s output stream. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a9b6256dad677274ae028f14a3f713ca0}{}\index{chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter@{chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter}!Abstract\+Test\+Log\+Formatter@{Abstract\+Test\+Log\+Formatter}}
+\index{Abstract\+Test\+Log\+Formatter@{Abstract\+Test\+Log\+Formatter}!chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter@{chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter}}
+\subsubsection[{Abstract\+Test\+Log\+Formatter(std\+::ostream $\ast$stream)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::test\+::log\+\_\+formatter\+::\+Abstract\+Test\+Log\+Formatter\+::\+Abstract\+Test\+Log\+Formatter (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream $\ast$}]{stream}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_a9b6256dad677274ae028f14a3f713ca0}
+
+
+Super constructor for Test Log Formatters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & the stream to write logs to. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Dropbox/\+Development/\+Chaos\+Core/\+Chaos\+Core/src/cxx/chaoscore/test/log\+\_\+formatter/\hyperlink{_abstract_test_log_formatter_8hpp}{Abstract\+Test\+Log\+Formatter.\+hpp}\end{DoxyCompactItemize}

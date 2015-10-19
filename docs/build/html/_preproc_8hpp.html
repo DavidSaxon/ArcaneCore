@@ -119,12 +119,12 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#ad397cab0ba48918884a517609d66881d">CHAOS_OS_UNKNOWN</a></td></tr>
 <tr class="memdesc:ad397cab0ba48918884a517609d66881d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Directive that is defined if the current could not be detected. <br /></td></tr>
 <tr class="separator:ad397cab0ba48918884a517609d66881d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dbb6cf785739a66694541bacde3c348"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#a1dbb6cf785739a66694541bacde3c348">CHAOS_DISALLOW_CONSTRUCTION</a>(TypeName)</td></tr>
-<tr class="memdesc:a1dbb6cf785739a66694541bacde3c348"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to disable all construction methods for a class.  <a href="#a1dbb6cf785739a66694541bacde3c348">More...</a><br /></td></tr>
-<tr class="separator:a1dbb6cf785739a66694541bacde3c348"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0989a3ffc8b50ec7d96bf6cc3f0f41a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#a0989a3ffc8b50ec7d96bf6cc3f0f41a4">CHAOS_DISALLOW_COPY_AND_ASSIGN</a>(TypeName)</td></tr>
-<tr class="memdesc:a0989a3ffc8b50ec7d96bf6cc3f0f41a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to disable the copy constructor and assignment operator for a class.  <a href="#a0989a3ffc8b50ec7d96bf6cc3f0f41a4">More...</a><br /></td></tr>
-<tr class="separator:a0989a3ffc8b50ec7d96bf6cc3f0f41a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c8efbb53506f346dac708217b815ba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#a44c8efbb53506f346dac708217b815ba">CHAOS_DISALLOW_CONSTRUCTION</a>(type_name)    </td></tr>
+<tr class="memdesc:a44c8efbb53506f346dac708217b815ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to disable all construction methods for a class.  <a href="#a44c8efbb53506f346dac708217b815ba">More...</a><br /></td></tr>
+<tr class="separator:a44c8efbb53506f346dac708217b815ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeb7437615dd8a77117dfd9e411c7235"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#afeb7437615dd8a77117dfd9e411c7235">CHAOS_DISALLOW_COPY_AND_ASSIGN</a>(type_name)</td></tr>
+<tr class="memdesc:afeb7437615dd8a77117dfd9e411c7235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to disable the copy constructor and assignment operator for a class.  <a href="#afeb7437615dd8a77117dfd9e411c7235">More...</a><br /></td></tr>
+<tr class="separator:afeb7437615dd8a77117dfd9e411c7235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf29e8aa8b78db93e9b6757ba71ee231"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#aaf29e8aa8b78db93e9b6757ba71ee231">CHAOS_FOR_EACH</a>(it,  collection)                                                                          </td></tr>
 <tr class="memdesc:aaf29e8aa8b78db93e9b6757ba71ee231"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#aaf29e8aa8b78db93e9b6757ba71ee231">More...</a><br /></td></tr>
 <tr class="separator:aaf29e8aa8b78db93e9b6757ba71ee231"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,7 +139,7 @@ Macros</h2></td></tr>
 <div class="textblock"><p>A collection of general preprocessor directives and macros. </p>
 <dl class="section author"><dt>Author</dt><dd>David Saxon </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a1dbb6cf785739a66694541bacde3c348"></a>
+<a class="anchor" id="a44c8efbb53506f346dac708217b815ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -147,22 +147,22 @@ Macros</h2></td></tr>
           <td class="memname">#define CHAOS_DISALLOW_CONSTRUCTION</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">TypeName</td><td>)</td>
+          <td class="paramname">type_name</td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">TypeName() = <span class="keyword">delete</span>;                    \</div>
-<div class="line">        TypeName( <span class="keyword">const</span> TypeName&amp; ) = <span class="keyword">delete</span>;   \</div>
-<div class="line">        void operator=( <span class="keyword">const</span> TypeName&amp; ) = <span class="keyword">delete</span></div>
+<b>Value:</b><div class="fragment"><div class="line">type_name() = <span class="keyword">delete</span>;                       \</div>
+<div class="line">        type_name( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span>;     \</div>
+<div class="line">        void operator=( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span></div>
 </div><!-- fragment -->
 <p>Used to disable all construction methods for a class. </p>
 <p>This macro will explicitly delete the default constructor, copy constructor, and the assignment operator. This is normally only needed in rare edge cases for entirely static classes.</p>
-<p>To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as TypeName. </p>
+<p>To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as type_name. </p>
 
 </div>
 </div>
-<a class="anchor" id="a0989a3ffc8b50ec7d96bf6cc3f0f41a4"></a>
+<a class="anchor" id="afeb7437615dd8a77117dfd9e411c7235"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -170,17 +170,17 @@ Macros</h2></td></tr>
           <td class="memname">#define CHAOS_DISALLOW_COPY_AND_ASSIGN</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">TypeName</td><td>)</td>
+          <td class="paramname">type_name</td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">TypeName( <span class="keyword">const</span> TypeName&amp; ) = <span class="keyword">delete</span>;      \</div>
-<div class="line">        void operator=( <span class="keyword">const</span> TypeName&amp; ) = <span class="keyword">delete</span></div>
+<b>Value:</b><div class="fragment"><div class="line">type_name( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span>;      \</div>
+<div class="line">        void operator=( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span></div>
 </div><!-- fragment -->
 <p>Used to disable the copy constructor and assignment operator for a class. </p>
 <p>The purpose of this macro is to define classes that should not be copied. It explicitly deletes the copy constructor and the assignment operator.</p>
-<p>To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as TypeName. </p>
+<p>To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as type_name. </p>
 
 </div>
 </div>
@@ -293,7 +293,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 11 2015 13:02:41 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

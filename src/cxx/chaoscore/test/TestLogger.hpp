@@ -6,6 +6,7 @@
 #define CHAOSCORE_TEST_TESTLOGGER_HPP_
 
 #include <iosfwd>
+#include <map>
 #include <vector>
 
 #include "chaoscore/base/string/UTF8String.hpp"
@@ -106,7 +107,7 @@ public:
      */
     void add_file_output(
             const chaos::str::UTF8String& path,
-            OutFormat format );
+                  OutFormat               format );
 
     /*!
      * \brief Opening statement of the log.
@@ -135,6 +136,20 @@ public:
      */
     void close_test( const chaos::str::UTF8String& id );
 
+    /*!
+     * \brief Reports a test failure.
+     *
+     * \param type the Type of test that failed.
+     * \param file The source file that the failure occurred in.
+     * \param line The line in the file that failure occurred at.
+     * \param message A message that was provided with the failure.
+     */
+    void report_failure(
+            const chaos::str::UTF8String& type,
+            const chaos::str::UTF8String& file,
+                  chaos::int32            line,
+            const chaos::str::UTF8String& message );
+
 private:
 
     //--------------------------------------------------------------------------
@@ -155,10 +170,9 @@ private:
      */
     bool m_using_stdout;
     /*!
-     * \brief List of open file streams so they can be deleted at destruction
-     *        time.
+     * \brief Mapping from filenames to the streams writing to them.
      */
-    std::vector< std::ostream* > m_file_streams;
+    std::map< chaos::str::UTF8String, std::ostream* > m_file_streams;
 
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS

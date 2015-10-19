@@ -108,11 +108,13 @@ Inheritance diagram for chaos::ex::ChaosException:</div>
  <div class="center">
   <img src="classchaos_1_1ex_1_1_chaos_exception.png" usemap="#chaos::ex::ChaosException_map" alt=""/>
   <map id="chaos::ex::ChaosException_map" name="chaos::ex::ChaosException_map">
-<area href="classchaos_1_1ex_1_1_index_out_of_bounds_error.html" title="Warns that an index has been requested outside of the allowed bounds. " alt="chaos::ex::IndexOutOfBoundsError" shape="rect" coords="0,112,215,136"/>
-<area href="classchaos_1_1file_1_1ex_1_1_file_system_error.html" title="A generic error relating to the file system. " alt="chaos::file::ex::FileSystemError" shape="rect" coords="225,112,440,136"/>
-<area href="classchaos_1_1test_1_1_test_error.html" title="Warns of an unexpected error during testing procedures. " alt="chaos::test::TestError" shape="rect" coords="450,112,665,136"/>
-<area href="classchaos_1_1file_1_1ex_1_1_ambiguous_path_error.html" title="Warns that has a request has been made to create a file or directory that results in a ambiguous file..." alt="chaos::file::ex::AmbiguousPathError" shape="rect" coords="112,168,327,192"/>
-<area href="classchaos_1_1file_1_1ex_1_1_create_directory_error.html" title="Warns that creating a directory has failed. " alt="chaos::file::ex::CreateDirectoryError" shape="rect" coords="337,168,552,192"/>
+<area href="classchaos_1_1ex_1_1_index_out_of_bounds_error.html" title="Warns that an index has been requested outside of the allowed bounds. " alt="chaos::ex::IndexOutOfBoundsError" shape="rect" coords="0,112,231,136"/>
+<area href="classchaos_1_1io_1_1file_1_1ex_1_1_file_system_error.html" title="A generic error relating to the file system. " alt="chaos::io::file::ex::FileSystemError" shape="rect" coords="241,112,472,136"/>
+<area href="classchaos_1_1test_1_1ex_1_1_test_error.html" title="Warns of an unexpected error during testing procedures. " alt="chaos::test::ex::TestError" shape="rect" coords="723,112,954,136"/>
+<area href="classchaos_1_1io_1_1file_1_1ex_1_1_ambiguous_path_error.html" title="Warns that has a request has been made to create a file or directory that results in a ambiguous file..." alt="chaos::io::file::ex::AmbiguousPathError" shape="rect" coords="120,168,351,192"/>
+<area href="classchaos_1_1io_1_1file_1_1ex_1_1_create_directory_error.html" title="Warns that creating a directory has failed. " alt="chaos::io::file::ex::CreateDirectoryError" shape="rect" coords="361,168,592,192"/>
+<area href="classchaos_1_1test_1_1ex_1_1_test_decleration_error.html" title="Warns that an error has occurred during test deceleration time. " alt="chaos::test::ex::TestDeclerationError" shape="rect" coords="602,168,833,192"/>
+<area href="classchaos_1_1test_1_1ex_1_1_test_runtime_error.html" title="Warns that an error has occurred during test runtime. " alt="chaos::test::ex::TestRuntimeError" shape="rect" coords="843,168,1074,192"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -120,8 +122,8 @@ Inheritance diagram for chaos::ex::ChaosException:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5266c5ba1e7b6ab2bbfcb2a6c01fafea"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1ex_1_1_chaos_exception.html#a5266c5ba1e7b6ab2bbfcb2a6c01fafea">what</a> () const   throw ()</td></tr>
 <tr class="separator:a5266c5ba1e7b6ab2bbfcb2a6c01fafea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d03c7cc282e22c2871a6809b19be09"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1ex_1_1_chaos_exception.html#a90d03c7cc282e22c2871a6809b19be09">getMessage</a> () const </td></tr>
-<tr class="separator:a90d03c7cc282e22c2871a6809b19be09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944fe85435124a77c0b49149e7eadc12"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1ex_1_1_chaos_exception.html#a944fe85435124a77c0b49149e7eadc12">get_message</a> () const </td></tr>
+<tr class="separator:a944fe85435124a77c0b49149e7eadc12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -166,7 +168,7 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a90d03c7cc282e22c2871a6809b19be09"></a>
+<a class="anchor" id="a944fe85435124a77c0b49149e7eadc12"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -174,7 +176,7 @@ Protected Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; chaos::ex::ChaosException::getMessage </td>
+          <td class="memname">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; chaos::ex::ChaosException::get_message </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -226,7 +228,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 11 2015 13:02:41 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

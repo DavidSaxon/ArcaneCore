@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['utf8string',['UTF8String',['../classchaos_1_1str_1_1_u_t_f8_string.html',1,'chaos::str']]]
+  ['plaintestlogformatter',['PlainTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_plain_test_log_formatter.html',1,'chaos::test::log_formatter']]],
+  ['prettytestlogformatter',['PrettyTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_pretty_test_log_formatter.html',1,'chaos::test::log_formatter']]]
 ];

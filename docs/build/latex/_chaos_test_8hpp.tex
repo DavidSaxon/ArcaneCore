@@ -7,15 +7,15 @@
 {\ttfamily \#include \char`\"{}chaoscore/base/\+Base\+Exceptions.\+hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/\+Preproc.\+hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/string/\+U\+T\+F8\+String.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}chaoscore/base/time/\+Time\+Util.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}chaoscore/test/\+Test\+Exceptions.\+hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/test/\+Test\+Logger.\+hpp\char`\"{}}\\*
 {\ttfamily \#include $<$iostream$>$}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-class \hyperlink{classchaos_1_1test_1_1_test_error}{chaos\+::test\+::\+Test\+Error}
-\begin{DoxyCompactList}\small\item\em Warns of an unexpected error during testing procedures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,9 +28,9 @@ class \hyperlink{classchaos_1_1test_1_1_test_error}{chaos\+::test\+::\+Test\+Err
 \item 
 \#define \hyperlink{_chaos_test_8hpp_aff792df3b39dba470d2d977009e96d57}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}(path)                                                                                        
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\#define \hyperlink{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}(path)~\hyperlink{_chaos_test_8hpp_a9eb62c0047727bbdc4cc477cefe87ad7}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}( path, \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture} )
+\#define \hyperlink{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}(path)~\hyperlink{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}( path, \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture} )
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\#define \hyperlink{_chaos_test_8hpp_a9eb62c0047727bbdc4cc477cefe87ad7}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}(path,  fixture\+Type)                                                  
+\#define \hyperlink{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}(path,  fixture\+\_\+type)                                                
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
 \#define {\bfseries C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+E\+Q\+U\+A\+L}(a,  b)                                                                                        
 \end{DoxyCompactItemize}
@@ -60,7 +60,7 @@ David Saxon
         \}                                                                      \(\backslash\)
         else                                                                   \(\backslash\)
         \{                                                                      \(\backslash\)
-            chaos::test::internal::TestCore::registerFailure(                  \(\backslash\)
+            chaos::test::internal::TestCore::register\_failure(                 \(\backslash\)
                     \_\_FILE\_\_,                                                  \(\backslash\)
                     \_\_LINE\_\_,                                                  \(\backslash\)
                     \textcolor{stringliteral}{"CHAOS\_TEST\_EQUAL"}                                         \(\backslash\)
@@ -96,22 +96,22 @@ T\+O\+D\+O\+: D\+O\+C \hypertarget{_chaos_test_8hpp_a99bafb580d6fe2036b9408c2501
 
 T\+O\+D\+O\+: D\+O\+C. 
 
-T\+O\+D\+O\+: D\+O\+C \hypertarget{_chaos_test_8hpp_a9eb62c0047727bbdc4cc477cefe87ad7}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}}
+T\+O\+D\+O\+: D\+O\+C \hypertarget{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}}
 \index{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}!Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E(
 \begin{DoxyParamCaption}
 \item[{}]{path, }
-\item[{}]{fixture\+Type}
+\item[{}]{fixture\+\_\+type}
 \end{DoxyParamCaption}
-)}\label{_chaos_test_8hpp_a9eb62c0047727bbdc4cc477cefe87ad7}
+)}\label{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}
 {\bfseries Value\+:}
 \begin{DoxyCode}
 \textcolor{keyword}{struct }path : \textcolor{keyword}{public} chaos::test::internal::UnitTest                       \(\backslash\)
     \{                                                                          \(\backslash\)
-        fixtureType* fixture;                                                  \(\backslash\)
-        path() : fixture( new fixtureType() )\{\}                                \(\backslash\)
+        fixture\_type* fixture;                                                 \(\backslash\)
+        path() : UnitTest( #path ), fixture( new fixture\_type() )\{\}            \(\backslash\)
         virtual ~path()\{ \textcolor{keyword}{delete} fixture; \}                                     \(\backslash\)
-        virtual \hyperlink{classchaos_1_1test_1_1_fixture}{chaos::test::Fixture}* getFixture() \{ \textcolor{keywordflow}{return} fixture; \}         \(\backslash\)
+        virtual \hyperlink{classchaos_1_1test_1_1_fixture}{chaos::test::Fixture}* get\_fixture() \{ \textcolor{keywordflow}{return} fixture; \}        \(\backslash\)
         virtual \textcolor{keywordtype}{void} execute();                                                \(\backslash\)
     \};                                                                         \(\backslash\)
     static chaos::test::internal::TestCore object\_##path (                     \(\backslash\)

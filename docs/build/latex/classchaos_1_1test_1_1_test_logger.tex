@@ -14,10 +14,22 @@ enum \hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7
 \item 
 \hyperlink{classchaos_1_1test_1_1_test_logger_a59b5462eea92053f301b8c5e9c61892f}{Test\+Logger} ()
 \begin{DoxyCompactList}\small\item\em Constructs a test logger interface. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1test_1_1_test_logger_a187403a01b59676a955817fa39bafbbb}{add\+Std\+Out} (\hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\+Format} format)
+void \hyperlink{classchaos_1_1test_1_1_test_logger_a95a0c9aa1345a94f84e41caa71e6e8ab}{set\+\_\+as\+\_\+parent} (bool state)
+\begin{DoxyCompactList}\small\item\em Sets this logger as the parent logger. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_a2d6d82c3256d5eb4c0a5b7d8fae86355}{add\+\_\+stdout} (\hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\+Format} format)
 \begin{DoxyCompactList}\small\item\em Adds a standard output for writing. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1test_1_1_test_logger_a0525b93567d29d8cf1f0de1b5b32be09}{add\+File\+Output} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path, \hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\+Format} format)
-\begin{DoxyCompactList}\small\item\em Adds a file output for writing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classchaos_1_1test_1_1_test_logger_adf7612679442ae1b804d2d3e9390b9b8}{add\+\_\+file\+\_\+output} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path, \hyperlink{classchaos_1_1test_1_1_test_logger_a8e6f679501d623e41ac0f0c445a7820d}{Out\+Format} format)
+\begin{DoxyCompactList}\small\item\em Adds a file output for writing. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1test_1_1_test_logger_a81eb3642eda4f8b3a4efa98d78b40592}{}void \hyperlink{classchaos_1_1test_1_1_test_logger_a81eb3642eda4f8b3a4efa98d78b40592}{open\+\_\+log} ()\label{classchaos_1_1test_1_1_test_logger_a81eb3642eda4f8b3a4efa98d78b40592}
+
+\begin{DoxyCompactList}\small\item\em Opening statement of the log. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1test_1_1_test_logger_a3ba359890fa3daa7257657e6b3db4d90}{}void \hyperlink{classchaos_1_1test_1_1_test_logger_a3ba359890fa3daa7257657e6b3db4d90}{close\+\_\+log} ()\label{classchaos_1_1test_1_1_test_logger_a3ba359890fa3daa7257657e6b3db4d90}
+
+\begin{DoxyCompactList}\small\item\em Closing statement of the log. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_ac6744b59f304552bb819dd8f4d724143}{open\+\_\+test} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&id)
+\begin{DoxyCompactList}\small\item\em Opening statement of a unit test. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_a5b1f6f1abbedaea7f5475e0dc2677c3c}{close\+\_\+test} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&id)
+\begin{DoxyCompactList}\small\item\em Closing of a unit test. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Enumeration Documentation}
@@ -58,14 +70,14 @@ Constructs a test logger interface.
 By default the logger has no defined outputs. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classchaos_1_1test_1_1_test_logger_a0525b93567d29d8cf1f0de1b5b32be09}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!add\+File\+Output@{add\+File\+Output}}
-\index{add\+File\+Output@{add\+File\+Output}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
-\subsubsection[{add\+File\+Output(const chaos\+::str\+::\+U\+T\+F8\+String \&path, Out\+Format format)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::add\+File\+Output (
+\hypertarget{classchaos_1_1test_1_1_test_logger_adf7612679442ae1b804d2d3e9390b9b8}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!add\+\_\+file\+\_\+output@{add\+\_\+file\+\_\+output}}
+\index{add\+\_\+file\+\_\+output@{add\+\_\+file\+\_\+output}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{add\+\_\+file\+\_\+output(const chaos\+::str\+::\+U\+T\+F8\+String \&path, Out\+Format format)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::add\+\_\+file\+\_\+output (
 \begin{DoxyParamCaption}
 \item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{path, }
 \item[{{\bf Out\+Format}}]{format}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1test_1_1_test_logger_a0525b93567d29d8cf1f0de1b5b32be09}
+)}\label{classchaos_1_1test_1_1_test_logger_adf7612679442ae1b804d2d3e9390b9b8}
 
 
 Adds a file output for writing. 
@@ -77,13 +89,13 @@ Adds a file output for writing.
 {\em format} & The format to write to the file in. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classchaos_1_1test_1_1_test_logger_a187403a01b59676a955817fa39bafbbb}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!add\+Std\+Out@{add\+Std\+Out}}
-\index{add\+Std\+Out@{add\+Std\+Out}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
-\subsubsection[{add\+Std\+Out(\+Out\+Format format)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::add\+Std\+Out (
+\hypertarget{classchaos_1_1test_1_1_test_logger_a2d6d82c3256d5eb4c0a5b7d8fae86355}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!add\+\_\+stdout@{add\+\_\+stdout}}
+\index{add\+\_\+stdout@{add\+\_\+stdout}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{add\+\_\+stdout(\+Out\+Format format)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::add\+\_\+stdout (
 \begin{DoxyParamCaption}
 \item[{{\bf Out\+Format}}]{format}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1test_1_1_test_logger_a187403a01b59676a955817fa39bafbbb}
+)}\label{classchaos_1_1test_1_1_test_logger_a2d6d82c3256d5eb4c0a5b7d8fae86355}
 
 
 Adds a standard output for writing. 
@@ -96,7 +108,53 @@ Currently writing to only one standard output is supported. Calling this functio
 {\em format} & The format to write standard output in. \\
 \hline
 \end{DoxyParams}
+\hypertarget{classchaos_1_1test_1_1_test_logger_a5b1f6f1abbedaea7f5475e0dc2677c3c}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!close\+\_\+test@{close\+\_\+test}}
+\index{close\+\_\+test@{close\+\_\+test}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{close\+\_\+test(const chaos\+::str\+::\+U\+T\+F8\+String \&id)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::close\+\_\+test (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{id}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1test_1_1_test_logger_a5b1f6f1abbedaea7f5475e0dc2677c3c}
 
+
+Closing of a unit test. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The unique id of this test. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1test_1_1_test_logger_ac6744b59f304552bb819dd8f4d724143}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!open\+\_\+test@{open\+\_\+test}}
+\index{open\+\_\+test@{open\+\_\+test}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{open\+\_\+test(const chaos\+::str\+::\+U\+T\+F8\+String \&path, const chaos\+::str\+::\+U\+T\+F8\+String \&id)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::open\+\_\+test (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{path, }
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{id}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1test_1_1_test_logger_ac6744b59f304552bb819dd8f4d724143}
+
+
+Opening statement of a unit test. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The Path of this test \\
+\hline
+{\em id} & The unique id of this test. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1test_1_1_test_logger_a95a0c9aa1345a94f84e41caa71e6e8ab}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!set\+\_\+as\+\_\+parent@{set\+\_\+as\+\_\+parent}}
+\index{set\+\_\+as\+\_\+parent@{set\+\_\+as\+\_\+parent}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{set\+\_\+as\+\_\+parent(bool state)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::set\+\_\+as\+\_\+parent (
+\begin{DoxyParamCaption}
+\item[{bool}]{state}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1test_1_1_test_logger_a95a0c9aa1345a94f84e41caa71e6e8ab}
+
+
+Sets this logger as the parent logger. 
+
+There should be only one parent logger. The parent logger will merge in any sub logs made child processes and will also handle actions like opening and closing the log. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

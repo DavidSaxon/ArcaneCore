@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['baseexceptions_2ehpp',['BaseExceptions.hpp',['../_base_exceptions_8hpp.html',1,'']]],
-  ['baseliterals_2ehpp',['BaseLiterals.hpp',['../_base_literals_8hpp.html',1,'']]]
+  ['abstracttestlogformatter_2ehpp',['AbstractTestLogFormatter.hpp',['../_abstract_test_log_formatter_8hpp.html',1,'']]]
 ];

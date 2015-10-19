@@ -45,6 +45,15 @@ void PrettyTestLogFormatter::close_test()
     // TODO:
 }
 
+void PrettyTestLogFormatter::report_failure(
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
+              chaos::int32            line,
+        const chaos::str::UTF8String& message )
+{
+    // TODO:
+}
+
 } // namespace log_formatter
 } // namespace test
 } // namespace chaos
