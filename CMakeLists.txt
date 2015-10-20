@@ -4,6 +4,7 @@ project(ChaosCore)
 set( CORE_SRC
 
     src/cxx/chaoscore/base/string/UTF8String.cpp
+    src/cxx/chaoscore/base/string/UnicodeUtil.cpp
     src/cxx/chaoscore/base/time/TimeUtil.cpp
 
     src/cxx/chaoscore/io/file/FileUtil.cpp

@@ -320,6 +320,22 @@ public:
     const std::vector< UTF8String > split( const UTF8String& delimiter ) const;
 
     /*!
+     * \brief Returns if this UTF8String represents a signed integer.
+     */
+    bool is_int() const;
+
+    /*!
+     * \brief Returns if this UTF8String represents an unsigned integer.
+     */
+    bool is_uint() const;
+
+    /*!
+     * \brief Returns whether this UTF8String represents a floating point
+     *        number.
+     */
+    bool is_float() const;
+
+    /*!
      * \brief Returns a UTF8String composed of a substring of this string.
      *
      * \param start Index of the symbol to start the substring from.
@@ -368,6 +384,18 @@ public:
      *         index.
      */
     UTF8String get_symbol( size_t index ) const;
+
+    /*!
+     * \brief Gets the utf-8 code point for the symbol at the given index.
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+                                                bounds of the string length.
+     *
+     * \param index Position of the symbol to retrieve the code point for with
+     *              respect to the length returned by get_length()
+     * \return A uint32 representing the code point for the symbol.
+     */
+    chaos::uint32 get_code_point( size_t index ) const;
 
     /*!
      * \brief Get the length of the internal buffer data in bytes.
@@ -430,8 +458,6 @@ private:
     //--------------------------------------------------------------------------
 
     /*!
-     * \internal
-     *
      * Internal function used for assigning raw data to this UTF8String. The
      * input data is expect to be 1-byte aligned and been utf-8 encoded. This
      * function will delete any existing internal data, and allocate storage
@@ -446,6 +472,13 @@ private:
     void assign_internal(
             const void*  data,
                   size_t existing_length = std::string::npos );
+
+    /*!
+     * Internal function used to check if a given index is within the symbol
+     * length (get_length) of the string. If it is no a IndexOutOfBoundsError is
+     * thrown.
+     */
+    void validate_symbol_index( size_t index ) const;
 };
 
 //------------------------------------------------------------------------------

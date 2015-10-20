@@ -7,6 +7,7 @@
 #include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/string/UnicodeUtil.hpp"
 
 // TODO: only used for lexicographical_compare
 // can be removed once implemented correctly
@@ -354,6 +355,70 @@ const std::vector< UTF8String > UTF8String::split(
     return elements;
 }
 
+bool UTF8String::is_int() const
+{
+    // iterate over each code point and ensure that it's a digit
+    for ( size_t i = 0; i < m_length; ++i )
+    {
+        chaos::uint32 code_point = get_code_point( i );
+
+        // the first symbol is allowed to be '-'
+        if ( i == 0                                  &&
+            get_symbol( i ) != "-"                   &&
+            !chaos::str::utf8_is_digit( code_point )    )
+        {
+            return false;
+        }
+        // every other character must be a digit
+        else if ( i != 0 && !chaos::str::utf8_is_digit( code_point ) )
+        {
+            return false;
+        }
+    }
+    // valid int
+    return true;
+}
+
+bool UTF8String::is_uint() const
+{
+    // iterate of each code point and ensure that it's a digit
+    for ( size_t i = 0; i < m_length; ++i )
+    {
+        if ( !chaos::str::utf8_is_digit( get_code_point( i ) ) )
+        {
+            // not a digit
+            return false;
+        }
+    }
+    // valid unsigned int
+    return true;
+}
+
+bool UTF8String::is_float() const
+{
+    bool point_found = false;
+    // iterate of each code point
+    for ( size_t i = 0; i < m_length; ++i )
+    {
+        chaos::uint32 code_point = get_code_point( i );
+
+        if ( !chaos::str::utf8_is_digit( code_point ) )
+        {
+            if ( i == 0 && get_symbol( i ) == "-" )
+            {
+                continue;
+            }
+            if ( get_symbol( i ) == "." && !point_found )
+            {
+                point_found = true;
+                continue;
+            }
+            return false;
+        }
+    }
+    return true;
+}
+
 UTF8String UTF8String::substring( size_t start, size_t end ) const
 {
     // TODO: FIX ME
@@ -383,19 +448,22 @@ bool UTF8String::is_empty() const
 
 UTF8String UTF8String::get_symbol( size_t index ) const
 {
+    // is the index valid
+    validate_symbol_index( index );
+
     // TODO: fix
 
-    // is the index valid
-    if ( index >= m_length )
-    {
-        // TODO: fix this since format is not supported yet :(
-        // throw chaos::ex::IndexOutOfBoundsError( chaos::str::UTF8String(
-        //         "Provided index: %d is greater or equal to the number of "
-        //         "symbols in the string: %d"
-        // ).format( index, m_length ) ); // TODO: .format( index, m_length )
-    }
-
     return UTF8String( &m_data[ index ], 1 );
+}
+
+chaos::uint32 UTF8String::get_code_point( size_t index ) const
+{
+    // is the index valid
+    validate_symbol_index( index );
+
+    return static_cast< chaos::uint32 >(
+            static_cast< char >( m_data[ index ] )
+    );
 }
 
 size_t UTF8String::get_byte_length() const
@@ -506,6 +574,17 @@ void UTF8String::assign_internal( const void* data, size_t existing_length )
     // to calculate the number of utf-8 symbols in the string
     // TODO:
     m_length = m_data_length - 1;
+}
+
+void UTF8String::validate_symbol_index( size_t index ) const
+{
+    if ( index >= m_length )
+    {
+        UTF8String error_message;
+        error_message << "Provided index: " << index << " is greater or equal "
+                      << "to the number of symbols in the string: " << m_length;
+        throw chaos::ex::IndexOutOfBoundsError( error_message );
+    }
 }
 
 //------------------------------------------------------------------------------

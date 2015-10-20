@@ -105,8 +105,8 @@ int main( int argc, char* argv[] )
         // --stdout
         else if ( ARG_STDOUT == argv[ i ] )
         {
-            // ensure there is another argument
-            if ( i == static_cast< size_t >( argc - 1 ) )
+            // ensure there is another two arguments
+            if ( i == static_cast< size_t >( argc - 2 ) )
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_STDOUT << "\' must be followed by a format to "
@@ -123,6 +123,8 @@ int main( int argc, char* argv[] )
                           << "for test logging.\n" << std::endl;
                 return -1;
             }
+
+            // TODO: verbosity
 
             // get the format to be use
             chaos::test::TestLogger::OutFormat out_format;
