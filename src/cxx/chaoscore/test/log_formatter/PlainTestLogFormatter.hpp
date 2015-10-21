@@ -29,7 +29,7 @@ public:
     /*!
      * \brief Creates a new Plain Test Log Formatter.
      */
-    PlainTestLogFormatter( std::ostream* stream );
+    PlainTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS

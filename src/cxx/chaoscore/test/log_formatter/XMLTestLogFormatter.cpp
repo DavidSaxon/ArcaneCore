@@ -13,9 +13,10 @@ namespace log_formatter
 //                                  CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-XMLTestLogFormatter::XMLTestLogFormatter( std::ostream* stream )
+XMLTestLogFormatter::XMLTestLogFormatter(
+        chaos::uint8 verbosity, std::ostream* stream )
     :
-    AbstractTestLogFormatter( stream )
+    AbstractTestLogFormatter( verbosity, stream )
 {
 }
 

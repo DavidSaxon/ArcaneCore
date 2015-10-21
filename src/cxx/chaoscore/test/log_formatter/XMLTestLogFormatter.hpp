@@ -28,7 +28,7 @@ public:
     /*!
      * \brief Creates a new XML Test Log Formatter.
      */
-    XMLTestLogFormatter( std::ostream* stream );
+    XMLTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS

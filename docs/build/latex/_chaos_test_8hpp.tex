@@ -57,14 +57,13 @@ David Saxon
 \begin{DoxyCode}
 \textcolor{keywordflow}{if} ( a == b )                                                          \(\backslash\)
         \{                                                                      \(\backslash\)
+            chaos::test::internal::TestCore::register\_success(                 \(\backslash\)
+                    \textcolor{stringliteral}{"TEST\_EQUAL"}, \_\_FILE\_\_, \_\_LINE\_\_ );                        \(\backslash\)
         \}                                                                      \(\backslash\)
         else                                                                   \(\backslash\)
         \{                                                                      \(\backslash\)
             chaos::test::internal::TestCore::register\_failure(                 \(\backslash\)
-                    \_\_FILE\_\_,                                                  \(\backslash\)
-                    \_\_LINE\_\_,                                                  \(\backslash\)
-                    \textcolor{stringliteral}{"CHAOS\_TEST\_EQUAL"}                                         \(\backslash\)
-            );                                                                 \(\backslash\)
+                    \textcolor{stringliteral}{"TEST\_EQUAL"}, \_\_FILE\_\_, \_\_LINE\_\_, \textcolor{stringliteral}{""} );                    \(\backslash\)
         \}
 \end{DoxyCode}
 \hypertarget{_chaos_test_8hpp_aff792df3b39dba470d2d977009e96d57}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}}

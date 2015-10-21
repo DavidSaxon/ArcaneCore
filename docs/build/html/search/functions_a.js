@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['testlogger',['TestLogger',['../classchaos_1_1test_1_1_test_logger.html#a59b5462eea92053f301b8c5e9c61892f',1,'chaos::test::TestLogger']]],
-  ['to_5fstd_5fstring',['to_std_string',['../classchaos_1_1str_1_1_u_t_f8_string.html#a8901fbbe5e72d7bf8f0d160b55475244',1,'chaos::str::UTF8String']]]
+  ['set_5fas_5fparent',['set_as_parent',['../classchaos_1_1test_1_1_test_logger.html#a95a0c9aa1345a94f84e41caa71e6e8ab',1,'chaos::test::TestLogger']]],
+  ['split',['split',['../classchaos_1_1str_1_1_u_t_f8_string.html#ac5da4c989f6394c38b0fb82a252099db',1,'chaos::str::UTF8String']]],
+  ['starts_5fwith',['starts_with',['../classchaos_1_1str_1_1_u_t_f8_string.html#a065a34c88630d3aca883d691322474c0',1,'chaos::str::UTF8String']]],
+  ['substring',['substring',['../classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c',1,'chaos::str::UTF8String']]]
 ];

@@ -109,9 +109,10 @@ int main( int argc, char* argv[] )
             if ( i == static_cast< size_t >( argc - 2 ) )
             {
                 std::cerr << "\nERROR: Command line argument \'"
-                          << ARG_STDOUT << "\' must be followed by a format to "
-                          << "use. Available formats are: plain, pretty, xml, "
-                          << "and html.\n" << std::endl;
+                          << ARG_STDOUT << "\' must be followed by the "
+                          "verbosity level (1-4) and the format to use. "
+                          << "Available formats are: plain, pretty, xml, and "
+                          << "html.\n" << std::endl;
                 return -1;
             }
 
@@ -124,7 +125,26 @@ int main( int argc, char* argv[] )
                 return -1;
             }
 
-            // TODO: verbosity
+            // get the verbosity level
+            chaos::str::UTF8String verbosityString( argv[ ++i ] );
+            if ( !verbosityString.is_uint() )
+            {
+                std::cerr << "\nERROR: Verbosity level: \'" << verbosityString
+                          << "\' provided for the argument: \'" << ARG_STDOUT
+                          << "\' is not a integer between 1 and 4.\n"
+                          << std::endl;
+                return -1;
+            }
+            // get as int and check range
+            chaos::uint32 verbosity = verbosityString.to_uint32();
+            if ( verbosity == 0 || verbosity > 4 )
+            {
+                std::cerr << "\nERROR: Verbosity level: \'" << verbosity
+                          << "\' provided for the argument: \'" << ARG_STDOUT
+                          << "\' is not a integer between 1 and 4.\n"
+                          << std::endl;
+                return -1;
+            }
 
             // get the format to be use
             chaos::test::TestLogger::OutFormat out_format;
@@ -140,20 +160,23 @@ int main( int argc, char* argv[] )
 
             // add to the run information
             run_info.use_stdout = true;
-            run_info.stdout_format = out_format;
+            run_info.stdout_info.verbosity =
+                    static_cast< chaos::uint8 >( verbosity );
+            run_info.stdout_info.format = out_format;
             // standard out has now been defined
             stdout_defined = true;
         }
         // --fileout
         else if ( ARG_FILEOUT == argv[ i ] )
         {
-            // ensure there is another two arguments
-            if ( i == static_cast< size_t >( argc - 2 ) )
+            // ensure there is another three arguments
+            if ( i == static_cast< size_t >( argc - 3 ) )
             {
                 std::cerr << "\nERROR: Command line argument \'"
-                          << ARG_FILEOUT << "\' must be followed by a the file "
-                          << "path to write to and the format to use.\n"
-                          << std::endl;
+                          << ARG_FILEOUT << "\' must be followed by the file "
+                          << "path to write to, the verbosity level (1-4), and "
+                          << "the format to use. Available formats are: plain, "
+                          << "pretty, xml, and html.\n" << std::endl;
                 return -1;
             }
 
@@ -185,6 +208,27 @@ int main( int argc, char* argv[] )
                 return -1;
             }
 
+            // get the verbosity level
+            chaos::str::UTF8String verbosityString( argv[ ++i ] );
+            if ( !verbosityString.is_uint() )
+            {
+                std::cerr << "\nERROR: Verbosity level: \'" << verbosityString
+                          << "\' provided for the argument: \'" << ARG_FILEOUT
+                          << "\' is not a integer between 1 and 4.\n"
+                          << std::endl;
+                return -1;
+            }
+            // get as int and check range
+            chaos::uint32 verbosity = verbosityString.to_uint32();
+            if ( verbosity == 0 || verbosity > 4 )
+            {
+                std::cerr << "\nERROR: Verbosity level: \'" << verbosity
+                          << "\' provided for the argument: \'" << ARG_FILEOUT
+                          << "\' is not a integer between 1 and 4.\n"
+                          << std::endl;
+                return -1;
+            }
+
             // get the format to be use
             chaos::test::TestLogger::OutFormat out_format;
             chaos::str::UTF8String opt( argv[ ++i ] );
@@ -206,7 +250,8 @@ int main( int argc, char* argv[] )
             }
 
             // add to run information
-            run_info.files[ file_path ] = out_format;
+            run_info.files[ file_path ] =
+                    new chaos::test::internal::OutInfo( verbosity, out_format );
             // if stdout hasn't be defined removed it
             if ( !stdout_defined )
             {

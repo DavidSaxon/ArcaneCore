@@ -127,23 +127,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; <span class="keywordtype">id</span> );</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> close_test();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <span class="comment">// namespace log_formatter</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace test</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> report_success(</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; type,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; file,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                  <a class="code" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a>            line );</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> report_failure(</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; type,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; file,</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                  <a class="code" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a>            line,</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; message );</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;} <span class="comment">// namespace log_formatter</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;} <span class="comment">// namespace test</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_h_t_m_l_test_log_formatter_html"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_h_t_m_l_test_log_formatter.html">chaos::test::log_formatter::HTMLTestLogFormatter</a></div><div class="ttdoc">Test Log Formatter that writes logs as HTML. </div><div class="ttdef"><b>Definition:</b> HTMLTestLogFormatter.hpp:20</div></div>
 <div class="ttc" id="namespacechaos_html"><div class="ttname"><a href="namespacechaos.html">chaos</a></div><div class="ttdoc">the global ChaosCore namespace which contains everything within ChaosCore. </div><div class="ttdef"><b>Definition:</b> __chaoscore.hpp:8</div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></div><div class="ttdoc">A generic string type for storing Unicode data. TODO. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:26</div></div>
+<div class="ttc" id="namespacechaos_html_ad1de7efb430365afd2c9446a0f522a90"><div class="ttname"><a href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a></div><div class="ttdeci">int32_t int32</div><div class="ttdoc">a 32-bit signed integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:76</div></div>
 <div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_html"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html">chaos::test::log_formatter::AbstractTestLogFormatter</a></div><div class="ttdoc">Abstract base class that all other Test Log Formatters will inherit from. </div><div class="ttdef"><b>Definition:</b> AbstractTestLogFormatter.hpp:27</div></div>
 <div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_h_t_m_l_test_log_formatter_html_a62020a38f80ca01d58cac2bc04cd7044"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_h_t_m_l_test_log_formatter.html#a62020a38f80ca01d58cac2bc04cd7044">chaos::test::log_formatter::HTMLTestLogFormatter::HTMLTestLogFormatter</a></div><div class="ttdeci">HTMLTestLogFormatter(std::ostream *stream)</div><div class="ttdoc">Creates a new HTML Test Log Formatter. </div></div>
 <div class="ttc" id="_abstract_test_log_formatter_8hpp_html"><div class="ttname"><a href="_abstract_test_log_formatter_8hpp.html">AbstractTestLogFormatter.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 21 2015 00:12:59 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

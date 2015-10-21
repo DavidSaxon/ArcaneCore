@@ -167,14 +167,13 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ( a == b )                                                          \</div>
 <div class="line">        {                                                                      \</div>
+<div class="line">            chaos::test::internal::TestCore::register_success(                 \</div>
+<div class="line">                    <span class="stringliteral">&quot;TEST_EQUAL&quot;</span>, __FILE__, __LINE__ );                        \</div>
 <div class="line">        }                                                                      \</div>
 <div class="line">        else                                                                   \</div>
 <div class="line">        {                                                                      \</div>
 <div class="line">            chaos::test::internal::TestCore::register_failure(                 \</div>
-<div class="line">                    __FILE__,                                                  \</div>
-<div class="line">                    __LINE__,                                                  \</div>
-<div class="line">                    <span class="stringliteral">&quot;CHAOS_TEST_EQUAL&quot;</span>                                         \</div>
-<div class="line">            );                                                                 \</div>
+<div class="line">                    <span class="stringliteral">&quot;TEST_EQUAL&quot;</span>, __FILE__, __LINE__, <span class="stringliteral">&quot;&quot;</span> );                    \</div>
 <div class="line">        }</div>
 </div><!-- fragment -->
 </div>
@@ -265,7 +264,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 21 2015 00:12:59 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

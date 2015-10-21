@@ -28,7 +28,7 @@ public:
     /*!
      * \brief Creates a new Pretty Test Log Formatter.
      */
-    PrettyTestLogFormatter( std::ostream* stream );
+    PrettyTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS

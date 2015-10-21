@@ -190,68 +190,78 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keyword">const</span> std::vector&lt; UTF8String &gt; <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac5da4c989f6394c38b0fb82a252099db">split</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a>&amp; delimiter ) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c">substring</a>( <span class="keywordtype">size_t</span> start, <span class="keywordtype">size_t</span> length ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    std::string <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a8901fbbe5e72d7bf8f0d160b55475244">to_std_string</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;    <span class="comment">//--------------------------------ACCESSORS---------------------------------</span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac0c724e649182e02462b48b94d1f5bf7">get_length</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4fc296e90fbbc45a1e3f142dcd1e9853">is_empty</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a04dbe9f15dc1b09c858e2450de26d40a">get_symbol</a>( <span class="keywordtype">size_t</span> index ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a9312a6aac333d68a87066d6f222d119a">get_byte_length</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespacechaos.html#a56015674cfe4ad1fc583c3da6c724d8a">chaos::int8</a>* <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a6424b00b21c9c6600818808c225fe381">get_raw_data</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#ae04d6b4dc8a6c4cbebb2679ed7658805">get_cstring</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="comment">//------------------------------DEV FUNCTIONS-------------------------------</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;</div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="comment">// TODO: REMOVE ME</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="comment">// TESTING FUNCTION</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="keywordtype">void</span> dev_inspect_contents();</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="comment">// the array containing the data stored as consecutive bytes</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;    <a class="code" href="namespacechaos.html#a56015674cfe4ad1fc583c3da6c724d8a">chaos::int8</a>* m_data;</div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;    <span class="comment">// the length of the data int bytes (not the length of the string)</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    <span class="keywordtype">size_t</span> m_data_length;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <span class="comment">// the number of utf-8 symbols in this string</span></div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    <span class="keywordtype">size_t</span> m_length;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="comment">//                          PRIVATE MEMBER FUNCTIONS</span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordtype">void</span> assign_internal(</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">void</span>*  data,</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;                  <span class="keywordtype">size_t</span> existing_length = std::string::npos );</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;};</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;<span class="comment">//                               EXTERNAL OPERATORS</span></div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;std::ostream&amp; operator&lt;&lt;( std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a>&amp; str );</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;} <span class="comment">// namespace str</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a64f529f30034281560805b97826c5e13">is_int</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a989763da3e7eed8664cd2e5c41ea7e00">is_uint</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2fbd69fb90a390df37c119577d4d3c6a">is_float</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c">substring</a>( <span class="keywordtype">size_t</span> start, <span class="keywordtype">size_t</span> length ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;    std::string <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a8901fbbe5e72d7bf8f0d160b55475244">to_std_string</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="comment">//--------------------------------ACCESSORS---------------------------------</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#ac0c724e649182e02462b48b94d1f5bf7">get_length</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a4fc296e90fbbc45a1e3f142dcd1e9853">is_empty</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a04dbe9f15dc1b09c858e2450de26d40a">get_symbol</a>( <span class="keywordtype">size_t</span> index ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <a class="code" href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a007889a60f57ec9196dcebb39abeafdf">get_code_point</a>( <span class="keywordtype">size_t</span> index ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a9312a6aac333d68a87066d6f222d119a">get_byte_length</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    <span class="keyword">const</span> <a class="code" href="namespacechaos.html#a56015674cfe4ad1fc583c3da6c724d8a">chaos::int8</a>* <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#a6424b00b21c9c6600818808c225fe381">get_raw_data</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html#ae04d6b4dc8a6c4cbebb2679ed7658805">get_cstring</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    <span class="comment">//------------------------------DEV FUNCTIONS-------------------------------</span></div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="comment">// TODO: REMOVE ME</span></div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <span class="comment">// TESTING FUNCTION</span></div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <span class="keywordtype">void</span> dev_inspect_contents();</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="comment">// the array containing the data stored as consecutive bytes</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <a class="code" href="namespacechaos.html#a56015674cfe4ad1fc583c3da6c724d8a">chaos::int8</a>* m_data;</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    <span class="comment">// the length of the data int bytes (not the length of the string)</span></div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordtype">size_t</span> m_data_length;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="comment">// the number of utf-8 symbols in this string</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    <span class="keywordtype">size_t</span> m_length;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <span class="comment">//                          PRIVATE MEMBER FUNCTIONS</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;    <span class="keywordtype">void</span> assign_internal(</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">void</span>*  data,</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;                  <span class="keywordtype">size_t</span> existing_length = std::string::npos );</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;    <span class="keywordtype">void</span> validate_symbol_index( <span class="keywordtype">size_t</span> index ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;};</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">//                               EXTERNAL OPERATORS</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;std::ostream&amp; operator&lt;&lt;( std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">UTF8String</a>&amp; str );</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;} <span class="comment">// namespace str</span></div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a8b61a2f73dacd4749d993dad00788d0d"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a8b61a2f73dacd4749d993dad00788d0d">chaos::str::UTF8String::concatenate</a></div><div class="ttdeci">UTF8String &amp; concatenate(const UTF8String &amp;other)</div><div class="ttdoc">Concatenates another UTF8String on to the end of this string. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a0d624a8e308b9a04511d31558ae37d8d"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a0d624a8e308b9a04511d31558ae37d8d">chaos::str::UTF8String::operator+</a></div><div class="ttdeci">UTF8String operator+(const UTF8String &amp;other) const </div><div class="ttdoc">Addition operator. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a035c9c2a40bcac212ebb20a8524d0b5a"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a035c9c2a40bcac212ebb20a8524d0b5a">chaos::str::UTF8String::find_first</a></div><div class="ttdeci">size_t find_first(const UTF8String &amp;substring) const </div><div class="ttdoc">Finds the first occurrence of the given substring and returns the index of it. </div></div>
@@ -266,6 +276,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a4fc296e90fbbc45a1e3f142dcd1e9853"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a4fc296e90fbbc45a1e3f142dcd1e9853">chaos::str::UTF8String::is_empty</a></div><div class="ttdeci">bool is_empty() const </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_ac0c724e649182e02462b48b94d1f5bf7"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#ac0c724e649182e02462b48b94d1f5bf7">chaos::str::UTF8String::get_length</a></div><div class="ttdeci">size_t get_length() const </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a6424b00b21c9c6600818808c225fe381"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a6424b00b21c9c6600818808c225fe381">chaos::str::UTF8String::get_raw_data</a></div><div class="ttdeci">const chaos::int8 * get_raw_data() const </div><div class="ttdoc">Get the raw byte data of this UTF8String. </div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a2fbd69fb90a390df37c119577d4d3c6a"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a2fbd69fb90a390df37c119577d4d3c6a">chaos::str::UTF8String::is_float</a></div><div class="ttdeci">bool is_float() const </div><div class="ttdoc">Returns whether this UTF8String represents a floating point number. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_ae04d6b4dc8a6c4cbebb2679ed7658805"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#ae04d6b4dc8a6c4cbebb2679ed7658805">chaos::str::UTF8String::get_cstring</a></div><div class="ttdeci">const char * get_cstring() const </div><div class="ttdoc">Gets the raw byte data of this UTF8String as c style string (const char*). </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></div><div class="ttdoc">A generic string type for storing Unicode data. TODO. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:26</div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a8901fbbe5e72d7bf8f0d160b55475244"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a8901fbbe5e72d7bf8f0d160b55475244">chaos::str::UTF8String::to_std_string</a></div><div class="ttdeci">std::string to_std_string() const </div><div class="ttdoc">Returns this as a standard library string. </div></div>
@@ -276,15 +287,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a065a34c88630d3aca883d691322474c0"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a065a34c88630d3aca883d691322474c0">chaos::str::UTF8String::starts_with</a></div><div class="ttdeci">bool starts_with(const UTF8String &amp;substring) const </div><div class="ttdoc">Checks whether this UTF8String starts with the given string. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_ac7b54ed9c42a9c9a0a386d453d2c1daa"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#ac7b54ed9c42a9c9a0a386d453d2c1daa">chaos::str::UTF8String::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const UTF8String &amp;other) const </div><div class="ttdoc">Less than operator. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a9312a6aac333d68a87066d6f222d119a"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a9312a6aac333d68a87066d6f222d119a">chaos::str::UTF8String::get_byte_length</a></div><div class="ttdeci">size_t get_byte_length() const </div><div class="ttdoc">Get the length of the internal buffer data in bytes. </div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a64f529f30034281560805b97826c5e13"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a64f529f30034281560805b97826c5e13">chaos::str::UTF8String::is_int</a></div><div class="ttdeci">bool is_int() const </div><div class="ttdoc">Returns if this UTF8String represents a signed integer. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a483e71ec1090e346c63bf2b13b37ad7a"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a483e71ec1090e346c63bf2b13b37ad7a">chaos::str::UTF8String::assign</a></div><div class="ttdeci">void assign(const char *data)</div><div class="ttdoc">Assigns the internal data of this UTF8String to the given string literal. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_ae4446150398d498e8aa9ebbc05ca7b52"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#ae4446150398d498e8aa9ebbc05ca7b52">chaos::str::UTF8String::operator==</a></div><div class="ttdeci">bool operator==(const UTF8String &amp;other) const </div><div class="ttdoc">Equality operator. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_ac5da4c989f6394c38b0fb82a252099db"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#ac5da4c989f6394c38b0fb82a252099db">chaos::str::UTF8String::split</a></div><div class="ttdeci">const std::vector&lt; UTF8String &gt; split(const UTF8String &amp;delimiter) const </div><div class="ttdoc">Splits this UTF8String by the given delimiter and places devisions into a vector. ...</div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a04dbe9f15dc1b09c858e2450de26d40a"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a04dbe9f15dc1b09c858e2450de26d40a">chaos::str::UTF8String::get_symbol</a></div><div class="ttdeci">UTF8String get_symbol(size_t index) const </div><div class="ttdoc">Get the utf-8 symbol defined at the given index. </div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a9ce7f005abc581590ff3823db749873f"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a9ce7f005abc581590ff3823db749873f">chaos::str::UTF8String::operator+=</a></div><div class="ttdeci">const UTF8String &amp; operator+=(const UTF8String &amp;other)</div><div class="ttdoc">Compound addition operator. </div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a989763da3e7eed8664cd2e5c41ea7e00"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a989763da3e7eed8664cd2e5c41ea7e00">chaos::str::UTF8String::is_uint</a></div><div class="ttdeci">bool is_uint() const </div><div class="ttdoc">Returns if this UTF8String represents an unsigned integer. </div></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html_a007889a60f57ec9196dcebb39abeafdf"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html#a007889a60f57ec9196dcebb39abeafdf">chaos::str::UTF8String::get_code_point</a></div><div class="ttdeci">chaos::uint32 get_code_point(size_t index) const </div><div class="ttdoc">Gets the utf-8 code point for the symbol at the given index. </div></div>
+<div class="ttc" id="namespacechaos_html_a3b3a47ba1e284655bf1a30c441121c60"><div class="ttname"><a href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a></div><div class="ttdeci">uint32_t uint32</div><div class="ttdoc">a 32-bit unsigned integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:85</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 21 2015 00:12:59 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

@@ -28,7 +28,7 @@ public:
     /*!
      * \brief Creates a new HTML Test Log Formatter.
      */
-    HTMLTestLogFormatter( std::ostream* stream );
+    HTMLTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS

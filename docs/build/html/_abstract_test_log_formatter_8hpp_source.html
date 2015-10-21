@@ -143,30 +143,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> close_test() = 0;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a39664df72c625247706e85fe7a7d3272">   77</a></span>&#160;    std::ostream* <a class="code" href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a39664df72c625247706e85fe7a7d3272">m_stream</a>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;};</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;} <span class="comment">// namespace log_formatter</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;} <span class="comment">// namespace test</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> report_success(</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; type,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; file,</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                  <a class="code" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a>            line ) = 0;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> report_failure(</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; type,</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; file,</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                  <a class="code" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a>            line,</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; message ) = 0;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a39664df72c625247706e85fe7a7d3272">   88</a></span>&#160;    std::ostream* <a class="code" href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a39664df72c625247706e85fe7a7d3272">m_stream</a>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;} <span class="comment">// namespace log_formatter</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <span class="comment">// namespace test</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespacechaos_html"><div class="ttname"><a href="namespacechaos.html">chaos</a></div><div class="ttdoc">the global ChaosCore namespace which contains everything within ChaosCore. </div><div class="ttdef"><b>Definition:</b> __chaoscore.hpp:8</div></div>
-<div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_html_a39664df72c625247706e85fe7a7d3272"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a39664df72c625247706e85fe7a7d3272">chaos::test::log_formatter::AbstractTestLogFormatter::m_stream</a></div><div class="ttdeci">std::ostream * m_stream</div><div class="ttdoc">The stream this logger is writing to. </div><div class="ttdef"><b>Definition:</b> AbstractTestLogFormatter.hpp:77</div></div>
+<div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_html_a39664df72c625247706e85fe7a7d3272"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a39664df72c625247706e85fe7a7d3272">chaos::test::log_formatter::AbstractTestLogFormatter::m_stream</a></div><div class="ttdeci">std::ostream * m_stream</div><div class="ttdoc">The stream this logger is writing to. </div><div class="ttdef"><b>Definition:</b> AbstractTestLogFormatter.hpp:88</div></div>
 <div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></div><div class="ttdoc">A generic string type for storing Unicode data. TODO. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:26</div></div>
+<div class="ttc" id="namespacechaos_html_ad1de7efb430365afd2c9446a0f522a90"><div class="ttname"><a href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a></div><div class="ttdeci">int32_t int32</div><div class="ttdoc">a 32-bit signed integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:76</div></div>
 <div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_html"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html">chaos::test::log_formatter::AbstractTestLogFormatter</a></div><div class="ttdoc">Abstract base class that all other Test Log Formatters will inherit from. </div><div class="ttdef"><b>Definition:</b> AbstractTestLogFormatter.hpp:27</div></div>
 <div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
 <div class="ttc" id="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter_html_a9b6256dad677274ae028f14a3f713ca0"><div class="ttname"><a href="classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a9b6256dad677274ae028f14a3f713ca0">chaos::test::log_formatter::AbstractTestLogFormatter::AbstractTestLogFormatter</a></div><div class="ttdeci">AbstractTestLogFormatter(std::ostream *stream)</div><div class="ttdoc">Super constructor for Test Log Formatters. </div><div class="ttdef"><b>Definition:</b> AbstractTestLogFormatter.hpp:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 21 2015 00:12:59 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

@@ -136,6 +136,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a5b1f6f1abbedaea7f5475e0dc2677c3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a5b1f6f1abbedaea7f5475e0dc2677c3c">close_test</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;id)</td></tr>
 <tr class="memdesc:a5b1f6f1abbedaea7f5475e0dc2677c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closing of a unit test.  <a href="#a5b1f6f1abbedaea7f5475e0dc2677c3c">More...</a><br /></td></tr>
 <tr class="separator:a5b1f6f1abbedaea7f5475e0dc2677c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae26a666c0a9aade6390edf9ec916c9d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#ae26a666c0a9aade6390edf9ec916c9d3">report_success</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;type, const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;file, <a class="el" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a> line)</td></tr>
+<tr class="memdesc:ae26a666c0a9aade6390edf9ec916c9d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports a test success.  <a href="#ae26a666c0a9aade6390edf9ec916c9d3">More...</a><br /></td></tr>
+<tr class="separator:ae26a666c0a9aade6390edf9ec916c9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bde1d40286619bbef932dfa72f9c419"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_test_logger.html#a7bde1d40286619bbef932dfa72f9c419">report_failure</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;type, const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;file, <a class="el" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a> line, const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;message)</td></tr>
+<tr class="memdesc:a7bde1d40286619bbef932dfa72f9c419"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports a test failure.  <a href="#a7bde1d40286619bbef932dfa72f9c419">More...</a><br /></td></tr>
+<tr class="separator:a7bde1d40286619bbef932dfa72f9c419"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a8e6f679501d623e41ac0f0c445a7820d"></a>
@@ -305,6 +311,97 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a class="anchor" id="a7bde1d40286619bbef932dfa72f9c419"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::test::TestLogger::report_failure </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a>&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reports a test failure. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>the Type of test that failed. </td></tr>
+    <tr><td class="paramname">file</td><td>The source file that the failure occurred in. </td></tr>
+    <tr><td class="paramname">line</td><td>The line in the file that failure occurred at. </td></tr>
+    <tr><td class="paramname">message</td><td>A message that was provided with the failure. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae26a666c0a9aade6390edf9ec916c9d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::test::TestLogger::report_success </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacechaos.html#ad1de7efb430365afd2c9446a0f522a90">chaos::int32</a>&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reports a test success. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>the Type of test that succeed. </td></tr>
+    <tr><td class="paramname">file</td><td>The source file that the success occurred in. </td></tr>
+    <tr><td class="paramname">line</td><td>The line in the file that success occurred at. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a95a0c9aa1345a94f84e41caa71e6e8ab"></a>
 <div class="memitem">
 <div class="memproto">
@@ -330,7 +427,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 19 2015 23:06:20 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 21 2015 00:12:59 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

@@ -35,11 +35,13 @@ public:
     /*!
      * \brief Super constructor for Test Log Formatters.
      *
-     * \param stream the stream to write logs to.
+     * \param verbosity The level of verbosity of the formatter.
+     * \param stream The stream to write logs to.
      */
-    AbstractTestLogFormatter( std::ostream* stream )
+    AbstractTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream )
         :
-        m_stream( stream )
+        m_verbosity( verbosity ),
+        m_stream   ( stream )
     {
     }
 
@@ -82,6 +84,10 @@ protected:
     //                             PRIVATE ATTRIBUTES
     //--------------------------------------------------------------------------
 
+    /*!
+     * \brief The verbosity level of the formatter.
+     */
+    chaos::uint8 m_verbosity;
     /*!
      * \brief The stream this logger is writing to.
      */

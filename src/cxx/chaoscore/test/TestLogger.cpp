@@ -54,7 +54,7 @@ void TestLogger::set_as_parent( bool state )
     m_is_parent = state;
 }
 
-void TestLogger::add_stdout( OutFormat format )
+void TestLogger::add_stdout( chaos::uint8 verbosity, OutFormat format )
 {
     // safety to ensure two std outs are not defined
     if ( m_using_stdout )
@@ -68,12 +68,13 @@ void TestLogger::add_stdout( OutFormat format )
     m_using_stdout = true;
 
     // create formatter
-    create_formatter( &std::cout, format );
+    create_formatter( &std::cout, verbosity, format );
 
 }
 
 void TestLogger::add_file_output(
         const chaos::str::UTF8String& path,
+              chaos::uint8            verbosity,
               OutFormat               format )
 {
     // the path should be validated at this point..
@@ -94,7 +95,7 @@ void TestLogger::add_file_output(
     m_file_streams[ path ] = file_stream;
 
     // create a formatter
-    create_formatter( file_stream, format );
+    create_formatter( file_stream, verbosity, format );
 }
 
 void TestLogger::open_log()
@@ -209,7 +210,10 @@ void TestLogger::report_failure(
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void TestLogger::create_formatter( std::ostream* stream, OutFormat format )
+void TestLogger::create_formatter(
+        std::ostream* stream,
+        chaos::uint8  verbosity,
+        OutFormat     format )
 {
     // create a new log formatter based on the output type
     log_formatter::AbstractTestLogFormatter* formatter;
@@ -217,22 +221,26 @@ void TestLogger::create_formatter( std::ostream* stream, OutFormat format )
     {
         case OUT_PLAIN_TEXT:
         {
-            formatter = new log_formatter::PlainTestLogFormatter( stream );
+            formatter = new log_formatter::PlainTestLogFormatter(
+                    verbosity, stream );
             break;
         }
         case OUT_PRETTY_TEXT:
         {
-            formatter = new log_formatter::PrettyTestLogFormatter( stream );
+            formatter = new log_formatter::PrettyTestLogFormatter(
+                    verbosity, stream );
             break;
         }
         case OUT_XML:
         {
-            formatter = new log_formatter::XMLTestLogFormatter( stream );
+            formatter = new log_formatter::XMLTestLogFormatter(
+                    verbosity, stream );
             break;
         }
         case OUT_HTML:
         {
-            formatter = new log_formatter::HTMLTestLogFormatter( stream );
+            formatter = new log_formatter::HTMLTestLogFormatter(
+                    verbosity, stream );
             break;
         }
     }

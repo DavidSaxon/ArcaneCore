@@ -202,6 +202,13 @@ public:
     /*!
      * \brief Stream operator.
      *
+     * Extends this UTF8String with the given unsigned int32.
+     */
+    UTF8String& operator<<( chaos::uint32 other );
+
+    /*!
+     * \brief Stream operator.
+     *
      * Extends this UTF8String with the given unsigned int64.
      */
     UTF8String& operator<<( chaos::uint64 other );
@@ -352,6 +359,22 @@ public:
       * \return the std::string representation of this UTF8String.
       */
     std::string to_std_string() const;
+
+    /*!
+     * \brief Returns this UTF8String as an int32 if the conversion is valid.
+     *
+     * \throws chaos::ex::ConversionDataError If the data of the string is not a
+     *                                        a valid int32.
+     */
+    chaos::int32 to_int32() const;
+
+    /*!
+     * \brief Returns this UTF8String as an uint32 if the conversion is valid.
+     *
+     * \throws chaos::ex::ConversionDataError If the data of the string is not a
+     *                                        a valid uint32.
+     */
+    chaos::uint32 to_uint32() const;
 
     //--------------------------------ACCESSORS---------------------------------
 

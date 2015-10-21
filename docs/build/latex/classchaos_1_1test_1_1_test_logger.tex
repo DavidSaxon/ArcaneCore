@@ -29,7 +29,11 @@ void \hyperlink{classchaos_1_1test_1_1_test_logger_adf7612679442ae1b804d2d3e9390
 void \hyperlink{classchaos_1_1test_1_1_test_logger_ac6744b59f304552bb819dd8f4d724143}{open\+\_\+test} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&path, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&id)
 \begin{DoxyCompactList}\small\item\em Opening statement of a unit test. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1test_1_1_test_logger_a5b1f6f1abbedaea7f5475e0dc2677c3c}{close\+\_\+test} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&id)
-\begin{DoxyCompactList}\small\item\em Closing of a unit test. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Closing of a unit test. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_ae26a666c0a9aade6390edf9ec916c9d3}{report\+\_\+success} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&type, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&file, \hyperlink{namespacechaos_ad1de7efb430365afd2c9446a0f522a90}{chaos\+::int32} line)
+\begin{DoxyCompactList}\small\item\em Reports a test success. \end{DoxyCompactList}\item 
+void \hyperlink{classchaos_1_1test_1_1_test_logger_a7bde1d40286619bbef932dfa72f9c419}{report\+\_\+failure} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&type, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&file, \hyperlink{namespacechaos_ad1de7efb430365afd2c9446a0f522a90}{chaos\+::int32} line, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&message)
+\begin{DoxyCompactList}\small\item\em Reports a test failure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Enumeration Documentation}
@@ -141,6 +145,53 @@ Opening statement of a unit test.
 {\em path} & The Path of this test \\
 \hline
 {\em id} & The unique id of this test. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1test_1_1_test_logger_a7bde1d40286619bbef932dfa72f9c419}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!report\+\_\+failure@{report\+\_\+failure}}
+\index{report\+\_\+failure@{report\+\_\+failure}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{report\+\_\+failure(const chaos\+::str\+::\+U\+T\+F8\+String \&type, const chaos\+::str\+::\+U\+T\+F8\+String \&file, chaos\+::int32 line, const chaos\+::str\+::\+U\+T\+F8\+String \&message)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::report\+\_\+failure (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{type, }
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{file, }
+\item[{{\bf chaos\+::int32}}]{line, }
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{message}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1test_1_1_test_logger_a7bde1d40286619bbef932dfa72f9c419}
+
+
+Reports a test failure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & the Type of test that failed. \\
+\hline
+{\em file} & The source file that the failure occurred in. \\
+\hline
+{\em line} & The line in the file that failure occurred at. \\
+\hline
+{\em message} & A message that was provided with the failure. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1test_1_1_test_logger_ae26a666c0a9aade6390edf9ec916c9d3}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!report\+\_\+success@{report\+\_\+success}}
+\index{report\+\_\+success@{report\+\_\+success}!chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}}
+\subsubsection[{report\+\_\+success(const chaos\+::str\+::\+U\+T\+F8\+String \&type, const chaos\+::str\+::\+U\+T\+F8\+String \&file, chaos\+::int32 line)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::test\+::\+Test\+Logger\+::report\+\_\+success (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{type, }
+\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{file, }
+\item[{{\bf chaos\+::int32}}]{line}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1test_1_1_test_logger_ae26a666c0a9aade6390edf9ec916c9d3}
+
+
+Reports a test success. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & the Type of test that succeed. \\
+\hline
+{\em file} & The source file that the success occurred in. \\
+\hline
+{\em line} & The line in the file that success occurred at. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classchaos_1_1test_1_1_test_logger_a95a0c9aa1345a94f84e41caa71e6e8ab}{}\index{chaos\+::test\+::\+Test\+Logger@{chaos\+::test\+::\+Test\+Logger}!set\+\_\+as\+\_\+parent@{set\+\_\+as\+\_\+parent}}

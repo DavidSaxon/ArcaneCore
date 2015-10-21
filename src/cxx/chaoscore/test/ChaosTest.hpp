@@ -127,6 +127,23 @@ static chaos::str::UTF8String                        current_module;
 //------------------------------------------------------------------------------
 
 /*!
+ * \brief Simple structure for storing verbosity level and format for output
+ *        option.
+ */
+struct OutInfo
+{
+    chaos::uint8 verbosity;
+    TestLogger::OutFormat format;
+
+    OutInfo( chaos::uint8 v, TestLogger::OutFormat f )
+        :
+        verbosity( v ),
+        format   ( f )
+    {
+    }
+};
+
+/*!
  * \internal
  *
  * \brief Structure containing information about the test run configuration,
@@ -142,18 +159,17 @@ struct RunInfo
     std::set< chaos::str::UTF8String > paths;
     // whether the standard output stream is being used
     bool use_stdout;
-    // the format of the standard output stream
-    TestLogger::OutFormat stdout_format;
+    // information for stdout
+    OutInfo stdout_info;
     // mapping from file path to write to, to the format to use
-    std::map< chaos::str::UTF8String, TestLogger::OutFormat > files;
-
+    std::map< chaos::str::UTF8String, OutInfo* > files;
 
     RunInfo()
         :
-        single_proc  ( false ),
-        sub_proc     ( false ),
-        use_stdout   ( true ),
-        stdout_format( TestLogger::OUT_PRETTY_TEXT )
+        single_proc( false ),
+        sub_proc   ( false ),
+        use_stdout ( true ),
+        stdout_info( 3, TestLogger::OUT_PRETTY_TEXT )
     {
     }
 };
@@ -203,11 +219,17 @@ public:
             // pass outputs to the logger
             if ( run_info->use_stdout )
             {
-                TestCore::logger.add_stdout( run_info->stdout_format );
+                TestCore::logger.add_stdout(
+                        run_info->stdout_info.verbosity,
+                        run_info->stdout_info.format );
             }
-            CHAOS_FOR_EACH( fIt, run_info->files )
+            CHAOS_FOR_EACH( f_it, run_info->files )
             {
-                TestCore::logger.add_file_output( fIt->first, fIt->second );
+                TestCore::logger.add_file_output(
+                        f_it->first,
+                        f_it->second->verbosity,
+                        f_it->second->format
+                );
             }
 
             // open the logger
@@ -219,10 +241,15 @@ public:
             // close the logger
             TestCore::logger.close_log();
 
-            // clean up unit test pointer pointers
-            CHAOS_FOR_EACH( it, test_map )
+            // clean up run info
+            CHAOS_FOR_EACH( r_t_it, run_info->files )
             {
-                delete it->second;
+                delete r_t_it->second;
+            }
+            // clean up unit test pointers
+            CHAOS_FOR_EACH( t_it, test_map )
+            {
+                delete t_it->second;
             }
             return;
         }
@@ -625,16 +652,19 @@ public:
             // std out
             if ( run_info->use_stdout )
             {
-                command_line_args << " --stdout " << log_format_to_string(
-                        run_info->stdout_format );
+                command_line_args
+                        << " --stdout "
+                        << run_info->stdout_info.verbosity << " "
+                        << log_format_to_string( run_info->stdout_info.format );
             }
             // file outputs
-            CHAOS_FOR_EACH( fileIt, run_info->files )
+            CHAOS_FOR_EACH( f_it, run_info->files )
             {
                 // generate a mangled file path
-                command_line_args << " --fileout " << fileIt->first << "."
-                                  << id << " "
-                                  << log_format_to_string( fileIt->second );
+                command_line_args
+                        << " --fileout " << f_it->first << "." << id << " "
+                        << f_it->second->verbosity << " "
+                        << log_format_to_string( f_it->second->format );
             }
 
             // spawn a new instance of this process but with arguments to point

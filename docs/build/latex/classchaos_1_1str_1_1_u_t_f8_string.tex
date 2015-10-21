@@ -67,6 +67,15 @@ size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4053c128303a75373529
 \begin{DoxyCompactList}\small\item\em Finds the last occurrence of the given substring and returns the index of it. \end{DoxyCompactList}\item 
 const std\+::vector$<$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} $>$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac5da4c989f6394c38b0fb82a252099db}{split} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \&delimiter) const 
 \begin{DoxyCompactList}\small\item\em Splits this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} by the given delimiter and places devisions into a vector. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a64f529f30034281560805b97826c5e13}{}bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a64f529f30034281560805b97826c5e13}{is\+\_\+int} () const \label{classchaos_1_1str_1_1_u_t_f8_string_a64f529f30034281560805b97826c5e13}
+
+\begin{DoxyCompactList}\small\item\em Returns if this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} represents a signed integer. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a989763da3e7eed8664cd2e5c41ea7e00}{}bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a989763da3e7eed8664cd2e5c41ea7e00}{is\+\_\+uint} () const \label{classchaos_1_1str_1_1_u_t_f8_string_a989763da3e7eed8664cd2e5c41ea7e00}
+
+\begin{DoxyCompactList}\small\item\em Returns if this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} represents an unsigned integer. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a2fbd69fb90a390df37c119577d4d3c6a}{}bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a2fbd69fb90a390df37c119577d4d3c6a}{is\+\_\+float} () const \label{classchaos_1_1str_1_1_u_t_f8_string_a2fbd69fb90a390df37c119577d4d3c6a}
+
+\begin{DoxyCompactList}\small\item\em Returns whether this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} represents a floating point number. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a2d50ab58715264ae175f521816bf670c}{substring} (size\+\_\+t start, size\+\_\+t length) const 
 \begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} composed of a substring of this string. \end{DoxyCompactList}\item 
 std\+::string \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a8901fbbe5e72d7bf8f0d160b55475244}{to\+\_\+std\+\_\+string} () const 
@@ -77,6 +86,8 @@ bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4fc296e90fbbc45a1e3f142dcd1
 \item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a04dbe9f15dc1b09c858e2450de26d40a}{get\+\_\+symbol} (size\+\_\+t index) const 
 \begin{DoxyCompactList}\small\item\em Get the utf-\/8 symbol defined at the given index. \end{DoxyCompactList}\item 
+\hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a007889a60f57ec9196dcebb39abeafdf}{get\+\_\+code\+\_\+point} (size\+\_\+t index) const 
+\begin{DoxyCompactList}\small\item\em Gets the utf-\/8 code point for the symbol at the given index. \end{DoxyCompactList}\item 
 size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}{get\+\_\+byte\+\_\+length} () const 
 \begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
 const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6424b00b21c9c6600818808c225fe381}{get\+\_\+raw\+\_\+data} () const 
@@ -346,6 +357,30 @@ This is not equal to the character length of the string as utf-\/8 encoded chara
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 The length of the internal data. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a007889a60f57ec9196dcebb39abeafdf}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+code\+\_\+point@{get\+\_\+code\+\_\+point}}
+\index{get\+\_\+code\+\_\+point@{get\+\_\+code\+\_\+point}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{get\+\_\+code\+\_\+point(size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uint32} chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+code\+\_\+point (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a007889a60f57ec9196dcebb39abeafdf}
+
+
+Gets the utf-\/8 code point for the symbol at the given index. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided index is out of bounds of the string length.\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Position of the symbol to retrieve the code point for with respect to the length returned by \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac0c724e649182e02462b48b94d1f5bf7}{get\+\_\+length()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A uint32 representing the code point for the symbol. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ae04d6b4dc8a6c4cbebb2679ed7658805}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+cstring@{get\+\_\+cstring}}
 \index{get\+\_\+cstring@{get\+\_\+cstring}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}

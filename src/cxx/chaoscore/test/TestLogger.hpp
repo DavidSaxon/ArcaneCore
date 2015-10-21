@@ -94,19 +94,22 @@ public:
      *          Calling this function multiple times will result in an
      *          exception. TODO:
      *
+     * \param verbosity The verbosity level of standard output.
      * \param format The format to write standard output in.
      */
-    void add_stdout( OutFormat format );
+    void add_stdout( chaos::uint8 verbosity, OutFormat format );
 
     /*!
      * \brief Adds a file output for writing.
      *
      * \param path Full path to the file to write to. This path does not need to
      *             exist beforehand.
+     * \param verbosity The verbosity level of the file output.
      * \param format The format to write to the file in.
      */
     void add_file_output(
             const chaos::str::UTF8String& path,
+                  chaos::uint8            verbosity,
                   OutFormat               format );
 
     /*!
@@ -194,7 +197,10 @@ private:
      * \brief Internal function for creating and storing a formatter for the
      *        given stream and format.
      */
-    void create_formatter( std::ostream* stream, OutFormat format );
+    void create_formatter(
+            std::ostream* stream,
+            chaos::uint8  verbosity,
+            OutFormat     format );
 };
 
 } // namespace test

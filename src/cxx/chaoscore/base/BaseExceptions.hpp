@@ -18,6 +18,10 @@ namespace chaos
 namespace ex
 {
 
+//------------------------------------------------------------------------------
+//                                CHAOS EXCEPTION
+//------------------------------------------------------------------------------
+
 /*!
  * \brief Abstract base class that all ChaosCore Exceptions extend from.
  *
@@ -27,17 +31,13 @@ class ChaosException : public std::exception
 {
 public:
 
-    //--------------------------------------------------------------------------
-    //                                 DESTRUCTOR
-    //--------------------------------------------------------------------------
+    //--------------------------------DESTRUCTOR--------------------------------
 
     virtual ~ChaosException() throw()
     {
     }
 
-    //--------------------------------------------------------------------------
-    //                          PUBLIC MEMBER FUNCTIONS
-    //--------------------------------------------------------------------------
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     /*!
      * \return The reason for the exception.
@@ -57,9 +57,7 @@ public:
 
 protected:
 
-    //--------------------------------------------------------------------------
-    //                                CONSTRUCTOR
-    //--------------------------------------------------------------------------
+    //-------------------------------CONSTRUCTOR--------------------------------
 
     /*!
      * \brief Super constructor for objects derived from ChaosException.
@@ -74,14 +72,16 @@ protected:
 
 private:
 
-    //--------------------------------------------------------------------------
-    //                             PRIVATE ATTRIBUTES
-    //--------------------------------------------------------------------------
+    //----------------------------PRIVATE ATTRIBUTES----------------------------
 
     // The message explaining the reason for the exception
     chaos::str::UTF8String m_Message;
 };
 
+
+//------------------------------------------------------------------------------
+//                           INDEX OUT OF BOUNDS ERROR
+//------------------------------------------------------------------------------
 
 /*!
  * \brief Warns that an index has been requested outside of the allowed bounds.
@@ -91,6 +91,25 @@ class IndexOutOfBoundsError : public ChaosException
 public:
 
     IndexOutOfBoundsError( const chaos::str::UTF8String& message )
+        :
+        ChaosException( message )
+    {
+    }
+};
+
+
+//------------------------------------------------------------------------------
+//                             CONVERSION DATA ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns that the provided data for a type conversion was bad or invalid.
+ */
+class ConversionDataError : public ChaosException
+{
+public:
+
+    ConversionDataError( const chaos::str::UTF8String& message )
         :
         ChaosException( message )
     {
