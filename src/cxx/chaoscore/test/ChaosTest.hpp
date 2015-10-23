@@ -132,7 +132,7 @@ static chaos::str::UTF8String                        current_module;
  */
 struct OutInfo
 {
-    chaos::uint8 verbosity;
+    chaos::uint16 verbosity;
     TestLogger::OutFormat format;
 
     OutInfo( chaos::uint8 v, TestLogger::OutFormat f )
@@ -582,6 +582,8 @@ public:
         unit_test->execute();
         // teardown
         unit_test->get_fixture()->teardown();
+        // finialise report
+        TestCore::logger.finialise_test_report();
         // close the test in logger
         TestCore::logger.close_test( id );
     }
@@ -599,6 +601,8 @@ public:
         unit_test->execute();
         // teardown
         unit_test->get_fixture()->teardown();
+        // finialise report
+        TestCore::logger.finialise_test_report();
     }
 
     /*!
@@ -906,8 +910,10 @@ public:
         }                                                                      \
         else                                                                   \
         {                                                                      \
+            chaos::str::UTF8String f_e_m;                                      \
+            f_e_m << a << " does not equal " << b;                             \
             chaos::test::internal::TestCore::register_failure(                 \
-                    "TEST_EQUAL", __FILE__, __LINE__, "" );                    \
+                    "TEST_EQUAL", __FILE__, __LINE__, f_e_m );                 \
         }
 
 } // namespace test

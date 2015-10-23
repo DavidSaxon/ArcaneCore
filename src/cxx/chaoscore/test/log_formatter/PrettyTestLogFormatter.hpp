@@ -28,7 +28,10 @@ public:
     /*!
      * \brief Creates a new Pretty Test Log Formatter.
      */
-    PrettyTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream );
+    PrettyTestLogFormatter(
+            chaos::uint16 verbosity,
+            std::ostream* stream,
+            bool          is_stdout = false );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -54,6 +57,18 @@ public:
             const chaos::str::UTF8String& file,
                   chaos::int32            line,
             const chaos::str::UTF8String& message );
+
+    virtual void finialise_test_report(
+            chaos::uint64 success_count,
+            chaos::uint64 failure_count );
+
+private:
+
+    //--------------------------------------------------------------------------
+    //                             PRIVATE ATTRIBUTES
+    //--------------------------------------------------------------------------
+
+    bool m_use_ansi;
 };
 
 } // namespace log_formatter

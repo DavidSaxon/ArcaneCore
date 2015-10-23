@@ -161,7 +161,7 @@ int main( int argc, char* argv[] )
             // add to the run information
             run_info.use_stdout = true;
             run_info.stdout_info.verbosity =
-                    static_cast< chaos::uint8 >( verbosity );
+                    static_cast< chaos::uint16 >( verbosity );
             run_info.stdout_info.format = out_format;
             // standard out has now been defined
             stdout_defined = true;

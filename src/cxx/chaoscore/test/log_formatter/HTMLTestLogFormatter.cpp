@@ -14,7 +14,7 @@ namespace log_formatter
 //------------------------------------------------------------------------------
 
 HTMLTestLogFormatter::HTMLTestLogFormatter(
-        chaos::uint8 verbosity, std::ostream* stream )
+        chaos::uint16 verbosity, std::ostream* stream )
     :
     AbstractTestLogFormatter( verbosity, stream )
 {
@@ -59,6 +59,13 @@ void HTMLTestLogFormatter::report_failure(
         const chaos::str::UTF8String& file,
               chaos::int32            line,
         const chaos::str::UTF8String& message )
+{
+    // TODO:
+}
+
+void HTMLTestLogFormatter::finialise_test_report(
+        chaos::uint64 success_count,
+        chaos::uint64 failure_count )
 {
     // TODO:
 }

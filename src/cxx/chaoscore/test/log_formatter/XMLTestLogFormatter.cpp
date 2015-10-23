@@ -14,7 +14,7 @@ namespace log_formatter
 //------------------------------------------------------------------------------
 
 XMLTestLogFormatter::XMLTestLogFormatter(
-        chaos::uint8 verbosity, std::ostream* stream )
+        chaos::uint16 verbosity, std::ostream* stream )
     :
     AbstractTestLogFormatter( verbosity, stream )
 {
@@ -52,8 +52,25 @@ void XMLTestLogFormatter::report_success(
         const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
-    ( *m_stream ) << "    <Success type=" << type << " file=" << file
-                  << " line=" << line << "/>" << std::endl;
+    // verbosity 3+
+    if ( m_verbosity >= 3 )
+    {
+        // build the start of the entry
+        chaos::str::UTF8String entry;
+        entry <<  "    <Success type=" << type << " file=" << file << " line="
+              << line;
+
+        // store occurrence
+        if ( m_verbosity <= 3 )
+        {
+            add_occurrence( entry );
+        }
+        // or print
+        else
+        {
+            ( *m_stream ) << entry << "/>" << std::endl;
+        }
+    }
 }
 
 void XMLTestLogFormatter::report_failure(
@@ -62,15 +79,56 @@ void XMLTestLogFormatter::report_failure(
               chaos::int32            line,
         const chaos::str::UTF8String& message )
 {
-
-
-    ( *m_stream ) << "    <Failure type=" << type << " file=" << file
-                  << " line=" << line;
+    // TODO: values need to go in the message???
+    // build the start of the entry
+    chaos::str::UTF8String entry;
+    entry << "    <Failure type=" << type << " file=" << file << " line="
+          << line;
     if ( !message.is_empty() )
     {
-        ( *m_stream ) << " message=" << message;
+        entry << " message=" << message;
     }
-    ( *m_stream ) << "/>" << std::endl;
+
+    // store occurrence
+    if ( m_verbosity <= 3 )
+    {
+        add_occurrence( entry );
+    }
+    // or print
+    else
+    {
+        ( *m_stream ) << entry << "/>" << std::endl;
+    }
+}
+
+void XMLTestLogFormatter::finialise_test_report(
+        chaos::uint64 success_count,
+        chaos::uint64 failure_count )
+{
+    // write collected reports
+    if ( m_verbosity <= 3 )
+    {
+        CHAOS_FOR_EACH( it, m_occurrence_map )
+        {
+            chaos::str::UTF8String message( it->first );
+            if ( it->second > 1 )
+            {
+                message << " occurrences=" << it->second;
+            }
+            ( *m_stream ) << message << "/>" << std::endl;
+        }
+    }
+
+    // verbosity 2+
+    if ( m_verbosity < 2 )
+    {
+        return;
+    }
+
+    ( *m_stream ) << "    <UnitSummary total="
+                  << ( success_count + failure_count ) << " successes="
+                  << success_count << " failures=" << failure_count << "/>"
+                  << std::endl;
 }
 
 } // namespace log_formatter

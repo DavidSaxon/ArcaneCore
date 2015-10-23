@@ -84,6 +84,20 @@ private:
 //------------------------------------------------------------------------------
 
 /*!
+ * \brief Warns that an invalid value has been supplied.
+ */
+class ValueError : public ChaosException
+{
+public:
+
+    ValueError( const chaos::str::UTF8String& message )
+        :
+        ChaosException( message )
+    {
+    }
+};
+
+/*!
  * \brief Warns that an index has been requested outside of the allowed bounds.
  */
 class IndexOutOfBoundsError : public ChaosException

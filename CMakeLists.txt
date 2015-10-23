@@ -8,9 +8,11 @@ set( CORE_SRC
     src/cxx/chaoscore/base/time/TimeUtil.cpp
 
     src/cxx/chaoscore/io/file/FileUtil.cpp
+    src/cxx/chaoscore/io/format/ANSI.cpp
 
     src/cxx/chaoscore/test/ChaosTest.cpp
     src/cxx/chaoscore/test/TestLogger.cpp
+    src/cxx/chaoscore/test/log_formatter/AbstractTestLogFormatter.cpp
     src/cxx/chaoscore/test/log_formatter/HTMLTestLogFormatter.cpp
     src/cxx/chaoscore/test/log_formatter/PlainTestLogFormatter.cpp
     src/cxx/chaoscore/test/log_formatter/PrettyTestLogFormatter.cpp

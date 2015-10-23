@@ -97,7 +97,7 @@ public:
      * \param verbosity The verbosity level of standard output.
      * \param format The format to write standard output in.
      */
-    void add_stdout( chaos::uint8 verbosity, OutFormat format );
+    void add_stdout( chaos::uint16 verbosity, OutFormat format );
 
     /*!
      * \brief Adds a file output for writing.
@@ -109,7 +109,7 @@ public:
      */
     void add_file_output(
             const chaos::str::UTF8String& path,
-                  chaos::uint8            verbosity,
+                  chaos::uint16           verbosity,
                   OutFormat               format );
 
     /*!
@@ -165,6 +165,11 @@ public:
                   chaos::int32            line,
             const chaos::str::UTF8String& message );
 
+    /*!
+     * \brief Finalises reports for a unit test
+     */
+    void finialise_test_report();
+
 private:
 
     //--------------------------------------------------------------------------
@@ -189,6 +194,15 @@ private:
      */
     std::map< chaos::str::UTF8String, std::ostream* > m_file_streams;
 
+    /*!
+     * \brief The number of test successes in the current unit.
+     */
+    chaos::uint64 m_success_count;
+    /*!
+     * \brief The number of test failures in the current unit.
+     */
+    chaos::uint64 m_failure_count;
+
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
@@ -200,7 +214,8 @@ private:
     void create_formatter(
             std::ostream* stream,
             chaos::uint8  verbosity,
-            OutFormat     format );
+            OutFormat     format,
+            bool          is_stdout = false );
 };
 
 } // namespace test

@@ -172,6 +172,29 @@ public:
     const UTF8String& operator+=( const UTF8String& other );
 
     /*!
+     * \brief Multiplication operator.
+     *
+     * Performs the same function as repeat() but does not cause any
+     * modifications to this string, instead returns a new string which contains
+     * the results of the repeat.
+     *
+     * \param count the number of times to repeat the string
+     * \return UTF8String that contains the results of the repeat.
+     */
+    UTF8String operator*( chaos::uint32 count );
+
+    /*!
+     * \brief Compound multiplication operator.
+     *
+     * Performs the same function as repeat().
+     *
+     * \param count the number of times to repeat this string.
+     * \return A reference to this UTF8String after the repeat operation has
+     *         taken place.
+     */
+    const UTF8String& operator*=( chaos::uint32 count );
+
+    /*!
      * \brief Stream operator.
      *
      * Extends this UTF8String with the given other UTF8String.
@@ -287,6 +310,19 @@ public:
      *         place.
      */
     UTF8String& concatenate( const UTF8String& other );
+
+    /*!
+     * \brief Extends this string with a repeat of itself the given number of
+     *  times.
+     *
+     * This operation modifies this UTF8String.
+     *
+     * \throws chaos::ex::ValueError If the given number of times to repeat is
+     *                               negative.
+     * \param count The number of times to repeat this string.
+     * \return A reference to this UTF8String after repeat has taken place.
+     */
+    UTF8String& repeat( chaos::uint32 count );
 
     /*!
      * \brief Checks whether this UTF8String starts with the given string.

@@ -41,8 +41,6 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
 {
-    std::cout << "RUN FOR EACH" << std::endl;
-
     // char* seg = new char[ 2 ];
     // seg[ 56 ] = 12;
     // delete[] seg;
@@ -59,6 +57,12 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     // is the size the same?
     CHAOS_TEST_EQUAL( v1.size(), v2.size() );
 
-    CHAOS_TEST_EQUAL( 1, 2 );
-    CHAOS_TEST_EQUAL( 1, 1 );
+    for ( size_t i  = 0; i < 12; ++i )
+    {
+        CHAOS_TEST_EQUAL( 1, 2 );
+    }
+    for ( size_t i  = 0; i < 4; ++i )
+    {
+        CHAOS_TEST_EQUAL( 1, 1 );
+    }
 }

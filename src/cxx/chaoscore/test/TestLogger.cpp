@@ -21,8 +21,10 @@ namespace test
 
 TestLogger::TestLogger()
     :
-    m_is_parent   ( false ),
-    m_using_stdout( false )
+    m_is_parent    ( false ),
+    m_using_stdout ( false ),
+    m_success_count( 0 ),
+    m_failure_count( 0 )
 {
 }
 
@@ -54,7 +56,7 @@ void TestLogger::set_as_parent( bool state )
     m_is_parent = state;
 }
 
-void TestLogger::add_stdout( chaos::uint8 verbosity, OutFormat format )
+void TestLogger::add_stdout( chaos::uint16 verbosity, OutFormat format )
 {
     // safety to ensure two std outs are not defined
     if ( m_using_stdout )
@@ -68,13 +70,13 @@ void TestLogger::add_stdout( chaos::uint8 verbosity, OutFormat format )
     m_using_stdout = true;
 
     // create formatter
-    create_formatter( &std::cout, verbosity, format );
+    create_formatter( &std::cout, verbosity, format, true );
 
 }
 
 void TestLogger::add_file_output(
         const chaos::str::UTF8String& path,
-              chaos::uint8            verbosity,
+              chaos::uint16           verbosity,
               OutFormat               format )
 {
     // the path should be validated at this point..
@@ -188,6 +190,9 @@ void TestLogger::report_success(
         const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
+    // record success
+    ++m_success_count;
+    // send to formatters
     CHAOS_FOR_EACH( it, m_formatters )
     {
         ( *it )->report_success( type, file, line );
@@ -200,10 +205,25 @@ void TestLogger::report_failure(
               chaos::int32            line,
         const chaos::str::UTF8String& message )
 {
+    // record failure
+    ++m_failure_count;
+    // send to formatters
     CHAOS_FOR_EACH( it, m_formatters )
     {
         ( *it )->report_failure( type, file, line, message );
     }
+}
+
+void TestLogger::finialise_test_report()
+{
+    // send to formatters
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->finialise_test_report( m_success_count, m_failure_count );
+    }
+    // send to formatters
+    m_success_count = 0;
+    m_failure_count = 0;
 }
 
 //------------------------------------------------------------------------------
@@ -213,7 +233,8 @@ void TestLogger::report_failure(
 void TestLogger::create_formatter(
         std::ostream* stream,
         chaos::uint8  verbosity,
-        OutFormat     format )
+        OutFormat     format,
+        bool          is_stdout )
 {
     // create a new log formatter based on the output type
     log_formatter::AbstractTestLogFormatter* formatter;
@@ -228,7 +249,7 @@ void TestLogger::create_formatter(
         case OUT_PRETTY_TEXT:
         {
             formatter = new log_formatter::PrettyTestLogFormatter(
-                    verbosity, stream );
+                    verbosity, stream, is_stdout );
             break;
         }
         case OUT_XML:

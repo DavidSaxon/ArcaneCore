@@ -145,6 +145,16 @@ const UTF8String& UTF8String::operator+=( const UTF8String& other )
     return this->concatenate( other );
 }
 
+UTF8String UTF8String::operator*( chaos::uint32 count )
+{
+    return UTF8String( *this ).repeat( count );
+}
+
+const UTF8String& UTF8String::operator*=( chaos::uint32 count )
+{
+    return this->repeat( count );
+}
+
 UTF8String& UTF8String::operator<<( const UTF8String& other )
 {
     return this->concatenate( other );
@@ -231,6 +241,29 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
             other.m_data,
             other.m_data_length
     );
+    // finally assign and return
+    assign_internal( new_data, new_length );
+    return *this;
+}
+
+UTF8String& UTF8String::repeat( chaos::uint32 count )
+{
+    size_t c_length = m_data_length - 1;
+    // calculate the new length
+    size_t new_length = ( c_length * count ) + 1;
+    // allocate a new block of data
+    chaos::int8* new_data = new chaos::int8[ new_length ];
+    // write new data
+    for( size_t i = 0; i < count; ++i )
+    {
+        memcpy(
+                new_data + ( c_length * i ),
+                m_data,
+                m_data_length - 1
+        );
+    }
+    // add the null terminator
+    new_data[ new_length - 1 ] = '\0';
     // finally assign and return
     assign_internal( new_data, new_length );
     return *this;

@@ -28,7 +28,7 @@ public:
     /*!
      * \brief Creates a new HTML Test Log Formatter.
      */
-    HTMLTestLogFormatter( chaos::uint8 verbosity, std::ostream* stream );
+    HTMLTestLogFormatter( chaos::uint16 verbosity, std::ostream* stream );
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -54,6 +54,10 @@ public:
             const chaos::str::UTF8String& file,
                   chaos::int32            line,
             const chaos::str::UTF8String& message );
+
+    virtual void finialise_test_report(
+            chaos::uint64 success_count,
+            chaos::uint64 failure_count );
 };
 
 } // namespace log_formatter
