@@ -42,16 +42,16 @@ void PrettyTestLogFormatter::open_log()
     }
 
     chaos::str::UTF8String divider( "=" );
-    divider *= 80;
+    divider *= 79;
 
     chaos::str::UTF8String message( "\n" );
     message << divider << "\n   ________                     ______            "
-            << "      ______          __\n  / ____/ /_  ____ _____  _____/ ____"
-            << "/___  ________    /_  __/__  _____/ /______\n / /   / __ \\/ __"
-            << " `/ __ \\/ ___/ /   / __ \\/ ___/ _ \\    / / / _ \\/ ___/ __/ "
-            << "___/\n/ /___/ / / / /_/ / /_/ (__  ) /___/ /_/ / /  /  __/   / "
-            << "/ /  __(__  ) /_(__  )\n\\____/_/ /_/\\__,_/\\____/____/\\____/"
-            << "\\____/_/   \\___/   /_/  \\___/____/\\__/____/\n" << divider;
+            << "     ______          __\n  / ____/ /_  ____ _____  _____/ ____/"
+            << "___  ________   /_  __/__  _____/ /______\n / /   / __ \\/ __ `"
+            << "/ __ \\/ ___/ /   / __ \\/ ___/ _ \\   / / / _ \\/ ___/ __/ ___"
+            << "/\n/ /___/ / / / /_/ / /_/ (__  ) /___/ /_/ / /  /  __/  / / / "
+            << " __(__  ) /_(__  )\n\\____/_/ /_/\\__,_/\\____/____/\\____/\\__"
+            << "__/_/   \\___/  /_/  \\___/____/\\__/____/\n" << divider;
 
     // colourise
     if ( m_use_ansi )
@@ -67,13 +67,21 @@ void PrettyTestLogFormatter::open_log()
 
 void PrettyTestLogFormatter::close_log()
 {
-    // TODO:
+
 }
 
 void PrettyTestLogFormatter::open_test(
         const chaos::str::UTF8String& path,
         const chaos::str::UTF8String& id )
 {
+    // verbosity 2+
+    if ( m_verbosity < 2 )
+    {
+        return;
+    }
+
+    chaos::str::UTF8String divider( "=" );
+    divider *= 79;
     // TODO:
 }
 
