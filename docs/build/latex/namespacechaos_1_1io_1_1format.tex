@@ -1,0 +1,114 @@
+\hypertarget{namespacechaos_1_1io_1_1format}{\section{chaos\-:\-:io\-:\-:format Namespace Reference}
+\label{namespacechaos_1_1io_1_1format}\index{chaos\-::io\-::format@{chaos\-::io\-::format}}
+}
+
+
+Classes and operations related to formatting.  
+
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{A\-N\-S\-I\-Colour} \{ \\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-D\-E\-F\-A\-U\-L\-T} = 39, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-B\-L\-A\-C\-K} = 30, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-W\-H\-I\-T\-E} = 97, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-R\-E\-D} = 31, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-G\-R\-E\-E\-N} = 32, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-Y\-E\-L\-L\-O\-W} = 33, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-B\-L\-U\-E} = 34, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-M\-A\-G\-E\-N\-T\-A} = 35, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-C\-Y\-A\-N} = 36, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-G\-R\-E\-Y} = 37, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-D\-A\-R\-K\-\_\-\-G\-R\-E\-Y} = 90, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-R\-E\-D} = 91, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-G\-R\-E\-E\-N} = 92, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-Y\-E\-L\-L\-O\-W} = 93, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-B\-L\-U\-E} = 94, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-M\-A\-G\-E\-N\-T\-A} = 95, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-C\-Y\-A\-N} = 96, 
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-D\-E\-F\-A\-U\-L\-T} = 49, 
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-R\-E\-D} = 41, 
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-G\-R\-E\-E\-N} = 42, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-B\-L\-U\-E} = 44
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerator representing the possible unique A\-N\-S\-I escape sequence colours. \end{DoxyCompactList}\item 
+enum \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{A\-N\-S\-I\-Attribute} \{ \\*
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E}, 
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaada31e77e1e80ea78e0cd08a126271b3}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D}, 
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa2f1d142ccf489cba5710445abd48555f}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E}, 
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfacd3671458d96396a0fec66c993244186}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K}, 
+\\*
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaa7b58f4c0365d47d2bc98a4587521806}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerator representing the possible unique A\-N\-S\-I escape sequence attributes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}{apply\-\_\-escape\-\_\-sequence} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&data, \hyperlink{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{A\-N\-S\-I\-Colour} colour, \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{A\-N\-S\-I\-Attribute} attribute=\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E})
+\begin{DoxyCompactList}\small\item\em Applies an A\-N\-S\-I escape sequence to a copy of the provided text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classes and operations related to formatting. 
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-Attribute@{A\-N\-S\-I\-Attribute}}
+\index{A\-N\-S\-I\-Attribute@{A\-N\-S\-I\-Attribute}!chaos::io::format@{chaos\-::io\-::format}}
+\subsubsection[{A\-N\-S\-I\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf chaos\-::io\-::format\-::\-A\-N\-S\-I\-Attribute}}}\label{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}
+
+
+Enumerator representing the possible unique A\-N\-S\-I escape sequence attributes. 
+
+These attributes are mutually exclusive, therefore cannot be combined. \begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E}!chaos\-::io\-::format@{chaos\-::io\-::format}}\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E}}\item[{\em 
+\hypertarget{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E}\label{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}
+}]No attribute is applied to the text. \index{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D}!chaos\-::io\-::format@{chaos\-::io\-::format}}\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D}}\item[{\em 
+\hypertarget{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaada31e77e1e80ea78e0cd08a126271b3}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D}\label{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaada31e77e1e80ea78e0cd08a126271b3}
+}]The text is made bolder than normal. \index{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E}!chaos\-::io\-::format@{chaos\-::io\-::format}}\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E}}\item[{\em 
+\hypertarget{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa2f1d142ccf489cba5710445abd48555f}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E}\label{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa2f1d142ccf489cba5710445abd48555f}
+}]Each character in the text is overlaid with an underscore. \index{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K}!chaos\-::io\-::format@{chaos\-::io\-::format}}\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K}}\item[{\em 
+\hypertarget{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfacd3671458d96396a0fec66c993244186}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K}\label{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfacd3671458d96396a0fec66c993244186}
+}]The text is blinking. \index{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E}!chaos\-::io\-::format@{chaos\-::io\-::format}}\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E@{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E}}\item[{\em 
+\hypertarget{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaa7b58f4c0365d47d2bc98a4587521806}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E}\label{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaa7b58f4c0365d47d2bc98a4587521806}
+}]The colours of the text are reversed, with the background applied to the foreground and vice versa. \end{description}
+\end{Desc}
+\hypertarget{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!A\-N\-S\-I\-Colour@{A\-N\-S\-I\-Colour}}
+\index{A\-N\-S\-I\-Colour@{A\-N\-S\-I\-Colour}!chaos::io::format@{chaos\-::io\-::format}}
+\subsubsection[{A\-N\-S\-I\-Colour}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf chaos\-::io\-::format\-::\-A\-N\-S\-I\-Colour}}}\label{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}
+
+
+Enumerator representing the possible unique A\-N\-S\-I escape sequence colours. 
+
+A\-N\-S\-I colours are mutually exclusive, therefore custom background and foreground colours can not be mixed. 
+
+\subsection{Function Documentation}
+\hypertarget{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!apply\-\_\-escape\-\_\-sequence@{apply\-\_\-escape\-\_\-sequence}}
+\index{apply\-\_\-escape\-\_\-sequence@{apply\-\_\-escape\-\_\-sequence}!chaos::io::format@{chaos\-::io\-::format}}
+\subsubsection[{apply\-\_\-escape\-\_\-sequence}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\-::str\-::\-U\-T\-F8\-String} chaos\-::io\-::format\-::apply\-\_\-escape\-\_\-sequence (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::str\-::\-U\-T\-F8\-String} \&}]{data, }
+\item[{A\-N\-S\-I\-Colour}]{colour, }
+\item[{A\-N\-S\-I\-Attribute}]{attribute = {\ttfamily ANSI\-\_\-ATTR\-\_\-NONE}}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}
+
+
+Applies an A\-N\-S\-I escape sequence to a copy of the provided text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The string data to be wrapped with the escape sequence. \\
+\hline
+{\em colour} & the colour to use on the data. \\
+\hline
+{\em attribute} & the attribute to use on the data. \\
+\hline
+\end{DoxyParams}

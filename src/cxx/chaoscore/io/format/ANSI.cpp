@@ -8,9 +8,9 @@ namespace format
 {
 
 chaos::str::UTF8String apply_escape_sequence(
-        const chaos::str::UTF8String& s,
-              ANSIColour              colour,
-              ANSIAttribute           attribute )
+        const chaos::str::UTF8String& data,
+        ANSIColour              colour,
+        ANSIAttribute           attribute )
 {
     // start the opening escape sequence
     chaos::str::UTF8String r( "\033[" );
@@ -46,7 +46,7 @@ chaos::str::UTF8String apply_escape_sequence(
     // write the colour
     r << static_cast< chaos::uint32 >( colour ) << "m";
     // write the string and closing sequence
-    r << s << "\033[00m";
+    r << data << "\033[00m";
     // done
     return r;
 }

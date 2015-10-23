@@ -19,6 +19,13 @@ namespace format
 //                                  ENUMERATORS
 //------------------------------------------------------------------------------
 
+/*!
+ * \brief Enumerator representing the possible unique ANSI escape sequence
+ *        colours.
+ *
+ * ANSI colours are mutually exclusive, therefore custom background and
+ * foreground colours can not be mixed.
+ */
 enum ANSIColour
 {
     ANSI_FG_DEFAULT       = 39,
@@ -44,12 +51,24 @@ enum ANSIColour
     ANSI_BG_BLUE          = 44
 };
 
+/*!
+ * \brief Enumerator representing the possible unique ANSI escape sequence
+ *        attributes.
+ *
+ * These attributes are mutually exclusive, therefore cannot be combined.
+ */
 enum ANSIAttribute
 {
+    /// No attribute is applied to the text.
     ANSI_ATTR_NONE,
+    /// The text is made bolder than normal.
     ANSI_ATTR_BOLD,
+    /// Each character in the text is overlaid with an underscore.
     ANSI_ATTR_UNDERSCORE,
+    /// The text is blinking.
     ANSI_ATTR_BLINK,
+    /// The colours of the text are reversed, with the background applied to the
+    /// foreground and vice versa.
     ANSI_ATTR_REVERSE
 };
 
@@ -58,14 +77,16 @@ enum ANSIAttribute
 //------------------------------------------------------------------------------
 
 /*!
- * \brief TODO
+ * \brief Applies an ANSI escape sequence to a copy of the provided text.
  *
- * \TODO:
+ * \param data The string data to be wrapped with the escape sequence.
+ * \param colour the colour to use on the data.
+ * \param attribute the attribute to use on the data.
  */
 chaos::str::UTF8String apply_escape_sequence(
-        const chaos::str::UTF8String& s,
-              ANSIColour              colour,
-              ANSIAttribute           attribute = ANSI_ATTR_NONE );
+        const chaos::str::UTF8String& data,
+        ANSIColour                    colour,
+        ANSIAttribute                 attribute = ANSI_ATTR_NONE );
 
 } // namespace format
 } // namespace io

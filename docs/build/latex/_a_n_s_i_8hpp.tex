@@ -1,0 +1,68 @@
+\hypertarget{_a_n_s_i_8hpp}{\section{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/io/format/\-A\-N\-S\-I.hpp File Reference}
+\label{_a_n_s_i_8hpp}\index{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/io/format/\-A\-N\-S\-I.\-hpp@{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/io/format/\-A\-N\-S\-I.\-hpp}}
+}
+
+
+Operations relating to A\-N\-S\-I codes. author David Saxon.  
+
+
+{\ttfamily \#include \char`\"{}chaoscore/base/string/\-U\-T\-F8\-String.\-hpp\char`\"{}}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacechaos}{chaos}
+\begin{DoxyCompactList}\small\item\em the global Chaos\-Core namespace which contains everything within Chaos\-Core. \end{DoxyCompactList}\item 
+\hyperlink{namespacechaos_1_1io}{chaos\-::io}
+\begin{DoxyCompactList}\small\item\em Input/\-Output related classes and operations. \end{DoxyCompactList}\item 
+\hyperlink{namespacechaos_1_1io_1_1format}{chaos\-::io\-::format}
+\begin{DoxyCompactList}\small\item\em Classes and operations related to formatting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-Colour} \{ \\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-D\-E\-F\-A\-U\-L\-T} = 39, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-B\-L\-A\-C\-K} = 30, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-W\-H\-I\-T\-E} = 97, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-R\-E\-D} = 31, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-G\-R\-E\-E\-N} = 32, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-Y\-E\-L\-L\-O\-W} = 33, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-B\-L\-U\-E} = 34, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-M\-A\-G\-E\-N\-T\-A} = 35, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-C\-Y\-A\-N} = 36, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-G\-R\-E\-Y} = 37, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-D\-A\-R\-K\-\_\-\-G\-R\-E\-Y} = 90, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-R\-E\-D} = 91, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-G\-R\-E\-E\-N} = 92, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-Y\-E\-L\-L\-O\-W} = 93, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-B\-L\-U\-E} = 94, 
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-M\-A\-G\-E\-N\-T\-A} = 95, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-F\-G\-\_\-\-L\-I\-G\-H\-T\-\_\-\-C\-Y\-A\-N} = 96, 
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-D\-E\-F\-A\-U\-L\-T} = 49, 
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-R\-E\-D} = 41, 
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-G\-R\-E\-E\-N} = 42, 
+\\*
+{\bfseries A\-N\-S\-I\-\_\-\-B\-G\-\_\-\-B\-L\-U\-E} = 44
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerator representing the possible unique A\-N\-S\-I escape sequence colours. \end{DoxyCompactList}\item 
+enum \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-Attribute} \{ \\*
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E}, 
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaada31e77e1e80ea78e0cd08a126271b3}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-O\-L\-D}, 
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa2f1d142ccf489cba5710445abd48555f}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-U\-N\-D\-E\-R\-S\-C\-O\-R\-E}, 
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfacd3671458d96396a0fec66c993244186}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-B\-L\-I\-N\-K}, 
+\\*
+\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfaa7b58f4c0365d47d2bc98a4587521806}{chaos\-::io\-::format\-::\-A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-R\-E\-V\-E\-R\-S\-E}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerator representing the possible unique A\-N\-S\-I escape sequence attributes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}{chaos\-::io\-::format\-::apply\-\_\-escape\-\_\-sequence} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&data, A\-N\-S\-I\-Colour colour, A\-N\-S\-I\-Attribute attribute=A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E)
+\begin{DoxyCompactList}\small\item\em Applies an A\-N\-S\-I escape sequence to a copy of the provided text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations relating to A\-N\-S\-I codes. author David Saxon. 
