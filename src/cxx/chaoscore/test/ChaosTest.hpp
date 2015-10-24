@@ -335,9 +335,8 @@ public:
             );
         }
         // build the full path
-        chaos::str::UTF8String full_path( current_module );
-        full_path += ".";
-        full_path += path;
+        chaos::str::UTF8String full_path;
+        full_path << current_module << "." << path;
         // check that path is not already in the map
         if ( test_map.find( full_path ) != test_map.end() )
         {
@@ -463,16 +462,16 @@ public:
 
             // find tests that are directly under this module or match this
             // exact module
-            CHAOS_FOR_EACH( mIt, test_map )
+            CHAOS_FOR_EACH( m_it, test_map )
             {
                 // is there an exact match?
-                if ( mIt->first == *it )
+                if ( m_it->first == *it )
                 {
-                    path_group.test_paths.insert( mIt->first );
+                    path_group.test_paths.insert( m_it->first );
                     continue;
                 }
                 // extract the path to the test
-                chaos::str::UTF8String path = mIt->first;
+                chaos::str::UTF8String path = m_it->first;
                 // find the last period
                 size_t lastIndex = path.find_last( "." );
                 if ( lastIndex == chaos::str::UTF8String::npos )
@@ -485,20 +484,20 @@ public:
                 // does it match the current path
                 if ( path == *it )
                 {
-                    path_group.test_paths.insert( mIt->first );
+                    path_group.test_paths.insert( m_it->first );
                 }
             }
 
             // find other modules that are directly under this path
-            CHAOS_FOR_EACH( mdIt, known_modules )
+            CHAOS_FOR_EACH( md_it, known_modules )
             {
                 // ignore exact match
-                if ( *mdIt == *it )
+                if ( *md_it == *it )
                 {
                     continue;
                 }
                 // extract the path to the module
-                chaos::str::UTF8String path = *mdIt;
+                chaos::str::UTF8String path = *md_it;
                 // find the last period
                 size_t lastIndex = path.find_last( "." );
                 if ( lastIndex == chaos::str::UTF8String::npos )
@@ -510,7 +509,7 @@ public:
                 // does it match the current path
                 if ( path == *it )
                 {
-                    path_group.module_paths.insert( *mdIt );
+                    path_group.module_paths.insert( *md_it );
                 }
             }
 
@@ -524,7 +523,7 @@ public:
             // run any of single tests we have
             CHAOS_FOR_EACH( t_p_it, p_g_it->test_paths )
             {
-                TestCore::run_test( test_map[ *t_p_it ], run_info );
+                TestCore::run_test( test_map[ *t_p_it ], *t_p_it, run_info );
             }
             // run any of the sub modules
             CHAOS_FOR_EACH( m_p_it, p_g_it->module_paths )
@@ -543,7 +542,10 @@ public:
      *
      * \brief runs the single given unit test with the given run configuration.
      */
-    static void run_test( UnitTest* unit_test, RunInfo* run_info )
+    static void run_test(
+            UnitTest*                     unit_test,
+            const chaos::str::UTF8String& full_path,
+            RunInfo*                      run_info )
     {
         // run the test dependent on the mode
         if ( run_info->single_proc )
@@ -554,12 +556,12 @@ public:
             }
             else
             {
-                run_current_proc( unit_test, run_info );
+                run_current_proc( unit_test, full_path, run_info );
             }
         }
         else
         {
-            run_new_proc( unit_test, run_info );
+            run_new_proc( unit_test, full_path, run_info );
         }
     }
 
@@ -568,14 +570,15 @@ public:
      *
      * \brief Runs the test on this current process.
      */
-    static void run_current_proc( UnitTest* unit_test, RunInfo* run_info )
+    static void run_current_proc(
+            UnitTest*                     unit_test,
+            const chaos::str::UTF8String& full_path,
+            RunInfo*                      run_info )
     {
-        // the path to this test
-        chaos::str::UTF8String test_path( *run_info->paths.begin() );
         // generate an unique id for this test
-        chaos::str::UTF8String id = generate_id( test_path );
+        chaos::str::UTF8String id = generate_id( full_path );
         // open the test in logger
-        TestCore::logger.open_test( test_path, id );
+        TestCore::logger.open_test( full_path, id );
         // set up fixture
         unit_test->get_fixture()->setup();
         // execute
@@ -610,17 +613,18 @@ public:
      *
      * \brief Runs the current test in a new process.
      */
-    static void run_new_proc( UnitTest* unit_test, RunInfo* run_info )
+    static void run_new_proc(
+            UnitTest*                     unit_test,
+            const chaos::str::UTF8String& full_path,
+            RunInfo*                      run_info )
     {
         // The method spawning a new process is platform dependent
         #ifdef CHAOS_OS_UNIX
 
-            // the path to this test
-            chaos::str::UTF8String test_path( *run_info->paths.begin() );
             // generate the unique id for this this test
-            chaos::str::UTF8String id = generate_id( test_path );
+            chaos::str::UTF8String id = generate_id( full_path );
             // open the test in the logger
-            TestCore::logger.open_test( test_path, id );
+            TestCore::logger.open_test( full_path, id );
 
             // for to run the new process
             pid_t proc_id = fork();
@@ -644,15 +648,13 @@ public:
 
         #elif defined( CHAOS_OS_WINDOWS )
 
-            // the path to this test
-            chaos::str::UTF8String test_path( *run_info->paths.begin() );
             // generate the unique id for this this test
-            chaos::str::UTF8String id = generate_id( test_path );
+            chaos::str::UTF8String id = generate_id( full_path );
 
             // rebuild the command line arguments
             chaos::str::UTF8String command_line_args;
             command_line_args << " --single_proc --sub_proc --silent_crash "
-                              << " --test " << test_path;
+                              << " --test " << full_path;
             // std out
             if ( run_info->use_stdout )
             {
@@ -685,7 +687,7 @@ public:
             GetModuleFileName( NULL, exe_path, MAX_PATH );
 
             // open the test in the logger
-            TestCore::logger.open_test( test_path, id );
+            TestCore::logger.open_test( full_path, id );
 
             // start the child process
             BOOL create_success = CreateProcess(

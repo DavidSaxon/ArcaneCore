@@ -77,16 +77,16 @@ enum ANSIAttribute
 //------------------------------------------------------------------------------
 
 /*!
- * \brief Applies an ANSI escape sequence to a copy of the provided text.
+ * \brief Applies an ANSI escape sequence to the provided text.
  *
- * \param data The string data to be wrapped with the escape sequence.
- * \param colour the colour to use on the data.
- * \param attribute the attribute to use on the data.
+ * \param text The string text to be wrapped with the escape sequence.
+ * \param colour the colour to use on the text.
+ * \param attribute the attribute to use on the text.
  */
-chaos::str::UTF8String apply_escape_sequence(
-        const chaos::str::UTF8String& data,
-        ANSIColour                    colour,
-        ANSIAttribute                 attribute = ANSI_ATTR_NONE );
+void apply_escape_sequence(
+        chaos::str::UTF8String& text,
+        ANSIColour              colour,
+        ANSIAttribute           attribute = ANSI_ATTR_NONE );
 
 } // namespace format
 } // namespace io

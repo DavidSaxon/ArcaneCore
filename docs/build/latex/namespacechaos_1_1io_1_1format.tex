@@ -50,8 +50,10 @@ enum \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}{apply\-\_\-escape\-\_\-sequence} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&data, \hyperlink{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{A\-N\-S\-I\-Colour} colour, \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{A\-N\-S\-I\-Attribute} attribute=\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E})
-\begin{DoxyCompactList}\small\item\em Applies an A\-N\-S\-I escape sequence to a copy of the provided text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{namespacechaos_1_1io_1_1format_a005869cc85ba6d9b0fcfad31cf56bda7}{apply\-\_\-escape\-\_\-sequence} (\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&text, \hyperlink{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{A\-N\-S\-I\-Colour} colour, \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{A\-N\-S\-I\-Attribute} attribute=\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E})
+\begin{DoxyCompactList}\small\item\em Applies an A\-N\-S\-I escape sequence to the provided text. \end{DoxyCompactList}\item 
+void \hyperlink{namespacechaos_1_1io_1_1format_a1383dce806dc531aefb9f6dcb78d4517}{centre\-\_\-text} (\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\-::str\-::\-U\-T\-F8\-String} \&text, const chaos\-::unint32 line\-\_\-length)
+\begin{DoxyCompactList}\small\item\em Centres the given text with white-\/space on either side so that has a symbol length equal to line\-\_\-length. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -90,25 +92,46 @@ Enumerator representing the possible unique A\-N\-S\-I escape sequence colours.
 A\-N\-S\-I colours are mutually exclusive, therefore custom background and foreground colours can not be mixed. 
 
 \subsection{Function Documentation}
-\hypertarget{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!apply\-\_\-escape\-\_\-sequence@{apply\-\_\-escape\-\_\-sequence}}
+\hypertarget{namespacechaos_1_1io_1_1format_a005869cc85ba6d9b0fcfad31cf56bda7}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!apply\-\_\-escape\-\_\-sequence@{apply\-\_\-escape\-\_\-sequence}}
 \index{apply\-\_\-escape\-\_\-sequence@{apply\-\_\-escape\-\_\-sequence}!chaos::io::format@{chaos\-::io\-::format}}
-\subsubsection[{apply\-\_\-escape\-\_\-sequence}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\-::str\-::\-U\-T\-F8\-String} chaos\-::io\-::format\-::apply\-\_\-escape\-\_\-sequence (
+\subsubsection[{apply\-\_\-escape\-\_\-sequence}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::io\-::format\-::apply\-\_\-escape\-\_\-sequence (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::str\-::\-U\-T\-F8\-String} \&}]{data, }
+\item[{{\bf chaos\-::str\-::\-U\-T\-F8\-String} \&}]{text, }
 \item[{A\-N\-S\-I\-Colour}]{colour, }
 \item[{A\-N\-S\-I\-Attribute}]{attribute = {\ttfamily ANSI\-\_\-ATTR\-\_\-NONE}}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1io_1_1format_a871d44e1a80db8868e27527793abe025}
+)}}\label{namespacechaos_1_1io_1_1format_a005869cc85ba6d9b0fcfad31cf56bda7}
 
 
-Applies an A\-N\-S\-I escape sequence to a copy of the provided text. 
+Applies an A\-N\-S\-I escape sequence to the provided text. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em data} & The string data to be wrapped with the escape sequence. \\
+{\em text} & The string text to be wrapped with the escape sequence. \\
 \hline
-{\em colour} & the colour to use on the data. \\
+{\em colour} & the colour to use on the text. \\
 \hline
-{\em attribute} & the attribute to use on the data. \\
+{\em attribute} & the attribute to use on the text. \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespacechaos_1_1io_1_1format_a1383dce806dc531aefb9f6dcb78d4517}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!centre\-\_\-text@{centre\-\_\-text}}
+\index{centre\-\_\-text@{centre\-\_\-text}!chaos::io::format@{chaos\-::io\-::format}}
+\subsubsection[{centre\-\_\-text}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::io\-::format\-::centre\-\_\-text (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\-::str\-::\-U\-T\-F8\-String} \&}]{text, }
+\item[{const chaos\-::unint32}]{line\-\_\-length}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1io_1_1format_a1383dce806dc531aefb9f6dcb78d4517}
+
+
+Centres the given text with white-\/space on either side so that has a symbol length equal to line\-\_\-length. 
+
+If the symbol length of the text is greater than line\-\_\-length then the text will be left un-\/modified.
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & The text to be centered. \\
+\hline
+{\em line\-\_\-length} & The desired number of symbols in the line after this operation has taken place. \\
 \hline
 \end{DoxyParams}

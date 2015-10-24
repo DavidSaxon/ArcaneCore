@@ -1,5 +1,5 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc" id="base.preproc_1445643314878">
+  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1445735510512">
     <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=58/>
     <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
     <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
@@ -19,7 +19,7 @@
     <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66/>
     <UnitSummary total=17 successes=5 failures=12/>
   </UnitTest>
-  <UnitTest path="base.str.utf8" id="base.str.utf8_1445643314880">
+  <UnitTest path="base.str.utf8.test_run" id="base.str.utf8.test_run_1445735510516">
     <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=7 message=1 does not equal 2/>
     <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=14/>
     <UnitSummary total=2 successes=1 failures=1/>

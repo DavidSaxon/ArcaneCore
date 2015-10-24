@@ -7,8 +7,12 @@ namespace io
 namespace format
 {
 
-chaos::str::UTF8String apply_escape_sequence(
-        const chaos::str::UTF8String& data,
+//------------------------------------------------------------------------------
+//                                   FUNCTIONS
+//------------------------------------------------------------------------------
+
+void apply_escape_sequence(
+        chaos::str::UTF8String& text,
         ANSIColour              colour,
         ANSIAttribute           attribute )
 {
@@ -46,9 +50,9 @@ chaos::str::UTF8String apply_escape_sequence(
     // write the colour
     r << static_cast< chaos::uint32 >( colour ) << "m";
     // write the string and closing sequence
-    r << data << "\033[00m";
+    r << text << "\033[00m";
     // done
-    return r;
+    text.assign( r );
 }
 
 } // namespace format

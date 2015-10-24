@@ -144,9 +144,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a871d44e1a80db8868e27527793abe025"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#a871d44e1a80db8868e27527793abe025">apply_escape_sequence</a> (const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;data, <a class="el" href="namespacechaos_1_1io_1_1format.html#aa30dcff2478ffc94e33504c8886a5b1a">ANSIColour</a> colour, <a class="el" href="namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccf">ANSIAttribute</a> attribute=<a class="el" href="namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5">ANSI_ATTR_NONE</a>)</td></tr>
-<tr class="memdesc:a871d44e1a80db8868e27527793abe025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies an ANSI escape sequence to a copy of the provided text.  <a href="#a871d44e1a80db8868e27527793abe025">More...</a><br/></td></tr>
-<tr class="separator:a871d44e1a80db8868e27527793abe025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a005869cc85ba6d9b0fcfad31cf56bda7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#a005869cc85ba6d9b0fcfad31cf56bda7">apply_escape_sequence</a> (<a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;text, <a class="el" href="namespacechaos_1_1io_1_1format.html#aa30dcff2478ffc94e33504c8886a5b1a">ANSIColour</a> colour, <a class="el" href="namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccf">ANSIAttribute</a> attribute=<a class="el" href="namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5">ANSI_ATTR_NONE</a>)</td></tr>
+<tr class="memdesc:a005869cc85ba6d9b0fcfad31cf56bda7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies an ANSI escape sequence to the provided text.  <a href="#a005869cc85ba6d9b0fcfad31cf56bda7">More...</a><br/></td></tr>
+<tr class="separator:a005869cc85ba6d9b0fcfad31cf56bda7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1383dce806dc531aefb9f6dcb78d4517"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#a1383dce806dc531aefb9f6dcb78d4517">centre_text</a> (<a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;text, const chaos::unint32 line_length)</td></tr>
+<tr class="memdesc:a1383dce806dc531aefb9f6dcb78d4517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centres the given text with white-space on either side so that has a symbol length equal to line_length.  <a href="#a1383dce806dc531aefb9f6dcb78d4517">More...</a><br/></td></tr>
+<tr class="separator:a1383dce806dc531aefb9f6dcb78d4517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Classes and operations related to formatting. </p>
@@ -199,15 +202,15 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a871d44e1a80db8868e27527793abe025"></a>
+<a class="anchor" id="a005869cc85ba6d9b0fcfad31cf56bda7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> chaos::io::format::apply_escape_sequence </td>
+          <td class="memname">void chaos::io::format::apply_escape_sequence </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
+          <td class="paramtype"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -229,12 +232,48 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Applies an ANSI escape sequence to a copy of the provided text. </p>
+<p>Applies an ANSI escape sequence to the provided text. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>The string data to be wrapped with the escape sequence. </td></tr>
-    <tr><td class="paramname">colour</td><td>the colour to use on the data. </td></tr>
-    <tr><td class="paramname">attribute</td><td>the attribute to use on the data. </td></tr>
+    <tr><td class="paramname">text</td><td>The string text to be wrapped with the escape sequence. </td></tr>
+    <tr><td class="paramname">colour</td><td>the colour to use on the text. </td></tr>
+    <tr><td class="paramname">attribute</td><td>the attribute to use on the text. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1383dce806dc531aefb9f6dcb78d4517"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::io::format::centre_text </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const chaos::unint32&#160;</td>
+          <td class="paramname"><em>line_length</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Centres the given text with white-space on either side so that has a symbol length equal to line_length. </p>
+<p>If the symbol length of the text is greater than line_length then the text will be left un-modified.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>The text to be centered. </td></tr>
+    <tr><td class="paramname">line_length</td><td>The desired number of symbols in the line after this operation has taken place. </td></tr>
   </table>
   </dd>
 </dl>
@@ -244,7 +283,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 23 2015 23:34:27 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 24 2015 22:35:05 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

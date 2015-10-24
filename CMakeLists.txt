@@ -9,6 +9,7 @@ set( CORE_SRC
 
     src/cxx/chaoscore/io/file/FileUtil.cpp
     src/cxx/chaoscore/io/format/ANSI.cpp
+    src/cxx/chaoscore/io/format/FormatUtil.cpp
 
     src/cxx/chaoscore/test/ChaosTest.cpp
     src/cxx/chaoscore/test/TestLogger.cpp

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>ChaosCore: /home/david/Dropbox/Development/ChaosCore/ChaosCore/src/cxx/chaoscore/base/string/UnicodeUtil.hpp Source File</title>
+<title>ChaosCore: /home/david/Dropbox/Development/ChaosCore/ChaosCore/src/cxx/chaoscore/io/format/FormatUtil.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,33 +82,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_52f3a1ea8ee7f72ab58fa94a51bbe91c.html">cxx</a></li><li class="navelem"><a class="el" href="dir_368b86494bf22b67c6a2f5a3364162f3.html">chaoscore</a></li><li class="navelem"><a class="el" href="dir_9765b378d21da3d46413cff375263dcd.html">base</a></li><li class="navelem"><a class="el" href="dir_d10b14828e85876df8883dc36627ff24.html">string</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_52f3a1ea8ee7f72ab58fa94a51bbe91c.html">cxx</a></li><li class="navelem"><a class="el" href="dir_368b86494bf22b67c6a2f5a3364162f3.html">chaoscore</a></li><li class="navelem"><a class="el" href="dir_b918a3047b122ec29819f7e14b99159e.html">io</a></li><li class="navelem"><a class="el" href="dir_26db07bf922cda986e49bdb2250caf06.html">format</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">UnicodeUtil.hpp</div>  </div>
+<div class="title">FormatUtil.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="_unicode_util_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CHAOSCORE_BASE_STRING_UNICODEUTIL_HPP_</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CHAOSCORE_BASE_STRING_UNICODEUTIL_HPP_</span></div>
+<a href="_format_util_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CHAOSCORE_IO_FORMAT_UTIL_HPP_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CHAOSCORE_IO_FORMAT_UTIL_HPP_</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_types_8hpp.html">chaoscore/base/Types.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_u_t_f8_string_8hpp.html">chaoscore/base/string/UTF8String.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>chaos</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>str</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>io</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">bool</span> utf8_is_digit( <a class="code" href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a> code_point );</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>format</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <span class="comment">// namespace str</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="_types_8hpp_html"><div class="ttname"><a href="_types_8hpp.html">Types.hpp</a></div><div class="ttdoc">A collection of typedefs for primitive types. </div></div>
-<div class="ttc" id="namespacechaos_html_a3b3a47ba1e284655bf1a30c441121c60"><div class="ttname"><a href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a></div><div class="ttdeci">uint32_t uint32</div><div class="ttdoc">a 32-bit unsigned integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:85</div></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//                                   FUNCTIONS</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1format.html#a1383dce806dc531aefb9f6dcb78d4517">centre_text</a>(</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; text,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">const</span> chaos::unint32    line_length );</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;} <span class="comment">// namespace format</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></div><div class="ttdoc">A generic string type for storing Unicode data. TODO. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:26</div></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1format_html_a1383dce806dc531aefb9f6dcb78d4517"><div class="ttname"><a href="namespacechaos_1_1io_1_1format.html#a1383dce806dc531aefb9f6dcb78d4517">chaos::io::format::centre_text</a></div><div class="ttdeci">void centre_text(chaos::str::UTF8String &amp;text, const chaos::unint32 line_length)</div><div class="ttdoc">Centres the given text with white-space on either side so that has a symbol length equal to line_leng...</div></div>
+<div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
