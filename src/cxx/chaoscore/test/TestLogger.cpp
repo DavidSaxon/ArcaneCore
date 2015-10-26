@@ -1,7 +1,7 @@
 #include "chaoscore/test/TestLogger.hpp"
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 #include "chaoscore/io/file/FileUtil.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
@@ -21,10 +21,14 @@ namespace test
 
 TestLogger::TestLogger()
     :
-    m_is_parent    ( false ),
-    m_using_stdout ( false ),
-    m_success_count( 0 ),
-    m_failure_count( 0 )
+    m_is_parent           ( false ),
+    m_using_stdout        ( false ),
+    m_global_unit_passes  ( 0 ),
+    m_global_unit_failures( 0 ),
+    m_global_success_count( 0 ),
+    m_global_failure_count( 0 ),
+    m_success_count       ( 0 ),
+    m_failure_count       ( 0 )
 {
 }
 
@@ -50,6 +54,13 @@ TestLogger::~TestLogger()
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
+
+void TestLogger::set_global_id( const chaos::str::UTF8String& id )
+{
+    // set global id and meta path
+    m_global_id = id;
+    m_meta_path = id + ".metadata";
+}
 
 void TestLogger::set_as_parent( bool state )
 {
@@ -83,7 +94,7 @@ void TestLogger::add_file_output(
     chaos::io::file::validate_path( path );
 
     // open a file stream
-    std::ofstream* file_stream = new std::ofstream( path.get_cstring() );
+    std::ofstream* file_stream = new std::ofstream( path.to_cstring() );
     // did the stream open ok?
     if ( !file_stream->good() )
     {
@@ -124,7 +135,7 @@ void TestLogger::close_log()
 
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->close_log();
+        ( *it )->close_log( m_global_success_count, m_global_failure_count );
     }
 }
 
@@ -162,7 +173,7 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
              chaos::io::file::is_file( sub_name )    )
         {
             // open the file and read the contents into the matching stream
-            std::ifstream in_file( sub_name.get_cstring() );
+            std::ifstream in_file( sub_name.to_cstring() );
             if ( in_file.is_open() )
             {
                 std::string line;
@@ -174,7 +185,7 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
             // close stream
             in_file.close();
             // delete the file
-            remove( sub_name.get_cstring() );
+            remove( sub_name.to_cstring() );
         }
     }
 
@@ -183,6 +194,51 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
     {
         ( *it )->close_test();
     }
+
+    // read in metadata file
+    // does the sub file exist?
+    if ( chaos::io::file::exists ( m_meta_path ) &&
+         chaos::io::file::is_file( m_meta_path )    )
+    {
+        std::ifstream metadata( m_meta_path.to_cstring() );
+        std::string line;
+        if( getline( metadata, line ) )
+        {
+            bool unit_pass = chaos::str::UTF8String( line.c_str() ).to_bool();
+            if ( unit_pass )
+            {
+                ++m_global_unit_passes;
+            }
+            else
+            {
+                ++m_global_unit_failures;
+            }
+            // TODO: REMOVE ME
+            std::cout << "__CCT__: UPDATE GLOBAL UNIT PASSES: "
+                      << m_global_unit_passes << std::endl;
+            std::cout << "__CCT__: UPDATE GLOBAL UNIT FAILURES: "
+                      << m_global_unit_failures << std::endl;
+        }
+        if( getline( metadata, line ) )
+        {
+            m_global_success_count +=
+                    chaos::str::UTF8String( line.c_str() ).to_uint64();
+            // TODO: REMOVE ME
+            std::cout << "__CCT__: UPDATE GLOBAL SUCCESS COUNT: "
+                      << m_global_success_count << std::endl;
+        }
+        if( getline( metadata, line ) )
+        {
+            m_global_failure_count +=
+                    chaos::str::UTF8String( line.c_str() ).to_uint64();
+            // TODO: REMOVE ME
+            std::cout << "__CCT__: UPDATE GLOBAL FAILURE COUNT: "
+                      << m_global_failure_count << std::endl;
+        }
+    }
+
+    // clean up metadata
+    remove( m_meta_path.to_cstring() );
 }
 
 void TestLogger::report_success(
@@ -221,7 +277,14 @@ void TestLogger::finialise_test_report()
     {
         ( *it )->finialise_test_report( m_success_count, m_failure_count );
     }
-    // send to formatters
+    // write to meta-data
+    chaos::str::UTF8String contents;
+    contents << ( m_failure_count == 0 ) << "\n" << m_success_count << "\n"
+             << m_failure_count << "\n";
+    std::ofstream metadata( m_meta_path.to_cstring() );
+    metadata << contents.to_cstring() << std::endl;
+    metadata.close();
+    // clear
     m_success_count = 0;
     m_failure_count = 0;
 }

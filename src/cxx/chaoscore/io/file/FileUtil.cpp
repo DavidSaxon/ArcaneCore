@@ -24,21 +24,21 @@ namespace file
 bool exists( const chaos::str::UTF8String& path )
 {
     return boost::filesystem::exists(
-            boost::filesystem::path( path.get_cstring() )
+            boost::filesystem::path( path.to_cstring() )
     );
 }
 
 bool is_file( const chaos::str::UTF8String& path )
 {
     return boost::filesystem::is_regular_file(
-            boost::filesystem::path( path.get_cstring() )
+            boost::filesystem::path( path.to_cstring() )
     );
 }
 
 bool is_directory( const chaos::str::UTF8String& path )
 {
     return boost::filesystem::is_directory(
-            boost::filesystem::path( path.get_cstring() )
+            boost::filesystem::path( path.to_cstring() )
     );
 }
 
@@ -47,11 +47,11 @@ void create_directory( const chaos::str::UTF8String& path )
 
 #ifdef CHAOS_OS_UNIX
 
-    mkdir( path.get_cstring(), 0777 );
+    mkdir( path.to_cstring(), 0777 );
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    _mkdir( path.get_cstring() );
+    _mkdir( path.to_cstring() );
 
 #endif
 

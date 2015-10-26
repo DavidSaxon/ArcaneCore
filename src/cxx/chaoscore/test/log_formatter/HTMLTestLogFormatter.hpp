@@ -36,7 +36,9 @@ public:
 
     virtual void open_log();
 
-    virtual void close_log();
+    virtual void close_log(
+            chaos::uint64 success_count,
+            chaos::uint64 failure_count );
 
     virtual void open_test(
             const chaos::str::UTF8String& path,

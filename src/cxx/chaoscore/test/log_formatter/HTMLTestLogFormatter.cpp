@@ -29,7 +29,9 @@ void HTMLTestLogFormatter::open_log()
     // TODO:
 }
 
-void HTMLTestLogFormatter::close_log()
+void HTMLTestLogFormatter::close_log(
+        chaos::uint64 success_count,
+        chaos::uint64 failure_count )
 {
     // TODO:
 }

@@ -29,7 +29,9 @@ void XMLTestLogFormatter::open_log()
     ( *m_stream ) << "<ChaosCoreTests>" << std::endl;
 }
 
-void XMLTestLogFormatter::close_log()
+void XMLTestLogFormatter::close_log(
+        chaos::uint64 success_count,
+        chaos::uint64 failure_count )
 {
     ( *m_stream ) << "</ChaosCoreTests>" << std::endl;
 }
@@ -111,10 +113,7 @@ void XMLTestLogFormatter::finialise_test_report(
         CHAOS_FOR_EACH( it, m_occurrence_map )
         {
             chaos::str::UTF8String message( it->first );
-            if ( it->second > 1 )
-            {
-                message << " occurrences=" << it->second;
-            }
+            message << " occurrences=" << it->second;
             ( *m_stream ) << message << "/>" << std::endl;
         }
     }

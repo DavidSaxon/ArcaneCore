@@ -67,7 +67,17 @@ int main( int argc, char* argv[] )
         // --sub_proc
         else if ( ARG_SUB_PROC == argv[ i ] )
         {
+            // ensure there is another argument
+            if ( argc - i <= 1 )
+            {
+                std::cerr << "\nERROR: Command line argument \'"
+                          << ARG_SINGLE_PROC << "must be followed by the "
+                          << "parent process's testing id.\n" << std::endl;
+                return -1;
+            }
+
             run_info.sub_proc = true;
+            run_info.id = chaos::str::UTF8String( argv[ ++i ] );
         }
         // --silent_crash
         else if ( ARG_SILENT_CRASH == argv[ i ] )
@@ -91,7 +101,7 @@ int main( int argc, char* argv[] )
         else if ( ARG_TEST_PATH == argv[ i ] )
         {
             // ensure there is another argument
-            if ( i == static_cast< size_t >( argc - 1 ) )
+            if ( argc - i <= 1 )
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_TEST_PATH << "\' must be followed by a test "
@@ -106,13 +116,12 @@ int main( int argc, char* argv[] )
         else if ( ARG_STDOUT == argv[ i ] )
         {
             // ensure there is another two arguments
-            if ( i == static_cast< size_t >( argc - 2 ) )
+            if ( argc - i <= 2 )
             {
                 std::cerr << "\nERROR: Command line argument \'"
-                          << ARG_STDOUT << "\' must be followed by the "
-                          "verbosity level (1-4) and the format to use. "
-                          << "Available formats are: plain, pretty, xml, and "
-                          << "html.\n" << std::endl;
+                          << ARG_STDOUT << "\' must be followed by the format "
+                          << "to use (plain, pretty, xml, or html) and the "
+                          << "verbosity level (1-4).\n" << std::endl;
                 return -1;
             }
 
@@ -122,6 +131,18 @@ int main( int argc, char* argv[] )
                 std::cerr << "\nERROR: Multiple definitions for stdout format. "
                           << "Currently only one stdout stream is supported "
                           << "for test logging.\n" << std::endl;
+                return -1;
+            }
+
+            // get the format to be use
+            chaos::test::TestLogger::OutFormat out_format;
+            chaos::str::UTF8String opt( argv[ ++i ] );
+            if ( !string_to_format( opt, out_format ) )
+            {
+                std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
+                          << "command line argument: \'" << ARG_STDOUT << "\'. "
+                          << "Available options are: plain, pretty, xml, and "
+                          << "html.\n" << std::endl;
                 return -1;
             }
 
@@ -146,18 +167,6 @@ int main( int argc, char* argv[] )
                 return -1;
             }
 
-            // get the format to be use
-            chaos::test::TestLogger::OutFormat out_format;
-            chaos::str::UTF8String opt( argv[ ++i ] );
-            if ( !string_to_format( opt, out_format ) )
-            {
-                std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
-                          << "command line argument: \'" << ARG_STDOUT << "\'. "
-                          << "Available options are: plain, pretty, xml, and "
-                          << "html.\n" << std::endl;
-                return -1;
-            }
-
             // add to the run information
             run_info.use_stdout = true;
             run_info.stdout_info.verbosity =
@@ -170,13 +179,13 @@ int main( int argc, char* argv[] )
         else if ( ARG_FILEOUT == argv[ i ] )
         {
             // ensure there is another three arguments
-            if ( i == static_cast< size_t >( argc - 3 ) )
+            if ( argc - i <= 3 )
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_FILEOUT << "\' must be followed by the file "
-                          << "path to write to, the verbosity level (1-4), and "
-                          << "the format to use. Available formats are: plain, "
-                          << "pretty, xml, and html.\n" << std::endl;
+                          << "path to write to, the format to use (plain, "
+                          << "pretty, xml, or html), and the verbosity level "
+                          << "(1-4).\n" << std::endl;
                 return -1;
             }
 
@@ -208,6 +217,26 @@ int main( int argc, char* argv[] )
                 return -1;
             }
 
+            // get the format to be use
+            chaos::test::TestLogger::OutFormat out_format;
+            chaos::str::UTF8String opt( argv[ ++i ] );
+            if ( !string_to_format( opt, out_format ) )
+            {
+                std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
+                          << "command line argument: \'" << ARG_FILEOUT
+                          << "\'. Available options are: plain, pretty, xml, "
+                          << "and html.\n" << std::endl;
+                return -1;
+            }
+
+            // does the file output already exist?
+            if ( run_info.files.find( file_path ) != run_info.files.end() )
+            {
+                std::cerr << "\nMultiple output definitions for the file: \'"
+                          << file_path << "\'.\n" << std::endl;
+                return -1;
+            }
+
             // get the verbosity level
             chaos::str::UTF8String verbosityString( argv[ ++i ] );
             if ( !verbosityString.is_uint() )
@@ -226,26 +255,6 @@ int main( int argc, char* argv[] )
                           << "\' provided for the argument: \'" << ARG_FILEOUT
                           << "\' is not a integer between 1 and 4.\n"
                           << std::endl;
-                return -1;
-            }
-
-            // get the format to be use
-            chaos::test::TestLogger::OutFormat out_format;
-            chaos::str::UTF8String opt( argv[ ++i ] );
-            if ( !string_to_format( opt, out_format ) )
-            {
-                std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
-                          << "command line argument: \'" << ARG_FILEOUT
-                          << "\'. Available options are: plain, pretty, xml, "
-                          << "and html.\n" << std::endl;
-                return -1;
-            }
-
-            // does the file output already exist?
-            if ( run_info.files.find( file_path ) != run_info.files.end() )
-            {
-                std::cerr << "\nMultiple output definitions for the file: \'"
-                          << file_path << "\'.\n" << std::endl;
                 return -1;
             }
 

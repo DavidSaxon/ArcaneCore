@@ -1,27 +1,13 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1445735510512">
-    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=58/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2/>
-    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66/>
-    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66/>
-    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66/>
-    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66/>
+  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1445900052428">
+    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 message=1 does not equal 2 occurrences=12/>
+    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=58 occurrences=1/>
+    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66 occurrences=4/>
     <UnitSummary total=17 successes=5 failures=12/>
   </UnitTest>
-  <UnitTest path="base.str.utf8.test_run" id="base.str.utf8.test_run_1445735510516">
-    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=7 message=1 does not equal 2/>
-    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=14/>
+  <UnitTest path="base.str.utf8.test_run" id="base.str.utf8.test_run_1445900052431">
+    <Failure type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=7 message=1 does not equal 2 occurrences=1/>
+    <Success type=TEST_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=14 occurrences=1/>
     <UnitSummary total=2 successes=1 failures=1/>
   </UnitTest>
 </ChaosCoreTests>

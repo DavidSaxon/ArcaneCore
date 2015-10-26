@@ -150,6 +150,8 @@ struct OutInfo
  */
 struct RunInfo
 {
+    // the current testing id
+    chaos::str::UTF8String id;
     // whether the tests should be run in a single process or not
     bool single_proc;
     // whether the test is being run as a sub-process of a parent testing
@@ -189,7 +191,8 @@ public:
 
     static TestLogger logger;
 
-    // TODO: can we move to inline cpp functions?
+    // TODO: can we move to inline cpp functions?, espacially with static
+    // member logger idea
 
     /*!
      * \internal
@@ -210,6 +213,16 @@ public:
         // is this the run key?
         if ( run_info )
         {
+            // generate id?
+            if ( run_info->id.is_empty() )
+            {
+                run_info->id << "chaoscore_tests_"
+                             << chaos::time::get_current_time();
+                // TODO: REMOVE ME
+                std::cout << "__CCT__: GENERATED TESTING ID: " << run_info->id << std::endl;
+            }
+            TestCore::logger.set_global_id( run_info->id );
+
             // mark parent logger?
             if ( !run_info->sub_proc )
             {
@@ -552,7 +565,7 @@ public:
         {
             if ( run_info->sub_proc )
             {
-                run_current_proc_no_open( unit_test );
+                run_current_proc_no_open( unit_test, run_info );
             }
             else
             {
@@ -596,16 +609,18 @@ public:
      *
      * \brief Runs the test on this current process with no log open and close.
      */
-    static void run_current_proc_no_open( UnitTest* unit_test )
+    static void run_current_proc_no_open(
+            UnitTest* unit_test,
+            RunInfo*  run_info )
     {
         // set up fixture
         unit_test->get_fixture()->setup();
         // execute
         unit_test->execute();
-        // teardown
-        unit_test->get_fixture()->teardown();
         // finialise report
         TestCore::logger.finialise_test_report();
+        // teardown
+        unit_test->get_fixture()->teardown();
     }
 
     /*!
@@ -632,7 +647,7 @@ public:
             {
                 // we are now on a new process so just use the single proc
                 // function.
-                TestCore::run_current_proc_no_open( unit_test );
+                TestCore::run_current_proc_no_open( unit_test, run_info );
                 exit( 0 );
             }
             else
@@ -653,8 +668,8 @@ public:
 
             // rebuild the command line arguments
             chaos::str::UTF8String command_line_args;
-            command_line_args << " --single_proc --sub_proc --silent_crash "
-                              << " --test " << full_path;
+            command_line_args << " --single_proc --sub_proc " << run_info->id
+                              << " --silent_crash --test " << full_path;
             // std out
             if ( run_info->use_stdout )
             {

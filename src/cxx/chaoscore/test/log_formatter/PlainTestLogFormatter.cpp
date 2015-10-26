@@ -29,7 +29,9 @@ void PlainTestLogFormatter::open_log()
     // do nothing for plain text
 }
 
-void PlainTestLogFormatter::close_log()
+void PlainTestLogFormatter::close_log(
+        chaos::uint64 success_count,
+        chaos::uint64 failure_count )
 {
     // do nothing for plain text
 }

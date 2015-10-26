@@ -44,7 +44,7 @@ public:
      */
     virtual const char* what() const throw()
     {
-        return m_Message.get_cstring();
+        return m_Message.to_cstring();
     }
 
     /*!

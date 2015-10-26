@@ -211,6 +211,13 @@ public:
     /*!
      * \brief Stream operator.
      *
+     * Extends this UTF8String with the given boolean.
+     */
+    UTF8String& operator<<( bool other );
+
+    /*!
+     * \brief Stream operator.
+     *
      * Extends this UTF8String with the given char.
      */
     UTF8String& operator<<( char other );
@@ -389,12 +396,31 @@ public:
      */
     UTF8String substring( size_t start, size_t length ) const;
 
-     /*!
-      * \brief Returns this as a standard library string.
-      *
-      * \return the std::string representation of this UTF8String.
-      */
+    /*!
+     * \brief Gets the raw byte data of this UTF8String as c style string
+              (const char*).
+     *
+     * This function is the same as get_raw_data() except the data is casted to
+     * const char*.
+     *
+     * \return a pointer to the c style string representation of the data.
+     */
+    const char* to_cstring() const;
+
+    /*!
+     * \brief Returns this as a standard library string.
+     *
+     * \return the std::string representation of this UTF8String.
+     */
     std::string to_std_string() const;
+
+    /*!
+     * \brief Returns this UTF8String as an bool if the conversion is valid.
+     *
+     * \throws chaos::ex::ConversionDataError If the data of the string is not a
+     *                                        a valid bool.
+     */
+    bool to_bool() const;
 
     /*!
      * \brief Returns this UTF8String as an int32 if the conversion is valid.
@@ -411,6 +437,23 @@ public:
      *                                        a valid uint32.
      */
     chaos::uint32 to_uint32() const;
+
+    /*!
+     * \brief Returns this UTF8String as an int64 if the conversion is valid.
+     *
+     * \throws chaos::ex::ConversionDataError If the data of the string is not a
+     *                                        a valid int64.
+     */
+    chaos::int64 to_int64() const;
+
+    /*!
+     * \brief Returns this UTF8String as an uint64 if the conversion is valid.
+     *
+     * \throws chaos::ex::ConversionDataError If the data of the string is not a
+     *                                        a valid uint64.
+     */
+    chaos::int64 to_uint64() const;
+
 
     //--------------------------------ACCESSORS---------------------------------
 
@@ -477,17 +520,6 @@ public:
      * \return a pointer to a constant representation of the internal data.
      */
     const chaos::int8* get_raw_data() const;
-
-    /*!
-     * \brief Gets the raw byte data of this UTF8String as c style string
-              (const char*).
-     *
-     * This function is the same as get_raw_data() except the data is casted to
-     * const char*.
-     *
-     * \return a pointer to the c style string representation of the data.
-     */
-    const char* get_cstring() const;
 
     //--------------------------------------------------------------------------
 

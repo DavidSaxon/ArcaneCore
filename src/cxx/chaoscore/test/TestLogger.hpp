@@ -6,6 +6,7 @@
 #define CHAOSCORE_TEST_TESTLOGGER_HPP_
 
 #include <iosfwd>
+
 #include <map>
 #include <vector>
 
@@ -77,6 +78,11 @@ public:
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Sets the global testing id for the logger.
+     */
+    void set_global_id( const chaos::str::UTF8String& id );
 
     /*!
      * \brief Sets this logger as the parent logger.
@@ -177,6 +183,10 @@ private:
     //--------------------------------------------------------------------------
 
     /*!
+     * \brief Global id of this logger.
+     */
+    chaos::str::UTF8String m_global_id;
+    /*!
      * \brief Whether this is the parent logger or not.
      */
     bool m_is_parent;
@@ -193,6 +203,28 @@ private:
      * \brief Mapping from filenames to the streams writing to them.
      */
     std::map< chaos::str::UTF8String, std::ostream* > m_file_streams;
+
+    /*!
+     * \brief Path to metadata file.
+     */
+    chaos::str::UTF8String m_meta_path;
+
+    /*!
+     * \brief The number of unit tests that have had a 100% pass rate.
+     */
+    chaos::uint32 m_global_unit_passes;
+    /*!
+     * \brief The number of unit tests that have not had a 100% pass rate.
+     */
+    chaos::uint32 m_global_unit_failures;
+    /*!
+     * \brief Total number of successes across all tests.
+     */
+    chaos::uint64 m_global_success_count;
+    /*!
+     * \brief Total number of failures across all tests.
+     */
+    chaos::uint64 m_global_failure_count;
 
     /*!
      * \brief The number of test successes in the current unit.

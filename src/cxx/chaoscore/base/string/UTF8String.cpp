@@ -165,6 +165,14 @@ UTF8String& UTF8String::operator<<( const char* other )
     return this->concatenate( UTF8String( other ) );
 }
 
+UTF8String& UTF8String::operator<<( bool other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
 UTF8String& UTF8String::operator<<( char other )
 {
     // TODO: doesn't seem very efficient :(
@@ -466,12 +474,39 @@ UTF8String UTF8String::substring( size_t start, size_t end ) const
     return( UTF8String( to_std_string().substr( start, end ).c_str() ) );
 }
 
+const char* UTF8String::to_cstring() const
+{
+    return reinterpret_cast< char* >( m_data );
+}
+
 std::string UTF8String::to_std_string() const
 {
     return std::string(
             reinterpret_cast< char* >( m_data ),
             m_data_length - 1
     );
+}
+
+bool UTF8String::to_bool() const
+{
+    // TODO: bool check?
+    // is the conversion valid?
+    if ( !is_int() )
+    {
+        UTF8String error_message;
+        error_message << "Cannot convert: \'" << *this << " to bool as it is "
+                      << "not valid.";
+        throw chaos::ex::ConversionDataError( error_message );
+    }
+    // do conversion and return
+    for ( size_t i = 0; i < get_length(); ++i )
+    {
+        if ( get_symbol( i ) != "0" )
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 chaos::int32 UTF8String::to_int32() const
@@ -485,7 +520,7 @@ chaos::int32 UTF8String::to_int32() const
         throw chaos::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::int32 >( atoi( get_cstring() ) );
+    return static_cast< chaos::int32 >( std::strtol( to_cstring(), NULL, 0 ) );
 }
 
 chaos::uint32 UTF8String::to_uint32() const
@@ -499,7 +534,36 @@ chaos::uint32 UTF8String::to_uint32() const
         throw chaos::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::int32 >( strtoul( get_cstring(), NULL, 0 ) );
+    return static_cast< chaos::uint32 >( strtoul( to_cstring(), NULL, 0 ) );
+}
+
+chaos::int64 UTF8String::to_int64() const
+{
+    // is the conversion valid?
+    if ( !is_int() )
+    {
+        UTF8String error_message;
+        error_message << "Cannot convert: \'" << *this << " to int64 as it is "
+                      << "not valid.";
+        throw chaos::ex::ConversionDataError( error_message );
+    }
+    // do and return conversion
+    return static_cast< chaos::int64 >( std::strtol( to_cstring(), NULL, 0 ) );
+}
+
+chaos::int64 UTF8String::to_uint64() const
+{
+    // is the conversion valid?
+    if ( !is_uint() )
+    {
+        UTF8String error_message;
+        error_message << "Cannot convert: \'" << *this << " to uint64 as it is "
+                      << "not valid.";
+        throw chaos::ex::ConversionDataError( error_message );
+    }
+    // do and return conversion
+    return static_cast< chaos::uint64 >(
+            std::strtoul( to_cstring(), NULL, 0 ) );
 }
 
 //----------------------------------ACCESSORS-----------------------------------
@@ -543,11 +607,6 @@ size_t UTF8String::get_byte_length() const
 const chaos::int8* UTF8String::get_raw_data() const
 {
     return m_data;
-}
-
-const char* UTF8String::get_cstring() const
-{
-    return reinterpret_cast< char* >( m_data );
 }
 
 //------------------------------------------------------------------------------
@@ -663,7 +722,7 @@ void UTF8String::validate_symbol_index( size_t index ) const
 std::ostream& operator<<( std::ostream& stream, const UTF8String& str )
 {
     // TODO: proper printing
-    stream << str.get_cstring();
+    stream << str.to_cstring();
     return stream;
 }
 
