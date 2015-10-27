@@ -675,8 +675,8 @@ public:
             {
                 command_line_args
                         << " --stdout "
-                        << run_info->stdout_info.verbosity << " "
-                        << log_format_to_string( run_info->stdout_info.format );
+                        << log_format_to_string( run_info->stdout_info.format )
+                        << " " << run_info->stdout_info.verbosity;
             }
             // file outputs
             CHAOS_FOR_EACH( f_it, run_info->files )
@@ -684,8 +684,8 @@ public:
                 // generate a mangled file path
                 command_line_args
                         << " --fileout " << f_it->first << "." << id << " "
-                        << f_it->second->verbosity << " "
-                        << log_format_to_string( f_it->second->format );
+                        << log_format_to_string( f_it->second->format ) << " "
+                        << f_it->second->verbosity;
             }
 
             // spawn a new instance of this process but with arguments to point
@@ -707,7 +707,7 @@ public:
             // start the child process
             BOOL create_success = CreateProcess(
                     exe_path,
-                    const_cast< LPSTR >( command_line_args.get_cstring() ),
+                    const_cast< LPSTR >( command_line_args.to_cstring() ),
                     NULL,
                     NULL,
                     FALSE,

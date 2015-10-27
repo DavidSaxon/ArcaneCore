@@ -23,8 +23,9 @@ TestLogger::TestLogger()
     :
     m_is_parent           ( false ),
     m_using_stdout        ( false ),
-    m_global_unit_passes  ( 0 ),
-    m_global_unit_failures( 0 ),
+    m_unit_passes         ( 0 ),
+    m_unit_failures       ( 0 ),
+    m_unit_errors         ( 0 ),
     m_global_success_count( 0 ),
     m_global_failure_count( 0 ),
     m_success_count       ( 0 ),
@@ -135,7 +136,12 @@ void TestLogger::close_log()
 
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->close_log( m_global_success_count, m_global_failure_count );
+        ( *it )->close_log(
+                m_unit_passes,
+                m_unit_failures,
+                m_unit_errors,
+                m_global_success_count,
+                m_global_failure_count );
     }
 }
 
@@ -207,33 +213,22 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
             bool unit_pass = chaos::str::UTF8String( line.c_str() ).to_bool();
             if ( unit_pass )
             {
-                ++m_global_unit_passes;
+                ++m_unit_passes;
             }
             else
             {
-                ++m_global_unit_failures;
+                ++m_unit_failures;
             }
-            // TODO: REMOVE ME
-            std::cout << "__CCT__: UPDATE GLOBAL UNIT PASSES: "
-                      << m_global_unit_passes << std::endl;
-            std::cout << "__CCT__: UPDATE GLOBAL UNIT FAILURES: "
-                      << m_global_unit_failures << std::endl;
         }
         if( getline( metadata, line ) )
         {
             m_global_success_count +=
                     chaos::str::UTF8String( line.c_str() ).to_uint64();
-            // TODO: REMOVE ME
-            std::cout << "__CCT__: UPDATE GLOBAL SUCCESS COUNT: "
-                      << m_global_success_count << std::endl;
         }
         if( getline( metadata, line ) )
         {
             m_global_failure_count +=
                     chaos::str::UTF8String( line.c_str() ).to_uint64();
-            // TODO: REMOVE ME
-            std::cout << "__CCT__: UPDATE GLOBAL FAILURE COUNT: "
-                      << m_global_failure_count << std::endl;
         }
     }
 
@@ -295,7 +290,7 @@ void TestLogger::finialise_test_report()
 
 void TestLogger::create_formatter(
         std::ostream* stream,
-        chaos::uint8  verbosity,
+        chaos::uint16 verbosity,
         OutFormat     format,
         bool          is_stdout )
 {

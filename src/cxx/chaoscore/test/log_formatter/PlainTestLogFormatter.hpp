@@ -38,8 +38,11 @@ public:
     virtual void open_log();
 
     virtual void close_log(
-            chaos::uint64 success_count,
-            chaos::uint64 failure_count );
+            chaos::int32  units_passed,
+            chaos::int32  units_failed,
+            chaos::int32  units_errored,
+            chaos::uint64 checks_passed,
+            chaos::uint64 checks_failed );
 
     virtual void open_test(
             const chaos::str::UTF8String& path,
@@ -59,8 +62,8 @@ public:
             const chaos::str::UTF8String& message );
 
     virtual void finialise_test_report(
-            chaos::uint64 success_count,
-            chaos::uint64 failure_count );
+            chaos::uint64 checks_passed,
+            chaos::uint64 checks_failed );
 };
 
 } // namespace log_formatter

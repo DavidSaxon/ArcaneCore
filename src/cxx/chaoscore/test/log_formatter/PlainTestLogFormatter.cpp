@@ -30,8 +30,11 @@ void PlainTestLogFormatter::open_log()
 }
 
 void PlainTestLogFormatter::close_log(
-        chaos::uint64 success_count,
-        chaos::uint64 failure_count )
+        chaos::int32  units_passed,
+        chaos::int32  units_failed,
+        chaos::int32  units_errored,
+        chaos::uint64 checks_passed,
+        chaos::uint64 checks_failed )
 {
     // do nothing for plain text
 }
@@ -66,8 +69,8 @@ void PlainTestLogFormatter::report_failure(
 }
 
 void PlainTestLogFormatter::finialise_test_report(
-        chaos::uint64 success_count,
-        chaos::uint64 failure_count )
+        chaos::uint64 checks_passed,
+        chaos::uint64 checks_failed )
 {
     // TODO:
 }

@@ -212,11 +212,17 @@ private:
     /*!
      * \brief The number of unit tests that have had a 100% pass rate.
      */
-    chaos::uint32 m_global_unit_passes;
+    chaos::uint32 m_unit_passes;
     /*!
-     * \brief The number of unit tests that have not had a 100% pass rate.
+     * \brief The number of unit tests that have not had a 100% pass rate, but
+     *        still completed.
      */
-    chaos::uint32 m_global_unit_failures;
+    chaos::uint32 m_unit_failures;
+    /*!
+     * \brief The number of unit tests that encountered a critical error during
+     *        execution.
+     */
+    chaos::uint32 m_unit_errors;
     /*!
      * \brief Total number of successes across all tests.
      */
@@ -245,7 +251,7 @@ private:
      */
     void create_formatter(
             std::ostream* stream,
-            chaos::uint8  verbosity,
+            chaos::uint16 verbosity,
             OutFormat     format,
             bool          is_stdout = false );
 };

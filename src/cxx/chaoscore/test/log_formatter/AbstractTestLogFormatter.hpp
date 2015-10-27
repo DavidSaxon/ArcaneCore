@@ -56,8 +56,11 @@ public:
     virtual void open_log() = 0;
 
     virtual void close_log(
-            chaos::uint64 success_count,
-            chaos::uint64 failure_count ) = 0;
+            chaos::int32  units_passed,
+            chaos::int32  units_failed,
+            chaos::int32  units_errored,
+            chaos::uint64 checks_passed,
+            chaos::uint64 checks_failed ) = 0;
 
     virtual void open_test(
             const chaos::str::UTF8String& path,
@@ -77,8 +80,8 @@ public:
             const chaos::str::UTF8String& message ) = 0;
 
     virtual void finialise_test_report(
-            chaos::uint64 success_count,
-            chaos::uint64 failure_count ) = 0;
+            chaos::uint64 checks_passed,
+            chaos::uint64 checks_failed ) = 0;
 
 protected:
 

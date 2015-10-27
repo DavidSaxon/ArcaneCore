@@ -69,8 +69,11 @@ void PrettyTestLogFormatter::open_log()
 }
 
 void PrettyTestLogFormatter::close_log(
-        chaos::uint64 success_count,
-        chaos::uint64 failure_count )
+        chaos::int32  units_passed,
+        chaos::int32  units_failed,
+        chaos::int32  units_errored,
+        chaos::uint64 checks_passed,
+        chaos::uint64 checks_failed )
 {
     // verbosity 2+
     if ( m_verbosity < 2 )
@@ -78,14 +81,56 @@ void PrettyTestLogFormatter::close_log(
         return;
     }
 
+    chaos::int32 unit_total = units_passed + units_failed + units_errored;
+    chaos::uint32 unit_pass_percent = static_cast< chaos::uint32 > (
+            ( static_cast< float >( units_passed ) /
+              static_cast< float >( unit_total   )   )
+            * 100.0F
+    );
+
+    chaos::uint64 check_total = checks_passed + checks_failed;
+    chaos::uint32 check_pass_percent = static_cast< chaos::uint32 > (
+            ( static_cast< float >( checks_passed ) /
+              static_cast< float >( check_total   )   )
+            * 100.0F
+    );
+
     chaos::str::UTF8String divider( "=" );
     divider *= 79;
     chaos::str::UTF8String message;
 
-    chaos::str::UTF8String t( "All Tests Completed" );
-    chaos::io::format::centre_text( t, 79, true );
+    chaos::str::UTF8String intro( "All Tests Completed" );
+    chaos::io::format::centre_text( intro, 79, true );
 
-    message << divider << "\n" << t << "\n" << divider;
+    chaos::str::UTF8String unit_summary( "-- Summary for " );
+    unit_summary << unit_total << " Unit Tests --";
+    chaos::io::format::centre_text( unit_summary, 79, true );
+
+    chaos::str::UTF8String unit_count;
+    unit_count << "Passed: " << units_passed << " Failed: " << units_failed;
+    chaos::io::format::centre_text( unit_count, 79, true );
+
+    chaos::str::UTF8String unit_percent;
+    unit_percent << unit_pass_percent << "% pass rate";
+    chaos::io::format::centre_text( unit_percent, 79, true );
+
+    chaos::str::UTF8String check_summary( "-- Summary for " );
+    check_summary << check_total << " Checks --";
+    chaos::io::format::centre_text( check_summary, 79, true );
+
+    chaos::str::UTF8String check_count;
+    check_count << "Passed: " << checks_passed << " Failed: " << checks_failed;
+    chaos::io::format::centre_text( check_count, 79, true );
+
+    chaos::str::UTF8String check_percent;
+    check_percent << check_pass_percent << "% pass rate";
+    chaos::io::format::centre_text( check_percent, 79, true );
+
+    message << divider << "\n" << intro << "\n" << divider << "\n"
+            << unit_summary << "\n" << unit_count << "\n" << unit_percent
+            << "\n" << divider << "\n" << check_summary << "\n" << check_count
+            << "\n" << check_percent << "\n" << divider << "\n";
+
     // colourise
     if ( m_use_ansi )
     {
@@ -229,8 +274,8 @@ void PrettyTestLogFormatter::report_failure(
 }
 
 void PrettyTestLogFormatter::finialise_test_report(
-        chaos::uint64 success_count,
-        chaos::uint64 failure_count )
+        chaos::uint64 checks_passed,
+        chaos::uint64 checks_failed )
 {
     // write collected reports
     if ( m_verbosity <= 3 )
@@ -272,9 +317,9 @@ void PrettyTestLogFormatter::finialise_test_report(
         return;
     }
 
-    chaos::uint64 total_count = success_count + failure_count;
-    chaos::uint32 percent = static_cast< chaos::uint32 > (
-            ( static_cast< float >( success_count ) /
+    chaos::uint64 total_count = checks_passed + checks_failed;
+    chaos::uint32 pass_percent = static_cast< chaos::uint32 > (
+            ( static_cast< float >( checks_passed ) /
               static_cast< float >( total_count )      )
             * 100.0F
     );
@@ -282,18 +327,17 @@ void PrettyTestLogFormatter::finialise_test_report(
     chaos::str::UTF8String divider( "+" );
     divider *= 79;
 
-    chaos::str::UTF8String intro( "Unit Test Summary:" );
-    chaos::io::format::centre_text( intro, 79, true );
+    chaos::str::UTF8String summary( "-- Summary for " );
+    summary << total_count << " Checks --";
+    chaos::io::format::centre_text( summary, 79, true );
 
-    chaos::str::UTF8String counts( "--  Total Tests: " );
-    counts << ( success_count + failure_count );
-    counts << "  --  Passed: " << success_count << "  --  Failed: "
-           << failure_count << "  --";
+    chaos::str::UTF8String counts;
+    counts << "Passed: " << checks_passed << " Failed: " << checks_failed;
     chaos::io::format::centre_text( counts, 79, true );
 
-    chaos::str::UTF8String pass_percent;
-    pass_percent << percent << "% pass rate";
-    chaos::io::format::centre_text( pass_percent, 79, true );
+    chaos::str::UTF8String percent;
+    percent << pass_percent << "% pass rate";
+    chaos::io::format::centre_text( percent, 79, true );
 
     // colourise
     if ( m_use_ansi )
@@ -303,7 +347,7 @@ void PrettyTestLogFormatter::finialise_test_report(
                 chaos::io::format::ANSI_FG_LIGHT_BLUE
         );
         chaos::io::format::apply_escape_sequence(
-                intro,
+                summary,
                 chaos::io::format::ANSI_FG_LIGHT_BLUE,
                 chaos::io::format::ANSI_ATTR_BOLD
         );
@@ -311,31 +355,31 @@ void PrettyTestLogFormatter::finialise_test_report(
                 counts,
                 chaos::io::format::ANSI_FG_WHITE
         );
-        if ( percent <= 25 )
+        if ( pass_percent <= 25 )
         {
             chaos::io::format::apply_escape_sequence(
-                    pass_percent,
+                    percent,
                     chaos::io::format::ANSI_FG_RED
             );
         }
-        else if ( percent <= 50 )
+        else if ( pass_percent <= 50 )
         {
             chaos::io::format::apply_escape_sequence(
-                    pass_percent,
+                    percent,
                     chaos::io::format::ANSI_FG_MAGENTA
             );
         }
-        else if ( percent <= 75 )
+        else if ( pass_percent <= 75 )
         {
             chaos::io::format::apply_escape_sequence(
-                    pass_percent,
+                    percent,
                     chaos::io::format::ANSI_FG_LIGHT_YELLOW
             );
         }
         else
         {
             chaos::io::format::apply_escape_sequence(
-                    pass_percent,
+                    percent,
                     chaos::io::format::ANSI_FG_GREEN
             );
         }
@@ -343,8 +387,8 @@ void PrettyTestLogFormatter::finialise_test_report(
 
     // write to stream
     chaos::str::UTF8String message;
-    message << "\n" << divider << "\n" << intro << "\n" << counts << "\n"
-            << pass_percent << "\n" << divider << "\n";
+    message << "\n" << divider << "\n" << summary << "\n" << counts << "\n"
+            << percent << "\n" << divider << "\n";
     ( *m_stream ) << message << std::endl;
 }
 
