@@ -304,7 +304,7 @@ void PrettyTestLogFormatter::close_test()
     ( *m_stream ) << message << "\n" << std::endl;
 }
 
-void PrettyTestLogFormatter::report_success(
+void PrettyTestLogFormatter::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line )
@@ -337,7 +337,7 @@ void PrettyTestLogFormatter::report_success(
     }
 }
 
-void PrettyTestLogFormatter::report_failure(
+void PrettyTestLogFormatter::report_check_fail(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line,

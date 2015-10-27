@@ -146,26 +146,26 @@ public:
     void close_test( const chaos::str::UTF8String& id );
 
     /*!
-     * \brief Reports a test success.
+     * \brief Reports a check pass.
      *
-     * \param type the Type of test that succeed.
-     * \param file The source file that the success occurred in.
-     * \param line The line in the file that success occurred at.
+     * \param type the Type of check that passed.
+     * \param file The source file that the pass occurred in.
+     * \param line The line in the file that pass occurred at.
      */
-    void report_success(
+    void report_check_pass(
             const chaos::str::UTF8String& type,
             const chaos::str::UTF8String& file,
                   chaos::int32            line );
 
     /*!
-     * \brief Reports a test failure.
+     * \brief Reports a check failure.
      *
-     * \param type the Type of test that failed.
+     * \param type the Type of check that failed.
      * \param file The source file that the failure occurred in.
      * \param line The line in the file that failure occurred at.
      * \param message A message that was provided with the failure.
      */
-    void report_failure(
+    void report_check_fail(
             const chaos::str::UTF8String& type,
             const chaos::str::UTF8String& file,
                   chaos::int32            line,
@@ -224,22 +224,22 @@ private:
      */
     chaos::uint32 m_unit_errors;
     /*!
-     * \brief Total number of successes across all tests.
+     * \brief Total number of checks passed across all tests.
      */
-    chaos::uint64 m_global_success_count;
+    chaos::uint64 m_global_check_pass_count;
     /*!
-     * \brief Total number of failures across all tests.
+     * \brief Total number of checks failed across all tests.
      */
-    chaos::uint64 m_global_failure_count;
+    chaos::uint64 m_global_check_fail_count;
 
     /*!
-     * \brief The number of test successes in the current unit.
+     * \brief The number of checks passed in the current unit.
      */
-    chaos::uint64 m_success_count;
+    chaos::uint64 m_check_pass_count;
     /*!
-     * \brief The number of test failures in the current unit.
+     * \brief The number of checks failed in the current unit.
      */
-    chaos::uint64 m_failure_count;
+    chaos::uint64 m_check_fail_count;
 
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS

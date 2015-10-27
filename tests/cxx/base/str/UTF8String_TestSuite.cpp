@@ -4,12 +4,12 @@ CHAOS_TEST_MODULE( base.str.utf8 )
 
 CHAOS_TEST_UNIT( test_run )
 {
-    CHAOS_TEST_EQUAL( 1, 2 );
+    CHAOS_CHECK_EQUAL( 1, 2 );
 
     // char* seg = new char[ 2 ];
     // seg[ 56 ] = 12;
     // delete[] seg;
     // delete[] seg;
 
-    CHAOS_TEST_EQUAL( 1, 1 );
+    CHAOS_CHECK_EQUAL( 1, 1 );
 }

@@ -51,7 +51,7 @@ void HTMLTestLogFormatter::close_test()
     // TODO:
 }
 
-void HTMLTestLogFormatter::report_success(
+void HTMLTestLogFormatter::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line )
@@ -59,7 +59,7 @@ void HTMLTestLogFormatter::report_success(
     // TODO:
 }
 
-void HTMLTestLogFormatter::report_failure(
+void HTMLTestLogFormatter::report_check_fail(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line,

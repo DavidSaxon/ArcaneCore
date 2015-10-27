@@ -21,15 +21,15 @@ namespace test
 
 TestLogger::TestLogger()
     :
-    m_is_parent           ( false ),
-    m_using_stdout        ( false ),
-    m_unit_passes         ( 0 ),
-    m_unit_failures       ( 0 ),
-    m_unit_errors         ( 0 ),
-    m_global_success_count( 0 ),
-    m_global_failure_count( 0 ),
-    m_success_count       ( 0 ),
-    m_failure_count       ( 0 )
+    m_is_parent              ( false ),
+    m_using_stdout           ( false ),
+    m_unit_passes            ( 0 ),
+    m_unit_failures          ( 0 ),
+    m_unit_errors            ( 0 ),
+    m_global_check_pass_count( 0 ),
+    m_global_check_fail_count( 0 ),
+    m_check_pass_count       ( 0 ),
+    m_check_fail_count       ( 0 )
 {
 }
 
@@ -140,8 +140,8 @@ void TestLogger::close_log()
                 m_unit_passes,
                 m_unit_failures,
                 m_unit_errors,
-                m_global_success_count,
-                m_global_failure_count );
+                m_global_check_pass_count,
+                m_global_check_fail_count );
     }
 }
 
@@ -222,12 +222,12 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
         }
         if( getline( metadata, line ) )
         {
-            m_global_success_count +=
+            m_global_check_pass_count +=
                     chaos::str::UTF8String( line.c_str() ).to_uint64();
         }
         if( getline( metadata, line ) )
         {
-            m_global_failure_count +=
+            m_global_check_fail_count +=
                     chaos::str::UTF8String( line.c_str() ).to_uint64();
         }
     }
@@ -236,32 +236,32 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
     remove( m_meta_path.to_cstring() );
 }
 
-void TestLogger::report_success(
+void TestLogger::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
     // record success
-    ++m_success_count;
+    ++m_check_pass_count;
     // send to formatters
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->report_success( type, file, line );
+        ( *it )->report_check_pass( type, file, line );
     }
 }
 
-void TestLogger::report_failure(
+void TestLogger::report_check_fail(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
               chaos::int32            line,
         const chaos::str::UTF8String& message )
 {
     // record failure
-    ++m_failure_count;
+    ++m_check_fail_count;
     // send to formatters
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->report_failure( type, file, line, message );
+        ( *it )->report_check_fail( type, file, line, message );
     }
 }
 
@@ -270,18 +270,19 @@ void TestLogger::finialise_test_report()
     // send to formatters
     CHAOS_FOR_EACH( it, m_formatters )
     {
-        ( *it )->finialise_test_report( m_success_count, m_failure_count );
+        ( *it )->finialise_test_report(
+                m_check_pass_count, m_check_fail_count );
     }
     // write to meta-data
     chaos::str::UTF8String contents;
-    contents << ( m_failure_count == 0 ) << "\n" << m_success_count << "\n"
-             << m_failure_count << "\n";
+    contents << ( m_check_fail_count == 0 ) << "\n" << m_check_pass_count
+             << "\n" << m_check_fail_count << "\n";
     std::ofstream metadata( m_meta_path.to_cstring() );
     metadata << contents.to_cstring() << std::endl;
     metadata.close();
     // clear
-    m_success_count = 0;
-    m_failure_count = 0;
+    m_check_pass_count = 0;
+    m_check_fail_count = 0;
 }
 
 //------------------------------------------------------------------------------

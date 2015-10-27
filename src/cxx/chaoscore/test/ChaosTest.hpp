@@ -807,44 +807,6 @@ public:
     }
 
     /*!
-     * \brief Registers a success for the given test information.
-     *
-     * \param type Type of test that failed.
-     * \param file Name of the file the failure occurred in.
-     * \param line Line number where the failure occurred.
-     */
-    static void register_success(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
-                  int                     line )
-    {
-        // TODO: count success and total
-
-        // send to logger
-        TestCore::logger.report_success( type, file, line );
-    }
-
-    /*!
-     * \brief Registers a failure for the given test information.
-     *
-     * \param type Type of test that failed.
-     * \param file Name of the file the failure occurred in.
-     * \param line Line number where the failure occurred.
-     * \param message Explanation of the failure.
-     */
-    static void register_failure(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
-                  int                     line,
-            const chaos::str::UTF8String& message )
-    {
-        // TODO: count failures and total
-
-        // send to logger
-        TestCore::logger.report_failure( type, file, line, message );
-    }
-
-    /*!
      * \internal
      *
      * Formats and throws a TestDeclerationError.
@@ -917,20 +879,23 @@ public:
     void path::execute()
 
 
-// TODO: TEST ARGS
-
- #define CHAOS_TEST_EQUAL( a, b )                                              \
+/*!
+ * \brief TODO: DOC
+ *
+ * TODO: DOC
+ */
+#define CHAOS_CHECK_EQUAL( a, b )                                              \
         if ( a == b )                                                          \
         {                                                                      \
-            chaos::test::internal::TestCore::register_success(                 \
-                    "TEST_EQUAL", __FILE__, __LINE__ );                        \
+            chaos::test::internal::TestCore::logger.report_check_pass(         \
+                    "CHAOS_CHECK_EQUAL", __FILE__, __LINE__ );                 \
         }                                                                      \
         else                                                                   \
         {                                                                      \
             chaos::str::UTF8String f_e_m;                                      \
             f_e_m << a << " does not equal " << b;                             \
-            chaos::test::internal::TestCore::register_failure(                 \
-                    "TEST_EQUAL", __FILE__, __LINE__, f_e_m );                 \
+            chaos::test::internal::TestCore::logger.report_check_fail(         \
+                    "CHAOS_CHECK_EQUAL", __FILE__, __LINE__, f_e_m );          \
         }
 
 } // namespace test

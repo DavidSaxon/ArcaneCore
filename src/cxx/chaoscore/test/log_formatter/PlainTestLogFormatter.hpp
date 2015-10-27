@@ -50,12 +50,12 @@ public:
 
     virtual void close_test();
 
-    virtual void report_success(
+    virtual void report_check_pass(
             const chaos::str::UTF8String& type,
             const chaos::str::UTF8String& file,
                   chaos::int32            line );
 
-    virtual void report_failure(
+    virtual void report_check_fail(
             const chaos::str::UTF8String& type,
             const chaos::str::UTF8String& file,
                   chaos::int32            line,
