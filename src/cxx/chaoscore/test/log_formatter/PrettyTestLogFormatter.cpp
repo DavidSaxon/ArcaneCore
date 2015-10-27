@@ -126,6 +126,100 @@ void PrettyTestLogFormatter::close_log(
     check_percent << check_pass_percent << "% pass rate";
     chaos::io::format::centre_text( check_percent, 79, true );
 
+    // colourise
+    if ( m_use_ansi )
+    {
+        chaos::io::format::apply_escape_sequence(
+                divider,
+                chaos::io::format::ANSI_FG_LIGHT_CYAN
+        );
+        chaos::io::format::apply_escape_sequence(
+                intro,
+                chaos::io::format::ANSI_FG_LIGHT_CYAN
+        );
+        chaos::io::format::apply_escape_sequence(
+                unit_summary,
+                chaos::io::format::ANSI_FG_LIGHT_BLUE,
+                chaos::io::format::ANSI_ATTR_BOLD
+        );
+        chaos::io::format::apply_escape_sequence(
+                unit_count,
+                chaos::io::format::ANSI_FG_WHITE
+        );
+        if ( unit_pass_percent <= 25 )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    unit_percent,
+                    chaos::io::format::ANSI_FG_RED,
+                    chaos::io::format::ANSI_ATTR_BLINK
+            );
+        }
+        else if ( unit_pass_percent <= 50 )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    unit_percent,
+                    chaos::io::format::ANSI_FG_MAGENTA,
+                    chaos::io::format::ANSI_ATTR_BLINK
+            );
+        }
+        else if ( unit_pass_percent <= 75 )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    unit_percent,
+                    chaos::io::format::ANSI_FG_LIGHT_YELLOW,
+                    chaos::io::format::ANSI_ATTR_BLINK
+            );
+        }
+        else
+        {
+            chaos::io::format::apply_escape_sequence(
+                    unit_percent,
+                    chaos::io::format::ANSI_FG_GREEN
+            );
+        }
+        chaos::io::format::apply_escape_sequence(
+                check_summary,
+                chaos::io::format::ANSI_FG_LIGHT_BLUE,
+                chaos::io::format::ANSI_ATTR_BOLD
+        );
+        chaos::io::format::apply_escape_sequence(
+                check_count,
+                chaos::io::format::ANSI_FG_WHITE
+        );
+        if ( check_pass_percent <= 25 )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    check_percent,
+                    chaos::io::format::ANSI_FG_RED,
+                    chaos::io::format::ANSI_ATTR_BLINK
+            );
+        }
+        else if ( check_pass_percent <= 50 )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    check_percent,
+                    chaos::io::format::ANSI_FG_MAGENTA,
+                    chaos::io::format::ANSI_ATTR_BLINK
+            );
+        }
+        else if ( check_pass_percent <= 75 )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    check_percent,
+                    chaos::io::format::ANSI_FG_LIGHT_YELLOW,
+                    chaos::io::format::ANSI_ATTR_BLINK
+            );
+        }
+        else
+        {
+            chaos::io::format::apply_escape_sequence(
+                    check_percent,
+                    chaos::io::format::ANSI_FG_GREEN
+            );
+        }
+    }
+
+
     message << divider << "\n" << intro << "\n" << divider << "\n"
             << unit_summary << "\n" << unit_count << "\n" << unit_percent
             << "\n" << divider << "\n" << check_summary << "\n" << check_count
@@ -359,21 +453,24 @@ void PrettyTestLogFormatter::finialise_test_report(
         {
             chaos::io::format::apply_escape_sequence(
                     percent,
-                    chaos::io::format::ANSI_FG_RED
+                    chaos::io::format::ANSI_FG_RED,
+                    chaos::io::format::ANSI_ATTR_BLINK
             );
         }
         else if ( pass_percent <= 50 )
         {
             chaos::io::format::apply_escape_sequence(
                     percent,
-                    chaos::io::format::ANSI_FG_MAGENTA
+                    chaos::io::format::ANSI_FG_MAGENTA,
+                    chaos::io::format::ANSI_ATTR_BLINK
             );
         }
         else if ( pass_percent <= 75 )
         {
             chaos::io::format::apply_escape_sequence(
                     percent,
-                    chaos::io::format::ANSI_FG_LIGHT_YELLOW
+                    chaos::io::format::ANSI_FG_LIGHT_YELLOW,
+                    chaos::io::format::ANSI_ATTR_BLINK
             );
         }
         else
