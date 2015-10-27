@@ -36,6 +36,16 @@ void XMLTestLogFormatter::close_log(
         chaos::uint64 checks_passed,
         chaos::uint64 checks_failed )
 {
+    // verbosity 2+
+    if ( m_verbosity >= 2 )
+    {
+        // write summary
+        ( *m_stream ) << "  <FinalSummary UnitsPassed=" << units_passed
+                      << " UnitsFailed=" << units_failed << " UnitsErrored="
+                      << units_errored << " ChecksPassed=" << checks_passed
+                      << " ChecksFailed=" << checks_failed << "/>" << std::endl;
+    }
+
     ( *m_stream ) << "</ChaosCoreTests>" << std::endl;
 }
 
@@ -84,7 +94,6 @@ void XMLTestLogFormatter::report_failure(
               chaos::int32            line,
         const chaos::str::UTF8String& message )
 {
-    // TODO: values need to go in the message???
     // build the start of the entry
     chaos::str::UTF8String entry;
     entry << "    <Failure type=" << type << " file=" << file << " line="
@@ -127,9 +136,8 @@ void XMLTestLogFormatter::finialise_test_report(
         return;
     }
 
-    ( *m_stream ) << "    <UnitSummary total="
-                  << ( checks_passed + checks_failed ) << " successes="
-                  << checks_passed << " failures=" << checks_failed << "/>"
+    ( *m_stream ) << "    <UnitSummary ChecksPassed=" << checks_passed
+                  << " ChecksFailed=" << checks_failed << "/>"
                   << std::endl;
 }
 
