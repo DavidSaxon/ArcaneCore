@@ -218,8 +218,6 @@ public:
             {
                 run_info->id << "chaoscore_tests_"
                              << chaos::time::get_current_time();
-                // TODO: REMOVE ME
-                std::cout << "__CCT__: GENERATED TESTING ID: " << run_info->id << std::endl;
             }
             TestCore::logger.set_global_id( run_info->id );
 
@@ -653,9 +651,17 @@ public:
             else
             {
                 // wait for the child process to end
-                int proc_status;
-                waitpid( proc_id, &proc_status, 0 );
-                // TODO: check child status and log error message
+                int exit_status;
+                waitpid( proc_id, &exit_status, 0 );
+
+                // check that the process finished successfully
+                if ( exit_status != 0 )
+                {
+                    chaos::str::UTF8String message;
+                    // TODO: hex
+                    message << static_cast< chaos::int32 >( exit_status );
+                    TestCore::logger.report_crash( id, message );
+                }
 
                 // close the test in the logger
                 TestCore::logger.close_test( id );
@@ -742,11 +748,20 @@ public:
 
             // wait until the child process has finished
             WaitForSingleObject( proc_info.hProcess, INFINITE );
+
+            // check that the process finished successfully
+            DWORD exit_code;
+            GetExitCodeProcess( proc_info.hProcess, &exit_code );
+            if ( exit_code != 0 )
+            {
+                // TODO: log error
+                std::cout << "__CCT__: ERROR EXIT STATUS: " << exit_code
+                          << std::endl;
+            }
+
             // close process and thread handles
             CloseHandle( proc_info.hProcess );
             CloseHandle( proc_info.hThread );
-
-            // TODO: check child process and log error message
 
             // close the test in the logger
             TestCore::logger.close_test( id );

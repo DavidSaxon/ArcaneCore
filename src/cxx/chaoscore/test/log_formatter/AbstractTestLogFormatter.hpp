@@ -68,6 +68,8 @@ public:
 
     virtual void close_test() = 0;
 
+    virtual void report_crash( const chaos::str::UTF8String& info ) = 0;
+
     virtual void report_check_pass(
             const chaos::str::UTF8String& type,
             const chaos::str::UTF8String& file,

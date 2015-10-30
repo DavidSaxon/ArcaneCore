@@ -236,6 +236,38 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
     remove( m_meta_path.to_cstring() );
 }
 
+void TestLogger::report_crash(
+        const chaos::str::UTF8String& id,
+        const chaos::str::UTF8String& info )
+{
+    // clean up the sub files and metadata -- there's no point reading as they're
+    // likely incomplete or corrupted
+    CHAOS_FOR_EACH( f_it, m_file_streams )
+    {
+        // add the id as to the filename
+        chaos::str::UTF8String sub_name( f_it->first + "." + id );
+        if ( chaos::io::file::exists ( sub_name ) &&
+             chaos::io::file::is_file( sub_name )    )
+        {
+            remove( sub_name.to_cstring() );
+        }
+    }
+    if ( chaos::io::file::exists ( m_meta_path ) &&
+         chaos::io::file::is_file( m_meta_path )    )
+    {
+        remove( m_meta_path.to_cstring() );
+    }
+
+    // increment errored tests
+    ++m_unit_errors;
+
+    // send to formatters
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->report_crash( info );
+    }
+}
+
 void TestLogger::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,

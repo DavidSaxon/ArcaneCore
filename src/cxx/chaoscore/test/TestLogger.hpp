@@ -146,6 +146,13 @@ public:
     void close_test( const chaos::str::UTF8String& id );
 
     /*!
+     * \breif Reports a unit test crash.
+     */
+    void report_crash(
+            const chaos::str::UTF8String& id,
+            const chaos::str::UTF8String& info );
+
+    /*!
      * \brief Reports a check pass.
      *
      * \param type the Type of check that passed.

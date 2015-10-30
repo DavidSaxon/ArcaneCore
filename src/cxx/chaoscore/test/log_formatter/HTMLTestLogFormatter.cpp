@@ -51,6 +51,11 @@ void HTMLTestLogFormatter::close_test()
     // TODO:
 }
 
+void HTMLTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+{
+    // TODO:
+}
+
 void HTMLTestLogFormatter::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,

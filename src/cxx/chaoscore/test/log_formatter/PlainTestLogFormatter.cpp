@@ -51,6 +51,11 @@ void PlainTestLogFormatter::close_test()
     // TODO:
 }
 
+void PlainTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+{
+    // TODO:
+}
+
 void PlainTestLogFormatter::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,

@@ -107,7 +107,8 @@ void PrettyTestLogFormatter::close_log(
     chaos::io::format::centre_text( unit_summary, 79, true );
 
     chaos::str::UTF8String unit_count;
-    unit_count << "Passed: " << units_passed << " Failed: " << units_failed;
+    unit_count << "Passed: " << units_passed << " - Failed: " << units_failed
+               << " - Errored: " << units_errored;
     chaos::io::format::centre_text( unit_count, 79, true );
 
     chaos::str::UTF8String unit_percent;
@@ -119,7 +120,8 @@ void PrettyTestLogFormatter::close_log(
     chaos::io::format::centre_text( check_summary, 79, true );
 
     chaos::str::UTF8String check_count;
-    check_count << "Passed: " << checks_passed << " Failed: " << checks_failed;
+    check_count << "Passed: " << checks_passed << " - Failed: "
+                << checks_failed;
     chaos::io::format::centre_text( check_count, 79, true );
 
     chaos::str::UTF8String check_percent;
@@ -304,6 +306,24 @@ void PrettyTestLogFormatter::close_test()
     ( *m_stream ) << message << "\n" << std::endl;
 }
 
+void PrettyTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+{
+    chaos::str::UTF8String message;
+    message << "CRITICAL ERROR. Test failed with exit code: " << info;
+
+    // colourise
+    if ( m_use_ansi )
+    {
+        chaos::io::format::apply_escape_sequence(
+                message,
+                chaos::io::format::ANSI_FG_RED,
+                chaos::io::format::ANSI_ATTR_BLINK
+        );
+    }
+    // write stream
+    ( *m_stream ) << message << std::endl;
+}
+
 void PrettyTestLogFormatter::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,
@@ -426,7 +446,7 @@ void PrettyTestLogFormatter::finialise_test_report(
     chaos::io::format::centre_text( summary, 79, true );
 
     chaos::str::UTF8String counts;
-    counts << "Passed: " << checks_passed << " Failed: " << checks_failed;
+    counts << "Passed: " << checks_passed << " - Failed: " << checks_failed;
     chaos::io::format::centre_text( counts, 79, true );
 
     chaos::str::UTF8String percent;

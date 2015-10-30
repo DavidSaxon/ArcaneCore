@@ -62,6 +62,11 @@ void XMLTestLogFormatter::close_test()
     ( *m_stream ) << "  </UnitTest>" << std::endl;
 }
 
+void XMLTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+{
+    ( *m_stream ) << "    <CriticalError code=" << info << "/>" << std::endl;
+}
+
 void XMLTestLogFormatter::report_check_pass(
         const chaos::str::UTF8String& type,
         const chaos::str::UTF8String& file,

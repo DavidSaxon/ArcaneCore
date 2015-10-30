@@ -1,14 +1,11 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1445995504813">
-    <Failure type=CHAOS_CHECK_EQUAL file=tests\cxx\base\PreProc_TestSuite.cpp line=62 message=1 does not equal 2 occurrences=12/>
-    <Success type=CHAOS_CHECK_EQUAL file=tests\cxx\base\PreProc_TestSuite.cpp line=58 occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=tests\cxx\base\PreProc_TestSuite.cpp line=66 occurrences=4/>
-    <UnitSummary ChecksPassed=5 ChecksFailed=12/>
+  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1446241690065">
+    <CriticalError code=134/>
   </UnitTest>
-  <UnitTest path="base.str.utf8.test_run" id="base.str.utf8.test_run_1445995504844">
-    <Failure type=CHAOS_CHECK_EQUAL file=tests\cxx\base\str\UTF8String_TestSuite.cpp line=7 message=1 does not equal 2 occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=tests\cxx\base\str\UTF8String_TestSuite.cpp line=14 occurrences=1/>
+  <UnitTest path="base.str.utf8.test_run" id="base.str.utf8.test_run_1446241690276">
+    <Failure type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=7 message=1 does not equal 2 occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/str/UTF8String_TestSuite.cpp line=14 occurrences=1/>
     <UnitSummary ChecksPassed=1 ChecksFailed=1/>
   </UnitTest>
-  <FinalSummary UnitsPassed=0 UnitsFailed=2 UnitsErrored=0 ChecksPassed=6 ChecksFailed=13/>
+  <FinalSummary UnitsPassed=0 UnitsFailed=1 UnitsErrored=1 ChecksPassed=1 ChecksFailed=1/>
 </ChaosCoreTests>
