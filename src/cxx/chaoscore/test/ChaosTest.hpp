@@ -754,9 +754,10 @@ public:
             GetExitCodeProcess( proc_info.hProcess, &exit_code );
             if ( exit_code != 0 )
             {
-                // TODO: log error
-                std::cout << "__CCT__: ERROR EXIT STATUS: " << exit_code
-                          << std::endl;
+                chaos::str::UTF8String message;
+                // TODO: hex
+                message << static_cast< chaos::uint32 >( exit_code );
+                TestCore::logger.report_crash( id, message );
             }
 
             // close process and thread handles
