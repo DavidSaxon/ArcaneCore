@@ -5,6 +5,9 @@
 #ifndef CHAOSCORE_TEST_TESTLOGGER_HPP_
 #define CHAOSCORE_TEST_TESTLOGGER_HPP_
 
+// hide from doxygen
+#ifndef IN_DOXYGEN
+
 #include <iosfwd>
 
 #include <map>
@@ -27,8 +30,6 @@ namespace log_formatter
 } // namespace log_formatter
 
 /*!
- * \internal
- *
  * \brief Interface used for managing the different loggers being used.
  */
 class TestLogger
@@ -265,5 +266,7 @@ private:
 
 } // namespace test
 } // namespace chaos
+
+#endif
 
 #endif

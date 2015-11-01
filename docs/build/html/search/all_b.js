@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['plaintestlogformatter',['PlainTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_plain_test_log_formatter.html',1,'chaos::test::log_formatter']]],
-  ['plaintestlogformatter',['PlainTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_plain_test_log_formatter.html#a96214486917fda902ddaef37342c0ad8',1,'chaos::test::log_formatter::PlainTestLogFormatter']]],
-  ['plaintestlogformatter_2ehpp',['PlainTestLogFormatter.hpp',['../_plain_test_log_formatter_8hpp.html',1,'']]],
-  ['preproc_2ehpp',['Preproc.hpp',['../_preproc_8hpp.html',1,'']]],
-  ['prettytestlogformatter',['PrettyTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_pretty_test_log_formatter.html',1,'chaos::test::log_formatter']]],
-  ['prettytestlogformatter',['PrettyTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_pretty_test_log_formatter.html#ac844397bcd31b15b72acfa75423994fb',1,'chaos::test::log_formatter::PrettyTestLogFormatter']]],
-  ['prettytestlogformatter_2ehpp',['PrettyTestLogFormatter.hpp',['../_pretty_test_log_formatter_8hpp.html',1,'']]]
+  ['split',['split',['../classchaos_1_1str_1_1_u_t_f8_string.html#ac5da4c989f6394c38b0fb82a252099db',1,'chaos::str::UTF8String']]],
+  ['starts_5fwith',['starts_with',['../classchaos_1_1str_1_1_u_t_f8_string.html#a065a34c88630d3aca883d691322474c0',1,'chaos::str::UTF8String']]],
+  ['substring',['substring',['../classchaos_1_1str_1_1_u_t_f8_string.html#a2d50ab58715264ae175f521816bf670c',1,'chaos::str::UTF8String']]]
 ];

@@ -13,11 +13,8 @@
 #include <sstream>
 #include <vector>
 
-#include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/Preproc.hpp"
 #include "chaoscore/base/string/UTF8String.hpp"
-#include "chaoscore/base/time/TimeUtil.hpp"
-#include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/TestLogger.hpp"
 
 // fork
@@ -29,8 +26,7 @@
     #include <windows.h>
 #endif
 
-// TODO: REMOVE ME
-#include <iostream>
+
 
 namespace chaos
 {
@@ -68,9 +64,7 @@ public:
 
 // hide from doxygen
 #ifndef IN_DOXYGEN
-/*!
- * \internal
- */
+
 namespace internal
 {
 
@@ -284,12 +278,7 @@ private:
      * \brief Generates a new unique id for the given unit test name.
      */
     static chaos::str::UTF8String generate_id(
-            const chaos::str::UTF8String& name )
-    {
-        chaos::str::UTF8String id = name;
-        id << "_" << chaos::time::get_current_time();
-        return id;
-    }
+            const chaos::str::UTF8String& name );
 
     /*!
      * \brief Converts a test logger output format to a UTF8String for the

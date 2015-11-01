@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['testexceptions_2ehpp',['TestExceptions.hpp',['../_test_exceptions_8hpp.html',1,'']]],
-  ['testlogger_2ehpp',['TestLogger.hpp',['../_test_logger_8hpp.html',1,'']]],
-  ['timeutil_2ehpp',['TimeUtil.hpp',['../_time_util_8hpp.html',1,'']]],
-  ['types_2ehpp',['Types.hpp',['../_types_8hpp.html',1,'']]]
+  ['unicodeutil_2ehpp',['UnicodeUtil.hpp',['../_unicode_util_8hpp.html',1,'']]],
+  ['utf8string_2ehpp',['UTF8String.hpp',['../_u_t_f8_string_8hpp.html',1,'']]]
 ];

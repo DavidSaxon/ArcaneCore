@@ -1,11 +1,5 @@
 var searchData=
 [
-  ['abstracttestlogformatter',['AbstractTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html',1,'chaos::test::log_formatter']]],
-  ['abstracttestlogformatter',['AbstractTestLogFormatter',['../classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a9648fcc43ab62eb051d36da947d68830',1,'chaos::test::log_formatter::AbstractTestLogFormatter']]],
-  ['abstracttestlogformatter_2ehpp',['AbstractTestLogFormatter.hpp',['../_abstract_test_log_formatter_8hpp.html',1,'']]],
-  ['add_5ffile_5foutput',['add_file_output',['../classchaos_1_1test_1_1_test_logger.html#a1fbb472096b242fb5c18cd4563d37fab',1,'chaos::test::TestLogger']]],
-  ['add_5foccurrence',['add_occurrence',['../classchaos_1_1test_1_1log__formatter_1_1_abstract_test_log_formatter.html#a6a3ed5f138284b793e0b6a0783ac738b',1,'chaos::test::log_formatter::AbstractTestLogFormatter']]],
-  ['add_5fstdout',['add_stdout',['../classchaos_1_1test_1_1_test_logger.html#a456e2ef7ebdf42835e9bf2add7b75696',1,'chaos::test::TestLogger']]],
   ['ambiguouspatherror',['AmbiguousPathError',['../classchaos_1_1io_1_1file_1_1ex_1_1_ambiguous_path_error.html',1,'chaos::io::file::ex']]],
   ['ansi_2ehpp',['ANSI.hpp',['../_a_n_s_i_8hpp.html',1,'']]],
   ['ansi_5fattr_5fblink',['ANSI_ATTR_BLINK',['../namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfacd3671458d96396a0fec66c993244186',1,'chaos::io::format']]],

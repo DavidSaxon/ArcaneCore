@@ -5,6 +5,9 @@
 #ifndef CHAOSCORE_TEST_LOGFORMATTER_ABSTRACTTESTLOGFORMATTER_HPP_
 #define CHAOSCORE_TEST_LOGFORMATTER_ABSTRACTTESTLOGFORMATTER_HPP_
 
+// hide from doxygen
+#ifndef IN_DOXYGEN
+
 #include <iosfwd>
 #include <map>
 #include <vector>
@@ -117,5 +120,7 @@ protected:
 } // namespace log_formatter
 } // namespace test
 } // namespace chaos
+
+#endif
 
 #endif

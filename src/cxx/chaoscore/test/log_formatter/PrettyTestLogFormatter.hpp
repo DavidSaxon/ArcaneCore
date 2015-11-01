@@ -5,6 +5,9 @@
 #ifndef CHAOSCORE_TEST_LOGFORMATTER_PRETTYTESTLOGFORMATTER_HPP_
 #define CHAOSCORE_TEST_LOGFORMATTER_PRETTYTESTLOGFORMATTER_HPP_
 
+// hide from doxygen
+#ifndef IN_DOXYGEN
+
 #include "chaoscore/test/log_formatter/AbstractTestLogFormatter.hpp"
 
 namespace chaos
@@ -81,5 +84,7 @@ private:
 } // namespace log_formatter
 } // namespace test
 } // namespace chaos
+
+#endif
 
 #endif
