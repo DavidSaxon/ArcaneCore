@@ -41,10 +41,10 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
 {
-    char* seg = new char[ 2 ];
-    seg[ 56 ] = 12;
-    delete[] seg;
-    delete[] seg;
+    // char* seg = new char[ 2 ];
+    // seg[ 56 ] = 12;
+    // delete[] seg;
+    // delete[] seg;
 
     // test on a vector
     std::vector< chaos::int32 > v1 = fixture->getIntVector( 100 );
