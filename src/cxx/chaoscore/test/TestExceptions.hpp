@@ -59,6 +59,20 @@ public:
     }
 };
 
+/*!
+ * \brief Warns that an invalid test path has been provided to run.
+ */
+class InvalidPathError : public TestError
+{
+public:
+
+    InvalidPathError( const chaos::str::UTF8String& message )
+        :
+        TestError( message )
+    {
+    }
+};
+
 } // namespace ex
 } // namespace test
 } // namespace chaos

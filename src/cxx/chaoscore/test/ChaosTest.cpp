@@ -1,7 +1,6 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
 #include "chaoscore/base/time/TimeUtil.hpp"
-#include "chaoscore/test/TestExceptions.hpp"
 
 namespace chaos
 {
@@ -238,9 +237,7 @@ void TestCore::run( RunInfo* run_info )
         // this isn't a valid test path
         if ( !match )
         {
-            // TODO: throw exception? or...
-            // TODO: write to log or output
-            // std::cout << "Invalid test path!" << std::endl;
+            throw chaos::test::ex::InvalidPathError( *p_it );
             continue;
         }
 
@@ -266,8 +263,6 @@ void TestCore::run( RunInfo* run_info )
             paths.insert( *p_it );
         }
     }
-
-    // TODO: no valid paths?
 
     // structure for grouping tests by path
     struct PathGroup

@@ -3,7 +3,7 @@
 #include "chaoscore/io/file/FileExceptions.hpp"
 #include "chaoscore/io/file/FileUtil.hpp"
 #include "chaoscore/test/ChaosTest.hpp"
-
+#include "chaoscore/test/TestExceptions.hpp"
 
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
@@ -17,6 +17,7 @@ static chaos::str::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
 static chaos::str::UTF8String ARG_TEST_PATH     = "--test";
 static chaos::str::UTF8String ARG_STDOUT        = "--stdout";
 static chaos::str::UTF8String ARG_FILEOUT       = "--fileout";
+static chaos::str::UTF8String ARG_HELP          = "--help";
 
 //-----------------------------COMMAND LINE OPTIONS-----------------------------
 
@@ -40,7 +41,10 @@ bool string_to_format(
         const chaos::str::UTF8String&              str,
               chaos::test::TestLogger::OutFormat&  format );
 
-// TODO: help
+/*!
+ * \brief Prints usage information.
+ */
+void usage();
 
 //------------------------------------------------------------------------------
 //                                 MAIN FUNCTION
@@ -265,16 +269,32 @@ int main( int argc, char* argv[] )
                 run_info.use_stdout = false;
             }
         }
+        // --help
+        else if ( ARG_HELP == argv[ i ] )
+        {
+            usage();
+            return 0;
+        }
         // unknown argument
         else
         {
             std::cerr << "\nERROR: unknown command line argument: \'"
-                      << argv[ i ] << "\'\n" << std::endl;
+                      << argv[ i ] << "\'. Use \'" << ARG_HELP << "\' for "
+                      << "usage information.\n" << std::endl;
             return -1;
         }
     }
 
-    chaos::test::internal::TestCore( "", NULL, "", 0, false, &run_info );
+    try
+    {
+        chaos::test::internal::TestCore( "", NULL, "", 0, false, &run_info );
+    }
+    catch ( const chaos::test::ex::InvalidPathError& e )
+    {
+        std::cerr << "\nERROR: Invalid test path supplied: \'"
+                  << e.get_message() << "\'\n" << std::endl;
+        return -1;
+    }
     return 0;
 }
 
@@ -310,4 +330,69 @@ bool string_to_format(
 
     // not a valid string
     return false;
+}
+
+void usage()
+{
+std::cout << "\n" <<
+"ChaosCore Testing Runtime Usage:"
+<< "\n" << "\n" <<
+"  --test [path]                             : Runs all unit test that are"
+<< "\n" <<
+"                                              submodules of this path or the"
+<< "\n" <<
+"                                              unit test that exactly matches"
+<< "\n" <<
+"                                              this path."
+<< "\n" << "\n" <<
+"  --single_proc                             : Runs all tests using a single"
+<< "\n" <<
+"                                              process. This means if a unit"
+<< "\n" <<
+"                                              encounters a critical crash, no"
+<< "\n" <<
+"                                              further unit tests will be run"
+<< "\n" <<
+"                                              and reports will be left"
+<< "\n" <<
+"                                              incomplete."
+<< "\n" << "\n" <<
+"  --stdout [format] [verbosity]             : Defines the std output "
+<< "\n" <<
+"                                              logging information. Available "
+<< "\n" <<
+"                                              formats: plain, pretty, xml,"
+<< "\n" <<
+"                                              or html. Verbosity: a number"
+<< "\n" <<
+"                                              between 1 and 4. Only one set of"
+<< "\n" <<
+"                                              std output logging information"
+<< "\n" <<
+"                                              may be defined. If neither"
+<< "\n" <<
+"                                              --stdout or --fileout arguments"
+<< "\n" <<
+"                                              are provided a default std"
+<< "\n" <<
+"                                              output logger is used with"
+<< "\n" <<
+"                                              format: pretty and verbosity: 3."
+<< "\n" << "\n" <<
+"  --fileout [filepath] [format] [verbosity] : Defines a set of file output"
+<< "\n" <<
+"                                              logging information. A valid"
+<< "\n" <<
+"                                              filepath must be provided to"
+<< "\n" <<
+"                                              write the logging data to."
+<< "\n" <<
+"                                              Available formats: plain,"
+<< "\n" <<
+"                                              pretty, xml, or html. Verbosity:"
+<< "\n" <<
+"                                              a number between 1 and 4."
+<< "\n" << "\n" <<
+"  --help                                    : Shows this information."
+<< "\n" << std::endl;
 }

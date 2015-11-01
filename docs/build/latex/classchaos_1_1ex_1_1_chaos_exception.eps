@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 47.818290
+%%BoundingBox: 0 0 500 66.945607
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 10.456250 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 7.468750 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 4 def
-/cols 7 def
+/cols 5 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -179,11 +179,8 @@ boxfont setfont
 (chaos::ex::IndexOutOfBoundsError) cw
 (chaos::ex::ValueError) cw
 (chaos::io::file::ex::FileSystemError) cw
-(chaos::test::ex::TestError) cw
 (chaos::io::file::ex::AmbiguousPathError) cw
 (chaos::io::file::ex::CreateDirectoryError) cw
-(chaos::test::ex::TestDeclerationError) cw
-(chaos::test::ex::TestRuntimeError) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
 /yspacing boxheight disty add def
@@ -195,28 +192,25 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (chaos::ex::ChaosException) 2.000000 2.000000 box
- (exception) 2.000000 3.000000 box
+ (chaos::ex::ChaosException) 1.500000 2.000000 box
+ (exception) 1.500000 3.000000 box
  (chaos::ex::ConversionDataError) 0.000000 1.000000 box
  (chaos::ex::IndexOutOfBoundsError) 1.000000 1.000000 box
  (chaos::ex::ValueError) 2.000000 1.000000 box
  (chaos::io::file::ex::FileSystemError) 3.000000 1.000000 box
- (chaos::test::ex::TestError) 5.000000 1.000000 box
  (chaos::io::file::ex::AmbiguousPathError) 2.500000 0.000000 box
  (chaos::io::file::ex::CreateDirectoryError) 3.500000 0.000000 box
- (chaos::test::ex::TestDeclerationError) 4.500000 0.000000 box
- (chaos::test::ex::TestRuntimeError) 5.500000 0.000000 box
 
 % ----- relations -----
 
 solid
-0 2.000000 2.000000 out
+0 1.500000 2.000000 out
 solid
-1 2.000000 3.000000 in
+1 1.500000 3.000000 in
 solid
-1 2.000000 1.250000 out
+1 1.500000 1.250000 out
 solid
-0.000000 5.000000 2.000000 conn
+0.000000 3.000000 2.000000 conn
 solid
 0 0.000000 1.750000 in
 solid
@@ -230,16 +224,6 @@ solid
 solid
 2.500000 3.500000 1.000000 conn
 solid
-0 5.000000 1.750000 in
-solid
-1 5.000000 0.250000 out
-solid
-4.500000 5.500000 1.000000 conn
-solid
 0 2.500000 0.750000 in
 solid
 0 3.500000 0.750000 in
-solid
-0 4.500000 0.750000 in
-solid
-0 5.500000 0.750000 in

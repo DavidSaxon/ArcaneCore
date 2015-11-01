@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['testdeclerationerror',['TestDeclerationError',['../classchaos_1_1test_1_1ex_1_1_test_decleration_error.html',1,'chaos::test::ex']]],
-  ['testerror',['TestError',['../classchaos_1_1test_1_1ex_1_1_test_error.html',1,'chaos::test::ex']]],
-  ['testexceptions_2ehpp',['TestExceptions.hpp',['../_test_exceptions_8hpp.html',1,'']]],
-  ['testruntimeerror',['TestRuntimeError',['../classchaos_1_1test_1_1ex_1_1_test_runtime_error.html',1,'chaos::test::ex']]],
   ['timeutil_2ehpp',['TimeUtil.hpp',['../_time_util_8hpp.html',1,'']]],
   ['to_5fbool',['to_bool',['../classchaos_1_1str_1_1_u_t_f8_string.html#abea65bae8fc882d3bacb91aa2befe0b1',1,'chaos::str::UTF8String']]],
   ['to_5fcstring',['to_cstring',['../classchaos_1_1str_1_1_u_t_f8_string.html#aa6fd66af34d7a3c4a495860952e97557',1,'chaos::str::UTF8String']]],

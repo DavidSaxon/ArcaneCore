@@ -8,6 +8,7 @@
 #ifndef CHAOSCORE_TEST_CHAOSTEST_HPP_
 #define CHAOSCORE_TEST_CHAOSTEST_HPP_
 
+#include <iostream>
 #include <map>
 #include <set>
 #include <sstream>
@@ -15,6 +16,7 @@
 
 #include "chaoscore/base/Preproc.hpp"
 #include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/TestLogger.hpp"
 
 // fork
@@ -185,26 +187,33 @@ public:
                   bool                    module  = false,
                   RunInfo*                run_info = NULL )
     {
-        // TODO: try - catch
-
-        // run tests
-        if ( run_info )
+        try
         {
-            TestCore::setup( run_info );
-            TestCore::run( run_info );
-            TestCore::teardown( run_info );
-            return;
-        }
+            // run tests
+            if ( run_info )
+            {
+                TestCore::setup( run_info );
+                TestCore::run( run_info );
+                TestCore::teardown( run_info );
+                return;
+            }
 
-        // module declaration
-        if ( module )
+            // module declaration
+            if ( module )
+            {
+                TestCore::declare_module( path, file, line );
+                return;
+            }
+
+            // unit declaration
+            TestCore::declare_unit( path, unit_test, file, line );
+        }
+        catch ( chaos::test::ex::TestError& e )
         {
-            TestCore::declare_module( path, file, line );
-            return;
+            // TODO: should this go to loggers
+            std::cerr << e.get_message() << std::endl;
+            throw e;
         }
-
-        // unit declaration
-        TestCore::declare_unit( path, unit_test, file, line );
     }
 
 private:
