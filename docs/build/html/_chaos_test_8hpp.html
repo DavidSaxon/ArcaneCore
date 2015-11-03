@@ -95,12 +95,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ChaosTest.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;map&gt;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
 <code>#include &lt;set&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &quot;<a class="el" href="_preproc_8hpp_source.html">chaoscore/base/Preproc.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_u_t_f8_string_8hpp_source.html">chaoscore/base/string/UTF8String.hpp</a>&quot;</code><br />
+<code>#include &quot;chaoscore/test/TestExceptions.hpp&quot;</code><br />
 <code>#include &quot;chaoscore/test/TestLogger.hpp&quot;</code><br />
 </div>
 <p><a href="_chaos_test_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -108,7 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="classchaos_1_1test_1_1_fixture.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="classchaos_1_1test_1_1_fixture.html" title="A Fixture is an object that can be used to set up a unit test environment. ">Fixture</a> is an object that can be used to set up a unit test environment.  <a href="classchaos_1_1test_1_1_fixture.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -123,16 +125,16 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aff792df3b39dba470d2d977009e96d57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#aff792df3b39dba470d2d977009e96d57">CHAOS_TEST_MODULE</a>(path)                                                                                        </td></tr>
-<tr class="memdesc:aff792df3b39dba470d2d977009e96d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#aff792df3b39dba470d2d977009e96d57">More...</a><br /></td></tr>
+<tr class="memdesc:aff792df3b39dba470d2d977009e96d57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares the Test Module Path for the current file.  <a href="#aff792df3b39dba470d2d977009e96d57">More...</a><br /></td></tr>
 <tr class="separator:aff792df3b39dba470d2d977009e96d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99bafb580d6fe2036b9408c25012ffeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a99bafb580d6fe2036b9408c25012ffeb">CHAOS_TEST_UNIT</a>(path)&#160;&#160;&#160;<a class="el" href="_chaos_test_8hpp.html#aac01b317e68fbaea4cbc020ab93fa553">CHAOS_TEST_UNIT_FIXTURE</a>( path, <a class="el" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a> )</td></tr>
-<tr class="memdesc:a99bafb580d6fe2036b9408c25012ffeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#a99bafb580d6fe2036b9408c25012ffeb">More...</a><br /></td></tr>
-<tr class="separator:a99bafb580d6fe2036b9408c25012ffeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac01b317e68fbaea4cbc020ab93fa553"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#aac01b317e68fbaea4cbc020ab93fa553">CHAOS_TEST_UNIT_FIXTURE</a>(path,  fixture_type)                                                </td></tr>
-<tr class="memdesc:aac01b317e68fbaea4cbc020ab93fa553"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#aac01b317e68fbaea4cbc020ab93fa553">More...</a><br /></td></tr>
-<tr class="separator:aac01b317e68fbaea4cbc020ab93fa553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6002be16c0611b66af2b9cce42616617"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a6002be16c0611b66af2b9cce42616617">CHAOS_TEST_UNIT</a>(name)</td></tr>
+<tr class="memdesc:a6002be16c0611b66af2b9cce42616617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a ChaosCore Unit Test with no <a class="el" href="classchaos_1_1test_1_1_fixture.html" title="A Fixture is an object that can be used to set up a unit test environment. ">chaos::test::Fixture</a>.  <a href="#a6002be16c0611b66af2b9cce42616617">More...</a><br /></td></tr>
+<tr class="separator:a6002be16c0611b66af2b9cce42616617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b96815684faab06af818b7d497e89fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a1b96815684faab06af818b7d497e89fb">CHAOS_TEST_UNIT_FIXTURE</a>(name,  fixture_type)                                                </td></tr>
+<tr class="memdesc:a1b96815684faab06af818b7d497e89fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a ChaosCore Unit Test with a <a class="el" href="classchaos_1_1test_1_1_fixture.html" title="A Fixture is an object that can be used to set up a unit test environment. ">chaos::test::Fixture</a>.  <a href="#a1b96815684faab06af818b7d497e89fb">More...</a><br /></td></tr>
+<tr class="separator:a1b96815684faab06af818b7d497e89fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefa5ff7ba416ece8bf8366449de37c0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#aefa5ff7ba416ece8bf8366449de37c0d">CHAOS_CHECK_EQUAL</a>(a,  b)                                                                                        </td></tr>
-<tr class="memdesc:aefa5ff7ba416ece8bf8366449de37c0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#aefa5ff7ba416ece8bf8366449de37c0d">More...</a><br /></td></tr>
+<tr class="memdesc:aefa5ff7ba416ece8bf8366449de37c0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the given values are considered equal.  <a href="#aefa5ff7ba416ece8bf8366449de37c0d">More...</a><br /></td></tr>
 <tr class="separator:aefa5ff7ba416ece8bf8366449de37c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -162,21 +164,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> ( a == b )                                                          \</div>
-<div class="line">        {                                                                      \</div>
-<div class="line">            chaos::test::internal::TestCore::logger.report_check_pass(         \</div>
-<div class="line">                    <span class="stringliteral">&quot;CHAOS_CHECK_EQUAL&quot;</span>, __FILE__, __LINE__ );                 \</div>
-<div class="line">        }                                                                      \</div>
-<div class="line">        else                                                                   \</div>
-<div class="line">        {                                                                      \</div>
-<div class="line">            chaos::str::UTF8String f_e_m;                                      \</div>
-<div class="line">            f_e_m &lt;&lt; a &lt;&lt; <span class="stringliteral">&quot; does not equal &quot;</span> &lt;&lt; b;                             \</div>
-<div class="line">            chaos::test::internal::TestCore::logger.report_check_fail(         \</div>
-<div class="line">                    <span class="stringliteral">&quot;CHAOS_CHECK_EQUAL&quot;</span>, __FILE__, __LINE__, f_e_m );          \</div>
-<div class="line">        }</div>
-</div><!-- fragment -->
-<p>TODO: DOC. </p>
-<p>TODO: DOC </p>
+
+<p>Checks whether the given values are considered equal. </p>
+<p>If a and b are equal this check will pass, else this will cause test failure. </p>
 
 </div>
 </div>
@@ -193,17 +183,21 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace                                                              </span>\</div>
-<div class="line">        {                                                                      \</div>
-<div class="line">        chaos::test::internal::TestCore t( #path, NULL, <span class="stringliteral">&quot;&quot;</span>, 0, <span class="keyword">true</span> );         \</div>
-<div class="line">        }</div>
-</div><!-- fragment -->
-<p>TODO: DOC. </p>
-<p>TODO: DOC </p>
+
+<p>Declares the Test Module Path for the current file. </p>
+<p>Files containing ChaosCore Unit Test must use this macro once and only once before any Unit Test decelerations. Unit Test paths are defined by their name and the module path in their respective file.</p>
+<p>For example, file_1.cpp has two tests named test_a and test_b and the following module declaration: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;CHAOS_TEST_MODULE( example.file_1 )</div>
+</div><!-- fragment --><p> And file_2.cpp has one test named test_c and the following module declaration: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;CHAOS_TEST_MODULE( example.file_2 )</div>
+</div><!-- fragment --><p>The path: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;example.file_1.test_a</div>
+</div><!-- fragment --><p> defines the Unit Test in file_1.cpp called test_a.</p>
+<p>The path: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;example.file_1</div>
+</div><!-- fragment --><p> defines the Units Tests test_a and test_b.</p>
+<p>The path: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;example</div>
+</div><!-- fragment --><p> defines all three Unit Tests: test_a, test_b, and test_b since they all share the same parent module: example. </p>
 
 </div>
 </div>
-<a class="anchor" id="a99bafb580d6fe2036b9408c25012ffeb"></a>
+<a class="anchor" id="a6002be16c0611b66af2b9cce42616617"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -211,18 +205,18 @@ Macros</h2></td></tr>
           <td class="memname">#define CHAOS_TEST_UNIT</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">path</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="_chaos_test_8hpp.html#aac01b317e68fbaea4cbc020ab93fa553">CHAOS_TEST_UNIT_FIXTURE</a>( path, <a class="el" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a> )</td>
+          <td class="paramname">name</td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>TODO: DOC. </p>
-<p>TODO: DOC </p>
+<p>Defines a ChaosCore Unit Test with no <a class="el" href="classchaos_1_1test_1_1_fixture.html" title="A Fixture is an object that can be used to set up a unit test environment. ">chaos::test::Fixture</a>. </p>
+<p>See <a class="el" href="_chaos_test_8hpp.html#a1b96815684faab06af818b7d497e89fb" title="Defines a ChaosCore Unit Test with a chaos::test::Fixture. ">CHAOS_TEST_UNIT_FIXTURE</a> for more information. </p>
 
 </div>
 </div>
-<a class="anchor" id="aac01b317e68fbaea4cbc020ab93fa553"></a>
+<a class="anchor" id="a1b96815684faab06af818b7d497e89fb"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -230,7 +224,7 @@ Macros</h2></td></tr>
           <td class="memname">#define CHAOS_TEST_UNIT_FIXTURE</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">path, </td>
+          <td class="paramname">name, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -245,28 +239,31 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">struct </span>path : <span class="keyword">public</span> chaos::test::internal::UnitTest                       \</div>
-<div class="line">    {                                                                          \</div>
-<div class="line">        fixture_type* fixture;                                                 \</div>
-<div class="line">        path() : UnitTest( #path ), fixture( new fixture_type() ){}            \</div>
-<div class="line">        virtual ~path(){ <span class="keyword">delete</span> fixture; }                                     \</div>
-<div class="line">        virtual <a class="code" href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a>* get_fixture() { <span class="keywordflow">return</span> fixture; }        \</div>
-<div class="line">        virtual <span class="keywordtype">void</span> execute();                                                \</div>
-<div class="line">    };                                                                         \</div>
-<div class="line">    static chaos::test::internal::TestCore object_##path (                     \</div>
-<div class="line">            #path, <span class="keyword">new</span> path(), __FILE__, __LINE__ );                           \</div>
-<div class="line">    void path::execute()</div>
-<div class="ttc" id="classchaos_1_1test_1_1_fixture_html"><div class="ttname"><a href="classchaos_1_1test_1_1_fixture.html">chaos::test::Fixture</a></div><div class="ttdoc">TODO: DOC. </div><div class="ttdef"><b>Definition:</b> ChaosTest.hpp:48</div></div>
-</div><!-- fragment -->
-<p>TODO: DOC. </p>
-<p>TODO: DOC </p>
+
+<p>Defines a ChaosCore Unit Test with a <a class="el" href="classchaos_1_1test_1_1_fixture.html" title="A Fixture is an object that can be used to set up a unit test environment. ">chaos::test::Fixture</a>. </p>
+<p>Use this macro like a function definition to declare a Unit Test. Example: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;CHAOS_TEST_UNIT_FIXTURE( example_test, MyFixtureType )</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;{</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;    fixture-&gt;do_something();</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    CHAOS_CHECK_EQUAL( 1, 2 );</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    // more testing code here</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    // ...</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;}</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of this this Unit Test. The full name (module path + unit test name) for this test must be unique. </td></tr>
+    <tr><td class="paramname">fixture_type</td><td>The class name of the <a class="el" href="classchaos_1_1test_1_1_fixture.html" title="A Fixture is an object that can be used to set up a unit test environment. ">chaos::test::Fixture</a> to use for this Unit test. ChaosCore will handle instantiating this object, and the fixture's startup and teardown functions will be called before and after running this test respectively. The instance of the fixture can be accessed from within this test using the keyword: <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;fixture</div>
+</div><!-- fragment --> which provides a pointer to the fixture instance. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 2 2015 00:30:27 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 4 2015 00:54:54 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

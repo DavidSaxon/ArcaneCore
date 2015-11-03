@@ -29,7 +29,7 @@ A collection of general preprocessor directives and macros.
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
 \#define \hyperlink{_preproc_8hpp_a286e89effb3082a45f15b602b830ac62}{C\+H\+A\+O\+S\+\_\+\+P\+R\+I\+N\+T\+\_\+\+I\+T\+E\+R\+A\+B\+L\+E}(collection)                                                                      
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\#define \hyperlink{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{C\+H\+A\+O\+S\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+N\+A\+M\+E}(base)~P\+P\+\_\+\+C\+A\+T( base, \+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+ )
+\#define \hyperlink{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}{C\+H\+A\+O\+S\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+N\+A\+M\+E}(base)
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -49,12 +49,6 @@ David Saxon
 \item[{}]{type\+\_\+name}
 \end{DoxyParamCaption}
 )}\label{_preproc_8hpp_a44c8efbb53506f346dac708217b815ba}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-type\_name() = \textcolor{keyword}{delete};                       \(\backslash\)
-        type\_name( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete};     \(\backslash\)
-        void operator=( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete}
-\end{DoxyCode}
 
 
 Used to disable all construction methods for a class. 
@@ -68,11 +62,6 @@ To use this macro it must be declared in the base of the desired class and the n
 \item[{}]{type\+\_\+name}
 \end{DoxyParamCaption}
 )}\label{_preproc_8hpp_afeb7437615dd8a77117dfd9e411c7235}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-type\_name( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete};      \(\backslash\)
-        void operator=( \textcolor{keyword}{const} type\_name& ) = \textcolor{keyword}{delete}
-\end{DoxyCode}
 
 
 Used to disable the copy constructor and assignment operator for a class. 
@@ -87,11 +76,6 @@ To use this macro it must be declared in the base of the desired class and the n
 \item[{}]{collection}
 \end{DoxyParamCaption}
 )}\label{_preproc_8hpp_aaf29e8aa8b78db93e9b6757ba71ee231}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-\textcolor{keyword}{auto} it = collection.begin();                                          \(\backslash\)
-        for ( ; it != collection.end(); ++it )
-\end{DoxyCode}
 
 
 T\+O\+D\+O\+: D\+O\+C. 
@@ -123,16 +107,6 @@ The C\+H\+A\+O\+S\+\_\+\+O\+S\+\_\+\+U\+N\+I\+X directive will also be defined i
 \item[{}]{collection}
 \end{DoxyParamCaption}
 )}\label{_preproc_8hpp_a286e89effb3082a45f15b602b830ac62}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-\textcolor{keyword}{auto} it = collection.begin();                                          \(\backslash\)
-        std::cout << \textcolor{stringliteral}{"[ "};                                                     \(\backslash\)
-        for ( ; it != collection.end(); ++it )                                 \(\backslash\)
-        \{                                                                      \(\backslash\)
-            std::cout << *it << \textcolor{stringliteral}{", "};                                          \(\backslash\)
-        \}                                                                      \(\backslash\)
-        std::cout << \textcolor{stringliteral}{"]"} << std::endl
-\end{DoxyCode}
 
 
 T\+O\+D\+O\+: D\+O\+C. 
@@ -143,7 +117,7 @@ T\+O\+D\+O\+: D\+O\+C \hypertarget{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33
 \begin{DoxyParamCaption}
 \item[{}]{base}
 \end{DoxyParamCaption}
-)~P\+P\+\_\+\+C\+A\+T( base, \+\_\+\+\_\+\+C\+O\+U\+N\+T\+E\+R\+\_\+\+\_\+ )}\label{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}
+)}\label{_preproc_8hpp_a82a12e050037267a2d4015c9b0ee33c8}
 
 
 T\+O\+D\+O\+: D\+O\+C. 

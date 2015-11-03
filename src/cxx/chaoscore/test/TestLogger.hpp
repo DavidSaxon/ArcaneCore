@@ -99,7 +99,7 @@ public:
      *
      * \warning Currently writing to only one standard output is supported.
      *          Calling this function multiple times will result in an
-     *          exception. TODO:
+     *          exception.
      *
      * \param verbosity The verbosity level of standard output.
      * \param format The format to write standard output in.

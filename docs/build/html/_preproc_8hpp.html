@@ -131,7 +131,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a286e89effb3082a45f15b602b830ac62"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#a286e89effb3082a45f15b602b830ac62">CHAOS_PRINT_ITERABLE</a>(collection)                                                                      </td></tr>
 <tr class="memdesc:a286e89effb3082a45f15b602b830ac62"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#a286e89effb3082a45f15b602b830ac62">More...</a><br /></td></tr>
 <tr class="separator:a286e89effb3082a45f15b602b830ac62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82a12e050037267a2d4015c9b0ee33c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8">CHAOS_UNIQUE_NAME</a>(base)&#160;&#160;&#160;PP_CAT( base, __COUNTER__ )</td></tr>
+<tr class="memitem:a82a12e050037267a2d4015c9b0ee33c8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8">CHAOS_UNIQUE_NAME</a>(base)</td></tr>
 <tr class="memdesc:a82a12e050037267a2d4015c9b0ee33c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO: DOC.  <a href="#a82a12e050037267a2d4015c9b0ee33c8">More...</a><br /></td></tr>
 <tr class="separator:a82a12e050037267a2d4015c9b0ee33c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -152,10 +152,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">type_name() = <span class="keyword">delete</span>;                       \</div>
-<div class="line">        type_name( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span>;     \</div>
-<div class="line">        void operator=( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span></div>
-</div><!-- fragment -->
+
 <p>Used to disable all construction methods for a class. </p>
 <p>This macro will explicitly delete the default constructor, copy constructor, and the assignment operator. This is normally only needed in rare edge cases for entirely static classes.</p>
 <p>To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as type_name. </p>
@@ -175,9 +172,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">type_name( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span>;      \</div>
-<div class="line">        void operator=( <span class="keyword">const</span> type_name&amp; ) = <span class="keyword">delete</span></div>
-</div><!-- fragment -->
+
 <p>Used to disable the copy constructor and assignment operator for a class. </p>
 <p>The purpose of this macro is to define classes that should not be copied. It explicitly deletes the copy constructor and the assignment operator.</p>
 <p>To use this macro it must be declared in the base of the desired class and the name of the class must be passed in as type_name. </p>
@@ -207,9 +202,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">auto</span> it = collection.begin();                                          \</div>
-<div class="line">        for ( ; it != collection.end(); ++it )</div>
-</div><!-- fragment -->
+
 <p>TODO: DOC. </p>
 <p>TODO: DOC </p>
 
@@ -258,14 +251,7 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">auto</span> it = collection.begin();                                          \</div>
-<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;[ &quot;</span>;                                                     \</div>
-<div class="line">        for ( ; it != collection.end(); ++it )                                 \</div>
-<div class="line">        {                                                                      \</div>
-<div class="line">            std::cout &lt;&lt; *it &lt;&lt; <span class="stringliteral">&quot;, &quot;</span>;                                          \</div>
-<div class="line">        }                                                                      \</div>
-<div class="line">        std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl</div>
-</div><!-- fragment -->
+
 <p>TODO: DOC. </p>
 <p>TODO: DOC </p>
 
@@ -280,7 +266,7 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">base</td><td>)</td>
-          <td>&#160;&#160;&#160;PP_CAT( base, __COUNTER__ )</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -293,7 +279,7 @@ Macros</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 2 2015 00:30:27 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 4 2015 00:54:54 for ChaosCore by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

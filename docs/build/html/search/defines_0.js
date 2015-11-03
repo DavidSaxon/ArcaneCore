@@ -11,7 +11,7 @@ var searchData=
   ['chaos_5fos_5fwindows',['CHAOS_OS_WINDOWS',['../_preproc_8hpp.html#a3391fa429b57c110dbf3336e41a515fb',1,'Preproc.hpp']]],
   ['chaos_5fprint_5fiterable',['CHAOS_PRINT_ITERABLE',['../_preproc_8hpp.html#a286e89effb3082a45f15b602b830ac62',1,'Preproc.hpp']]],
   ['chaos_5ftest_5fmodule',['CHAOS_TEST_MODULE',['../_chaos_test_8hpp.html#aff792df3b39dba470d2d977009e96d57',1,'ChaosTest.hpp']]],
-  ['chaos_5ftest_5funit',['CHAOS_TEST_UNIT',['../_chaos_test_8hpp.html#a99bafb580d6fe2036b9408c25012ffeb',1,'ChaosTest.hpp']]],
-  ['chaos_5ftest_5funit_5ffixture',['CHAOS_TEST_UNIT_FIXTURE',['../_chaos_test_8hpp.html#aac01b317e68fbaea4cbc020ab93fa553',1,'ChaosTest.hpp']]],
+  ['chaos_5ftest_5funit',['CHAOS_TEST_UNIT',['../_chaos_test_8hpp.html#a6002be16c0611b66af2b9cce42616617',1,'ChaosTest.hpp']]],
+  ['chaos_5ftest_5funit_5ffixture',['CHAOS_TEST_UNIT_FIXTURE',['../_chaos_test_8hpp.html#a1b96815684faab06af818b7d497e89fb',1,'ChaosTest.hpp']]],
   ['chaos_5funique_5fname',['CHAOS_UNIQUE_NAME',['../_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8',1,'Preproc.hpp']]]
 ];

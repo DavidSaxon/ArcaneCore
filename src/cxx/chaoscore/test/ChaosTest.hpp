@@ -43,9 +43,15 @@ namespace test
 //------------------------------------------------------------------------------
 
 /*!
- * \brief TODO: DOC
+ * \brief A Fixture is an object that can be used to set up a unit test
+ *        environment.
  *
- * TODO: DOC
+ * You should implement your own derived instances of this class to define
+ * an object to use for one or more unit test's environment(s). You should never
+ * have to manually instantiation these objects but their name should be
+ * provided to the #CHAOS_TEST_UNIT_FIXTURE macro. If the same Fixture type is
+ * used for #CHAOS_TEST_UNIT_FIXTURE calls they will be different instances of
+ * the object.
  */
 class Fixture
 {
@@ -55,10 +61,24 @@ public:
     {
     }
 
+    /*!
+     * \brief Called right before a Unit Test using this Fixture is run.
+     *
+     * Use this function to set up the test environment and any needed data.
+     */
     virtual void setup()
     {
     }
 
+    /*!
+     * \brief Called right after a Unit Test using this Fixture is run.
+     *
+     * Use this function to clean up the test environment, if needed.
+     *
+     * This function will be called whether the Unit Test passes or fails, but
+     * will not be run if the test encounters a critical error since this means
+     * the process has crashed.
+     */
     virtual void teardown()
     {
     }
@@ -210,7 +230,7 @@ public:
         }
         catch ( chaos::test::ex::TestError& e )
         {
-            // TODO: should this go to loggers
+            // TODO: should this go to loggers?
             std::cerr << e.get_message() << std::endl;
             throw e;
         }
@@ -315,12 +335,42 @@ private:
 //                                     MACROS
 //------------------------------------------------------------------------------
 
-// TODO: don't show macro value in docs..
-
 /*!
- * \brief TODO: DOC
+ * \brief Declares the Test Module Path for the current file.
  *
- * TODO: DOC
+ * Files containing ChaosCore Unit Test must use this macro once and only once
+ * before any Unit Test decelerations. Unit Test paths are defined by their name
+ * and the module path in their respective file.
+ *
+ * For example, file_1.cpp has two tests named test_a and test_b and the
+ * following module declaration:
+ * \code
+ * CHAOS_TEST_MODULE( example.file_1 )
+ * \endcode
+ * And file_2.cpp has one test named test_c and the following module
+ * declaration:
+ * \code
+ * CHAOS_TEST_MODULE( example.file_2 )
+ * \endcode
+ *
+ * The path:
+ * \code
+ * example.file_1.test_a
+ * \endcode
+ * defines the Unit Test in file_1.cpp called test_a.
+ *
+ * The path:
+ * \code
+ * example.file_1
+ * \endcode
+ * defines the Units Tests test_a and test_b.
+ *
+ * The path:
+ * \code
+ * example
+ * \endcode
+ * defines all three Unit Tests: test_a, test_b, and test_b since they all share
+ * the same parent module: example.
  */
 #define CHAOS_TEST_MODULE( path )                                              \
         namespace                                                              \
@@ -329,36 +379,59 @@ private:
         }
 
 /*!
- * \brief TODO: DOC
+ * \brief Defines a ChaosCore Unit Test with no chaos::test::Fixture.
  *
- * TODO: DOC
+ * See #CHAOS_TEST_UNIT_FIXTURE for more information.
  */
-#define CHAOS_TEST_UNIT( path ) \
-        CHAOS_TEST_UNIT_FIXTURE( path, chaos::test::Fixture )
+#define CHAOS_TEST_UNIT( name ) \
+        CHAOS_TEST_UNIT_FIXTURE( name, chaos::test::Fixture )
 
 /*!
- * \brief TODO: DOC
+ * \brief Defines a ChaosCore Unit Test with a chaos::test::Fixture.
  *
- * TODO: DOC
+ * Use this macro like a function definition to declare a Unit Test. Example:
+ * \code
+ * CHAOS_TEST_UNIT_FIXTURE( example_test, MyFixtureType )
+ * {
+ *     fixture->do_something();
+ *
+ *     CHAOS_CHECK_EQUAL( 1, 2 );
+ *     // more testing code here
+ *     // ...
+ * }
+ * \endcode
+ *
+ * \param name The name of this this Unit Test. The full name (module path +
+ *             unit test name) for this test must be unique.
+ * \param fixture_type The class name of the chaos::test::Fixture to use for
+ *                     this Unit test. ChaosCore will handle instantiating this
+ *                     object, and the fixture's startup and teardown functions
+ *                     will be called before and after running this test
+ *                     respectively. The instance of the fixture can be accessed
+ *                     from within this test using the keyword:
+ *                     \code
+ *                     fixture
+ *                     \endcode
+ *                     which provides a pointer to the fixture instance.
  */
-#define CHAOS_TEST_UNIT_FIXTURE( path, fixture_type )                          \
-    struct path : public chaos::test::internal::UnitTest                       \
+#define CHAOS_TEST_UNIT_FIXTURE( name, fixture_type )                          \
+    struct name : public chaos::test::internal::UnitTest                       \
     {                                                                          \
         fixture_type* fixture;                                                 \
-        path() : UnitTest( #path ), fixture( new fixture_type() ){}            \
-        virtual ~path(){ delete fixture; }                                     \
+        name() : UnitTest( #name ), fixture( new fixture_type() ){}            \
+        virtual ~name(){ delete fixture; }                                     \
         virtual chaos::test::Fixture* get_fixture() { return fixture; }        \
         virtual void execute();                                                \
     };                                                                         \
-    static chaos::test::internal::TestCore object_##path (                     \
-            #path, new path(), __FILE__, __LINE__ );                           \
-    void path::execute()
+    static chaos::test::internal::TestCore object_##name (                     \
+            #name, new name(), __FILE__, __LINE__ );                           \
+    void name::execute()
 
 
 /*!
- * \brief TODO: DOC
+ * \brief Checks whether the given values are considered equal.
  *
- * TODO: DOC
+ * If a and b are equal this check will pass, else this will cause test failure.
  */
 #define CHAOS_CHECK_EQUAL( a, b )                                              \
         if ( a == b )                                                          \

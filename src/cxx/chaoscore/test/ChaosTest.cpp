@@ -28,8 +28,8 @@ void TestCore::declare_module(
         const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
-    // does the path need checking?
-    if ( path.get_length() > 1 )
+    // has a path been provided? if not this is clearing the current module
+    if ( path.get_length() >= 1 )
     {
         // check that first or last symbols are not a periods
         if ( path.get_symbol( 0 )                    == "." ||

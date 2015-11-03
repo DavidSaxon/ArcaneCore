@@ -1,17 +1,19 @@
 \hypertarget{_chaos_test_8hpp}{}\section{D\+:/\+Dropbox/\+Development/\+Chaos\+Core/\+Chaos\+Core/src/cxx/chaoscore/test/\+Chaos\+Test.hpp File Reference}
 \label{_chaos_test_8hpp}\index{D\+:/\+Dropbox/\+Development/\+Chaos\+Core/\+Chaos\+Core/src/cxx/chaoscore/test/\+Chaos\+Test.\+hpp@{D\+:/\+Dropbox/\+Development/\+Chaos\+Core/\+Chaos\+Core/src/cxx/chaoscore/test/\+Chaos\+Test.\+hpp}}
+{\ttfamily \#include $<$iostream$>$}\\*
 {\ttfamily \#include $<$map$>$}\\*
 {\ttfamily \#include $<$set$>$}\\*
 {\ttfamily \#include $<$sstream$>$}\\*
 {\ttfamily \#include $<$vector$>$}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/\+Preproc.\+hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/string/\+U\+T\+F8\+String.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}chaoscore/test/\+Test\+Exceptions.\+hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/test/\+Test\+Logger.\+hpp\char`\"{}}\\*
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A \hyperlink{classchaos_1_1test_1_1_fixture}{Fixture} is an object that can be used to set up a unit test environment. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -23,13 +25,13 @@ class \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}
 \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{_chaos_test_8hpp_aff792df3b39dba470d2d977009e96d57}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}(path)                                                                                        
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\#define \hyperlink{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}(path)~\hyperlink{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}( path, \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture} )
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\#define \hyperlink{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}(path,  fixture\+\_\+type)                                                
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Declares the Test Module Path for the current file. \end{DoxyCompactList}\item 
+\#define \hyperlink{_chaos_test_8hpp_a6002be16c0611b66af2b9cce42616617}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}(name)
+\begin{DoxyCompactList}\small\item\em Defines a Chaos\+Core Unit Test with no \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}. \end{DoxyCompactList}\item 
+\#define \hyperlink{_chaos_test_8hpp_a1b96815684faab06af818b7d497e89fb}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}(name,  fixture\+\_\+type)                                                
+\begin{DoxyCompactList}\small\item\em Defines a Chaos\+Core Unit Test with a \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}. \end{DoxyCompactList}\item 
 \#define \hyperlink{_chaos_test_8hpp_aefa5ff7ba416ece8bf8366449de37c0d}{C\+H\+A\+O\+S\+\_\+\+C\+H\+E\+C\+K\+\_\+\+E\+Q\+U\+A\+L}(a,  b)                                                                                        
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Checks whether the given values are considered equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -49,78 +51,93 @@ David Saxon
 \item[{}]{b}
 \end{DoxyParamCaption}
 )}\label{_chaos_test_8hpp_aefa5ff7ba416ece8bf8366449de37c0d}
-{\bfseries Value\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{if} ( a == b )                                                          \(\backslash\)
-        \{                                                                      \(\backslash\)
-            chaos::test::internal::TestCore::logger.report\_check\_pass(         \(\backslash\)
-                    \textcolor{stringliteral}{"CHAOS\_CHECK\_EQUAL"}, \_\_FILE\_\_, \_\_LINE\_\_ );                 \(\backslash\)
-        \}                                                                      \(\backslash\)
-        else                                                                   \(\backslash\)
-        \{                                                                      \(\backslash\)
-            chaos::str::UTF8String f\_e\_m;                                      \(\backslash\)
-            f\_e\_m << a << \textcolor{stringliteral}{" does not equal "} << b;                             \(\backslash\)
-            chaos::test::internal::TestCore::logger.report\_check\_fail(         \(\backslash\)
-                    \textcolor{stringliteral}{"CHAOS\_CHECK\_EQUAL"}, \_\_FILE\_\_, \_\_LINE\_\_, f\_e\_m );          \(\backslash\)
-        \}
-\end{DoxyCode}
 
 
-T\+O\+D\+O\+: D\+O\+C. 
+Checks whether the given values are considered equal. 
 
-T\+O\+D\+O\+: D\+O\+C \hypertarget{_chaos_test_8hpp_aff792df3b39dba470d2d977009e96d57}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}}
+If a and b are equal this check will pass, else this will cause test failure. \hypertarget{_chaos_test_8hpp_aff792df3b39dba470d2d977009e96d57}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}}
 \index{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}!Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+M\+O\+D\+U\+L\+E(
 \begin{DoxyParamCaption}
 \item[{}]{path}
 \end{DoxyParamCaption}
 )}\label{_chaos_test_8hpp_aff792df3b39dba470d2d977009e96d57}
-{\bfseries Value\+:}
+
+
+Declares the Test Module Path for the current file. 
+
+Files containing Chaos\+Core Unit Test must use this macro once and only once before any Unit Test decelerations. Unit Test paths are defined by their name and the module path in their respective file.
+
+For example, file\+\_\+1.\+cpp has two tests named test\+\_\+a and test\+\_\+b and the following module declaration\+: 
 \begin{DoxyCode}
-\textcolor{keyword}{namespace                                                              }\(\backslash\)
-        \{                                                                      \(\backslash\)
-        chaos::test::internal::TestCore t( #path, NULL, \textcolor{stringliteral}{""}, 0, \textcolor{keyword}{true} );         \(\backslash\)
-        \}
+1 CHAOS\_TEST\_MODULE( example.file\_1 )
+\end{DoxyCode}
+ And file\+\_\+2.\+cpp has one test named test\+\_\+c and the following module declaration\+: 
+\begin{DoxyCode}
+1 CHAOS\_TEST\_MODULE( example.file\_2 )
 \end{DoxyCode}
 
 
-T\+O\+D\+O\+: D\+O\+C. 
+The path\+: 
+\begin{DoxyCode}
+1 example.file\_1.test\_a
+\end{DoxyCode}
+ defines the Unit Test in file\+\_\+1.\+cpp called test\+\_\+a.
 
-T\+O\+D\+O\+: D\+O\+C \hypertarget{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}}
+The path\+: 
+\begin{DoxyCode}
+1 example.file\_1
+\end{DoxyCode}
+ defines the Units Tests test\+\_\+a and test\+\_\+b.
+
+The path\+: 
+\begin{DoxyCode}
+1 example
+\end{DoxyCode}
+ defines all three Unit Tests\+: test\+\_\+a, test\+\_\+b, and test\+\_\+b since they all share the same parent module\+: example. \hypertarget{_chaos_test_8hpp_a6002be16c0611b66af2b9cce42616617}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}}
 \index{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}!Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T(
 \begin{DoxyParamCaption}
-\item[{}]{path}
+\item[{}]{name}
 \end{DoxyParamCaption}
-)~{\bf C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}( path, {\bf chaos\+::test\+::\+Fixture} )}\label{_chaos_test_8hpp_a99bafb580d6fe2036b9408c25012ffeb}
+)}\label{_chaos_test_8hpp_a6002be16c0611b66af2b9cce42616617}
 
 
-T\+O\+D\+O\+: D\+O\+C. 
+Defines a Chaos\+Core Unit Test with no \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}. 
 
-T\+O\+D\+O\+: D\+O\+C \hypertarget{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}}
+See \hyperlink{_chaos_test_8hpp_a1b96815684faab06af818b7d497e89fb}{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E} for more information. \hypertarget{_chaos_test_8hpp_a1b96815684faab06af818b7d497e89fb}{}\index{Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}!C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}}
 \index{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E@{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}!Chaos\+Test.\+hpp@{Chaos\+Test.\+hpp}}
 \subsubsection[{C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define C\+H\+A\+O\+S\+\_\+\+T\+E\+S\+T\+\_\+\+U\+N\+I\+T\+\_\+\+F\+I\+X\+T\+U\+R\+E(
 \begin{DoxyParamCaption}
-\item[{}]{path, }
+\item[{}]{name, }
 \item[{}]{fixture\+\_\+type}
 \end{DoxyParamCaption}
-)}\label{_chaos_test_8hpp_aac01b317e68fbaea4cbc020ab93fa553}
-{\bfseries Value\+:}
+)}\label{_chaos_test_8hpp_a1b96815684faab06af818b7d497e89fb}
+
+
+Defines a Chaos\+Core Unit Test with a \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture}. 
+
+Use this macro like a function definition to declare a Unit Test. Example\+: 
 \begin{DoxyCode}
-\textcolor{keyword}{struct }path : \textcolor{keyword}{public} chaos::test::internal::UnitTest                       \(\backslash\)
-    \{                                                                          \(\backslash\)
-        fixture\_type* fixture;                                                 \(\backslash\)
-        path() : UnitTest( #path ), fixture( new fixture\_type() )\{\}            \(\backslash\)
-        virtual ~path()\{ \textcolor{keyword}{delete} fixture; \}                                     \(\backslash\)
-        virtual \hyperlink{classchaos_1_1test_1_1_fixture}{chaos::test::Fixture}* get\_fixture() \{ \textcolor{keywordflow}{return} fixture; \}        \(\backslash\)
-        virtual \textcolor{keywordtype}{void} execute();                                                \(\backslash\)
-    \};                                                                         \(\backslash\)
-    static chaos::test::internal::TestCore object\_##path (                     \(\backslash\)
-            #path, \textcolor{keyword}{new} path(), \_\_FILE\_\_, \_\_LINE\_\_ );                           \(\backslash\)
-    void path::execute()
+1 CHAOS\_TEST\_UNIT\_FIXTURE( example\_test, MyFixtureType )
+2 \{
+3     fixture->do\_something();
+4 
+5     CHAOS\_CHECK\_EQUAL( 1, 2 );
+6     // more testing code here
+7     // ...
+8 \}
 \end{DoxyCode}
 
 
-T\+O\+D\+O\+: D\+O\+C. 
 
-T\+O\+D\+O\+: D\+O\+C 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this this Unit Test. The full name (module path + unit test name) for this test must be unique. \\
+\hline
+{\em fixture\+\_\+type} & The class name of the \hyperlink{classchaos_1_1test_1_1_fixture}{chaos\+::test\+::\+Fixture} to use for this Unit test. Chaos\+Core will handle instantiating this object, and the fixture\textquotesingle{}s startup and teardown functions will be called before and after running this test respectively. The instance of the fixture can be accessed from within this test using the keyword\+: 
+\begin{DoxyCode}
+1 fixture
+\end{DoxyCode}
+ which provides a pointer to the fixture instance. \\
+\hline
+\end{DoxyParams}
