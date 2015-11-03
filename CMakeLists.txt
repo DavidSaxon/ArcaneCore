@@ -12,6 +12,7 @@ set( CORE_SRC
     src/cxx/chaoscore/io/format/FormatUtil.cpp
 
     src/cxx/chaoscore/test/ChaosTest.cpp
+    src/cxx/chaoscore/test/ChaosTestMain.cpp
     src/cxx/chaoscore/test/TestLogger.cpp
     src/cxx/chaoscore/test/log_formatter/AbstractTestLogFormatter.cpp
     src/cxx/chaoscore/test/log_formatter/HTMLTestLogFormatter.cpp
@@ -48,7 +49,7 @@ link_directories(${LINK_DIRECTORIES} ${Boost_LIBRARY_DIRS})
 #add_executable( dev_binary ${DEV_SRC} ${CORE_SRC})
 #target_link_libraries( dev_binary )
 
-add_executable(tests ${TEST_SRC} ${CORE_SRC})
+add_executable(tests ${CORE_SRC} ${TEST_SRC})
 
 target_link_libraries( tests
 
