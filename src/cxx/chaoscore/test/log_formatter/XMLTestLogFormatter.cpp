@@ -129,7 +129,19 @@ void XMLTestLogFormatter::write_message(
         return;
     }
 
-    ( *m_stream ) << "    <Message>" << message << "</Message>" << std::endl;
+    chaos::str::UTF8String entry( "    <Message> value=\"" );
+    entry << message << "\"";
+
+    // store occurrence
+    if ( m_verbosity <= 3 )
+    {
+        add_occurrence( entry );
+    }
+    // or print
+    else
+    {
+        ( *m_stream ) << entry << "/>" << std::endl;
+    }
 }
 
 void XMLTestLogFormatter::finialise_test_report(
@@ -139,10 +151,10 @@ void XMLTestLogFormatter::finialise_test_report(
     // write collected reports
     if ( m_verbosity <= 3 )
     {
-        CHAOS_FOR_EACH( it, m_occurrence_map )
+        CHAOS_FOR_EACH( it, m_occurrence_order )
         {
-            chaos::str::UTF8String message( it->first );
-            message << " occurrences=" << it->second;
+            chaos::str::UTF8String message( *it );
+            message << " occurrences=" << m_occurrence_map[ *it ];
             ( *m_stream ) << message << "/>" << std::endl;
         }
     }

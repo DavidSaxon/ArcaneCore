@@ -1,11 +1,12 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1446659011634">
-    <Message>Testing for each assigned size</Message>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=54 occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=62 occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=67 occurrences=100/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=77 occurrences=100/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=92 occurrences=1/>
+  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1446660338710">
+    <Message> value="Checking for each assigned size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=53 occurrences=1/>
+    <Message> value="Checking each value is iterated" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=61 occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66 occurrences=100/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=76 occurrences=100/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=91 occurrences=1/>
     <UnitSummary ChecksPassed=203 ChecksFailed=0/>
   </UnitTest>
   <FinalSummary UnitsPassed=1 UnitsFailed=0 UnitsErrored=0 ChecksPassed=203 ChecksFailed=0/>

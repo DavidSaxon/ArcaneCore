@@ -399,16 +399,25 @@ void PrettyTestLogFormatter::write_message(
     chaos::str::UTF8String entry( " -- " );
     entry << message;
 
-    // colourise
-    if ( m_use_ansi )
+    // store occurrence
+    if ( m_verbosity <= 3 )
     {
-        chaos::io::format::apply_escape_sequence(
-                entry,
-                chaos::io::format::ANSI_BG_BLUE
-        );
+        add_occurrence( entry );
     }
-    // write to stream
-    ( *m_stream ) << entry << std::endl;
+    // or print
+    else
+    {
+        // colourise
+        if ( m_use_ansi )
+        {
+            chaos::io::format::apply_escape_sequence(
+                    entry,
+                    chaos::io::format::ANSI_BG_BLUE
+            );
+        }
+        // write to stream
+        ( *m_stream ) << entry << std::endl;
+    }
 }
 
 void PrettyTestLogFormatter::finialise_test_report(
@@ -418,16 +427,29 @@ void PrettyTestLogFormatter::finialise_test_report(
     // write collected reports
     if ( m_verbosity <= 3 )
     {
-        CHAOS_FOR_EACH( it, m_occurrence_map )
+        CHAOS_FOR_EACH( it, m_occurrence_order )
         {
-            chaos::str::UTF8String message( it->first.substring( 0 , 10 ) );
-            message << " [ occurrences: " << it->second << " ]";
-            message << it->first.substring( 10 , it->first.get_length() );
+            // chaos::str::UTF8String message( it->first.substring( 0 , 10 ) );
+            // message << " [ occurrences: " << it->second << " ]";
+            // message << it->first.substring( 10 , it->first.get_length() );
+            chaos::str::UTF8String message( *it );
+            chaos::uint64 occurrences = m_occurrence_map[ *it ];
+            if ( occurrences > 1 )
+            {
+                message << " -- [ occurrences: " << occurrences << " ]";
+            }
 
             // colourise
             if ( m_use_ansi )
             {
-                if ( message.starts_with( " - Failed:" ) )
+                if ( message.starts_with( " -- " ) )
+                {
+                    chaos::io::format::apply_escape_sequence(
+                            message,
+                            chaos::io::format::ANSI_BG_BLUE
+                    );
+                }
+                else if ( message.starts_with( " - Failed:" ) )
                 {
                     chaos::io::format::apply_escape_sequence(
                             message,

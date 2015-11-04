@@ -31,6 +31,7 @@ void AbstractTestLogFormatter::add_occurrence(
     if ( m_occurrence_map.find( entry ) == m_occurrence_map.end() )
     {
         m_occurrence_map[ entry ] = 1;
+        m_occurrence_order.push_back( entry );
     }
     else
     {

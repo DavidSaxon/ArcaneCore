@@ -108,6 +108,10 @@ protected:
      * \brief mapping from log message to the number of times they've occurred.
      */
     std::map< chaos::str::UTF8String, chaos::uint64 > m_occurrence_map;
+    /*!
+     * \brief holds the order for the occurrence mapping.
+     */
+    std::vector< chaos::str::UTF8String > m_occurrence_order;
 
     //--------------------------------------------------------------------------
     //                         PROTECTED MEMBER FUNCTIONS

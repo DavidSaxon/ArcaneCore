@@ -49,11 +49,10 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     {
         v2.push_back( *v_it_1 );
     }
-    // is the size the same?
-    CHAOS_TEST_MESSAGE( "Testing for each assigned size" );
+    CHAOS_TEST_MESSAGE( "Checking for each assigned size" );
     CHAOS_CHECK_EQUAL( v1.size(), v2.size() );
 
-    // is every value iterated over?
+    CHAOS_TEST_MESSAGE( "Checking each value is iterated" );
     size_t counter = 0;
     CHAOS_FOR_EACH( v_it_2, v1 )
     {
