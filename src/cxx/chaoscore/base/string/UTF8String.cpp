@@ -181,6 +181,46 @@ UTF8String& UTF8String::operator<<( char other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
+UTF8String& UTF8String::operator<<( unsigned long other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
+UTF8String& UTF8String::operator<<( chaos::int8 other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
+UTF8String& UTF8String::operator<<( chaos::uint8 other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
+UTF8String& UTF8String::operator<<( chaos::int16 other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
+UTF8String& UTF8String::operator<<( chaos::uint16 other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
 UTF8String& UTF8String::operator<<( chaos::int32 other )
 {
     // TODO: doesn't seem very efficient :(

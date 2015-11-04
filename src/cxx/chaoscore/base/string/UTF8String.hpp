@@ -225,6 +225,41 @@ public:
     /*!
      * \brief Stream operator.
      *
+     * Extends this UTF8String with the given unsigned long.
+     */
+    UTF8String& operator<<( unsigned long other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given int8.
+     */
+    UTF8String& operator<<( chaos::int8 other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given uint8.
+     */
+    UTF8String& operator<<( chaos::uint8 other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given int16.
+     */
+    UTF8String& operator<<( chaos::int16 other );
+
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given uint16.
+     */
+    UTF8String& operator<<( chaos::uint16 other );
+
+    /*!
+     * \brief Stream operator.
+     *
      * Extends this UTF8String with the given int32.
      */
     UTF8String& operator<<( chaos::int32 other );
