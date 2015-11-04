@@ -222,12 +222,17 @@ public:
      */
     UTF8String& operator<<( char other );
 
+// TODO: how to solve the ambiguous problem
+#ifdef CHAOS_OS_WINDOWS
+
     /*!
      * \brief Stream operator.
      *
      * Extends this UTF8String with the given unsigned long.
      */
     UTF8String& operator<<( unsigned long other );
+
+#endif
 
     /*!
      * \brief Stream operator.

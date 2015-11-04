@@ -181,6 +181,8 @@ UTF8String& UTF8String::operator<<( char other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
+#ifdef CHAOS_OS_WINDOWS
+
 UTF8String& UTF8String::operator<<( unsigned long other )
 {
     // TODO: doesn't seem very efficient :(
@@ -188,6 +190,8 @@ UTF8String& UTF8String::operator<<( unsigned long other )
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
+
+#endif
 
 UTF8String& UTF8String::operator<<( chaos::int8 other )
 {

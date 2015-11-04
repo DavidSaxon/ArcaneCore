@@ -440,23 +440,59 @@ private:
     chaos::test::internal::TestCore::logger.write_message( message )
 
 /*!
+ * \brief Checks whether the given value evaluates to true.
+ *
+ * If a evaluates to true then this check will pass, else this will cause test
+ * failure.
+ */
+#define CHAOS_CHECK_TRUE( a )                                                  \
+    if ( a )                                                                   \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_TRUE", __FILE__, __LINE__ );                      \
+    }                                                                          \
+    else                                                                       \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_TRUE", __FILE__, __LINE__, "" );                  \
+    }
+
+/*!
+ * \brief Checks whether the given value evaluates to false.
+ *
+ * If a evaluates to false then this check will pass, else this will cause test
+ * failure.
+ */
+#define CHAOS_CHECK_FALSE( a )                                                 \
+    if ( !a )                                                                  \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_FALSE", __FILE__, __LINE__ );                     \
+    }                                                                          \
+    else                                                                       \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_FALSE", __FILE__, __LINE__, "" );                 \
+    }
+
+/*!
  * \brief Checks whether the given values are considered equal.
  *
  * If a and b are equal this check will pass, else this will cause test failure.
  */
 #define CHAOS_CHECK_EQUAL( a, b )                                              \
-        if ( a == b )                                                          \
-        {                                                                      \
-            chaos::test::internal::TestCore::logger.report_check_pass(         \
-                    "CHAOS_CHECK_EQUAL", __FILE__, __LINE__ );                 \
-        }                                                                      \
-        else                                                                   \
-        {                                                                      \
-            chaos::str::UTF8String f_e_m;                                      \
-            f_e_m << a << " does not equal " << b;                             \
-            chaos::test::internal::TestCore::logger.report_check_fail(         \
-                    "CHAOS_CHECK_EQUAL", __FILE__, __LINE__, f_e_m );          \
-        }
+    if ( a == b )                                                              \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_EQUAL", __FILE__, __LINE__ );                     \
+    }                                                                          \
+    else                                                                       \
+    {                                                                          \
+        chaos::str::UTF8String f_e_m;                                          \
+        f_e_m << a << " does not equal " << b;                                 \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_EQUAL", __FILE__, __LINE__, f_e_m );              \
+    }
 
 } // namespace test
 } // namespace chaos
