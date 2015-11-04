@@ -73,6 +73,12 @@ void PlainTestLogFormatter::report_check_fail(
     // TODO:
 }
 
+void PlainTestLogFormatter::write_message(
+        const chaos::str::UTF8String& message )
+{
+    // TODO:
+}
+
 void PlainTestLogFormatter::finialise_test_report(
         chaos::uint64 checks_passed,
         chaos::uint64 checks_failed )

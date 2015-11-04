@@ -297,6 +297,15 @@ void TestLogger::report_check_fail(
     }
 }
 
+void TestLogger::write_message( const chaos::str::UTF8String& message )
+{
+    // send to formatters
+    CHAOS_FOR_EACH( it, m_formatters )
+    {
+        ( *it )->write_message( message );
+    }
+}
+
 void TestLogger::finialise_test_report()
 {
     // send to formatters

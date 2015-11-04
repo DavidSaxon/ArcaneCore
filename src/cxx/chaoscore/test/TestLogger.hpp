@@ -180,6 +180,13 @@ public:
             const chaos::str::UTF8String& message );
 
     /*!
+     * \brief Writes a message to the to test log.
+     *
+     * \param message The contents of the message to write.
+     */
+    void write_message( const chaos::str::UTF8String& message );
+
+    /*!
      * \brief Finalises reports for a unit test
      */
     void finialise_test_report();

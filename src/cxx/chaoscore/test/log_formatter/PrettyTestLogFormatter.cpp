@@ -387,6 +387,30 @@ void PrettyTestLogFormatter::report_check_fail(
     }
 }
 
+void PrettyTestLogFormatter::write_message(
+        const chaos::str::UTF8String& message )
+{
+    // verbosity 3+
+    if ( m_verbosity < 3 )
+    {
+        return;
+    }
+
+    chaos::str::UTF8String entry( " -- " );
+    entry << message;
+
+    // colourise
+    if ( m_use_ansi )
+    {
+        chaos::io::format::apply_escape_sequence(
+                entry,
+                chaos::io::format::ANSI_BG_BLUE
+        );
+    }
+    // write to stream
+    ( *m_stream ) << entry << std::endl;
+}
+
 void PrettyTestLogFormatter::finialise_test_report(
         chaos::uint64 checks_passed,
         chaos::uint64 checks_failed )

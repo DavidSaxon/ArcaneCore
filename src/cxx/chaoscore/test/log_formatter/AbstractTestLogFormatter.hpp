@@ -84,6 +84,8 @@ public:
                   chaos::int32            line,
             const chaos::str::UTF8String& message ) = 0;
 
+    virtual void write_message( const chaos::str::UTF8String& message ) = 0;
+
     virtual void finialise_test_report(
             chaos::uint64 checks_passed,
             chaos::uint64 checks_failed ) = 0;

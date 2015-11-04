@@ -45,19 +45,49 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     std::vector< chaos::int32 > v1 = fixture->getIntVector( 100 );
     std::vector< chaos::int32 > v2;
     // copy using a for each loop
-    CHAOS_FOR_EACH( v_it, v1 )
+    CHAOS_FOR_EACH( v_it_1, v1 )
     {
-        v2.push_back( *v_it );
+        v2.push_back( *v_it_1 );
     }
     // is the size the same?
+    CHAOS_TEST_MESSAGE( "Testing for each assigned size" );
     CHAOS_CHECK_EQUAL( v1.size(), v2.size() );
 
-    for ( size_t i  = 0; i < 12; ++i )
+    // is every value iterated over?
+    size_t counter = 0;
+    CHAOS_FOR_EACH( v_it_2, v1 )
     {
-        CHAOS_CHECK_EQUAL( 1, 2 );
+        ++counter;
     }
-    for ( size_t i  = 0; i < 4; ++i )
+    CHAOS_CHECK_EQUAL( counter, v1.size() );
+
+    // are the contents equal?
+    for( size_t i = 0; i < v1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( 1, 1 );
+        CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] );
     }
+
+    // can we modify the contents
+    CHAOS_FOR_EACH( v_it_3, v1 )
+    {
+        *v_it_3 = *v_it_3 + 1;
+    }
+    for( size_t i = 0; i < v1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] + 1 );
+    }
+
+    // check const-ness
+    size_t v1_total = 0;
+    CHAOS_FOR_EACH( v_it_4, v1 )
+    {
+        v1_total += *v_it_4;
+    }
+    const std::vector< chaos::int32 > const_v1( v1 );
+    size_t const_v1_total = 0;
+    CHAOS_FOR_EACH( v_it_5, v1 )
+    {
+        const_v1_total += *v_it_5;
+    }
+    CHAOS_CHECK_EQUAL( v1_total, const_v1_total );
 }

@@ -427,6 +427,17 @@ private:
             #name, new name(), __FILE__, __LINE__ );                           \
     void name::execute()
 
+/*!
+ * \brief Defines a message to be written to test logs.
+ *
+ * Messages are displayed in test logs with a verbosity of 3+.
+ *
+ * \param message The message to write to the logs. This should be a
+ *                chaos::str::UTF8String or implicitly constructible as a
+ *                chaos::str::UTF8String.
+ */
+#define CHAOS_TEST_MESSAGE( message )                                          \
+    chaos::test::internal::TestCore::logger.write_message( message )
 
 /*!
  * \brief Checks whether the given values are considered equal.

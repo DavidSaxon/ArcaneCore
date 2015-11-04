@@ -120,6 +120,18 @@ void XMLTestLogFormatter::report_check_fail(
     }
 }
 
+void XMLTestLogFormatter::write_message(
+        const chaos::str::UTF8String& message )
+{
+    // verbosity 3+
+    if ( m_verbosity < 3 )
+    {
+        return;
+    }
+
+    ( *m_stream ) << "    <Message>" << message << "</Message>" << std::endl;
+}
+
 void XMLTestLogFormatter::finialise_test_report(
         chaos::uint64 checks_passed,
         chaos::uint64 checks_failed )
