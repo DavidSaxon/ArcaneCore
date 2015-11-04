@@ -60,13 +60,13 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     }
     CHAOS_CHECK_EQUAL( counter, v1.size() );
 
-    // are the contents equal?
+    CHAOS_TEST_MESSAGE( "Checking correct for each assigned contents" );
     for( size_t i = 0; i < v1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] );
     }
 
-    // can we modify the contents
+    CHAOS_TEST_MESSAGE( "Checking for each value modifications" );
     CHAOS_FOR_EACH( v_it_3, v1 )
     {
         *v_it_3 = *v_it_3 + 1;
@@ -76,7 +76,7 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
         CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] + 1 );
     }
 
-    // check const-ness
+    CHAOS_TEST_MESSAGE( "Checking constness" );
     size_t v1_total = 0;
     CHAOS_FOR_EACH( v_it_4, v1 )
     {
