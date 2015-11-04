@@ -1,16 +1,315 @@
 <ChaosCoreTests>
-  <UnitTest path="base.preproc.for_each" id="base.preproc.for_each_1446661279867">
-    <Message> value="Checking for each assigned size" occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=53 occurrences=1/>
-    <Message> value="Checking each value is iterated" occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=61 occurrences=1/>
-    <Message> value="Checking correct for each assigned contents" occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=66 occurrences=100/>
-    <Message> value="Checking for each value modifications" occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=76 occurrences=100/>
-    <Message> value="Checking constness" occurrences=1/>
-    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/PreProc_TestSuite.cpp line=91 occurrences=1/>
-    <UnitSummary ChecksPassed=203 ChecksFailed=0/>
+  <UnitTest path="base.types.int16" id="base.types.int16_1446677377520">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=462 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=474 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=486 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=498 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=510 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=522 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=534 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=546 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=558 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=570 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=582 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=594 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=606 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=618 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=630 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=642 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=654 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=666 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
   </UnitTest>
-  <FinalSummary UnitsPassed=1 UnitsFailed=0 UnitsErrored=0 ChecksPassed=203 ChecksFailed=0/>
+  <UnitTest path="base.types.int32" id="base.types.int32_1446677377529">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=904 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=916 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=928 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=940 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=952 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=964 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=976 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=988 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1000 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1012 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1024 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1036 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1048 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1060 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1072 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1084 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1096 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1108 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <UnitTest path="base.types.int64" id="base.types.int64_1446677377540">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1346 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1358 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1370 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1382 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1394 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1406 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1418 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1430 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1442 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1454 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1466 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1478 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1490 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1502 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1514 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1526 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1538 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1550 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <UnitTest path="base.types.int8" id="base.types.int8_1446677377547">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=20 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=32 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=44 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=56 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=68 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=80 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=92 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=104 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=116 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=128 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=140 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=152 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=164 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=176 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=188 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=200 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=212 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=224 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <UnitTest path="base.types.uint16" id="base.types.uint16_1446677377554">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=683 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=695 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=707 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=719 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=731 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=743 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=755 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=767 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=779 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=791 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=803 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=815 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=827 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=839 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=851 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=863 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=875 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=887 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <UnitTest path="base.types.uint32" id="base.types.uint32_1446677377563">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1125 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1137 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1149 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1161 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1173 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1185 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1197 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1209 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1221 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1233 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1245 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1257 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1269 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1281 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1293 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1305 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1317 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1329 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <UnitTest path="base.types.uint64" id="base.types.uint64_1446677377571">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1568 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1580 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1592 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1604 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1616 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1628 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1640 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1652 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1664 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1676 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1688 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1700 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1712 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1724 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1736 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1748 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1760 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=1772 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <UnitTest path="base.types.uint8" id="base.types.uint8_1446677377578">
+    <Message> value="Checking byte size" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=241 occurrences=5/>
+    <Message> value="Checking cast to char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=253 occurrences=5/>
+    <Message> value="Checking cast to signed char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=265 occurrences=5/>
+    <Message> value="Checking cast to unsigned char" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=277 occurrences=5/>
+    <Message> value="Checking cast to signed short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=289 occurrences=5/>
+    <Message> value="Checking cast to unsigned short" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=301 occurrences=5/>
+    <Message> value="Checking cast to signed int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=313 occurrences=5/>
+    <Message> value="Checking cast to unsigned int" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=325 occurrences=5/>
+    <Message> value="Checking cast to signed long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=337 occurrences=5/>
+    <Message> value="Checking cast to unsigned long" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=349 occurrences=5/>
+    <Message> value="Checking cast to chaos int8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=361 occurrences=5/>
+    <Message> value="Checking cast to chaos uint8" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=373 occurrences=5/>
+    <Message> value="Checking cast to chaos int16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=385 occurrences=5/>
+    <Message> value="Checking cast to chaos uint16" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=397 occurrences=5/>
+    <Message> value="Checking cast to chaos int32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=409 occurrences=5/>
+    <Message> value="Checking cast to chaos uint32" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=421 occurrences=5/>
+    <Message> value="Checking cast to chaos int64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=433 occurrences=5/>
+    <Message> value="Checking cast to chaos uint64" occurrences=1/>
+    <Success type=CHAOS_CHECK_EQUAL file=/home/david/Dropbox/Development/ChaosCore/ChaosCore/tests/cxx/base/Types_TestSuite.cpp line=445 occurrences=5/>
+    <UnitSummary ChecksPassed=90 ChecksFailed=0/>
+  </UnitTest>
+  <FinalSummary UnitsPassed=8 UnitsFailed=0 UnitsErrored=0 ChecksPassed=720 ChecksFailed=0/>
 </ChaosCoreTests>

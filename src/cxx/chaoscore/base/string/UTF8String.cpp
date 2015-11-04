@@ -197,6 +197,14 @@ UTF8String& UTF8String::operator<<( chaos::uint32 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
+UTF8String& UTF8String::operator<<( chaos::int64 other )
+{
+    // TODO: doesn't seem very efficient :(
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
 UTF8String& UTF8String::operator<<( chaos::uint64 other )
 {
     // TODO: doesn't seem very efficient :(

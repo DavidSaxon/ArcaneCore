@@ -24,6 +24,7 @@ set( CORE_SRC
 set( TEST_SRC
 
     tests/cxx/base/PreProc_TestSuite.cpp
+    tests/cxx/base/Types_TestSuite.cpp
     tests/cxx/base/str/UTF8String_TestSuite.cpp
 )
 

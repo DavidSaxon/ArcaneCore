@@ -76,7 +76,7 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
         CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] + 1 );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking constness" );
+    CHAOS_TEST_MESSAGE( "Checking const-ness" );
     size_t v1_total = 0;
     CHAOS_FOR_EACH( v_it_4, v1 )
     {

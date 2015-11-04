@@ -239,6 +239,13 @@ public:
     /*!
      * \brief Stream operator.
      *
+     * Extends this UTF8String with the given int64.
+     */
+    UTF8String& operator<<( chaos::int64 other );
+
+    /*!
+     * \brief Stream operator.
+     *
      * Extends this UTF8String with the given unsigned int64.
      */
     UTF8String& operator<<( chaos::uint64 other );

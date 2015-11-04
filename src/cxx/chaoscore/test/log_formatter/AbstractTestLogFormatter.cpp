@@ -37,6 +37,19 @@ void AbstractTestLogFormatter::add_occurrence(
     {
         ++m_occurrence_map[ entry ];
     }
+
+    // check against the previous occurrence
+    if ( !m_occurrences.empty() && m_occurrences.back().entry == entry )
+    {
+        // update the current occurrence
+        ++m_occurrences.back().count;
+    }
+    else
+    {
+        m_occurrences.push_back( LogOccurence() );
+        m_occurrences.back().entry = entry;
+        m_occurrences.back().count = 1;
+    }
 }
 
 } // namespace log_formatter

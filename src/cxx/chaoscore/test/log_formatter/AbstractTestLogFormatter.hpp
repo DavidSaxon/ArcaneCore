@@ -113,6 +113,20 @@ protected:
      */
     std::vector< chaos::str::UTF8String > m_occurrence_order;
 
+    /*!
+     * \brief Stores a log entry and the number of times it has consecutively
+     *        occurred.
+     */
+    struct LogOccurence
+    {
+        chaos::str::UTF8String entry;
+        chaos::uint32          count;
+    };
+    /*!
+     * \brief Stores log occurrences
+     */
+    std::vector< LogOccurence > m_occurrences;
+
     //--------------------------------------------------------------------------
     //                         PROTECTED MEMBER FUNCTIONS
     //--------------------------------------------------------------------------

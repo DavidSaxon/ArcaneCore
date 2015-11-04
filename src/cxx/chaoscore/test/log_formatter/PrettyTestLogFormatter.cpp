@@ -164,7 +164,7 @@ void PrettyTestLogFormatter::close_log(
                     chaos::io::format::ANSI_ATTR_BLINK
             );
         }
-        else if ( unit_pass_percent <= 75 )
+        else if ( unit_pass_percent < 100 )
         {
             chaos::io::format::apply_escape_sequence(
                     unit_percent,
@@ -204,7 +204,7 @@ void PrettyTestLogFormatter::close_log(
                     chaos::io::format::ANSI_ATTR_BLINK
             );
         }
-        else if ( check_pass_percent <= 75 )
+        else if ( check_pass_percent < 100 )
         {
             chaos::io::format::apply_escape_sequence(
                     check_percent,
@@ -427,16 +427,27 @@ void PrettyTestLogFormatter::finialise_test_report(
     // write collected reports
     if ( m_verbosity <= 3 )
     {
-        CHAOS_FOR_EACH( it, m_occurrence_order )
+        CHAOS_FOR_EACH( it, m_occurrences )
         {
             // chaos::str::UTF8String message( it->first.substring( 0 , 10 ) );
             // message << " [ occurrences: " << it->second << " ]";
             // message << it->first.substring( 10 , it->first.get_length() );
-            chaos::str::UTF8String message( *it );
-            chaos::uint64 occurrences = m_occurrence_map[ *it ];
+            chaos::str::UTF8String message( it->entry );
+            chaos::uint64 occurrences = it->count;
+
             if ( occurrences > 1 )
             {
-                message << " -- [ occurrences: " << occurrences << " ]";
+                chaos::str::UTF8String occ( " [ occurrences: " );
+                occ << occurrences << " ]";
+
+                if ( message.get_length() + occ.get_length() < 79 )
+                {
+                    chaos::str::UTF8String space( " " );
+                    space *= 79 - ( message.get_length() + occ.get_length() );
+                    message += space;
+                }
+
+                message << occ;
             }
 
             // colourise
@@ -531,7 +542,7 @@ void PrettyTestLogFormatter::finialise_test_report(
                     chaos::io::format::ANSI_ATTR_BLINK
             );
         }
-        else if ( pass_percent <= 75 )
+        else if ( pass_percent < 100 )
         {
             chaos::io::format::apply_escape_sequence(
                     percent,
