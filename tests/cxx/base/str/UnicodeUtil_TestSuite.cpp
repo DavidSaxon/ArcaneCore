@@ -2,7 +2,7 @@
 
 #include "chaoscore/base/string/UnicodeUtil.hpp"
 
-CHAOS_TEST_MODULE( base.str.unicode )
+CHAOS_TEST_MODULE( base.str.unicodeutil )
 
 //------------------------------------------------------------------------------
 //                                 UTF8_IS_DIGIT
