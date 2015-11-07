@@ -16,13 +16,10 @@ public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    const char* cstring_empty;
-    const char* cstring_ascii_std;
-    const char* cstring_ascii_short;
-    const char* cstring_ascii_long;
-    const char* cstring_unicode_std;
-    const char* cstring_unicode_mix;
-    const char* cstring_unicode_short;
+    // cstrings
+    std::vector< const char* > cstrings;
+    // utf8strings
+    std::vector< chaos::str::UTF8String > utf8_strings;
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -30,17 +27,25 @@ public:
 
     virtual void setup()
     {
-        cstring_empty         = "";
-        cstring_ascii_std     = "Hello World";
-        cstring_ascii_short   = "a";
-        cstring_ascii_long    = "This is a really long string, that just keeps "
-                                "on going on and on and on! It never seems to "
-                                "end, but just when you think that it will not "
-                                "end. It ends.\n\n\n\n\nNope still going here."
-                                "\t\t\tThe end!\n\n\n\t\t\t";
-        cstring_unicode_std   = "γειά σου Κόσμε";
-        cstring_unicode_mix   = "this is a مزيج of text";
-        cstring_unicode_short = "간";
+        // populate cstring data
+        cstrings.push_back( "" );
+        cstrings.push_back( "Hello World" );
+        cstrings.push_back( "a" );
+        cstrings.push_back( "This is a really long string, that just keeps on "
+                            "going on and on and on! It never seems to end, "
+                            "but just when you think that it will not end. It "
+                            "ends.\n\n\n\n\nNope still going here.\t\t\tThe "
+                            "end!\n\n\n\t\t\t" );
+        cstrings.push_back( "γειά σου Κόσμε" );
+        cstrings.push_back( "this is a مزيج of text" );
+        cstrings.push_back( "간" );
+
+        // copy to utf8string data
+        CHAOS_FOR_EACH( it, cstrings )
+        {
+            utf8_strings.push_back( chaos::str::UTF8String( *it ) );
+        }
+
     }
 };
 
@@ -65,44 +70,11 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
 
-    chaos::str::UTF8String v_1( fixture->cstring_empty );
-    CHAOS_CHECK_EQUAL( strcmp( v_1.to_cstring(), fixture->cstring_empty ), 0 );
-
-    chaos::str::UTF8String v_2( fixture->cstring_ascii_std );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_2.to_cstring(), fixture->cstring_ascii_std ),
-            0
-    );
-
-    chaos::str::UTF8String v_3( fixture->cstring_ascii_short );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_3.to_cstring(), fixture->cstring_ascii_short ),
-            0
-    );
-
-    chaos::str::UTF8String v_4( fixture->cstring_ascii_long );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_4.to_cstring(), fixture->cstring_ascii_long ),
-            0
-    );
-
-    chaos::str::UTF8String v_5( fixture->cstring_unicode_std );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_5.to_cstring(), fixture->cstring_unicode_std ),
-            0
-    );
-
-    chaos::str::UTF8String v_6( fixture->cstring_unicode_mix );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_6.to_cstring(), fixture->cstring_unicode_mix ),
-            0
-    );
-
-    chaos::str::UTF8String v_7( fixture->cstring_unicode_short );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_7.to_cstring(), fixture->cstring_unicode_short ),
-            0
-    );
+    CHAOS_FOR_EACH( it, fixture->cstrings )
+    {
+        chaos::str::UTF8String v( *it );
+        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -113,65 +85,11 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
 
-    chaos::str::UTF8String v_1(
-            fixture->cstring_empty,
-            strlen( fixture->cstring_empty )
-    );
-    CHAOS_CHECK_EQUAL( strcmp( v_1.to_cstring(), fixture->cstring_empty ), 0 );
-
-    chaos::str::UTF8String v_2(
-            fixture->cstring_ascii_std,
-            strlen( fixture->cstring_ascii_std )
-    );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_2.to_cstring(), fixture->cstring_ascii_std ),
-            0
-    );
-
-    chaos::str::UTF8String v_3(
-            fixture->cstring_ascii_short,
-            strlen( fixture->cstring_ascii_short )
-    );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_3.to_cstring(), fixture->cstring_ascii_short ),
-            0
-    );
-
-    chaos::str::UTF8String v_4(
-            fixture->cstring_ascii_long,
-            strlen( fixture->cstring_ascii_long )
-    );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_4.to_cstring(), fixture->cstring_ascii_long ),
-            0
-    );
-
-    chaos::str::UTF8String v_5(
-            fixture->cstring_unicode_std,
-            strlen( fixture->cstring_unicode_std )
-    );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_5.to_cstring(), fixture->cstring_unicode_std ),
-            0
-    );
-
-    chaos::str::UTF8String v_6(
-            fixture->cstring_unicode_mix,
-            strlen( fixture->cstring_unicode_mix )
-    );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_6.to_cstring(), fixture->cstring_unicode_mix ),
-            0
-    );
-
-    chaos::str::UTF8String v_7(
-            fixture->cstring_unicode_short,
-            strlen( fixture->cstring_unicode_short )
-    );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_7.to_cstring(), fixture->cstring_unicode_short ),
-            0
-    );
+        CHAOS_FOR_EACH( it, fixture->cstrings )
+    {
+        chaos::str::UTF8String v( *it, strlen( *it ) );
+        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -182,107 +100,16 @@ CHAOS_TEST_UNIT_FIXTURE( int8_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
 
-    const chaos::int8* data_1 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_empty );
-    chaos::str::UTF8String v_1( data_1 );
-    CHAOS_CHECK_EQUAL( strcmp( v_1.to_cstring(), fixture->cstring_empty ), 0 );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_1.get_raw_data(),
-                    data_1, strlen( fixture->cstring_empty ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_2 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_ascii_std );
-    chaos::str::UTF8String v_2( data_2 );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_2.to_cstring(), fixture->cstring_ascii_std ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_2.get_raw_data(),
-                    data_2, strlen( fixture->cstring_ascii_std ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_3 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_ascii_short );
-    chaos::str::UTF8String v_3( data_3 );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_3.to_cstring(), fixture->cstring_ascii_short ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_3.get_raw_data(),
-                    data_3, strlen( fixture->cstring_ascii_short ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_4 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_ascii_long );
-    chaos::str::UTF8String v_4( data_4 );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_4.to_cstring(), fixture->cstring_ascii_long ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_4.get_raw_data(),
-                    data_4, strlen( fixture->cstring_ascii_long ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_5 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_unicode_std );
-    chaos::str::UTF8String v_5( data_5 );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_5.to_cstring(), fixture->cstring_unicode_std ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_5.get_raw_data(),
-                    data_5, strlen( fixture->cstring_unicode_std ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_6 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_unicode_mix );
-    chaos::str::UTF8String v_6( data_6 );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_6.to_cstring(), fixture->cstring_unicode_mix ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_6.get_raw_data(),
-                    data_6, strlen( fixture->cstring_unicode_mix ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_7 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_unicode_short );
-    chaos::str::UTF8String v_7( data_7 );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_7.to_cstring(), fixture->cstring_unicode_short ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_7.get_raw_data(),
-                    data_7, strlen( fixture->cstring_unicode_short ) + 1
-            ),
-            0
-    );
+    CHAOS_FOR_EACH( it, fixture->cstrings )
+    {
+        const chaos::int8* data = reinterpret_cast< const chaos::int8* >( *it );
+        chaos::str::UTF8String v( data );
+        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+        CHAOS_CHECK_EQUAL(
+                memcmp( v.get_raw_data(), data, strlen( *it ) + 1 ),
+                0
+        );
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -293,108 +120,111 @@ CHAOS_TEST_UNIT_FIXTURE( int8_length_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
 
-    const chaos::int8* data_1 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_empty );
-    chaos::str::UTF8String v_1( data_1, strlen( fixture->cstring_empty ) );
-    CHAOS_CHECK_EQUAL( strcmp( v_1.to_cstring(), fixture->cstring_empty ), 0 );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_1.get_raw_data(),
-                    data_1, strlen( fixture->cstring_empty ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_2 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_ascii_std );
-    chaos::str::UTF8String v_2( data_2, strlen( fixture->cstring_ascii_std ) );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_2.to_cstring(), fixture->cstring_ascii_std ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_2.get_raw_data(),
-                    data_2, strlen( fixture->cstring_ascii_std ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_3 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_ascii_short );
-    chaos::str::UTF8String v_3( data_3, strlen( fixture->cstring_ascii_short ) );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_3.to_cstring(), fixture->cstring_ascii_short ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_3.get_raw_data(),
-                    data_3, strlen( fixture->cstring_ascii_short ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_4 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_ascii_long );
-    chaos::str::UTF8String v_4( data_4, strlen( fixture->cstring_ascii_long ) );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_4.to_cstring(), fixture->cstring_ascii_long ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_4.get_raw_data(),
-                    data_4, strlen( fixture->cstring_ascii_long ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_5 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_unicode_std );
-    chaos::str::UTF8String v_5(
-            data_5, strlen( fixture->cstring_unicode_std ) );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_5.to_cstring(), fixture->cstring_unicode_std ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_5.get_raw_data(),
-                    data_5, strlen( fixture->cstring_unicode_std ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_6 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_unicode_mix );
-    chaos::str::UTF8String v_6(
-            data_6, strlen( fixture->cstring_unicode_mix ) );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_6.to_cstring(), fixture->cstring_unicode_mix ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_6.get_raw_data(),
-                    data_6, strlen( fixture->cstring_unicode_mix ) + 1
-            ),
-            0
-    );
-
-    const chaos::int8* data_7 = reinterpret_cast< const chaos::int8* >(
-            fixture->cstring_unicode_short );
-    chaos::str::UTF8String v_7(
-            data_7, strlen( fixture->cstring_unicode_short ) );
-    CHAOS_CHECK_EQUAL(
-            strcmp( v_7.to_cstring(), fixture->cstring_unicode_short ),
-            0
-    );
-    CHAOS_CHECK_EQUAL(
-            memcmp(
-                    v_7.get_raw_data(),
-                    data_7, strlen( fixture->cstring_unicode_short ) + 1
-            ),
-            0
-    );
+    CHAOS_FOR_EACH( it, fixture->cstrings )
+    {
+        const chaos::int8* data = reinterpret_cast< const chaos::int8* >( *it );
+        chaos::str::UTF8String v( data, strlen( *it ) );
+        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+        CHAOS_CHECK_EQUAL(
+                memcmp( v.get_raw_data(), data, strlen( *it ) + 1 ),
+                0
+        );
+    }
 }
+
+//------------------------------------------------------------------------------
+//                                COPY CONSTRUCTOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
+
+    CHAOS_FOR_EACH( it, fixture->utf8_strings )
+    {
+        chaos::str::UTF8String copy( *it );
+        CHAOS_CHECK_EQUAL( copy, *it );
+        CHAOS_CHECK_EQUAL( strcmp( copy.to_cstring(), it->to_cstring() ), 0 );
+        CHAOS_CHECK_EQUAL(
+                memcmp(
+                        copy.get_raw_data(),
+                        it->get_raw_data(),
+                        it->get_byte_length()
+                ),
+                0
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              ASSIGNMENT OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
+{
+    // populate strings to assign to
+    std::vector< chaos::str::UTF8String > assigns;
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        assigns.push_back( "data will be overridden" );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        chaos::str::UTF8String r = assigns[ i ] = fixture->utf8_strings[ i ];
+        CHAOS_CHECK_EQUAL( r, assigns[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking length" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                assigns[ i ].get_byte_length(),
+                fixture->utf8_strings[ i ].get_byte_length()
+        );
+        CHAOS_CHECK_EQUAL(
+                strlen( assigns[ i ].to_cstring() ),
+                strlen( fixture->utf8_strings[ i ].to_cstring() )
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking contents match" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( assigns[ i ], fixture->utf8_strings[ i ] );
+        CHAOS_CHECK_EQUAL(
+                memcmp(
+                        assigns[ i ].get_raw_data(),
+                        fixture->utf8_strings[ i ].get_raw_data(),
+                        fixture->utf8_strings[ i ].get_byte_length()
+                ),
+                0
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                               EQUALITY OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking from literal data" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        chaos::str::UTF8String v( fixture->cstrings[ i ] );
+        CHAOS_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking from copy constructor" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        chaos::str::UTF8String v( fixture->utf8_strings[ i ] );
+        CHAOS_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              INEQUALITY OPERATOR
+//------------------------------------------------------------------------------
