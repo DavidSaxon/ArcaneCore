@@ -494,6 +494,26 @@ private:
                 "CHAOS_CHECK_EQUAL", __FILE__, __LINE__, f_e_m );              \
     }
 
+/*!
+ * \brief Checks whether the given value are considered not equal.
+ *
+ * If a and b are not equal this check will pass, else this will cause test
+ * failure.
+ */
+#define CHAOS_CHECK_NOT_EQUAL( a, b )                                          \
+    if ( a != b )                                                              \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_NOT_EQUAL", __FILE__, __LINE__ );                 \
+    }                                                                          \
+    else                                                                       \
+    {                                                                          \
+        chaos::str::UTF8String f_e_m;                                          \
+        f_e_m << a << " equals " << b;                                         \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_NOT_EQUAL", __FILE__, __LINE__, f_e_m );          \
+    }
+
 } // namespace test
 } // namespace chaos
 

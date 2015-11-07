@@ -228,3 +228,21 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
 //------------------------------------------------------------------------------
 //                              INEQUALITY OPERATOR
 //------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking from literal data" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        chaos::str::UTF8String v( "this שטריקל is not the same" );
+        CHAOS_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking from copy constructor" );
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        chaos::str::UTF8String org( "this שטריקל is not the same" );
+        chaos::str::UTF8String v( org );
+        CHAOS_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
+    }
+}
