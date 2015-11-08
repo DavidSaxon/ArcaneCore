@@ -64,20 +64,6 @@ public:
     UTF8String( const char* data, size_t length );
 
     /*!
-     * \brief TODO: DOC
-     *
-     * TODO: DOC
-     */
-    UTF8String( const chaos::int8* data );
-
-    /*!
-     * \brief TODO: DOC
-     *
-     * TODO: DOC
-     */
-    UTF8String( const chaos::int8* data, size_t length );
-
-    /*!
      * \brief Copy constructor.
      *
      * Creates a new UTF8String from a copy of the values from the given
@@ -321,32 +307,6 @@ public:
     void assign( const char* data, size_t length );
 
     /*!
-     * \brief Assigns the internal data of this UTF8String to the given data
-     *        buffer.
-     *
-     * This operation will delete any current internal data of this object. The
-     * input data is expected to be utf-8 encoded and NULL terminated.
-     *
-     * \param data Data buffer to copy from.
-     */
-    void assign( const chaos::int8* data );
-
-    /*!
-     * \brief Assigns the internal data of this UTF8String to the given data
-     *        buffer.
-     *
-     * This operation will delete any current internal data of this object. The
-     * input data is expected to be utf-8 encoded. This function should be used
-     * when the input data is not NULL terminated, or can be used for
-     * optimisation purposes if the length of data is already known. This will
-     * mean the length of the data will not need to be evaluated internally.
-     *
-     * \param data Data buffer to copy from.
-     * \param length Number of bytes in the provided data buffer.
-     */
-    void assign( const chaos::int8* data, size_t length );
-
-    /*!
      * \brief Assigns internal data from another UTF8String.
      *
      * Assigns the internal of data this UTF8String as a copy from the internal
@@ -561,13 +521,6 @@ public:
      */
     size_t get_byte_length() const;
 
-    /*!
-     * \brief Get the raw byte data of this UTF8String.
-     *
-     * \return a pointer to a constant representation of the internal data.
-     */
-    const chaos::int8* get_raw_data() const;
-
     //--------------------------------------------------------------------------
 
 
@@ -584,7 +537,7 @@ private:
     //--------------------------------------------------------------------------
 
     // the array containing the data stored as consecutive bytes
-    chaos::int8* m_data;
+    char* m_data;
     // the length of the data int bytes (not the length of the string)
     size_t m_data_length;
 
@@ -608,8 +561,8 @@ private:
      *                        be passed in here to skip this step.
      */
     void assign_internal(
-            const void*  data,
-                  size_t existing_length = std::string::npos );
+            const char*  data,
+            size_t       existing_length = std::string::npos );
 
     /*!
      * Internal function used to check if a given index is within the symbol

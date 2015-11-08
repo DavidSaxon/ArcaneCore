@@ -1,5 +1,6 @@
 #include "chaoscore/base/string/UTF8String.hpp"
 
+#include <algorithm>
 #include <cstddef>
 #include <cstring>
 #include <limits>
@@ -61,26 +62,6 @@ UTF8String::UTF8String( const char* data, size_t length )
     assign_internal( data, length );
 }
 
-UTF8String::UTF8String( const chaos::int8* data )
-    :
-    m_data       ( nullptr ),
-    m_data_length( 0 ),
-    m_length     ( 0 )
-{
-    // assign the data
-    assign_internal( data );
-}
-
-UTF8String::UTF8String( const chaos::int8* data, size_t length )
-    :
-    m_data       ( nullptr ),
-    m_data_length( 0 ),
-    m_length     ( 0 )
-{
-    // assign the data
-    assign_internal( data, length );
-}
-
 UTF8String::UTF8String( const UTF8String& other )
     :
     m_data       ( nullptr ),
@@ -126,18 +107,25 @@ bool UTF8String::operator!=( const UTF8String& other ) const
 
 bool UTF8String::operator<( const UTF8String& other ) const
 {
-    // TODO: fix this
-    std::string this_string ( to_std_string() );
-    std::string other_string( other.to_std_string() );
-    return std::lexicographical_compare(
-            this_string.begin(),  this_string.end(),
-            other_string.begin(), other_string.end()
-    );
-
     // iterate over each code point until we find one that is less than the
     // other
-    // TODO: min
-    // for ( size_t i = 0; i < get
+    for ( size_t i = 0; i < std::min( get_length(), other.get_length() ); ++i )
+    {
+        // do a straight comparison on each code point until we find a character
+        // that is less than
+        chaos::uint32 a = get_code_point( i );
+        chaos::uint32 b = other.get_code_point( i );
+        if ( a < b )
+        {
+            return true;
+        }
+        if ( b < a )
+        {
+            return false;
+        }
+    }
+    // is this string shorter?
+    return get_length() < other.get_length();
 }
 
 UTF8String UTF8String::operator+( const UTF8String& other ) const
@@ -276,16 +264,6 @@ void UTF8String::assign( const char* data, size_t length )
     assign_internal( data, length );
 }
 
-void UTF8String::assign( const chaos::int8* data )
-{
-    assign_internal( data );
-}
-
-void UTF8String::assign( const chaos::int8* data, size_t length )
-{
-    assign_internal( data, length );
-}
-
 void UTF8String::assign( const UTF8String& other )
 {
     assign_internal( other.m_data, other.m_data_length );
@@ -298,7 +276,7 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
     size_t new_length = ( m_data_length - 1 ) + other.m_data_length;
     // allocate a new array to hold the increase data size, ignoring one of the
     // NULL terminators
-    chaos::int8* new_data = new chaos::int8[ new_length ];
+    char* new_data = new char[ new_length ];
     // copy over the data from the strings
     memcpy( new_data, m_data, m_data_length - 1 );
     memcpy(
@@ -317,7 +295,7 @@ UTF8String& UTF8String::repeat( chaos::uint32 count )
     // calculate the new length
     size_t new_length = ( c_length * count ) + 1;
     // allocate a new block of data
-    chaos::int8* new_data = new chaos::int8[ new_length ];
+    char* new_data = new char[ new_length ];
     // write new data
     for( size_t i = 0; i < count; ++i )
     {
@@ -661,11 +639,6 @@ size_t UTF8String::get_byte_length() const
     return m_data_length;
 }
 
-const chaos::int8* UTF8String::get_raw_data() const
-{
-    return m_data;
-}
-
 //------------------------------------------------------------------------------
 
 //--------------------------------DEV FUNCTIONS---------------------------------
@@ -717,23 +690,23 @@ void UTF8String::dev_inspect_contents()
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void UTF8String::assign_internal( const void* data, size_t existing_length )
+void UTF8String::assign_internal( const char* data, size_t existing_length )
 {
     // if there is already content in the internal buffer delete it
     delete[] m_data;
 
     // cast the incoming data to a cstring
-    const char* cData = static_cast< const char* >( data );
+    // const char* data = static_cast< const char* >( data );
 
     // get number of bytes in the data
     bool is_null_terminated = true;
     if ( existing_length == std::string::npos )
     {
         // the length includes the NULL terminator
-        existing_length = strlen( cData ) + 1;
+        existing_length = strlen( data ) + 1;
         m_data_length = existing_length;
     }
-    else if ( existing_length > 0 && cData[ existing_length - 1 ] == '\0' )
+    else if ( existing_length > 0 && data[ existing_length - 1 ] == '\0' )
     {
         // the length includes a NULL terminator
         is_null_terminated = true;
@@ -747,9 +720,9 @@ void UTF8String::assign_internal( const void* data, size_t existing_length )
     }
 
     // allocate storage for the internal data buffer
-    m_data = new chaos::int8[ m_data_length ];
+    m_data = new char[ m_data_length ];
     // copy data to internal array
-    memcpy( m_data, cData, existing_length );
+    memcpy( m_data, data, existing_length );
     // should a NULL terminator be added to the end?
     if ( !is_null_terminated )
     {
@@ -757,8 +730,37 @@ void UTF8String::assign_internal( const void* data, size_t existing_length )
     }
 
     // to calculate the number of utf-8 symbols in the string
-    // TODO:
-    m_length = m_data_length - 1;
+    // TODO: could be optimised?
+    m_length = 0;
+    for ( size_t i = 0; i < m_data_length - 1; )
+    {
+        // single byte character
+        if ( ( m_data[ i ] & 0x80 ) == 0 )
+        {
+            ++m_length;
+            ++i;
+        }
+        // double byte character
+        else if ( ( m_data[ i ] & 0xE0 ) == 0xC0 )
+        {
+            ++m_length;
+            i += 2;
+        }
+        // triple byte character
+        else if ( ( m_data[ i ] & 0xF0 ) == 0xE0 )
+        {
+            ++m_length;
+            i += 3;
+        }
+        // quad byte character
+        else
+        {
+            ++m_length;
+            i += 4;
+        }
+    }
+
+    // m_length = m_data_length - 1;
 }
 
 void UTF8String::validate_symbol_index( size_t index ) const

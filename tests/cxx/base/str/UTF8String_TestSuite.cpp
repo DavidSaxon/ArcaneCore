@@ -18,6 +18,8 @@ public:
 
     // cstrings
     std::vector< const char* > cstrings;
+    // lengths
+    std::vector< size_t > lengths;
     // utf8strings
     std::vector< chaos::str::UTF8String > utf8_strings;
 
@@ -29,16 +31,23 @@ public:
     {
         // populate cstring data
         cstrings.push_back( "" );
+        lengths.push_back( 0 );
         cstrings.push_back( "Hello World" );
+        lengths.push_back( 11 );
         cstrings.push_back( "a" );
+        lengths.push_back( 1 );
         cstrings.push_back( "This is a really long string, that just keeps on "
                             "going on and on and on! It never seems to end, "
                             "but just when you think that it will not end. It "
                             "ends.\n\n\n\n\nNope still going here.\t\t\tThe "
                             "end!\n\n\n\t\t\t" );
+        lengths.push_back( 194 );
         cstrings.push_back( "γειά σου Κόσμε" );
+        lengths.push_back( 14 );
         cstrings.push_back( "this is a مزيج of text" );
+        lengths.push_back( 22 );
         cstrings.push_back( "간" );
+        lengths.push_back( 1 );
 
         // copy to utf8string data
         CHAOS_FOR_EACH( it, cstrings )
@@ -58,7 +67,6 @@ CHAOS_TEST_UNIT( default_constructor )
     chaos::str::UTF8String empty;
     CHAOS_CHECK_EQUAL( empty.get_length(), 0 );
     CHAOS_CHECK_EQUAL( empty.get_byte_length(), 1 );
-    CHAOS_CHECK_EQUAL( empty.get_raw_data()[ 0 ], 0 );
 }
 
 //------------------------------------------------------------------------------
@@ -92,46 +100,6 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
 }
 
 //------------------------------------------------------------------------------
-//                                INT8 CONSTRUCTOR
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE( int8_constructor, UTF8StringGenericFixture )
-{
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-
-    CHAOS_FOR_EACH( it, fixture->cstrings )
-    {
-        const chaos::int8* data = reinterpret_cast< const chaos::int8* >( *it );
-        chaos::str::UTF8String v( data );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
-        CHAOS_CHECK_EQUAL(
-                memcmp( v.get_raw_data(), data, strlen( *it ) + 1 ),
-                0
-        );
-    }
-}
-
-//------------------------------------------------------------------------------
-//                          INT8 AND LENGTH CONSTRUCTOR
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE( int8_length_constructor, UTF8StringGenericFixture )
-{
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-
-    CHAOS_FOR_EACH( it, fixture->cstrings )
-    {
-        const chaos::int8* data = reinterpret_cast< const chaos::int8* >( *it );
-        chaos::str::UTF8String v( data, strlen( *it ) );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
-        CHAOS_CHECK_EQUAL(
-                memcmp( v.get_raw_data(), data, strlen( *it ) + 1 ),
-                0
-        );
-    }
-}
-
-//------------------------------------------------------------------------------
 //                                COPY CONSTRUCTOR
 //------------------------------------------------------------------------------
 
@@ -144,14 +112,6 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
         chaos::str::UTF8String copy( *it );
         CHAOS_CHECK_EQUAL( copy, *it );
         CHAOS_CHECK_EQUAL( strcmp( copy.to_cstring(), it->to_cstring() ), 0 );
-        CHAOS_CHECK_EQUAL(
-                memcmp(
-                        copy.get_raw_data(),
-                        it->get_raw_data(),
-                        it->get_byte_length()
-                ),
-                0
-        );
     }
 }
 
@@ -192,14 +152,6 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
     for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( assigns[ i ], fixture->utf8_strings[ i ] );
-        CHAOS_CHECK_EQUAL(
-                memcmp(
-                        assigns[ i ].get_raw_data(),
-                        fixture->utf8_strings[ i ].get_raw_data(),
-                        fixture->utf8_strings[ i ].get_byte_length()
-                ),
-                0
-        );
     }
 }
 
@@ -282,6 +234,9 @@ public:
 
         less.push_back( "0" );
         more.push_back( "1" );
+
+        less.push_back( "abcdefg" );
+        more.push_back( "bcdefghijk" );
     }
 };
 
@@ -301,5 +256,20 @@ CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
     for ( size_t i = 0; i < fixture->less.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   GET LENGTH
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->utf8_strings[ i ].get_length(),
+                fixture->lengths[ i ]
+        );
     }
 }
