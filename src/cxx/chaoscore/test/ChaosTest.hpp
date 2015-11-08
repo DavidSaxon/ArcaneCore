@@ -446,7 +446,7 @@ private:
  * failure.
  */
 #define CHAOS_CHECK_TRUE( a )                                                  \
-    if ( a )                                                                   \
+    if ( (a) )                                                                 \
     {                                                                          \
         chaos::test::internal::TestCore::logger.report_check_pass(             \
                 "CHAOS_CHECK_TRUE", __FILE__, __LINE__ );                      \
@@ -464,7 +464,7 @@ private:
  * failure.
  */
 #define CHAOS_CHECK_FALSE( a )                                                 \
-    if ( !a )                                                                  \
+    if ( !(a) )                                                                \
     {                                                                          \
         chaos::test::internal::TestCore::logger.report_check_pass(             \
                 "CHAOS_CHECK_FALSE", __FILE__, __LINE__ );                     \
@@ -481,7 +481,7 @@ private:
  * If a and b are equal this check will pass, else this will cause test failure.
  */
 #define CHAOS_CHECK_EQUAL( a, b )                                              \
-    if ( a == b )                                                              \
+    if ( (a) == (b) )                                                          \
     {                                                                          \
         chaos::test::internal::TestCore::logger.report_check_pass(             \
                 "CHAOS_CHECK_EQUAL", __FILE__, __LINE__ );                     \
@@ -489,7 +489,7 @@ private:
     else                                                                       \
     {                                                                          \
         chaos::str::UTF8String f_e_m;                                          \
-        f_e_m << a << " does not equal " << b;                                 \
+        f_e_m << (a) << " does not equal " << (b);                             \
         chaos::test::internal::TestCore::logger.report_check_fail(             \
                 "CHAOS_CHECK_EQUAL", __FILE__, __LINE__, f_e_m );              \
     }
@@ -501,7 +501,7 @@ private:
  * failure.
  */
 #define CHAOS_CHECK_NOT_EQUAL( a, b )                                          \
-    if ( a != b )                                                              \
+    if ( (a) != (b) )                                                          \
     {                                                                          \
         chaos::test::internal::TestCore::logger.report_check_pass(             \
                 "CHAOS_CHECK_NOT_EQUAL", __FILE__, __LINE__ );                 \
@@ -509,7 +509,7 @@ private:
     else                                                                       \
     {                                                                          \
         chaos::str::UTF8String f_e_m;                                          \
-        f_e_m << a << " equals " << b;                                         \
+        f_e_m << (a) << " equals " << (b);                                     \
         chaos::test::internal::TestCore::logger.report_check_fail(             \
                 "CHAOS_CHECK_NOT_EQUAL", __FILE__, __LINE__, f_e_m );          \
     }

@@ -246,3 +246,61 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
         CHAOS_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 }
+
+//------------------------------------------------------------------------------
+//                               LESS THAN FIXTURE
+//------------------------------------------------------------------------------
+
+class LessThanFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > less;
+    std::vector< chaos::str::UTF8String > more;
+
+    //--------------------------------------------------------------------------
+    //                          PUBLIC MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    virtual void setup()
+    {
+        less.push_back( "abcdefg" );
+        more.push_back( "bcdefgh" );
+
+        less.push_back( "Z" );
+        more.push_back( "ɿ" );
+
+        less.push_back( "abcdefghZϚϣ" );
+        more.push_back( "abcdefghɿϦZ" );
+
+        less.push_back( "ޝ" );
+        more.push_back( "ౠ" );
+
+        less.push_back( "ጺጹጸጷጶጵጴጳጲጱጰጯጮጭጬ0" );
+        more.push_back( "ጺጹጸጷጶጵጴጳጲጱጰጯጮጭጬᚡ" );
+
+        less.push_back( "0" );
+        more.push_back( "1" );
+    }
+};
+
+//------------------------------------------------------------------------------
+//                               LESS THAN OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking true evaluation" );
+    for ( size_t i = 0; i < fixture->less.size(); ++i )
+    {
+        CHAOS_CHECK_TRUE( fixture->less[ i ] < fixture->more[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking false evaluation" );
+    for ( size_t i = 0; i < fixture->less.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
+    }
+}
