@@ -133,6 +133,11 @@ bool UTF8String::operator<( const UTF8String& other ) const
             this_string.begin(),  this_string.end(),
             other_string.begin(), other_string.end()
     );
+
+    // iterate over each code point until we find one that is less than the
+    // other
+    // TODO: min
+    // for ( size_t i = 0; i < get
 }
 
 UTF8String UTF8String::operator+( const UTF8String& other ) const

@@ -41,8 +41,6 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
 {
-    std::cout << "UNSIGNED LONG SIZE: " << sizeof( unsigned long ) << std::endl;
-
     // test on a vector
     std::vector< chaos::int32 > v1 = fixture->getIntVector( 100 );
     std::vector< chaos::int32 > v2;

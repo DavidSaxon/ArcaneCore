@@ -121,6 +121,7 @@ void TestCore::declare_unit(
                       << "definitions.";
         TestCore::throw_error( error_message, file, line );
     }
+
     // check that the full path doesn't match any known modules
     CHAOS_FOR_EACH( it, TestCore::known_modules )
     {

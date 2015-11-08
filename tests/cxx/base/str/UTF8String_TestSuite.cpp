@@ -45,7 +45,6 @@ public:
         {
             utf8_strings.push_back( chaos::str::UTF8String( *it ) );
         }
-
     }
 };
 
