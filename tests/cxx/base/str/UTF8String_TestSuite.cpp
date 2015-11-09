@@ -228,8 +228,8 @@ CHAOS_TEST_UNIT( default_constructor )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data is empty" );
     chaos::str::UTF8String empty;
-    CHAOS_CHECK_EQUAL( empty.get_length(), 0 );
-    CHAOS_CHECK_EQUAL( empty.get_byte_length(), 1 );
+    CHAOS_CHECK_EQUAL( empty.get_length(), static_cast< size_t >( 0 ) );
+    CHAOS_CHECK_EQUAL( empty.get_byte_length(), static_cast< size_t >( 1 ) );
 }
 
 //------------------------------------------------------------------------------
@@ -544,7 +544,537 @@ class BoolStreamOperatorFixture : public chaos::test::Fixture
 {
 public:
 
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< bool >                   comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( false );
+        results.push_back( "0" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( true );
+        results.push_back( "1" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( false );
+        results.push_back( "Hello0" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( true );
+        results.push_back( "Κόσμε1" );
+    }
 };
+
+CHAOS_TEST_UNIT_FIXTURE( bool_stream_operator, BoolStreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              CHAR STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class CharStreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< char >                   comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 'a' );
+        results.push_back( "a" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( '!' );
+        results.push_back( "!" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 'Z' );
+        results.push_back( "HelloZ" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( '`' );
+        results.push_back( "Κόσμε`" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( char_stream_operator, CharStreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              INT8 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Int8StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::int8 >            comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 'a' );
+        results.push_back( "a" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( '!' );
+        results.push_back( "!" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 'Z' );
+        results.push_back( "HelloZ" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( '`' );
+        results.push_back( "Κόσμε`" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( int8_stream_operator, Int8StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             UINT8 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Uint8StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::uint8 >           comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 'a' );
+        results.push_back( "a" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( '!' );
+        results.push_back( "!" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 'Z' );
+        results.push_back( "HelloZ" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( '`' );
+        results.push_back( "Κόσμε`" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( uint8_stream_operator, Uint8StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             INT16 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Int16StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::int16 >           comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 512 );
+        results.push_back( "512" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( -1893 );
+        results.push_back( "-1893" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 12890 );
+        results.push_back( "Hello12890" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( -0 );
+        results.push_back( "Κόσμε0" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( int16_stream_operator, Int16StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             UINT16 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Uint16StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::uint16 >          comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 32 );
+        results.push_back( "32" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( 65535 );
+        results.push_back( "65535" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 9829 );
+        results.push_back( "Hello9829" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( 0 );
+        results.push_back( "Κόσμε0" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( uint16_stream_operator, Uint16StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             INT32 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Int32StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::int32 >           comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 2048 );
+        results.push_back( "2048" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( -2147483648 );
+        results.push_back( "-2147483648" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 2147483647 );
+        results.push_back( "Hello2147483647" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( -64 );
+        results.push_back( "Κόσμε-64" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( int32_stream_operator, Int32StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             UINT32 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Uint32StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::uint32 >          comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 4294967295 );
+        results.push_back( "4294967295" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( 0 );
+        results.push_back( "0" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 2147483647 );
+        results.push_back( "Hello2147483647" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( 234324 );
+        results.push_back( "Κόσμε234324" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( uint32_stream_operator, Uint32StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             INT64 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Int64StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::int64 >           comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 432487238429329 );
+        results.push_back( "432487238429329" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( -1024 );
+        results.push_back( "-1024" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 0 );
+        results.push_back( "Hello0" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( -23480932849234 );
+        results.push_back( "Κόσμε-23480932849234" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( int64_stream_operator, Int64StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                             UINT64 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class Uint64StreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::uint64 >          comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 0 );
+        results.push_back( "0" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( 32493248920489324 );
+        results.push_back( "32493248920489324" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 32 );
+        results.push_back( "Hello32" );
+
+        comp_1.push_back( "Κόσμε" );
+        comp_2.push_back( 123781231 );
+        results.push_back( "Κόσμε123781231" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
 
 //------------------------------------------------------------------------------
 //                                   GET LENGTH
