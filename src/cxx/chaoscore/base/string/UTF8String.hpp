@@ -507,7 +507,18 @@ public:
     chaos::uint32 get_code_point( size_t index ) const;
 
     /*!
-     * \brief Get the length of the internal buffer data in bytes.
+     * \brief Gets the index of the first byte for the symbol at the given
+     *        index.
+     */
+    size_t get_byte_index_for_symbol_index( size_t symbol_index ) const;
+
+    /*!
+     * \brief Gets the size in bytes of the symbol at the given index.
+     */
+    size_t get_symbol_width( size_t index ) const;
+
+    /*!
+     * \brief Gets the length of the internal buffer data in bytes.
      *
      * This is exactly the number of bytes in the internal raw data of this
      * UTF8String which can be accessed through get_raw_data(). Note that this
@@ -520,6 +531,19 @@ public:
      * \return The length of the internal data.
      */
     size_t get_byte_length() const;
+
+    /*!
+     * \brief Gets the symbol index for the given byte index.
+     */
+    size_t get_symbol_index_for_byte_index( size_t byte_index ) const;
+
+    /*!
+     * \brief Gets the width in bytes of the symbol at the given byte.
+     *
+     * \warning If the given byte index is not the start of a utf8 symbol this
+     *          operation will return unexpected results.
+     */
+    size_t get_byte_width( size_t byte_index ) const;
 
     //--------------------------------------------------------------------------
 
@@ -566,10 +590,17 @@ private:
 
     /*!
      * Internal function used to check if a given index is within the symbol
-     * length (get_length) of the string. If it is no a IndexOutOfBoundsError is
-     * thrown.
+     * length (get_length) of the string. If it is not an IndexOutOfBoundsError
+     * is thrown.
      */
     void validate_symbol_index( size_t index ) const;
+
+    /*!
+     * Internal function used to check if a given index is within the byte
+     * length (get_byte_length) of the string. If it is not an
+     * IndexOutOfBoundsError is thrown.
+     */
+    void validate_byte_index( size_t index ) const;
 };
 
 //------------------------------------------------------------------------------

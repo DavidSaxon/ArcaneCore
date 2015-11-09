@@ -22,6 +22,8 @@ public:
     std::vector< size_t > lengths;
     // utf8strings
     std::vector< chaos::str::UTF8String > utf8_strings;
+    // symbols
+    std::vector< std::map< size_t, chaos::str::UTF8String > > symbols;
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -32,22 +34,87 @@ public:
         // populate cstring data
         cstrings.push_back( "" );
         lengths.push_back( 0 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbols.push_back( symbol_map );
+        }
+
         cstrings.push_back( "Hello World" );
         lengths.push_back( 11 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = chaos::str::UTF8String( "H" );
+            symbol_map[ 3  ] = chaos::str::UTF8String( "l" );
+            symbol_map[ 7  ] = chaos::str::UTF8String( "o" );
+            symbol_map[ 10 ] = chaos::str::UTF8String( "d" );
+            symbols.push_back( symbol_map );
+        }
+
         cstrings.push_back( "a" );
         lengths.push_back( 1 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbol_map[ 0 ] = chaos::str::UTF8String( "a" );
+            symbols.push_back( symbol_map );
+        }
+
         cstrings.push_back( "This is a really long string, that just keeps on "
                             "going on and on and on! It never seems to end, "
                             "but just when you think that it will not end. It "
                             "ends.\n\n\n\n\nNope still going here.\t\t\tThe "
                             "end!\n\n\n\t\t\t" );
         lengths.push_back( 194 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbol_map[ 0   ] = chaos::str::UTF8String( "T" );
+            symbol_map[ 5   ] = chaos::str::UTF8String( "i" );
+            symbol_map[ 34  ] = chaos::str::UTF8String( " " );
+            symbol_map[ 87  ] = chaos::str::UTF8String( " " );
+            symbol_map[ 88  ] = chaos::str::UTF8String( "t" );
+            symbol_map[ 100 ] = chaos::str::UTF8String( "j" );
+            symbol_map[ 125 ] = chaos::str::UTF8String( "i" );
+            symbol_map[ 167 ] = chaos::str::UTF8String( "o" );
+            symbol_map[ 190 ] = chaos::str::UTF8String( "\n" );
+            symbol_map[ 193 ] = chaos::str::UTF8String( "\t" );
+            symbols.push_back( symbol_map );
+        }
+
         cstrings.push_back( "γειά σου Κόσμε" );
         lengths.push_back( 14 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = chaos::str::UTF8String( "γ" );
+            symbol_map[ 1  ] = chaos::str::UTF8String( "ε" );
+            symbol_map[ 5  ] = chaos::str::UTF8String( "σ" );
+            symbol_map[ 8  ] = chaos::str::UTF8String( " " );
+            symbol_map[ 11 ] = chaos::str::UTF8String( "σ" );
+            symbol_map[ 13 ] = chaos::str::UTF8String( "ε" );
+            symbols.push_back( symbol_map );
+        }
+
         cstrings.push_back( "this is a مزيج of text" );
         lengths.push_back( 22 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = chaos::str::UTF8String( "t" );
+            symbol_map[ 2  ] = chaos::str::UTF8String( "i" );
+            symbol_map[ 9  ] = chaos::str::UTF8String( " " );
+            symbol_map[ 11 ] = chaos::str::UTF8String( "ز" );
+            symbol_map[ 13 ] = chaos::str::UTF8String( "ج" );
+            symbol_map[ 15 ] = chaos::str::UTF8String( "o" );
+            symbol_map[ 18 ] = chaos::str::UTF8String( "t" );
+            symbol_map[ 20 ] = chaos::str::UTF8String( "x" );
+            symbol_map[ 21 ] = chaos::str::UTF8String( "t" );
+            symbols.push_back( symbol_map );
+        }
+
         cstrings.push_back( "간" );
         lengths.push_back( 1 );
+        {
+            std::map< size_t, chaos::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = chaos::str::UTF8String( "간" );
+            symbols.push_back( symbol_map );
+        }
 
         // copy to utf8string data
         CHAOS_FOR_EACH( it, cstrings )
@@ -271,5 +338,23 @@ CHAOS_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
                 fixture->utf8_strings[ i ].get_length(),
                 fixture->lengths[ i ]
         );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   GET SYMBOL
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_FOR_EACH( it, fixture->symbols[ i ] )
+        {
+            CHAOS_CHECK_EQUAL(
+                    fixture->utf8_strings[ i ].get_symbol( it->first ),
+                    it->second
+            );
+        }
     }
 }

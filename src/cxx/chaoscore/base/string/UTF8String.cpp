@@ -619,14 +619,17 @@ UTF8String UTF8String::get_symbol( size_t index ) const
     // is the index valid
     validate_symbol_index( index );
 
-    // TODO: fix
+    // get the byte position
+    size_t byte_index = get_byte_index_for_symbol_index( index );
+    // get the width of the byte
+    size_t byte_width = get_byte_width( byte_index );
 
-    return UTF8String( &m_data[ index ], 1 );
+    return UTF8String( &m_data[ byte_index ], byte_width );
 }
 
 chaos::uint32 UTF8String::get_code_point( size_t index ) const
 {
-    // is the index valid
+    // is the index valid?
     validate_symbol_index( index );
 
     return static_cast< chaos::uint32 >(
@@ -634,9 +637,92 @@ chaos::uint32 UTF8String::get_code_point( size_t index ) const
     );
 }
 
+size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
+{
+    // is the index valid?
+    validate_symbol_index( symbol_index );
+
+    // TODO: can this be optimized?
+    size_t current_index = 0;
+    for ( size_t i = 0; i < m_data_length - 1; )
+    {
+        if ( current_index == symbol_index )
+        {
+            return i;
+        }
+
+        ++current_index;
+        // increase by byte width
+        i += get_byte_width( i );
+    }
+
+    // something broke
+    return UTF8String::npos;
+}
+
+size_t UTF8String::get_symbol_width( size_t index ) const
+{
+    // is the index valid
+    validate_symbol_index( index );
+
+    size_t byte_index = get_byte_index_for_symbol_index( index );
+    return get_byte_width( byte_index );
+}
+
 size_t UTF8String::get_byte_length() const
 {
     return m_data_length;
+}
+
+size_t UTF8String::get_symbol_index_for_byte_index( size_t byte_index ) const
+{
+    // is the index valid?
+    validate_byte_index( byte_index );
+
+    size_t current_index = 0;
+    for ( size_t i = 0; i < m_data_length - 1; )
+    {
+        size_t next = i + get_byte_width( i );
+
+        if ( byte_index >= i && byte_index < next )
+        {
+            return current_index;
+        }
+
+        ++current_index;
+        // increase by byte width
+        i = next;
+    }
+
+    // something broke
+    return UTF8String::npos;
+}
+
+size_t UTF8String::get_byte_width( size_t byte_index ) const
+{
+    // is the index valid?
+    validate_byte_index( byte_index );
+
+    // single byte character
+    if ( ( m_data[ byte_index ] & 0x80 ) == 0 )
+    {
+        return 1;
+    }
+    // double byte character
+    else if ( ( m_data[ byte_index ] & 0xE0 ) == 0xC0 )
+    {
+        return 2;
+    }
+    // triple byte character
+    else if ( ( m_data[ byte_index ] & 0xF0 ) == 0xE0 )
+    {
+        return 3;
+    }
+    // quad byte character
+    else
+    {
+        return 4;
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -734,33 +820,10 @@ void UTF8String::assign_internal( const char* data, size_t existing_length )
     m_length = 0;
     for ( size_t i = 0; i < m_data_length - 1; )
     {
-        // single byte character
-        if ( ( m_data[ i ] & 0x80 ) == 0 )
-        {
-            ++m_length;
-            ++i;
-        }
-        // double byte character
-        else if ( ( m_data[ i ] & 0xE0 ) == 0xC0 )
-        {
-            ++m_length;
-            i += 2;
-        }
-        // triple byte character
-        else if ( ( m_data[ i ] & 0xF0 ) == 0xE0 )
-        {
-            ++m_length;
-            i += 3;
-        }
-        // quad byte character
-        else
-        {
-            ++m_length;
-            i += 4;
-        }
+        ++m_length;
+        // increase index by byte width
+        i += get_byte_width( i );
     }
-
-    // m_length = m_data_length - 1;
 }
 
 void UTF8String::validate_symbol_index( size_t index ) const
@@ -770,6 +833,18 @@ void UTF8String::validate_symbol_index( size_t index ) const
         UTF8String error_message;
         error_message << "Provided index: " << index << " is greater or equal "
                       << "to the number of symbols in the string: " << m_length;
+        throw chaos::ex::IndexOutOfBoundsError( error_message );
+    }
+}
+
+void UTF8String::validate_byte_index( size_t index ) const
+{
+    if ( index >= m_data_length )
+    {
+        UTF8String error_message;
+        error_message << "Provided index: " << index << " is greater or equal "
+                      << "to the number of bytes in the string: "
+                      << m_data_length;
         throw chaos::ex::IndexOutOfBoundsError( error_message );
     }
 }
