@@ -125,6 +125,102 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                ADDITION FIXTURE
+//------------------------------------------------------------------------------
+
+class ConcatenateFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< chaos::str::UTF8String > comp_2;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back ( "" );
+        comp_2.push_back ( "" );
+        results.push_back( "" );
+
+        comp_1.push_back ( "Hello" );
+        comp_2.push_back ( "" );
+        results.push_back( "Hello" );
+
+        comp_1.push_back ( "" );
+        comp_2.push_back ( "World" );
+        results.push_back( "World" );
+
+        comp_1.push_back ( "Hello " );
+        comp_2.push_back ( "World!" );
+        results.push_back( "Hello World!" );
+
+        comp_1.push_back ( "         " );
+        comp_2.push_back ( "     " );
+        results.push_back( "              " );
+
+        comp_1.push_back ( "γειά σο" );
+        comp_2.push_back ( "υ Κόσμε!" );
+        results.push_back( "γειά σου Κόσμε!" );
+
+        comp_1.push_back ( "this is a مز" );
+        comp_2.push_back ( "يج of text" );
+        results.push_back( "this is a مزيج of text" );
+    }
+};
+
+//------------------------------------------------------------------------------
+//                                 REPEAT FIXTURE
+//------------------------------------------------------------------------------
+
+class RepeatFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > comp;
+    std::vector< chaos::uint32 >          count;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp.push_back( "*" );
+        count.push_back( 12 );
+        results.push_back( "************" );
+
+        comp.push_back( "_" );
+        count.push_back( 0 );
+        results.push_back( "" );
+
+        comp.push_back( "Hello" );
+        count.push_back( 3 );
+        results.push_back( "HelloHelloHello" );
+
+        comp.push_back( "간" );
+        count.push_back( 1 );
+        results.push_back( "간" );
+
+        comp.push_back( "γειά" );
+        count.push_back( 5 );
+        results.push_back( "γειάγειάγειάγειάγειά" );
+
+        comp.push_back( "mج" );
+        count.push_back( 2 );
+        results.push_back( "mجmج" );
+
+        comp.push_back( "" );
+        count.push_back( 100 );
+        results.push_back( "" );
+    }
+};
+
+//------------------------------------------------------------------------------
 //                              DEFAULT CONSTRUCTOR
 //------------------------------------------------------------------------------
 
@@ -266,7 +362,7 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
 }
 
 //------------------------------------------------------------------------------
-//                               LESS THAN FIXTURE
+//                               LESS THAN OPERATOR
 //------------------------------------------------------------------------------
 
 class LessThanFixture : public chaos::test::Fixture
@@ -278,9 +374,7 @@ public:
     std::vector< chaos::str::UTF8String > less;
     std::vector< chaos::str::UTF8String > more;
 
-    //--------------------------------------------------------------------------
-    //                          PUBLIC MEMBER FUNCTIONS
-    //--------------------------------------------------------------------------
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     virtual void setup()
     {
@@ -307,10 +401,6 @@ public:
     }
 };
 
-//------------------------------------------------------------------------------
-//                               LESS THAN OPERATOR
-//------------------------------------------------------------------------------
-
 CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking true evaluation" );
@@ -325,6 +415,136 @@ CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
         CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
     }
 }
+
+//------------------------------------------------------------------------------
+//                               ADDITION OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( addition_operator, ConcatenateFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] + fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                           COMPOUND ADDITION OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] += fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                            MULTIPLICATION OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( multiplication_operator, RepeatFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp[ i ] * fixture->count[ i ],
+                fixture->results[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                        COMPOUND MULTIPLICATION OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp[ i ] *= fixture->count[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              UTF8 STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                            CSTRING STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ].to_cstring(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              BOOL STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class BoolStreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+};
 
 //------------------------------------------------------------------------------
 //                                   GET LENGTH
