@@ -15,9 +15,6 @@ class ForEachFixture : public chaos::test::Fixture
 {
 public:
 
-    /*!
-     * Override from chaos::test::Fixture
-     */
     virtual void setup()
     {
         // seed random number generator

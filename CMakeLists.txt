@@ -3,6 +3,8 @@ project(ChaosCore)
 
 set( CORE_SRC
 
+    src/cxx/chaoscore/base/data/BinaryUtil.cpp
+    src/cxx/chaoscore/base/data/ByteUtil.cpp
     src/cxx/chaoscore/base/string/UTF8String.cpp
     src/cxx/chaoscore/base/string/UnicodeUtil.cpp
     src/cxx/chaoscore/base/time/TimeUtil.cpp
@@ -25,6 +27,7 @@ set( TEST_SRC
 
     tests/cxx/base/PreProc_TestSuite.cpp
     tests/cxx/base/Types_TestSuite.cpp
+    tests/cxx/base/data/ByteUtil_TestSuite.cpp
     tests/cxx/base/str/UTF8String_TestSuite.cpp
     tests/cxx/base/str/UnicodeUtil_TestSuite.cpp
 )

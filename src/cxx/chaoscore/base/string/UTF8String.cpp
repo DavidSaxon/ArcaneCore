@@ -8,11 +8,8 @@
 #include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/data/ByteUtil.hpp"
 #include "chaoscore/base/string/UnicodeUtil.hpp"
-
-// TODO: only used for lexicographical_compare
-// can be removed once implemented correctly
-#include <algorithm>
 
 // TODO: REMOVE ME
 #include <iostream>
@@ -632,9 +629,11 @@ chaos::uint32 UTF8String::get_code_point( size_t index ) const
     // is the index valid?
     validate_symbol_index( index );
 
-    return static_cast< chaos::uint32 >(
-            static_cast< char >( m_data[ index ] )
-    );
+    // get the bytes that make up the code point
+    size_t byte_index = get_byte_index_for_symbol_index( index );
+    size_t byte_width = get_byte_width( byte_index );
+
+    return chaos::data::bytes_to_uint32( &m_data[ byte_index ], byte_width );
 }
 
 size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const

@@ -17,7 +17,7 @@ CHAOS_TEST_UNIT( int8 )
     {
         chaos::int8 v = static_cast< chaos::int8 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 1 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 1 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -238,7 +238,7 @@ CHAOS_TEST_UNIT( uint8 )
     {
         chaos::uint8 v = static_cast< chaos::uint8 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 1 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 1 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -459,7 +459,7 @@ CHAOS_TEST_UNIT( int16 )
     {
         chaos::int16 v = static_cast< chaos::int16 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 2 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 2 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -680,7 +680,7 @@ CHAOS_TEST_UNIT( uint16 )
     {
         chaos::uint16 v = static_cast< chaos::uint16 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 2 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 2 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -901,7 +901,7 @@ CHAOS_TEST_UNIT( int32 )
     {
         chaos::int32 v = static_cast< chaos::int32 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 4 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 4 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -1122,7 +1122,7 @@ CHAOS_TEST_UNIT( uint32 )
     {
         chaos::uint32 v = static_cast< chaos::uint32 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 4 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 4 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -1345,7 +1345,7 @@ CHAOS_TEST_UNIT( int64 )
     {
         chaos::int64 v = static_cast< chaos::int64 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 8 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 8 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
@@ -1569,7 +1569,7 @@ CHAOS_TEST_UNIT( uint64 )
     {
         chaos::uint64 v = static_cast< chaos::uint64 >( values[ i ] );
 
-        CHAOS_CHECK_EQUAL( sizeof( v ), 8 );
+        CHAOS_CHECK_EQUAL( sizeof( v ), static_cast< size_t >( 8 ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking cast to char" );
