@@ -23,7 +23,7 @@ namespace str
 //                            PUBLIC STATIC ATTRIBUTES
 //------------------------------------------------------------------------------
 
-const size_t UTF8String::npos = std::numeric_limits< size_t >::min();
+const size_t UTF8String::npos = std::numeric_limits< size_t >::max();
 
 //------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
@@ -334,17 +334,18 @@ size_t UTF8String::find_first( const UTF8String& substring ) const
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
     {
-        return false;
+        return UTF8String::npos;
     }
     // check against each character
-    for( size_t i = 0; i < m_length - substring.m_length; ++i )
+    for( size_t i = 0; i < m_length - ( substring.m_length - 1 ); ++i )
     {
         // check that each symbol matches
         bool match = true;
         for ( size_t j = 0; j < substring.m_length; ++j )
         {
-            if ( substring.get_symbol( j ) != get_symbol( i + j ) )
+            if ( substring.get_code_point( j ) != get_code_point( i + j ) )
             {
+
                 match = false;
                 break;
             }
@@ -362,7 +363,7 @@ size_t UTF8String::find_last( const UTF8String& substring ) const
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
     {
-        return false;
+        return UTF8String::npos;
     }
     // check against each character
     for( size_t i = m_length - substring.m_length; i != UTF8String::npos; --i )
@@ -392,46 +393,28 @@ const std::vector< UTF8String > UTF8String::split(
     // create the vector to return
     std::vector< UTF8String > elements;
 
-    // iterate over the string until we reach the end
-    size_t current_index = 0;
-    size_t last_index = 0;
-    for ( ; current_index < m_length; ++current_index )
+    UTF8String element;
+    for( size_t i = 0; i < m_length; )
     {
-        // is there  anymore to process
-        if ( current_index + delimiter.m_length >= m_length )
+        // are we looking at the delimiter
+        if ( substring( i, delimiter.get_length() ) == delimiter )
         {
-            break;
+            // add what we have so far
+            elements.push_back( element );
+            // clear element
+            element = "";
+            // increment past the delimiter
+            i += delimiter.get_length();
         }
-        // does the current index match the delimiter
-        bool match = true;
-        for ( size_t i = 0; i < delimiter.m_length; ++i )
+        else
         {
-            if ( delimiter.get_symbol( i ) !=
-                 get_symbol( current_index + i  ) )
-            {
-                match = false;
-            }
+            element += get_symbol( i );
+            ++i;
         }
-        // did the delimiter match?
-        if ( !match )
-        {
-            continue;
-        }
-        // add the string and discard the delimiter
-        elements.push_back( substring(
-                last_index, current_index - last_index
-        ) );
-        // since it's about to be incremented go one less than the length of the
-        // delimiter
-        current_index += delimiter.m_length - 1;
-        last_index = current_index + 1;
     }
+    // add the final element
+    elements.push_back( element );
 
-    // add the final string
-    if ( last_index < m_length - 1 )
-    {
-        elements.push_back( substring( last_index, m_length ) );
-    }
 
     return elements;
 }
@@ -457,7 +440,7 @@ bool UTF8String::is_int() const
         }
     }
     // valid int
-    return true;
+    return !is_empty();
 }
 
 bool UTF8String::is_uint() const
@@ -472,7 +455,7 @@ bool UTF8String::is_uint() const
         }
     }
     // valid unsigned int
-    return true;
+    return !is_empty();
 }
 
 bool UTF8String::is_float() const
@@ -497,13 +480,20 @@ bool UTF8String::is_float() const
             return false;
         }
     }
-    return true;
+    return !is_empty();
 }
 
 UTF8String UTF8String::substring( size_t start, size_t end ) const
 {
-    // TODO: FIX ME
-    return( UTF8String( to_std_string().substr( start, end ).c_str() ) );
+    // TODO: can this be optimised to copy raw data array?
+
+    UTF8String result;
+    for ( size_t i = start; i < std::min( get_length(),  start + end ); ++i )
+    {
+        result += get_symbol( i );
+    }
+
+    return result;
 }
 
 const char* UTF8String::to_cstring() const
