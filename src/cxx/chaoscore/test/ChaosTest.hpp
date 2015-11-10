@@ -523,6 +523,36 @@ private:
 } // namespace test
 } // namespace chaos
 
+/*!
+ * \brief Checks whether the given statement throws the exception type.
+ *
+ * If the statement throws the given exception type the check will pass, else
+ * this will cause test failure.
+ */
+#define CHAOS_CHECK_THROW( statement, exception_type )                         \
+    {                                                                          \
+    bool caught = false;                                                       \
+    try                                                                        \
+    {                                                                          \
+        ( statement );                                                         \
+    }                                                                          \
+    catch( exception_type e )                                                  \
+    {                                                                          \
+        caught = true;                                                         \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_THROW", __FILE__, __LINE__ );                     \
+    }                                                                          \
+    catch( ... ) {}                                                            \
+    if ( !caught )                                                             \
+    {                                                                          \
+        chaos::str::UTF8String f_e_m;                                          \
+        f_e_m << "Exception type: " << #exception_type << " not thrown";       \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_THROW", __FILE__, __LINE__, f_e_m );              \
+    }                                                                          \
+    }
+
+
 #endif
 
 // reset the current module

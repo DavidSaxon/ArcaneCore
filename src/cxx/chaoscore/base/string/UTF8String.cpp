@@ -33,7 +33,7 @@ UTF8String::UTF8String()
     :
     m_data       ( nullptr ),
     m_data_length( 0 ),
-    m_length      ( 0 )
+    m_length     ( 0 )
 {
     // assign the empty string
     assign_internal( "", 0 );
@@ -43,7 +43,7 @@ UTF8String::UTF8String( const char* data )
     :
     m_data       ( nullptr ),
     m_data_length( 0 ),
-    m_length      ( 0 )
+    m_length     ( 0 )
 {
     // assign the data
     assign_internal( data );
@@ -485,6 +485,9 @@ bool UTF8String::is_float() const
 
 UTF8String UTF8String::substring( size_t start, size_t end ) const
 {
+    // is the index valid
+    validate_symbol_index( start );
+
     // TODO: can this be optimised to copy raw data array?
 
     UTF8String result;

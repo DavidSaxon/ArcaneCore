@@ -5,6 +5,7 @@ CHAOS_TEST_MODULE( base.str.utf8string )
 #include <algorithm>
 #include <cstring>
 
+#include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/string/UTF8String.hpp"
 
 //------------------------------------------------------------------------------
@@ -950,7 +951,7 @@ public:
         results.push_back( "2048" );
 
         comp_1.push_back( "" );
-        comp_2.push_back( -2147483648 );
+        comp_2.push_back( -static_cast< chaos::int32 >( 2147483648 ) );
         results.push_back( "-2147483648" );
 
         comp_1.push_back( "Hello" );
@@ -1412,19 +1413,19 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
 {
-    std::vector< std::vector< chaos::str::UTF8String > > alL_elements;
+    std::vector< std::vector< chaos::str::UTF8String > > all_elements;
     for ( size_t i = 0; i < fixture->strings.size(); ++i )
     {
         std::vector< chaos::str::UTF8String > elements =
                 fixture->strings[ i ].split( fixture->delimiters[ i ] );
-        alL_elements.push_back( elements );
+        all_elements.push_back( elements );
     }
 
     CHAOS_TEST_MESSAGE( "Checking elements length" );
     for ( size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
-                alL_elements[ i ].size(),
+                all_elements[ i ].size(),
                 fixture->results[ i ].size()
         );
     }
@@ -1433,14 +1434,14 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
     for ( size_t i = 0; i < fixture->strings.size(); ++i )
     {
         size_t check_count = std::min(
-                alL_elements[ i ].size(),
+                all_elements[ i ].size(),
                 fixture->results[ i ].size()
         );
 
         for ( size_t j = 0; j < check_count; ++j )
         {
             CHAOS_CHECK_EQUAL(
-                    alL_elements[ i ][ j ],
+                    all_elements[ i ][ j ],
                     fixture->results[ i ][ j ]
             );
         }
@@ -1479,6 +1480,9 @@ public:
         not_ints.push_back( "" );
         not_ints.push_back( "a" );
         not_ints.push_back( "0p" );
+        not_ints.push_back( "--48" );
+        not_ints.push_back( "43252-" );
+        not_ints.push_back( "3-67" );
         not_ints.push_back( "-32432k989" );
         not_ints.push_back( "a82409f" );
         not_ints.push_back( "Hello World!" );
@@ -1563,6 +1567,122 @@ CHAOS_TEST_UNIT_FIXTURE( is_uint, IsUintFixture )
     for ( size_t i = 0; i < fixture->not_uints.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->not_uints[ i ].is_uint() );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    IS FLOAT
+//------------------------------------------------------------------------------
+
+class IsFloatFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > floats;
+    std::vector< chaos::str::UTF8String > not_floats;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        floats.push_back( "0" );
+        floats.push_back( ".0" );
+        floats.push_back( "-.0" );
+        floats.push_back( "-536." );
+        floats.push_back( "-21414." );
+        floats.push_back( ".435345" );
+        floats.push_back( "0.3453564" );
+        floats.push_back( "-345345.457657" );
+        floats.push_back( "59803.878933" );
+        floats.push_back( "34259806260490234435935.4357893573985739856015434" );
+        floats.push_back( ".745893583459038593048530598359828598729572057340" );
+        floats.push_back( "-983.42523592385792580325793850324578262343510850" );
+        floats.push_back( "345890234592058257095745137531540395804.180458405" );
+        floats.push_back( "-348" );
+
+        not_floats.push_back( "0.0F" );
+        not_floats.push_back( "3432432.4553534f" );
+        not_floats.push_back( "435346,657657" );
+        not_floats.push_back( "+5463465.3756538" );
+        not_floats.push_back( "324328-989" );
+        not_floats.push_back( "324920489325.75843578923572985725ጮ" );
+        not_floats.push_back( "Hello World!" );
+        not_floats.push_back( "γειά σου Κόσμε" );
+        not_floats.push_back( "ጲጱጰጯጮጭ" );
+        not_floats.push_back( "4359835..45892345825" );
+        not_floats.push_back( "3425765945692525426..706259292562395725295626" );
+        not_floats.push_back( "0xd7" );
+        not_floats.push_back( "0x64" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( is_float, IsFloatFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    for ( size_t i = 0; i < fixture->floats.size(); ++i )
+    {
+        CHAOS_CHECK_TRUE( fixture->floats[ i ].is_float() );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    for ( size_t i = 0; i < fixture->not_floats.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->not_floats[ i ].is_float() );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   SUBSTRING
+//------------------------------------------------------------------------------
+
+class SubstringFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > strings;
+    std::vector< size_t >                 indices;
+    std::vector< size_t >                 lengths;
+    std::vector< chaos::str::UTF8String > results;
+    std::vector< size_t >                 out_of_bounds;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        strings.push_back( "Hello World" );
+        indices.push_back( 0 );
+        lengths.push_back( 5 );
+        results.push_back( "Hello" );
+        out_of_bounds.push_back( 89 );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    {
+        CHAOS_CHECK_THROW(
+                fixture->strings[ i ].substring(
+                        fixture->out_of_bounds[ i ], 10
+                ),
+                chaos::ex::IndexOutOfBoundsError
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking values" );
+    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->strings[ i ].substring(
+                        fixture->indices[ i ], fixture->lengths[ i ]
+                ),
+                fixture->results[ i ]
+        );
     }
 }
 

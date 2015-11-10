@@ -395,6 +395,10 @@ public:
     /*!
      * \brief Returns a UTF8String composed of a substring of this string.
      *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided starting index
+     *                                          is out of bounds of the string
+     *                                          length.
+     *
      * \param start Index of the symbol to start the substring from.
      * \param length the length of the substring. If greater than the possible
      *               symbols to allocate it will be clamped to the maximum

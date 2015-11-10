@@ -24,6 +24,9 @@
 // clean up so code can still run as expected
 #ifndef _WIN32
     #undef CHAOS_OS_WINDOWS
+#else
+    // need to do this if using windows so we can use std::min and std::max
+    #define NOMINMAX
 #endif
 
 /*!
