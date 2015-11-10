@@ -197,6 +197,13 @@ public:
     /*!
      * \brief Stream operator.
      *
+     * Extends this UTF8String with the given std string.
+     */
+    UTF8String& operator<<( const std::string& other );
+
+    /*!
+     * \brief Stream operator.
+     *
      * Extends this UTF8String with the given boolean.
      */
     UTF8String& operator<<( bool other );

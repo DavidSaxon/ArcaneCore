@@ -155,6 +155,11 @@ UTF8String& UTF8String::operator<<( const char* other )
     return this->concatenate( UTF8String( other ) );
 }
 
+UTF8String& UTF8String::operator<<( const std::string& other )
+{
+    return this->concatenate( UTF8String( other.c_str() ) );
+}
+
 UTF8String& UTF8String::operator<<( bool other )
 {
     // TODO: doesn't seem very efficient :(

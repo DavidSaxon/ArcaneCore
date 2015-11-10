@@ -605,6 +605,28 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
 }
 
 //------------------------------------------------------------------------------
+//                           STD STRING STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( stdstring_stream_operator, ConcatenateFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ].to_std_string(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                              BOOL STREAM OPERATOR
 //------------------------------------------------------------------------------
 
@@ -1658,6 +1680,30 @@ public:
         lengths.push_back( 5 );
         results.push_back( "Hello" );
         out_of_bounds.push_back( 89 );
+
+        strings.push_back( " " );
+        indices.push_back( 0 );
+        lengths.push_back( 0 );
+        results.push_back( "" );
+        out_of_bounds.push_back( 1 );
+
+        strings.push_back( "γειά σου Κόσμε!" );
+        indices.push_back( 8 );
+        lengths.push_back( 6 );
+        results.push_back( " Κόσμε" );
+        out_of_bounds.push_back( 23 );
+
+        strings.push_back( "this is a مزيج of text" );
+        indices.push_back( 12 );
+        lengths.push_back( 1 );
+        results.push_back( "ي" );
+        out_of_bounds.push_back( 1247832429 );
+
+        strings.push_back( "ጺጹጸጷጶጵጴጳጲጱጰጯጮጭጬᚡ" );
+        indices.push_back( 13 );
+        lengths.push_back( 14353458 );
+        results.push_back( "ጭጬᚡ" );
+        out_of_bounds.push_back( 832 );
     }
 };
 
@@ -1687,6 +1733,337 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                   TO CSTRING
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_cstring, UTF8StringGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( strcmp(
+                fixture->utf8_strings[ i ].to_cstring(),
+                fixture->cstrings[ i ]
+        ), 0 );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                 TO STD STRING
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_std_string, UTF8StringGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->utf8_strings[ i ].to_std_string(),
+                std::string( fixture->cstrings[ i ] )
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    TO BOOL
+//------------------------------------------------------------------------------
+
+class ToBoolFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > valid;
+    std::vector< bool >                   results;
+    std::vector< chaos::str::UTF8String > invalid;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        valid.push_back( "0" );
+        results.push_back( false );
+
+        valid.push_back( "1" );
+        results.push_back( true );
+
+        valid.push_back( "000000" );
+        results.push_back( false );
+
+        valid.push_back( "0000001" );
+        results.push_back( true );
+
+        valid.push_back( "100000000" );
+        results.push_back( true );
+
+        valid.push_back( "100001000000" );
+        results.push_back( true );
+
+        valid.push_back( "2" );
+        results.push_back( true );
+
+        valid.push_back( "5475325" );
+        results.push_back( true );
+
+        valid.push_back( "-23" );
+        results.push_back( true );
+
+        valid.push_back( "-2" );
+        results.push_back( true );
+
+        invalid.push_back( "o" );
+        invalid.push_back( "0a" );
+        invalid.push_back( "0XFF" );
+        invalid.push_back( "0X67" );
+        invalid.push_back( " 3457835" );
+        invalid.push_back( "0 " );
+        invalid.push_back( "yes 0" );
+        invalid.push_back( "Hello World" );
+        invalid.push_back( "γειά σου Κόσμε" );
+        invalid.push_back( "this is a مزيج of text" );
+        invalid.push_back( "간" );
+        invalid.push_back( " " );
+        invalid.push_back( "\n0" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( to_bool, ToBoolFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->valid[ i ].to_bool(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
+    CHAOS_FOR_EACH( it, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW( it->to_bool(), chaos::ex::ConversionDataError );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    TO INT32
+//------------------------------------------------------------------------------
+
+class ToInt32Fixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > valid;
+    std::vector< chaos::int32 >           results;
+    std::vector< chaos::str::UTF8String > invalid;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        valid.push_back( "0" );
+        results.push_back( 0 );
+
+        valid.push_back( "1" );
+        results.push_back( 1 );
+
+        valid.push_back( "000000" );
+        results.push_back( 0 );
+
+        valid.push_back( "0000001" );
+        results.push_back( 1 );
+
+        valid.push_back( "100000000" );
+        results.push_back( 100000000 );
+
+        valid.push_back( "100001000" );
+        results.push_back( 100001000 );
+
+        valid.push_back( "2" );
+        results.push_back( 2 );
+
+        valid.push_back( "5475325" );
+        results.push_back( 5475325 );
+
+        valid.push_back( "-23" );
+        results.push_back( -23 );
+
+        valid.push_back( "-2" );
+        results.push_back( -2 );
+
+        valid.push_back( "-34589345" );
+        results.push_back( -34589345 );
+
+        invalid.push_back( "o" );
+        invalid.push_back( "0a" );
+        invalid.push_back( "0XFF" );
+        invalid.push_back( "0X67" );
+        invalid.push_back( " 3457835" );
+        invalid.push_back( "0 " );
+        invalid.push_back( "yes 0" );
+        invalid.push_back( "Hello World" );
+        invalid.push_back( "γειά σου Κόσμε" );
+        invalid.push_back( "this is a مزيج of text" );
+        invalid.push_back( "간" );
+        invalid.push_back( " " );
+        invalid.push_back( "\n0" );
+        invalid.push_back( "435345834h95" );
+        invalid.push_back( "3.6" );
+        invalid.push_back( "345345L" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( to_int32, ToInt32Fixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->valid[ i ].to_int32(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
+    CHAOS_FOR_EACH( it, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW( it->to_int32(), chaos::ex::ConversionDataError );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   TO UINT32
+//------------------------------------------------------------------------------
+
+class ToUint32Fixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > valid;
+    std::vector< chaos::uint32 >          results;
+    std::vector< chaos::str::UTF8String > invalid;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        valid.push_back( "0" );
+        results.push_back( 0 );
+
+        valid.push_back( "1" );
+        results.push_back( 1 );
+
+        valid.push_back( "000000" );
+        results.push_back( 0 );
+
+        valid.push_back( "0000001" );
+        results.push_back( 1 );
+
+        valid.push_back( "100000000" );
+        results.push_back( 100000000 );
+
+        valid.push_back( "100001000" );
+        results.push_back( 100001000 );
+
+        valid.push_back( "2" );
+        results.push_back( 2 );
+
+        valid.push_back( "5475325" );
+        results.push_back( 5475325 );
+
+        valid.push_back( "437583530" );
+        results.push_back( 437583530 );
+
+        invalid.push_back( "o" );
+        invalid.push_back( "0a" );
+        invalid.push_back( "0XFF" );
+        invalid.push_back( "0X67" );
+        invalid.push_back( " 3457835" );
+        invalid.push_back( "0 " );
+        invalid.push_back( "yes 0" );
+        invalid.push_back( "Hello World" );
+        invalid.push_back( "γειά σου Κόσμε" );
+        invalid.push_back( "this is a مزيج of text" );
+        invalid.push_back( "간" );
+        invalid.push_back( " " );
+        invalid.push_back( "\n0" );
+        invalid.push_back( "435345834h95" );
+        invalid.push_back( "3.6" );
+        invalid.push_back( "345345L" );
+        invalid.push_back( "-0" );
+        invalid.push_back( "- 435345" );
+        invalid.push_back( "-1342" );
+        invalid.push_back( "-943589345" );
+        invalid.push_back( "-435384573958" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( to_uint32, ToUint32Fixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->valid[ i ].to_uint32(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
+    CHAOS_FOR_EACH( it, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW( it->to_uint32(), chaos::ex::ConversionDataError );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    TO INT64
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_int64, ToInt32Fixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->valid[ i ].to_int64(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
+    CHAOS_FOR_EACH( it, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW( it->to_int64(), chaos::ex::ConversionDataError );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   TO UINT64
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_uint64, ToUint32Fixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->valid[ i ].to_uint64(),
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
+    CHAOS_FOR_EACH( it, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW( it->to_uint64(), chaos::ex::ConversionDataError );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                   GET LENGTH
 //------------------------------------------------------------------------------
 
@@ -1697,6 +2074,54 @@ CHAOS_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
         CHAOS_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].get_length(),
                 fixture->lengths[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    IS EMPTY
+//------------------------------------------------------------------------------
+
+class IsEmptyFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > strings;
+    std::vector< bool >                   results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        strings.push_back( "!" );
+        results.push_back( false );
+
+        strings.push_back( "" );
+        results.push_back( true );
+
+        strings.push_back( "Hello World" );
+        results.push_back( false );
+
+        strings.push_back( "γειά σου Κόσμε" );
+        results.push_back( false );
+
+        strings.push_back( "this is a مزيج of text" );
+        results.push_back( false );
+
+        strings.push_back( "간" );
+        results.push_back( false );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
+{
+    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->strings[ i ].is_empty(),
+                fixture->results[ i ]
         );
     }
 }
@@ -1716,5 +2141,220 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
                     it->second
             );
         }
+    }
+}
+
+// //------------------------------------------------------------------------------
+// //                                 GET CODE POINT
+// //------------------------------------------------------------------------------
+
+class GetCodePointFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    chaos::str::UTF8String       symbols;
+    std::vector< chaos::uint32 > code_points;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        symbols << "a";
+        code_points.push_back( 0x61 );
+
+        symbols << "f";
+        code_points.push_back( 0x66 );
+
+        symbols << "0";
+        code_points.push_back( 0x30 );
+
+        symbols << "Z";
+        code_points.push_back( 0x5A );
+
+        symbols << "`";
+        code_points.push_back( 0x60 );
+
+        symbols << "$";
+        code_points.push_back( 0x24 );
+
+        symbols << ">";
+        code_points.push_back( 0x3E );
+
+        symbols << "¡";
+        code_points.push_back( 0xA1C2 );
+
+        symbols << "¢";
+        code_points.push_back( 0xA2C2 );
+
+        symbols << "Ħ";
+        code_points.push_back( 0xA6C4 );
+
+        symbols << "͚";
+        code_points.push_back( 0x9ACD );
+
+        symbols << "؟";
+        code_points.push_back( 0x9FD8 );
+
+        symbols << "ॐ";
+        code_points.push_back( 0x90A5E0 );
+
+        symbols << "ൠ";
+        code_points.push_back( 0xA0B5E0 );
+
+        symbols << "ቓ";
+        code_points.push_back( 0x9389E1 );
+
+        symbols << "ᕔ";
+        code_points.push_back( 0x9495E1 );
+
+        symbols << "ᴫ";
+        code_points.push_back( 0xABB4E1 );
+
+        symbols << "Ṥ";
+        code_points.push_back( 0xA4B9E1 );
+
+        symbols << "ᾤ";
+        code_points.push_back( 0xA4BEE1 );
+
+        symbols << "※";
+        code_points.push_back( 0xBB80E2 );
+
+        symbols << "→";
+        code_points.push_back( 0x9286E2 );
+
+        symbols << "∴";
+        code_points.push_back( 0xB488E2 );
+
+        symbols << "𐂩";
+        code_points.push_back( 0xA98290F0 );
+
+        symbols << "𐃮";
+        code_points.push_back( 0xAE8390F0 );
+
+        symbols << "𐀠";
+        code_points.push_back( 0xA08090F0 );
+
+        symbols << "𐁙";
+        code_points.push_back( 0x998190F0 );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
+{
+    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->symbols.get_code_point( i ),
+                fixture->code_points[ i ]
+        );
+    }
+}
+
+// TODO: RENAME get_code_point TO get_symbol_hex
+
+//------------------------------------------------------------------------------
+//                                GET SYMBOL WIDTH
+//------------------------------------------------------------------------------
+
+class GetSymbolWidthFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    chaos::str::UTF8String       symbols;
+    std::vector< chaos::uint32 > widths;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        symbols << "a";
+        widths.push_back( 1 );
+
+        symbols << "f";
+        widths.push_back( 1 );
+
+        symbols << "0";
+        widths.push_back( 1 );
+
+        symbols << "Z";
+        widths.push_back( 1 );
+
+        symbols << "`";
+        widths.push_back( 1 );
+
+        symbols << "$";
+        widths.push_back( 1 );
+
+        symbols << ">";
+        widths.push_back( 1 );
+
+        symbols << "¡";
+        widths.push_back( 2 );
+
+        symbols << "ø";
+        widths.push_back( 2 );
+
+        symbols << "Ȼ";
+        widths.push_back( 2 );
+
+        symbols << "Ф";
+        widths.push_back( 2 );
+
+        symbols << "Թ";
+        widths.push_back( 2 );
+
+        symbols << "ः";
+        widths.push_back( 3 );
+
+        symbols << "ക";
+        widths.push_back( 3 );
+
+        symbols << "ན";
+        widths.push_back( 3 );
+
+        symbols << "᎗";
+        widths.push_back( 3 );
+
+        symbols << "ᔹ";
+        widths.push_back( 3 );
+
+        symbols << "Ḝ";
+        widths.push_back( 3 );
+
+        symbols << "ℝ";
+        widths.push_back( 3 );
+
+        symbols << "ℬ";
+        widths.push_back( 3 );
+
+        symbols << "⌆";
+        widths.push_back( 3 );
+
+        symbols << "𐂣";
+        widths.push_back( 4 );
+
+        symbols << "𐃕";
+        widths.push_back( 4 );
+
+        symbols << "𐃴";
+        widths.push_back( 4 );
+
+        symbols << "𐃹";
+        widths.push_back( 4 );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
+{
+    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->symbols.get_symbol_width( i ),
+                fixture->widths[ i ]
+        );
     }
 }
