@@ -509,13 +509,26 @@ public:
      * \brief Gets the integer/hex value for the utf8 symbol at the given index.
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
-                                                bounds of the string length.
+     *                                          bounds of the string length.
      *
-     * \param index Position of the symbol to retrieve the code point for with
+     * \param index Position of the symbol to retrieve the value for with
      *              respect to the length returned by get_length()
      * \return A uint32 containing the value of the symbol.
      */
     chaos::uint32 get_symbol_value( size_t index ) const;
+
+    /*!
+     * \brief Gets the unicode code point for the utf8 symbol at the given
+     *        index.
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     *                                          bounds of the string length.
+     *
+     * \param index Position of the symbol to retrieve the code point for with
+     *              respect to the length returned by get_length()
+     * \return A uint32 containing the code point of the symbol.
+     */
+    chaos::uint32 get_code_point( size_t index ) const;
 
     /*!
      * \brief Gets the index of the first byte for the symbol at the given

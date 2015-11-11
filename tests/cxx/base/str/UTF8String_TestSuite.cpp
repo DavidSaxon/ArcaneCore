@@ -2347,6 +2347,114 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_value, GetSymbolValueFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                 GET CODE POINT
+//------------------------------------------------------------------------------
+
+class GetCodePointFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    chaos::str::UTF8String       symbols;
+    std::vector< chaos::uint32 > code_points;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        symbols << "a";
+        code_points.push_back( 0x61 );
+
+        symbols << "f";
+        code_points.push_back( 0x66 );
+
+        symbols << "0";
+        code_points.push_back( 0x30 );
+
+        symbols << "Z";
+        code_points.push_back( 0x5A );
+
+        symbols << "`";
+        code_points.push_back( 0x60 );
+
+        symbols << "$";
+        code_points.push_back( 0x24 );
+
+        symbols << ">";
+        code_points.push_back( 0x3E );
+
+        symbols << "¡";
+        code_points.push_back( 0xA1 );
+
+        symbols << "Ģ";
+        code_points.push_back( 0x0122 );
+
+        symbols << "Σ";
+        code_points.push_back( 0x3A3 );
+
+        symbols << "Ο";
+        code_points.push_back( 0x39F );
+
+        symbols << "ޟ";
+        code_points.push_back( 0x79F );
+
+        symbols << "࠴";
+        code_points.push_back( 0x834 );
+
+        symbols << "ঃ";
+        code_points.push_back( 0x983 );
+
+        symbols << "४";
+        code_points.push_back( 0x96A );
+
+        symbols << "ආ";
+        code_points.push_back( 0xD86 );
+
+        symbols << "൶";
+        code_points.push_back( 0xD76 );
+
+        symbols << "ᐖ";
+        code_points.push_back( 0x1416 );
+
+        symbols << "Ⅎ";
+        code_points.push_back( 0x2132 );
+
+        symbols << "⡚";
+        code_points.push_back( 0x285A );
+
+        symbols << "𖬏";
+        code_points.push_back( 0x16B0F );
+
+        symbols << "𛲢";
+        code_points.push_back( 0x1BCA2 );
+
+        symbols << "𝄞";
+        code_points.push_back( 0x1D11E );
+
+        symbols << "𝇜";
+        code_points.push_back( 0x1D1DC );
+
+        symbols << "𝓍";
+        code_points.push_back( 0x1D4CD );
+
+        symbols << "😼";
+        code_points.push_back( 0x1F63C );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
+{
+    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->symbols.get_code_point( i ),
+                fixture->code_points[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                        GET BYTE INDEX FOR SYMBOL INDEX
 //------------------------------------------------------------------------------
 

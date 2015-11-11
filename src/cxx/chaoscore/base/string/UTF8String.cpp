@@ -631,6 +631,39 @@ chaos::uint32 UTF8String::get_symbol_value( size_t index ) const
     return chaos::data::bytes_to_uint32( &m_data[ byte_index ], byte_width );
 }
 
+chaos::uint32 UTF8String::get_code_point( size_t index ) const
+{
+    // is the index valid?
+    validate_symbol_index( index );
+
+    // get the width so we know how to convert
+    size_t width = get_symbol_width( index );
+    chaos::uint32 value = get_symbol_value( index );
+
+    if ( width == 1 )
+    {
+        return value;
+    }
+    else if ( width == 2 )
+    {
+        return ( ( value << 6 ) & 0x00007C0 ) |
+               ( ( value >> 8 ) & 0x0000003F );
+    }
+    else if ( width == 3 )
+    {
+        return ( ( value << 12 ) & 0x0000F000 ) |
+               ( ( value >> 2  ) & 0x00000FC0 ) |
+               ( ( value >> 16 ) & 0x0000003F );
+    }
+    else
+    {
+        return ( ( value << 18 ) & 0x001C0000 ) |
+               ( ( value << 4  ) & 0x0003F000 ) |
+               ( ( value >> 10 ) & 0x00000FC0 ) |
+               ( ( value >> 24 ) & 0x0000003F );
+    }
+}
+
 size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
 {
     // is the index valid?
