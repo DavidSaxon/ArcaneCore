@@ -11,9 +11,6 @@
 #include "chaoscore/base/data/ByteUtil.hpp"
 #include "chaoscore/base/string/UnicodeUtil.hpp"
 
-// TODO: REMOVE ME
-#include <iostream>
-
 namespace chaos
 {
 namespace str
@@ -110,8 +107,8 @@ bool UTF8String::operator<( const UTF8String& other ) const
     {
         // do a straight comparison on each code point until we find a character
         // that is less than
-        chaos::uint32 a = get_code_point( i );
-        chaos::uint32 b = other.get_code_point( i );
+        chaos::uint32 a = get_symbol_value( i );
+        chaos::uint32 b = other.get_symbol_value( i );
         if ( a < b )
         {
             return true;
@@ -348,7 +345,7 @@ size_t UTF8String::find_first( const UTF8String& substring ) const
         bool match = true;
         for ( size_t j = 0; j < substring.m_length; ++j )
         {
-            if ( substring.get_code_point( j ) != get_code_point( i + j ) )
+            if ( substring.get_symbol_value( j ) != get_symbol_value( i + j ) )
             {
 
                 match = false;
@@ -429,7 +426,7 @@ bool UTF8String::is_int() const
     // iterate over each code point and ensure that it's a digit
     for ( size_t i = 0; i < m_length; ++i )
     {
-        chaos::uint32 code_point = get_code_point( i );
+        chaos::uint32 code_point = get_symbol_value( i );
 
         // the first symbol is allowed to be '-'
         if ( i == 0                                  &&
@@ -453,7 +450,7 @@ bool UTF8String::is_uint() const
     // iterate of each code point and ensure that it's a digit
     for ( size_t i = 0; i < m_length; ++i )
     {
-        if ( !chaos::str::utf8_is_digit( get_code_point( i ) ) )
+        if ( !chaos::str::utf8_is_digit( get_symbol_value( i ) ) )
         {
             // not a digit
             return false;
@@ -469,7 +466,7 @@ bool UTF8String::is_float() const
     // iterate of each code point
     for ( size_t i = 0; i < m_length; ++i )
     {
-        chaos::uint32 code_point = get_code_point( i );
+        chaos::uint32 code_point = get_symbol_value( i );
 
         if ( !chaos::str::utf8_is_digit( code_point ) )
         {
@@ -622,12 +619,12 @@ UTF8String UTF8String::get_symbol( size_t index ) const
     return UTF8String( &m_data[ byte_index ], byte_width );
 }
 
-chaos::uint32 UTF8String::get_code_point( size_t index ) const
+chaos::uint32 UTF8String::get_symbol_value( size_t index ) const
 {
     // is the index valid?
     validate_symbol_index( index );
 
-    // get the bytes that make up the code point
+    // get the bytes that make up the symbol
     size_t byte_index = get_byte_index_for_symbol_index( index );
     size_t byte_width = get_byte_width( byte_index );
 
@@ -720,53 +717,6 @@ size_t UTF8String::get_byte_width( size_t byte_index ) const
     {
         return 4;
     }
-}
-
-//------------------------------------------------------------------------------
-
-//--------------------------------DEV FUNCTIONS---------------------------------
-
-void UTF8String::dev_inspect_contents()
-{
-    std::cout << "\n-----------------------------------------------------------"
-              << "---------------------" << std::endl;
-
-    // put that shit in a standard string
-    std::string s( to_std_string() );
-
-    std::cout << "DATA LENGTH         : " << m_data_length << std::endl;
-    std::cout << "STRING LENGTH:      : " << s.length() << std::endl;
-    std::cout << "STRING CONTENTS     : " << s << std::endl;
-
-    std::cout << "CHARACTERS          : ";
-    for ( size_t i = 0; i < s.length(); ++i )
-    {
-        std::cout << "|_ " << s[ i ] << " _| ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "VALUES:             : ";
-    for ( size_t i = 0; i < s.length(); ++i )
-    {
-        std::cout << "|_" << static_cast< int >( s[ i ] ) << "_| ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "INTERNAL CHARACTERS : ";
-    for ( size_t i = 0; i < s.length(); ++i )
-    {
-        std::cout << "|_ " << m_data[ i ] << " _| ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "INTERNAL VALUES     : ";
-    for ( size_t i = 0; i < s.length(); ++i )
-    {
-        std::cout << "|_" << static_cast< int >( m_data[ i ] ) << "_| ";
-    }
-    std::cout << std::endl;
-    std::cout << "-------------------------------------------------------------"
-              << "-------------------\n" << std::endl;
 }
 
 //------------------------------------------------------------------------------

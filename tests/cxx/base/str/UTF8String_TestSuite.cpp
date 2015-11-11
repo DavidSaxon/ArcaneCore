@@ -289,6 +289,100 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                 INDEX FIXTURE
+//------------------------------------------------------------------------------
+
+class IndexFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    chaos::str::UTF8String       symbols;
+    std::vector< chaos::uint32 > byte_indices;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        byte_indices.push_back( 0 );
+        symbols << "a";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << "f";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << "0";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << "Z";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << "`";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << "$";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << ">";
+
+        byte_indices.push_back( byte_indices.back() + 1 );
+        symbols << "¡";
+
+        byte_indices.push_back( byte_indices.back() + 2 );
+        symbols << "ø";
+
+        byte_indices.push_back( byte_indices.back() + 2 );
+        symbols << "Ȼ";
+
+        byte_indices.push_back( byte_indices.back() + 2 );
+        symbols << "Ф";
+
+        byte_indices.push_back( byte_indices.back() + 2 );
+        symbols << "Թ";
+
+        byte_indices.push_back( byte_indices.back() + 2 );
+        symbols << "ः";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "ക";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "ན";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "᎗";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "ᔹ";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "Ḝ";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "ℝ";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "ℬ";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "⌆";
+
+        byte_indices.push_back( byte_indices.back() + 3 );
+        symbols << "𐂣";
+
+        byte_indices.push_back( byte_indices.back() + 4 );
+        symbols << "𐃕";
+
+        byte_indices.push_back( byte_indices.back() + 4 );
+        symbols << "𐃴";
+
+        byte_indices.push_back( byte_indices.back() + 4 );
+        symbols << "𐃹";
+    }
+};
+
+//------------------------------------------------------------------------------
 //                              DEFAULT CONSTRUCTOR
 //------------------------------------------------------------------------------
 
@@ -973,8 +1067,8 @@ public:
         results.push_back( "2048" );
 
         comp_1.push_back( "" );
-        comp_2.push_back( -static_cast< chaos::int32 >( 2147483648 ) );
-        results.push_back( "-2147483648" );
+        comp_2.push_back( -static_cast< chaos::int32 >( 214483648 ) );
+        results.push_back( "-214483648" );
 
         comp_1.push_back( "Hello" );
         comp_2.push_back( 2147483647 );
@@ -1709,17 +1803,6 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
-    {
-        CHAOS_CHECK_THROW(
-                fixture->strings[ i ].substring(
-                        fixture->out_of_bounds[ i ], 10
-                ),
-                chaos::ex::IndexOutOfBoundsError
-        );
-    }
-
     CHAOS_TEST_MESSAGE( "Checking values" );
     for ( size_t i = 0; i < fixture->strings.size(); ++i )
     {
@@ -1728,6 +1811,17 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
                         fixture->indices[ i ], fixture->lengths[ i ]
                 ),
                 fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    {
+        CHAOS_CHECK_THROW(
+                fixture->strings[ i ].substring(
+                        fixture->out_of_bounds[ i ], 10
+                ),
+                chaos::ex::IndexOutOfBoundsError
         );
     }
 }
@@ -2144,115 +2238,135 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
     }
 }
 
-// //------------------------------------------------------------------------------
-// //                                 GET CODE POINT
-// //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//                                GET SYMBOL VALUE
+//------------------------------------------------------------------------------
 
-class GetCodePointFixture : public chaos::test::Fixture
+class GetSymbolValueFixture : public chaos::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     chaos::str::UTF8String       symbols;
-    std::vector< chaos::uint32 > code_points;
+    std::vector< chaos::uint32 > values;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     virtual void setup()
     {
         symbols << "a";
-        code_points.push_back( 0x61 );
+        values.push_back( 0x61 );
 
         symbols << "f";
-        code_points.push_back( 0x66 );
+        values.push_back( 0x66 );
 
         symbols << "0";
-        code_points.push_back( 0x30 );
+        values.push_back( 0x30 );
 
         symbols << "Z";
-        code_points.push_back( 0x5A );
+        values.push_back( 0x5A );
 
         symbols << "`";
-        code_points.push_back( 0x60 );
+        values.push_back( 0x60 );
 
         symbols << "$";
-        code_points.push_back( 0x24 );
+        values.push_back( 0x24 );
 
         symbols << ">";
-        code_points.push_back( 0x3E );
+        values.push_back( 0x3E );
 
         symbols << "¡";
-        code_points.push_back( 0xA1C2 );
+        values.push_back( 0xA1C2 );
 
         symbols << "¢";
-        code_points.push_back( 0xA2C2 );
+        values.push_back( 0xA2C2 );
 
         symbols << "Ħ";
-        code_points.push_back( 0xA6C4 );
+        values.push_back( 0xA6C4 );
 
         symbols << "͚";
-        code_points.push_back( 0x9ACD );
+        values.push_back( 0x9ACD );
 
         symbols << "؟";
-        code_points.push_back( 0x9FD8 );
+        values.push_back( 0x9FD8 );
 
         symbols << "ॐ";
-        code_points.push_back( 0x90A5E0 );
+        values.push_back( 0x90A5E0 );
 
         symbols << "ൠ";
-        code_points.push_back( 0xA0B5E0 );
+        values.push_back( 0xA0B5E0 );
 
         symbols << "ቓ";
-        code_points.push_back( 0x9389E1 );
+        values.push_back( 0x9389E1 );
 
         symbols << "ᕔ";
-        code_points.push_back( 0x9495E1 );
+        values.push_back( 0x9495E1 );
 
         symbols << "ᴫ";
-        code_points.push_back( 0xABB4E1 );
+        values.push_back( 0xABB4E1 );
 
         symbols << "Ṥ";
-        code_points.push_back( 0xA4B9E1 );
+        values.push_back( 0xA4B9E1 );
 
         symbols << "ᾤ";
-        code_points.push_back( 0xA4BEE1 );
+        values.push_back( 0xA4BEE1 );
 
         symbols << "※";
-        code_points.push_back( 0xBB80E2 );
+        values.push_back( 0xBB80E2 );
 
         symbols << "→";
-        code_points.push_back( 0x9286E2 );
+        values.push_back( 0x9286E2 );
 
         symbols << "∴";
-        code_points.push_back( 0xB488E2 );
+        values.push_back( 0xB488E2 );
 
         symbols << "𐂩";
-        code_points.push_back( 0xA98290F0 );
+        values.push_back( 0xA98290F0 );
 
         symbols << "𐃮";
-        code_points.push_back( 0xAE8390F0 );
+        values.push_back( 0xAE8390F0 );
 
         symbols << "𐀠";
-        code_points.push_back( 0xA08090F0 );
+        values.push_back( 0xA08090F0 );
 
         symbols << "𐁙";
-        code_points.push_back( 0x998190F0 );
+        values.push_back( 0x998190F0 );
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
+CHAOS_TEST_UNIT_FIXTURE( get_symbol_value, GetSymbolValueFixture )
 {
     for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         CHAOS_CHECK_EQUAL(
-                fixture->symbols.get_code_point( i ),
-                fixture->code_points[ i ]
+                fixture->symbols.get_symbol_value( i ),
+                fixture->values[ i ]
         );
     }
 }
 
-// TODO: RENAME get_code_point TO get_symbol_hex
+//------------------------------------------------------------------------------
+//                        GET BYTE INDEX FOR SYMBOL INDEX
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_byte_index_for_symbol_index, IndexFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking values" );
+    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->symbols.get_byte_index_for_symbol_index( i ),
+                fixture->byte_indices[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    CHAOS_CHECK_THROW(
+            fixture->symbols.get_byte_index_for_symbol_index( 58435 ),
+            chaos::ex::IndexOutOfBoundsError
+    );
+}
 
 //------------------------------------------------------------------------------
 //                                GET SYMBOL WIDTH
@@ -2350,6 +2464,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
 {
+    CHAOS_TEST_MESSAGE( "Checking values" );
     for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         CHAOS_CHECK_EQUAL(
@@ -2357,4 +2472,81 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
                 fixture->widths[ i ]
         );
     }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    CHAOS_CHECK_THROW(
+            fixture->symbols.get_symbol_width( 832423 ),
+            chaos::ex::IndexOutOfBoundsError
+    );
+}
+
+//------------------------------------------------------------------------------
+//                                GET BYTE LENGTH
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_byte_length, UTF8StringGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->utf8_strings[ i ].get_byte_length(),
+                strlen( fixture->cstrings[ i ] ) + 1
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                        GET SYMBOL INDEX FOR BYTE INDEX
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking values" );
+    size_t symbol_index = 0;
+    for ( size_t i = 0; i < fixture->symbols.get_byte_length() - 1; ++i )
+    {
+        if ( symbol_index < fixture->symbols.get_length() &&
+             i >= fixture->byte_indices[ symbol_index + 1 ] )
+        {
+            ++symbol_index;
+        }
+
+        CHAOS_CHECK_EQUAL(
+                fixture->symbols.get_symbol_index_for_byte_index( i ),
+                symbol_index
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    CHAOS_CHECK_THROW(
+            fixture->symbols.get_symbol_index_for_byte_index( 512 ),
+            chaos::ex::IndexOutOfBoundsError
+    );
+}
+
+//------------------------------------------------------------------------------
+//                                 GET BYTE WIDTH
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking values" );
+    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    {
+        size_t byte_index =
+                fixture->symbols.get_byte_index_for_symbol_index( i );
+
+        CHAOS_CHECK_EQUAL(
+                fixture->symbols.get_byte_width( byte_index ),
+                fixture->widths[ i ]
+        );
+
+        i += fixture->widths[ i ];
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    CHAOS_CHECK_THROW(
+            fixture->symbols.get_byte_width( chaos::str::UTF8String::npos ),
+            chaos::ex::IndexOutOfBoundsError
+    );
 }

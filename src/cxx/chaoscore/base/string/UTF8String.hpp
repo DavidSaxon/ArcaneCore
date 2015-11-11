@@ -506,20 +506,22 @@ public:
     UTF8String get_symbol( size_t index ) const;
 
     /*!
-     * \brief Gets the utf-8 code point for the symbol at the given index.
+     * \brief Gets the integer/hex value for the utf8 symbol at the given index.
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
                                                 bounds of the string length.
      *
      * \param index Position of the symbol to retrieve the code point for with
      *              respect to the length returned by get_length()
-     * \return A uint32 representing the code point for the symbol.
+     * \return A uint32 containing the value of the symbol.
      */
-    chaos::uint32 get_code_point( size_t index ) const;
+    chaos::uint32 get_symbol_value( size_t index ) const;
 
     /*!
      * \brief Gets the index of the first byte for the symbol at the given
      *        index.
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+                                                bounds of the string length.
      */
     size_t get_byte_index_for_symbol_index( size_t symbol_index ) const;
 
@@ -555,15 +557,6 @@ public:
      *          operation will return unexpected results.
      */
     size_t get_byte_width( size_t byte_index ) const;
-
-    //--------------------------------------------------------------------------
-
-
-    //------------------------------DEV FUNCTIONS-------------------------------
-
-    // TODO: REMOVE ME
-    // TESTING FUNCTION
-    void dev_inspect_contents();
 
 private:
 
