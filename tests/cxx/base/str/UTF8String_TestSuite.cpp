@@ -2613,7 +2613,7 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
     size_t symbol_index = 0;
     for ( size_t i = 0; i < fixture->symbols.get_byte_length() - 1; ++i )
     {
-        if ( symbol_index < fixture->symbols.get_length() &&
+        if ( symbol_index < fixture->symbols.get_length() - 1 &&
              i >= fixture->byte_indices[ symbol_index + 1 ] )
         {
             ++symbol_index;

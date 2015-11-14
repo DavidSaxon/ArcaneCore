@@ -2,7 +2,7 @@
 \label{classchaos_1_1str_1_1_u_t_f8_string}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 
 
-A generic string type for storing Unicode data. T\+O\+D\+O.  
+A string type designed for storing and manipulating U\+T\+F-\/8 encoded text.  
 
 
 
@@ -17,10 +17,6 @@ A generic string type for storing Unicode data. T\+O\+D\+O.
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_af506696bfe777057c4a7e6b6acf19dab}{U\+T\+F8\+String} (const char $\ast$data)
 \begin{DoxyCompactList}\small\item\em String literal constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac3077c0963a5f36dcaa2a87a1c02d05d}{U\+T\+F8\+String} (const char $\ast$data, size\+\_\+t length)
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a42f9c24b46964187a90d0da58c57949b}{U\+T\+F8\+String} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} $\ast$data)
-\begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a195c6d579796f70f28ab7f5b4d0e5cb5}{U\+T\+F8\+String} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} $\ast$data, size\+\_\+t length)
 \begin{DoxyCompactList}\small\item\em T\+O\+D\+O\+: D\+O\+C. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a194b76859245fdb815ce5d537f2e1db4}{U\+T\+F8\+String} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
@@ -44,13 +40,25 @@ const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hype
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac3ca865b7f68b13b4b5902793bbb750d}{operator$<$$<$} (const char $\ast$other)
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a083f1107b391e5b4854ff40bc09c1406}{operator$<$$<$} (const std\+::string \&other)
+\begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9ef346ef5d7211de67578ce4bcc4a122}{operator$<$$<$} (bool other)
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a1fe072a86408b3eb0b3fdfe9f80e3b8d}{operator$<$$<$} (char other)
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a89937311871b473ed17bd83622e60530}{operator$<$$<$} (\hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} other)
+\begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_abfce18f938382812ffeb3c399fdf679e}{operator$<$$<$} (\hyperlink{namespacechaos_a229e18634387996c2712d57f184bf363}{chaos\+::uint8} other)
+\begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a970df73b6bbb3d31fe5bcf53bc654be6}{operator$<$$<$} (\hyperlink{namespacechaos_a23112b8188c8a6ad32a86041fb4c088e}{chaos\+::int16} other)
+\begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa1ae66a5b283279df734eab632e398cf}{operator$<$$<$} (\hyperlink{namespacechaos_ac3888b1c9e56da7fbbdb3ab8425b4068}{chaos\+::uint16} other)
+\begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a1c174fd024e1535a2f485e290540a2a1}{operator$<$$<$} (\hyperlink{namespacechaos_ad1de7efb430365afd2c9446a0f522a90}{chaos\+::int32} other)
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a99aa07fcc88a65befe5e530933839fab}{operator$<$$<$} (\hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} other)
+\begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a5fac3cdc0e1aa0bdefce09a0dab085cf}{operator$<$$<$} (\hyperlink{namespacechaos_a46c61f58d99879b936f58234b9a05e0c}{chaos\+::int64} other)
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a0f069c833c4fad2e87f9e4fb1138eca6}{operator$<$$<$} (\hyperlink{namespacechaos_a34fe5f5bfc3ef6d80b5d094ed91b4d6e}{chaos\+::uint64} other)
 \begin{DoxyCompactList}\small\item\em Stream operator. \end{DoxyCompactList}\item 
@@ -58,10 +66,6 @@ void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a483e71ec1090e346c63bf2b13b3
 \begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given string literal. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a631f935a5b85214a2fa662a78f5693aa}{assign} (const char $\ast$data, size\+\_\+t length)
 \begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given string literal. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}{assign} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} $\ast$data)
-\begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given data buffer. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122ea1883}{assign} (const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} $\ast$data, size\+\_\+t length)
-\begin{DoxyCompactList}\small\item\em Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given data buffer. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aff351b1a6276e5e59717bc6c3b67818c}{assign} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \&other)
 \begin{DoxyCompactList}\small\item\em Assigns internal data from another \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String}. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \& \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a8b61a2f73dacd4749d993dad00788d0d}{concatenate} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \&other)
@@ -108,15 +112,22 @@ bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4fc296e90fbbc45a1e3f142dcd1
 \item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a04dbe9f15dc1b09c858e2450de26d40a}{get\+\_\+symbol} (size\+\_\+t index) const 
 \begin{DoxyCompactList}\small\item\em Get the utf-\/8 symbol defined at the given index. \end{DoxyCompactList}\item 
+\hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a1248ee0dde0ff8e028d162cefd67f034}{get\+\_\+symbol\+\_\+value} (size\+\_\+t index) const 
+\begin{DoxyCompactList}\small\item\em Gets the integer/hex value for the utf8 symbol at the given index. \end{DoxyCompactList}\item 
 \hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a007889a60f57ec9196dcebb39abeafdf}{get\+\_\+code\+\_\+point} (size\+\_\+t index) const 
-\begin{DoxyCompactList}\small\item\em Gets the utf-\/8 code point for the symbol at the given index. \end{DoxyCompactList}\item 
-size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}{get\+\_\+byte\+\_\+length} () const 
-\begin{DoxyCompactList}\small\item\em Get the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
-const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8} $\ast$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6424b00b21c9c6600818808c225fe381}{get\+\_\+raw\+\_\+data} () const 
-\begin{DoxyCompactList}\small\item\em Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String}. \end{DoxyCompactList}\item 
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a28cdd164c2611809fb191764b6734a03}{}void {\bfseries dev\+\_\+inspect\+\_\+contents} ()\label{classchaos_1_1str_1_1_u_t_f8_string_a28cdd164c2611809fb191764b6734a03}
+\begin{DoxyCompactList}\small\item\em Gets the unicode code point for the utf8 symbol at the given index. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4dddd9c6133754f5f424033ab28dc0e5}{get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index} (size\+\_\+t symbol\+\_\+index) const 
+\begin{DoxyCompactList}\small\item\em Gets the index of the first byte for the symbol at the given index. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a0c54a7cfaf4a3c1881b0c933c49a4922}{}size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a0c54a7cfaf4a3c1881b0c933c49a4922}{get\+\_\+symbol\+\_\+width} (size\+\_\+t index) const \label{classchaos_1_1str_1_1_u_t_f8_string_a0c54a7cfaf4a3c1881b0c933c49a4922}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the size in bytes of the symbol at the given index. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}{get\+\_\+byte\+\_\+length} () const 
+\begin{DoxyCompactList}\small\item\em Gets the length of the internal buffer data in bytes. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_aa005c8b0243343ec7308d00fa6e72846}{}size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_aa005c8b0243343ec7308d00fa6e72846}{get\+\_\+symbol\+\_\+index\+\_\+for\+\_\+byte\+\_\+index} (size\+\_\+t byte\+\_\+index) const \label{classchaos_1_1str_1_1_u_t_f8_string_aa005c8b0243343ec7308d00fa6e72846}
+
+\begin{DoxyCompactList}\small\item\em Gets the symbol index for the given byte index. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a387abdce2189a379961844cd0a42a97a}{get\+\_\+byte\+\_\+width} (size\+\_\+t byte\+\_\+index) const 
+\begin{DoxyCompactList}\small\item\em Gets the width in bytes of the symbol at the given byte. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -126,10 +137,11 @@ const \hyperlink{namespacechaos_a56015674cfe4ad1fc583c3da6c724d8a}{chaos\+::int8
 
 
 \subsection{Detailed Description}
-A generic string type for storing Unicode data. T\+O\+D\+O. 
+A string type designed for storing and manipulating U\+T\+F-\/8 encoded text. 
 
-T\+O\+D\+O\+: detailed description
-
+\begin{DoxyNote}{Note}
+This object expects input text to already be U\+T\+F-\/8 encoded. For functions to convert encodings see \hyperlink{_unicode_util_8hpp}{Unicode\+Util.\+hpp}
+\end{DoxyNote}
 T\+O\+D\+O\+: Is N\+U\+L\+L terminated data 
 
 \subsection{Constructor \& Destructor Documentation}
@@ -163,29 +175,6 @@ T\+O\+D\+O\+: D\+O\+C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac3077c09
 \item[{size\+\_\+t}]{length}
 \end{DoxyParamCaption}
 )}\label{classchaos_1_1str_1_1_u_t_f8_string_ac3077c0963a5f36dcaa2a87a1c02d05d}
-
-
-T\+O\+D\+O\+: D\+O\+C. 
-
-T\+O\+D\+O\+: D\+O\+C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a42f9c24b46964187a90d0da58c57949b}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!U\+T\+F8\+String@{U\+T\+F8\+String}}
-\index{U\+T\+F8\+String@{U\+T\+F8\+String}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
-\subsubsection[{U\+T\+F8\+String(const chaos\+::int8 $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::str\+::\+U\+T\+F8\+String\+::\+U\+T\+F8\+String (
-\begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::int8} $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\label{classchaos_1_1str_1_1_u_t_f8_string_a42f9c24b46964187a90d0da58c57949b}
-
-
-T\+O\+D\+O\+: D\+O\+C. 
-
-T\+O\+D\+O\+: D\+O\+C \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a195c6d579796f70f28ab7f5b4d0e5cb5}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!U\+T\+F8\+String@{U\+T\+F8\+String}}
-\index{U\+T\+F8\+String@{U\+T\+F8\+String}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
-\subsubsection[{U\+T\+F8\+String(const chaos\+::int8 $\ast$data, size\+\_\+t length)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::str\+::\+U\+T\+F8\+String\+::\+U\+T\+F8\+String (
-\begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::int8} $\ast$}]{data, }
-\item[{size\+\_\+t}]{length}
-\end{DoxyParamCaption}
-)}\label{classchaos_1_1str_1_1_u_t_f8_string_a195c6d579796f70f28ab7f5b4d0e5cb5}
 
 
 T\+O\+D\+O\+: D\+O\+C. 
@@ -240,45 +229,6 @@ This operation will delete any current internal data of this object. The input d
 
 
 Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given string literal. 
-
-This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded. This function should be used when the input data is not N\+U\+L\+L terminated, or can be used for optimisation purposes if the length of data is already known. This will mean the length of the data will not need to be evaluated internally.
-
-
-\begin{DoxyParams}{Parameters}
-{\em data} & Data buffer to copy from. \\
-\hline
-{\em length} & Number of bytes in the provided data buffer. \\
-\hline
-\end{DoxyParams}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!assign@{assign}}
-\index{assign@{assign}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
-\subsubsection[{assign(const chaos\+::int8 $\ast$data)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::str\+::\+U\+T\+F8\+String\+::assign (
-\begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::int8} $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\label{classchaos_1_1str_1_1_u_t_f8_string_a861874ab4bff725c9c10b20a14533221}
-
-
-Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given data buffer. 
-
-This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded and N\+U\+L\+L terminated.
-
-
-\begin{DoxyParams}{Parameters}
-{\em data} & Data buffer to copy from. \\
-\hline
-\end{DoxyParams}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122ea1883}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!assign@{assign}}
-\index{assign@{assign}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
-\subsubsection[{assign(const chaos\+::int8 $\ast$data, size\+\_\+t length)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::str\+::\+U\+T\+F8\+String\+::assign (
-\begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::int8} $\ast$}]{data, }
-\item[{size\+\_\+t}]{length}
-\end{DoxyParamCaption}
-)}\label{classchaos_1_1str_1_1_u_t_f8_string_a399d279254a826c36ec8815122ea1883}
-
-
-Assigns the internal data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} to the given data buffer. 
 
 This operation will delete any current internal data of this object. The input data is expected to be utf-\/8 encoded. This function should be used when the input data is not N\+U\+L\+L terminated, or can be used for optimisation purposes if the length of data is already known. This will mean the length of the data will not need to be evaluated internally.
 
@@ -359,6 +309,22 @@ Finds the last occurrence of the given substring and returns the index of it.
 \begin{DoxyReturn}{Returns}
 The index of the beginning of the last occurrence of the substring in this string. If the substring could not be found, \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a7e301ebfad4cd1b14e3a13cb0595b43b}{chaos\+::str\+::\+U\+T\+F8\+String\+::npos} is returned instead. 
 \end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4dddd9c6133754f5f424033ab28dc0e5}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index@{get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index}}
+\index{get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index@{get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index(size\+\_\+t symbol\+\_\+index) const }]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+byte\+\_\+index\+\_\+for\+\_\+symbol\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{symbol\+\_\+index}
+\end{DoxyParamCaption}
+) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a4dddd9c6133754f5f424033ab28dc0e5}
+
+
+Gets the index of the first byte for the symbol at the given index. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided index is out of bounds of the string length. \\
+\hline
+\end{DoxyExceptions}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+byte\+\_\+length@{get\+\_\+byte\+\_\+length}}
 \index{get\+\_\+byte\+\_\+length@{get\+\_\+byte\+\_\+length}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 \subsubsection[{get\+\_\+byte\+\_\+length() const }]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+byte\+\_\+length (
@@ -368,9 +334,9 @@ The index of the beginning of the last occurrence of the substring in this strin
 ) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}
 
 
-Get the length of the internal buffer data in bytes. 
+Gets the length of the internal buffer data in bytes. 
 
-This is exactly the number of bytes in the internal raw data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} which can be accessed through \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6424b00b21c9c6600818808c225fe381}{get\+\_\+raw\+\_\+data()}. Note that this data is N\+U\+L\+L (\textquotesingle{}\textbackslash{}0\textquotesingle{}) terminated and this length includes the N\+U\+L\+L terminator. Therefore if \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} == \char`\"{}\char`\"{} then \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}{get\+\_\+byte\+\_\+length()} == 1.
+This is exactly the number of bytes in the internal raw data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} which can be accessed through get\+\_\+raw\+\_\+data(). Note that this data is N\+U\+L\+L (\textquotesingle{}\textbackslash{}0\textquotesingle{}) terminated and this length includes the N\+U\+L\+L terminator. Therefore if \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} == \char`\"{}\char`\"{} then \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a9312a6aac333d68a87066d6f222d119a}{get\+\_\+byte\+\_\+length()} == 1.
 
 \begin{DoxyNote}{Note}
 This is not equal to the character length of the string as utf-\/8 encoded characters can take up multiple bytes.
@@ -378,6 +344,20 @@ This is not equal to the character length of the string as utf-\/8 encoded chara
 \begin{DoxyReturn}{Returns}
 The length of the internal data. 
 \end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a387abdce2189a379961844cd0a42a97a}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+byte\+\_\+width@{get\+\_\+byte\+\_\+width}}
+\index{get\+\_\+byte\+\_\+width@{get\+\_\+byte\+\_\+width}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{get\+\_\+byte\+\_\+width(size\+\_\+t byte\+\_\+index) const }]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+byte\+\_\+width (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{byte\+\_\+index}
+\end{DoxyParamCaption}
+) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a387abdce2189a379961844cd0a42a97a}
+
+
+Gets the width in bytes of the symbol at the given byte. 
+
+\begin{DoxyWarning}{Warning}
+If the given byte index is not the start of a utf8 symbol this operation will return unexpected results. 
+\end{DoxyWarning}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a007889a60f57ec9196dcebb39abeafdf}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+code\+\_\+point@{get\+\_\+code\+\_\+point}}
 \index{get\+\_\+code\+\_\+point@{get\+\_\+code\+\_\+point}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 \subsubsection[{get\+\_\+code\+\_\+point(size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uint32} chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+code\+\_\+point (
@@ -387,7 +367,7 @@ The length of the internal data.
 ) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a007889a60f57ec9196dcebb39abeafdf}
 
 
-Gets the utf-\/8 code point for the symbol at the given index. 
+Gets the unicode code point for the utf8 symbol at the given index. 
 
 
 \begin{DoxyExceptions}{Exceptions}
@@ -400,7 +380,7 @@ Gets the utf-\/8 code point for the symbol at the given index.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A uint32 representing the code point for the symbol. 
+A uint32 containing the code point of the symbol. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_ac0c724e649182e02462b48b94d1f5bf7}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+length@{get\+\_\+length}}
 \index{get\+\_\+length@{get\+\_\+length}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
@@ -415,20 +395,6 @@ The length is defined how many utf-\/8 symbols there are in the string, this len
 
 \begin{DoxyReturn}{Returns}
 The number of utf-\/8 symbols in this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String}. 
-\end{DoxyReturn}
-\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a6424b00b21c9c6600818808c225fe381}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+raw\+\_\+data@{get\+\_\+raw\+\_\+data}}
-\index{get\+\_\+raw\+\_\+data@{get\+\_\+raw\+\_\+data}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
-\subsubsection[{get\+\_\+raw\+\_\+data() const }]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\+::int8}$\ast$ chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+raw\+\_\+data (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a6424b00b21c9c6600818808c225fe381}
-
-
-Get the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String}. 
-
-\begin{DoxyReturn}{Returns}
-a pointer to a constant representation of the internal data. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a04dbe9f15dc1b09c858e2450de26d40a}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+symbol@{get\+\_\+symbol}}
 \index{get\+\_\+symbol@{get\+\_\+symbol}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
@@ -457,6 +423,30 @@ Get the utf-\/8 symbol defined at the given index.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} containing the single utf-\/8 symbol at the given index. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a1248ee0dde0ff8e028d162cefd67f034}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+symbol\+\_\+value@{get\+\_\+symbol\+\_\+value}}
+\index{get\+\_\+symbol\+\_\+value@{get\+\_\+symbol\+\_\+value}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{get\+\_\+symbol\+\_\+value(size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uint32} chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+symbol\+\_\+value (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a1248ee0dde0ff8e028d162cefd67f034}
+
+
+Gets the integer/hex value for the utf8 symbol at the given index. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided index is out of bounds of the string length.\\
+\hline
+\end{DoxyExceptions}
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Position of the symbol to retrieve the value for with respect to the length returned by \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac0c724e649182e02462b48b94d1f5bf7}{get\+\_\+length()} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A uint32 containing the value of the symbol. 
 \end{DoxyReturn}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a4fc296e90fbbc45a1e3f142dcd1e9853}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!is\+\_\+empty@{is\+\_\+empty}}
 \index{is\+\_\+empty@{is\+\_\+empty}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
@@ -614,7 +604,18 @@ Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} w
 
 Stream operator. 
 
-Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given string literal. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a9ef346ef5d7211de67578ce4bcc4a122}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given string literal. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a083f1107b391e5b4854ff40bc09c1406}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{operator$<$$<$(const std\+::string \&other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{const std\+::string \&}]{other}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1str_1_1_u_t_f8_string_a083f1107b391e5b4854ff40bc09c1406}
+
+
+Stream operator. 
+
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given std string. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a9ef346ef5d7211de67578ce4bcc4a122}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 \subsubsection[{operator$<$$<$(bool other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
 \begin{DoxyParamCaption}
@@ -636,7 +637,51 @@ Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} w
 
 Stream operator. 
 
-Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given char. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a1c174fd024e1535a2f485e290540a2a1}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given char. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a89937311871b473ed17bd83622e60530}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{operator$<$$<$(chaos\+::int8 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\+::int8}}]{other}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1str_1_1_u_t_f8_string_a89937311871b473ed17bd83622e60530}
+
+
+Stream operator. 
+
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given int8. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_abfce18f938382812ffeb3c399fdf679e}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{operator$<$$<$(chaos\+::uint8 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\+::uint8}}]{other}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1str_1_1_u_t_f8_string_abfce18f938382812ffeb3c399fdf679e}
+
+
+Stream operator. 
+
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given uint8. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a970df73b6bbb3d31fe5bcf53bc654be6}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{operator$<$$<$(chaos\+::int16 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\+::int16}}]{other}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1str_1_1_u_t_f8_string_a970df73b6bbb3d31fe5bcf53bc654be6}
+
+
+Stream operator. 
+
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given int16. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_aa1ae66a5b283279df734eab632e398cf}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{operator$<$$<$(chaos\+::uint16 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\+::uint16}}]{other}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1str_1_1_u_t_f8_string_aa1ae66a5b283279df734eab632e398cf}
+
+
+Stream operator. 
+
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given uint16. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a1c174fd024e1535a2f485e290540a2a1}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 \subsubsection[{operator$<$$<$(chaos\+::int32 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
 \begin{DoxyParamCaption}
@@ -658,7 +703,18 @@ Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} w
 
 Stream operator. 
 
-Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given unsigned int32. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a0f069c833c4fad2e87f9e4fb1138eca6}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given unsigned int32. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a5fac3cdc0e1aa0bdefce09a0dab085cf}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
+\subsubsection[{operator$<$$<$(chaos\+::int64 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\+::int64}}]{other}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1str_1_1_u_t_f8_string_a5fac3cdc0e1aa0bdefce09a0dab085cf}
+
+
+Stream operator. 
+
+Extends this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} with the given int64. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a0f069c833c4fad2e87f9e4fb1138eca6}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 \subsubsection[{operator$<$$<$(chaos\+::uint64 other)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String}\& chaos\+::str\+::\+U\+T\+F8\+String\+::operator$<$$<$ (
 \begin{DoxyParamCaption}
@@ -771,6 +827,11 @@ std\+::vector containing the results of the split.
 Returns a \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} composed of a substring of this string. 
 
 
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided starting index is out of bounds of the string length.\\
+\hline
+\end{DoxyExceptions}
+
 \begin{DoxyParams}{Parameters}
 {\em start} & Index of the symbol to start the substring from. \\
 \hline
@@ -807,7 +868,7 @@ Returns this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} a
 
 Gets the raw byte data of this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} as c style string (const char$\ast$). 
 
-This function is the same as \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a6424b00b21c9c6600818808c225fe381}{get\+\_\+raw\+\_\+data()} except the data is casted to const char$\ast$.
+This function is the same as get\+\_\+raw\+\_\+data() except the data is casted to const char$\ast$.
 
 \begin{DoxyReturn}{Returns}
 a pointer to the c style string representation of the data. 

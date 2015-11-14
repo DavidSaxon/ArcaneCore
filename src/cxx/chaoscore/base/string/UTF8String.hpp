@@ -17,9 +17,11 @@ namespace str
 {
 
 /*!
- * \brief A generic string type for storing Unicode data. TODO
+ * \brief A string type designed for storing and manipulating UTF-8 encoded
+ *        text.
  *
- * TODO: detailed description
+ * \note This object expects input text to already be UTF-8 encoded. For
+ *       functions to convert encodings see UnicodeUtil.hpp
  *
  * TODO: Is NULL terminated data
  */

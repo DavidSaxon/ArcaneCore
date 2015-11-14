@@ -9,5 +9,7 @@ var searchData=
   ['get_5fmessage',['get_message',['../classchaos_1_1ex_1_1_chaos_exception.html#a944fe85435124a77c0b49149e7eadc12',1,'chaos::ex::ChaosException']]],
   ['get_5fsymbol',['get_symbol',['../classchaos_1_1str_1_1_u_t_f8_string.html#a04dbe9f15dc1b09c858e2450de26d40a',1,'chaos::str::UTF8String']]],
   ['get_5fsymbol_5findex_5ffor_5fbyte_5findex',['get_symbol_index_for_byte_index',['../classchaos_1_1str_1_1_u_t_f8_string.html#aa005c8b0243343ec7308d00fa6e72846',1,'chaos::str::UTF8String']]],
-  ['get_5fsymbol_5fwidth',['get_symbol_width',['../classchaos_1_1str_1_1_u_t_f8_string.html#a0c54a7cfaf4a3c1881b0c933c49a4922',1,'chaos::str::UTF8String']]]
+  ['get_5fsymbol_5fvalue',['get_symbol_value',['../classchaos_1_1str_1_1_u_t_f8_string.html#a1248ee0dde0ff8e028d162cefd67f034',1,'chaos::str::UTF8String']]],
+  ['get_5fsymbol_5fwidth',['get_symbol_width',['../classchaos_1_1str_1_1_u_t_f8_string.html#a0c54a7cfaf4a3c1881b0c933c49a4922',1,'chaos::str::UTF8String']]],
+  ['get_5fsystem_5fendianness',['get_system_endianness',['../namespacechaos_1_1data.html#a853118d28d026784faad6673bbcf526f',1,'chaos::data']]]
 ];
