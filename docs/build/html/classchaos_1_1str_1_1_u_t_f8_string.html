@@ -278,7 +278,16 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A string type designed for storing and manipulating UTF-8 encoded text. </p>
 <dl class="section note"><dt>Note</dt><dd>This object expects input text to already be UTF-8 encoded. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a></dd></dl>
-<p>TODO: Is NULL terminated data </p>
+<p>The <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> data type is used extensively throughout ChaosCore and other Chaos Foundation projects.</p>
+<p>ChaosCore stands by the principle that all string handling should be Unicode aware. The <code>char</code> primitive should only be used for storing and manipulation raw byte data, not for representing entire language characters. Furthermore ChaosCore considers UTF-8 to be the only accepted standard encoding for Unicode. Other encodings should only be used for special cases or interacting with other applications that require a different encoding (such as the Windows API). For more see <a href="http://utf8everywhere.org/">http://utf8everywhere.org/</a></p>
+<p>For practicality the internal byte of UTF8Strings is NULL terminated. This means the raw data can easily be used as native c strings.</p>
+<dl class="section user"><dt>A Brief Introduction to UTF-8</dt><dd>In order to fully make use of the <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> functionality its useful to understand the UTF-8 encoding method.</dd></dl>
+<p>UTF-8 encodes each Unicode symbol in 1-4 bytes. The value of each symbol maps directly to a Unicode code point that represents the symbol. For example:</p>
+<ul>
+<li>"a" is stored within one byte with the hex value 0x61 or binary value <code>0110 0001</code></li>
+<li>"ל" is stored within two bytes with the hex value 0xD79C or binary value <code>1101 0111 1001 1100</code></li>
+<li>"∑" is stored within three bytes with the hex value 0xE28891 or binary value <code>1110 0010 1000 1000 1001 0001</code> </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a173513bf2d62d742bee337b00716bf82"></a>
 <div class="memitem">
@@ -1427,7 +1436,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 14 2015 18:06:52 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 14 2015 20:17:20 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

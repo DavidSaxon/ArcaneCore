@@ -3,7 +3,8 @@
 
 body, table, div, p, dl {
     // font: 400 14px/22px Roboto,sans-serif;
-    font: 13px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    font: 13px Helvetica, Arial, Verdana, sans-serif;
+    font-family:
 }
 
 /* @group Heading Levels */
@@ -15,9 +16,9 @@ h1.groupheader {
 
 .title {
     //font: 400 14px/28px Roboto,sans-serif;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    font-family: 'Source Sans Pro', "Segoe UI Light", sans-serif;
     font-size: 24px;
-    font-weight: normal;
+    font-weight: bold;
     margin: 10px 2px;
 }
 

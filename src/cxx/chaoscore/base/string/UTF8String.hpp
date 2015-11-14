@@ -23,7 +23,33 @@ namespace str
  * \note This object expects input text to already be UTF-8 encoded. For
  *       functions to convert encodings see UnicodeUtil.hpp
  *
- * TODO: Is NULL terminated data
+ * The UTF8String data type is used extensively throughout ChaosCore and other
+ * Chaos Foundation projects.
+ *
+ * ChaosCore stands by the principle that all string handling should be Unicode
+ * aware. The `char` primitive should only be used for storing and manipulation
+ * raw byte data, not for representing entire language characters. Furthermore
+ * ChaosCore considers UTF-8 to be the only accepted standard encoding for
+ * Unicode. Other encodings should only be used for special cases or interacting
+ * with other applications that require a different encoding (such as the
+ * Windows API). For more see http://utf8everywhere.org/
+ *
+ * For practicality the internal byte of UTF8Strings is NULL terminated. This
+ * means the raw data can easily be used as native c strings.
+ *
+ * \par A Brief Introduction to UTF-8
+ * In order to fully make use of the UTF8String functionality its useful to
+ * understand the UTF-8 encoding method.
+ *
+ * UTF-8 encodes each Unicode symbol in 1-4 bytes. The value of each symbol maps
+ * directly to a Unicode code point that represents the symbol. For example:
+ *
+ * - "a" is stored within one byte with the hex value 0x61 or binary value
+ *   `0110 0001`
+ * - "ל" is stored within two bytes with the hex value 0xD79C or binary value
+ *   `1101 0111 1001 1100`
+ * - "∑" is stored within three bytes with the hex value 0xE28891 or binary
+ *   value `1110 0010 1000 1000 1001 0001`
  */
 class UTF8String
 {

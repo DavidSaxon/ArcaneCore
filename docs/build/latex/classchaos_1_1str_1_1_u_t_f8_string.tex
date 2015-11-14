@@ -142,7 +142,23 @@ A string type designed for storing and manipulating U\+T\+F-\/8 encoded text.
 \begin{DoxyNote}{Note}
 This object expects input text to already be U\+T\+F-\/8 encoded. For functions to convert encodings see \hyperlink{_unicode_util_8hpp}{Unicode\+Util.\+hpp}
 \end{DoxyNote}
-T\+O\+D\+O\+: Is N\+U\+L\+L terminated data 
+The \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} data type is used extensively throughout Chaos\+Core and other Chaos Foundation projects.
+
+Chaos\+Core stands by the principle that all string handling should be Unicode aware. The {\ttfamily char} primitive should only be used for storing and manipulation raw byte data, not for representing entire language characters. Furthermore Chaos\+Core considers U\+T\+F-\/8 to be the only accepted standard encoding for Unicode. Other encodings should only be used for special cases or interacting with other applications that require a different encoding (such as the Windows A\+P\+I). For more see \href{http://utf8everywhere.org/}{\tt http\+://utf8everywhere.\+org/}
+
+For practicality the internal byte of U\+T\+F8\+Strings is N\+U\+L\+L terminated. This means the raw data can easily be used as native c strings.
+
+\begin{DoxyParagraph}{A Brief Introduction to U\+T\+F-\/8}
+In order to fully make use of the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} functionality its useful to understand the U\+T\+F-\/8 encoding method.
+\end{DoxyParagraph}
+U\+T\+F-\/8 encodes each Unicode symbol in 1-\/4 bytes. The value of each symbol maps directly to a Unicode code point that represents the symbol. For example\+:
+
+
+\begin{DoxyItemize}
+\item \char`\"{}a\char`\"{} is stored within one byte with the hex value 0x61 or binary value {\ttfamily 0110 0001}
+\item \char`\"{}ל\char`\"{} is stored within two bytes with the hex value 0x\+D79\+C or binary value {\ttfamily 1101 0111 1001 1100}
+\item \char`\"{}∑\char`\"{} is stored within three bytes with the hex value 0x\+E28891 or binary value {\ttfamily 1110 0010 1000 1000 1001 0001} 
+\end{DoxyItemize}
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a173513bf2d62d742bee337b00716bf82}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!U\+T\+F8\+String@{U\+T\+F8\+String}}
