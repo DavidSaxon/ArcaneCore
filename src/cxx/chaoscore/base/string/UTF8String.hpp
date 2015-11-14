@@ -29,27 +29,100 @@ namespace str
  * ChaosCore stands by the principle that all string handling should be Unicode
  * aware. The `char` primitive should only be used for storing and manipulation
  * raw byte data, not for representing entire language characters. Furthermore
- * ChaosCore considers UTF-8 to be the only accepted standard encoding for
- * Unicode. Other encodings should only be used for special cases or interacting
- * with other applications that require a different encoding (such as the
- * Windows API). For more see http://utf8everywhere.org/
+ * ChaosCore considers UTF-8 to be the only default encoding type for Unicode
+ * text. Other encodings should only be used for special cases or interacting
+ * with applications that require a different encoding (such as the Windows
+ * API). For more info see http://utf8everywhere.org/
  *
- * For practicality the internal byte of UTF8Strings is NULL terminated. This
- * means the raw data can easily be used as native c strings.
+ * For practicality the internal byte of an UTF8String is NULL terminated. This
+ * means the raw data can easily be used as native C style strings.
  *
  * \par A Brief Introduction to UTF-8
- * In order to fully make use of the UTF8String functionality its useful to
- * understand the UTF-8 encoding method.
+ *
+ * In order to fully make use of the UTF8String type's functionality its useful
+ * to understand the UTF-8 encoding method.
  *
  * UTF-8 encodes each Unicode symbol in 1-4 bytes. The value of each symbol maps
  * directly to a Unicode code point that represents the symbol. For example:
  *
- * - "a" is stored within one byte with the hex value 0x61 or binary value
- *   `0110 0001`
- * - "ל" is stored within two bytes with the hex value 0xD79C or binary value
- *   `1101 0111 1001 1100`
- * - "∑" is stored within three bytes with the hex value 0xE28891 or binary
- *   value `1110 0010 1000 1000 1001 0001`
+ * - "a" is stored using one byte with the hex value 0x61 or binary value
+ *   `01100001`
+ * - "ל" is stored using two bytes with the hex value 0xD79C or binary value
+ *   `11010111 10011100`
+ * - "∑" is stored using three bytes with the hex value 0xE28891 or binary
+ *   value `11100010 10001000 10010001`
+ * - "𝄞" is stored  using four bytes with the hex value 0xF09D849E or binary
+ *   value `11110000 10011101 10000100 10011110`
+ *
+ * The byte size of a UTF-8 symbol can be recognised by the bit pattern that
+ * makes up the start of each byte:
+ *
+ * - One byte symbol: `0xxxxxxx`
+ * - Two byte symbol: `110xxxxx 10xxxxxx`
+ * - Three byte symbol: `1110xxxx 10xxxxxx 10xxxxxx`
+ * - Four byte symbol: `11110xxx 10xxxxxx 10xxxxxx 10xxxxxx`
+ *
+ * \par UTF8String Usage
+ *
+ * Here follows an example of using the UTF8String type:
+ *
+ * We have a C style string that cannot be encoded correctly with ASCII
+ * (In this case we are assuming the input string is encoded in UTF-8):
+ *
+ * \code
+ * const char* cstring = "aל∑";
+ * \endcode
+ *
+ * If we inspect the length of the string we get unexpected results:
+ *
+ * \code
+ * strlen( cstring );
+ * // output: 6
+ * \endcode
+ *
+ * This is because while the string only contains 3 symbols it contains 6 bytes
+ * which is what `strlen` is counting. Next we construct a UTF8String using the
+ * c string data, and inspect it's length:
+ *
+ * \code
+ * chaos::str::UTF8String utf8( cstring );
+ * utf8.get_length();
+ * // output: 3
+ * utf8.get_byte_length()
+ * // output: 6
+ * \endcode
+ *
+ * [TODO: iterator]
+ * We can now inspect each symbol in the string:
+ *
+ * \code
+ * for ( size_t i = 0; i < utf8.get_length(); ++i )
+ * {
+ *     chaos::str::UTF8String symbol( utf8.get_symbol( i ) );
+ * }
+ * \endcode
+ *
+ * Note that the symbol is returned as an UTF8String itself, this is due to the
+ * fact that symbol has a variable byte-width so cannot be stored in a `char`,
+ * nor is there any need to differentiate data types between a string of symbols
+ * and an individual symbol.
+ *
+ * We can also inspect the byte-widths of each symbol in our string:
+ *
+ * \code
+ * for ( size_t i = 0; i < utf8.get_length(); ++i )
+ * {
+ *     utf8.get_symbol_width( i );
+ * }
+ * // output: 1
+ * // output: 2
+ * // output: 3
+ * \endcode
+ *
+ * The UTF8String class provides many convenience functions for manipulating
+ * string data, such as `split`, `trim`, `starts_with`, `find_first`,
+ * `to_cstring`, `to_stdstring`, etc.
+ * \endcode
  */
 class UTF8String
 {
