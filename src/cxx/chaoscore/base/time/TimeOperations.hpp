@@ -1,10 +1,10 @@
 /*!
  * \file
- * \brief Utility function relating to time.
+ * \brief Utility functions relating to time.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_TIME_TIMEUTIL_HPP_
-#define CHAOSCORE_BASE_TIME_TIMEUTIL_HPP_
+#ifndef CHAOSCORE_BASE_TIME_TIMEOPERATIONS_HPP_
+#define CHAOSCORE_BASE_TIME_TIMEOPERATIONS_HPP_
 
 #include "chaoscore/base/Types.hpp"
 

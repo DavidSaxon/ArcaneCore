@@ -3,8 +3,8 @@
  * \brief Operations relating to string formatting.
  * author David Saxon
  */
-#ifndef CHAOSCORE_IO_FORMAT_UTIL_HPP_
-#define CHAOSCORE_IO_FORMAT_UTIL_HPP_
+#ifndef CHAOSCORE_IO_FORMATOPERATIONS_HPP_
+#define CHAOSCORE_IO_FORMATOPERATIONS_HPP_
 
 #include "chaoscore/base/string/UTF8String.hpp"
 

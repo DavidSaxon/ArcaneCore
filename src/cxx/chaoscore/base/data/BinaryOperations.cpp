@@ -1,4 +1,4 @@
-#include "chaoscore/base/data/BinaryUtil.hpp"
+#include "chaoscore/base/data/BinaryOperations.hpp"
 
 #include "chaoscore/base/Types.hpp"
 

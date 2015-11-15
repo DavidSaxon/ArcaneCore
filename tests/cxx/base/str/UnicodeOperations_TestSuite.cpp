@@ -1,8 +1,8 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-#include "chaoscore/base/string/UnicodeUtil.hpp"
+#include "chaoscore/base/string/UnicodeOperations.hpp"
 
-CHAOS_TEST_MODULE( base.str.unicodeutil )
+CHAOS_TEST_MODULE( base.str.unicode_operations )
 
 //------------------------------------------------------------------------------
 //                                 UTF8_IS_DIGIT

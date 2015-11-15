@@ -4,13 +4,13 @@
  * \author David Saxon
  */
 
-#ifndef CHAOSCORE_BASE_DATA_BYTEUTIL_HPP_
-#define CHAOSCORE_BASE_DATA_BYTEUTIL_HPP_
+#ifndef CHAOSCORE_BASE_DATA_BYTEOPERATIONS_HPP_
+#define CHAOSCORE_BASE_DATA_BYTEOPERATIONS_HPP_
 
 #include <stdlib.h>
 
 #include "chaoscore/base/Types.hpp"
-#include "chaoscore/base/data/BinaryUtil.hpp"
+#include "chaoscore/base/data/BinaryOperations.hpp"
 
 namespace chaos
 {

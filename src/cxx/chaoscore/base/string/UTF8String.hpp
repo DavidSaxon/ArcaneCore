@@ -21,7 +21,7 @@ namespace str
  *        text.
  *
  * \note This object expects input text to already be UTF-8 encoded. For
- *       functions to convert encodings see UnicodeUtil.hpp
+ *       functions to convert encodings see UnicodeOperations.hpp
  *
  * The UTF8String data type is used extensively throughout ChaosCore and other
  * Chaos Foundation projects.
@@ -157,7 +157,7 @@ public:
      * Creates a new UTF8String that contains the provided data.
      *
      * \note The input data is expected to be UTF-8 encoded and NULL terminated.
-     *       For functions to convert encodings see UnicodeUtil.hpp
+     *       For functions to convert encodings see UnicodeOperations.hpp
      */
     UTF8String( const char* data );
 
@@ -168,7 +168,7 @@ public:
      *
      * \note The input data is expected to be UTF-8 encoded but does not need to
      *       be NULL terminated. For functions to convert encodings see
-     *       UnicodeUtil.hpp
+     *       UnicodeOperations.hpp
      *
      * \param data Character data to be used for this UTF8String.
      * \param length The number of bytes to read from the character data.
@@ -301,7 +301,7 @@ public:
      * Extends this UTF8String with the given C style string.
      *
      * \note The input data is expected to be UTF-8 encoded and NULL terminated.
-     *       For functions to convert encodings see UnicodeUtil.hpp
+     *       For functions to convert encodings see UnicodeOperations.hpp
      */
     UTF8String& operator<<( const char* other );
 
@@ -311,7 +311,7 @@ public:
      * Extends this UTF8String with the given std string.
      *
      * \note The input data is expected to be UTF-8 encoded. For functions to
-     *       convert encodings see UnicodeUtil.hpp
+     *       convert encodings see UnicodeOperations.hpp
      */
     UTF8String& operator<<( const std::string& other );
 
@@ -409,7 +409,7 @@ public:
      * This operation will delete any current internal data of this UTF8String.
      *
      * \note The input data is expected to be UTF-8 encoded and NULL terminated.
-     *       For functions to convert encodings see UnicodeUtil.hpp
+     *       For functions to convert encodings see UnicodeOperations.hpp
      */
     void assign( const char* data );
 
@@ -422,7 +422,7 @@ public:
      *
      * \note The input data is expected to be UTF-8 encoded but does not need to
      *       be NULL terminated. For functions to convert encodings see
-     *       UnicodeUtil.hpp
+     *       UnicodeOperations.hpp
      *
      * \param data Character data to be used for this UTF8String.
      * \param length The number of bytes to read from the character data.

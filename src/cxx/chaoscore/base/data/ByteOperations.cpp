@@ -1,7 +1,4 @@
-#include "chaoscore/base/data/ByteUtil.hpp"
-
-// TODO: REMOVE ME
-#include <iostream>
+#include "chaoscore/base/data/ByteOperations.hpp"
 
 namespace chaos
 {

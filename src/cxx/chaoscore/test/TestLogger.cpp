@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "chaoscore/io/file/FileUtil.hpp"
+#include "chaoscore/io/file/FileOperations.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/log_formatter/HTMLTestLogFormatter.hpp"
 #include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"

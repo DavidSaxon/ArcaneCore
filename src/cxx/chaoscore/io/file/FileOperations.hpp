@@ -3,8 +3,8 @@
  * \brief Utility functions relating to the file system.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_IO_FILE_FILEUTIL_HPP_
-#define CHAOSCORE_IO_FILE_FILEUTIL_HPP_
+#ifndef CHAOSCORE_IO_FILE_FILEOPERATIONS_HPP_
+#define CHAOSCORE_IO_FILE_FILEOPERATIONS_HPP_
 
 #include "chaoscore/base/string/UTF8String.hpp"
 

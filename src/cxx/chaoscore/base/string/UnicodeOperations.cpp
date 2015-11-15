@@ -1,4 +1,4 @@
-#include "chaoscore/base/string/UnicodeUtil.hpp"
+#include "chaoscore/base/string/UnicodeOperations.hpp"
 
 namespace chaos
 {

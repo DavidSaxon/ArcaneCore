@@ -3,7 +3,7 @@
 #include <ostream>
 
 #include "chaoscore/io/format/ANSI.hpp"
-#include "chaoscore/io/format/FormatUtil.hpp"
+#include "chaoscore/io/format/FormatOperations.hpp"
 
 namespace chaos
 {

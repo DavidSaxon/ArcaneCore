@@ -1,4 +1,4 @@
-#include "chaoscore/base/time/TimeUtil.hpp"
+#include "chaoscore/base/time/TimeOperations.hpp"
 
 #include <boost/date_time/date.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>

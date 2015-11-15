@@ -1,8 +1,8 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE( base.data.byteutil )
+CHAOS_TEST_MODULE( base.data.byte_operations )
 
-#include "chaoscore/base/data/ByteUtil.hpp"
+#include "chaoscore/base/data/ByteOperations.hpp"
 
 //------------------------------------------------------------------------------
 //                                BYTES TO UINT32

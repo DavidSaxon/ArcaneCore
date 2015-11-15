@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "chaoscore/io/file/FileExceptions.hpp"
-#include "chaoscore/io/file/FileUtil.hpp"
+#include "chaoscore/io/file/FileOperations.hpp"
 #include "chaoscore/test/ChaosTest.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 

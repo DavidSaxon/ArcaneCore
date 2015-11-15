@@ -1,6 +1,6 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-#include "chaoscore/base/time/TimeUtil.hpp"
+#include "chaoscore/base/time/TimeOperations.hpp"
 
 namespace chaos
 {

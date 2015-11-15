@@ -1,10 +1,10 @@
 /*!
  * \file
- * \brief Operations relating to utf-8 encoded string data.
+ * \brief Operations relating to Unicode string data.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_STRING_UNICODEUTIL_HPP_
-#define CHAOSCORE_BASE_STRING_UNICODEUTIL_HPP_
+#ifndef CHAOSCORE_BASE_STRING_UNICODEOPERATIONS_HPP_
+#define CHAOSCORE_BASE_STRING_UNICODEOPERATIONS_HPP_
 
 #include "chaoscore/base/Types.hpp"
 

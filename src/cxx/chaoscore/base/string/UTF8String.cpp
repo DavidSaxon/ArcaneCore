@@ -8,8 +8,8 @@
 #include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/data/ByteUtil.hpp"
-#include "chaoscore/base/string/UnicodeUtil.hpp"
+#include "chaoscore/base/data/ByteOperations.hpp"
+#include "chaoscore/base/string/UnicodeOperations.hpp"
 
 namespace chaos
 {

@@ -3,8 +3,8 @@
  * \brief functions for manipulating and reading binary data.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_DATA_BINARYUTIL_HPP_
-#define CHAOSCORE_BASE_DATA_BINARYUTIL_HPP_
+#ifndef CHAOSCORE_BASE_DATA_BINARYOPERATIONS_HPP_
+#define CHAOSCORE_BASE_DATA_BINARYOPERATIONS_HPP_
 
 namespace chaos
 {
