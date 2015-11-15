@@ -23,9 +23,13 @@ namespace file
 
 bool exists( const chaos::str::UTF8String& path )
 {
-    return boost::filesystem::exists(
-            boost::filesystem::path( path.to_cstring() )
-    );
+    // TODO: should really have a system for representing paths...
+    // can contain most of these operations
+
+    boost::filesystem::path p( path.to_cstring() );
+
+    return boost::filesystem::exists( p ) ||
+           boost::filesystem::symbolic_link_exists( p );
 }
 
 bool is_file( const chaos::str::UTF8String& path )

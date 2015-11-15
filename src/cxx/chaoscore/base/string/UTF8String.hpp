@@ -919,7 +919,6 @@ private:
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-// TODO: doc
 std::ostream& operator<<( std::ostream& stream, const UTF8String& str );
 
 } // namespace str

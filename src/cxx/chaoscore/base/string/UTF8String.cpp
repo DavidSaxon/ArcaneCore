@@ -159,7 +159,7 @@ UTF8String& UTF8String::operator<<( const std::string& other )
 
 UTF8String& UTF8String::operator<<( bool other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -167,7 +167,7 @@ UTF8String& UTF8String::operator<<( bool other )
 
 UTF8String& UTF8String::operator<<( char other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -177,7 +177,7 @@ UTF8String& UTF8String::operator<<( char other )
 
 UTF8String& UTF8String::operator<<( unsigned long other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -187,7 +187,7 @@ UTF8String& UTF8String::operator<<( unsigned long other )
 
 UTF8String& UTF8String::operator<<( chaos::int8 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -195,7 +195,7 @@ UTF8String& UTF8String::operator<<( chaos::int8 other )
 
 UTF8String& UTF8String::operator<<( chaos::uint8 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -203,7 +203,7 @@ UTF8String& UTF8String::operator<<( chaos::uint8 other )
 
 UTF8String& UTF8String::operator<<( chaos::int16 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -211,7 +211,7 @@ UTF8String& UTF8String::operator<<( chaos::int16 other )
 
 UTF8String& UTF8String::operator<<( chaos::uint16 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -219,7 +219,7 @@ UTF8String& UTF8String::operator<<( chaos::uint16 other )
 
 UTF8String& UTF8String::operator<<( chaos::int32 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -227,7 +227,7 @@ UTF8String& UTF8String::operator<<( chaos::int32 other )
 
 UTF8String& UTF8String::operator<<( chaos::uint32 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -235,7 +235,7 @@ UTF8String& UTF8String::operator<<( chaos::uint32 other )
 
 UTF8String& UTF8String::operator<<( chaos::int64 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -243,7 +243,7 @@ UTF8String& UTF8String::operator<<( chaos::int64 other )
 
 UTF8String& UTF8String::operator<<( chaos::uint64 other )
 {
-    // TODO: doesn't seem very efficient :(
+    // TODO: implement correctly
     std::stringstream ss;
     ss << other;
     return this->concatenate( UTF8String( ss.str().c_str() ) );
@@ -521,7 +521,6 @@ std::string UTF8String::to_std_string() const
 
 bool UTF8String::to_bool() const
 {
-    // TODO: bool check?
     // is the conversion valid?
     if ( !is_int() )
     {
