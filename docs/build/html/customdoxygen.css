@@ -1088,6 +1088,7 @@ dl.warning, dl.attention
     //border-left:4px solid;
     border-left: 6px solid;
     border-color: #FF0000;
+    background-color: #FFAAAA
 }
 
 dl.pre, dl.post, dl.invariant

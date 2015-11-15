@@ -146,31 +146,40 @@ public:
     /*!
      * \brief Default constructor.
      *
-     * TODO: DOC
+     * Creates a new UTF8String that contains no symbols and holds only the NULL
+     * terminator.
      */
     UTF8String();
 
     /*!
-     * \brief String literal constructor.
+     * \brief C style string constructor.
      *
-     * TODO: DOC
+     * Creates a new UTF8String that contains the provided data.
+     *
+     * \note The input data is expected to be UTF-8 encoded and NULL terminated.
+     *       For functions to convert encodings see UnicodeUtil.hpp
      */
     UTF8String( const char* data );
 
     /*!
-     * \brief TODO: DOC
+     * \brief C style string and length constructor.
      *
-     * TODO: DOC
+     * Creates a new UTF8String using the given number of bytes from the data.
+     *
+     * \note The input data is expected to be UTF-8 encoded but does not need to
+     *       be NULL terminated. For functions to convert encodings see
+     *       UnicodeUtil.hpp
+     *
+     * \param data Character data to be used for this UTF8String.
+     * \param length The number of bytes to read from the character data.
      */
     UTF8String( const char* data, size_t length );
 
     /*!
      * \brief Copy constructor.
      *
-     * Creates a new UTF8String from a copy of the values from the given
+     * Creates a new UTF8String from a copy of the data from the given other
      * UTF8String.
-     *
-     * \param other UTF8String to copy from.
      */
     UTF8String( const UTF8String& other );
 
@@ -228,8 +237,6 @@ public:
      * Less than is defined by performing a value comparison between each
      * Unicode code point in the string.
      *
-     * \warning correct implementation in progress
-     *
      * \param other UTF8String to compare against.
      * \return Whether this UTF8String is less than the other.
      */
@@ -252,7 +259,7 @@ public:
      *
      * Performs the same function as concatenate().
      *
-     * \other UTF8String to append to the end of this string.
+     * \param other UTF8String to append to the end of this string.
      * \return A reference to this UTF8String after the concatenation has taken
      *         place.
      */
@@ -291,7 +298,10 @@ public:
     /*!
      * \brief Stream operator.
      *
-     * Extends this UTF8String with the given string literal.
+     * Extends this UTF8String with the given C style string.
+     *
+     * \note The input data is expected to be UTF-8 encoded and NULL terminated.
+     *       For functions to convert encodings see UnicodeUtil.hpp
      */
     UTF8String& operator<<( const char* other );
 
@@ -299,13 +309,17 @@ public:
      * \brief Stream operator.
      *
      * Extends this UTF8String with the given std string.
+     *
+     * \note The input data is expected to be UTF-8 encoded. For functions to
+     *       convert encodings see UnicodeUtil.hpp
      */
     UTF8String& operator<<( const std::string& other );
 
     /*!
      * \brief Stream operator.
      *
-     * Extends this UTF8String with the given boolean.
+     * Extends this UTF8String with the given boolean (where false = 0 and true
+     * = 1).
      */
     UTF8String& operator<<( bool other );
 
@@ -389,43 +403,53 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Assigns the internal data of this UTF8String to the given string
-     *        literal.
+     * \brief Assigns the internal data of this UTF8String from the given C
+     *        style string.
      *
-     * This operation will delete any current internal data of this object. The
-     * input data is expected to be utf-8 encoded and NULL terminated.
+     * This operation will delete any current internal data of this UTF8String.
      *
-     * \param data Data buffer to copy from.
+     * \note The input data is expected to be UTF-8 encoded and NULL terminated.
+     *       For functions to convert encodings see UnicodeUtil.hpp
      */
     void assign( const char* data );
 
     /*!
-     * \brief Assigns the internal data of this UTF8String to the given string
-     *        literal.
+     * \brief Assigns the internal data of this UTF8String from the given C
+     *        style string and byte length.
      *
-     * This operation will delete any current internal data of this object. The
-     * input data is expected to be utf-8 encoded. This function should be used
-     * when the input data is not NULL terminated, or can be used for
-     * optimisation purposes if the length of data is already known. This will
-     * mean the length of the data will not need to be evaluated internally.
+     * Creates a new UTF8String using the given number of bytes from the data.
+     * This operation will delete any current internal data of this UTF8String.
      *
-     * \param data Data buffer to copy from.
-     * \param length Number of bytes in the provided data buffer.
+     * \note The input data is expected to be UTF-8 encoded but does not need to
+     *       be NULL terminated. For functions to convert encodings see
+     *       UnicodeUtil.hpp
+     *
+     * \param data Character data to be used for this UTF8String.
+     * \param length The number of bytes to read from the character data.
      */
     void assign( const char* data, size_t length );
 
     /*!
-     * \brief Assigns internal data from another UTF8String.
+     * \brief Assigns internal data from a copy of another UTF8String.
      *
-     * Assigns the internal of data this UTF8String as a copy from the internal
-     * data of the provided UTF8String.
-     *
-     * \param other UTF8String to copy internal data from.
+     * This operation will delete any current internal data of this UTF8String.
      */
     void assign( const UTF8String& other );
 
     /*!
      * \brief Concatenates another UTF8String on to the end of this string.
+     *
+     * \note This operation modifies this UTF8String.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "Hello" );
+     * chaos::str::UTF8String s_2( "World" );
+     * s_1.concatenate( s_2 );
+     * std::cout << s_1 << std::endl;
+     * // output: Hello World
+     * \endcode
      *
      * \other UTF8String to append to the end of this string.
      * \return A reference to this UTF8String after the concatenation has taken
@@ -434,26 +458,56 @@ public:
     UTF8String& concatenate( const UTF8String& other );
 
     /*!
-     * \brief Extends this string with a repeat of itself the given number of
+     * \brief Extends this string with a copy of itself the given number of
      *  times.
      *
-     * This operation modifies this UTF8String.
+     * \note This operation modifies this UTF8String.
      *
-     * \throws chaos::ex::ValueError If the given number of times to repeat is
-     *                               negative.
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "Hello" );
+     * s.repeat( 3 );
+     * std::cout << s << std::endl;
+     * // output: HelloHelloHello
+     * \endcode
+     *
      * \param count The number of times to repeat this string.
      * \return A reference to this UTF8String after repeat has taken place.
      */
     UTF8String& repeat( chaos::uint32 count );
 
     /*!
-     * \brief Checks whether this UTF8String starts with the given string.
+     * \brief Checks whether this UTF8String starts with the given substring.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "Hello World" );
+     * chaos::str::UTF8String s_2( "Hello" );
+     * chaos::str::UTF8String s_3( "World" );
+     * s_1.starts_with( s_2 ); // returns: true
+     * s_1.starts_with( s_3 ); // returns: false
+     * \endcode
+     *
+     * \return True if this string starts with the provided string, false
+     *         otherwise
      */
     bool starts_with( const UTF8String& substring ) const;
 
     /*!
      * \brief Finds the first occurrence of the given substring and returns the
-     *        index of it.
+     *        symbol index of it within this UTF8String.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "Hello World" );
+     * chaos::str::UTF8String s_2( "World" );
+     * chaos::str::UTF8String s_3( "*" );
+     * s_1.find_first( s_2 ); // returns: 6
+     * s_1.find_first( s_3 ); // returns: chaos::str::UTF8String::npos
+     * \endcode
      *
      * \param substring UTF8String to find the first occurrence of in this
      *                  string.
@@ -465,7 +519,17 @@ public:
 
     /*!
      * \brief Finds the last occurrence of the given substring and returns the
-     *        index of it.
+     *        index of it within this UTF8String.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "Hello World World" );
+     * chaos::str::UTF8String s_2( "World" );
+     * chaos::str::UTF8String s_3( "*" );
+     * s_1.find_first( s_2 ); // returns: 12
+     * s_1.find_first( s_3 ); // returns: chaos::str::UTF8String::npos
+     * \endcode
      *
      * \param substring UTF8String to find the last occurrence of in this
      *                  string.
@@ -475,33 +539,81 @@ public:
      */
     size_t find_last( const UTF8String& substring ) const;
 
+    // throw an exception
     /*!
-     * \brief Splits this UTF8String by the given delimiter and places devisions
-     *        into a vector.
+     * \brief Splits this UTF8String by the given delimiter and returns the
+     *        split elements in a std::vector.
      *
-     * \param delimiter String to use as delimiter to split each sub-string on.
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "Hello_World" );
+     * chaos::str::UTF8String delim( "_" );
+     * std::vector< chaos::str::UTF8String > elements = s.split( delim );
+     * // vector contents: [ "Hello", "World" ]
+     * \endcode
+     *
+     * \throws chaos::ex::ValueError If the provided delimiter is an empty
+     *                               string.
+     * \param delimiter String to use as a delimiter to split the string into
+     *                  elements.
      * \return std::vector containing the results of the split.
      */
     const std::vector< UTF8String > split( const UTF8String& delimiter ) const;
 
     /*!
-     * \brief Returns if this UTF8String represents a signed integer.
+     * \brief Whether the symbols of this string make up a valid integer type.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "-34" );
+     * chaos::str::UTF8String s_2( "Hello" );
+     * s_1.is_int(); // returns: true
+     * s_2.is_int(); //returns: false
+     * \endcode
      */
     bool is_int() const;
 
     /*!
-     * \brief Returns if this UTF8String represents an unsigned integer.
+     * \brief Whether the symbols of this string make up a valid unsigned
+     *        integer type.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "16" );
+     * chaos::str::UTF8String s_2( "-34" );
+     * s_1.is_uint(); // returns: true
+     * s_2.is_uint(); //returns: false
+     * \endcode
      */
     bool is_uint() const;
 
     /*!
-     * \brief Returns whether this UTF8String represents a floating point
-     *        number.
+     * \brief Whether the symbols of this string make up a valid floating point
+     *        type.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s_1( "53.89" );
+     * chaos::str::UTF8String s_2( "Hello" );
+     * s_1.is_float(); // returns: true
+     * s_2.is_float(); //returns: false
+     * \endcode
      */
     bool is_float() const;
 
     /*!
-     * \brief Returns a UTF8String composed of a substring of this string.
+     * \brief Returns a new UTF8String composed of a substring of this string.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::string::UTF8String s( "Hello World" );
+     * s.substring( 0, 5 ); // returns: "Hello"
+     * \endcode
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided starting index
      *                                          is out of bounds of the string
@@ -510,66 +622,65 @@ public:
      * \param start Index of the symbol to start the substring from.
      * \param length the length of the substring. If greater than the possible
      *               symbols to allocate it will be clamped to the maximum
-     *               length of the substring.
-     * \return new UTF8String containing the substring.
+     *               length of the string with relation to the starting index.
+     * \return New UTF8String containing the substring.
      */
     UTF8String substring( size_t start, size_t length ) const;
 
     /*!
-     * \brief Gets the raw byte data of this UTF8String as c style string
-              (const char*).
+     * \brief Gets the raw byte data of this UTF8String as C style string
+              (`const char*`).
      *
-     * This function is the same as get_raw_data() except the data is casted to
-     * const char*.
-     *
-     * \return a pointer to the c style string representation of the data.
+     * \warning The returned data should not be deleted as it is a direct
+     *          pointer to the internal data of this object.
      */
     const char* to_cstring() const;
 
     /*!
      * \brief Returns this as a standard library string.
      *
-     * \return the std::string representation of this UTF8String.
+     * \note The contents of the std::string is a copy of the data within this
+     *       object.
      */
     std::string to_std_string() const;
 
     /*!
-     * \brief Returns this UTF8String as an bool if the conversion is valid.
+     * \brief Returns this UTF8String as an bool type.
      *
-     * \throws chaos::ex::ConversionDataError If the data of the string is not a
+     * \throws chaos::ex::ConversionDataError If the data of this string is not
      *                                        a valid bool.
      */
     bool to_bool() const;
 
     /*!
-     * \brief Returns this UTF8String as an int32 if the conversion is valid.
+     * \brief Returns this UTF8String as an int32 type.
      *
      * \throws chaos::ex::ConversionDataError If the data of the string is not a
-     *                                        a valid int32.
+     *                                        valid int32.
      */
     chaos::int32 to_int32() const;
 
     /*!
-     * \brief Returns this UTF8String as an uint32 if the conversion is valid.
+     * \brief Returns this UTF8String as an uint32 type.
      *
      * \throws chaos::ex::ConversionDataError If the data of the string is not a
-     *                                        a valid uint32.
+     *                                        valid uint32.
      */
     chaos::uint32 to_uint32() const;
 
     /*!
-     * \brief Returns this UTF8String as an int64 if the conversion is valid.
+     * \brief Returns this UTF8String as an int64 type.
      *
      * \throws chaos::ex::ConversionDataError If the data of the string is not a
-     *                                        a valid int64.
+     *                                        valid int64.
      */
     chaos::int64 to_int64() const;
 
     /*!
-     * \brief Returns this UTF8String as an uint64 if the conversion is valid.
+     * \brief Returns this UTF8String as an uint64 type.
      *
      * \throws chaos::ex::ConversionDataError If the data of the string is not a
-     *                                        a valid uint64.
+     *                                        valid uint64.
      */
     chaos::int64 to_uint64() const;
 
@@ -577,98 +688,181 @@ public:
     //--------------------------------ACCESSORS---------------------------------
 
     /*!
-     * /brief Return the length of this UTF8String
+     * \brief Returns the number of symbols in this UTF8String.
      *
-     * The length is defined how many utf-8 symbols there are in the string,
-     * this length doesn't not necessarily equal the byte length of the string.
-     *
-     * \return The number of utf-8 symbols in this UTF8String.
+     * The length is defined as how many UTF-8 symbols there are in the string,
+     * this doesn't not necessarily equal the number of bytes in the string.
      */
     size_t get_length() const;
 
     /*!
      * \return Whether the this UTF8String contains any characters or not.
+     *
+     * Is the same as checking whether get_length() returns `0` or not.
      */
     bool is_empty() const;
 
     /*!
-     * \brief Get the utf-8 symbol defined at the given index.
+     * \brief Returns the UTF-8 symbol at the given index in this string.
      *
-     * \todo implement correctly
+     * The symbol is returned contained within a new UTF8String.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "Hello World" );
+     * chaos::str::UTF8String symbol( s.get_symbol( 6 ) );
+     * std::cout << symbol << std::endl;
+     * // output: W
+     * \endcode
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
                                                 bounds of the string length.
      *
-     * \param index Position of the symbol to retrieve in the string with
-     *              respect to the length returned by get_length()
-     * \return A UTF8String containing the single utf-8 symbol at the given
+     * \param index Position of the symbol to retrieve in this string with
+     *              respect to the symbol length. See get_length()
+     * \return A new UTF8String containing the single UTF-8 symbol at the given
      *         index.
      */
     UTF8String get_symbol( size_t index ) const;
 
     /*!
-     * \brief Gets the integer/hex value for the utf8 symbol at the given index.
+     * \brief Returns the integer/hex value for the UTF-8 symbol at the given
+     *        index in this string.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "Hello World" );
+     * s.get_symbol_value( 6 ); // returns: 87 (0x57)
+     * \endcode
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the string length.
      *
-     * \param index Position of the symbol to retrieve the value for with
-     *              respect to the length returned by get_length()
+     * \param index Position of the symbol to retrieve the value for in this
+     *              string with respect to the symbol length. See get_length()
      * \return A uint32 containing the value of the symbol.
      */
     chaos::uint32 get_symbol_value( size_t index ) const;
 
     /*!
-     * \brief Gets the unicode code point for the utf8 symbol at the given
-     *        index.
+     * \brief Returns the Unicode code point for the UTF-8 symbol at the given
+     *        index in this string.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "Hello World©" );
+     * s.get_symbol_value( 11 ); // returns: 169 (0xA9)
+     * \endcode
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the string length.
      *
-     * \param index Position of the symbol to retrieve the code point for with
-     *              respect to the length returned by get_length()
+     * \param index Position of the symbol to retrieve the code point for in
+     *              this string with respect to the symbol length. See
+     *              get_length()
      * \return A uint32 containing the code point of the symbol.
      */
     chaos::uint32 get_code_point( size_t index ) const;
 
     /*!
      * \brief Gets the index of the first byte for the symbol at the given
-     *        index.
+     *        index in this string.
+     *
+     * The symbol index is defined as the index of a symbol in the string with
+     * respect to the number of symbols in the string. See get_length(). While
+     * the byte index is defined as the index of a byte in the string with
+     * respect to the number of bytes in the string. See get_byte_length().
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "£5" );
+     * s.get_byte_index_for_symbol_index( 0 );
+     * // returns: 0
+     * s.get_byte_index_for_symbol_index( 1 );
+     * // returns: 2 (as £ is two bytes wide)
+     * \endcode
+     *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
-                                                bounds of the string length.
+     *                                          bounds of the string length.
      */
     size_t get_byte_index_for_symbol_index( size_t symbol_index ) const;
 
     /*!
-     * \brief Gets the size in bytes of the symbol at the given index.
+     * \brief Gets the number of bytes in the symbol at the given index in this
+     *        string.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "£5" );
+     * s.get_symbol_width( 0 ); // returns: 2
+     * s.get_symbol_width( 1 ); // returns: 1
+     * \endcode
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     *                                          bounds of the string length.
      */
     size_t get_symbol_width( size_t index ) const;
 
     /*!
-     * \brief Gets the length of the internal buffer data in bytes.
+     * \brief Returns the length of the internal data in bytes.
      *
      * This is exactly the number of bytes in the internal raw data of this
-     * UTF8String which can be accessed through get_raw_data(). Note that this
+     * UTF8String which can be accessed through to_cstring(). Note that this
      * data is NULL ('\0') terminated and this length includes the NULL
      * terminator. Therefore if UTF8String == "" then get_byte_length() == 1.
      *
-     * \note This is not equal to the character length of the string as utf-8
-     *       encoded characters can take up multiple bytes.
-     *
-     * \return The length of the internal data.
+     * \note This is not equal to the symbol length of the string as UTF-8
+     *       encoded characters can consist of multiple bytes.
      */
     size_t get_byte_length() const;
 
     /*!
-     * \brief Gets the symbol index for the given byte index.
+     * \brief Returns the index of the symbol that the byte at the given index
+     *        is part of.
+     *
+     * The symbol index is defined as the index of a symbol in the string with
+     * respect to the number of symbols in the string. See get_length(). While
+     * the byte index is defined as the index of a byte in the string with
+     * respect to the number of bytes in the string. See get_byte_length().
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "£5" );
+     * s.get_symbol_index_for_byte_index( 0 ); // returns 0
+     * s.get_symbol_index_for_byte_index( 1 ); // returns 0
+     * s.get_symbol_index_for_byte_index( 2 ); // returns 1
+     * \endcode
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     *                                          bounds of the string byte
+     *                                          length.
      */
     size_t get_symbol_index_for_byte_index( size_t byte_index ) const;
 
     /*!
-     * \brief Gets the width in bytes of the symbol at the given byte.
+     * \brief Returns the number of bytes in the symbol at the given byte index.
      *
-     * \warning If the given byte index is not the start of a utf8 symbol this
+     * Example usage:
+     *
+     * \code
+     * chaos::str::UTF8String s( "£5" );
+     * s.get_byte_width( 0 ); // returns: 2
+     * s.get_byte_width( 2 ); // returns: 1
+     * \endcode
+     *
+     *
+     * \warning If the given byte index is not the start of a UTF-8 symbol this
      *          operation will return unexpected results.
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     *                                          bounds of the string byte
+     *                                          length.
      */
     size_t get_byte_width( size_t byte_index ) const;
 
@@ -725,6 +919,7 @@ private:
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
+// TODO: doc
 std::ostream& operator<<( std::ostream& stream, const UTF8String& str );
 
 } // namespace str

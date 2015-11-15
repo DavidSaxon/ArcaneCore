@@ -107,8 +107,8 @@ bool UTF8String::operator<( const UTF8String& other ) const
     {
         // do a straight comparison on each code point until we find a character
         // that is less than
-        chaos::uint32 a = get_symbol_value( i );
-        chaos::uint32 b = other.get_symbol_value( i );
+        chaos::uint32 a = get_code_point( i );
+        chaos::uint32 b = other.get_code_point( i );
         if ( a < b )
         {
             return true;
@@ -388,10 +388,15 @@ size_t UTF8String::find_last( const UTF8String& substring ) const
     return UTF8String::npos;
 }
 
-// TODO: this could use find
 const std::vector< UTF8String > UTF8String::split(
         const UTF8String& delimiter ) const
 {
+    // check the delimiter
+    if ( delimiter.is_empty() )
+    {
+        throw chaos::ex::ValueError( "Provided delimiter is empty." );
+    }
+
     // create the vector to return
     std::vector< UTF8String > elements;
 

@@ -1562,6 +1562,15 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
             );
         }
     }
+
+    CHAOS_TEST_MESSAGE( "Checking empty delimiters" );
+    CHAOS_FOR_EACH( it, fixture->strings )
+    {
+        CHAOS_CHECK_THROW(
+                it->split( ""),
+                chaos::ex::ValueError
+        );
+    }
 }
 
 //------------------------------------------------------------------------------
