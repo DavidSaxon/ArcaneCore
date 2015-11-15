@@ -27,9 +27,7 @@ public:
     // symbols
     std::vector< std::map< size_t, chaos::str::UTF8String > > symbols;
 
-    //--------------------------------------------------------------------------
-    //                          PUBLIC MEMBER FUNCTIONS
-    //--------------------------------------------------------------------------
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     virtual void setup()
     {

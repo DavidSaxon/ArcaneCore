@@ -228,6 +228,11 @@ public:
             // unit declaration
             TestCore::declare_unit( path, unit_test, file, line );
         }
+        // invalid pass errors are handled by main
+        catch ( const chaos::test::ex::InvalidPathError& e )
+        {
+            throw e;
+        }
         catch ( chaos::test::ex::TestError& e )
         {
             // TODO: should this go to loggers?
