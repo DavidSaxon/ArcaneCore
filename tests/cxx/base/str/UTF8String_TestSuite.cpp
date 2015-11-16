@@ -386,7 +386,6 @@ public:
 
 CHAOS_TEST_UNIT( default_constructor )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data is empty" );
     chaos::str::UTF8String empty;
     CHAOS_CHECK_EQUAL( empty.get_length(), static_cast< size_t >( 0 ) );
     CHAOS_CHECK_EQUAL( empty.get_byte_length(), static_cast< size_t >( 1 ) );

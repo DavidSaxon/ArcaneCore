@@ -420,6 +420,8 @@ private:
  *                     which provides a pointer to the fixture instance.
  */
 #define CHAOS_TEST_UNIT_FIXTURE( name, fixture_type )                          \
+    namespace                                                                  \
+    {                                                                          \
     struct name : public chaos::test::internal::UnitTest                       \
     {                                                                          \
         fixture_type* fixture;                                                 \
@@ -430,6 +432,7 @@ private:
     };                                                                         \
     static chaos::test::internal::TestCore object_##name (                     \
             #name, new name(), __FILE__, __LINE__ );                           \
+    }                                                                          \
     void name::execute()
 
 /*!
