@@ -271,7 +271,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A string type designed for storing and manipulating UTF-8 encoded text. </p>
-<dl class="section note"><dt>Note</dt><dd>This object expects input text to already be UTF-8 encoded. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This object expects input text to already be UTF-8 encoded. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a></dd></dl>
 <p>The <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> data type is used extensively throughout ChaosCore and other Chaos Foundation projects.</p>
 <p>ChaosCore stands by the principle that all string handling should be Unicode aware. The <code>char</code> primitive should only be used for storing and manipulation raw byte data, not for representing entire language characters. Furthermore ChaosCore considers UTF-8 to be the only default encoding type for Unicode text. Other encodings should only be used for special cases or interacting with applications that require a different encoding (such as the Windows API). For more info see <a href="http://utf8everywhere.org/">http://utf8everywhere.org/</a></p>
 <p>For practicality the internal byte of an <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> is NULL terminated. This means the raw data can easily be used as native C style strings.</p>
@@ -354,7 +354,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p>C style string constructor. </p>
 <p>Creates a new <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> that contains the provided data.</p>
-<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded and NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded and NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a> </dd></dl>
 
 </div>
 </div>
@@ -384,7 +384,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p>C style string and length constructor. </p>
 <p>Creates a new <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> using the given number of bytes from the data.</p>
-<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded but does not need to be NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded but does not need to be NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Character data to be used for this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a>. </td></tr>
@@ -660,7 +660,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p>Stream operator. </p>
 <p>Extends this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> with the given C style string.</p>
-<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded and NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded and NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a> </dd></dl>
 
 </div>
 </div>
@@ -680,7 +680,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p>Stream operator. </p>
 <p>Extends this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> with the given std string.</p>
-<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a> </dd></dl>
 
 </div>
 </div>
@@ -890,7 +890,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p>Assigns the internal data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> from the given C style string. </p>
 <p>This operation will delete any current internal data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded and NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded and NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a> </dd></dl>
 
 </div>
 </div>
@@ -920,7 +920,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 <p>Assigns the internal data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> from the given C style string and byte length. </p>
 <p>Creates a new <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> using the given number of bytes from the data. This operation will delete any current internal data of this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a>.</p>
-<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded but does not need to be NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_util_8hpp.html" title="Operations relating to utf-8 encoded string data. ">UnicodeUtil.hpp</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The input data is expected to be UTF-8 encoded but does not need to be NULL terminated. For functions to convert encodings see <a class="el" href="_unicode_operations_8hpp.html" title="Operations relating to Unicode string data. ">UnicodeOperations.hpp</a></dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>Character data to be used for this <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a>. </td></tr>
@@ -1677,7 +1677,7 @@ static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 15 2015 19:47:56 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 16 2015 21:03:44 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

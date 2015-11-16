@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mathutil_2ehpp',['MathUtil.hpp',['../_math_util_8hpp.html',1,'']]]
+  ['mathoperations_2ehpp',['MathOperations.hpp',['../_math_operations_8hpp.html',1,'']]]
 ];

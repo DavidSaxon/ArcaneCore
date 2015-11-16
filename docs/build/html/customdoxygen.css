@@ -4,7 +4,7 @@
 body, table, div, p, dl {
     // font: 400 14px/22px Roboto,sans-serif;
     font: 13px Helvetica, Arial, Verdana, sans-serif;
-    font-family:
+    /*background-image:url('background.p');*/
 }
 
 /* @group Heading Levels */
@@ -20,6 +20,8 @@ h1.groupheader {
     font-size: 24px;
     font-weight: bold;
     margin: 10px 2px;
+    background-color: #ff0000
+    background-opacity: 1.0;
 }
 
 h2.groupheader {
@@ -212,7 +214,7 @@ div.fragment {
 
     padding: 6px 10px;
     margin: 15px 0px;
-    border: solid 1px rgb(221, 221, 221);
+    border: solid 1px rgb(100, 100, 100);
     border-radius: 3px;
 
     background-color: rgb(248, 248, 248);
@@ -306,6 +308,7 @@ body {
     background-color: white;
     color: black;
         margin: 0;
+    background-image:url('background.png');
 }
 
 div.contents {
@@ -472,6 +475,7 @@ hr.footer {
 table.memberdecls {
     border-spacing: 0px;
     padding: 0px;
+    background-color: none;
 }
 
 .memberdecls td, .fieldtable tr {
@@ -485,6 +489,7 @@ table.memberdecls {
     -o-transition-duration: 0.5s;
     transition-property: background-color, box-shadow;
     transition-duration: 0.5s;
+    background-color: none;
 }
 
 .memberdecls td.glow, .fieldtable tr.glow {
@@ -496,10 +501,10 @@ table.memberdecls {
 .memItemLeft, .memItemRight,
 .memTemplItemLeft, .memTemplItemRight, .memTemplParams {
     //background-color: #F9FAFC;
-    background-color: white;
-    border:; none;
+    background-color: none;
     margin: 4px;
     padding: 1px 0 0 8px;
+
 
     //font-family: "Courier New", courier, monospace;
     font-family: Courier, Consolas, monospace;
@@ -510,6 +515,9 @@ table.memberdecls {
     padding: 0px 8px 4px 24px;
     //color: #555;
     color: black;
+    background-color: none;
+    border-bottom: 1px inset #555555;
+
 
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
     //font-style: italic;
@@ -526,6 +534,11 @@ table.memberdecls {
 
 .memItemLeft, .memTemplItemLeft {
         white-space: nowrap;
+}
+
+.memItemRight, .memItemLeft {
+    background-color: none;
+    border-bottom: 1px solid #DDDDDD;
 }
 
 .memItemRight {
@@ -552,6 +565,7 @@ table.memberdecls {
     color: black;
     font-weight: normal;
     //margin-left: 9px;
+    background-color: none;
     margin-left: 1px;
 }
 
@@ -579,6 +593,7 @@ table.memberdecls {
         transition: box-shadow 0.5s linear;
         display: table !important;
         width: 100%;
+    background-color: none;
 }
 
 .memitem.glow {
@@ -805,6 +820,7 @@ div.directory {
         white-space: nowrap;
         padding-right: 6px;
     padding-top: 3px;
+    background: none;
 }
 
 .directory td.entry a {
@@ -825,7 +841,14 @@ div.directory {
 
 .directory tr.even {
     padding-left: 6px;
-    background-color: #F7F8FB;
+    background-color: white;
+    border-bottom: 1px solid #555555;
+}
+
+.directory tr {
+    padding-left: 6px;
+    background-color: white;
+    border-bottom: 1px solid #555555;
 }
 
 .directory img {
@@ -1043,8 +1066,13 @@ div.header
     //background-image:url('nav_h.png');
     //background-repeat:repeat-x;
     //background-color: #F9FAFC;
-    background-image: none;
-    background-color: white;
+    /*background-image: none;*/
+    /*background-color: white;*/
+    /*background-opacity: 0.1;*/
+    /*background-color: #ff0000;*/
+    /*opacity: 0.0;*/
+    background: none;
+    /*background-color: #FF0000;*/
     margin:  0px;
     //border-bottom: 1px solid #C4CFE5;
     border: none;
@@ -1053,6 +1081,11 @@ div.header
 div.headertitle
 {
     padding: 5px 5px 5px 10px;
+    background: none;
+    /*background-color: #FF0000;*/
+    /*background-opacity: 0.0;*/
+    /*background-opacity: 0.0;*/
+    /*opacity: 0.0;*/
 }
 
 dl
@@ -1188,10 +1221,10 @@ dl.section dd {
     margin: 0px;
     width: 100%;
     border-bottom: none;
-    background: -webkit-linear-gradient(left, #58aece , #bc5858); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #58aece, #bc5858); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #58aece, #bc5858); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #58aece , #bc5858); /* Standard syntax */
+    background: -webkit-linear-gradient(left, #ebe170 , #7c3098); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #ebe170, #7c3098); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #ebe170, #7c3098); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #ebe170 , #7c3098); /* Standard syntax */
 /*    background-image: -webkit-gradient(linear, left, right, from(#eee), to(#000),color-stop(0.3, #444));
     background-image: -moz-linear-gradient(center top, #eee 0%, #444 40%, #000);*/
 }
