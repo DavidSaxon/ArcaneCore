@@ -43,6 +43,31 @@ public:
     Path();
 
     /*!
+     * \brief Component constructor.
+     *
+     * Creates a new Path from the given std::vector of components.
+     *
+     * For example the native Linux path:
+     *
+     * \code
+     * path/to/file.txt
+     * \endcode
+     *
+     * Would be passed to this constructor like so:
+     *
+     * \code
+     * std::vector< chaos::str::UTF8String > components;
+     * components.push_back( "path" );
+     * components.push_back( "to" );
+     * components.push_back( "file.txt" );
+     *
+     * chaos::io::file::Path p( components );
+     * \endcode
+     *
+     */
+    Path( const std::vector< chaos::str::UTF8String >& components );
+
+    /*!
      * \brief Copy constructor.
      *
      * Creates a new Path by copying the contents of the provided Path.
@@ -55,7 +80,29 @@ public:
 
     //--------------------------------ACCESSORS---------------------------------
 
-    //--------------------------------------------------------------------------
+    /*!
+     * \brief Returns the individual components which make up this path.
+     *
+     * For example the native Linux path:
+     *
+     * \code
+     * path/to/file.txt
+     * \endcode
+     *
+     * Stored correctly in a Path object:
+     *
+     * \code
+     * chaos::io::file::Path path;
+     * path << "path" << "to" << "file.txt";
+     * \endcode
+     *
+     * Would contain the components:
+     *
+     * \code
+     * [ "path", "to", "file.txt" ]
+     * \endcode
+     */
+    const std::vector< chaos::str::UTF8String >& get_components() const;
 
     /*!
      * \brief Returns the UTF8String representation of this path for the

@@ -100,9 +100,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae221e8dceeedda7ef0376e408a33b388"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#ae221e8dceeedda7ef0376e408a33b388">Path</a> ()</td></tr>
 <tr class="memdesc:ae221e8dceeedda7ef0376e408a33b388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ae221e8dceeedda7ef0376e408a33b388">More...</a><br /></td></tr>
 <tr class="separator:ae221e8dceeedda7ef0376e408a33b388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f99e6ecbc8012c704a7d59a82e44d7e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#a2f99e6ecbc8012c704a7d59a82e44d7e">Path</a> (const std::vector&lt; <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &gt; &amp;components)</td></tr>
+<tr class="memdesc:a2f99e6ecbc8012c704a7d59a82e44d7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component constructor.  <a href="#a2f99e6ecbc8012c704a7d59a82e44d7e">More...</a><br /></td></tr>
+<tr class="separator:a2f99e6ecbc8012c704a7d59a82e44d7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a888031f678ac29c3c068c7c710057809"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#a888031f678ac29c3c068c7c710057809">Path</a> (const <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html">Path</a> &amp;other)</td></tr>
 <tr class="memdesc:a888031f678ac29c3c068c7c710057809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a888031f678ac29c3c068c7c710057809">More...</a><br /></td></tr>
 <tr class="separator:a888031f678ac29c3c068c7c710057809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cf2f806bd7e8969c6cd215271c0e104"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#a2cf2f806bd7e8969c6cd215271c0e104">get_components</a> () const </td></tr>
+<tr class="memdesc:a2cf2f806bd7e8969c6cd215271c0e104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the individual components which make up this path.  <a href="#a2cf2f806bd7e8969c6cd215271c0e104">More...</a><br /></td></tr>
+<tr class="separator:a2cf2f806bd7e8969c6cd215271c0e104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a filesystem path. </p>
@@ -129,6 +135,34 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2f99e6ecbc8012c704a7d59a82e44d7e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">chaos::io::file::Path::Path </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>components</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Component constructor. </p>
+<p>Creates a new <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html" title="Represents a filesystem path. ">Path</a> from the given std::vector of components.</p>
+<p>For example the native Linux path:</p>
+<div class="fragment"><div class="line">path/to/file.txt</div>
+</div><!-- fragment --><p>Would be passed to this constructor like so:</p>
+<div class="fragment"><div class="line">std::vector&lt; chaos::str::UTF8String &gt; components;</div>
+<div class="line">components.push_back( <span class="stringliteral">&quot;path&quot;</span> );</div>
+<div class="line">components.push_back( <span class="stringliteral">&quot;to&quot;</span> );</div>
+<div class="line">components.push_back( <span class="stringliteral">&quot;file.txt&quot;</span> );</div>
+<div class="line"></div>
+<div class="line"><a class="code" href="classchaos_1_1io_1_1file_1_1_path.html">chaos::io::file::Path</a> p( components );</div>
+</div><!-- fragment --> 
+</div>
+</div>
 <a class="anchor" id="a888031f678ac29c3c068c7c710057809"></a>
 <div class="memitem">
 <div class="memproto">
@@ -148,6 +182,31 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2cf2f806bd7e8969c6cd215271c0e104"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &gt;&amp; chaos::io::file::Path::get_components </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the individual components which make up this path. </p>
+<p>For example the native Linux path:</p>
+<div class="fragment"><div class="line">path/to/file.txt</div>
+</div><!-- fragment --><p>Stored correctly in a <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html" title="Represents a filesystem path. ">Path</a> object:</p>
+<div class="fragment"><div class="line"><a class="code" href="classchaos_1_1io_1_1file_1_1_path.html">chaos::io::file::Path</a> path;</div>
+<div class="line">path &lt;&lt; <span class="stringliteral">&quot;path&quot;</span> &lt;&lt; <span class="stringliteral">&quot;to&quot;</span> &lt;&lt; <span class="stringliteral">&quot;file.txt&quot;</span>;</div>
+</div><!-- fragment --><p>Would contain the components:</p>
+<div class="fragment"><div class="line">[ <span class="stringliteral">&quot;path&quot;</span>, <span class="stringliteral">&quot;to&quot;</span>, <span class="stringliteral">&quot;file.txt&quot;</span> ]</div>
+</div><!-- fragment --> 
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>D:/Dropbox/Development/ChaosCore/ChaosCore/src/cxx/chaoscore/io/file/<a class="el" href="_path_8hpp_source.html">Path.hpp</a></li>
 </ul>
@@ -155,7 +214,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 18 2015 00:52:01 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 18 2015 01:25:21 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

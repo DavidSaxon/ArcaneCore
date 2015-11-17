@@ -4,6 +4,7 @@ var searchData=
   ['get_5fbyte_5flength',['get_byte_length',['../classchaos_1_1str_1_1_u_t_f8_string.html#a9312a6aac333d68a87066d6f222d119a',1,'chaos::str::UTF8String']]],
   ['get_5fbyte_5fwidth',['get_byte_width',['../classchaos_1_1str_1_1_u_t_f8_string.html#a387abdce2189a379961844cd0a42a97a',1,'chaos::str::UTF8String']]],
   ['get_5fcode_5fpoint',['get_code_point',['../classchaos_1_1str_1_1_u_t_f8_string.html#a007889a60f57ec9196dcebb39abeafdf',1,'chaos::str::UTF8String']]],
+  ['get_5fcomponents',['get_components',['../classchaos_1_1io_1_1file_1_1_path.html#a2cf2f806bd7e8969c6cd215271c0e104',1,'chaos::io::file::Path']]],
   ['get_5fcurrent_5ftime',['get_current_time',['../namespacechaos_1_1clock.html#a446a2dfe9d79d1680e49e572fc918a0a',1,'chaos::clock']]],
   ['get_5flength',['get_length',['../classchaos_1_1str_1_1_u_t_f8_string.html#ac0c724e649182e02462b48b94d1f5bf7',1,'chaos::str::UTF8String']]],
   ['get_5fmessage',['get_message',['../classchaos_1_1ex_1_1_chaos_exception.html#a944fe85435124a77c0b49149e7eadc12',1,'chaos::ex::ChaosException']]],

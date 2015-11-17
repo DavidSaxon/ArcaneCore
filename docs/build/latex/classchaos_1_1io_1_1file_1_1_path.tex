@@ -14,8 +14,12 @@ Represents a filesystem path.
 \item 
 \hyperlink{classchaos_1_1io_1_1file_1_1_path_ae221e8dceeedda7ef0376e408a33b388}{Path} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1io_1_1file_1_1_path_a2f99e6ecbc8012c704a7d59a82e44d7e}{Path} (const std\+::vector$<$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} $>$ \&components)
+\begin{DoxyCompactList}\small\item\em Component constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1io_1_1file_1_1_path_a888031f678ac29c3c068c7c710057809}{Path} (const \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path} \&other)
-\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} $>$ \& \hyperlink{classchaos_1_1io_1_1file_1_1_path_a2cf2f806bd7e8969c6cd215271c0e104}{get\+\_\+components} () const 
+\begin{DoxyCompactList}\small\item\em Returns the individual components which make up this path. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -42,7 +46,39 @@ T\+O\+D\+O\+:
 
 Default constructor. 
 
-Creates a new empty \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. \hypertarget{classchaos_1_1io_1_1file_1_1_path_a888031f678ac29c3c068c7c710057809}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!Path@{Path}}
+Creates a new empty \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. \hypertarget{classchaos_1_1io_1_1file_1_1_path_a2f99e6ecbc8012c704a7d59a82e44d7e}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!Path@{Path}}
+\index{Path@{Path}!chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}}
+\subsubsection[{Path(const std\+::vector$<$ chaos\+::str\+::\+U\+T\+F8\+String $>$ \&components)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::file\+::\+Path\+::\+Path (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ {\bf chaos\+::str\+::\+U\+T\+F8\+String} $>$ \&}]{components}
+\end{DoxyParamCaption}
+)}\label{classchaos_1_1io_1_1file_1_1_path_a2f99e6ecbc8012c704a7d59a82e44d7e}
+
+
+Component constructor. 
+
+Creates a new \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path} from the given std\+::vector of components.
+
+For example the native Linux path\+:
+
+
+\begin{DoxyCode}
+path/to/file.txt
+\end{DoxyCode}
+
+
+Would be passed to this constructor like so\+:
+
+
+\begin{DoxyCode}
+std::vector< chaos::str::UTF8String > components;
+components.push\_back( \textcolor{stringliteral}{"path"} );
+components.push\_back( \textcolor{stringliteral}{"to"} );
+components.push\_back( \textcolor{stringliteral}{"file.txt"} );
+
+\hyperlink{classchaos_1_1io_1_1file_1_1_path}{chaos::io::file::Path} p( components );
+\end{DoxyCode}
+ \hypertarget{classchaos_1_1io_1_1file_1_1_path_a888031f678ac29c3c068c7c710057809}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!Path@{Path}}
 \index{Path@{Path}!chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}}
 \subsubsection[{Path(const Path \&other)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::file\+::\+Path\+::\+Path (
 \begin{DoxyParamCaption}
@@ -54,6 +90,43 @@ Creates a new empty \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. \hypert
 Copy constructor. 
 
 Creates a new \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path} by copying the contents of the provided \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classchaos_1_1io_1_1file_1_1_path_a2cf2f806bd7e8969c6cd215271c0e104}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!get\+\_\+components@{get\+\_\+components}}
+\index{get\+\_\+components@{get\+\_\+components}!chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}}
+\subsubsection[{get\+\_\+components() const }]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ {\bf chaos\+::str\+::\+U\+T\+F8\+String} $>$\& chaos\+::io\+::file\+::\+Path\+::get\+\_\+components (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{classchaos_1_1io_1_1file_1_1_path_a2cf2f806bd7e8969c6cd215271c0e104}
+
+
+Returns the individual components which make up this path. 
+
+For example the native Linux path\+:
+
+
+\begin{DoxyCode}
+path/to/file.txt
+\end{DoxyCode}
+
+
+Stored correctly in a \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path} object\+:
+
+
+\begin{DoxyCode}
+\hyperlink{classchaos_1_1io_1_1file_1_1_path}{chaos::io::file::Path} path;
+path << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
+\end{DoxyCode}
+
+
+Would contain the components\+:
+
+
+\begin{DoxyCode}
+[ \textcolor{stringliteral}{"path"}, \textcolor{stringliteral}{"to"}, \textcolor{stringliteral}{"file.txt"} ]
+\end{DoxyCode}
+ 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

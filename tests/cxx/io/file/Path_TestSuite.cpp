@@ -11,5 +11,5 @@ CHAOS_TEST_MODULE( io.file.path )
 CHAOS_TEST_UNIT( default_constructor )
 {
     chaos::io::file::Path empty;
-    // CHAOS_CHECK_TRUE( empty.to_string().is_empty() );
+    CHAOS_CHECK_TRUE( empty.get_components().empty() );
 }

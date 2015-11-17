@@ -422,15 +422,16 @@ void TestCore::run_new_proc(
         const chaos::str::UTF8String& full_path,
         RunInfo*                      run_info )
 {
+    // generate the unique id for this this test
+    chaos::str::UTF8String id = TestCore::generate_id( full_path );
+
     // The method spawning a new process is platform dependent
     #ifdef CHAOS_OS_UNIX
 
-        // generate the unique id for this this test
-        chaos::str::UTF8String id = TestCore::generate_id( full_path );
         // open the test in the logger
         TestCore::logger.open_test( full_path, id );
 
-        // for to run the new process
+        // fork to run the new process
         pid_t proc_id = fork();
         if ( proc_id == 0 )
         {
@@ -459,9 +460,6 @@ void TestCore::run_new_proc(
         }
 
     #elif defined( CHAOS_OS_WINDOWS )
-
-        // generate the unique id for this this test
-        chaos::str::UTF8String id = TestCore::generate_id( full_path );
 
         // rebuild the command line arguments
         chaos::str::UTF8String command_line_args;

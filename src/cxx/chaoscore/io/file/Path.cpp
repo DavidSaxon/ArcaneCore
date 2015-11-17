@@ -15,6 +15,12 @@ Path::Path()
 {
 }
 
+Path::Path( const std::vector< chaos::str::UTF8String >& components )
+    :
+    m_components( components )
+{
+}
+
 Path::Path( const Path& other )
     :
     m_components( other.m_components )
@@ -25,10 +31,10 @@ Path::Path( const Path& other )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-// const chaos::str::UTF8String& Path::to_string() const
-// {
-//     return m_components;
-// }
+const std::vector< chaos::str::UTF8String >& Path::get_components() const
+{
+    return m_components;
+}
 
 } // namespace file
 } // namespace io
