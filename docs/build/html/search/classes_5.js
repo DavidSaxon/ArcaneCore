@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utf8string',['UTF8String',['../classchaos_1_1str_1_1_u_t_f8_string.html',1,'chaos::str']]]
+  ['path',['Path',['../classchaos_1_1io_1_1file_1_1_path.html',1,'chaos::io::file']]]
 ];

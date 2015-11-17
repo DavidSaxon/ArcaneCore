@@ -107,43 +107,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">//                                CONSTRUCTORS</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;     <a class="code" href="classchaos_1_1io_1_1file_1_1_path.html#ae221e8dceeedda7ef0376e408a33b388">Path</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classchaos_1_1io_1_1file_1_1_path.html#ae221e8dceeedda7ef0376e408a33b388">Path</a>();</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;     <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;     <span class="comment">//                          PUBLIC MEMBER FUNCTIONS</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;     <span class="comment">//-------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; <a class="code" href="classchaos_1_1io_1_1file_1_1_path.html#ae4b48bcdce0a4042d21009e4f9ddf884">to_string</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="classchaos_1_1io_1_1file_1_1_path.html#a39f5ee90511ee0d4aa8bc6b0396d0cc1">to_cstring</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> m_contents;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;};</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;} <span class="comment">// namespace file</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classchaos_1_1io_1_1file_1_1_path.html#ae221e8dceeedda7ef0376e408a33b388">Path</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1file_1_1_path.html">Path</a>&amp; other );</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//                          PUBLIC MEMBER FUNCTIONS</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">//--------------------------------ACCESSORS---------------------------------</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">// const chaos::str::UTF8String&amp; to_string() const;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::vector&lt; chaos::str::UTF8String &gt; m_components;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;} <span class="comment">// namespace file</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classchaos_1_1io_1_1file_1_1_path_html"><div class="ttname"><a href="classchaos_1_1io_1_1file_1_1_path.html">chaos::io::file::Path</a></div><div class="ttdoc">Represents a filesystem path. </div><div class="ttdef"><b>Definition:</b> Path.hpp:30</div></div>
 <div class="ttc" id="namespacechaos_html"><div class="ttname"><a href="namespacechaos.html">chaos</a></div><div class="ttdoc">the global ChaosCore namespace which contains everything within ChaosCore. </div><div class="ttdef"><b>Definition:</b> __chaoscore.hpp:21</div></div>
-<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:127</div></div>
-<div class="ttc" id="classchaos_1_1io_1_1file_1_1_path_html_a39f5ee90511ee0d4aa8bc6b0396d0cc1"><div class="ttname"><a href="classchaos_1_1io_1_1file_1_1_path.html#a39f5ee90511ee0d4aa8bc6b0396d0cc1">chaos::io::file::Path::to_cstring</a></div><div class="ttdeci">const char * to_cstring() const </div><div class="ttdoc">Returns a C style string represntation of this path for the current operation system. </div></div>
-<div class="ttc" id="classchaos_1_1io_1_1file_1_1_path_html_ae4b48bcdce0a4042d21009e4f9ddf884"><div class="ttname"><a href="classchaos_1_1io_1_1file_1_1_path.html#ae4b48bcdce0a4042d21009e4f9ddf884">chaos::io::file::Path::to_string</a></div><div class="ttdeci">const chaos::str::UTF8String &amp; to_string() const </div><div class="ttdoc">Returns the UTF8String representation of this path for the current operating system. </div></div>
 <div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
 <div class="ttc" id="classchaos_1_1io_1_1file_1_1_path_html_ae221e8dceeedda7ef0376e408a33b388"><div class="ttname"><a href="classchaos_1_1io_1_1file_1_1_path.html#ae221e8dceeedda7ef0376e408a33b388">chaos::io::file::Path::Path</a></div><div class="ttdeci">Path()</div><div class="ttdoc">Default constructor. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 17 2015 01:30:16 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 18 2015 00:52:01 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

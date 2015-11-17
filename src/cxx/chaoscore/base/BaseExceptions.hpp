@@ -78,9 +78,27 @@ private:
     chaos::str::UTF8String m_Message;
 };
 
+//------------------------------------------------------------------------------
+//                             NOT IMPLEMENTED ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns that an operations has been performed that has not yet been
+ *        implemented.
+ */
+class NotImplementedError : public ChaosException
+{
+public:
+
+    NotImplementedError( const chaos::str::UTF8String& message )
+        :
+        ChaosException( message )
+    {
+    }
+};
 
 //------------------------------------------------------------------------------
-//                           INDEX OUT OF BOUNDS ERROR
+//                                  VALUE ERROR
 //------------------------------------------------------------------------------
 
 /*!
@@ -96,6 +114,10 @@ public:
     {
     }
 };
+
+//------------------------------------------------------------------------------
+//                           INDEX OUT OF BOUNDS ERROR
+//------------------------------------------------------------------------------
 
 /*!
  * \brief Warns that an index has been requested outside of the allowed bounds.

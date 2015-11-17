@@ -21,11 +21,15 @@
 
 // fork
 #ifdef CHAOS_OS_UNIX
+
     #include <unistd.h>
     #include <sys/wait.h>
+
 // create process
 #elif defined( CHAOS_OS_WINDOWS )
+
     #include <windows.h>
+
 #endif
 
 

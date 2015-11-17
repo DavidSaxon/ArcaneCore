@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['path',['Path',['../classchaos_1_1io_1_1file_1_1_path.html',1,'chaos::io::file']]]
+  ['notimplementederror',['NotImplementedError',['../classchaos_1_1ex_1_1_not_implemented_error.html',1,'chaos::ex']]]
 ];

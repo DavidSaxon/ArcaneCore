@@ -15,19 +15,20 @@ Path::Path()
 {
 }
 
+Path::Path( const Path& other )
+    :
+    m_components( other.m_components )
+{
+}
+
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-const chaos::str::UTF8String& Path::to_string() const
-{
-    return m_contents;
-}
-
-const char* Path::to_cstring() const
-{
-    return m_contents.to_cstring();
-}
+// const chaos::str::UTF8String& Path::to_string() const
+// {
+//     return m_components;
+// }
 
 } // namespace file
 } // namespace io

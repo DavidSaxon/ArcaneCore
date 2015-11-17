@@ -14,10 +14,8 @@ Represents a filesystem path.
 \item 
 \hyperlink{classchaos_1_1io_1_1file_1_1_path_ae221e8dceeedda7ef0376e408a33b388}{Path} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \& \hyperlink{classchaos_1_1io_1_1file_1_1_path_ae4b48bcdce0a4042d21009e4f9ddf884}{to\+\_\+string} () const 
-\begin{DoxyCompactList}\small\item\em Returns the U\+T\+F8\+String representation of this path for the current operating system. \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{classchaos_1_1io_1_1file_1_1_path_a39f5ee90511ee0d4aa8bc6b0396d0cc1}{to\+\_\+cstring} () const 
-\begin{DoxyCompactList}\small\item\em Returns a C style string represntation of this path for the current operation system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classchaos_1_1io_1_1file_1_1_path_a888031f678ac29c3c068c7c710057809}{Path} (const \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -44,49 +42,18 @@ T\+O\+D\+O\+:
 
 Default constructor. 
 
-Creates a new empty \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. 
-
-\subsection{Member Function Documentation}
-\hypertarget{classchaos_1_1io_1_1file_1_1_path_ae4b48bcdce0a4042d21009e4f9ddf884}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!to\+\_\+string@{to\+\_\+string}}
-\index{to\+\_\+string@{to\+\_\+string}!chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}}
-\subsubsection[{to\+\_\+string() const }]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\+::str\+::\+U\+T\+F8\+String}\& chaos\+::io\+::file\+::\+Path\+::to\+\_\+string (
+Creates a new empty \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. \hypertarget{classchaos_1_1io_1_1file_1_1_path_a888031f678ac29c3c068c7c710057809}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!Path@{Path}}
+\index{Path@{Path}!chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}}
+\subsubsection[{Path(const Path \&other)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::file\+::\+Path\+::\+Path (
 \begin{DoxyParamCaption}
-{}
+\item[{const {\bf Path} \&}]{other}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1file_1_1_path_ae4b48bcdce0a4042d21009e4f9ddf884}
+)}\label{classchaos_1_1io_1_1file_1_1_path_a888031f678ac29c3c068c7c710057809}
 
 
-Returns the U\+T\+F8\+String representation of this path for the current operating system. 
+Copy constructor. 
 
-For example the path returned on Unix platforms will use a {\ttfamily /} separator\+:
-
-
-\begin{DoxyCode}
-path/to/file.txt
-\end{DoxyCode}
-
-
-While the path returned on Windows platforms will use a {\ttfamily \textbackslash{}} separator\+:
-
-
-\begin{DoxyCode}
-path\(\backslash\)to\(\backslash\)file.txt
-\end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1file_1_1_path_a39f5ee90511ee0d4aa8bc6b0396d0cc1}{}\index{chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}!to\+\_\+cstring@{to\+\_\+cstring}}
-\index{to\+\_\+cstring@{to\+\_\+cstring}!chaos\+::io\+::file\+::\+Path@{chaos\+::io\+::file\+::\+Path}}
-\subsubsection[{to\+\_\+cstring() const }]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ chaos\+::io\+::file\+::\+Path\+::to\+\_\+cstring (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1file_1_1_path_a39f5ee90511ee0d4aa8bc6b0396d0cc1}
-
-
-Returns a C style string represntation of this path for the current operation system. 
-
-\begin{DoxyWarning}{Warning}
-The returned data should not be deleted as it is a direct pointer to the internal data of this object. 
-\end{DoxyWarning}
-
+Creates a new \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path} by copying the contents of the provided \hyperlink{classchaos_1_1io_1_1file_1_1_path}{Path}. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

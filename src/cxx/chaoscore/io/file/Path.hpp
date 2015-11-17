@@ -40,11 +40,22 @@ public:
      *
      * Creates a new empty Path.
      */
-     Path();
+    Path();
 
-     //-------------------------------------------------------------------------
-     //                          PUBLIC MEMBER FUNCTIONS
-     //-------------------------------------------------------------------------
+    /*!
+     * \brief Copy constructor.
+     *
+     * Creates a new Path by copying the contents of the provided Path.
+     */
+    Path( const Path& other );
+
+    //--------------------------------------------------------------------------
+    //                          PUBLIC MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    //--------------------------------ACCESSORS---------------------------------
+
+    //--------------------------------------------------------------------------
 
     /*!
      * \brief Returns the UTF8String representation of this path for the
@@ -62,17 +73,9 @@ public:
      * path\to\file.txt
      * \endcode
      */
-    const chaos::str::UTF8String& to_string() const;
 
-    /*!
-     * \brief Returns a C style string represntation of this path for the
-     *        current operating system.
-     *
-     * \warning The returned data should not be deleted as it is a direct
-     *          pointer to the internal data of this object.
-     */
-    const char* to_cstring() const;
 
+    // const chaos::str::UTF8String& to_string() const;
 
  private:
 
@@ -81,9 +84,9 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief String containing the contents of the path.
+     * \brief List containing each individual component of this path.
      */
-    chaos::str::UTF8String m_contents;
+    std::vector< chaos::str::UTF8String > m_components;
 };
 
 } // namespace file

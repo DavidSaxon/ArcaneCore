@@ -10,6 +10,7 @@ set( CORE_SRC
     src/cxx/chaoscore/base/time/TimeOperations.cpp
 
     src/cxx/chaoscore/io/file/FileOperations.cpp
+    src/cxx/chaoscore/io/file/Path.cpp
     src/cxx/chaoscore/io/format/ANSI.cpp
     src/cxx/chaoscore/io/format/FormatOperations.cpp
 
@@ -30,6 +31,8 @@ set( TEST_SRC
     tests/cxx/base/data/ByteOperations_TestSuite.cpp
     tests/cxx/base/str/UTF8String_TestSuite.cpp
     tests/cxx/base/str/UnicodeOperations_TestSuite.cpp
+
+    tests/cxx/io/file/Path_TestSuite.cpp
 )
 
 set( DEV_SRC

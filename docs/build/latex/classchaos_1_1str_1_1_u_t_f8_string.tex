@@ -105,7 +105,7 @@ bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_abea65bae8fc882d3bacb91aa2be
 size\+\_\+t \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac0c724e649182e02462b48b94d1f5bf7}{get\+\_\+length} () const 
 \begin{DoxyCompactList}\small\item\em Returns the number of symbols in this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String}. \end{DoxyCompactList}\item 
 bool \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a4fc296e90fbbc45a1e3f142dcd1e9853}{is\+\_\+empty} () const 
-\item 
+\begin{DoxyCompactList}\small\item\em Returns whether the this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} contains any characters or not. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a04dbe9f15dc1b09c858e2450de26d40a}{get\+\_\+symbol} (size\+\_\+t index) const 
 \begin{DoxyCompactList}\small\item\em Returns the U\+T\+F-\/8 symbol at the given index in this string. \end{DoxyCompactList}\item 
 \hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_a1248ee0dde0ff8e028d162cefd67f034}{get\+\_\+symbol\+\_\+value} (size\+\_\+t index) const 
@@ -1077,10 +1077,11 @@ The length is defined as how many U\+T\+F-\/8 symbols there are in the string, t
 {}
 \end{DoxyParamCaption}
 ) const}\label{classchaos_1_1str_1_1_u_t_f8_string_a4fc296e90fbbc45a1e3f142dcd1e9853}
-\begin{DoxyReturn}{Returns}
-Whether the this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} contains any characters or not.
-\end{DoxyReturn}
-Is the same as checking whether \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac0c724e649182e02462b48b94d1f5bf7}{get\+\_\+length()} returns {\ttfamily 0} or not. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a04dbe9f15dc1b09c858e2450de26d40a}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+symbol@{get\+\_\+symbol}}
+
+
+Returns whether the this \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{U\+T\+F8\+String} contains any characters or not. 
+
+This operation is the same as checking whether \hyperlink{classchaos_1_1str_1_1_u_t_f8_string_ac0c724e649182e02462b48b94d1f5bf7}{get\+\_\+length()} returns {\ttfamily 0} or not. \hypertarget{classchaos_1_1str_1_1_u_t_f8_string_a04dbe9f15dc1b09c858e2450de26d40a}{}\index{chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}!get\+\_\+symbol@{get\+\_\+symbol}}
 \index{get\+\_\+symbol@{get\+\_\+symbol}!chaos\+::str\+::\+U\+T\+F8\+String@{chaos\+::str\+::\+U\+T\+F8\+String}}
 \subsubsection[{get\+\_\+symbol(size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf U\+T\+F8\+String} chaos\+::str\+::\+U\+T\+F8\+String\+::get\+\_\+symbol (
 \begin{DoxyParamCaption}

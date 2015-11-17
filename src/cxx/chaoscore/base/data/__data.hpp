@@ -5,11 +5,11 @@ namespace chaos
 {
 
 /*!
- * \brief Operations related to low-level data.
+ * \brief Module for dealing with low-level data.
  */
 namespace data
 {
-} // namespace math
+} // namespace data
 
 } // namespace chaos
 

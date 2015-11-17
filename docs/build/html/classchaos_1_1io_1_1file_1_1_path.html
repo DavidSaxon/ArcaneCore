@@ -100,12 +100,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae221e8dceeedda7ef0376e408a33b388"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#ae221e8dceeedda7ef0376e408a33b388">Path</a> ()</td></tr>
 <tr class="memdesc:ae221e8dceeedda7ef0376e408a33b388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ae221e8dceeedda7ef0376e408a33b388">More...</a><br /></td></tr>
 <tr class="separator:ae221e8dceeedda7ef0376e408a33b388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b48bcdce0a4042d21009e4f9ddf884"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#ae4b48bcdce0a4042d21009e4f9ddf884">to_string</a> () const </td></tr>
-<tr class="memdesc:ae4b48bcdce0a4042d21009e4f9ddf884"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the UTF8String representation of this path for the current operating system.  <a href="#ae4b48bcdce0a4042d21009e4f9ddf884">More...</a><br /></td></tr>
-<tr class="separator:ae4b48bcdce0a4042d21009e4f9ddf884"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39f5ee90511ee0d4aa8bc6b0396d0cc1"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#a39f5ee90511ee0d4aa8bc6b0396d0cc1">to_cstring</a> () const </td></tr>
-<tr class="memdesc:a39f5ee90511ee0d4aa8bc6b0396d0cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a C style string represntation of this path for the current operation system.  <a href="#a39f5ee90511ee0d4aa8bc6b0396d0cc1">More...</a><br /></td></tr>
-<tr class="separator:a39f5ee90511ee0d4aa8bc6b0396d0cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a888031f678ac29c3c068c7c710057809"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1file_1_1_path.html#a888031f678ac29c3c068c7c710057809">Path</a> (const <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html">Path</a> &amp;other)</td></tr>
+<tr class="memdesc:a888031f678ac29c3c068c7c710057809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#a888031f678ac29c3c068c7c710057809">More...</a><br /></td></tr>
+<tr class="separator:a888031f678ac29c3c068c7c710057809"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a filesystem path. </p>
@@ -132,43 +129,22 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ae4b48bcdce0a4042d21009e4f9ddf884"></a>
+<a class="anchor" id="a888031f678ac29c3c068c7c710057809"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; chaos::io::file::Path::to_string </td>
+          <td class="memname">chaos::io::file::Path::Path </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html">Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the UTF8String representation of this path for the current operating system. </p>
-<p>For example the path returned on Unix platforms will use a <code>/</code> separator:</p>
-<div class="fragment"><div class="line">path/to/file.txt</div>
-</div><!-- fragment --><p>While the path returned on Windows platforms will use a <code>\</code> separator:</p>
-<div class="fragment"><div class="line">path\to\file.txt</div>
-</div><!-- fragment --> 
-</div>
-</div>
-<a class="anchor" id="a39f5ee90511ee0d4aa8bc6b0396d0cc1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* chaos::io::file::Path::to_cstring </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns a C style string represntation of this path for the current operation system. </p>
-<dl class="section warning"><dt>Warning</dt><dd>The returned data should not be deleted as it is a direct pointer to the internal data of this object. </dd></dl>
+<p>Copy constructor. </p>
+<p>Creates a new <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html" title="Represents a filesystem path. ">Path</a> by copying the contents of the provided <a class="el" href="classchaos_1_1io_1_1file_1_1_path.html" title="Represents a filesystem path. ">Path</a>. </p>
 
 </div>
 </div>
@@ -179,7 +155,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 17 2015 01:30:16 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 18 2015 00:52:01 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

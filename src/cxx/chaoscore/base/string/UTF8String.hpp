@@ -696,9 +696,11 @@ public:
     size_t get_length() const;
 
     /*!
-     * \return Whether the this UTF8String contains any characters or not.
+     * \brief Returns whether the this UTF8String contains any characters or
+     *        not.
      *
-     * Is the same as checking whether get_length() returns `0` or not.
+     * This operation is the same as checking whether get_length() returns `0`
+     * or not.
      */
     bool is_empty() const;
 

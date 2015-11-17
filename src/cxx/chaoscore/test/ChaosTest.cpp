@@ -1,6 +1,6 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-#include "chaoscore/base/time/TimeOperations.hpp"
+#include "chaoscore/base/clock/ClockOperations.hpp"
 
 namespace chaos
 {
@@ -144,7 +144,7 @@ void TestCore::setup( RunInfo* run_info )
     if ( run_info->id.is_empty() )
     {
         run_info->id << "chaoscore_tests_"
-                     << chaos::time::get_current_time();
+                     << chaos::clock::get_current_time();
     }
     TestCore::logger.set_global_id( run_info->id );
 
@@ -572,7 +572,7 @@ chaos::str::UTF8String TestCore::generate_id(
         const chaos::str::UTF8String& name )
 {
     chaos::str::UTF8String id = name;
-    id << "_" << chaos::time::get_current_time();
+    id << "_" << chaos::clock::get_current_time();
     return id;
 }
 
