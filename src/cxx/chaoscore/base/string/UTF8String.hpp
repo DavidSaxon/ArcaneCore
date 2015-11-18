@@ -275,7 +275,8 @@ public:
      * \param count the number of times to repeat the string
      * \return UTF8String that contains the results of the repeat.
      */
-    UTF8String operator*( chaos::uint32 count );
+    // TODO: const
+    UTF8String operator*( chaos::uint32 count ) const;
 
     /*!
      * \brief Compound multiplication operator.

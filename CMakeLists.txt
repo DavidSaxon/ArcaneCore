@@ -3,11 +3,11 @@ project(ChaosCore)
 
 set( CORE_SRC
 
+    src/cxx/chaoscore/base/clock/ClockOperations.cpp
     src/cxx/chaoscore/base/data/BinaryOperations.cpp
     src/cxx/chaoscore/base/data/ByteOperations.cpp
     src/cxx/chaoscore/base/string/UTF8String.cpp
     src/cxx/chaoscore/base/string/UnicodeOperations.cpp
-    src/cxx/chaoscore/base/time/TimeOperations.cpp
 
     src/cxx/chaoscore/io/file/FileOperations.cpp
     src/cxx/chaoscore/io/file/Path.cpp

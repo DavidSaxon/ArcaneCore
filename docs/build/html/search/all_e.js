@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['uint16',['uint16',['../namespacechaos.html#ac3888b1c9e56da7fbbdb3ab8425b4068',1,'chaos']]],
-  ['uint32',['uint32',['../namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60',1,'chaos']]],
-  ['uint64',['uint64',['../namespacechaos.html#a34fe5f5bfc3ef6d80b5d094ed91b4d6e',1,'chaos']]],
-  ['uint8',['uint8',['../namespacechaos.html#a229e18634387996c2712d57f184bf363',1,'chaos']]],
-  ['unicodeoperations_2ehpp',['UnicodeOperations.hpp',['../_unicode_operations_8hpp.html',1,'']]],
-  ['utf8string',['UTF8String',['../classchaos_1_1str_1_1_u_t_f8_string.html',1,'chaos::str']]],
-  ['utf8string',['UTF8String',['../classchaos_1_1str_1_1_u_t_f8_string.html#a173513bf2d62d742bee337b00716bf82',1,'chaos::str::UTF8String::UTF8String()'],['../classchaos_1_1str_1_1_u_t_f8_string.html#af506696bfe777057c4a7e6b6acf19dab',1,'chaos::str::UTF8String::UTF8String(const char *data)'],['../classchaos_1_1str_1_1_u_t_f8_string.html#ac3077c0963a5f36dcaa2a87a1c02d05d',1,'chaos::str::UTF8String::UTF8String(const char *data, size_t length)'],['../classchaos_1_1str_1_1_u_t_f8_string.html#a194b76859245fdb815ce5d537f2e1db4',1,'chaos::str::UTF8String::UTF8String(const UTF8String &amp;other)']]],
-  ['utf8string_2ehpp',['UTF8String.hpp',['../_u_t_f8_string_8hpp.html',1,'']]]
+  ['teardown',['teardown',['../classchaos_1_1test_1_1_fixture.html#ae8ea21c5226a988b64f0b2d166bc4a5e',1,'chaos::test::Fixture']]],
+  ['timemetric',['TimeMetric',['../namespacechaos_1_1clock.html#ad8f76a285e7d26251910d5e006c57cca',1,'chaos::clock']]],
+  ['to_5fbool',['to_bool',['../classchaos_1_1str_1_1_u_t_f8_string.html#abea65bae8fc882d3bacb91aa2befe0b1',1,'chaos::str::UTF8String']]],
+  ['to_5fcstring',['to_cstring',['../classchaos_1_1str_1_1_u_t_f8_string.html#aa6fd66af34d7a3c4a495860952e97557',1,'chaos::str::UTF8String']]],
+  ['to_5fint32',['to_int32',['../classchaos_1_1str_1_1_u_t_f8_string.html#a17309b0f4d25be1b83a188883c4a9861',1,'chaos::str::UTF8String']]],
+  ['to_5fint64',['to_int64',['../classchaos_1_1str_1_1_u_t_f8_string.html#a18eee1b350d45995e43ef41cfd8bb92a',1,'chaos::str::UTF8String']]],
+  ['to_5fstd_5fstring',['to_std_string',['../classchaos_1_1str_1_1_u_t_f8_string.html#a8901fbbe5e72d7bf8f0d160b55475244',1,'chaos::str::UTF8String']]],
+  ['to_5fuint32',['to_uint32',['../classchaos_1_1str_1_1_u_t_f8_string.html#a85ec2ebfdb419a3422cf87497cabdd86',1,'chaos::str::UTF8String']]],
+  ['to_5fuint64',['to_uint64',['../classchaos_1_1str_1_1_u_t_f8_string.html#a5ef3a02131444e2a90b634dad7edb19e',1,'chaos::str::UTF8String']]],
+  ['types_2ehpp',['Types.hpp',['../_types_8hpp.html',1,'']]]
 ];

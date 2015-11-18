@@ -132,7 +132,7 @@ const UTF8String& UTF8String::operator+=( const UTF8String& other )
     return this->concatenate( other );
 }
 
-UTF8String UTF8String::operator*( chaos::uint32 count )
+UTF8String UTF8String::operator*( chaos::uint32 count ) const
 {
     return UTF8String( *this ).repeat( count );
 }

@@ -398,7 +398,6 @@ CHAOS_TEST_UNIT( default_constructor )
 CHAOS_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-
     CHAOS_FOR_EACH( it, fixture->cstrings )
     {
         chaos::str::UTF8String v( *it );
@@ -413,8 +412,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-
-        CHAOS_FOR_EACH( it, fixture->cstrings )
+    CHAOS_FOR_EACH( it, fixture->cstrings )
     {
         chaos::str::UTF8String v( *it, strlen( *it ) );
         CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
@@ -428,7 +426,6 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-
     CHAOS_FOR_EACH( it, fixture->utf8_strings )
     {
         chaos::str::UTF8String copy( *it );
