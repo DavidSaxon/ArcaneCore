@@ -837,10 +837,10 @@ void UTF8String::validate_byte_index( size_t index ) const
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-std::ostream& operator<<( std::ostream& stream, const UTF8String& str )
+std::ostream& operator<<( std::ostream& stream, const UTF8String& s )
 {
     // TODO: proper printing
-    stream << str.to_cstring();
+    stream << s.to_cstring();
     return stream;
 }
 

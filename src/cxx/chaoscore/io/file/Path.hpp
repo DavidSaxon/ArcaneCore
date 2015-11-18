@@ -5,6 +5,8 @@
 #ifndef CHAOSCORE_IO_FILE_PATH_HPP_
 #define CHAOSCORE_IO_FILE_PATH_HPP_
 
+#include <ostream>
+
 #include "chaoscore/base/string/UTF8String.hpp"
 
 namespace chaos
@@ -66,6 +68,20 @@ public:
      *
      */
     Path( const std::vector< chaos::str::UTF8String >& components );
+
+    /*!
+     * \brief Attempts to create a Path object from the given single string
+     *        using the current operating system's path rules.
+     *
+     * \note This constructor method should be avoided where possible. Instead
+     *       constructing paths using the << operator or join() function is
+     *       recommended.
+     *
+     * On Unix systems this will split the given string into components using
+     * the "/" symbol. Likewise on Windows systems the "\" symbol will be used.
+     *
+     */
+    Path( const chaos::str::UTF8String& string_path );
 
     /*!
      * \brief Copy constructor.
@@ -254,7 +270,7 @@ public:
      * chaos::io::file::Path p;
      * p << "path" << "file.txt";
      * p.insert( 1, "to" );
-     * // p now contains ["path", "to", "file.txt"]
+     * // p now contains [ "path", "to", "file.txt" ]
      * \endcode
      *
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is greater
@@ -267,29 +283,118 @@ public:
      */
     void insert( size_t index, const chaos::str::UTF8String& component );
 
-    // TODO: clear
+    /*!
+     * \brief Reverts this Path to be an empty path.
+     *
+     * Clears any current components this Path has.
+     */
+    void clear();
 
-    // TODO: remove
+    /*!
+     * \brief Removes the component from this Path at the given index.
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     *                                          bounds of the number of
+     *                                          components in this Path.
+     *
+     * \param index The index of the component to remove from this path.
+     */
+    void remove( size_t index );
 
-    // TODO: native
+    /*!
+     * \brief Returns the chaos::str::UTF8String representation of this Path for
+     *        the current operating system.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::io::file::Path p;
+     * p << "path" << "to" << "file.txt";
+     * chaos::str::UTF8String s = p.to_native();
+     * // on Unix systems s will be "path/to/file.txt"
+     * // on Windows systems s will be "path\to\file.txt"
+     * \endcode
+     */
+    chaos::str::UTF8String to_native() const;
 
-    // TODO: unix
+    /*!
+     * \brief Returns the chaos::str::UTF8String representation of this Path for
+     *        Unix based operating systems.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::io::file::Path p;
+     * p << "path" << "to" << "file.txt";
+     * chaos::str::UTF8String s = p.to_unix();
+     * // s is "path/to/file.txt"
+     * \endcode
+     *
+     */
+    chaos::str::UTF8String to_unix() const;
 
-    // TODO: windows
+    /*!
+     * \brief Returns the chaos::str::UTF8String representation of this Path for
+     *        Windows based operating systems.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::io::file::Path p;
+     * p << "path" << "to" << "file.txt";
+     * chaos::str::UTF8String s = p.to_windows();
+     * // s is "path\to\file.txt"
+     * \endcode
+     *
+     */
+    chaos::str::UTF8String to_windows() const;
 
-    // TODO: exists
+    /*!
+     * \brief Returns whether this Path exists.
+     *
+     * This function doesn't taken into account the type of the path, the path
+     * can point to a directory, file, or symlink for this to evaluate true.
+     */
+    bool exists() const;
 
-    // TODO: is file
+    /*!
+     * \brief Returns whether this path is a valid file.
+     *
+     * This function will return false if the path exists but is not a file, or
+     * if the path simply does not exist.
+     */
+    bool is_file() const;
 
-    // TODO: is directory
+    /*!
+     * \brief Returns whether this path is a valid directory.
+     *
+     * This function will return false if the path exists but is not a
+     * directory, or if the path simply does not exist.
+     */
+    bool is_directory() const;
 
-    // TODO: is symlink
+    /*!
+     * \brief Returns whether this path is a valid symbolic link.
+     *
+     * This function will return false if the path exists but is not a symbolic
+     * link, or if the path simply does not exist.
+     */
+    bool is_symlink() const;
 
-    // TODO: how to deal with shortcuts
+    //--------------------------------ACCESSORS---------------------------------
 
-    // TODO: validate path
-
-    // TODO: get extension
+    /*!
+     * \brief Returns the number of components in this path.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::io::file::Path p;
+     * p << "path" << "to" << "file.txt";
+     * p.get_length(); // returns: 3
+     * \endcode
+     */
+    size_t get_length();
 
     /*!
      * \brief Returns the individual components which make up this path.
@@ -316,24 +421,19 @@ public:
     const std::vector< chaos::str::UTF8String >& get_components() const;
 
     /*!
-     * \brief Returns the UTF8String representation of this path for the
-     *        current operating system.
+     * \brief Returns the file extension of the leaf component of this Path.
      *
-     * For example the path returned on Unix platforms will use a `/` separator:
-     *
-     * \code
-     * path/to/file.txt
-     * \endcode
-     *
-     * While the path returned on Windows platforms will use a `\` separator:
+     * Example usage:
      *
      * \code
-     * path\to\file.txt
+     * chaos::io::file::Path p;
+     * p << "path" << "to" << "file.txt";
+     * chaos::str::UTF8String ext = p.get_extension();
+     * // ext is "txt"
      * \endcode
+     *
      */
-
-
-    // const chaos::str::UTF8String& to_string() const;
+    chaos::str::UTF8String get_extension() const;
 
  private:
 
@@ -347,7 +447,13 @@ public:
     std::vector< chaos::str::UTF8String > m_components;
 };
 
-// TODO: STREAM OUTPUT
+//------------------------------------------------------------------------------
+//                               EXTERNAL OPERATORS
+//------------------------------------------------------------------------------
+
+chaos::str::UTF8String& operator<<( chaos::str::UTF8String& s, const Path& p );
+
+std::ostream& operator<<( std::ostream& stream, const Path& p );
 
 } // namespace file
 } // namespace io

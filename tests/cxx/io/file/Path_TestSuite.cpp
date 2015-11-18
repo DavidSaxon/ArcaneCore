@@ -27,7 +27,7 @@ static const std::vector< chaos::str::UTF8String > TEST_PATH =
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
 
-class FileUtilGenericFixture : public chaos::test::Fixture
+class PathGenericFixture : public chaos::test::Fixture
 {
 public:
 
@@ -159,7 +159,7 @@ CHAOS_TEST_UNIT( default_constructor )
 //                             COMPONENT CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( component_constructor, FileUtilGenericFixture )
+CHAOS_TEST_UNIT_FIXTURE( component_constructor, PathGenericFixture )
 {
     std::vector< chaos::io::file::Path > paths;
     CHAOS_FOR_EACH( it, fixture->all )
@@ -194,10 +194,109 @@ CHAOS_TEST_UNIT_FIXTURE( component_constructor, FileUtilGenericFixture )
 }
 
 //------------------------------------------------------------------------------
+//                               STRING CONSTRUCTOR
+//------------------------------------------------------------------------------
+
+class StringConstructorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::str::UTF8String > inputs;
+    std::vector< chaos::str::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+#ifdef CHAOS_OS_WINDOWS
+        const chaos::str::UTF8String sep( "\\" );
+#else
+        const chaos::str::UTF8String sep( "/" );
+#endif
+
+        {
+            chaos::str::UTF8String p;
+            p << "path" << sep << "to" << sep << "file.txt";
+            inputs.push_back( p );
+            results.push_back( p );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << "longer" << sep << "path" << sep << "to" << sep << "file.txt";
+            inputs.push_back( p );
+            results.push_back( p );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << "even" << sep << "longer" << sep << "path" << sep << "to"
+              << sep << "file.txt";
+            inputs.push_back( p );
+            results.push_back( p );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << "path" << sep << "to" << sep << "directory";
+            inputs.push_back( p );
+            results.push_back( p );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << "path" << sep << "to" << sep << "directory" << sep
+              << "separator_end";
+            results.push_back( p );
+            p << sep;
+            inputs.push_back( p );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << "path" << sep << sep << "with" << sep << "double" << sep << sep
+              << "separators";
+            inputs.push_back( p );
+            chaos::str::UTF8String p2;
+            p2 << "path" << sep << "with" << sep << "double" << sep
+               << "separators";
+            results.push_back( p2 );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << sep << "path" << sep << "from" << sep << "root";
+            inputs.push_back( p );
+            results.push_back( p );
+        }
+
+        {
+            chaos::str::UTF8String p;
+            p << sep << "path" << sep << "from" << sep << "root";
+            results.push_back( p );
+            p << sep;
+            inputs.push_back( p );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( string_constructor, StringConstructorFixture )
+{
+    for( size_t i = 0; i < fixture->inputs.size(); ++i )
+    {
+        chaos::io::file::Path p( fixture->inputs[ i ] );
+        CHAOS_CHECK_EQUAL( p.to_native(), fixture->results[ i ] );
+    }
+}
+
+
+//------------------------------------------------------------------------------
 //                                COPY CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( copy_constructor, FileUtilGenericFixture )
+CHAOS_TEST_UNIT_FIXTURE( copy_constructor, PathGenericFixture )
 {
     std::vector< chaos::io::file::Path > paths;
     CHAOS_FOR_EACH( it, fixture->all )
@@ -228,5 +327,58 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, FileUtilGenericFixture )
                     fixture->as_paths[ i ].get_components()[ j ]
             );
         }
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              ASSIGNMENT OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( assignment_operator, PathGenericFixture )
+{
+    std::vector< chaos::io::file::Path > paths;
+    CHAOS_FOR_EACH( it, fixture->as_paths )
+    {
+        chaos::io::file::Path p;
+        p = *it;
+        paths.push_back( p );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking internal component lengths" );
+    for ( size_t i = 0; i < paths.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                paths[ i ].get_components().size(),
+                fixture->as_paths[ i ].get_components().size()
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking internal components" );
+    for ( size_t i = 0; i < paths.size(); ++i )
+    {
+        size_t min = std::min(
+                paths[ i ].get_components().size(),
+                fixture->as_paths[ i ].get_components().size()
+        );
+        for ( size_t j = 0; j < min; ++j )
+        {
+            CHAOS_CHECK_EQUAL(
+                    paths[ i ].get_components()[ j ],
+                    fixture->as_paths[ i ].get_components()[ j ]
+            );
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+//                               EQUALITY OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( equality_operator, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::file::Path p( fixture->all[ i ] );
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
     }
 }

@@ -922,7 +922,7 @@ private:
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-std::ostream& operator<<( std::ostream& stream, const UTF8String& str );
+std::ostream& operator<<( std::ostream& stream, const UTF8String& s );
 
 } // namespace str
 } // namespace chaos
