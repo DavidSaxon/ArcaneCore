@@ -24,7 +24,7 @@ var searchData=
   ['chaosexception',['ChaosException',['../classchaos_1_1ex_1_1_chaos_exception.html#af0bdefc632dbd0fd039d7af6b2a9e52b',1,'chaos::ex::ChaosException']]],
   ['chaosexception',['ChaosException',['../classchaos_1_1ex_1_1_chaos_exception.html',1,'chaos::ex']]],
   ['chaostest_2ehpp',['ChaosTest.hpp',['../_chaos_test_8hpp.html',1,'']]],
-  ['clear',['clear',['../classchaos_1_1io_1_1file_1_1_path.html#a3643cb2fd2fa2ee7aefaa1046299cd84',1,'chaos::io::file::Path']]],
+  ['clear',['clear',['../classchaos_1_1io_1_1sys_1_1_path.html#a7c4cd7e5d8e21a8c522f8a87f1e90f4c',1,'chaos::io::sys::Path']]],
   ['clock',['clock',['../namespacechaos_1_1clock.html',1,'chaos']]],
   ['clockoperations_2ehpp',['ClockOperations.hpp',['../_clock_operations_8hpp.html',1,'']]],
   ['concatenate',['concatenate',['../classchaos_1_1str_1_1_u_t_f8_string.html#a8b61a2f73dacd4749d993dad00788d0d',1,'chaos::str::UTF8String']]],
@@ -32,8 +32,8 @@ var searchData=
   ['create_5fdirectory',['create_directory',['../namespacechaos_1_1io_1_1file.html#afedb17553b2e87582d10304e2f7a5b5a',1,'chaos::io::file']]],
   ['createdirectoryerror',['CreateDirectoryError',['../classchaos_1_1io_1_1file_1_1ex_1_1_create_directory_error.html',1,'chaos::io::file::ex']]],
   ['data',['data',['../namespacechaos_1_1data.html',1,'chaos']]],
-  ['ex',['ex',['../namespacechaos_1_1io_1_1file_1_1ex.html',1,'chaos::io::file']]],
   ['ex',['ex',['../namespacechaos_1_1ex.html',1,'chaos']]],
+  ['ex',['ex',['../namespacechaos_1_1io_1_1file_1_1ex.html',1,'chaos::io::file']]],
   ['file',['file',['../namespacechaos_1_1io_1_1file.html',1,'chaos::io']]],
   ['format',['format',['../namespacechaos_1_1io_1_1format.html',1,'chaos::io']]],
   ['chaoscore_20c_2b_2b_20documentation',['ChaosCore C++ Documentation',['../index.html',1,'']]],
@@ -41,5 +41,6 @@ var searchData=
   ['literal',['literal',['../namespacechaos_1_1literal.html',1,'chaos']]],
   ['math',['math',['../namespacechaos_1_1math.html',1,'chaos']]],
   ['str',['str',['../namespacechaos_1_1str.html',1,'chaos']]],
+  ['sys',['sys',['../namespacechaos_1_1io_1_1sys.html',1,'chaos::io']]],
   ['test',['test',['../namespacechaos_1_1test.html',1,'chaos']]]
 ];

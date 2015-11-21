@@ -11,5 +11,6 @@ var searchData=
   ['literal',['literal',['../namespacechaos_1_1literal.html',1,'chaos']]],
   ['math',['math',['../namespacechaos_1_1math.html',1,'chaos']]],
   ['str',['str',['../namespacechaos_1_1str.html',1,'chaos']]],
+  ['sys',['sys',['../namespacechaos_1_1io_1_1sys.html',1,'chaos::io']]],
   ['test',['test',['../namespacechaos_1_1test.html',1,'chaos']]]
 ];
