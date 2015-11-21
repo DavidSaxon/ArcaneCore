@@ -374,11 +374,272 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, PathGenericFixture )
 //                               EQUALITY OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( equality_operator, PathGenericFixture )
+class EqualityFixture : public chaos::test::Fixture
 {
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::file::Path > match;
+    std::vector< chaos::io::file::Path > mismatch;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            match.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "longer" << "path" << "to" << "file.txt";
+            mismatch.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            match.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path1" << "to" << "file.txt";
+            mismatch.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.png";
+            match.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path" << "to" << "file.txt";
+            mismatch.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to1" << "file.txt";
+            match.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path" << "to" << "file.txt";
+            mismatch.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            match.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path" << "to" << "to" << "file.txt";
+            mismatch.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            match.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "to" << "path" << "file.txt";
+            mismatch.push_back( p2 );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( equality_operator, EqualityFixture )
+{
+    CHAOS_FOR_EACH( it, fixture->match )
+    {
+        chaos::io::file::Path p( *it );
+        CHAOS_CHECK_EQUAL( p, *it );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              INEQUALITY OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( inequality_operator, EqualityFixture )
+{
+    for ( size_t i = 0; i < fixture->match.size(); ++i )
+    {
+        CHAOS_CHECK_NOT_EQUAL( fixture->match[ i ], fixture->mismatch[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                               LESS THAN OPERATOR
+//------------------------------------------------------------------------------
+
+class LessThanFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::file::Path > paths1;
+    std::vector< chaos::io::file::Path > paths2;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            paths1.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "longer" << "path" << "to" << "file.txt";
+            paths2.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            paths1.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path1" << "to" << "file.txt";
+            paths2.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.png";
+            paths1.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path" << "to" << "file.txt";
+            paths2.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            paths1.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "a" << "really" << "long" << "path" << "to" << "file.txt";
+            paths2.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "path" << "to" << "file.txt";
+            paths1.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path" << "to" << "to" << "file.txt";
+            paths2.push_back( p2 );
+        }
+
+        {
+            chaos::io::file::Path p1;
+            p1 << "to" << "path" << "file.txt";
+            paths1.push_back( p1 );
+
+            chaos::io::file::Path p2;
+            p2 << "path" << "to" << "file.txt";
+            paths2.push_back( p2 );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
+{
+    for ( size_t i = 0; i < fixture->paths1.size(); ++i )
+    {
+        CHAOS_CHECK_TRUE ( fixture->paths1[ i ] < fixture->paths2[ i ] );
+        CHAOS_CHECK_FALSE( fixture->paths2[ i ] < fixture->paths1[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                               SUBSCRIPT OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( subscript_operator, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking non-const" );
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::file::Path p( fixture->all[ i ] );
-        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        {
+            CHAOS_CHECK_EQUAL( p[ j ], fixture->all[ i ][ j ] );
+        }
+
+    }
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::file::Path p( fixture->all[ i ] );
+        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        {
+            p[ j ] = "now_for_something_completly_different";
+            CHAOS_CHECK_NOT_EQUAL( p[ j ], fixture->all[ i ][ j ] );
+        }
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking const" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        const chaos::io::file::Path p( fixture->all[ i ] );
+        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        {
+            CHAOS_CHECK_EQUAL( p[ j ], fixture->all[ i ][ j ] );
+        }
+
     }
 }
+
+//------------------------------------------------------------------------------
+//                               ADDITION OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( addition_operator, PathGenericFixture )
+{
+    std::vector< chaos::io::file::Path > paths1;
+    std::vector< chaos::io::file::Path > paths2;
+
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::file::Path p1;
+        chaos::io::file::Path p2;
+
+        size_t j = 0;
+        for ( ; j < fixture->all[ i ].size() / 2; ++j )
+        {
+            p1 << fixture->all[ i ][ j ];
+        }
+        for ( ; j < fixture->all[ i ].size(); ++j )
+        {
+            p2 << fixture->all[ i ][ j ];
+        }
+
+        paths1.push_back( p1 );
+        paths2.push_back( p2 );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking const addition" );
+    for ( size_t i = 0; i < paths1.size(); ++i )
+    {
+        chaos::io::file::Path p( paths1[ i ] + paths2[ i ] );
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound addition" );
+    for ( size_t i = 0; i < paths1.size(); ++i )
+    {
+        paths1[ i ] += paths2[ i ];
+        CHAOS_CHECK_EQUAL( paths1[ i ], fixture->as_paths[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                 JOIN OPERATOR
+//------------------------------------------------------------------------------
+

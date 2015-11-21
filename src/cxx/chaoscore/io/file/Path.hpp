@@ -136,7 +136,8 @@ public:
      *
      * Less than is defined by the number of components in a Path, and if two
      * paths have the same number of components then this resorts to a
-     * UTF8String less than comparison of the Unix paths.
+     * UTF8String less than comparison on each component until a mismatch is
+     * found.
      *
      * \param other Path to compare this against.
      * \return Whether this Path is less than the other.
@@ -348,6 +349,8 @@ public:
      *
      */
     chaos::str::UTF8String to_windows() const;
+
+    // TODO: MOVE THESE OUT
 
     /*!
      * \brief Returns whether this Path exists.
