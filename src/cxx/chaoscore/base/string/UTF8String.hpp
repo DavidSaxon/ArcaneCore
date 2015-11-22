@@ -540,7 +540,6 @@ public:
      */
     size_t find_last( const UTF8String& substring ) const;
 
-    // throw an exception
     /*!
      * \brief Splits this UTF8String by the given delimiter and returns the
      *        split elements in a std::vector.
@@ -561,6 +560,17 @@ public:
      * \return std::vector containing the results of the split.
      */
     const std::vector< UTF8String > split( const UTF8String& delimiter ) const;
+
+    /*!
+     * \brief Joins the given vector components using this string.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::io::str::
+     * \endcode
+    UTF8String join(
+            const std::vector< chaos::str::UTF8String >& components ) const; */
 
     /*!
      * \brief Whether the symbols of this string make up a valid integer type.
@@ -747,7 +757,7 @@ public:
      *              string with respect to the symbol length. See get_length()
      * \return A uint32 containing the value of the symbol.
      */
-    chaos::uint32 get_symbol_value( size_t index ) const;
+    chaos::uint32 get_symbol_value( size_t index = 0 ) const;
 
     /*!
      * \brief Returns the Unicode code point for the UTF-8 symbol at the given
@@ -768,7 +778,7 @@ public:
      *              get_length()
      * \return A uint32 containing the code point of the symbol.
      */
-    chaos::uint32 get_code_point( size_t index ) const;
+    chaos::uint32 get_code_point( size_t index = 0 ) const;
 
     /*!
      * \brief Gets the index of the first byte for the symbol at the given

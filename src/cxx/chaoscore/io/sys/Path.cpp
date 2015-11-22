@@ -1,11 +1,28 @@
 #include "chaoscore/io/sys/Path.hpp"
 
+#include <algorithm>
+
+// TODO REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace io
 {
 namespace sys
 {
+
+//------------------------------------------------------------------------------
+//                                   CONSTANTS
+//------------------------------------------------------------------------------
+
+namespace
+{
+
+static const chaos::str::UTF8String UNIX_SEP   ( "/" );
+static const chaos::str::UTF8String WINDOWS_SEP( "\\" );
+
+} // namespace anonymous
 
 //------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
@@ -23,6 +40,16 @@ Path::Path( const std::vector< chaos::str::UTF8String >& components )
 
 Path::Path( const chaos::str::UTF8String& string_path )
 {
+    // split the path into components based on the operating system
+#ifdef CHAOS_OS_UNIX
+
+    m_components = string_path.split( UNIX_SEP );
+
+#elif defined( CHAOS_OS_WINDOWS )
+
+    m_components = string_path.split( WINDOWS_SEP );
+
+#endif
 }
 
 Path::Path( const Path& other )
@@ -42,16 +69,33 @@ const Path& Path::operator=( const Path& other )
 
 bool Path::operator==( const Path& other ) const
 {
+    // check length first
+    if ( m_components.size() != other.m_components.size() )
+    {
+        return false;
+    }
+
+    // check each component
+    for ( size_t i = 0; i < m_components.size(); ++i )
+    {
+        if ( m_components[ i ] != other.m_components [ i ] )
+        {
+            return false;
+        }
+    }
+
     return true;
 }
 
 bool Path::operator!=( const Path& other ) const
 {
-    return false;
+    return !( ( *this ) == other );
 }
 
 bool Path::operator<( const Path& other ) const
 {
+    // size_t min = std::min( m_components.size(), other.m_components.size() );
+
     return true;
 }
 
@@ -77,7 +121,7 @@ const Path& Path::operator+=( const Path& other )
 
 Path& Path::operator<<( const chaos::str::UTF8String& component )
 {
-    return *this;
+    return join( component );
 }
 
 //------------------------------------------------------------------------------
@@ -86,6 +130,7 @@ Path& Path::operator<<( const chaos::str::UTF8String& component )
 
 Path& Path::join( const chaos::str::UTF8String& component )
 {
+    m_components.push_back( component );
     return *this;
 }
 

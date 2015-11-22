@@ -431,17 +431,17 @@ bool UTF8String::is_int() const
     // iterate over each code point and ensure that it's a digit
     for ( size_t i = 0; i < m_length; ++i )
     {
-        chaos::uint32 code_point = get_symbol_value( i );
+        chaos::uint32 code_point = get_code_point( i );
 
         // the first symbol is allowed to be '-'
         if ( i == 0                                  &&
             get_symbol( i ) != "-"                   &&
-            !chaos::str::utf8_is_digit( code_point )    )
+            !chaos::str::is_digit( code_point )    )
         {
             return false;
         }
         // every other character must be a digit
-        else if ( i != 0 && !chaos::str::utf8_is_digit( code_point ) )
+        else if ( i != 0 && !chaos::str::is_digit( code_point ) )
         {
             return false;
         }
@@ -455,7 +455,7 @@ bool UTF8String::is_uint() const
     // iterate of each code point and ensure that it's a digit
     for ( size_t i = 0; i < m_length; ++i )
     {
-        if ( !chaos::str::utf8_is_digit( get_symbol_value( i ) ) )
+        if ( !chaos::str::is_digit( get_symbol_value( i ) ) )
         {
             // not a digit
             return false;
@@ -473,7 +473,7 @@ bool UTF8String::is_float() const
     {
         chaos::uint32 code_point = get_symbol_value( i );
 
-        if ( !chaos::str::utf8_is_digit( code_point ) )
+        if ( !chaos::str::is_digit( code_point ) )
         {
             if ( i == 0 && get_symbol( i ) == "-" )
             {

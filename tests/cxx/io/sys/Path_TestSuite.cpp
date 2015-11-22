@@ -113,7 +113,7 @@ public:
             v.push_back( "space" );
             v.push_back( "in it.pdf" );
             all.push_back( v );
-            unix.push_back( "path/with\\ a/space/in\\ it.pdf" );
+            unix.push_back( "path/with a/space/in it.pdf" );
             windows.push_back( "path\\with a\\space\\in it.pdf" );
             extensions.push_back( "pdf" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
@@ -137,7 +137,7 @@ public:
             v.push_back( "مزيج of" );
             v.push_back( "text.간" );
             all.push_back( v );
-            unix.push_back( "this/path/has\\ a/مزيج\\ of/text.간" );
+            unix.push_back( "this/path/has a/مزيج of/text.간" );
             windows.push_back( "this\\path\\has a\\مزيج of\\text.간" );
             extensions.push_back( "간" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
@@ -456,6 +456,10 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, EqualityFixture )
         chaos::io::sys::Path p( *it );
         CHAOS_CHECK_EQUAL( p, *it );
     }
+    for ( size_t i = 0; i < fixture->match.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( ( fixture->match[ i ] == fixture->mismatch[ i ] ) );
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -467,6 +471,10 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, EqualityFixture )
     for ( size_t i = 0; i < fixture->match.size(); ++i )
     {
         CHAOS_CHECK_NOT_EQUAL( fixture->match[ i ], fixture->mismatch[ i ] );
+    }
+    for ( size_t i = 0; i < fixture->match.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->match[ i ] != fixture->match[ i ] );
     }
 }
 

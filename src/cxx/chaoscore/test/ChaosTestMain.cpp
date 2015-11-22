@@ -5,6 +5,12 @@
 #include "chaoscore/test/ChaosTest.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 
+#ifdef CHAOS_OS_WINDOWS
+
+    #include <windows.h>
+
+#endif
+
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
 //------------------------------------------------------------------------------
