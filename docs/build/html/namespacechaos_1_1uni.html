@@ -104,6 +104,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a25a7549a0378aeac227c881220c23640"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#a25a7549a0378aeac227c881220c23640">is_digit</a> (<a class="el" href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a> code_point)</td></tr>
 <tr class="memdesc:a25a7549a0378aeac227c881220c23640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the given Unicode code point is a digit or not.  <a href="#a25a7549a0378aeac227c881220c23640">More...</a><br /></td></tr>
 <tr class="separator:a25a7549a0378aeac227c881220c23640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a77983423c8b10e2b18cae6f35d329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#ad2a77983423c8b10e2b18cae6f35d329">join</a> (const std::vector&lt; <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &gt; &amp;components, const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;separator)</td></tr>
+<tr class="memdesc:ad2a77983423c8b10e2b18cae6f35d329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins the given vector into a single <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a>.  <a href="#ad2a77983423c8b10e2b18cae6f35d329">More...</a><br /></td></tr>
+<tr class="separator:ad2a77983423c8b10e2b18cae6f35d329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab20a8223562ec1ee8f663bda07c7a3ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab20a8223562ec1ee8f663bda07c7a3ad"></a>
 std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (std::ostream &amp;stream, const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">UTF8String</a> &amp;s)</td></tr>
 <tr class="separator:ab20a8223562ec1ee8f663bda07c7a3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,11 +135,53 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </div><!-- fragment --> 
 </div>
 </div>
+<a class="anchor" id="ad2a77983423c8b10e2b18cae6f35d329"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> chaos::uni::join </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>components</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;&#160;</td>
+          <td class="paramname"><em>separator</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Joins the given vector into a single <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a>. </p>
+<p>The components of the vector will be concatenated together with the separator string between each component.</p>
+<p>Example usage:</p>
+<div class="fragment"><div class="line">std::vector&lt; chaos::uni::UTF8String &gt; components;</div>
+<div class="line">components.push_back( <span class="stringliteral">&quot;Hello&quot;</span> );</div>
+<div class="line">components.push_back( <span class="stringliteral">&quot;World&quot;</span> );</div>
+<div class="line"><a class="code" href="namespacechaos_1_1uni.html#ad2a77983423c8b10e2b18cae6f35d329">chaos::uni::join</a>( components, <span class="stringliteral">&quot;_&quot;</span> ); returns: <span class="stringliteral">&quot;Hello_World&quot;</span>;</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">components</td><td>Vector of string components to join together as a single string. </td></tr>
+    <tr><td class="paramname">separator</td><td>String to join each component together with. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>New <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> containing the results of the operation. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 23 2015 00:32:29 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 23 2015 00:45:11 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

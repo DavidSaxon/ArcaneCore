@@ -6,13 +6,13 @@ set( CORE_SRC
     src/cxx/chaoscore/base/clock/ClockOperations.cpp
     src/cxx/chaoscore/base/data/BinaryOperations.cpp
     src/cxx/chaoscore/base/data/ByteOperations.cpp
-    src/cxx/chaoscore/base/string/UTF8String.cpp
-    src/cxx/chaoscore/base/string/UnicodeOperations.cpp
+    src/cxx/chaoscore/base/uni/UTF8String.cpp
+    src/cxx/chaoscore/base/uni/UnicodeOperations.cpp
 
     src/cxx/chaoscore/io/file/FileOperations.cpp
-    src/cxx/chaoscore/io/file/Path.cpp
     src/cxx/chaoscore/io/format/ANSI.cpp
     src/cxx/chaoscore/io/format/FormatOperations.cpp
+    src/cxx/chaoscore/io/sys/Path.cpp
 
     src/cxx/chaoscore/test/ChaosTest.cpp
     src/cxx/chaoscore/test/ChaosTestMain.cpp
@@ -29,10 +29,10 @@ set( TEST_SRC
     tests/cxx/base/PreProc_TestSuite.cpp
     tests/cxx/base/Types_TestSuite.cpp
     tests/cxx/base/data/ByteOperations_TestSuite.cpp
-    tests/cxx/base/str/UTF8String_TestSuite.cpp
-    tests/cxx/base/str/UnicodeOperations_TestSuite.cpp
+    tests/cxx/base/uni/UTF8String_TestSuite.cpp
+    tests/cxx/base/uni/UnicodeOperations_TestSuite.cpp
 
-    tests/cxx/io/file/Path_TestSuite.cpp
+    tests/cxx/io/sys/Path_TestSuite.cpp
 )
 
 set( DEV_SRC

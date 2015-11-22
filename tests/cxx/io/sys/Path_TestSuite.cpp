@@ -815,7 +815,10 @@ CHAOS_TEST_UNIT_FIXTURE( clear, PathGenericFixture )
     CHAOS_FOR_EACH( it, fixture->as_paths )
     {
         it->clear();
-        CHAOS_CHECK_EQUAL( it->get_components().size(), 0 );
+        CHAOS_CHECK_EQUAL(
+                it->get_components().size(),
+                static_cast< size_t >( 0 )
+        );
     }
 }
 
