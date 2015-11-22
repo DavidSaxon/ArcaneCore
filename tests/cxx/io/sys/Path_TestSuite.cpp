@@ -7,23 +7,6 @@ CHAOS_TEST_MODULE( io.sys.path )
 #include "chaoscore/io/sys/Path.hpp"
 
 //------------------------------------------------------------------------------
-//                                   CONSTANTS
-//------------------------------------------------------------------------------
-
-namespace
-{
-
-//------------------------------------------------------------------------------
-//                                   CONSTANTS
-//------------------------------------------------------------------------------
-
-static const std::vector< chaos::str::UTF8String > TEST_PATH =
-        chaos::str::UTF8String( "tests/cxx/io/sys/file_system_test_objects" )
-        .split( "/" );
-
-} // namespace anonymous
-
-//------------------------------------------------------------------------------
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
 
@@ -34,112 +17,129 @@ public:
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     std::vector< std::vector< chaos::str::UTF8String > > all;
+    std::vector< chaos::str::UTF8String > unix;
+    std::vector< chaos::str::UTF8String > windows;
+    std::vector< chaos::str::UTF8String > extensions;
     std::vector< chaos::io::sys::Path > as_paths;
 
-    std::vector< std::vector< chaos::str::UTF8String > > directories;
-    std::vector< std::vector< chaos::str::UTF8String > > bad_directories;
-
-    std::vector< std::vector< chaos::str::UTF8String > > files;
-    std::vector< std::vector< chaos::str::UTF8String > > bad_files;
-
-    std::vector< std::vector< chaos::str::UTF8String > > symlinks;
-    std::vector< std::vector< chaos::str::UTF8String > > bad_symlinks;
-
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    // TODO: don't need to use real paths for these tests
 
     virtual void setup()
     {
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            directories.push_back( v );
+            std::vector< chaos::str::UTF8String > v;
             all.push_back( v );
+            unix.push_back( "" );
+            windows.push_back( "" );
+            extensions.push_back( "" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "test_dir" );
-            directories.push_back( v );
             all.push_back( v );
-            as_paths.push_back( chaos::io::sys::Path( v ) );
-        }
-
-        {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "does_not_exist" );
-            bad_directories.push_back( v );
-            all.push_back( v );
+            unix.push_back( "test_dir" );
+            windows.push_back( "test_dir" );
+            extensions.push_back( "" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "test_dir" );
-            v.push_back( "does_not_exist" );
-            bad_directories.push_back( v );
+            v.push_back( "another_dir" );
+            v.push_back( "file.txt" );
             all.push_back( v );
-            as_paths.push_back( chaos::io::sys::Path( v ) );
-        }
-
-        {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "test_file.txt" );
-            files.push_back( v );
-            all.push_back( v );
+            unix.push_back( "test_dir/another_dir/file.txt" );
+            windows.push_back( "test_dir\\another_dir\\file.txt" );
+            extensions.push_back( "txt" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "test_dir" );
-            v.push_back( "test_file.txt" );
-            files.push_back( v );
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( "/" );
+            v.push_back( "path" );
+            v.push_back( "from" );
+            v.push_back( "root.png" );
             all.push_back( v );
-            as_paths.push_back( chaos::io::sys::Path( v ) );
-        }
-
-        {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "test_file" );
-            bad_files.push_back( v );
-            all.push_back( v );
+            unix.push_back( "/path/from/root.png" );
+            windows.push_back( "/\\path\\from\\root.png" );
+            extensions.push_back( "png" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "test_dir" );
-            v.push_back( "does_not_exist.txt" );
-            bad_files.push_back( v );
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( "~" );
+            v.push_back( "path" );
+            v.push_back( "from" );
+            v.push_back( "home" );
+            v.push_back( "dir" );
             all.push_back( v );
-            as_paths.push_back( chaos::io::sys::Path( v ) );
-        }
-
-        {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "symlink" );
-            symlinks.push_back( v );
-            all.push_back( v );
+            unix.push_back( "~/path/from/home/dir" );
+            windows.push_back( "~\\path\\from\\home\\dir" );
+            extensions.push_back( "" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "test_dir" );
-            v.push_back( "symlink" );
-            symlinks.push_back( v );
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( "." );
+            v.push_back( "current" );
+            v.push_back( "dir" );
+            v.push_back( "path.jpg" );
             all.push_back( v );
-            as_paths.push_back( chaos::io::sys::Path( v ) );
-        }
-
-        {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "symlink.txt" );
-            bad_symlinks.push_back( v );
-            all.push_back( v );
+            unix.push_back( "./current/dir/path.jpg" );
+            windows.push_back( ".\\current\\dir\\path.jpg" );
+            extensions.push_back( "jpg" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::str::UTF8String > v( TEST_PATH );
-            v.push_back( "test_dir" );
-            v.push_back( "does_not_exist" );
-            bad_symlinks.push_back( v );
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( ".." );
+            v.push_back( ".." );
+            v.push_back( "up" );
+            v.push_back( "two" );
+            v.push_back( "directories" );
             all.push_back( v );
+            unix.push_back( "../../up/two/directories" );
+            windows.push_back( "..\\..\\up\\two\\directories" );
+            extensions.push_back( "" );
+            as_paths.push_back( chaos::io::sys::Path( v ) );
+        }
+        {
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( "path" );
+            v.push_back( "with a" );
+            v.push_back( "space" );
+            v.push_back( "in it.pdf" );
+            all.push_back( v );
+            unix.push_back( "path/with\\ a/space/in\\ it.pdf" );
+            windows.push_back( "path\\with a\\space\\in it.pdf" );
+            extensions.push_back( "pdf" );
+            as_paths.push_back( chaos::io::sys::Path( v ) );
+        }
+        {
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( "γειά" );
+            v.push_back( "σου" );
+            v.push_back( "Κόσμε" );
+            all.push_back( v );
+            unix.push_back( "γειά/σου/Κόσμε" );
+            windows.push_back( "γειά\\σου\\Κόσμε" );
+            extensions.push_back( "" );
+            as_paths.push_back( chaos::io::sys::Path( v ) );
+        }
+        {
+            std::vector< chaos::str::UTF8String > v;
+            v.push_back( "this" );
+            v.push_back( "path" );
+            v.push_back( "has a" );
+            v.push_back( "مزيج of" );
+            v.push_back( "text.간" );
+            all.push_back( v );
+            unix.push_back( "this/path/has\\ a/مزيج\\ of/text.간" );
+            windows.push_back( "this\\path\\has a\\مزيج of\\text.간" );
+            extensions.push_back( "간" );
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
     }
@@ -643,3 +643,382 @@ CHAOS_TEST_UNIT_FIXTURE( addition_operator, PathGenericFixture )
 //                                 JOIN OPERATOR
 //------------------------------------------------------------------------------
 
+CHAOS_TEST_UNIT_FIXTURE( join_operator, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking individual calls" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+        CHAOS_FOR_EACH( it, fixture->all[ i ] )
+        {
+            p << *it;
+        }
+
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound calls" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+
+        if ( fixture->all[ i ].size() == 1 )
+        {
+            p << fixture->all[ i ][ 0 ];
+        }
+        else if ( fixture->all[ i ].size() == 2 )
+        {
+            p << fixture->all[ i ][ 0 ] << fixture->all[ i ][ 1 ];
+        }
+        else if ( fixture->all[ i ].size() == 3 )
+        {
+            p << fixture->all[ i ][ 0 ] << fixture->all[ i ][ 1 ]
+              << fixture->all[ i ][ 2 ];
+        }
+        else if ( fixture->all[ i ].size() == 4 )
+        {
+            p << fixture->all[ i ][ 0 ] << fixture->all[ i ][ 1 ]
+              << fixture->all[ i ][ 2 ] << fixture->all[ i ][ 3 ];
+        }
+        else if ( fixture->all[ i ].size() == 5 )
+        {
+            p << fixture->all[ i ][ 0 ] << fixture->all[ i ][ 1 ]
+              << fixture->all[ i ][ 2 ] << fixture->all[ i ][ 3 ]
+              << fixture->all[ i ][ 4 ];
+        }
+        else if ( fixture->all[ i ].size() == 6 )
+        {
+            p << fixture->all[ i ][ 0 ] << fixture->all[ i ][ 1 ]
+              << fixture->all[ i ][ 2 ] << fixture->all[ i ][ 3 ]
+              << fixture->all[ i ][ 4 ] << fixture->all[ i ][ 5 ];
+        }
+
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                      JOIN
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( join, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking individual calls" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+        CHAOS_FOR_EACH( it, fixture->all[ i ] )
+        {
+            p.join( *it );
+        }
+
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound calls" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+
+        if ( fixture->all[ i ].size() == 1 )
+        {
+            p.join( fixture->all[ i ][ 0 ] );
+        }
+        else if ( fixture->all[ i ].size() == 2 )
+        {
+            p.join( fixture->all[ i ][ 0 ] ).join( fixture->all[ i ][ 1 ] );
+        }
+        else if ( fixture->all[ i ].size() == 3 )
+        {
+            p.join( fixture->all[ i ][ 0 ] ).join( fixture->all[ i ][ 1 ] )
+             .join( fixture->all[ i ][ 2 ] );
+        }
+        else if ( fixture->all[ i ].size() == 4 )
+        {
+            p.join( fixture->all[ i ][ 0 ] ).join( fixture->all[ i ][ 1 ] )
+             .join( fixture->all[ i ][ 2 ] ).join( fixture->all[ i ][ 3 ] );
+        }
+        else if ( fixture->all[ i ].size() == 5 )
+        {
+            p.join( fixture->all[ i ][ 0 ] ).join( fixture->all[ i ][ 1 ] )
+             .join( fixture->all[ i ][ 2 ] ).join( fixture->all[ i ][ 3 ] )
+             .join( fixture->all[ i ][ 4 ] );
+        }
+        else if ( fixture->all[ i ].size() == 6 )
+        {
+            p.join( fixture->all[ i ][ 0 ] ).join( fixture->all[ i ][ 1 ] )
+             .join( fixture->all[ i ][ 2 ] ).join( fixture->all[ i ][ 3 ] )
+             .join( fixture->all[ i ][ 4 ] ).join( fixture->all[ i ][ 5 ] );
+        }
+
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                     INSERT
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( insert, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking insert at beginning" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+        for ( size_t j = fixture->all.size(); j > 0; --j )
+        {
+            p.insert( 0, fixture->all[ i ] [ j - 1 ] );
+        }
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking insert at end" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        {
+            p.insert( j, fixture->all[ i ][ j ] );
+        }
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking out of bounds" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        chaos::io::sys::Path p;
+        for ( size_t j = 0; j < fixture->all[ i ].size() / 2; ++j )
+        {
+            p.insert( j, fixture->all[ i ][ j ] );
+        }
+
+        CHAOS_CHECK_THROW(
+                p.insert( ( fixture->all[ i ].size() * 2 ) + 1, "." ),
+                chaos::ex::IndexOutOfBoundsError
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                     CLEAR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( clear, PathGenericFixture )
+{
+    CHAOS_FOR_EACH( it, fixture->as_paths )
+    {
+        it->clear();
+        CHAOS_CHECK_EQUAL( it->get_components().size(), 0 );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                     REMOVE
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking remove at beginning" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        if ( fixture->all[ i ].size() == 0 )
+        {
+            continue;
+        }
+
+        chaos::io::sys::Path p( fixture->all[ i ] );
+        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        {
+            p.remove( 0 );
+            CHAOS_CHECK_EQUAL(
+                    p.get_components().size(),
+                    fixture->all[ i ].size() - ( j + 1 )
+            );
+        }
+    }
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        if ( fixture->all[ i ].size() == 0 )
+        {
+            continue;
+        }
+
+        chaos::io::sys::Path p( fixture->all[ i ] );
+        for ( size_t j = 0; j < fixture->all[ i ].size() - 1; ++j )
+        {
+            p.remove( 0 );
+            CHAOS_CHECK_EQUAL(
+                    p.get_components()[ 0 ],
+                    fixture->all[ i ][ j + 1 ]
+            );
+        }
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking remove at end" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        if ( fixture->all[ i ].size() == 0 )
+        {
+            continue;
+        }
+
+        chaos::io::sys::Path p( fixture->all[ i ] );
+        for ( size_t j = fixture->all[ i ].size(); j > 0; --j )
+        {
+            p.remove( j - 1 );
+            CHAOS_CHECK_EQUAL(
+                    p.get_components().size(),
+                    ( j - 1 )
+            );
+        }
+    }
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        if ( fixture->all[ i ].size() == 0 )
+        {
+            continue;
+        }
+
+        chaos::io::sys::Path p( fixture->all[ i ] );
+        for ( size_t j = fixture->all[ i ].size(); j > 1; --j )
+        {
+            p.remove( j - 1 );
+            CHAOS_CHECK_EQUAL(
+                    p.get_components()[ j - 2 ],
+                    fixture->all[ i ][ j - 2 ]
+            );
+        }
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking out of bounds" );
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        if ( fixture->all[ i ].size() == 0 )
+        {
+            continue;
+        }
+
+        chaos::io::sys::Path p( fixture->all[ i ] );
+        CHAOS_CHECK_THROW(
+                p.remove( fixture->all[ i ].size() ),
+                chaos::ex::IndexOutOfBoundsError
+        );
+    }
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        if ( fixture->all[ i ].size() == 0 )
+        {
+            continue;
+        }
+
+        chaos::io::sys::Path p( fixture->all[ i ] );
+        CHAOS_CHECK_THROW(
+                p.remove( fixture->all[ i ].size() * 67 ),
+                chaos::ex::IndexOutOfBoundsError
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   TO NATIVE
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+#ifndef CHAOS_OS_WINDOWS
+
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_native(),
+                fixture->windows[ i ]
+        );
+
+#else
+
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_native(),
+                fixture->unix[ i ]
+        );
+
+#endif
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    TO UNIX
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_unix, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_unix(),
+                fixture->unix[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   TO_WINDOWS
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_windows(),
+                fixture->windows[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                   GET LENGTH
+//------------------------------------------------------------------------------
+
+
+CHAOS_TEST_UNIT_FIXTURE( get_length, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].get_length(),
+                fixture->all[ i ].size()
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                 GET COMPONENTS
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_components, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        {
+            CHAOS_CHECK_EQUAL(
+                    fixture->as_paths[ i ].get_components()[ j ],
+                    fixture->all[ i ][ j ]
+            );
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                 GET EXTENSION
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_extension, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].get_extension(),
+                fixture->extensions[ i ]
+        );
+    }
+}

@@ -350,40 +350,6 @@ public:
      */
     chaos::str::UTF8String to_windows() const;
 
-    // TODO: MOVE THESE OUT
-
-    /*!
-     * \brief Returns whether this Path exists.
-     *
-     * This function doesn't taken into account the type of the path, the path
-     * can point to a directory, file, or symlink for this to evaluate true.
-     */
-    bool exists() const;
-
-    /*!
-     * \brief Returns whether this path is a valid file.
-     *
-     * This function will return false if the path exists but is not a file, or
-     * if the path simply does not exist.
-     */
-    bool is_file() const;
-
-    /*!
-     * \brief Returns whether this path is a valid directory.
-     *
-     * This function will return false if the path exists but is not a
-     * directory, or if the path simply does not exist.
-     */
-    bool is_directory() const;
-
-    /*!
-     * \brief Returns whether this path is a valid symbolic link.
-     *
-     * This function will return false if the path exists but is not a symbolic
-     * link, or if the path simply does not exist.
-     */
-    bool is_symlink() const;
-
     //--------------------------------ACCESSORS---------------------------------
 
     /*!

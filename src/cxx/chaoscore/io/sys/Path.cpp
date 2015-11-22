@@ -116,26 +116,6 @@ chaos::str::UTF8String Path::to_windows() const
     return "";
 }
 
-bool Path::exists() const
-{
-    return true;
-}
-
-bool Path::is_file() const
-{
-    return true;
-}
-
-bool Path::is_directory() const
-{
-    return true;
-}
-
-bool Path::is_symlink() const
-{
-    return true;
-}
-
 //----------------------------------ACCESSORS-----------------------------------
 
 size_t Path::get_length()
