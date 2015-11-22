@@ -17,20 +17,20 @@
 
 //----------------------------COMMAND LINE ARGUMENTS----------------------------
 
-static chaos::str::UTF8String ARG_SINGLE_PROC   = "--single_proc";
-static chaos::str::UTF8String ARG_SUB_PROC      = "--sub_proc";
-static chaos::str::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
-static chaos::str::UTF8String ARG_TEST_PATH     = "--test";
-static chaos::str::UTF8String ARG_STDOUT        = "--stdout";
-static chaos::str::UTF8String ARG_FILEOUT       = "--fileout";
-static chaos::str::UTF8String ARG_HELP          = "--help";
+static chaos::uni::UTF8String ARG_SINGLE_PROC   = "--single_proc";
+static chaos::uni::UTF8String ARG_SUB_PROC      = "--sub_proc";
+static chaos::uni::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
+static chaos::uni::UTF8String ARG_TEST_PATH     = "--test";
+static chaos::uni::UTF8String ARG_STDOUT        = "--stdout";
+static chaos::uni::UTF8String ARG_FILEOUT       = "--fileout";
+static chaos::uni::UTF8String ARG_HELP          = "--help";
 
 //-----------------------------COMMAND LINE OPTIONS-----------------------------
 
-static chaos::str::UTF8String OPT_FORMAT_PLAIN  = "plain";
-static chaos::str::UTF8String OPT_FORMAT_PRETTY = "pretty";
-static chaos::str::UTF8String OPT_FORMAT_XML    = "xml";
-static chaos::str::UTF8String OPT_FORMAT_HTML   = "html";
+static chaos::uni::UTF8String OPT_FORMAT_PLAIN  = "plain";
+static chaos::uni::UTF8String OPT_FORMAT_PRETTY = "pretty";
+static chaos::uni::UTF8String OPT_FORMAT_XML    = "xml";
+static chaos::uni::UTF8String OPT_FORMAT_HTML   = "html";
 
 //------------------------------------------------------------------------------
 //                                   PROTOTYPES
@@ -44,7 +44,7 @@ static chaos::str::UTF8String OPT_FORMAT_HTML   = "html";
  * \return Whether the input string was valid or not.
  */
 bool string_to_format(
-        const chaos::str::UTF8String&              str,
+        const chaos::uni::UTF8String&              str,
               chaos::test::TestLogger::OutFormat&  format );
 
 /*!
@@ -85,7 +85,7 @@ int main( int argc, char* argv[] )
             }
 
             run_info.sub_proc = true;
-            run_info.id = chaos::str::UTF8String( argv[ ++i ] );
+            run_info.id = chaos::uni::UTF8String( argv[ ++i ] );
         }
         // --silent_crash
         else if ( ARG_SILENT_CRASH == argv[ i ] )
@@ -98,7 +98,7 @@ int main( int argc, char* argv[] )
 
             #else
 
-                chaos::str::UTF8String error_message( ARG_SILENT_CRASH );
+                chaos::uni::UTF8String error_message( ARG_SILENT_CRASH );
                 error_message << ARG_SILENT_CRASH
                               << " only supported on Windows systems.";
                 throw chaos::test::ex::TestRuntimeError( error_message );
@@ -118,7 +118,7 @@ int main( int argc, char* argv[] )
             }
 
             // get the next argument
-            run_info.paths.insert( chaos::str::UTF8String( argv[ ++i ] ) );
+            run_info.paths.insert( chaos::uni::UTF8String( argv[ ++i ] ) );
         }
         // --stdout
         else if ( ARG_STDOUT == argv[ i ] )
@@ -144,7 +144,7 @@ int main( int argc, char* argv[] )
 
             // get the format to be use
             chaos::test::TestLogger::OutFormat out_format;
-            chaos::str::UTF8String opt( argv[ ++i ] );
+            chaos::uni::UTF8String opt( argv[ ++i ] );
             if ( !string_to_format( opt, out_format ) )
             {
                 std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
@@ -155,7 +155,7 @@ int main( int argc, char* argv[] )
             }
 
             // get the verbosity level
-            chaos::str::UTF8String verbosityString( argv[ ++i ] );
+            chaos::uni::UTF8String verbosityString( argv[ ++i ] );
             if ( !verbosityString.is_uint() )
             {
                 std::cerr << "\nERROR: Verbosity level: \'" << verbosityString
@@ -198,7 +198,7 @@ int main( int argc, char* argv[] )
             }
 
             // get the file to write to
-            chaos::str::UTF8String file_path( argv[ ++i ] );
+            chaos::uni::UTF8String file_path( argv[ ++i ] );
 
             // ensure the provided path is a file
             if ( file_path.get_symbol( file_path.get_length() - 1 ) == "/" ||
@@ -227,7 +227,7 @@ int main( int argc, char* argv[] )
 
             // get the format to be use
             chaos::test::TestLogger::OutFormat out_format;
-            chaos::str::UTF8String opt( argv[ ++i ] );
+            chaos::uni::UTF8String opt( argv[ ++i ] );
             if ( !string_to_format( opt, out_format ) )
             {
                 std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
@@ -246,7 +246,7 @@ int main( int argc, char* argv[] )
             }
 
             // get the verbosity level
-            chaos::str::UTF8String verbosityString( argv[ ++i ] );
+            chaos::uni::UTF8String verbosityString( argv[ ++i ] );
             if ( !verbosityString.is_uint() )
             {
                 std::cerr << "\nERROR: Verbosity level: \'" << verbosityString
@@ -309,7 +309,7 @@ int main( int argc, char* argv[] )
 //------------------------------------------------------------------------------
 
 bool string_to_format(
-        const chaos::str::UTF8String&              str,
+        const chaos::uni::UTF8String&              str,
               chaos::test::TestLogger::OutFormat&  format )
 {
     // check against know types

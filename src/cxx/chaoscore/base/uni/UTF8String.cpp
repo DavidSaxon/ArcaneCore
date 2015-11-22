@@ -1,4 +1,4 @@
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 #include <algorithm>
 #include <cstddef>
@@ -9,11 +9,11 @@
 
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/data/ByteOperations.hpp"
-#include "chaoscore/base/string/UnicodeOperations.hpp"
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
 
 namespace chaos
 {
-namespace str
+namespace uni
 {
 
 //------------------------------------------------------------------------------
@@ -436,12 +436,12 @@ bool UTF8String::is_int() const
         // the first symbol is allowed to be '-'
         if ( i == 0                                  &&
             get_symbol( i ) != "-"                   &&
-            !chaos::str::is_digit( code_point )    )
+            !chaos::uni::is_digit( code_point )    )
         {
             return false;
         }
         // every other character must be a digit
-        else if ( i != 0 && !chaos::str::is_digit( code_point ) )
+        else if ( i != 0 && !chaos::uni::is_digit( code_point ) )
         {
             return false;
         }
@@ -455,7 +455,7 @@ bool UTF8String::is_uint() const
     // iterate of each code point and ensure that it's a digit
     for ( size_t i = 0; i < m_length; ++i )
     {
-        if ( !chaos::str::is_digit( get_symbol_value( i ) ) )
+        if ( !chaos::uni::is_digit( get_symbol_value( i ) ) )
         {
             // not a digit
             return false;
@@ -473,7 +473,7 @@ bool UTF8String::is_float() const
     {
         chaos::uint32 code_point = get_symbol_value( i );
 
-        if ( !chaos::str::is_digit( code_point ) )
+        if ( !chaos::uni::is_digit( code_point ) )
         {
             if ( i == 0 && get_symbol( i ) == "-" )
             {
@@ -844,6 +844,6 @@ std::ostream& operator<<( std::ostream& stream, const UTF8String& s )
     return stream;
 }
 
-} // namespace str
+} // namespace uni
 } // namespace chaos
 

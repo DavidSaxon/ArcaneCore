@@ -19,8 +19,8 @@ namespace sys
 namespace
 {
 
-static const chaos::str::UTF8String UNIX_SEP   ( "/" );
-static const chaos::str::UTF8String WINDOWS_SEP( "\\" );
+static const chaos::uni::UTF8String UNIX_SEP   ( "/" );
+static const chaos::uni::UTF8String WINDOWS_SEP( "\\" );
 
 } // namespace anonymous
 
@@ -32,13 +32,13 @@ Path::Path()
 {
 }
 
-Path::Path( const std::vector< chaos::str::UTF8String >& components )
+Path::Path( const std::vector< chaos::uni::UTF8String >& components )
     :
     m_components( components )
 {
 }
 
-Path::Path( const chaos::str::UTF8String& string_path )
+Path::Path( const chaos::uni::UTF8String& string_path )
 {
     // split the path into components based on the operating system
 #ifdef CHAOS_OS_UNIX
@@ -99,12 +99,12 @@ bool Path::operator<( const Path& other ) const
     return true;
 }
 
-chaos::str::UTF8String& Path::operator[]( size_t index )
+chaos::uni::UTF8String& Path::operator[]( size_t index )
 {
     return m_components[ index ];
 }
 
-const chaos::str::UTF8String& Path::operator[]( size_t index ) const
+const chaos::uni::UTF8String& Path::operator[]( size_t index ) const
 {
     return m_components[ index ];
 }
@@ -119,7 +119,7 @@ const Path& Path::operator+=( const Path& other )
     return *this;
 }
 
-Path& Path::operator<<( const chaos::str::UTF8String& component )
+Path& Path::operator<<( const chaos::uni::UTF8String& component )
 {
     return join( component );
 }
@@ -128,13 +128,13 @@ Path& Path::operator<<( const chaos::str::UTF8String& component )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-Path& Path::join( const chaos::str::UTF8String& component )
+Path& Path::join( const chaos::uni::UTF8String& component )
 {
     m_components.push_back( component );
     return *this;
 }
 
-void Path::insert( size_t index, const chaos::str::UTF8String& component )
+void Path::insert( size_t index, const chaos::uni::UTF8String& component )
 {
 }
 
@@ -146,17 +146,17 @@ void Path::remove( size_t index )
 {
 }
 
-chaos::str::UTF8String Path::to_native() const
+chaos::uni::UTF8String Path::to_native() const
 {
     return "";
 }
 
-chaos::str::UTF8String Path::to_unix() const
+chaos::uni::UTF8String Path::to_unix() const
 {
     return "";
 }
 
-chaos::str::UTF8String Path::to_windows() const
+chaos::uni::UTF8String Path::to_windows() const
 {
     return "";
 }
@@ -168,12 +168,12 @@ size_t Path::get_length()
     return m_components.size();
 }
 
-const std::vector< chaos::str::UTF8String >& Path::get_components() const
+const std::vector< chaos::uni::UTF8String >& Path::get_components() const
 {
     return m_components;
 }
 
-chaos::str::UTF8String Path::get_extension() const
+chaos::uni::UTF8String Path::get_extension() const
 {
     return "";
 }
@@ -182,7 +182,7 @@ chaos::str::UTF8String Path::get_extension() const
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-chaos::str::UTF8String& operator<<( chaos::str::UTF8String& s, const Path& p )
+chaos::uni::UTF8String& operator<<( chaos::uni::UTF8String& s, const Path& p )
 {
     s << p.to_native();
     return s;

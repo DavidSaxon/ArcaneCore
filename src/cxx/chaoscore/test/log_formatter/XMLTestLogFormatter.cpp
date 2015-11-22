@@ -50,8 +50,8 @@ void XMLTestLogFormatter::close_log(
 }
 
 void XMLTestLogFormatter::open_test(
-        const chaos::str::UTF8String& path,
-        const chaos::str::UTF8String& id )
+        const chaos::uni::UTF8String& path,
+        const chaos::uni::UTF8String& id )
 {
     ( *m_stream ) << "  <UnitTest path=\"" << path << "\" id=\""
                   << id << "\">" << std::endl;
@@ -62,21 +62,21 @@ void XMLTestLogFormatter::close_test()
     ( *m_stream ) << "  </UnitTest>" << std::endl;
 }
 
-void XMLTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+void XMLTestLogFormatter::report_crash( const chaos::uni::UTF8String& info )
 {
     ( *m_stream ) << "    <CriticalError code=" << info << "/>" << std::endl;
 }
 
 void XMLTestLogFormatter::report_check_pass(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
+        const chaos::uni::UTF8String& type,
+        const chaos::uni::UTF8String& file,
               chaos::int32            line )
 {
     // verbosity 3+
     if ( m_verbosity >= 3 )
     {
         // build the start of the entry
-        chaos::str::UTF8String entry;
+        chaos::uni::UTF8String entry;
         entry <<  "    <Success type=" << type << " file=" << file << " line="
               << line;
 
@@ -94,13 +94,13 @@ void XMLTestLogFormatter::report_check_pass(
 }
 
 void XMLTestLogFormatter::report_check_fail(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
+        const chaos::uni::UTF8String& type,
+        const chaos::uni::UTF8String& file,
               chaos::int32            line,
-        const chaos::str::UTF8String& message )
+        const chaos::uni::UTF8String& message )
 {
     // build the start of the entry
-    chaos::str::UTF8String entry;
+    chaos::uni::UTF8String entry;
     entry << "    <Failure type=" << type << " file=" << file << " line="
           << line;
     if ( !message.is_empty() )
@@ -121,7 +121,7 @@ void XMLTestLogFormatter::report_check_fail(
 }
 
 void XMLTestLogFormatter::write_message(
-        const chaos::str::UTF8String& message )
+        const chaos::uni::UTF8String& message )
 {
     // verbosity 3+
     if ( m_verbosity < 3 )
@@ -129,7 +129,7 @@ void XMLTestLogFormatter::write_message(
         return;
     }
 
-    chaos::str::UTF8String entry( "    <Message> value=\"" );
+    chaos::uni::UTF8String entry( "    <Message> value=\"" );
     entry << message << "\"";
 
     // store occurrence
@@ -153,7 +153,7 @@ void XMLTestLogFormatter::finialise_test_report(
     {
         CHAOS_FOR_EACH( it, m_occurrence_order )
         {
-            chaos::str::UTF8String message( *it );
+            chaos::uni::UTF8String message( *it );
             message << " occurrences=" << m_occurrence_map[ *it ];
             ( *m_stream ) << message << "/>" << std::endl;
         }

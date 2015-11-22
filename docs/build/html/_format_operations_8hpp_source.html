@@ -90,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CHAOSCORE_IO_FORMATOPERATIONS_HPP_</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define CHAOSCORE_IO_FORMATOPERATIONS_HPP_</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_u_t_f8_string_8hpp.html">chaoscore/base/string/UTF8String.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_u_t_f8_string_8hpp.html">chaoscore/base/uni/UTF8String.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacechaos.html">chaos</a></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
@@ -103,8 +103,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//                                   FUNCTIONS</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1format.html#a626396566ef32d2401d4a0e91594a4a2">centre_text</a>(</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a>&amp; text,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1format.html#ac53c87508bb81f6fc26efd9bfca7b027">centre_text</a>(</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; text,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a>     line_length,</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">bool</span>                    trim_trailing = <span class="keyword">false</span> );</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
@@ -114,15 +114,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="namespacechaos_html"><div class="ttname"><a href="namespacechaos.html">chaos</a></div><div class="ttdoc">the global ChaosCore namespace which contains everything within ChaosCore. </div><div class="ttdef"><b>Definition:</b> __chaoscore.hpp:21</div></div>
-<div class="ttc" id="classchaos_1_1str_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1str_1_1_u_t_f8_string.html">chaos::str::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:127</div></div>
+<div class="ttc" id="classchaos_1_1uni_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:127</div></div>
 <div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
-<div class="ttc" id="namespacechaos_1_1io_1_1format_html_a626396566ef32d2401d4a0e91594a4a2"><div class="ttname"><a href="namespacechaos_1_1io_1_1format.html#a626396566ef32d2401d4a0e91594a4a2">chaos::io::format::centre_text</a></div><div class="ttdeci">void centre_text(chaos::str::UTF8String &amp;text, const chaos::uint32 line_length, bool trim_trailing=false)</div><div class="ttdoc">Centres the given text with whitespace on either side so that has a symbol length equal to line_lengt...</div></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1format_html_ac53c87508bb81f6fc26efd9bfca7b027"><div class="ttname"><a href="namespacechaos_1_1io_1_1format.html#ac53c87508bb81f6fc26efd9bfca7b027">chaos::io::format::centre_text</a></div><div class="ttdeci">void centre_text(chaos::uni::UTF8String &amp;text, const chaos::uint32 line_length, bool trim_trailing=false)</div><div class="ttdoc">Centres the given text with whitespace on either side so that has a symbol length equal to line_lengt...</div></div>
 <div class="ttc" id="namespacechaos_html_a3b3a47ba1e284655bf1a30c441121c60"><div class="ttname"><a href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a></div><div class="ttdeci">uint32_t uint32</div><div class="ttdoc">a 32-bit unsigned integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:85</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 21 2015 14:55:45 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 23 2015 00:32:29 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

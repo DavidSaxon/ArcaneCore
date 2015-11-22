@@ -28,7 +28,7 @@ class FileSystemError : public chaos::ex::ChaosException
 {
 public:
 
-    FileSystemError( const chaos::str::UTF8String& message )
+    FileSystemError( const chaos::uni::UTF8String& message )
         :
         ChaosException( message )
     {
@@ -42,7 +42,7 @@ class CreateDirectoryError : public FileSystemError
 {
 public:
 
-    CreateDirectoryError( const chaos::str::UTF8String& message )
+    CreateDirectoryError( const chaos::uni::UTF8String& message )
         :
         FileSystemError( message )
     {
@@ -60,7 +60,7 @@ class AmbiguousPathError : public FileSystemError
 {
 public:
 
-    AmbiguousPathError( const chaos::str::UTF8String& message )
+    AmbiguousPathError( const chaos::uni::UTF8String& message )
         :
         FileSystemError( message )
     {

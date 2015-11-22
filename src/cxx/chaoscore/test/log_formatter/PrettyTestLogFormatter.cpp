@@ -42,10 +42,10 @@ void PrettyTestLogFormatter::open_log()
         return;
     }
 
-    chaos::str::UTF8String divider( "=" );
+    chaos::uni::UTF8String divider( "=" );
     divider *= 79;
 
-    chaos::str::UTF8String message( "\n" );
+    chaos::uni::UTF8String message( "\n" );
     message << divider << "\n   ________                     ______            "
             << "     ______          __\n  / ____/ /_  ____ _____  _____/ ____/"
             << "___  ________   /_  __/__  _____/ /______\n / /   / __ \\/ __ `"
@@ -95,36 +95,36 @@ void PrettyTestLogFormatter::close_log(
             * 100.0F
     );
 
-    chaos::str::UTF8String divider( "=" );
+    chaos::uni::UTF8String divider( "=" );
     divider *= 79;
-    chaos::str::UTF8String message;
+    chaos::uni::UTF8String message;
 
-    chaos::str::UTF8String intro( "All Tests Completed" );
+    chaos::uni::UTF8String intro( "All Tests Completed" );
     chaos::io::format::centre_text( intro, 79, true );
 
-    chaos::str::UTF8String unit_summary( "-- Summary for " );
+    chaos::uni::UTF8String unit_summary( "-- Summary for " );
     unit_summary << unit_total << " Unit Tests --";
     chaos::io::format::centre_text( unit_summary, 79, true );
 
-    chaos::str::UTF8String unit_count;
+    chaos::uni::UTF8String unit_count;
     unit_count << "Passed: " << units_passed << " - Failed: " << units_failed
                << " - Errored: " << units_errored;
     chaos::io::format::centre_text( unit_count, 79, true );
 
-    chaos::str::UTF8String unit_percent;
+    chaos::uni::UTF8String unit_percent;
     unit_percent << unit_pass_percent << "% pass rate";
     chaos::io::format::centre_text( unit_percent, 79, true );
 
-    chaos::str::UTF8String check_summary( "-- Summary for " );
+    chaos::uni::UTF8String check_summary( "-- Summary for " );
     check_summary << check_total << " Checks --";
     chaos::io::format::centre_text( check_summary, 79, true );
 
-    chaos::str::UTF8String check_count;
+    chaos::uni::UTF8String check_count;
     check_count << "Passed: " << checks_passed << " - Failed: "
                 << checks_failed;
     chaos::io::format::centre_text( check_count, 79, true );
 
-    chaos::str::UTF8String check_percent;
+    chaos::uni::UTF8String check_percent;
     check_percent << check_pass_percent << "% pass rate";
     chaos::io::format::centre_text( check_percent, 79, true );
 
@@ -241,16 +241,16 @@ void PrettyTestLogFormatter::close_log(
 }
 
 void PrettyTestLogFormatter::open_test(
-        const chaos::str::UTF8String& path,
-        const chaos::str::UTF8String& id )
+        const chaos::uni::UTF8String& path,
+        const chaos::uni::UTF8String& id )
 {
-    chaos::str::UTF8String divider( "-" );
+    chaos::uni::UTF8String divider( "-" );
     divider *= 79;
-    chaos::str::UTF8String intro( "Running Unit Test:" );
+    chaos::uni::UTF8String intro( "Running Unit Test:" );
     chaos::io::format::centre_text( intro, 79, true );
-    chaos::str::UTF8String divider_2( "---" );
+    chaos::uni::UTF8String divider_2( "---" );
     chaos::io::format::centre_text( divider_2, 79, true );
-    chaos::str::UTF8String path_f( path );
+    chaos::uni::UTF8String path_f( path );
     chaos::io::format::centre_text( path_f, 79, true );
 
     // colourise
@@ -276,7 +276,7 @@ void PrettyTestLogFormatter::open_test(
     }
 
     // write to stream
-    chaos::str::UTF8String message;
+    chaos::uni::UTF8String message;
     message << divider << "\n" << intro << "\n" << divider_2 << "\n" << path_f
             << "\n" << divider << "\n";
     ( *m_stream ) << message << std::endl;
@@ -290,7 +290,7 @@ void PrettyTestLogFormatter::close_test()
         return;
     }
 
-    chaos::str::UTF8String message( "..." );
+    chaos::uni::UTF8String message( "..." );
     chaos::io::format::centre_text( message, 79, true );
 
     // colourise
@@ -306,9 +306,9 @@ void PrettyTestLogFormatter::close_test()
     ( *m_stream ) << message << "\n" << std::endl;
 }
 
-void PrettyTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+void PrettyTestLogFormatter::report_crash( const chaos::uni::UTF8String& info )
 {
-    chaos::str::UTF8String message;
+    chaos::uni::UTF8String message;
     message << "CRITICAL ERROR. Test failed with exit code: " << info;
 
     // colourise
@@ -325,14 +325,14 @@ void PrettyTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
 }
 
 void PrettyTestLogFormatter::report_check_pass(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
+        const chaos::uni::UTF8String& type,
+        const chaos::uni::UTF8String& file,
               chaos::int32            line )
 {
     // verbosity 3+
     if ( m_verbosity >= 3 )
     {
-        chaos::str::UTF8String entry;
+        chaos::uni::UTF8String entry;
         entry << " + Passed: " << type << " at line: " << line;
 
         // store occurrence
@@ -358,12 +358,12 @@ void PrettyTestLogFormatter::report_check_pass(
 }
 
 void PrettyTestLogFormatter::report_check_fail(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
+        const chaos::uni::UTF8String& type,
+        const chaos::uni::UTF8String& file,
               chaos::int32            line,
-        const chaos::str::UTF8String& message )
+        const chaos::uni::UTF8String& message )
 {
-    chaos::str::UTF8String entry;
+    chaos::uni::UTF8String entry;
     entry << " - Failed: " << type << ": " << message << " at line: " << line;
 
     // store occurrence
@@ -388,7 +388,7 @@ void PrettyTestLogFormatter::report_check_fail(
 }
 
 void PrettyTestLogFormatter::write_message(
-        const chaos::str::UTF8String& message )
+        const chaos::uni::UTF8String& message )
 {
     // verbosity 3+
     if ( m_verbosity < 3 )
@@ -396,7 +396,7 @@ void PrettyTestLogFormatter::write_message(
         return;
     }
 
-    chaos::str::UTF8String entry( " -- " );
+    chaos::uni::UTF8String entry( " -- " );
     entry << message;
 
     // store occurrence
@@ -429,20 +429,20 @@ void PrettyTestLogFormatter::finialise_test_report(
     {
         CHAOS_FOR_EACH( it, m_occurrences )
         {
-            // chaos::str::UTF8String message( it->first.substring( 0 , 10 ) );
+            // chaos::uni::UTF8String message( it->first.substring( 0 , 10 ) );
             // message << " [ occurrences: " << it->second << " ]";
             // message << it->first.substring( 10 , it->first.get_length() );
-            chaos::str::UTF8String message( it->entry );
+            chaos::uni::UTF8String message( it->entry );
             chaos::uint64 occurrences = it->count;
 
             if ( occurrences > 1 )
             {
-                chaos::str::UTF8String occ( " [ occurrences: " );
+                chaos::uni::UTF8String occ( " [ occurrences: " );
                 occ << occurrences << " ]";
 
                 if ( message.get_length() + occ.get_length() < 79 )
                 {
-                    chaos::str::UTF8String space( " " );
+                    chaos::uni::UTF8String space( " " );
                     space *= 79 - ( message.get_length() + occ.get_length() );
                     message += space;
                 }
@@ -495,18 +495,18 @@ void PrettyTestLogFormatter::finialise_test_report(
             * 100.0F
     );
 
-    chaos::str::UTF8String divider( "+" );
+    chaos::uni::UTF8String divider( "+" );
     divider *= 79;
 
-    chaos::str::UTF8String summary( "-- Summary for " );
+    chaos::uni::UTF8String summary( "-- Summary for " );
     summary << total_count << " Checks --";
     chaos::io::format::centre_text( summary, 79, true );
 
-    chaos::str::UTF8String counts;
+    chaos::uni::UTF8String counts;
     counts << "Passed: " << checks_passed << " - Failed: " << checks_failed;
     chaos::io::format::centre_text( counts, 79, true );
 
-    chaos::str::UTF8String percent;
+    chaos::uni::UTF8String percent;
     percent << pass_percent << "% pass rate";
     chaos::io::format::centre_text( percent, 79, true );
 
@@ -560,7 +560,7 @@ void PrettyTestLogFormatter::finialise_test_report(
     }
 
     // write to stream
-    chaos::str::UTF8String message;
+    chaos::uni::UTF8String message;
     message << "\n" << divider << "\n" << summary << "\n" << counts << "\n"
             << percent << "\n" << divider << "\n";
     ( *m_stream ) << message << std::endl;

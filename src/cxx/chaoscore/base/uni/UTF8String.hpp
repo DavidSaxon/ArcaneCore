@@ -13,7 +13,7 @@
 
 namespace chaos
 {
-namespace str
+namespace uni
 {
 
 /*!
@@ -85,7 +85,7 @@ namespace str
  * c string data, and inspect it's length:
  *
  * \code
- * chaos::str::UTF8String utf8( cstring );
+ * chaos::uni::UTF8String utf8( cstring );
  * utf8.get_length();
  * // output: 3
  * utf8.get_byte_length()
@@ -98,7 +98,7 @@ namespace str
  * \code
  * for ( size_t i = 0; i < utf8.get_length(); ++i )
  * {
- *     chaos::str::UTF8String symbol( utf8.get_symbol( i ) );
+ *     chaos::uni::UTF8String symbol( utf8.get_symbol( i ) );
  * }
  * \endcode
  *
@@ -445,8 +445,8 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "Hello" );
-     * chaos::str::UTF8String s_2( "World" );
+     * chaos::uni::UTF8String s_1( "Hello" );
+     * chaos::uni::UTF8String s_2( "World" );
      * s_1.concatenate( s_2 );
      * std::cout << s_1 << std::endl;
      * // output: Hello World
@@ -467,7 +467,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "Hello" );
+     * chaos::uni::UTF8String s( "Hello" );
      * s.repeat( 3 );
      * std::cout << s << std::endl;
      * // output: HelloHelloHello
@@ -484,9 +484,9 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "Hello World" );
-     * chaos::str::UTF8String s_2( "Hello" );
-     * chaos::str::UTF8String s_3( "World" );
+     * chaos::uni::UTF8String s_1( "Hello World" );
+     * chaos::uni::UTF8String s_2( "Hello" );
+     * chaos::uni::UTF8String s_3( "World" );
      * s_1.starts_with( s_2 ); // returns: true
      * s_1.starts_with( s_3 ); // returns: false
      * \endcode
@@ -503,18 +503,18 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "Hello World" );
-     * chaos::str::UTF8String s_2( "World" );
-     * chaos::str::UTF8String s_3( "*" );
+     * chaos::uni::UTF8String s_1( "Hello World" );
+     * chaos::uni::UTF8String s_2( "World" );
+     * chaos::uni::UTF8String s_3( "*" );
      * s_1.find_first( s_2 ); // returns: 6
-     * s_1.find_first( s_3 ); // returns: chaos::str::UTF8String::npos
+     * s_1.find_first( s_3 ); // returns: chaos::uni::UTF8String::npos
      * \endcode
      *
      * \param substring UTF8String to find the first occurrence of in this
      *                  string.
      * \return The index of the beginning of the first occurrence of the
      *         substring in this string. If the substring could not be found,
-     *         chaos::str::UTF8String::npos is returned instead.
+     *         chaos::uni::UTF8String::npos is returned instead.
      */
     size_t find_first( const UTF8String& substring ) const;
 
@@ -525,18 +525,18 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "Hello World World" );
-     * chaos::str::UTF8String s_2( "World" );
-     * chaos::str::UTF8String s_3( "*" );
+     * chaos::uni::UTF8String s_1( "Hello World World" );
+     * chaos::uni::UTF8String s_2( "World" );
+     * chaos::uni::UTF8String s_3( "*" );
      * s_1.find_first( s_2 ); // returns: 12
-     * s_1.find_first( s_3 ); // returns: chaos::str::UTF8String::npos
+     * s_1.find_first( s_3 ); // returns: chaos::uni::UTF8String::npos
      * \endcode
      *
      * \param substring UTF8String to find the last occurrence of in this
      *                  string.
      * \return The index of the beginning of the last occurrence of the
      *         substring in this string. If the substring could not be found,
-     *         chaos::str::UTF8String::npos is returned instead.
+     *         chaos::uni::UTF8String::npos is returned instead.
      */
     size_t find_last( const UTF8String& substring ) const;
 
@@ -547,9 +547,9 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "Hello_World" );
-     * chaos::str::UTF8String delim( "_" );
-     * std::vector< chaos::str::UTF8String > elements = s.split( delim );
+     * chaos::uni::UTF8String s( "Hello_World" );
+     * chaos::uni::UTF8String delim( "_" );
+     * std::vector< chaos::uni::UTF8String > elements = s.split( delim );
      * // vector contents: [ "Hello", "World" ]
      * \endcode
      *
@@ -570,7 +570,7 @@ public:
      * chaos::io::str::
      * \endcode
     UTF8String join(
-            const std::vector< chaos::str::UTF8String >& components ) const; */
+            const std::vector< chaos::uni::UTF8String >& components ) const; */
 
     /*!
      * \brief Whether the symbols of this string make up a valid integer type.
@@ -578,8 +578,8 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "-34" );
-     * chaos::str::UTF8String s_2( "Hello" );
+     * chaos::uni::UTF8String s_1( "-34" );
+     * chaos::uni::UTF8String s_2( "Hello" );
      * s_1.is_int(); // returns: true
      * s_2.is_int(); //returns: false
      * \endcode
@@ -593,8 +593,8 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "16" );
-     * chaos::str::UTF8String s_2( "-34" );
+     * chaos::uni::UTF8String s_1( "16" );
+     * chaos::uni::UTF8String s_2( "-34" );
      * s_1.is_uint(); // returns: true
      * s_2.is_uint(); //returns: false
      * \endcode
@@ -608,8 +608,8 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s_1( "53.89" );
-     * chaos::str::UTF8String s_2( "Hello" );
+     * chaos::uni::UTF8String s_1( "53.89" );
+     * chaos::uni::UTF8String s_2( "Hello" );
      * s_1.is_float(); // returns: true
      * s_2.is_float(); //returns: false
      * \endcode
@@ -723,8 +723,8 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "Hello World" );
-     * chaos::str::UTF8String symbol( s.get_symbol( 6 ) );
+     * chaos::uni::UTF8String s( "Hello World" );
+     * chaos::uni::UTF8String symbol( s.get_symbol( 6 ) );
      * std::cout << symbol << std::endl;
      * // output: W
      * \endcode
@@ -746,7 +746,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "Hello World" );
+     * chaos::uni::UTF8String s( "Hello World" );
      * s.get_symbol_value( 6 ); // returns: 87 (0x57)
      * \endcode
      *
@@ -766,7 +766,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "Hello World©" );
+     * chaos::uni::UTF8String s( "Hello World©" );
      * s.get_symbol_value( 11 ); // returns: 169 (0xA9)
      * \endcode
      *
@@ -792,7 +792,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "£5" );
+     * chaos::uni::UTF8String s( "£5" );
      * s.get_byte_index_for_symbol_index( 0 );
      * // returns: 0
      * s.get_byte_index_for_symbol_index( 1 );
@@ -811,7 +811,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "£5" );
+     * chaos::uni::UTF8String s( "£5" );
      * s.get_symbol_width( 0 ); // returns: 2
      * s.get_symbol_width( 1 ); // returns: 1
      * \endcode
@@ -846,7 +846,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "£5" );
+     * chaos::uni::UTF8String s( "£5" );
      * s.get_symbol_index_for_byte_index( 0 ); // returns 0
      * s.get_symbol_index_for_byte_index( 1 ); // returns 0
      * s.get_symbol_index_for_byte_index( 2 ); // returns 1
@@ -864,7 +864,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::str::UTF8String s( "£5" );
+     * chaos::uni::UTF8String s( "£5" );
      * s.get_byte_width( 0 ); // returns: 2
      * s.get_byte_width( 2 ); // returns: 1
      * \endcode
@@ -934,7 +934,7 @@ private:
 
 std::ostream& operator<<( std::ostream& stream, const UTF8String& s );
 
-} // namespace str
+} // namespace uni
 } // namespace chaos
 
 

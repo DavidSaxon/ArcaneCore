@@ -6,7 +6,7 @@
 #ifndef CHAOSCORE_IO_FORMAT_ANSI_HPP_
 #define CHAOSCORE_IO_FORMAT_ANSI_HPP_
 
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
@@ -84,7 +84,7 @@ enum ANSIAttribute
  * \param attribute the attribute to use on the text.
  */
 void apply_escape_sequence(
-        chaos::str::UTF8String& text,
+        chaos::uni::UTF8String& text,
         ANSIColour              colour,
         ANSIAttribute           attribute = ANSI_ATTR_NONE );
 

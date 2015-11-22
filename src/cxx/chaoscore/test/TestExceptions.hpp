@@ -24,7 +24,7 @@ class TestError : public chaos::ex::ChaosException
 {
 public:
 
-    TestError( const chaos::str::UTF8String& message )
+    TestError( const chaos::uni::UTF8String& message )
         :
         ChaosException( message )
     {
@@ -38,7 +38,7 @@ class TestDeclerationError : public TestError
 {
 public:
 
-    TestDeclerationError( const chaos::str::UTF8String& message )
+    TestDeclerationError( const chaos::uni::UTF8String& message )
         :
         TestError( message )
     {
@@ -52,7 +52,7 @@ class TestRuntimeError : public TestError
 {
 public:
 
-    TestRuntimeError( const chaos::str::UTF8String& message )
+    TestRuntimeError( const chaos::uni::UTF8String& message )
         :
         TestError( message )
     {
@@ -66,7 +66,7 @@ class InvalidPathError : public TestError
 {
 public:
 
-    InvalidPathError( const chaos::str::UTF8String& message )
+    InvalidPathError( const chaos::uni::UTF8String& message )
         :
         TestError( message )
     {

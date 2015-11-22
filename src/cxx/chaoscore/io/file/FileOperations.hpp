@@ -6,7 +6,7 @@
 #ifndef CHAOSCORE_IO_FILE_FILEOPERATIONS_HPP_
 #define CHAOSCORE_IO_FILE_FILEOPERATIONS_HPP_
 
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
@@ -31,26 +31,26 @@ namespace file
  * \param path The path to check for existence.
  * \return Returns True if the path exists, false otherwise.
  */
-bool exists( const chaos::str::UTF8String& path );
+bool exists( const chaos::uni::UTF8String& path );
 
 /*!
  * \brief Returns whether the given path is a file.
  *
  * \note If the path does not exist this operation will return false.
  */
-bool is_file( const chaos::str::UTF8String& path );
+bool is_file( const chaos::uni::UTF8String& path );
 
 /*!
  * \brief Returns whether the given path is a directory.
  *
  * \note If the path does not exist this operation will return false.
  */
-bool is_directory( const chaos::str::UTF8String& path );
+bool is_directory( const chaos::uni::UTF8String& path );
 
 /*!
  * \brief Attempts to create the directory with the given path.
  */
-void create_directory( const chaos::str::UTF8String& path );
+void create_directory( const chaos::uni::UTF8String& path );
 
 /*!
  * \brief Attempts to directories to the given path if they don't exist.
@@ -71,7 +71,7 @@ void create_directory( const chaos::str::UTF8String& path );
  * \endcode
  * Will attempt to ensure that the entire path exists.
  */
-void validate_path( const chaos::str::UTF8String& path );
+void validate_path( const chaos::uni::UTF8String& path );
 
 } // namespace file
 } // namespace io

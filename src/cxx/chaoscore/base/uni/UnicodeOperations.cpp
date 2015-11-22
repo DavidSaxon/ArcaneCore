@@ -1,8 +1,8 @@
-#include "chaoscore/base/string/UnicodeOperations.hpp"
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
 
 namespace chaos
 {
-namespace str
+namespace uni
 {
 
 bool is_digit( chaos::uint32 code_point )
@@ -10,5 +10,5 @@ bool is_digit( chaos::uint32 code_point )
     return code_point >= 48 && code_point <= 57;
 }
 
-} // namespace str
+} // namespace uni
 } // namespace chaos

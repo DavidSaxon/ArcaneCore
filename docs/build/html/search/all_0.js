@@ -9,6 +9,6 @@ var searchData=
   ['ansi_5fattr_5funderscore',['ANSI_ATTR_UNDERSCORE',['../namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfa2f1d142ccf489cba5710445abd48555f',1,'chaos::io::format']]],
   ['ansiattribute',['ANSIAttribute',['../namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccf',1,'chaos::io::format']]],
   ['ansicolour',['ANSIColour',['../namespacechaos_1_1io_1_1format.html#aa30dcff2478ffc94e33504c8886a5b1a',1,'chaos::io::format']]],
-  ['apply_5fescape_5fsequence',['apply_escape_sequence',['../namespacechaos_1_1io_1_1format.html#a005869cc85ba6d9b0fcfad31cf56bda7',1,'chaos::io::format']]],
-  ['assign',['assign',['../classchaos_1_1str_1_1_u_t_f8_string.html#a483e71ec1090e346c63bf2b13b37ad7a',1,'chaos::str::UTF8String::assign(const char *data)'],['../classchaos_1_1str_1_1_u_t_f8_string.html#a631f935a5b85214a2fa662a78f5693aa',1,'chaos::str::UTF8String::assign(const char *data, size_t length)'],['../classchaos_1_1str_1_1_u_t_f8_string.html#aff351b1a6276e5e59717bc6c3b67818c',1,'chaos::str::UTF8String::assign(const UTF8String &amp;other)']]]
+  ['apply_5fescape_5fsequence',['apply_escape_sequence',['../namespacechaos_1_1io_1_1format.html#ae9aebf86c855cb5ed332902264a507b7',1,'chaos::io::format']]],
+  ['assign',['assign',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a87d1da629dd2a2071515e971fd5edffc',1,'chaos::uni::UTF8String::assign(const char *data)'],['../classchaos_1_1uni_1_1_u_t_f8_string.html#ab3f06ef7731dbff9f3e73db33c7b8124',1,'chaos::uni::UTF8String::assign(const char *data, size_t length)'],['../classchaos_1_1uni_1_1_u_t_f8_string.html#af3e2f751444401ab7b5bc4c07b29de63',1,'chaos::uni::UTF8String::assign(const UTF8String &amp;other)']]]
 ];

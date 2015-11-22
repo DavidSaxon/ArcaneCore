@@ -12,12 +12,12 @@ namespace format
 //------------------------------------------------------------------------------
 
 void apply_escape_sequence(
-        chaos::str::UTF8String& text,
+        chaos::uni::UTF8String& text,
         ANSIColour              colour,
         ANSIAttribute           attribute )
 {
     // start the opening escape sequence
-    chaos::str::UTF8String r( "\033[" );
+    chaos::uni::UTF8String r( "\033[" );
     // write the attribute
     switch ( attribute )
     {

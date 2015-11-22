@@ -14,9 +14,9 @@ Represents a filesystem path.
 \item 
 \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a4212b2acfcc365769080ea5e915568ee}{Path} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1io_1_1sys_1_1_path_a2a11efaadadf26eb1dbc10d042897733}{Path} (const std\+::vector$<$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} $>$ \&components)
+\hyperlink{classchaos_1_1io_1_1sys_1_1_path_a3647583a07600e50e51d70f1dadabcf5}{Path} (const std\+::vector$<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} $>$ \&components)
 \begin{DoxyCompactList}\small\item\em Component constructor. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1io_1_1sys_1_1_path_a89fa5ef128e90098b3e7db3aed3055ba}{Path} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&string\+\_\+path)
+\hyperlink{classchaos_1_1io_1_1sys_1_1_path_a1a18b44624caafeceb66edc7b99dbad6}{Path} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \&string\+\_\+path)
 \begin{DoxyCompactList}\small\item\em Attempts to create a \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} object from the given single string using the current operating system\textquotesingle{}s path rules. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a40b3bf651b667adbd3eeb1ee55564211}{Path} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
@@ -28,43 +28,35 @@ bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_acd6dea0a797c0307179a5523239a29
 \begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
 bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a90858bbce348d5b36d0c31d771c601d8}{operator$<$} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&other) const 
 \begin{DoxyCompactList}\small\item\em Less than operator. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a5727175125afbbf015465614097676a8}{operator\mbox{[}$\,$\mbox{]}} (size\+\_\+t index)
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ae7503e76ec85786225fc25b572deaeea}{operator\mbox{[}$\,$\mbox{]}} (size\+\_\+t index)
 \begin{DoxyCompactList}\small\item\em Returns a reference to the component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} at the given index. \end{DoxyCompactList}\item 
-const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a446e0dfcf53bf65e837400ab8f0231b5}{operator\mbox{[}$\,$\mbox{]}} (size\+\_\+t index) const 
+const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_aa3ee2fea4946e94c9bdb692bdffed522}{operator\mbox{[}$\,$\mbox{]}} (size\+\_\+t index) const 
 \begin{DoxyCompactList}\small\item\em Returns a const reference to the component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} at the given index. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a5e769fd87717e15f0580e9aacbc0a418}{operator+} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&other) const 
 \begin{DoxyCompactList}\small\item\em Addition operator. \end{DoxyCompactList}\item 
 const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a92a616d9f16047d8933020bab54ed494}{operator+=} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&other)
 \begin{DoxyCompactList}\small\item\em Compound addition operator. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a7d48246eb29402efb63beca6b935ab31}{operator$<$$<$} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&component)
+\hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a9b3f24e1f3bcb8e989c4b21d70d0a052}{operator$<$$<$} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \&component)
 \begin{DoxyCompactList}\small\item\em Join operator. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ab5714556d695c6c5c3d87bfe546a5162}{join} (const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&component)
+\hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a8fcd75bd349c4c6d1286f6549e34de8c}{join} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \&component)
 \begin{DoxyCompactList}\small\item\em Appends a new component to the end of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \end{DoxyCompactList}\item 
-void \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a6488f8b326f13f0180c72f9f7e7a412e}{insert} (size\+\_\+t index, const \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \&component)
+void \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a7dc2fc570f8475ba5147bffb01de7025}{insert} (size\+\_\+t index, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \&component)
 \begin{DoxyCompactList}\small\item\em Inserts the component at the given index in this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a7c4cd7e5d8e21a8c522f8a87f1e90f4c}{clear} ()
 \begin{DoxyCompactList}\small\item\em Reverts this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} to be an empty path. \end{DoxyCompactList}\item 
 void \hyperlink{classchaos_1_1io_1_1sys_1_1_path_aefc69b11820209acca278104fb230832}{remove} (size\+\_\+t index)
 \begin{DoxyCompactList}\small\item\em Removes the component from this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} at the given index. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ac18d23b41f30a6809ae78f782fd199f0}{to\+\_\+native} () const 
-\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for the current operating system. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_afefa8cefde37893c6f5876d9dc692acd}{to\+\_\+unix} () const 
-\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Unix based operating systems. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a40528c53a9988b8fd330811d0d65e8cf}{to\+\_\+windows} () const 
-\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. \end{DoxyCompactList}\item 
-bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a8e1914d8585fedfd472e1de77f7029ad}{exists} () const 
-\begin{DoxyCompactList}\small\item\em Returns whether this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} exists. \end{DoxyCompactList}\item 
-bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_af69b27d907ad47c9edc59c63f6ac1806}{is\+\_\+file} () const 
-\begin{DoxyCompactList}\small\item\em Returns whether this path is a valid file. \end{DoxyCompactList}\item 
-bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ac1726d8964721ce0bd31c66a929e8ebd}{is\+\_\+directory} () const 
-\begin{DoxyCompactList}\small\item\em Returns whether this path is a valid directory. \end{DoxyCompactList}\item 
-bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ac5d767353e874ca342c7b9c64f6aaa62}{is\+\_\+symlink} () const 
-\begin{DoxyCompactList}\small\item\em Returns whether this path is a valid symbolic link. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_adb68b7589d18dc78f19d9dd6936d9833}{to\+\_\+native} () const 
+\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for the current operating system. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a1cfe95a7a81ba7da856ae79917e6b1bf}{to\+\_\+unix} () const 
+\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Unix based operating systems. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ad7b185968a88741d52526a32738d0ab4}{to\+\_\+windows} () const 
+\begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. \end{DoxyCompactList}\item 
 size\+\_\+t \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a66471e8a3b9115f1df2ef9c8a337796e}{get\+\_\+length} ()
 \begin{DoxyCompactList}\small\item\em Returns the number of components in this path. \end{DoxyCompactList}\item 
-const std\+::vector$<$ \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} $>$ \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_aaf17e52f65bbacf011ac08bfc7e3c8e6}{get\+\_\+components} () const 
+const std\+::vector$<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} $>$ \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ae20cae838af510b945e716d529e19bf4}{get\+\_\+components} () const 
 \begin{DoxyCompactList}\small\item\em Returns the individual components which make up this path. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ad591f4f01947e1d0df1ffa33e77d5660}{get\+\_\+extension} () const 
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ac7a2b7c374c1e4059b021b2c8751fb39}{get\+\_\+extension} () const 
 \begin{DoxyCompactList}\small\item\em Returns the file extension of the leaf component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -92,13 +84,13 @@ T\+O\+D\+O\+:
 
 Default constructor. 
 
-Creates a new empty \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a2a11efaadadf26eb1dbc10d042897733}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!Path@{Path}}
+Creates a new empty \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a3647583a07600e50e51d70f1dadabcf5}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!Path@{Path}}
 \index{Path@{Path}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{Path(const std\+::vector$<$ chaos\+::str\+::\+U\+T\+F8\+String $>$ \&components)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::sys\+::\+Path\+::\+Path (
+\subsubsection[{Path(const std\+::vector$<$ chaos\+::uni\+::\+U\+T\+F8\+String $>$ \&components)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::sys\+::\+Path\+::\+Path (
 \begin{DoxyParamCaption}
-\item[{const std\+::vector$<$ {\bf chaos\+::str\+::\+U\+T\+F8\+String} $>$ \&}]{components}
+\item[{const std\+::vector$<$ {\bf chaos\+::uni\+::\+U\+T\+F8\+String} $>$ \&}]{components}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1io_1_1sys_1_1_path_a2a11efaadadf26eb1dbc10d042897733}
+)}\label{classchaos_1_1io_1_1sys_1_1_path_a3647583a07600e50e51d70f1dadabcf5}
 
 
 Component constructor. 
@@ -117,26 +109,26 @@ Would be passed to this constructor like so\+:
 
 
 \begin{DoxyCode}
-std::vector< chaos::str::UTF8String > components;
+std::vector< chaos::uni::UTF8String > components;
 components.push\_back( \textcolor{stringliteral}{"path"} );
 components.push\_back( \textcolor{stringliteral}{"to"} );
 components.push\_back( \textcolor{stringliteral}{"file.txt"} );
 
 chaos::io::file::Path p( components );
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a89fa5ef128e90098b3e7db3aed3055ba}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!Path@{Path}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a1a18b44624caafeceb66edc7b99dbad6}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!Path@{Path}}
 \index{Path@{Path}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{Path(const chaos\+::str\+::\+U\+T\+F8\+String \&string\+\_\+path)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::sys\+::\+Path\+::\+Path (
+\subsubsection[{Path(const chaos\+::uni\+::\+U\+T\+F8\+String \&string\+\_\+path)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::io\+::sys\+::\+Path\+::\+Path (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{string\+\_\+path}
+\item[{const {\bf chaos\+::uni\+::\+U\+T\+F8\+String} \&}]{string\+\_\+path}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1io_1_1sys_1_1_path_a89fa5ef128e90098b3e7db3aed3055ba}
+)}\label{classchaos_1_1io_1_1sys_1_1_path_a1a18b44624caafeceb66edc7b99dbad6}
 
 
 Attempts to create a \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} object from the given single string using the current operating system\textquotesingle{}s path rules. 
 
 \begin{DoxyNote}{Note}
-This constructor method should be avoided where possible. Instead constructing paths using the $<$$<$ operator or \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ab5714556d695c6c5c3d87bfe546a5162}{join()} function is recommended.
+This constructor method should be avoided where possible. Instead constructing paths using the $<$$<$ operator or \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a8fcd75bd349c4c6d1286f6549e34de8c}{join()} function is recommended.
 \end{DoxyNote}
 On Unix systems this will split the given string into components using the \char`\"{}/\char`\"{} symbol. Likewise on Windows systems the \char`\"{}\textbackslash{}\char`\"{} symbol will be used. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a40b3bf651b667adbd3eeb1ee55564211}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!Path@{Path}}
 \index{Path@{Path}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
@@ -241,13 +233,13 @@ Less than is defined by the number of components in a \hyperlink{classchaos_1_1i
 \begin{DoxyReturn}{Returns}
 Whether this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} is less than the other. 
 \end{DoxyReturn}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_a5727175125afbbf015465614097676a8}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_ae7503e76ec85786225fc25b572deaeea}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{operator[](size\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::str\+::\+U\+T\+F8\+String}\& chaos\+::io\+::sys\+::\+Path\+::operator\mbox{[}$\,$\mbox{]} (
+\subsubsection[{operator[](size\+\_\+t index)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String}\& chaos\+::io\+::sys\+::\+Path\+::operator\mbox{[}$\,$\mbox{]} (
 \begin{DoxyParamCaption}
 \item[{size\+\_\+t}]{index}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1io_1_1sys_1_1_path_a5727175125afbbf015465614097676a8}
+)}\label{classchaos_1_1io_1_1sys_1_1_path_ae7503e76ec85786225fc25b572deaeea}
 
 
 Returns a reference to the component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} at the given index. 
@@ -257,13 +249,13 @@ Returns a reference to the component of this \hyperlink{classchaos_1_1io_1_1sys_
 {\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided index is out of bounds of the number of components in this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \\
 \hline
 \end{DoxyExceptions}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_a446e0dfcf53bf65e837400ab8f0231b5}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_aa3ee2fea4946e94c9bdb692bdffed522}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!operator\mbox{[}$\,$\mbox{]}@{operator[]}}
 \index{operator\mbox{[}$\,$\mbox{]}@{operator[]}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{operator[](size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\+::str\+::\+U\+T\+F8\+String}\& chaos\+::io\+::sys\+::\+Path\+::operator\mbox{[}$\,$\mbox{]} (
+\subsubsection[{operator[](size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\+::uni\+::\+U\+T\+F8\+String}\& chaos\+::io\+::sys\+::\+Path\+::operator\mbox{[}$\,$\mbox{]} (
 \begin{DoxyParamCaption}
 \item[{size\+\_\+t}]{index}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_a446e0dfcf53bf65e837400ab8f0231b5}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_aa3ee2fea4946e94c9bdb692bdffed522}
 
 
 Returns a const reference to the component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} at the given index. 
@@ -325,18 +317,18 @@ p2 << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \t
 p1 += p2;
 \textcolor{comment}{// p1 contains [ "two", "part", "path", "to", "file.txt" ]}
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a7d48246eb29402efb63beca6b935ab31}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!operator$<$$<$@{operator$<$$<$}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a9b3f24e1f3bcb8e989c4b21d70d0a052}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{operator$<$$<$(const chaos\+::str\+::\+U\+T\+F8\+String \&component)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Path}\& chaos\+::io\+::sys\+::\+Path\+::operator$<$$<$ (
+\subsubsection[{operator$<$$<$(const chaos\+::uni\+::\+U\+T\+F8\+String \&component)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Path}\& chaos\+::io\+::sys\+::\+Path\+::operator$<$$<$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{component}
+\item[{const {\bf chaos\+::uni\+::\+U\+T\+F8\+String} \&}]{component}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1io_1_1sys_1_1_path_a7d48246eb29402efb63beca6b935ab31}
+)}\label{classchaos_1_1io_1_1sys_1_1_path_a9b3f24e1f3bcb8e989c4b21d70d0a052}
 
 
 Join operator. 
 
-Appends a new component to end of this path. This is the same as using the \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ab5714556d695c6c5c3d87bfe546a5162}{join()} function.
+Appends a new component to end of this path. This is the same as using the \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a8fcd75bd349c4c6d1286f6549e34de8c}{join()} function.
 
 Example usage\+:
 
@@ -356,13 +348,13 @@ p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \te
 \begin{DoxyReturn}{Returns}
 Reference to this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} after the join has taken place. 
 \end{DoxyReturn}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_ab5714556d695c6c5c3d87bfe546a5162}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!join@{join}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_a8fcd75bd349c4c6d1286f6549e34de8c}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!join@{join}}
 \index{join@{join}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{join(const chaos\+::str\+::\+U\+T\+F8\+String \&component)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Path}\& chaos\+::io\+::sys\+::\+Path\+::join (
+\subsubsection[{join(const chaos\+::uni\+::\+U\+T\+F8\+String \&component)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Path}\& chaos\+::io\+::sys\+::\+Path\+::join (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{component}
+\item[{const {\bf chaos\+::uni\+::\+U\+T\+F8\+String} \&}]{component}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1io_1_1sys_1_1_path_ab5714556d695c6c5c3d87bfe546a5162}
+)}\label{classchaos_1_1io_1_1sys_1_1_path_a8fcd75bd349c4c6d1286f6549e34de8c}
 
 
 Appends a new component to the end of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. 
@@ -381,27 +373,27 @@ p.join( \textcolor{stringliteral}{"path"} ).join( \textcolor{stringliteral}{"to"
 
 
 \begin{DoxyParams}{Parameters}
-{\em component} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} to be appended to the end of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} as a component. \\
+{\em component} & \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} to be appended to the end of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} as a component. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Reference to this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} after the join has taken place. 
 \end{DoxyReturn}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_a6488f8b326f13f0180c72f9f7e7a412e}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!insert@{insert}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_a7dc2fc570f8475ba5147bffb01de7025}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!insert@{insert}}
 \index{insert@{insert}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{insert(size\+\_\+t index, const chaos\+::str\+::\+U\+T\+F8\+String \&component)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::io\+::sys\+::\+Path\+::insert (
+\subsubsection[{insert(size\+\_\+t index, const chaos\+::uni\+::\+U\+T\+F8\+String \&component)}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\+::io\+::sys\+::\+Path\+::insert (
 \begin{DoxyParamCaption}
 \item[{size\+\_\+t}]{index, }
-\item[{const {\bf chaos\+::str\+::\+U\+T\+F8\+String} \&}]{component}
+\item[{const {\bf chaos\+::uni\+::\+U\+T\+F8\+String} \&}]{component}
 \end{DoxyParamCaption}
-)}\label{classchaos_1_1io_1_1sys_1_1_path_a6488f8b326f13f0180c72f9f7e7a412e}
+)}\label{classchaos_1_1io_1_1sys_1_1_path_a7dc2fc570f8475ba5147bffb01de7025}
 
 
 Inserts the component at the given index in this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. 
 
 If the index is less than the length of the string, the component currently at the index and all following components will be shuffled along one position.
 
-If the index is equal to the current number of components in this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}, this function is the same as calling \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ab5714556d695c6c5c3d87bfe546a5162}{join()}.
+If the index is equal to the current number of components in this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}, this function is the same as calling \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a8fcd75bd349c4c6d1286f6549e34de8c}{join()}.
 
 If the index is greater than the number of components in this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}, an exception will be thrown.
 
@@ -425,7 +417,7 @@ p.insert( 1, \textcolor{stringliteral}{"to"} );
 \begin{DoxyParams}{Parameters}
 {\em index} & Position to insert the new component at. \\
 \hline
-{\em component} & \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representing the new component to be inserted. \\
+{\em component} & \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representing the new component to be inserted. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a7c4cd7e5d8e21a8c522f8a87f1e90f4c}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!clear@{clear}}
@@ -460,16 +452,16 @@ Removes the component from this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Pat
 {\em index} & The index of the component to remove from this path. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_ac18d23b41f30a6809ae78f782fd199f0}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+native@{to\+\_\+native}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_adb68b7589d18dc78f19d9dd6936d9833}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+native@{to\+\_\+native}}
 \index{to\+\_\+native@{to\+\_\+native}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{to\+\_\+native() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::str\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+native (
+\subsubsection[{to\+\_\+native() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+native (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_ac18d23b41f30a6809ae78f782fd199f0}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_adb68b7589d18dc78f19d9dd6936d9833}
 
 
-Returns the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for the current operating system. 
+Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for the current operating system. 
 
 Example usage\+:
 
@@ -477,20 +469,20 @@ Example usage\+:
 \begin{DoxyCode}
 chaos::io::file::Path p;
 p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos::str::UTF8String} s = p.to\_native();
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} s = p.to\_native();
 \textcolor{comment}{// on Unix systems s will be "path/to/file.txt"}
 \textcolor{comment}{// on Windows systems s will be "path\(\backslash\)to\(\backslash\)file.txt"}
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_afefa8cefde37893c6f5876d9dc692acd}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+unix@{to\+\_\+unix}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a1cfe95a7a81ba7da856ae79917e6b1bf}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+unix@{to\+\_\+unix}}
 \index{to\+\_\+unix@{to\+\_\+unix}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{to\+\_\+unix() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::str\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+unix (
+\subsubsection[{to\+\_\+unix() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+unix (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_afefa8cefde37893c6f5876d9dc692acd}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_a1cfe95a7a81ba7da856ae79917e6b1bf}
 
 
-Returns the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Unix based operating systems. 
+Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Unix based operating systems. 
 
 Example usage\+:
 
@@ -498,19 +490,19 @@ Example usage\+:
 \begin{DoxyCode}
 chaos::io::file::Path p;
 p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos::str::UTF8String} s = p.to\_unix();
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} s = p.to\_unix();
 \textcolor{comment}{// s is "path/to/file.txt"}
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a40528c53a9988b8fd330811d0d65e8cf}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+windows@{to\+\_\+windows}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ad7b185968a88741d52526a32738d0ab4}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+windows@{to\+\_\+windows}}
 \index{to\+\_\+windows@{to\+\_\+windows}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{to\+\_\+windows() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::str\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+windows (
+\subsubsection[{to\+\_\+windows() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+windows (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_a40528c53a9988b8fd330811d0d65e8cf}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_ad7b185968a88741d52526a32738d0ab4}
 
 
-Returns the \hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos\+::str\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. 
+Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. 
 
 Example usage\+:
 
@@ -518,54 +510,10 @@ Example usage\+:
 \begin{DoxyCode}
 chaos::io::file::Path p;
 p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos::str::UTF8String} s = p.to\_windows();
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} s = p.to\_windows();
 \textcolor{comment}{// s is "path\(\backslash\)to\(\backslash\)file.txt"}
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a8e1914d8585fedfd472e1de77f7029ad}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!exists@{exists}}
-\index{exists@{exists}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{exists() const }]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::io\+::sys\+::\+Path\+::exists (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_a8e1914d8585fedfd472e1de77f7029ad}
-
-
-Returns whether this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} exists. 
-
-This function doesn\textquotesingle{}t taken into account the type of the path, the path can point to a directory, file, or symlink for this to evaluate true. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_af69b27d907ad47c9edc59c63f6ac1806}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!is\+\_\+file@{is\+\_\+file}}
-\index{is\+\_\+file@{is\+\_\+file}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{is\+\_\+file() const }]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::io\+::sys\+::\+Path\+::is\+\_\+file (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_af69b27d907ad47c9edc59c63f6ac1806}
-
-
-Returns whether this path is a valid file. 
-
-This function will return false if the path exists but is not a file, or if the path simply does not exist. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ac1726d8964721ce0bd31c66a929e8ebd}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!is\+\_\+directory@{is\+\_\+directory}}
-\index{is\+\_\+directory@{is\+\_\+directory}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{is\+\_\+directory() const }]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::io\+::sys\+::\+Path\+::is\+\_\+directory (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_ac1726d8964721ce0bd31c66a929e8ebd}
-
-
-Returns whether this path is a valid directory. 
-
-This function will return false if the path exists but is not a directory, or if the path simply does not exist. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ac5d767353e874ca342c7b9c64f6aaa62}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!is\+\_\+symlink@{is\+\_\+symlink}}
-\index{is\+\_\+symlink@{is\+\_\+symlink}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{is\+\_\+symlink() const }]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::io\+::sys\+::\+Path\+::is\+\_\+symlink (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_ac5d767353e874ca342c7b9c64f6aaa62}
-
-
-Returns whether this path is a valid symbolic link. 
-
-This function will return false if the path exists but is not a symbolic link, or if the path simply does not exist. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a66471e8a3b9115f1df2ef9c8a337796e}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!get\+\_\+length@{get\+\_\+length}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_a66471e8a3b9115f1df2ef9c8a337796e}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!get\+\_\+length@{get\+\_\+length}}
 \index{get\+\_\+length@{get\+\_\+length}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
 \subsubsection[{get\+\_\+length()}]{\setlength{\rightskip}{0pt plus 5cm}size\+\_\+t chaos\+::io\+::sys\+::\+Path\+::get\+\_\+length (
 \begin{DoxyParamCaption}
@@ -584,13 +532,13 @@ chaos::io::file::Path p;
 p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
 p.get\_length(); \textcolor{comment}{// returns: 3}
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_aaf17e52f65bbacf011ac08bfc7e3c8e6}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!get\+\_\+components@{get\+\_\+components}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ae20cae838af510b945e716d529e19bf4}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!get\+\_\+components@{get\+\_\+components}}
 \index{get\+\_\+components@{get\+\_\+components}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{get\+\_\+components() const }]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ {\bf chaos\+::str\+::\+U\+T\+F8\+String} $>$\& chaos\+::io\+::sys\+::\+Path\+::get\+\_\+components (
+\subsubsection[{get\+\_\+components() const }]{\setlength{\rightskip}{0pt plus 5cm}const std\+::vector$<$ {\bf chaos\+::uni\+::\+U\+T\+F8\+String} $>$\& chaos\+::io\+::sys\+::\+Path\+::get\+\_\+components (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_aaf17e52f65bbacf011ac08bfc7e3c8e6}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_ae20cae838af510b945e716d529e19bf4}
 
 
 Returns the individual components which make up this path. 
@@ -618,13 +566,13 @@ Would contain the components\+:
 \begin{DoxyCode}
 [ \textcolor{stringliteral}{"path"}, \textcolor{stringliteral}{"to"}, \textcolor{stringliteral}{"file.txt"} ]
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ad591f4f01947e1d0df1ffa33e77d5660}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!get\+\_\+extension@{get\+\_\+extension}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ac7a2b7c374c1e4059b021b2c8751fb39}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!get\+\_\+extension@{get\+\_\+extension}}
 \index{get\+\_\+extension@{get\+\_\+extension}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{get\+\_\+extension() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::str\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::get\+\_\+extension (
+\subsubsection[{get\+\_\+extension() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::get\+\_\+extension (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_ad591f4f01947e1d0df1ffa33e77d5660}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_ac7a2b7c374c1e4059b021b2c8751fb39}
 
 
 Returns the file extension of the leaf component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. 
@@ -635,7 +583,7 @@ Example usage\+:
 \begin{DoxyCode}
 chaos::io::file::Path p;
 p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
-\hyperlink{classchaos_1_1str_1_1_u_t_f8_string}{chaos::str::UTF8String} ext = p.get\_extension();
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} ext = p.get\_extension();
 \textcolor{comment}{// ext is "txt"}
 \end{DoxyCode}
  

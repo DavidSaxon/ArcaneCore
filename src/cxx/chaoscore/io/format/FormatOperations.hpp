@@ -6,7 +6,7 @@
 #ifndef CHAOSCORE_IO_FORMATOPERATIONS_HPP_
 #define CHAOSCORE_IO_FORMATOPERATIONS_HPP_
 
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
@@ -32,7 +32,7 @@ namespace format
  * \param trim_trailing whether trailing whitespace should be not be added.
  */
 void centre_text(
-        chaos::str::UTF8String& text,
+        chaos::uni::UTF8String& text,
         const chaos::uint32     line_length,
         bool                    trim_trailing = false );
 

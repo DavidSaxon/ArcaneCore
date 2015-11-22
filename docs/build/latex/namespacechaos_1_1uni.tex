@@ -1,0 +1,45 @@
+\hypertarget{namespacechaos_1_1uni}{}\section{chaos\+:\+:uni Namespace Reference}
+\label{namespacechaos_1_1uni}\index{chaos\+::uni@{chaos\+::uni}}
+
+
+Module for Unicode related classes and operations.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\+T\+F8\+String}
+\begin{DoxyCompactList}\small\item\em A string type designed for storing and manipulating U\+T\+F-\/8 encoded text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{is\+\_\+digit} (\hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} code\+\_\+point)
+\begin{DoxyCompactList}\small\item\em Returns whether the given Unicode code point is a digit or not. \end{DoxyCompactList}\item 
+\hypertarget{namespacechaos_1_1uni_ab20a8223562ec1ee8f663bda07c7a3ad}{}std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&stream, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\+T\+F8\+String} \&s)\label{namespacechaos_1_1uni_ab20a8223562ec1ee8f663bda07c7a3ad}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Module for Unicode related classes and operations. 
+
+\subsection{Function Documentation}
+\hypertarget{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{}\index{chaos\+::uni@{chaos\+::uni}!is\+\_\+digit@{is\+\_\+digit}}
+\index{is\+\_\+digit@{is\+\_\+digit}!chaos\+::uni@{chaos\+::uni}}
+\subsubsection[{is\+\_\+digit(chaos\+::uint32 code\+\_\+point)}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::uni\+::is\+\_\+digit (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\+::uint32}}]{code\+\_\+point}
+\end{DoxyParamCaption}
+)}\label{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}
+
+
+Returns whether the given Unicode code point is a digit or not. 
+
+Example usage\+:
+
+
+\begin{DoxyCode}
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} s( \textcolor{stringliteral}{"5"} );
+\hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{chaos::uni::is\_digit}( s.\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string_a0032f18868d33ca5f5855657c4d2d147}{get\_code\_point}( 0 ) ); \textcolor{comment}{// returns: true}
+\end{DoxyCode}
+ 

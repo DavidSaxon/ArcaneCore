@@ -6,7 +6,7 @@
 #ifndef CHAOSCORE_BASE_LITERALS_HPP_
 #define CHAOSCORE_BASE_LITERALS_HPP_
 
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
@@ -25,11 +25,11 @@ namespace literal
  * "Hello World!"_utf8
  * \endcode
  */
-inline chaos::str::UTF8String operator"" _utf8(
+inline chaos::uni::UTF8String operator"" _utf8(
         const char*  literal,
               size_t length )
 {
-    return chaos::str::UTF8String( literal, length );
+    return chaos::uni::UTF8String( literal, length );
 }
 
 } // namespace literal

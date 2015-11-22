@@ -13,7 +13,7 @@
 #include <map>
 #include <vector>
 
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
@@ -83,7 +83,7 @@ public:
     /*!
      * \brief Sets the global testing id for the logger.
      */
-    void set_global_id( const chaos::str::UTF8String& id );
+    void set_global_id( const chaos::uni::UTF8String& id );
 
     /*!
      * \brief Sets this logger as the parent logger.
@@ -115,7 +115,7 @@ public:
      * \param format The format to write to the file in.
      */
     void add_file_output(
-            const chaos::str::UTF8String& path,
+            const chaos::uni::UTF8String& path,
                   chaos::uint16           verbosity,
                   OutFormat               format );
 
@@ -136,22 +136,22 @@ public:
      * \param id The unique id of this test.
      */
     void open_test(
-            const chaos::str::UTF8String& path,
-            const chaos::str::UTF8String& id );
+            const chaos::uni::UTF8String& path,
+            const chaos::uni::UTF8String& id );
 
     /*!
      * \brief Closing of a unit test.
      *
      * \param id The unique id of this test.
      */
-    void close_test( const chaos::str::UTF8String& id );
+    void close_test( const chaos::uni::UTF8String& id );
 
     /*!
      * \breif Reports a unit test crash.
      */
     void report_crash(
-            const chaos::str::UTF8String& id,
-            const chaos::str::UTF8String& info );
+            const chaos::uni::UTF8String& id,
+            const chaos::uni::UTF8String& info );
 
     /*!
      * \brief Reports a check pass.
@@ -161,8 +161,8 @@ public:
      * \param line The line in the file that pass occurred at.
      */
     void report_check_pass(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
+            const chaos::uni::UTF8String& type,
+            const chaos::uni::UTF8String& file,
                   chaos::int32            line );
 
     /*!
@@ -174,17 +174,17 @@ public:
      * \param message A message that was provided with the failure.
      */
     void report_check_fail(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
+            const chaos::uni::UTF8String& type,
+            const chaos::uni::UTF8String& file,
                   chaos::int32            line,
-            const chaos::str::UTF8String& message );
+            const chaos::uni::UTF8String& message );
 
     /*!
      * \brief Writes a message to the to test log.
      *
      * \param message The contents of the message to write.
      */
-    void write_message( const chaos::str::UTF8String& message );
+    void write_message( const chaos::uni::UTF8String& message );
 
     /*!
      * \brief Finalises reports for a unit test
@@ -200,7 +200,7 @@ private:
     /*!
      * \brief Global id of this logger.
      */
-    chaos::str::UTF8String m_global_id;
+    chaos::uni::UTF8String m_global_id;
     /*!
      * \brief Whether this is the parent logger or not.
      */
@@ -217,12 +217,12 @@ private:
     /*!
      * \brief Mapping from filenames to the streams writing to them.
      */
-    std::map< chaos::str::UTF8String, std::ostream* > m_file_streams;
+    std::map< chaos::uni::UTF8String, std::ostream* > m_file_streams;
 
     /*!
      * \brief Path to metadata file.
      */
-    chaos::str::UTF8String m_meta_path;
+    chaos::uni::UTF8String m_meta_path;
 
     /*!
      * \brief The number of unit tests that have had a 100% pass rate.

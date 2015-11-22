@@ -7,7 +7,7 @@
 
 #include <exception>
 
-#include "chaoscore/base/string/UTF8String.hpp"
+#include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
@@ -50,7 +50,7 @@ public:
     /*!
      * \return The reason for the exception.
      */
-    const chaos::str::UTF8String& get_message() const
+    const chaos::uni::UTF8String& get_message() const
     {
         return m_Message;
     }
@@ -64,7 +64,7 @@ protected:
      *
      * \param message A message decribing the reason for the exception.
      */
-    ChaosException( const chaos::str::UTF8String& message )
+    ChaosException( const chaos::uni::UTF8String& message )
         :
         m_Message ( message )
     {
@@ -75,7 +75,7 @@ private:
     //----------------------------PRIVATE ATTRIBUTES----------------------------
 
     // The message explaining the reason for the exception
-    chaos::str::UTF8String m_Message;
+    chaos::uni::UTF8String m_Message;
 };
 
 //------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ class NotImplementedError : public ChaosException
 {
 public:
 
-    NotImplementedError( const chaos::str::UTF8String& message )
+    NotImplementedError( const chaos::uni::UTF8String& message )
         :
         ChaosException( message )
     {
@@ -108,7 +108,7 @@ class ValueError : public ChaosException
 {
 public:
 
-    ValueError( const chaos::str::UTF8String& message )
+    ValueError( const chaos::uni::UTF8String& message )
         :
         ChaosException( message )
     {
@@ -126,7 +126,7 @@ class IndexOutOfBoundsError : public ChaosException
 {
 public:
 
-    IndexOutOfBoundsError( const chaos::str::UTF8String& message )
+    IndexOutOfBoundsError( const chaos::uni::UTF8String& message )
         :
         ChaosException( message )
     {
@@ -145,7 +145,7 @@ class ConversionDataError : public ChaosException
 {
 public:
 
-    ConversionDataError( const chaos::str::UTF8String& message )
+    ConversionDataError( const chaos::uni::UTF8String& message )
         :
         ChaosException( message )
     {

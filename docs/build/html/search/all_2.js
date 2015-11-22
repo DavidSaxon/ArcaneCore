@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['centre_5ftext',['centre_text',['../namespacechaos_1_1io_1_1format.html#a626396566ef32d2401d4a0e91594a4a2',1,'chaos::io::format']]],
+  ['centre_5ftext',['centre_text',['../namespacechaos_1_1io_1_1format.html#ac53c87508bb81f6fc26efd9bfca7b027',1,'chaos::io::format']]],
   ['chaos',['chaos',['../namespacechaos.html',1,'']]],
   ['chaos_5fcheck_5fequal',['CHAOS_CHECK_EQUAL',['../_chaos_test_8hpp.html#aefa5ff7ba416ece8bf8366449de37c0d',1,'ChaosTest.hpp']]],
   ['chaos_5fcheck_5ffalse',['CHAOS_CHECK_FALSE',['../_chaos_test_8hpp.html#a0265f239c4ef8a5e98c48ea034f14d48',1,'ChaosTest.hpp']]],
@@ -21,15 +21,15 @@ var searchData=
   ['chaos_5ftest_5funit',['CHAOS_TEST_UNIT',['../_chaos_test_8hpp.html#a6002be16c0611b66af2b9cce42616617',1,'ChaosTest.hpp']]],
   ['chaos_5ftest_5funit_5ffixture',['CHAOS_TEST_UNIT_FIXTURE',['../_chaos_test_8hpp.html#a1b96815684faab06af818b7d497e89fb',1,'ChaosTest.hpp']]],
   ['chaos_5funique_5fname',['CHAOS_UNIQUE_NAME',['../_preproc_8hpp.html#a82a12e050037267a2d4015c9b0ee33c8',1,'Preproc.hpp']]],
-  ['chaosexception',['ChaosException',['../classchaos_1_1ex_1_1_chaos_exception.html#af0bdefc632dbd0fd039d7af6b2a9e52b',1,'chaos::ex::ChaosException']]],
+  ['chaosexception',['ChaosException',['../classchaos_1_1ex_1_1_chaos_exception.html#a66463bad3b8d75073ae73c27717ae70d',1,'chaos::ex::ChaosException']]],
   ['chaosexception',['ChaosException',['../classchaos_1_1ex_1_1_chaos_exception.html',1,'chaos::ex']]],
   ['chaostest_2ehpp',['ChaosTest.hpp',['../_chaos_test_8hpp.html',1,'']]],
   ['clear',['clear',['../classchaos_1_1io_1_1sys_1_1_path.html#a7c4cd7e5d8e21a8c522f8a87f1e90f4c',1,'chaos::io::sys::Path']]],
   ['clock',['clock',['../namespacechaos_1_1clock.html',1,'chaos']]],
   ['clockoperations_2ehpp',['ClockOperations.hpp',['../_clock_operations_8hpp.html',1,'']]],
-  ['concatenate',['concatenate',['../classchaos_1_1str_1_1_u_t_f8_string.html#a8b61a2f73dacd4749d993dad00788d0d',1,'chaos::str::UTF8String']]],
+  ['concatenate',['concatenate',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a7d8ef533d14720da24ea4926daa2bc3f',1,'chaos::uni::UTF8String']]],
   ['conversiondataerror',['ConversionDataError',['../classchaos_1_1ex_1_1_conversion_data_error.html',1,'chaos::ex']]],
-  ['create_5fdirectory',['create_directory',['../namespacechaos_1_1io_1_1file.html#afedb17553b2e87582d10304e2f7a5b5a',1,'chaos::io::file']]],
+  ['create_5fdirectory',['create_directory',['../namespacechaos_1_1io_1_1file.html#a9d0395c776184dc23973584a80a86d89',1,'chaos::io::file']]],
   ['createdirectoryerror',['CreateDirectoryError',['../classchaos_1_1io_1_1file_1_1ex_1_1_create_directory_error.html',1,'chaos::io::file::ex']]],
   ['data',['data',['../namespacechaos_1_1data.html',1,'chaos']]],
   ['ex',['ex',['../namespacechaos_1_1ex.html',1,'chaos']]],
@@ -40,7 +40,7 @@ var searchData=
   ['io',['io',['../namespacechaos_1_1io.html',1,'chaos']]],
   ['literal',['literal',['../namespacechaos_1_1literal.html',1,'chaos']]],
   ['math',['math',['../namespacechaos_1_1math.html',1,'chaos']]],
-  ['str',['str',['../namespacechaos_1_1str.html',1,'chaos']]],
   ['sys',['sys',['../namespacechaos_1_1io_1_1sys.html',1,'chaos::io']]],
-  ['test',['test',['../namespacechaos_1_1test.html',1,'chaos']]]
+  ['test',['test',['../namespacechaos_1_1test.html',1,'chaos']]],
+  ['uni',['uni',['../namespacechaos_1_1uni.html',1,'chaos']]]
 ];
