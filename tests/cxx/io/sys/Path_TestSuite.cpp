@@ -267,6 +267,17 @@ public:
 
         {
             chaos::uni::UTF8String p;
+            p << "path" << sep << sep << sep << sep << "with" << sep << sep
+              << sep << "lots" << sep << sep << "of" << sep << "separators";
+            inputs.push_back( p );
+            chaos::uni::UTF8String p2;
+            p2 << "path" << sep << "with" << sep << "lots" << sep << "of" << sep
+               << "separators";
+            results.push_back( p2 );
+        }
+
+        {
+            chaos::uni::UTF8String p;
             p << sep << "path" << sep << "from" << sep << "root";
             inputs.push_back( p );
             results.push_back( p );

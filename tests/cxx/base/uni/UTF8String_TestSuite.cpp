@@ -1568,6 +1568,78 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
 }
 
 //------------------------------------------------------------------------------
+//                               REMOVE DUPLICATES
+//------------------------------------------------------------------------------
+
+class RemoveDuplicatesFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::uni::UTF8String > inputs;
+    std::vector< chaos::uni::UTF8String > substrings;
+    std::vector< chaos::uni::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        inputs.push_back( "" );
+        substrings.push_back( "_" );
+        results.push_back( "" );
+
+        inputs.push_back( "HelloWorld" );
+        substrings.push_back( "_" );
+        results.push_back( "HelloWorld" );
+
+        inputs.push_back( "Hello_World" );
+        substrings.push_back( "_" );
+        results.push_back( "Hello_World" );
+
+        inputs.push_back( "Hello  World" );
+        substrings.push_back( "" );
+        results.push_back( "Hello  World" );
+
+        inputs.push_back( "Hello__World" );
+        substrings.push_back( "_" );
+        results.push_back( "Hello_World" );
+
+        inputs.push_back( "__Hello__World__" );
+        substrings.push_back( "_" );
+        results.push_back( "_Hello_World_" );
+
+        inputs.push_back( "Hello World" );
+        substrings.push_back( "Hello World!" );
+        results.push_back( "Hello World" );
+
+        inputs.push_back( "__!!Hello__!!__World__!!" );
+        substrings.push_back( "!" );
+        results.push_back( "__!Hello__!__World__!" );
+
+        inputs.push_back( "@@@@@Hello@@@@World@@@" );
+        substrings.push_back( "@@" );
+        results.push_back( "@@@Hello@@World@@@" );
+
+        inputs.push_back( "γειάγειάHelloγειάγειάγειάWorldγειάγει" );
+        substrings.push_back( "γειά" );
+        results.push_back( "γειάHelloγειάWorldγειάγει" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( remove_duplicates, RemoveDuplicatesFixture )
+{
+    for( size_t i = 0; i < fixture->inputs.size(); ++i )
+    {
+        fixture->inputs[ i ].remove_duplicates( fixture->substrings[ i ] );
+        CHAOS_CHECK_EQUAL(
+                fixture->inputs[ i ],
+                fixture->results[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                     IS INT
 //------------------------------------------------------------------------------
 
@@ -1778,11 +1850,17 @@ public:
         results.push_back( "Hello" );
         out_of_bounds.push_back( 89 );
 
+        strings.push_back( "Hello World" );
+        indices.push_back( 11 );
+        lengths.push_back( 1 );
+        results.push_back( "" );
+        out_of_bounds.push_back( 734 );
+
         strings.push_back( " " );
         indices.push_back( 0 );
         lengths.push_back( 0 );
         results.push_back( "" );
-        out_of_bounds.push_back( 1 );
+        out_of_bounds.push_back( 2 );
 
         strings.push_back( "γειά σου Κόσμε!" );
         indices.push_back( 8 );

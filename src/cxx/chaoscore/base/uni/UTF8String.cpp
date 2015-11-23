@@ -11,6 +11,9 @@
 #include "chaoscore/base/data/ByteOperations.hpp"
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace uni
@@ -426,6 +429,48 @@ const std::vector< UTF8String > UTF8String::split(
     return elements;
 }
 
+void UTF8String::remove_duplicates( const UTF8String& substring )
+{
+    // do nothing if an empty substring has been provided
+    if ( substring.is_empty() )
+    {
+        return;
+    }
+
+    // TODO this can be optmised
+
+    // input and output strings
+    UTF8String input( *this );
+    UTF8String output;
+
+    size_t i = input.find_first( substring );
+    while( i != UTF8String::npos )
+    {
+        // add up to and including the substring
+        output << input.substring(
+                0,
+                i + substring.get_length()
+        );
+        input = input.substring(
+                i + substring.get_length(),
+                input.get_length()
+        );
+        // filter away the rest of the duplicates
+        while( input.starts_with( substring ) )
+        {
+            input = input.substring(
+                    substring.get_length(),
+                    input.get_length()
+            );
+        }
+        i = input.find_first( substring );
+    }
+    // add what's left of the input
+    output << input;
+
+    assign( output );
+}
+
 bool UTF8String::is_int() const
 {
     // iterate over each code point and ensure that it's a digit
@@ -492,6 +537,12 @@ bool UTF8String::is_float() const
 
 UTF8String UTF8String::substring( size_t start, size_t end ) const
 {
+    // return empty if the index is the length of this string
+    if ( start == get_length() )
+    {
+        return UTF8String();
+    }
+
     // is the index valid
     validate_symbol_index( start );
 

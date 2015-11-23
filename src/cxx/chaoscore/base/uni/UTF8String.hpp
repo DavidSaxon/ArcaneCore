@@ -562,15 +562,23 @@ public:
     const std::vector< UTF8String > split( const UTF8String& delimiter ) const;
 
     /*!
-     * \brief Joins the given vector components using this string.
+     * \brief Removes consecutive duplicates of the given substring within this
+     *        string.
+     *
+     * Consecutive duplicates are removed so that only one instance of the
+     * substring is retained.
      *
      * Example usage:
-     *
      * \code
-     * chaos::io::str::
+     * chaos::uni::UTF8String s( "this__string--has__duplicates!!" );
+     * s.remove_duplicates( "_" );
+     * // s is: this_string--has_duplicates!!
      * \endcode
-    UTF8String join(
-            const std::vector< chaos::uni::UTF8String >& components ) const; */
+     *
+     * \param substring Substring to remove consectituve instances of from this
+     *                  string.
+     */
+    void remove_duplicates( const UTF8String& substring );
 
     /*!
      * \brief Whether the symbols of this string make up a valid integer type.
@@ -630,7 +638,9 @@ public:
      *                                          is out of bounds of the string
      *                                          length.
      *
-     * \param start Index of the symbol to start the substring from.
+     * \param start Index of the symbol to start the substring from. If this is
+     *              equal to the length of this string an empty string is
+     *              returned.
      * \param length the length of the substring. If greater than the possible
      *               symbols to allocate it will be clamped to the maximum
      *               length of the string with relation to the starting index.

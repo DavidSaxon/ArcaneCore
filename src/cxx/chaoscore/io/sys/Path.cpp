@@ -2,7 +2,9 @@
 
 #include <algorithm>
 
-// TODO REMOVE ME
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
+
+// TODO: REMOVE ME
 #include <iostream>
 
 namespace chaos
@@ -45,11 +47,23 @@ Path::Path( const chaos::uni::UTF8String& string_path )
 
     m_components = string_path.split( UNIX_SEP );
 
+    if ( m_components.size() > 0 && m_components[ 0 ] == "" )
+    {
+        m_components[ 0 ] = "/";
+    }
+
 #elif defined( CHAOS_OS_WINDOWS )
 
     m_components = string_path.split( WINDOWS_SEP );
 
 #endif
+
+    // remove final space if the path ended with /
+    if ( m_components.size() > 0 && m_components.back() == "" )
+    {
+        m_components = std::vector< chaos::uni::UTF8String >(
+            m_components.begin(), m_components.end() - 1 );
+    }
 }
 
 Path::Path( const Path& other )
@@ -148,17 +162,45 @@ void Path::remove( size_t index )
 
 chaos::uni::UTF8String Path::to_native() const
 {
-    return "";
+#ifdef CHAOS_OS_UNIX
+
+    return to_unix();
+
+#elif defined( CHAOS_OS_WINDOWS )
+
+    return to_windows();
+
+#endif
 }
 
 chaos::uni::UTF8String Path::to_unix() const
 {
-    return "";
+    std::vector< chaos::uni::UTF8String > components;
+    // special case for root ( / )
+    bool is_root = false;
+    if ( m_components.size() > 0 && m_components[ 0 ] == "/"  )
+    {
+        is_root = true;
+        components = std::vector< chaos::uni::UTF8String >(
+                m_components.begin() + 1, m_components.end() );
+    }
+    else
+    {
+        components = m_components;
+    }
+
+    chaos::uni::UTF8String ret = chaos::uni::join( components, "/" );
+    if ( is_root )
+    {
+        ret = chaos::uni::UTF8String( "/" ) + ret;
+    }
+
+    return ret;
 }
 
 chaos::uni::UTF8String Path::to_windows() const
 {
-    return "";
+    return chaos::uni::join( m_components, "\\" );
 }
 
 //----------------------------------ACCESSORS-----------------------------------
