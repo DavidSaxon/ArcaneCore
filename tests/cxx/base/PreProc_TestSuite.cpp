@@ -1,11 +1,14 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE( base.preproc )
+CHAOS_TEST_MODULE( base.pre_proc )
 
 #include <map>
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
+
+namespace pre_proc_tests
+{
 
 //------------------------------------------------------------------------------
 //                                    FOREACH
@@ -87,3 +90,5 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     }
     CHAOS_CHECK_EQUAL( v1_total, const_v1_total );
 }
+
+} // namespace pre_proc_tests

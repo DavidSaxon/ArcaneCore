@@ -6,6 +6,9 @@ CHAOS_TEST_MODULE( io.sys.path )
 
 #include "chaoscore/io/sys/Path.hpp"
 
+namespace path_tests
+{
+
 //------------------------------------------------------------------------------
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
@@ -558,11 +561,11 @@ public:
 
         {
             chaos::io::sys::Path p1;
-            p1 << "to" << "path" << "file.txt";
+            p1 << "path" << "to" << "file.txt";
             paths1.push_back( p1 );
 
             chaos::io::sys::Path p2;
-            p2 << "path" << "to" << "file.txt";
+            p2 << "to" << "path" << "file.txt";
             paths2.push_back( p2 );
         }
     }
@@ -570,10 +573,26 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 {
+    CHAOS_TEST_MESSAGE( "Checking less than cases" );
     for ( size_t i = 0; i < fixture->paths1.size(); ++i )
     {
         CHAOS_CHECK_TRUE ( fixture->paths1[ i ] < fixture->paths2[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking greater than cases" );
+    for ( size_t i = 0; i < fixture->paths1.size(); ++i )
+    {
         CHAOS_CHECK_FALSE( fixture->paths2[ i ] < fixture->paths1[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking equals cases" );
+    for ( size_t i = 0; i < fixture->paths1.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->paths1[ i ] < fixture->paths1[ i ] );
+    }
+    for ( size_t i = 0; i < fixture->paths2.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->paths2[ i ] < fixture->paths2[ i ] );
     }
 }
 
@@ -784,9 +803,9 @@ CHAOS_TEST_UNIT_FIXTURE( insert, PathGenericFixture )
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
-        for ( size_t j = fixture->all.size(); j > 0; --j )
+        for ( size_t j = fixture->all[ i ].size(); j > 0; --j )
         {
-            p.insert( 0, fixture->all[ i ] [ j - 1 ] );
+            p.insert( 0, fixture->all[ i ][ j - 1 ] );
         }
         CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
     }
@@ -799,6 +818,7 @@ CHAOS_TEST_UNIT_FIXTURE( insert, PathGenericFixture )
         {
             p.insert( j, fixture->all[ i ][ j ] );
         }
+        CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking out of bounds" );
@@ -948,7 +968,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
 {
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
-#ifndef CHAOS_OS_WINDOWS
+#ifdef CHAOS_OS_WINDOWS
 
         CHAOS_CHECK_EQUAL(
                 fixture->as_paths[ i ].to_native(),
@@ -1044,3 +1064,5 @@ CHAOS_TEST_UNIT_FIXTURE( get_extension, PathGenericFixture )
         );
     }
 }
+
+} // namespace path_tests

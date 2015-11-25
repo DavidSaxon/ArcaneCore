@@ -1,8 +1,11 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
+CHAOS_TEST_MODULE( base.uni.unicode_operations )
+
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
 
-CHAOS_TEST_MODULE( base.uni.unicode_operations )
+namespace unicode_operations_tests
+{
 
 //------------------------------------------------------------------------------
 //                                 UTF8_IS_DIGIT
@@ -147,3 +150,5 @@ CHAOS_TEST_UNIT_FIXTURE( join, JoinFixture )
         CHAOS_CHECK_EQUAL( s, fixture->results[ i ] );
     }
 }
+
+} // namespace unicode_operations_tests

@@ -1,7 +1,6 @@
 #include "chaoscore/io/sys/Path.hpp"
 
-#include <algorithm>
-
+#include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
 
 // TODO: REMOVE ME
@@ -45,7 +44,9 @@ Path::Path( const chaos::uni::UTF8String& string_path )
     // split the path into components based on the operating system
 #ifdef CHAOS_OS_UNIX
 
-    m_components = string_path.split( UNIX_SEP );
+    chaos::uni::UTF8String santised_path( string_path );
+    santised_path.remove_duplicates( UNIX_SEP );
+    m_components = santised_path.split( UNIX_SEP );
 
     if ( m_components.size() > 0 && m_components[ 0 ] == "" )
     {
@@ -54,7 +55,9 @@ Path::Path( const chaos::uni::UTF8String& string_path )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    m_components = string_path.split( WINDOWS_SEP );
+    chaos::uni::UTF8String santised_path( string_path );
+    santised_path.remove_duplicates( WINDOWS_SEP );
+    m_components = santised_path.split( WINDOWS_SEP );
 
 #endif
 
@@ -78,6 +81,7 @@ Path::Path( const Path& other )
 
 const Path& Path::operator=( const Path& other )
 {
+    m_components = other.m_components;
     return *this;
 }
 
@@ -108,9 +112,22 @@ bool Path::operator!=( const Path& other ) const
 
 bool Path::operator<( const Path& other ) const
 {
-    // size_t min = std::min( m_components.size(), other.m_components.size() );
+    // do the paths have the same length?
+    if ( m_components.size() == other.m_components.size() )
+    {
+        // perform check on each component
+        for ( size_t i = 0; i < m_components.size(); ++i )
+        {
+            if ( m_components[ i ] != other.m_components[ i ] )
+            {
+                return m_components[ i ] < other.m_components[ i ];
+            }
+        }
+        return false;
+    }
 
-    return true;
+    // compare based on length
+    return m_components.size() < other.m_components.size();
 }
 
 chaos::uni::UTF8String& Path::operator[]( size_t index )
@@ -125,11 +142,20 @@ const chaos::uni::UTF8String& Path::operator[]( size_t index ) const
 
 Path Path::operator+( const Path& other ) const
 {
-    return Path();
+    // create a new path which is a copy of this path
+    Path copy( *this );
+    // now use compound operator
+    return copy += other;
 }
 
 const Path& Path::operator+=( const Path& other )
 {
+    // extend with other path's components
+    CHAOS_FOR_EACH( it, other.m_components )
+    {
+        m_components.push_back( *it );
+    }
+
     return *this;
 }
 
@@ -150,14 +176,71 @@ Path& Path::join( const chaos::uni::UTF8String& component )
 
 void Path::insert( size_t index, const chaos::uni::UTF8String& component )
 {
+    // check bounds
+    if ( index > m_components.size() )
+    {
+        chaos::uni::UTF8String error_message;
+        error_message << "Provided index: " << index << " is greater than the "
+                      << "number of components in the path: "
+                      << m_components.size();
+        throw chaos::ex::IndexOutOfBoundsError( error_message );
+    }
+
+    // new vector to contain components
+    std::vector< chaos::uni::UTF8String > components;
+    // copy with the insert
+    for ( size_t i = 0; i <= m_components.size(); ++i )
+    {
+        if ( i < index )
+        {
+            components.push_back( m_components[ i ] );
+        }
+        else if ( i > index )
+        {
+            components.push_back( m_components[ i - 1 ] );
+        }
+        else
+        {
+            components.push_back( component );
+        }
+    }
+    // replace the current list of components
+    m_components = components;
 }
 
 void Path::clear()
 {
+    m_components.clear();
 }
 
 void Path::remove( size_t index )
 {
+    // check bounds
+    if ( index >= m_components.size() )
+    {
+        chaos::uni::UTF8String error_message;
+        error_message << "Provided index: " << index << " is greater or equal "
+                      << "to the number of components in the path: "
+                      << m_components.size();
+        throw chaos::ex::IndexOutOfBoundsError( error_message );
+    }
+
+    // new vector to contain components
+    std::vector< chaos::uni::UTF8String > components;
+    // copy with the remove
+    for ( size_t i = 0; i < m_components.size(); ++i )
+    {
+        if ( i < index )
+        {
+            components.push_back( m_components[ i ] );
+        }
+        else if ( i > index )
+        {
+            components.push_back( m_components[ i ] );
+        }
+    }
+    // replace the current list of components
+    m_components = components;
 }
 
 chaos::uni::UTF8String Path::to_native() const
@@ -217,6 +300,21 @@ const std::vector< chaos::uni::UTF8String >& Path::get_components() const
 
 chaos::uni::UTF8String Path::get_extension() const
 {
+    // is there a final component?
+    if ( !m_components.empty() )
+    {
+        // does the final component contain a period?
+        size_t loc = m_components.back().find_last( "." );
+        if ( loc != chaos::uni::UTF8String::npos )
+        {
+            // return the extension substring
+            return m_components.back().substring(
+                    loc + 1,
+                    m_components.back().get_length()
+            );
+        }
+    }
+    // there is no extension, return an empty string
     return "";
 }
 

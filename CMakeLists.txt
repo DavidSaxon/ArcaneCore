@@ -12,6 +12,7 @@ set( CORE_SRC
     src/cxx/chaoscore/io/file/FileOperations.cpp
     src/cxx/chaoscore/io/format/ANSI.cpp
     src/cxx/chaoscore/io/format/FormatOperations.cpp
+    src/cxx/chaoscore/io/sys/FileSystemOperations.cpp
     src/cxx/chaoscore/io/sys/Path.cpp
 
     src/cxx/chaoscore/test/ChaosTest.cpp

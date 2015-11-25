@@ -1,0 +1,39 @@
+\hypertarget{_file_system_operations_8hpp}{\section{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/io/sys/\-File\-System\-Operations.hpp File Reference}
+\label{_file_system_operations_8hpp}\index{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/io/sys/\-File\-System\-Operations.\-hpp@{/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/io/sys/\-File\-System\-Operations.\-hpp}}
+}
+
+
+Operations relating to the file system.  
+
+
+{\ttfamily \#include \char`\"{}chaoscore/io/sys/\-Path.\-hpp\char`\"{}}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacechaos}{chaos}
+\begin{DoxyCompactList}\small\item\em the global Chaos\-Core namespace which contains everything within Chaos\-Core. \end{DoxyCompactList}\item 
+\hyperlink{namespacechaos_1_1io}{chaos\-::io}
+\begin{DoxyCompactList}\small\item\em Input/\-Output related classes and operations. \end{DoxyCompactList}\item 
+\hyperlink{namespacechaos_1_1io_1_1sys}{chaos\-::io\-::sys}
+\begin{DoxyCompactList}\small\item\em Module for File System operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacechaos_1_1io_1_1sys_ad3693908f4b5615a25242afd013b2da9}{chaos\-::io\-::sys\-::exists} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Checks whether the given path exists on the file system. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacechaos_1_1io_1_1sys_aebd1713fea3c99cb2429e60abe5c0d80}{chaos\-::io\-::sys\-::is\-\_\-file} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Returns whether the given path is a regular file. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacechaos_1_1io_1_1sys_a9bed6e498770ad91f604b9dc4eead217}{chaos\-::io\-::sys\-::is\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Returns whether the given path is a directory. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacechaos_1_1io_1_1sys_ac47b8476aea536b08a1c7a34b4e7e28c}{chaos\-::io\-::sys\-::is\-\_\-symbolic\-\_\-link} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Returns whether the given path is a symbolic link. \end{DoxyCompactList}\item 
+bool \hyperlink{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{chaos\-::io\-::sys\-::create\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Attempts to create the directory at the given path. \end{DoxyCompactList}\item 
+void \hyperlink{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{chaos\-::io\-::sys\-::validate} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Attempts to ensure all directories in the provided path exist and are available for writing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations relating to the file system. \begin{DoxyAuthor}{Author}
+David Saxon 
+\end{DoxyAuthor}

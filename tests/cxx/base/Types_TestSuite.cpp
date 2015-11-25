@@ -1,8 +1,11 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
+CHAOS_TEST_MODULE( base.types )
+
 #include "chaoscore/base/Types.hpp"
 
-CHAOS_TEST_MODULE( base.types )
+namespace types_tests
+{
 
 //------------------------------------------------------------------------------
 //                                  CHAOS::INT8
@@ -1776,3 +1779,5 @@ CHAOS_TEST_UNIT( uint64 )
         );
     }
 }
+
+} // namespace types_tests

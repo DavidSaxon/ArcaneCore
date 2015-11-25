@@ -4,6 +4,9 @@ CHAOS_TEST_MODULE( base.data.byte_operations )
 
 #include "chaoscore/base/data/ByteOperations.hpp"
 
+namespace byte_operations_tests
+{
+
 //------------------------------------------------------------------------------
 //                                BYTES TO UINT32
 //------------------------------------------------------------------------------
@@ -183,3 +186,5 @@ CHAOS_TEST_UNIT_FIXTURE( bytes_to_uint32, BytesToUint32Fixture )
         );
     }
 }
+
+} // namespace byte_operations_tests

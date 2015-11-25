@@ -8,6 +8,9 @@ CHAOS_TEST_MODULE( base.uni.utf8_string )
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/uni/UTF8String.hpp"
 
+namespace utf8_string_tests
+{
+
 //------------------------------------------------------------------------------
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
@@ -559,16 +562,26 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking true evaluation" );
+    CHAOS_TEST_MESSAGE( "Checking less than cases" );
     for ( size_t i = 0; i < fixture->less.size(); ++i )
     {
         CHAOS_CHECK_TRUE( fixture->less[ i ] < fixture->more[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking false evaluation" );
+    CHAOS_TEST_MESSAGE( "Checking greater than cases" );
     for ( size_t i = 0; i < fixture->less.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking equals cases" );
+    for ( size_t i = 0; i < fixture->less.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->less[ i ] < fixture->less[ i ] );
+    }
+    for ( size_t i = 0; i < fixture->more.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->more[ i ] );
     }
 }
 
@@ -2739,3 +2752,5 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
             chaos::ex::IndexOutOfBoundsError
     );
 }
+
+} // namespace utf8_string_tests

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['ambiguouspatherror',['AmbiguousPathError',['../classchaos_1_1io_1_1file_1_1ex_1_1_ambiguous_path_error.html',1,'chaos::io::file::ex']]],
+  ['ambiguouspatherror',['AmbiguousPathError',['../classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html',1,'chaos::io::sys']]],
   ['ansi_2ehpp',['ANSI.hpp',['../_a_n_s_i_8hpp.html',1,'']]],
   ['ansi_5fattr_5fblink',['ANSI_ATTR_BLINK',['../namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfacd3671458d96396a0fec66c993244186',1,'chaos::io::format']]],
   ['ansi_5fattr_5fbold',['ANSI_ATTR_BOLD',['../namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfaada31e77e1e80ea78e0cd08a126271b3',1,'chaos::io::format']]],
