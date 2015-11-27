@@ -1,20 +1,24 @@
 #include "chaoscore/io/sys/FileSystemOperations.hpp"
 
+#include <sys/stat.h>
+#include <sys/types.h>
+
 #ifdef CHAOS_OS_UNIX
 
     #include <cstring>
     #include <dirent.h>
     #include <errno.h>
     #include <unistd.h>
-    #include <sys/stat.h>
-    #include <sys/types.h>
+
 
 #elif defined( CHAOS_OS_WINDOWS )
 
     #include <windows.h>
-    #include "Shlwapi.h"
 
 #endif
+
+// TODO: REMOVE ME
+#include <iostream>
 
 namespace chaos
 {
@@ -50,8 +54,12 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    // TODO: replace since this has a dependency
-    return PathFileExists( path.to_windows().to_cstring() );
+    struct stat s;
+    if ( stat( path.to_windows().to_cstring(), &s ) == 0 )
+    {
+        return true;
+    }
+    return false;
 
 #else
 
@@ -94,11 +102,15 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    // TODO:
-    throw chaos::ex::NotImplementedError(
-            "chaos::io::sys::is_file has not yet been implemented for this "
-            "platform"
-    );
+    struct stat s;
+    if ( stat( path.to_windows().to_cstring(), &s ) == 0 )
+    {
+        if ( s.st_mode & S_IFREG )
+        {
+            return true;
+        }
+    }
+    return false;
 
 #else
 
@@ -141,11 +153,15 @@ bool is_directory(
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    // TODO:
-    throw chaos::ex::NotImplementedError(
-            "chaos::io::sys::is_directory has not yet been implemented for "
-            "this platform"
-    );
+    struct stat s;
+    if ( stat( path.to_windows().to_cstring(), &s ) == 0 )
+    {
+        if ( s.st_mode & S_IFDIR )
+        {
+            return true;
+        }
+    }
+    return false;
 
 #else
 
@@ -221,8 +237,17 @@ bool create_directory( const chaos::io::sys::Path& path )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    // TODO
-    _mkdir( path.to_cstring() );
+    if ( !CreateDirectory( p.to_cstring(), NULL ) )
+    {
+        chaos::uni::UTF8String error_message;
+        error_message << "Directory creation failed with error code: ";
+        error_message << GetLastError();
+        // << ": " << strerror( errno ); // TODO:
+        throw CreateDirectoryError( error_message );
+
+    }
+
+    return true;
 
 #endif
 }
