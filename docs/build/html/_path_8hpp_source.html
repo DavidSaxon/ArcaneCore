@@ -110,82 +110,87 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>( <span class="keyword">const</span> std::vector&lt; chaos::uni::UTF8String &gt;&amp; components );</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; string_path );</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other );</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>( <span class="keyword">const</span> std::vector&lt; chaos::uni::UTF8String &gt;&amp; components );</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>(</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">const</span> std::vector&lt; chaos::uni::UTF8String &gt;::const_iterator&amp; begin,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keyword">const</span> std::vector&lt; chaos::uni::UTF8String &gt;::const_iterator&amp; end );</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">//                                 OPERATORS</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a45c70fc34ff619e890d5bc807dd70d8b">operator=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other );</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ac2e63307a0526625f4447f1d2a704e3b">operator==</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#acd6dea0a797c0307179a5523239a299a">operator!=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a90858bbce348d5b36d0c31d771c601d8">operator&lt;</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ae7503e76ec85786225fc25b572deaeea">operator[]</a>( <span class="keywordtype">size_t</span> index );</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ae7503e76ec85786225fc25b572deaeea">operator[]</a>( <span class="keywordtype">size_t</span> index ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; string_path );</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">Path</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other );</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">//                                 OPERATORS</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a45c70fc34ff619e890d5bc807dd70d8b">operator=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other );</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ac2e63307a0526625f4447f1d2a704e3b">operator==</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#acd6dea0a797c0307179a5523239a299a">operator!=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a90858bbce348d5b36d0c31d771c601d8">operator&lt;</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a5e769fd87717e15f0580e9aacbc0a418">operator+</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a92a616d9f16047d8933020bab54ed494">operator+=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other );</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a9b3f24e1f3bcb8e989c4b21d70d0a052">operator&lt;&lt;</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; component );</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ae7503e76ec85786225fc25b572deaeea">operator[]</a>( <span class="keywordtype">size_t</span> index );</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ae7503e76ec85786225fc25b572deaeea">operator[]</a>( <span class="keywordtype">size_t</span> index ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a5e769fd87717e15f0580e9aacbc0a418">operator+</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a92a616d9f16047d8933020bab54ed494">operator+=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; other );</div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <span class="comment">//                          PUBLIC MEMBER FUNCTIONS</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a8fcd75bd349c4c6d1286f6549e34de8c">join</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; component );</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a9b3f24e1f3bcb8e989c4b21d70d0a052">operator&lt;&lt;</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; component );</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    <span class="comment">//                          PUBLIC MEMBER FUNCTIONS</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a7dc2fc570f8475ba5147bffb01de7025">insert</a>( <span class="keywordtype">size_t</span> index, <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; component );</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a7c4cd7e5d8e21a8c522f8a87f1e90f4c">clear</a>();</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">remove</span>( <span class="keywordtype">size_t</span> index );</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#adb68b7589d18dc78f19d9dd6936d9833">to_native</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a1cfe95a7a81ba7da856ae79917e6b1bf">to_unix</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ad7b185968a88741d52526a32738d0ab4">to_windows</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    <span class="comment">//--------------------------------ACCESSORS---------------------------------</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a66471e8a3b9115f1df2ef9c8a337796e">get_length</a>();</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="keyword">const</span> std::vector&lt; chaos::uni::UTF8String &gt;&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ae20cae838af510b945e716d529e19bf4">get_components</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ac7a2b7c374c1e4059b021b2c8751fb39">get_extension</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    std::vector&lt; chaos::uni::UTF8String &gt; m_components;</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;};</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment">//                               EXTERNAL OPERATORS</span></div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; operator&lt;&lt;( <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; s, <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; p );</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;std::ostream&amp; operator&lt;&lt;( std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; p );</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a8fcd75bd349c4c6d1286f6549e34de8c">join</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; component );</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a7dc2fc570f8475ba5147bffb01de7025">insert</a>( <span class="keywordtype">size_t</span> index, <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; component );</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a7c4cd7e5d8e21a8c522f8a87f1e90f4c">clear</a>();</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">remove</span>( <span class="keywordtype">size_t</span> index );</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#adb68b7589d18dc78f19d9dd6936d9833">to_native</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a1cfe95a7a81ba7da856ae79917e6b1bf">to_unix</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ad7b185968a88741d52526a32738d0ab4">to_windows</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="comment">//--------------------------------ACCESSORS---------------------------------</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#a622fadb20bc01a0b58ef19eaf37fb44c">get_length</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="keyword">const</span> std::vector&lt; chaos::uni::UTF8String &gt;&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ae20cae838af510b945e716d529e19bf4">get_components</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html#ac7a2b7c374c1e4059b021b2c8751fb39">get_extension</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;} <span class="comment">// namespace sys</span></div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    std::vector&lt; chaos::uni::UTF8String &gt; m_components;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;};</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;<span class="comment">//                               EXTERNAL OPERATORS</span></div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;<a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; operator&lt;&lt;( <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; s, <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; p );</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;std::ostream&amp; operator&lt;&lt;( std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a>&amp; p );</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;} <span class="comment">// namespace sys</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a></div><div class="ttdoc">Represents a filesystem path. </div><div class="ttdef"><b>Definition:</b> Path.hpp:32</div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_ac7a2b7c374c1e4059b021b2c8751fb39"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#ac7a2b7c374c1e4059b021b2c8751fb39">chaos::io::sys::Path::get_extension</a></div><div class="ttdeci">chaos::uni::UTF8String get_extension() const </div><div class="ttdoc">Returns the file extension of the leaf component of this Path. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a1cfe95a7a81ba7da856ae79917e6b1bf"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a1cfe95a7a81ba7da856ae79917e6b1bf">chaos::io::sys::Path::to_unix</a></div><div class="ttdeci">chaos::uni::UTF8String to_unix() const </div><div class="ttdoc">Returns the chaos::uni::UTF8String representation of this Path for Unix based operating systems...</div></div>
@@ -195,6 +200,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a9b3f24e1f3bcb8e989c4b21d70d0a052"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a9b3f24e1f3bcb8e989c4b21d70d0a052">chaos::io::sys::Path::operator&lt;&lt;</a></div><div class="ttdeci">Path &amp; operator&lt;&lt;(const chaos::uni::UTF8String &amp;component)</div><div class="ttdoc">Join operator. </div></div>
 <div class="ttc" id="classchaos_1_1uni_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:127</div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_adb68b7589d18dc78f19d9dd6936d9833"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#adb68b7589d18dc78f19d9dd6936d9833">chaos::io::sys::Path::to_native</a></div><div class="ttdeci">chaos::uni::UTF8String to_native() const </div><div class="ttdoc">Returns the chaos::uni::UTF8String representation of this Path for the current operating system...</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a622fadb20bc01a0b58ef19eaf37fb44c"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a622fadb20bc01a0b58ef19eaf37fb44c">chaos::io::sys::Path::get_length</a></div><div class="ttdeci">size_t get_length() const </div><div class="ttdoc">Returns the number of components in this path. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a4212b2acfcc365769080ea5e915568ee"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee">chaos::io::sys::Path::Path</a></div><div class="ttdeci">Path()</div><div class="ttdoc">Default constructor. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_ae7503e76ec85786225fc25b572deaeea"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#ae7503e76ec85786225fc25b572deaeea">chaos::io::sys::Path::operator[]</a></div><div class="ttdeci">chaos::uni::UTF8String &amp; operator[](size_t index)</div><div class="ttdoc">Returns a reference to the component of this Path at the given index. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a90858bbce348d5b36d0c31d771c601d8"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a90858bbce348d5b36d0c31d771c601d8">chaos::io::sys::Path::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Path &amp;other) const </div><div class="ttdoc">Less than operator. </div></div>
@@ -203,7 +209,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_ae20cae838af510b945e716d529e19bf4"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#ae20cae838af510b945e716d529e19bf4">chaos::io::sys::Path::get_components</a></div><div class="ttdeci">const std::vector&lt; chaos::uni::UTF8String &gt; &amp; get_components() const </div><div class="ttdoc">Returns the individual components which make up this path. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a45c70fc34ff619e890d5bc807dd70d8b"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a45c70fc34ff619e890d5bc807dd70d8b">chaos::io::sys::Path::operator=</a></div><div class="ttdeci">const Path &amp; operator=(const Path &amp;other)</div><div class="ttdoc">Assignment operator. </div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a66471e8a3b9115f1df2ef9c8a337796e"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a66471e8a3b9115f1df2ef9c8a337796e">chaos::io::sys::Path::get_length</a></div><div class="ttdeci">size_t get_length()</div><div class="ttdoc">Returns the number of components in this path. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_acd6dea0a797c0307179a5523239a299a"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#acd6dea0a797c0307179a5523239a299a">chaos::io::sys::Path::operator!=</a></div><div class="ttdeci">bool operator!=(const Path &amp;other) const </div><div class="ttdoc">Inequality operator. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a5e769fd87717e15f0580e9aacbc0a418"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a5e769fd87717e15f0580e9aacbc0a418">chaos::io::sys::Path::operator+</a></div><div class="ttdeci">Path operator+(const Path &amp;other) const </div><div class="ttdoc">Addition operator. </div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html_a7c4cd7e5d8e21a8c522f8a87f1e90f4c"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html#a7c4cd7e5d8e21a8c522f8a87f1e90f4c">chaos::io::sys::Path::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Reverts this Path to be an empty path. </div></div>
@@ -211,7 +216,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 26 2015 10:33:03 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 27 2015 20:11:04 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

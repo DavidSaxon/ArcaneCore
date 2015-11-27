@@ -65,9 +65,30 @@ public:
      *
      * chaos::io::file::Path p( components );
      * \endcode
-     *
      */
     Path( const std::vector< chaos::uni::UTF8String >& components );
+
+    /*!
+     * \brief Iterator constructor
+     *
+     * Creates a new path from the components from the first iterator up to but
+     * not inclusive of the second iterator.
+     *
+     * Example usage:
+     *
+     * \code
+     * std::vector< chaos::uni::UTF8String > components;
+     * components.push_back( "path" );
+     * components.push_back( "to" );
+     * components.push_back( "file.txt" );
+     *
+     * chaos::io::file::Path p( components.begin(), components.end() );
+     * \endcode
+     */
+    Path(
+            const std::vector< chaos::uni::UTF8String >::const_iterator& begin,
+            const std::vector< chaos::uni::UTF8String >::const_iterator& end );
+
 
     /*!
      * \brief Attempts to create a Path object from the given single string
@@ -79,7 +100,6 @@ public:
      *
      * On Unix systems this will split the given string into components using
      * the "/" symbol. Likewise on Windows systems the "\" symbol will be used.
-     *
      */
     Path( const chaos::uni::UTF8String& string_path );
 
@@ -363,7 +383,7 @@ public:
      * p.get_length(); // returns: 3
      * \endcode
      */
-    size_t get_length();
+    size_t get_length() const;
 
     /*!
      * \brief Returns the individual components which make up this path.

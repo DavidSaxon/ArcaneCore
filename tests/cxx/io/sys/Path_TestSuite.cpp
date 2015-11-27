@@ -197,6 +197,44 @@ CHAOS_TEST_UNIT_FIXTURE( component_constructor, PathGenericFixture )
 }
 
 //------------------------------------------------------------------------------
+//                              ITERATOR CONSTRUCTOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( iterator_constructor, PathGenericFixture )
+{
+    std::vector< chaos::io::sys::Path > paths;
+    CHAOS_FOR_EACH( it, fixture->all )
+    {
+        paths.push_back( chaos::io::sys::Path( it->begin(), it->end() ) );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking internal component lengths" );
+    for ( size_t i = 0; i < paths.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                paths[ i ].get_components().size(),
+                fixture->all[ i ].size()
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking internal components" );
+    for ( size_t i = 0; i < paths.size(); ++i )
+    {
+        size_t min = std::min(
+                paths[ i ].get_components().size(),
+                fixture->all[ i ].size()
+        );
+        for ( size_t j = 0; j < min; ++j )
+        {
+            CHAOS_CHECK_EQUAL(
+                    paths[ i ].get_components()[ j ],
+                    fixture->all[ i ][ j ]
+            );
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
 //                               STRING CONSTRUCTOR
 //------------------------------------------------------------------------------
 

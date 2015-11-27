@@ -20,18 +20,18 @@ class \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{namespacechaos_1_1io_1_1sys_ad3693908f4b5615a25242afd013b2da9}{exists} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+bool \hyperlink{namespacechaos_1_1io_1_1sys_aea7e02607d55f1683edaff9a2a459a28}{exists} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path, bool resolve\-\_\-links=true)
 \begin{DoxyCompactList}\small\item\em Checks whether the given path exists on the file system. \end{DoxyCompactList}\item 
-bool \hyperlink{namespacechaos_1_1io_1_1sys_aebd1713fea3c99cb2429e60abe5c0d80}{is\-\_\-file} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+bool \hyperlink{namespacechaos_1_1io_1_1sys_aff0d2db920afd82a3c023d77067829ec}{is\-\_\-file} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path, bool resolve\-\_\-links=true)
 \begin{DoxyCompactList}\small\item\em Returns whether the given path is a regular file. \end{DoxyCompactList}\item 
-bool \hyperlink{namespacechaos_1_1io_1_1sys_a9bed6e498770ad91f604b9dc4eead217}{is\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+bool \hyperlink{namespacechaos_1_1io_1_1sys_ad48945ad68ee4c84a37240ebc6b5a167}{is\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path, bool resolve\-\_\-links=true)
 \begin{DoxyCompactList}\small\item\em Returns whether the given path is a directory. \end{DoxyCompactList}\item 
 bool \hyperlink{namespacechaos_1_1io_1_1sys_ac47b8476aea536b08a1c7a34b4e7e28c}{is\-\_\-symbolic\-\_\-link} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Returns whether the given path is a symbolic link. \end{DoxyCompactList}\item 
 bool \hyperlink{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{create\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Attempts to create the directory at the given path. \end{DoxyCompactList}\item 
 void \hyperlink{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{validate} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
-\begin{DoxyCompactList}\small\item\em Attempts to ensure all directories in the provided path exist and are available for writing. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Attempts to ensure all directories up to the provided path exist. \end{DoxyCompactList}\item 
 \hypertarget{namespacechaos_1_1io_1_1sys_a669178b3843d1716570b4b5ca8fd417d}{\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \& {\bfseries operator$<$$<$} (\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&s, const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&p)}\label{namespacechaos_1_1io_1_1sys_a669178b3843d1716570b4b5ca8fd417d}
 
 \item 
@@ -44,13 +44,14 @@ void \hyperlink{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{v
 Module for File System operations. 
 
 \subsection{Function Documentation}
-\hypertarget{namespacechaos_1_1io_1_1sys_ad3693908f4b5615a25242afd013b2da9}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!exists@{exists}}
+\hypertarget{namespacechaos_1_1io_1_1sys_aea7e02607d55f1683edaff9a2a459a28}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!exists@{exists}}
 \index{exists@{exists}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{exists}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::io\-::sys\-::exists (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path, }
+\item[{bool}]{resolve\-\_\-links = {\ttfamily true}}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1io_1_1sys_ad3693908f4b5615a25242afd013b2da9}
+)}}\label{namespacechaos_1_1io_1_1sys_aea7e02607d55f1683edaff9a2a459a28}
 
 
 Checks whether the given path exists on the file system. 
@@ -61,38 +62,52 @@ This operation does not concern with the type of the path, this will return true
 \begin{DoxyParams}{Parameters}
 {\em path} & The path to check for existence. \\
 \hline
+{\em resolve\-\_\-links} & Controls whether the operation will follow symbolic links and treat them as the path it points to (default behavior) or if the path to a symbolic link should be treated as the absolute path to the link itself. This argument has no effect on Windows platforms since symbolic linking is not supported by Windows. \\
+\hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns True if the path exists, false otherwise. 
 \end{DoxyReturn}
-\hypertarget{namespacechaos_1_1io_1_1sys_aebd1713fea3c99cb2429e60abe5c0d80}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!is\-\_\-file@{is\-\_\-file}}
+\hypertarget{namespacechaos_1_1io_1_1sys_aff0d2db920afd82a3c023d77067829ec}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!is\-\_\-file@{is\-\_\-file}}
 \index{is\-\_\-file@{is\-\_\-file}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{is\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::io\-::sys\-::is\-\_\-file (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path, }
+\item[{bool}]{resolve\-\_\-links = {\ttfamily true}}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1io_1_1sys_aebd1713fea3c99cb2429e60abe5c0d80}
+)}}\label{namespacechaos_1_1io_1_1sys_aff0d2db920afd82a3c023d77067829ec}
 
 
 Returns whether the given path is a regular file. 
 
 \begin{DoxyNote}{Note}
-If the path does not exist this operation will return false. 
+If the path does not exist this operation will return false.
 \end{DoxyNote}
-\hypertarget{namespacechaos_1_1io_1_1sys_a9bed6e498770ad91f604b9dc4eead217}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!is\-\_\-directory@{is\-\_\-directory}}
+
+\begin{DoxyParams}{Parameters}
+{\em resolve\-\_\-links} & Controls whether the operation will follow symbolic links and treat them as the path it points to (default behavior) or if the path to a symbolic link should be treated as the absolute path to the link itself. This argument has no effect on Windows platforms since symbolic linking is not supported by Windows. \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespacechaos_1_1io_1_1sys_ad48945ad68ee4c84a37240ebc6b5a167}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!is\-\_\-directory@{is\-\_\-directory}}
 \index{is\-\_\-directory@{is\-\_\-directory}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{is\-\_\-directory}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::io\-::sys\-::is\-\_\-directory (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path, }
+\item[{bool}]{resolve\-\_\-links = {\ttfamily true}}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1io_1_1sys_a9bed6e498770ad91f604b9dc4eead217}
+)}}\label{namespacechaos_1_1io_1_1sys_ad48945ad68ee4c84a37240ebc6b5a167}
 
 
 Returns whether the given path is a directory. 
 
 \begin{DoxyNote}{Note}
-If the path does not exist this operation will return false. 
+If the path does not exist this operation will return false.
 \end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em resolve\-\_\-links} & Controls whether the operation will follow symbolic links and treat them as the path it points to (default behavior) or if the path to a symbolic link should be treated as the absolute path to the link itself. This argument has no effect on Windows platforms since symbolic linking is not supported by Windows. \\
+\hline
+\end{DoxyParams}
 \hypertarget{namespacechaos_1_1io_1_1sys_ac47b8476aea536b08a1c7a34b4e7e28c}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!is\-\_\-symbolic\-\_\-link@{is\-\_\-symbolic\-\_\-link}}
 \index{is\-\_\-symbolic\-\_\-link@{is\-\_\-symbolic\-\_\-link}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{is\-\_\-symbolic\-\_\-link}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::io\-::sys\-::is\-\_\-symbolic\-\_\-link (
@@ -137,18 +152,24 @@ True is a new directory was created, false if the directory already exists.
 )}}\label{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}
 
 
-Attempts to ensure all directories in the provided path exist and are available for writing. 
+Attempts to ensure all directories up to the provided path exist. 
 
-If any directories in this path do not exist this operation will attempt to create them. If the given path cannot be validated this will fail with an exception.
+If any directories up to the final component of the provided path do not exist this operation will attempt to create them. If the given path cannot be validated this will fail with an exception.
+
+This operation is useful to ensure a path is available for writing.
 
 Example usage\-:
 
 
 \begin{DoxyCode}
 \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos::io::sys::Path} p;
-p << \textcolor{stringliteral}{"example"} << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"directory"};
-\hyperlink{namespacechaos_1_1io_1_1file_a85365416303132fc0e8691af65fdcf41}{chaos::io::sys::validate\_path}( p );
-\textcolor{comment}{// this will attempt to ensure example/path/to/directory exists.}
+p << \textcolor{stringliteral}{"example"} << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"filename.txt"};
+\hyperlink{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{chaos::io::sys::validate}( p );
+\textcolor{comment}{// this will attempt to ensure example/path/to/ exists, if this operations}
+\textcolor{comment}{// failed an exception would have been thrown.}
+\textcolor{comment}{// We can now begin writing to filename.txt knowing that it's containing}
+\textcolor{comment}{// directory exists.}
+std::ofstream open\_file( p.\hyperlink{classchaos_1_1io_1_1sys_1_1_path_adb68b7589d18dc78f19d9dd6936d9833}{to\_native}().\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string_a3435d4d7d8378c3c41a3e918ecd86d6f}{to\_cstring}() );
 \end{DoxyCode}
 
 

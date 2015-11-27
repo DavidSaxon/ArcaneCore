@@ -36,6 +36,14 @@ Path::Path( const std::vector< chaos::uni::UTF8String >& components )
 {
 }
 
+Path::Path(
+        const std::vector< chaos::uni::UTF8String >::const_iterator& begin,
+        const std::vector< chaos::uni::UTF8String >::const_iterator& end )
+    :
+    m_components( begin, end )
+{
+}
+
 Path::Path( const chaos::uni::UTF8String& string_path )
 {
     // split the path into components based on the operating system
@@ -285,7 +293,7 @@ chaos::uni::UTF8String Path::to_windows() const
 
 //----------------------------------ACCESSORS-----------------------------------
 
-size_t Path::get_length()
+size_t Path::get_length() const
 {
     return m_components.size();
 }

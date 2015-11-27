@@ -89,49 +89,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CHAOSCORE_IO_SYS_FILESYSTEMOPERATIONS</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CHAOSCORE_IO_SYS_FILESYSTEMOPERATIONS</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_path_8hpp.html">chaoscore/io/sys/Path.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>chaos</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>io</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>sys</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//                                   FUNCTIONS</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#ad3693908f4b5615a25242afd013b2da9">exists</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#aebd1713fea3c99cb2429e60abe5c0d80">is_file</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#a9bed6e498770ad91f604b9dc4eead217">is_directory</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#ac47b8476aea536b08a1c7a34b4e7e28c">is_symbolic_link</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#a6bcdadf916b110395f4a2627c049da11">create_directory</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; <span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#a15e20b105c40cf4d73b13afe87ce1781">validate</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} <span class="comment">// namespace sys</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_aebd1713fea3c99cb2429e60abe5c0d80"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#aebd1713fea3c99cb2429e60abe5c0d80">chaos::io::sys::is_file</a></div><div class="ttdeci">bool is_file(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Returns whether the given path is a regular file. </div></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_file_system_exceptions_8hpp.html">chaoscore/io/sys/FileSystemExceptions.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_path_8hpp.html">chaoscore/io/sys/Path.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>chaos</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>io</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>sys</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#aea7e02607d55f1683edaff9a2a459a28">exists</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path, <span class="keywordtype">bool</span> resolve_links = <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#aff0d2db920afd82a3c023d77067829ec">is_file</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path, <span class="keywordtype">bool</span> resolve_links = <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#ad48945ad68ee4c84a37240ebc6b5a167">is_directory</a>(</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">bool</span> resolve_links = <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#ac47b8476aea536b08a1c7a34b4e7e28c">is_symbolic_link</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#a6bcdadf916b110395f4a2627c049da11">create_directory</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; <span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1sys.html#a15e20b105c40cf4d73b13afe87ce1781">validate</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;} <span class="comment">// namespace sys</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a></div><div class="ttdoc">Represents a filesystem path. </div><div class="ttdef"><b>Definition:</b> Path.hpp:32</div></div>
 <div class="ttc" id="namespacechaos_1_1io_1_1sys_html_a6bcdadf916b110395f4a2627c049da11"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#a6bcdadf916b110395f4a2627c049da11">chaos::io::sys::create_directory</a></div><div class="ttdeci">bool create_directory(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Attempts to create the directory at the given path. </div></div>
-<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_a9bed6e498770ad91f604b9dc4eead217"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#a9bed6e498770ad91f604b9dc4eead217">chaos::io::sys::is_directory</a></div><div class="ttdeci">bool is_directory(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Returns whether the given path is a directory. </div></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_aff0d2db920afd82a3c023d77067829ec"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#aff0d2db920afd82a3c023d77067829ec">chaos::io::sys::is_file</a></div><div class="ttdeci">bool is_file(const chaos::io::sys::Path &amp;path, bool resolve_links=true)</div><div class="ttdoc">Returns whether the given path is a regular file. </div></div>
 <div class="ttc" id="namespacechaos_1_1io_1_1sys_html_ac47b8476aea536b08a1c7a34b4e7e28c"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#ac47b8476aea536b08a1c7a34b4e7e28c">chaos::io::sys::is_symbolic_link</a></div><div class="ttdeci">bool is_symbolic_link(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Returns whether the given path is a symbolic link. </div></div>
-<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_ad3693908f4b5615a25242afd013b2da9"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#ad3693908f4b5615a25242afd013b2da9">chaos::io::sys::exists</a></div><div class="ttdeci">bool exists(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Checks whether the given path exists on the file system. </div></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_ad48945ad68ee4c84a37240ebc6b5a167"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#ad48945ad68ee4c84a37240ebc6b5a167">chaos::io::sys::is_directory</a></div><div class="ttdeci">bool is_directory(const chaos::io::sys::Path &amp;path, bool resolve_links=true)</div><div class="ttdoc">Returns whether the given path is a directory. </div></div>
 <div class="ttc" id="_path_8hpp_html"><div class="ttname"><a href="_path_8hpp.html">Path.hpp</a></div></div>
-<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_a15e20b105c40cf4d73b13afe87ce1781"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#a15e20b105c40cf4d73b13afe87ce1781">chaos::io::sys::validate</a></div><div class="ttdeci">void validate(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Attempts to ensure all directories in the provided path exist and are available for writing...</div></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_aea7e02607d55f1683edaff9a2a459a28"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#aea7e02607d55f1683edaff9a2a459a28">chaos::io::sys::exists</a></div><div class="ttdeci">bool exists(const chaos::io::sys::Path &amp;path, bool resolve_links=true)</div><div class="ttdoc">Checks whether the given path exists on the file system. </div></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1sys_html_a15e20b105c40cf4d73b13afe87ce1781"><div class="ttname"><a href="namespacechaos_1_1io_1_1sys.html#a15e20b105c40cf4d73b13afe87ce1781">chaos::io::sys::validate</a></div><div class="ttdeci">void validate(const chaos::io::sys::Path &amp;path)</div><div class="ttdoc">Attempts to ensure all directories up to the provided path exist. </div></div>
+<div class="ttc" id="_file_system_exceptions_8hpp_html"><div class="ttname"><a href="_file_system_exceptions_8hpp.html">FileSystemExceptions.hpp</a></div><div class="ttdoc">Exceptions relating to the file system. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 26 2015 10:33:03 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 27 2015 20:11:03 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
