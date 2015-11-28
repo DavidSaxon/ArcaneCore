@@ -26,7 +26,7 @@ bool exists( const chaos::uni::UTF8String& path )
     // TODO: should really have a system for representing paths...
     // can contain most of these operations
 
-    boost::filesystem::path p( path.to_cstring() );
+    boost::filesystem::path p( path.get_raw() );
 
     return boost::filesystem::exists( p ) ||
            boost::filesystem::symbolic_link_exists( p );
@@ -35,14 +35,14 @@ bool exists( const chaos::uni::UTF8String& path )
 bool is_file( const chaos::uni::UTF8String& path )
 {
     return boost::filesystem::is_regular_file(
-            boost::filesystem::path( path.to_cstring() )
+            boost::filesystem::path( path.get_raw() )
     );
 }
 
 bool is_directory( const chaos::uni::UTF8String& path )
 {
     return boost::filesystem::is_directory(
-            boost::filesystem::path( path.to_cstring() )
+            boost::filesystem::path( path.get_raw() )
     );
 }
 
@@ -51,11 +51,11 @@ void create_directory( const chaos::uni::UTF8String& path )
 
 #ifdef CHAOS_OS_UNIX
 
-    mkdir( path.to_cstring(), 0777 );
+    mkdir( path.get_raw(), 0777 );
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    _mkdir( path.to_cstring() );
+    _mkdir( path.get_raw() );
 
 #endif
 

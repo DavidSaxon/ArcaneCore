@@ -38,11 +38,11 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
     int stat_ret = false;
     if ( resolve_links )
     {
-        stat_ret = stat( path.to_unix().to_cstring(), &s );
+        stat_ret = stat( path.to_unix(), &s );
     }
     else
     {
-        stat_ret = lstat( path.to_unix().to_cstring(), &s );
+        stat_ret = lstat( path.to_unix(), &s );
     }
 
     // return based on the stat return code
@@ -55,7 +55,7 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
 #elif defined( CHAOS_OS_WINDOWS )
 
     struct stat s;
-    if ( stat( path.to_windows().to_cstring(), &s ) == 0 )
+    if ( stat( path.to_windows(), &s ) == 0 )
     {
         return true;
     }
@@ -84,11 +84,11 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
     int stat_ret = false;
     if ( resolve_links )
     {
-        stat_ret = stat( path.to_unix().to_cstring(), &s );
+        stat_ret = stat( path.to_unix(), &s );
     }
     else
     {
-        stat_ret = lstat( path.to_unix().to_cstring(), &s );
+        stat_ret = lstat( path.to_unix(), &s );
     }
 
     if ( stat_ret == 0 )
@@ -103,7 +103,7 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
 #elif defined( CHAOS_OS_WINDOWS )
 
     struct stat s;
-    if ( stat( path.to_windows().to_cstring(), &s ) == 0 )
+    if ( stat( path.to_windows(), &s ) == 0 )
     {
         if ( s.st_mode & S_IFREG )
         {
@@ -135,11 +135,11 @@ bool is_directory(
     int stat_ret = false;
     if ( resolve_links )
     {
-        stat_ret = stat( path.to_unix().to_cstring(), &s );
+        stat_ret = stat( path.to_unix(), &s );
     }
     else
     {
-        stat_ret = lstat( path.to_unix().to_cstring(), &s );
+        stat_ret = lstat( path.to_unix(), &s );
     }
 
     if ( stat_ret == 0 )
@@ -154,7 +154,7 @@ bool is_directory(
 #elif defined( CHAOS_OS_WINDOWS )
 
     struct stat s;
-    if ( stat( path.to_windows().to_cstring(), &s ) == 0 )
+    if ( stat( path.to_windows(), &s ) == 0 )
     {
         if ( s.st_mode & S_IFDIR )
         {
@@ -178,7 +178,7 @@ bool is_symbolic_link( const chaos::io::sys::Path& path )
 #ifdef CHAOS_OS_UNIX
 
     struct stat s;
-    if ( lstat( path.to_unix().to_cstring(), &s ) == 0 )
+    if ( lstat( path.to_unix(), &s ) == 0 )
     {
         if ( S_ISLNK( s.st_mode ) )
         {
@@ -204,8 +204,6 @@ bool is_symbolic_link( const chaos::io::sys::Path& path )
 
 bool create_directory( const chaos::io::sys::Path& path )
 {
-    chaos::uni::UTF8String p = path.to_native();
-
     // does the path already exist?
     if ( exists( path ) )
     {
@@ -225,7 +223,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
 #ifdef CHAOS_OS_UNIX
 
-    if ( mkdir( p.to_cstring(), 0777 ) != 0 )
+    if ( mkdir( path.to_unix(), 0777 ) != 0 )
     {
         chaos::uni::UTF8String error_message;
         error_message << "Directory creation failed with error code: ";
@@ -237,7 +235,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    if ( !CreateDirectory( p.to_cstring(), NULL ) )
+    if ( !CreateDirectory( path.to_windows(), NULL ) )
     {
         chaos::uni::UTF8String error_message;
         error_message << "Directory creation failed with error code: ";

@@ -541,7 +541,7 @@ UTF8String UTF8String::substring( size_t start, size_t end ) const
     }
 
     // is the index valid
-    validate_symbol_index( start );
+    check_symbol_index( start );
 
     // TODO: can this be optimised to copy raw data array?
 
@@ -552,11 +552,6 @@ UTF8String UTF8String::substring( size_t start, size_t end ) const
     }
 
     return result;
-}
-
-const char* UTF8String::to_cstring() const
-{
-    return reinterpret_cast< char* >( m_data );
 }
 
 std::string UTF8String::to_std_string() const
@@ -599,7 +594,7 @@ chaos::int32 UTF8String::to_int32() const
         throw chaos::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::int32 >( std::strtol( to_cstring(), NULL, 0 ) );
+    return static_cast< chaos::int32 >( std::strtol( get_raw(), NULL, 0 ) );
 }
 
 chaos::uint32 UTF8String::to_uint32() const
@@ -613,7 +608,7 @@ chaos::uint32 UTF8String::to_uint32() const
         throw chaos::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::uint32 >( strtoul( to_cstring(), NULL, 0 ) );
+    return static_cast< chaos::uint32 >( strtoul( get_raw(), NULL, 0 ) );
 }
 
 chaos::int64 UTF8String::to_int64() const
@@ -627,7 +622,7 @@ chaos::int64 UTF8String::to_int64() const
         throw chaos::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::int64 >( std::strtol( to_cstring(), NULL, 0 ) );
+    return static_cast< chaos::int64 >( std::strtol( get_raw(), NULL, 0 ) );
 }
 
 chaos::int64 UTF8String::to_uint64() const
@@ -642,7 +637,7 @@ chaos::int64 UTF8String::to_uint64() const
     }
     // do and return conversion
     return static_cast< chaos::uint64 >(
-            std::strtoul( to_cstring(), NULL, 0 ) );
+            std::strtoul( get_raw(), NULL, 0 ) );
 }
 
 //----------------------------------ACCESSORS-----------------------------------
@@ -661,7 +656,7 @@ bool UTF8String::is_empty() const
 UTF8String UTF8String::get_symbol( size_t index ) const
 {
     // is the index valid
-    validate_symbol_index( index );
+    check_symbol_index( index );
 
     // get the byte position
     size_t byte_index = get_byte_index_for_symbol_index( index );
@@ -674,7 +669,7 @@ UTF8String UTF8String::get_symbol( size_t index ) const
 chaos::uint32 UTF8String::get_symbol_value( size_t index ) const
 {
     // is the index valid?
-    validate_symbol_index( index );
+    check_symbol_index( index );
 
     // get the bytes that make up the symbol
     size_t byte_index = get_byte_index_for_symbol_index( index );
@@ -686,7 +681,7 @@ chaos::uint32 UTF8String::get_symbol_value( size_t index ) const
 chaos::uint32 UTF8String::get_code_point( size_t index ) const
 {
     // is the index valid?
-    validate_symbol_index( index );
+    check_symbol_index( index );
 
     // get the width so we know how to convert
     size_t width = get_symbol_width( index );
@@ -719,7 +714,7 @@ chaos::uint32 UTF8String::get_code_point( size_t index ) const
 size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
 {
     // is the index valid?
-    validate_symbol_index( symbol_index );
+    check_symbol_index( symbol_index );
 
     // TODO: can this be optimized?
     size_t current_index = 0;
@@ -742,10 +737,15 @@ size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
 size_t UTF8String::get_symbol_width( size_t index ) const
 {
     // is the index valid
-    validate_symbol_index( index );
+    check_symbol_index( index );
 
     size_t byte_index = get_byte_index_for_symbol_index( index );
     return get_byte_width( byte_index );
+}
+
+const char* UTF8String::get_raw() const
+{
+    return m_data;
 }
 
 size_t UTF8String::get_byte_length() const
@@ -756,7 +756,7 @@ size_t UTF8String::get_byte_length() const
 size_t UTF8String::get_symbol_index_for_byte_index( size_t byte_index ) const
 {
     // is the index valid?
-    validate_byte_index( byte_index );
+    check_byte_index( byte_index );
 
     size_t current_index = 0;
     for ( size_t i = 0; i < m_data_length - 1; )
@@ -780,7 +780,7 @@ size_t UTF8String::get_symbol_index_for_byte_index( size_t byte_index ) const
 size_t UTF8String::get_byte_width( size_t byte_index ) const
 {
     // is the index valid?
-    validate_byte_index( byte_index );
+    check_byte_index( byte_index );
 
     // single byte character
     if ( ( m_data[ byte_index ] & 0x80 ) == 0 )
@@ -818,7 +818,7 @@ void UTF8String::assign_internal( const char* data, size_t existing_length )
 
     // get number of bytes in the data
     bool is_null_terminated = true;
-    if ( existing_length == std::string::npos )
+    if ( existing_length == chaos::uni::UTF8String::npos )
     {
         // the length includes the NULL terminator
         existing_length = strlen( data ) + 1;
@@ -858,7 +858,7 @@ void UTF8String::assign_internal( const char* data, size_t existing_length )
     }
 }
 
-void UTF8String::validate_symbol_index( size_t index ) const
+void UTF8String::check_symbol_index( size_t index ) const
 {
     if ( index >= m_length )
     {
@@ -869,7 +869,7 @@ void UTF8String::validate_symbol_index( size_t index ) const
     }
 }
 
-void UTF8String::validate_byte_index( size_t index ) const
+void UTF8String::check_byte_index( size_t index ) const
 {
     if ( index >= m_data_length )
     {
@@ -888,7 +888,7 @@ void UTF8String::validate_byte_index( size_t index ) const
 std::ostream& operator<<( std::ostream& stream, const UTF8String& s )
 {
     // TODO: proper printing
-    stream << s.to_cstring();
+    stream << s.get_raw();
     return stream;
 }
 

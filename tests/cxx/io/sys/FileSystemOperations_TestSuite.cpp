@@ -592,7 +592,7 @@ public:
         CHAOS_FOR_EACH( it, valid )
         {
             std::cout << "delete!" << *it << std::endl;
-            remove( it->to_native().to_cstring() );
+            remove( it->to_native().get_raw() );
         }
     }
 };
@@ -722,7 +722,7 @@ public:
                         it->get_components().begin() + i
                 );
 
-                remove( p.to_native().to_cstring() );
+                remove( p.to_native().get_raw() );
             }
         }
     }

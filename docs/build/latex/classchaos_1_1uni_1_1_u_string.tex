@@ -1,0 +1,128 @@
+\hypertarget{classchaos_1_1uni_1_1_u_string}{}\section{chaos\+:\+:uni\+:\+:U\+String Class Reference}
+\label{classchaos_1_1uni_1_1_u_string}\index{chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}}
+
+
+An abstract string type that defines the specifications for Unicode strings.  
+
+
+
+
+{\ttfamily \#include $<$U\+String.\+hpp$>$}
+
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classchaos_1_1uni_1_1_u_string_a5002d169446e9ab2baf8a028ec6ee9b0}{}static const size\+\_\+t \hyperlink{classchaos_1_1uni_1_1_u_string_a5002d169446e9ab2baf8a028ec6ee9b0}{npos}\label{classchaos_1_1uni_1_1_u_string_a5002d169446e9ab2baf8a028ec6ee9b0}
+
+\begin{DoxyCompactList}\small\item\em Value that represents an invalid or non-\/existent position in a Unicode String. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classchaos_1_1uni_1_1_u_string_a7300070e0775f5cd9c747ca7c2025c71}{}\hyperlink{classchaos_1_1uni_1_1_u_string_a7300070e0775f5cd9c747ca7c2025c71}{U\+String} ()\label{classchaos_1_1uni_1_1_u_string_a7300070e0775f5cd9c747ca7c2025c71}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1uni_1_1_u_string_a4ff2f82ba14d36b18366076969ecd164}{U\+String} (const \hyperlink{classchaos_1_1uni_1_1_u_string}{U\+String} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classchaos_1_1uni_1_1_u_string_a9eae392a87be35a21ae1d905b446c7e4}{assign\+\_\+raw} (const char $\ast$data, size\+\_\+t length=\hyperlink{classchaos_1_1uni_1_1_u_string_a5002d169446e9ab2baf8a028ec6ee9b0}{U\+String\+::npos})
+\begin{DoxyCompactList}\small\item\em Assigns the internal raw array ({\ttfamily m\+\_\+data}) of this string to be a be a copy of the provided data. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classchaos_1_1uni_1_1_u_string_ac55843515602400976af0706f11514d7}{check\+\_\+symbol\+\_\+index} (size\+\_\+t index) const 
+\begin{DoxyCompactList}\small\item\em Can be used to check whether a provided symbol index is out of bounds in regard to the symbol length of this string. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classchaos_1_1uni_1_1_u_string_ad8557fc6d7739054e089f607ffaae8c4}{check\+\_\+byte\+\_\+index} (size\+\_\+t index) const 
+\begin{DoxyCompactList}\small\item\em Can be used to check whether a provided byte index is out of bounds in regard to the byte length of this string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classchaos_1_1uni_1_1_u_string_ac935621b37a9c94ebd06369ec557c533}{}char $\ast$ \hyperlink{classchaos_1_1uni_1_1_u_string_ac935621b37a9c94ebd06369ec557c533}{m\+\_\+data}\label{classchaos_1_1uni_1_1_u_string_ac935621b37a9c94ebd06369ec557c533}
+
+\begin{DoxyCompactList}\small\item\em Array storing that internal raw data of this string. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1uni_1_1_u_string_a10431ca2c0c8b6d6bc92ab7bfd952395}{}size\+\_\+t \hyperlink{classchaos_1_1uni_1_1_u_string_a10431ca2c0c8b6d6bc92ab7bfd952395}{m\+\_\+data\+\_\+length}\label{classchaos_1_1uni_1_1_u_string_a10431ca2c0c8b6d6bc92ab7bfd952395}
+
+\begin{DoxyCompactList}\small\item\em Length of the data in bytes (not the number of symbols in the string). \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1uni_1_1_u_string_a2929cd818b3dcfdd449a4deab760f5de}{}size\+\_\+t \hyperlink{classchaos_1_1uni_1_1_u_string_a2929cd818b3dcfdd449a4deab760f5de}{m\+\_\+length}\label{classchaos_1_1uni_1_1_u_string_a2929cd818b3dcfdd449a4deab760f5de}
+
+\begin{DoxyCompactList}\small\item\em The number of Unicode symbols in this string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An abstract string type that defines the specifications for Unicode strings. 
+
+Specific encodings are implemented as derived types of this class.
+
+Chaos\+Core primarily uses U\+T\+F-\/8 encoded strings, for further documentation on using Unicode strings see the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\+T\+F8\+String} documentation. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classchaos_1_1uni_1_1_u_string_a4ff2f82ba14d36b18366076969ecd164}{}\index{chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}!U\+String@{U\+String}}
+\index{U\+String@{U\+String}!chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}}
+\subsubsection[{U\+String(const U\+String \&other)}]{\setlength{\rightskip}{0pt plus 5cm}chaos\+::uni\+::\+U\+String\+::\+U\+String (
+\begin{DoxyParamCaption}
+\item[{const {\bf U\+String} \&}]{other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classchaos_1_1uni_1_1_u_string_a4ff2f82ba14d36b18366076969ecd164}
+
+
+Copy constructor. 
+
+Calling this constructor from a derived class\textquotesingle{}s initialiser lists will cause the {\ttfamily m\+\_\+data}, {\ttfamily m\+\_\+data\+\_\+length}, and {\ttfamily m\+\_\+length} attributes to be copied. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classchaos_1_1uni_1_1_u_string_a9eae392a87be35a21ae1d905b446c7e4}{}\index{chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}!assign\+\_\+raw@{assign\+\_\+raw}}
+\index{assign\+\_\+raw@{assign\+\_\+raw}!chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}}
+\subsubsection[{assign\+\_\+raw(const char $\ast$data, size\+\_\+t length=\+U\+String\+::npos)}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\+::uni\+::\+U\+String\+::assign\+\_\+raw (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{data, }
+\item[{size\+\_\+t}]{length = {\ttfamily {\bf U\+String\+::npos}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{classchaos_1_1uni_1_1_u_string_a9eae392a87be35a21ae1d905b446c7e4}
+
+
+Assigns the internal raw array ({\ttfamily m\+\_\+data}) of this string to be a be a copy of the provided data. 
+
+This operation will cause any existing data to be deleted, new memory allocated, and copied from the provided data.
+
+\begin{DoxyWarning}{Warning}
+This will not calculate the {\ttfamily m\+\_\+length} attribute (the number of symbols in the string) since this function only deals with raw byte data and not specific encodings. The {\ttfamily m\+\_\+length} attribute should be calculated by derived classes in their implementations of this function.
+\end{DoxyWarning}
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Data array to be copied to the {\ttfamily m\+\_\+data} attribute of this string. \\
+\hline
+{\em length} & The length of the supplied data in bytes. If this is set to to \hyperlink{classchaos_1_1uni_1_1_u_string_a5002d169446e9ab2baf8a028ec6ee9b0}{chaos\+::uni\+::\+U\+String\+::npos}, this function will calculate the input data length with the expectation that it is N\+U\+L\+L terminated. However if the input data length is known it is recommended that it is supplied for performance purposes. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classchaos_1_1uni_1_1_u_string_ac55843515602400976af0706f11514d7}{}\index{chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}!check\+\_\+symbol\+\_\+index@{check\+\_\+symbol\+\_\+index}}
+\index{check\+\_\+symbol\+\_\+index@{check\+\_\+symbol\+\_\+index}!chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}}
+\subsubsection[{check\+\_\+symbol\+\_\+index(size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\+::uni\+::\+U\+String\+::check\+\_\+symbol\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{classchaos_1_1uni_1_1_u_string_ac55843515602400976af0706f11514d7}
+
+
+Can be used to check whether a provided symbol index is out of bounds in regard to the symbol length of this string. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided index is out of bounds of the string symbol length. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classchaos_1_1uni_1_1_u_string_ad8557fc6d7739054e089f607ffaae8c4}{}\index{chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}!check\+\_\+byte\+\_\+index@{check\+\_\+byte\+\_\+index}}
+\index{check\+\_\+byte\+\_\+index@{check\+\_\+byte\+\_\+index}!chaos\+::uni\+::\+U\+String@{chaos\+::uni\+::\+U\+String}}
+\subsubsection[{check\+\_\+byte\+\_\+index(size\+\_\+t index) const }]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\+::uni\+::\+U\+String\+::check\+\_\+byte\+\_\+index (
+\begin{DoxyParamCaption}
+\item[{size\+\_\+t}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}\label{classchaos_1_1uni_1_1_u_string_ad8557fc6d7739054e089f607ffaae8c4}
+
+
+Can be used to check whether a provided byte index is out of bounds in regard to the byte length of this string. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\+::ex\+::\+Index\+Out\+Of\+Bounds\+Error}} & If the provided index is out of bounds of the string byte length. \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Dropbox/\+Development/\+Chaos\+Core/\+Chaos\+Core/src/cxx/chaoscore/base/uni/\hyperlink{_u_string_8hpp}{U\+String.\+hpp}\end{DoxyCompactItemize}

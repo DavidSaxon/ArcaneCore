@@ -1,5 +1,7 @@
 #include "chaoscore/io/sys/Path.hpp"
 
+#include <cstddef>
+
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
 
@@ -27,12 +29,15 @@ static const chaos::uni::UTF8String WINDOWS_SEP( "\\" );
 //------------------------------------------------------------------------------
 
 Path::Path()
+    :
+    m_cstring_data( nullptr )
 {
 }
 
 Path::Path( const std::vector< chaos::uni::UTF8String >& components )
     :
-    m_components( components )
+    m_components  ( components ),
+    m_cstring_data( nullptr )
 {
 }
 
@@ -40,11 +45,14 @@ Path::Path(
         const std::vector< chaos::uni::UTF8String >::const_iterator& begin,
         const std::vector< chaos::uni::UTF8String >::const_iterator& end )
     :
-    m_components( begin, end )
+    m_components  ( begin, end ),
+    m_cstring_data( nullptr )
 {
 }
 
 Path::Path( const chaos::uni::UTF8String& string_path )
+    :
+    m_cstring_data( nullptr )
 {
     // split the path into components based on the operating system
 #ifdef CHAOS_OS_UNIX
@@ -76,8 +84,18 @@ Path::Path( const chaos::uni::UTF8String& string_path )
 
 Path::Path( const Path& other )
     :
-    m_components( other.m_components )
+    m_components  ( other.m_components ),
+    m_cstring_data( nullptr )
 {
+}
+
+//------------------------------------------------------------------------------
+//                                   DESTRUCTOR
+//------------------------------------------------------------------------------
+
+Path::~Path()
+{
+    delete[] m_cstring_data;
 }
 
 //------------------------------------------------------------------------------
@@ -248,20 +266,56 @@ void Path::remove( size_t index )
     m_components = components;
 }
 
-chaos::uni::UTF8String Path::to_native() const
+const char* Path::to_native() const
+{
+    #ifdef CHAOS_OS_UNIX
+
+        return to_unix();
+
+    #elif defined( CHAOS_OS_WINDOWS )
+
+        return to_windows();
+
+    #endif
+}
+
+const char* Path::to_unix() const
+{
+    chaos::uni::UTF8String u = to_unix_utf8();
+    // copy to internal data
+    delete[] m_cstring_data;
+    m_cstring_data = new char[ u.get_byte_length() ];
+    memcpy( m_cstring_data, u.get_raw(), u.get_byte_length() );
+
+    return m_cstring_data;
+}
+
+const char* Path::to_windows() const
+{
+    chaos::uni::UTF8String u = to_windows_utf8();
+    // copy to internal data
+    delete[] m_cstring_data;
+    // TODO: convert to utf-16
+    m_cstring_data = new char[ u.get_byte_length() ];
+    memcpy( m_cstring_data, u.get_raw(), u.get_byte_length() );
+
+    return m_cstring_data;
+}
+
+chaos::uni::UTF8String Path::to_native_utf8() const
 {
 #ifdef CHAOS_OS_UNIX
 
-    return to_unix();
+    return to_unix_utf8();
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    return to_windows();
+    return to_windows_utf8();
 
 #endif
 }
 
-chaos::uni::UTF8String Path::to_unix() const
+chaos::uni::UTF8String Path::to_unix_utf8() const
 {
     std::vector< chaos::uni::UTF8String > components;
     // special case for root ( / )
@@ -286,7 +340,7 @@ chaos::uni::UTF8String Path::to_unix() const
     return ret;
 }
 
-chaos::uni::UTF8String Path::to_windows() const
+chaos::uni::UTF8String Path::to_windows_utf8() const
 {
     return chaos::uni::join( m_components, "\\" );
 }
@@ -329,13 +383,13 @@ chaos::uni::UTF8String Path::get_extension() const
 
 chaos::uni::UTF8String& operator<<( chaos::uni::UTF8String& s, const Path& p )
 {
-    s << p.to_native();
+    s << p.to_native_utf8();
     return s;
 }
 
 std::ostream& operator<<( std::ostream& stream, const Path& p )
 {
-    stream << p.to_native();
+    stream << p.to_native_utf8();
     return stream;
 }
 

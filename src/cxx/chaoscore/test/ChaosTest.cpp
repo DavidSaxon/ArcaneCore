@@ -515,7 +515,7 @@ void TestCore::run_new_proc(
         // start the child process
         BOOL create_success = CreateProcess(
                 exe_path,
-                const_cast< LPSTR >( command_line_args.to_cstring() ),
+                const_cast< LPSTR >( command_line_args.get_raw() ),
                 NULL,
                 NULL,
                 FALSE,

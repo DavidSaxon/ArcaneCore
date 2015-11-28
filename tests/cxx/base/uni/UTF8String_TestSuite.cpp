@@ -404,7 +404,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
     CHAOS_FOR_EACH( it, fixture->cstrings )
     {
         chaos::uni::UTF8String v( *it );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -418,7 +418,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
     CHAOS_FOR_EACH( it, fixture->cstrings )
     {
         chaos::uni::UTF8String v( *it, strlen( *it ) );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -433,7 +433,7 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
     {
         chaos::uni::UTF8String copy( *it );
         CHAOS_CHECK_EQUAL( copy, *it );
-        CHAOS_CHECK_EQUAL( strcmp( copy.to_cstring(), it->to_cstring() ), 0 );
+        CHAOS_CHECK_EQUAL( strcmp( copy.get_raw(), it->get_raw() ), 0 );
     }
 }
 
@@ -465,8 +465,8 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
                 fixture->utf8_strings[ i ].get_byte_length()
         );
         CHAOS_CHECK_EQUAL(
-                strlen( assigns[ i ].to_cstring() ),
-                strlen( fixture->utf8_strings[ i ].to_cstring() )
+                strlen( assigns[ i ].get_raw() ),
+                strlen( fixture->utf8_strings[ i ].get_raw() )
         );
     }
 
@@ -693,7 +693,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
     for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
-                fixture->comp_1[ i ] << fixture->comp_2[ i ].to_cstring(),
+                fixture->comp_1[ i ] << fixture->comp_2[ i ].get_raw(),
                 fixture->results[ i ]
         );
     }
@@ -1279,7 +1279,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_assign, UTF8StringGenericFixture )
     {
         chaos::uni::UTF8String v;
         v.assign( *it );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -1294,7 +1294,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_assign, UTF8StringGenericFixture )
     {
         chaos::uni::UTF8String v;
         v.assign( *it, strlen( *it ) );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), *it ), 0 );
+        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -1310,7 +1310,7 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_assign, UTF8StringGenericFixture )
         chaos::uni::UTF8String v;
         v.assign( *it );
         CHAOS_CHECK_EQUAL( v, *it );
-        CHAOS_CHECK_EQUAL( strcmp( v.to_cstring(), it->to_cstring() ), 0 );
+        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), it->get_raw() ), 0 );
     }
 }
 
@@ -1917,21 +1917,6 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
                 ),
                 chaos::ex::IndexOutOfBoundsError
         );
-    }
-}
-
-//------------------------------------------------------------------------------
-//                                   TO CSTRING
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE( to_cstring, UTF8StringGenericFixture )
-{
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
-    {
-        CHAOS_CHECK_EQUAL( strcmp(
-                fixture->utf8_strings[ i ].to_cstring(),
-                fixture->cstrings[ i ]
-        ), 0 );
     }
 }
 
@@ -2680,6 +2665,21 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
             fixture->symbols.get_symbol_width( 832423 ),
             chaos::ex::IndexOutOfBoundsError
     );
+}
+
+//------------------------------------------------------------------------------
+//                                    GET RAW
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_raw, UTF8StringGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( strcmp(
+                fixture->utf8_strings[ i ].get_raw(),
+                fixture->cstrings[ i ]
+        ), 0 );
+    }
 }
 
 //------------------------------------------------------------------------------

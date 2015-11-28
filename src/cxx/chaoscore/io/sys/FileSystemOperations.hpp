@@ -103,7 +103,7 @@ bool create_directory( const chaos::io::sys::Path& path );
  * // failed an exception would have been thrown.
  * // We can now begin writing to filename.txt knowing that it's containing
  * // directory exists.
- * std::ofstream open_file( p.to_native().to_cstring() );
+ * std::ofstream open_file( p.to_native().get_raw() );
  *
  * \endcode
  *

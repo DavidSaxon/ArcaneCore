@@ -121,7 +121,7 @@ namespace uni
  *
  * The UTF8String class provides many convenience functions for manipulating
  * string data, such as `split`, `trim`, `starts_with`, `find_first`,
- * `to_cstring`, `to_stdstring`, etc.
+ * `to_raw`, `to_stdstring`, etc.
  * \endcode
  */
 class UTF8String
@@ -134,7 +134,7 @@ public:
 
 
     /*!
-     * \brief Value that is used to return an index that does not exists within
+     * \brief Value that is used to signify an index that does not exists within
      *        the UTF8String.
      */
     static const size_t npos;
@@ -649,15 +649,6 @@ public:
     UTF8String substring( size_t start, size_t length ) const;
 
     /*!
-     * \brief Gets the raw byte data of this UTF8String as C style string
-              (`const char*`).
-     *
-     * \warning The returned data should not be deleted as it is a direct
-     *          pointer to the internal data of this object.
-     */
-    const char* to_cstring() const;
-
-    /*!
      * \brief Returns this as a standard library string.
      *
      * \note The contents of the std::string is a copy of the data within this
@@ -832,10 +823,21 @@ public:
     size_t get_symbol_width( size_t index ) const;
 
     /*!
+     * \brief Gets the raw byte data of this UTF8String.
+     *
+     * This data is a direct pointer to the internal pointer of this UTF8String.
+     *
+     * \warning The returned data should not be deleted as it is a direct
+     *          pointer to the internal data of this object. And it will be
+     *          deleted when this UTF8String is deleted.
+     */
+    const char* get_raw() const;
+
+    /*!
      * \brief Returns the length of the internal data in bytes.
      *
      * This is exactly the number of bytes in the internal raw data of this
-     * UTF8String which can be accessed through to_cstring(). Note that this
+     * UTF8String which can be accessed through to_raw(). Note that this
      * data is NULL ('\0') terminated and this length includes the NULL
      * terminator. Therefore if UTF8String == "" then get_byte_length() == 1.
      *
@@ -915,27 +917,28 @@ private:
      *
      * \param data The input data to assign to the internal buffer
      * \param existing_length Optimisation parameter. If equal to
-     *                        std::string::npos the length of the data will be
-     *                        evaluated, however if already known the length can
-     *                        be passed in here to skip this step.
+     *                        chaos::uni::UTF8String::npos the length of the
+     *                        data will be evaluated, however if already known
+     *                        the length can be passed in here to skip this
+     *                        step.
      */
     void assign_internal(
             const char*  data,
-            size_t       existing_length = std::string::npos );
+            size_t       existing_length = chaos::uni::UTF8String::npos );
 
     /*!
      * Internal function used to check if a given index is within the symbol
      * length (get_length) of the string. If it is not an IndexOutOfBoundsError
      * is thrown.
      */
-    void validate_symbol_index( size_t index ) const;
+    void check_symbol_index( size_t index ) const;
 
     /*!
      * Internal function used to check if a given index is within the byte
      * length (get_byte_length) of the string. If it is not an
      * IndexOutOfBoundsError is thrown.
      */
-    void validate_byte_index( size_t index ) const;
+    void check_byte_index( size_t index ) const;
 };
 
 //------------------------------------------------------------------------------

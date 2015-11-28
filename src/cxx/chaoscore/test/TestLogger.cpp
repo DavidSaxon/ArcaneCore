@@ -95,7 +95,7 @@ void TestLogger::add_file_output(
     chaos::io::file::validate_path( path );
 
     // open a file stream
-    std::ofstream* file_stream = new std::ofstream( path.to_cstring() );
+    std::ofstream* file_stream = new std::ofstream( path.get_raw() );
     // did the stream open ok?
     if ( !file_stream->good() )
     {
@@ -179,7 +179,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
              chaos::io::file::is_file( sub_name )    )
         {
             // open the file and read the contents into the matching stream
-            std::ifstream in_file( sub_name.to_cstring() );
+            std::ifstream in_file( sub_name.get_raw() );
             if ( in_file.is_open() )
             {
                 std::string line;
@@ -191,7 +191,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
             // close stream
             in_file.close();
             // delete the file
-            remove( sub_name.to_cstring() );
+            remove( sub_name.get_raw() );
         }
     }
 
@@ -206,7 +206,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
     if ( chaos::io::file::exists ( m_meta_path ) &&
          chaos::io::file::is_file( m_meta_path )    )
     {
-        std::ifstream metadata( m_meta_path.to_cstring() );
+        std::ifstream metadata( m_meta_path.get_raw() );
         std::string line;
         if( getline( metadata, line ) )
         {
@@ -233,7 +233,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
     }
 
     // clean up metadata
-    remove( m_meta_path.to_cstring() );
+    remove( m_meta_path.get_raw() );
 }
 
 void TestLogger::report_crash(
@@ -249,13 +249,13 @@ void TestLogger::report_crash(
         if ( chaos::io::file::exists ( sub_name ) &&
              chaos::io::file::is_file( sub_name )    )
         {
-            remove( sub_name.to_cstring() );
+            remove( sub_name.get_raw() );
         }
     }
     if ( chaos::io::file::exists ( m_meta_path ) &&
          chaos::io::file::is_file( m_meta_path )    )
     {
-        remove( m_meta_path.to_cstring() );
+        remove( m_meta_path.get_raw() );
     }
 
     // increment errored tests
@@ -318,8 +318,8 @@ void TestLogger::finialise_test_report()
     chaos::uni::UTF8String contents;
     contents << ( m_check_fail_count == 0 ) << "\n" << m_check_pass_count
              << "\n" << m_check_fail_count << "\n";
-    std::ofstream metadata( m_meta_path.to_cstring() );
-    metadata << contents.to_cstring() << std::endl;
+    std::ofstream metadata( m_meta_path.get_raw() );
+    metadata << contents.get_raw() << std::endl;
     metadata.close();
     // clear
     m_check_pass_count = 0;

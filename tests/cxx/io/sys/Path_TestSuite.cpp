@@ -339,7 +339,7 @@ CHAOS_TEST_UNIT_FIXTURE( string_constructor, StringConstructorFixture )
     for( size_t i = 0; i < fixture->inputs.size(); ++i )
     {
         chaos::io::sys::Path p( fixture->inputs[ i ] );
-        CHAOS_CHECK_EQUAL( p.to_native(), fixture->results[ i ] );
+        CHAOS_CHECK_EQUAL( p.to_native_utf8(), fixture->results[ i ] );
     }
 }
 
@@ -1006,18 +1006,24 @@ CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
 {
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
-#ifdef CHAOS_OS_WINDOWS
+#ifdef CHAOS_OS_UNIX
 
         CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_native(),
-                fixture->windows[ i ]
+                strcmp(
+                        fixture->as_paths[ i ].to_unix(),
+                        fixture->unix[ i ].get_raw()
+                ),
+                0
         );
 
-#else
+#else defined( CHAOS_OS_WINDOWS )
 
         CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_native(),
-                fixture->unix[ i ]
+                strcmp(
+                        fixture->as_paths[ i ].to_windows(),
+                        fixture->windows[ i ].get_raw() // TODO: this should be a utf16
+                ),
+                0
         );
 
 #endif
@@ -1033,14 +1039,17 @@ CHAOS_TEST_UNIT_FIXTURE( to_unix, PathGenericFixture )
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_unix(),
-                fixture->unix[ i ]
+                strcmp(
+                        fixture->as_paths[ i ].to_unix(),
+                        fixture->unix[ i ].get_raw()
+                ),
+                0
         );
     }
 }
 
 //------------------------------------------------------------------------------
-//                                   TO_WINDOWS
+//                                   TO WINDOWS
 //------------------------------------------------------------------------------
 
 CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
@@ -1048,8 +1057,67 @@ CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_windows(),
+                strcmp(
+                        fixture->as_paths[ i ].to_windows(),
+                        fixture->windows[ i ].get_raw() // TODO: this should be a utf16
+                ),
+                0
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                 TO NATIVE UTF8
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_native_utf8, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+#ifdef CHAOS_OS_WINDOWS
+
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_native_utf8(),
                 fixture->windows[ i ]
+        );
+
+#else
+
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_native_utf8(),
+                fixture->unix[ i ]
+        );
+
+#endif
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                  TO UNIX UTF8
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_unix_utf8, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_unix_utf8(),
+                fixture->unix[ i ]
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                TO WINDOWS UTF8
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( to_windows_utf8, PathGenericFixture )
+{
+    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].to_windows_utf8(),
+                fixture->windows[ i ].get_raw()
         );
     }
 }
