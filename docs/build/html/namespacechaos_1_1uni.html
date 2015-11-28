@@ -104,6 +104,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a25a7549a0378aeac227c881220c23640"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#a25a7549a0378aeac227c881220c23640">is_digit</a> (<a class="el" href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a> code_point)</td></tr>
 <tr class="memdesc:a25a7549a0378aeac227c881220c23640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the given Unicode code point is a digit or not.  <a href="#a25a7549a0378aeac227c881220c23640">More...</a><br /></td></tr>
 <tr class="separator:a25a7549a0378aeac227c881220c23640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9659635a08a35ad4e612a3b7261811be"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#a9659635a08a35ad4e612a3b7261811be">utf8_to_utf16</a> (const char *data)</td></tr>
+<tr class="memdesc:a9659635a08a35ad4e612a3b7261811be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given c string of UTF-8 encoded data to a new c string of UTF-16 encoded data.  <a href="#a9659635a08a35ad4e612a3b7261811be">More...</a><br /></td></tr>
+<tr class="separator:a9659635a08a35ad4e612a3b7261811be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2a77983423c8b10e2b18cae6f35d329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#ad2a77983423c8b10e2b18cae6f35d329">join</a> (const std::vector&lt; <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &gt; &amp;components, const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;separator)</td></tr>
 <tr class="memdesc:ad2a77983423c8b10e2b18cae6f35d329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins the given vector into a single <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a>.  <a href="#ad2a77983423c8b10e2b18cae6f35d329">More...</a><br /></td></tr>
 <tr class="separator:ad2a77983423c8b10e2b18cae6f35d329"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +136,31 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <div class="fragment"><div class="line"><a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> s( <span class="stringliteral">&quot;5&quot;</span> );</div>
 <div class="line"><a class="code" href="namespacechaos_1_1uni.html#a25a7549a0378aeac227c881220c23640">chaos::uni::is_digit</a>( s.<a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html#a0032f18868d33ca5f5855657c4d2d147">get_code_point</a>( 0 ) ); <span class="comment">// returns: true</span></div>
 </div><!-- fragment --> 
+</div>
+</div>
+<a class="anchor" id="a9659635a08a35ad4e612a3b7261811be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* chaos::uni::utf8_to_utf16 </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts the given c string of UTF-8 encoded data to a new c string of UTF-16 encoded data. </p>
+<dl class="section warning"><dt>Warning</dt><dd>This operation allocates a new char array that must be deleted.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classchaos_1_1ex_1_1_value_error.html" title="Warns that an invalid value has been supplied. ">chaos::ex::ValueError</a></td><td>If the provided data is not UTF-8 encoded. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ad2a77983423c8b10e2b18cae6f35d329"></a>
@@ -181,7 +209,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 29 2015 00:43:26 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 29 2015 01:14:33 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.10
 </small></address>

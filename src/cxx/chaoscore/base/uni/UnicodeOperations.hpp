@@ -14,6 +14,13 @@ namespace chaos
 namespace uni
 {
 
+namespace
+{
+
+static size_t dummy;
+
+} // namespace anonymous
+
 //------------------------------------------------------------------------------
 //                                   FUNCTIONS
 //------------------------------------------------------------------------------
@@ -30,6 +37,23 @@ namespace uni
  *
  */
 bool is_digit( chaos::uint32 code_point );
+
+/*!
+ * \brief Converts the given chaos::uni::UTF8String encoded data to a new c
+ *        style string of UTF-16 encoded data.
+ *
+ * The resulting UTF-16 data will be null terminated with `0x00`, `0x00`.
+ *
+ * \warning This operation allocates a new char array that must be deleted.
+ *
+ * \param data UTF8String object to convert to a c style string of UTF-16
+ *             encoded data.
+ * \param r_length Returns the length of the new UTF-16 encoded string in bytes.
+ * \return Newly allocated UTF-16 encoded string.
+ */
+char* utf8_to_utf16(
+        const chaos::uni::UTF8String& data,
+        size_t& r_length = dummy );
 
 /*!
  * \brief Joins the given vector into a single chaos::uni::UTF8String.

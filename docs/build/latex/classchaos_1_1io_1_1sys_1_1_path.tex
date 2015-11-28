@@ -50,9 +50,9 @@ void \hyperlink{classchaos_1_1io_1_1sys_1_1_path_aefc69b11820209acca278104fb2308
 \begin{DoxyCompactList}\small\item\em Removes the component from this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} at the given index. \end{DoxyCompactList}\item 
 const char $\ast$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a9528370d2e3ab277a7e71a93469bbc45}{to\+\_\+native} () const 
 \begin{DoxyCompactList}\small\item\em Returns a c string representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for the current operating system. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a1cfe95a7a81ba7da856ae79917e6b1bf}{to\+\_\+unix} () const 
+const char $\ast$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path_acfc7975266821b34f97ed557b50bd4b5}{to\+\_\+unix} () const 
 \begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Unix based operating systems. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ad7b185968a88741d52526a32738d0ab4}{to\+\_\+windows} () const 
+const char $\ast$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path_af36e2ca7305070fbcaa25ed6afa03201}{to\+\_\+windows} () const 
 \begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_a54f385bf11c8bf289adfb6ac3e8e9d46}{to\+\_\+native\+\_\+utf8} () const 
 \begin{DoxyCompactList}\small\item\em Returns a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for the current operating system. \end{DoxyCompactList}\item 
@@ -514,13 +514,13 @@ This operation returns a c style string to support platform dependent encodings.
 \begin{DoxyWarning}{Warning}
 The returned string is allocated by this object and will be only exist for the life time of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} object. 
 \end{DoxyWarning}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_a1cfe95a7a81ba7da856ae79917e6b1bf}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+unix@{to\+\_\+unix}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_acfc7975266821b34f97ed557b50bd4b5}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+unix@{to\+\_\+unix}}
 \index{to\+\_\+unix@{to\+\_\+unix}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{to\+\_\+unix() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+unix (
+\subsubsection[{to\+\_\+unix() const }]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ chaos\+::io\+::sys\+::\+Path\+::to\+\_\+unix (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_a1cfe95a7a81ba7da856ae79917e6b1bf}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_acfc7975266821b34f97ed557b50bd4b5}
 
 
 Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Unix based operating systems. 
@@ -542,13 +542,13 @@ This operation returns a c style string to support platform dependent encodings.
 \begin{DoxyWarning}{Warning}
 The returned string is allocated by this object and will be only exist for the life time of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} object. 
 \end{DoxyWarning}
-\hypertarget{classchaos_1_1io_1_1sys_1_1_path_ad7b185968a88741d52526a32738d0ab4}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+windows@{to\+\_\+windows}}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_af36e2ca7305070fbcaa25ed6afa03201}{}\index{chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}!to\+\_\+windows@{to\+\_\+windows}}
 \index{to\+\_\+windows@{to\+\_\+windows}!chaos\+::io\+::sys\+::\+Path@{chaos\+::io\+::sys\+::\+Path}}
-\subsubsection[{to\+\_\+windows() const }]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::io\+::sys\+::\+Path\+::to\+\_\+windows (
+\subsubsection[{to\+\_\+windows() const }]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ chaos\+::io\+::sys\+::\+Path\+::to\+\_\+windows (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{classchaos_1_1io_1_1sys_1_1_path_ad7b185968a88741d52526a32738d0ab4}
+) const}\label{classchaos_1_1io_1_1sys_1_1_path_af36e2ca7305070fbcaa25ed6afa03201}
 
 
 Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. 

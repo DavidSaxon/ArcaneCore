@@ -64,6 +64,134 @@ CHAOS_TEST_UNIT_FIXTURE( is_digit, IsDigitFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                 UTF8 TO UTF16
+//------------------------------------------------------------------------------
+
+class UTF8ToUTF16Fixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::uni::UTF8String >       utf8;
+    std::vector< std::vector< unsigned char > > utf16;
+    std::vector< size_t >                       lengths;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        {
+            utf8.push_back( "" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            utf16.push_back( u );
+            lengths.push_back( 2 );
+        }
+
+        {
+            utf8.push_back( "a" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x00 ); u.push_back( 0x61 ); // a
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            utf16.push_back( u );
+            lengths.push_back( 4 );
+        }
+
+        {
+            utf8.push_back( "Hello World" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x00 ); u.push_back( 0x48 ); // H
+            u.push_back( 0x00 ); u.push_back( 0x65 ); // e
+            u.push_back( 0x00 ); u.push_back( 0x6C ); // l
+            u.push_back( 0x00 ); u.push_back( 0x6C ); // l
+            u.push_back( 0x00 ); u.push_back( 0x6F ); // o
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x00 ); u.push_back( 0x57 ); // W
+            u.push_back( 0x00 ); u.push_back( 0x6F ); // o
+            u.push_back( 0x00 ); u.push_back( 0x72 ); // r
+            u.push_back( 0x00 ); u.push_back( 0x6C ); // l
+            u.push_back( 0x00 ); u.push_back( 0x64 ); // d
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            utf16.push_back( u );
+            lengths.push_back( 24 );
+        }
+
+        {
+            utf8.push_back( "γειά σου Κόσμε" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x03 ); u.push_back( 0xB3 ); // γ
+            u.push_back( 0x03 ); u.push_back( 0xB5 ); // ε
+            u.push_back( 0x03 ); u.push_back( 0xB9 ); // ι
+            u.push_back( 0x03 ); u.push_back( 0xAC ); // ά
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x03 ); u.push_back( 0xC3 ); // σ
+            u.push_back( 0x03 ); u.push_back( 0xBF ); // ο
+            u.push_back( 0x03 ); u.push_back( 0xC5 ); // υ
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x03 ); u.push_back( 0x9A ); // Κ
+            u.push_back( 0x03 ); u.push_back( 0xCC ); // ό
+            u.push_back( 0x03 ); u.push_back( 0xC3 ); // σ
+            u.push_back( 0x03 ); u.push_back( 0xBC ); // μ
+            u.push_back( 0x03 ); u.push_back( 0xB5 ); // ε
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            utf16.push_back( u );
+            lengths.push_back( 30 );
+        }
+
+        {
+            utf8.push_back( "this is a مزيج of text" );
+            std::vector< unsigned char > u;
+            // TODO:
+            u.push_back( 0x03 ); u.push_back( 0xB3 ); // γ
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            utf16.push_back( u );
+            lengths.push_back( 30 );
+        }
+
+        {
+            utf8.push_back( "간" );
+            std::vector< unsigned char > u;
+            u.push_back( 0xAC ); u.push_back( 0x04 ); // 간
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            utf16.push_back( u );
+            lengths.push_back( 4 );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking returned length" );
+    for( size_t i = 0; i < fixture->utf8.size(); ++i )
+    {
+        size_t length = 0;
+        const char* u = chaos::uni::utf8_to_utf16(
+                fixture->utf8[ i ], length );
+        CHAOS_CHECK_EQUAL( length, fixture->lengths [ i ] );
+        delete[] u;
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking contents" );
+    for( size_t i = 0; i < fixture->utf8.size(); ++i )
+    {
+        size_t length = 0;
+        const char* u = chaos::uni::utf8_to_utf16(
+                fixture->utf8[ i ], length );
+        CHAOS_CHECK_EQUAL(
+                memcmp(
+                        u,
+                        reinterpret_cast< const char* >(
+                                &fixture->utf16[ i ][ 0 ] ),
+                        length
+                ),
+                0
+        );
+        delete[] u;
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                      JOIN
 //------------------------------------------------------------------------------
 
