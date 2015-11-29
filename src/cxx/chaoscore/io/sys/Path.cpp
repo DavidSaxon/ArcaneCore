@@ -1,6 +1,7 @@
 #include "chaoscore/io/sys/Path.hpp"
 
 #include <cstddef>
+#include <cstring>
 
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
@@ -296,8 +297,7 @@ const char* Path::to_windows() const
     // copy to internal data
     delete[] m_cstring_data;
     // TODO: convert to utf-16
-    m_cstring_data = new char[ u.get_byte_length() ];
-    memcpy( m_cstring_data, u.get_raw(), u.get_byte_length() );
+    m_cstring_data = chaos::uni::utf8_to_utf16( u );
 
     return m_cstring_data;
 }

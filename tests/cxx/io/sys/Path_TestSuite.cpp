@@ -3,7 +3,9 @@
 CHAOS_TEST_MODULE( io.sys.path )
 
 #include <algorithm>
+#include <cstring>
 
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
 #include "chaoscore/io/sys/Path.hpp"
 
 namespace path_tests
@@ -1016,15 +1018,18 @@ CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
                 0
         );
 
-#else defined( CHAOS_OS_WINDOWS )
+#elif defined( CHAOS_OS_WINDOWS )
 
+        const char* check =
+                chaos::uni::utf8_to_utf16( fixture->windows[ i ].get_raw() );
         CHAOS_CHECK_EQUAL(
                 strcmp(
                         fixture->as_paths[ i ].to_windows(),
-                        fixture->windows[ i ].get_raw() // TODO: this should be a utf16
+                        check
                 ),
                 0
         );
+        delete[] check;
 
 #endif
     }
@@ -1056,13 +1061,16 @@ CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
 {
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
+        const char* check =
+                chaos::uni::utf8_to_utf16( fixture->windows[ i ].get_raw() );
         CHAOS_CHECK_EQUAL(
                 strcmp(
                         fixture->as_paths[ i ].to_windows(),
-                        fixture->windows[ i ].get_raw() // TODO: this should be a utf16
+                        check
                 ),
                 0
         );
+        delete[] check;
     }
 }
 

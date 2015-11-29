@@ -2,6 +2,8 @@
 
 CHAOS_TEST_MODULE( base.uni.unicode_operations )
 
+#include <cstring>
+
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
 
 namespace unicode_operations_tests
@@ -142,11 +144,31 @@ public:
         {
             utf8.push_back( "this is a مزيج of text" );
             std::vector< unsigned char > u;
-            // TODO:
-            u.push_back( 0x03 ); u.push_back( 0xB3 ); // γ
+            u.push_back( 0x00 ); u.push_back( 0x74 ); // t
+            u.push_back( 0x00 ); u.push_back( 0x68 ); // h
+            u.push_back( 0x00 ); u.push_back( 0x69 ); // i
+            u.push_back( 0x00 ); u.push_back( 0x73 ); // s
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x00 ); u.push_back( 0x69 ); // i
+            u.push_back( 0x00 ); u.push_back( 0x73 ); // s
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x00 ); u.push_back( 0x61 ); // q
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x06 ); u.push_back( 0x45 ); // م
+            u.push_back( 0x06 ); u.push_back( 0x32 ); // ز
+            u.push_back( 0x06 ); u.push_back( 0x4A ); // ي
+            u.push_back( 0x06 ); u.push_back( 0x2C ); // ج
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x00 ); u.push_back( 0x6F ); // o
+            u.push_back( 0x00 ); u.push_back( 0x66 ); // f
+            u.push_back( 0x00 ); u.push_back( 0x20 ); // [space]
+            u.push_back( 0x00 ); u.push_back( 0x74 ); // t
+            u.push_back( 0x00 ); u.push_back( 0x65 ); // e
+            u.push_back( 0x00 ); u.push_back( 0x78 ); // x
+            u.push_back( 0x00 ); u.push_back( 0x74 ); // t
             u.push_back( 0x00 ); u.push_back( 0x00 );
             utf16.push_back( u );
-            lengths.push_back( 30 );
+            lengths.push_back( 46 );
         }
 
         {

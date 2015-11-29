@@ -2,6 +2,8 @@
 
 CHAOS_TEST_MODULE( io.sys.file_system_operations )
 
+#include <algorithm>
+
 #include "chaoscore/io/sys/FileSystemOperations.hpp"
 
 namespace file_system_operations_tests
@@ -177,30 +179,33 @@ public:
             bad_files.push_back( p );
         }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "symlink";
-            symlinks.push_back( p );
-            file_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "symlink";
-            symlinks.push_back( p );
-            file_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "rəmzi링크";
-            symlinks.push_back( p );
-            file_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
-            symlinks.push_back( p );
-            file_symlinks.push_back( p );
-        }
+        // File symbolic link tests are currently disable since Dropbox resolves
+        // them. To run these tests the valid symlinks will need to be
+        // recreated
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "symlink";
+        //     symlinks.push_back( p );
+        //     file_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "symlink";
+        //     symlinks.push_back( p );
+        //     file_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "rəmzi링크";
+        //     symlinks.push_back( p );
+        //     file_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
+        //     symlinks.push_back( p );
+        //     file_symlinks.push_back( p );
+        // }
         {
             chaos::io::sys::Path p( base_path );
             p << "dir_symlink";
@@ -304,19 +309,19 @@ CHAOS_TEST_UNIT_FIXTURE( exists, FileSysGenericFixture )
     CHAOS_TEST_MESSAGE( "Checking symlinks that exist" );
     CHAOS_FOR_EACH( it_5, fixture->symlinks )
     {
-        CHAOS_CHECK_TRUE( chaos::io::sys::exists( *it_5 ) );
+        CHAOS_CHECK_TRUE( chaos::io::sys::exists( *it_5, true ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking symlinks that do not exist" );
     CHAOS_FOR_EACH( it_6, fixture->bad_symlinks )
     {
-        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_6 ) );
+        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_6, true ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking resolved broken symlinks" );
     CHAOS_FOR_EACH( it_7, fixture->broken_symlinks )
     {
-        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_7 ) );
+        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_7, true ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking non-resolved broken symlinks" );
@@ -359,7 +364,7 @@ CHAOS_TEST_UNIT_FIXTURE( is_file, FileSysGenericFixture )
     CHAOS_TEST_MESSAGE( "Checking resolved file symlinks" );
     CHAOS_FOR_EACH( it_4, fixture->file_symlinks )
     {
-        CHAOS_CHECK_TRUE( chaos::io::sys::is_file( *it_4 ) );
+        CHAOS_CHECK_TRUE( chaos::io::sys::is_file( *it_4, true ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking non-resolved file symlinks" );
@@ -371,7 +376,7 @@ CHAOS_TEST_UNIT_FIXTURE( is_file, FileSysGenericFixture )
     CHAOS_TEST_MESSAGE( "Checking resolved non-file symlinks" );
     CHAOS_FOR_EACH( it_6, fixture->directory_symlinks )
     {
-        CHAOS_CHECK_FALSE( chaos::io::sys::is_file( *it_6 ) );
+        CHAOS_CHECK_FALSE( chaos::io::sys::is_file( *it_6, true ) );
     }
 
 #endif
@@ -407,7 +412,7 @@ CHAOS_TEST_UNIT_FIXTURE( is_directory, FileSysGenericFixture )
     CHAOS_TEST_MESSAGE( "Checking resolved directory symlinks" );
     CHAOS_FOR_EACH( it_4, fixture->directory_symlinks )
     {
-        CHAOS_CHECK_TRUE( chaos::io::sys::is_directory( *it_4 ) );
+        CHAOS_CHECK_TRUE( chaos::io::sys::is_directory( *it_4, true ) );
     }
 
     CHAOS_TEST_MESSAGE( "Checking non-resolved directory symlinks" );
@@ -419,7 +424,7 @@ CHAOS_TEST_UNIT_FIXTURE( is_directory, FileSysGenericFixture )
     CHAOS_TEST_MESSAGE( "Checking resolved non-directory symlinks" );
     CHAOS_FOR_EACH( it_6, fixture->file_symlinks )
     {
-        CHAOS_CHECK_FALSE( chaos::io::sys::is_directory( *it_6 ) );
+        CHAOS_CHECK_FALSE( chaos::io::sys::is_directory( *it_6, true ) );
     }
 
 #endif
@@ -465,7 +470,426 @@ CHAOS_TEST_UNIT_FIXTURE( is_symbolic_link, FileSysGenericFixture )
 }
 
 //------------------------------------------------------------------------------
-//                                 MAKE DIRECTORY
+//                                      LIST
+//------------------------------------------------------------------------------
+
+class ListFixture : public FileSysBaseFixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::sys::Path > dirs;
+    std::vector< std::vector< chaos::io::sys::Path > > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        // super call
+        FileSysBaseFixture::setup();
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_file.txt";
+            dirs.push_back( p );
+            std::vector< chaos::io::sys::Path > result;
+            results.push_back( result );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "list_dir";
+            dirs.push_back( p );
+            std::vector< chaos::io::sys::Path > result;
+            {
+                chaos::io::sys::Path r( p );
+                r << ".";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "..";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "dir_a_1";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "dir_a_2";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_a_1";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_a_2";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "infinite_loop_a";
+                result.push_back( r );
+            }
+            results.push_back( result );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "list_dir" << "dir_a_1";
+            dirs.push_back( p );
+            std::vector< chaos::io::sys::Path > result;
+            {
+                chaos::io::sys::Path r( p );
+                r << ".";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "..";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "dir_b_1";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "dir_b_2";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_b_1";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_b_2";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "infinite_loop_b";
+                result.push_back( r );
+            }
+            results.push_back( result );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "list_dir" << "dir_a_1" << "dir_b_1";
+            dirs.push_back( p );
+            std::vector< chaos::io::sys::Path > result;
+            {
+                chaos::io::sys::Path r( p );
+                r << ".";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "..";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_d_1";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_d_2";
+                result.push_back( r );
+            }
+            results.push_back( result );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( list, ListFixture )
+{
+    std::vector< std::vector< chaos::io::sys::Path > > l;
+    CHAOS_FOR_EACH( it, fixture->dirs )
+    {
+        l.push_back( chaos::io::sys::list( *it ) );
+    }
+
+
+    CHAOS_TEST_MESSAGE( "Checking returned lengths" );
+    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( l[ i ].size(), fixture->results[ i ].size() );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking returned elements" );
+    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    {
+        size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
+        for ( size_t j = 0; j < s; ++j )
+        {
+            CHAOS_CHECK_EQUAL( l[ i ][ j ], fixture->results[ i ][ j ] );
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    LIST REC
+//------------------------------------------------------------------------------
+
+class ListRecFixture : public FileSysBaseFixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::sys::Path > dirs;
+    std::vector< std::vector< chaos::io::sys::Path > > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        // super call
+        FileSysBaseFixture::setup();
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_file.txt";
+            dirs.push_back( p );
+            std::vector< chaos::io::sys::Path > result;
+            results.push_back( result );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "list_dir";
+            dirs.push_back( p );
+            std::vector< chaos::io::sys::Path > result;
+            {
+                chaos::io::sys::Path r( p );
+                r << ".";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "..";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "dir_a_1";
+                result.push_back( r );
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << ".";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "..";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "dir_b_1";
+                    result.push_back( r1 );
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << ".";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "..";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_d_1";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_d_2";
+                        result.push_back( r2 );
+                    }
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "dir_b_2";
+                    result.push_back( r1 );
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << ".";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "..";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_e_1";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_e_2";
+                        result.push_back( r2 );
+                    }
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "file_b_1";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "file_b_2";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "infinite_loop_b";
+                    result.push_back( r1 );
+                }
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "dir_a_2";
+                result.push_back( r );
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << ".";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "..";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "dir_c_1";
+                    result.push_back( r1 );
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << ".";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "..";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_f_1";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_f_2";
+                        result.push_back( r2 );
+                    }
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "dir_c_2";
+                    result.push_back( r1 );
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << ".";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "..";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_g_1";
+                        result.push_back( r2 );
+                    }
+                    {
+                        chaos::io::sys::Path r2( r1 );
+                        r2 << "file_g_2";
+                        result.push_back( r2 );
+                    }
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "file_c_1";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "file_c_2";
+                    result.push_back( r1 );
+                }
+                {
+                    chaos::io::sys::Path r1( r );
+                    r1 << "infinite_loop_c";
+                    result.push_back( r1 );
+                }
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_a_1";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "file_a_2";
+                result.push_back( r );
+            }
+            {
+                chaos::io::sys::Path r( p );
+                r << "infinite_loop_a";
+                result.push_back( r );
+            }
+            results.push_back( result );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( list_rec, ListRecFixture )
+{
+    std::vector< std::vector< chaos::io::sys::Path > > l;
+    CHAOS_FOR_EACH( it, fixture->dirs )
+    {
+        l.push_back( chaos::io::sys::list_rec( *it ) );
+    }
+
+
+    CHAOS_TEST_MESSAGE( "Checking returned lengths" );
+    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( l[ i ].size(), fixture->results[ i ].size() );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking returned elements" );
+    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    {
+        size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
+        for ( size_t j = 0; j < s; ++j )
+        {
+            CHAOS_CHECK_EQUAL( l[ i ][ j ], fixture->results[ i ][ j ] );
+        }
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                CREATE DIRECTORY
 //------------------------------------------------------------------------------
 
 class FileSysCreateDirectoryFixture : public FileSysBaseFixture
@@ -491,63 +915,66 @@ public:
             p << "new_dir";
             valid.push_back( p );
         }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "new_dir";
-        //     valid.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "test_dir" << "new_dir";
-        //     valid.push_back( p );
-        // }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "new_dir";
+            valid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "test_dir" << "new_dir";
+            valid.push_back( p );
+        }
 
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir";
-        //     existing.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "test_dir";
-        //     existing.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "dir_symlink";
-        //     existing.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "dir_symlink";
-        //     existing.push_back( p );
-        // }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir";
+            existing.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "test_dir";
+            existing.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "dir_symlink";
+            existing.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "dir_symlink";
+            existing.push_back( p );
+        }
 
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_file.txt";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "test_file.txt";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "file with spaces.png";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "ການທົດສອບ.טֶקסט";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "測試_निर्देशिका" << "ການທົດສອບ.טֶקסט";
-        //     ambiguous.push_back( p );
-        // }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_file.txt";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "test_file.txt";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "file with spaces.png";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "ການທົດສອບ.טֶקסט";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "ການທົດສອບ.טֶקסט";
+            ambiguous.push_back( p );
+        }
+        // File symbolic link tests are currently disable since Dropbox resolves
+        // them. To run these tests the valid symlinks will need to be
+        // recreated
         // {
         //     chaos::io::sys::Path p( base_path );
         //     p << "symlink";
@@ -569,21 +996,21 @@ public:
         //     ambiguous.push_back( p );
         // }
 
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "does_not_exist" << "new_dir";
-        //     invalid.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "does_not_exist" << "new_dir";
-        //     invalid.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "test_dir" << "does_not_exist" << "new_dir";
-        //     invalid.push_back( p );
-        // }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "does_not_exist" << "new_dir";
+            invalid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "does_not_exist" << "new_dir";
+            invalid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "test_dir" << "does_not_exist" << "new_dir";
+            invalid.push_back( p );
+        }
     }
 
     virtual void teardown()
@@ -592,7 +1019,7 @@ public:
         CHAOS_FOR_EACH( it, valid )
         {
             std::cout << "delete!" << *it << std::endl;
-            remove( it->to_native().get_raw() );
+            remove( it->to_native() );
         }
     }
 };
@@ -722,7 +1149,7 @@ public:
                         it->get_components().begin() + i
                 );
 
-                remove( p.to_native().get_raw() );
+                remove( p.to_native() );
             }
         }
     }

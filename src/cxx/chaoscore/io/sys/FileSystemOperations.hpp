@@ -24,14 +24,14 @@ namespace sys
  *
  * \param path The path to check for existence.
  * \param resolve_links Controls whether the operation will follow symbolic
- *                      links and treat them as the path it points to (default
- *                      behavior) or if the path to a symbolic link should be
- *                      treated as the absolute path to the link itself. This
- *                      argument has no effect on Windows platforms since
+ *                      links and treat them as the path it points to or if the
+ *                      path to a symbolic link should be treated as the
+ *                      absolute path to the link itself (default behavior).
+ *                      This argument has no effect on Windows platforms since
  *                      symbolic linking is not supported by Windows.
  * \return Returns True if the path exists, false otherwise.
  */
-bool exists( const chaos::io::sys::Path& path, bool resolve_links = true );
+bool exists( const chaos::io::sys::Path& path, bool resolve_links = false );
 
 /*!
  * \brief Returns whether the given path is a regular file.
@@ -39,13 +39,14 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links = true );
  * \note If the path does not exist this operation will return false.
  *
  * \param resolve_links Controls whether the operation will follow symbolic
- *                      links and treat them as the path it points to (default
- *                      behavior) or if the path to a symbolic link should be
- *                      treated as the absolute path to the link itself. This
- *                      argument has no effect on Windows platforms since
+ *                      links and treat them as the path it points to or if the
+ *                      path to a symbolic link should be treated as the
+ *                      absolute path to the link itself (default behavior).
+ *                      This argument has no effect on Windows platforms since
  *                      symbolic linking is not supported by Windows.
+ * \return Returns True if the given path is a file, false otherwise.
  */
-bool is_file( const chaos::io::sys::Path& path, bool resolve_links = true );
+bool is_file( const chaos::io::sys::Path& path, bool resolve_links = false );
 
 /*!
  * \brief Returns whether the given path is a directory.
@@ -58,6 +59,7 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links = true );
  *                      treated as the absolute path to the link itself. This
  *                      argument has no effect on Windows platforms since
  *                      symbolic linking is not supported by Windows.
+ * \return Returns True if the given path is a directory, false otherwise.
  */
 bool is_directory(
         const chaos::io::sys::Path& path,
@@ -69,6 +71,27 @@ bool is_directory(
  * \note If the path does not exist this operation will return false.
  */
 bool is_symbolic_link( const chaos::io::sys::Path& path );
+
+/*!
+ * \brief Lists the file system paths located under the given path.
+ *
+ * This operation performs a similar function to the `ls` command on Linux, or
+ * the `dir` command on Windows. An empty vector will be returned if the given
+ * path does not exist or is .not a directory. This function will not resolve
+ * a symbolic link if one is provided as the input path.
+ */
+std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path );
+
+/*!
+ * \brief Lists all descendant file system paths located under the given path.
+ *
+ * This operation returns a vector similar to that of list(), except any sub
+ * paths that are also directories are traversed and so on, so that this
+ * function returns all paths that are a descendant of the given path. This
+ * function will not resolve symbolics in order to avoid infinite recursion.
+ */
+std::vector< chaos::io::sys::Path > list_rec(
+        const chaos::io::sys::Path& path );
 
 /*!
  * \brief Attempts to create the directory at the given path.

@@ -1,5 +1,6 @@
 #include "chaoscore/io/sys/FileSystemOperations.hpp"
 
+#include <algorithm>
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -202,6 +203,73 @@ bool is_symbolic_link( const chaos::io::sys::Path& path )
 #endif
 }
 
+std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
+{
+    // vector to be returned
+    std::vector< chaos::io::sys::Path > ret;
+
+    // is the given path a directory?
+    if ( !is_directory( path, false ) )
+    {
+        // not a directory so there are no sub-children
+        return ret;
+    }
+
+#ifdef CHAOS_OS_UNIX
+
+    // open the directory
+    DIR* dir;
+    if ( ( dir = opendir( path.to_unix() ) ) == NULL )
+    {
+        // failed to open the directory
+        return ret;
+    }
+
+    struct dirent *dir_entry;
+    while( ( dir_entry = readdir( dir ) ) != NULL )
+    {
+        chaos::io::sys::Path p( path );
+        p << dir_entry->d_name;
+        ret.push_back( p );
+    }
+
+#else
+
+    throw chaos::ex::NotImplementedError(
+            "chaos::io::sys::list has not yet been implemented for this "
+            "platform"
+    );
+
+#endif
+
+    // order alphabetically
+    std::sort( ret.begin(), ret.end() );
+    return ret;
+}
+
+std::vector< chaos::io::sys::Path > list_rec( const chaos::io::sys::Path& path )
+{
+    std::vector< chaos::io::sys::Path > ret;
+
+    std::vector< chaos::io::sys::Path > ls( list( path ) );
+    CHAOS_FOR_EACH( it, ls )
+    {
+        ret.push_back( *it );
+        // recursively call and extend the return list
+        if ( it->get_components().back() != "." &&
+             it->get_components().back() != ".."   )
+        {
+            std::vector< chaos::io::sys::Path > d_ls( list_rec( *it ) );
+            CHAOS_FOR_EACH( d_it, d_ls )
+            {
+                ret.push_back( *d_it );
+            }
+        }
+    }
+
+    return ret;
+}
+
 bool create_directory( const chaos::io::sys::Path& path )
 {
     // does the path already exist?
@@ -259,12 +327,6 @@ void validate( const chaos::io::sys::Path& path )
     }
 
     // iterate over the path ensuring each path exists
-    // CHAOS_FOR_EACH( it, path.get_components() )
-    // {
-    //     chaos::io::sys::Path check_path(
-    //             path.get_components().begin(), it - 1 );
-    //     create_directory( check_path );
-    // }
     for ( size_t i = 1; i < path.get_length(); ++i )
     {
         chaos::io::sys::Path p(
