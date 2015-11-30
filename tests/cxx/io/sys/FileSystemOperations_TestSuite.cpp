@@ -59,125 +59,125 @@ public:
         // super call
         FileSysBaseFixture::setup();
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir";
-            directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "test_dir";
-            directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका";
-            directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "測試_निर्देशिका";
-            directories.push_back( p );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir";
+        //     directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "test_dir";
+        //     directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका";
+        //     directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "測試_निर्देशिका";
+        //     directories.push_back( p );
+        // }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir.txt";
-            bad_directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "testdir";
-            bad_directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "test_dir" << "test_dir";
-            bad_directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका.txt";
-            bad_directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "測試_निर्दिका";
-            bad_directories.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "測試_निर्देशिका"
-              << "測試_निर्देशिका";
-            bad_directories.push_back( p );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir.txt";
+        //     bad_directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "testdir";
+        //     bad_directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "test_dir" << "test_dir";
+        //     bad_directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका.txt";
+        //     bad_directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "測試_निर्दिका";
+        //     bad_directories.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "測試_निर्देशिका"
+        //       << "測試_निर्देशिका";
+        //     bad_directories.push_back( p );
+        // }
 
         {
             chaos::io::sys::Path p( base_path );
             p << "test_file.txt";
             files.push_back( p );
         }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "test_file.txt";
-            files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "file with spaces.png";
-            files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "ການທົດສອບ.טֶקסט";
-            files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "ການທົດສອບ.טֶקסט";
-            files.push_back( p );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "test_file.txt";
+        //     files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "file with spaces.png";
+        //     files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "ການທົດສອບ.טֶקסט";
+        //     files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "ການທົດສອບ.טֶקסט";
+        //     files.push_back( p );
+        // }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_file";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_file.png";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "does_not_exist" << "test_file.txt";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "test__file.txt";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "ການທົດສອບ";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "ການທົקסטດສອບ.טֶקסט";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निົດर्देशिका" << "ການທົດສອບ.טֶקסט";
-            bad_files.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "ການທົດສອບ.्देशि";
-            bad_files.push_back( p );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_file";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_file.png";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "does_not_exist" << "test_file.txt";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "test__file.txt";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "ການທົດສອບ";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "ການທົקסטດສອບ.טֶקסט";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निົດर्देशिका" << "ການທົດສອບ.טֶקסט";
+        //     bad_files.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "ການທົດສອບ.्देशि";
+        //     bad_files.push_back( p );
+        // }
 
         // File symbolic link tests are currently disable since Dropbox resolves
         // them. To run these tests the valid symlinks will need to be
@@ -206,70 +206,71 @@ public:
         //     symlinks.push_back( p );
         //     file_symlinks.push_back( p );
         // }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "dir_symlink";
-            symlinks.push_back( p );
-            directory_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "dir_symlink";
-            symlinks.push_back( p );
-            directory_symlinks.push_back( p );
-        }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "symlink.txt";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "smylink";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test__dir" << "symlink";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "symlink.txt";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "rəmzi링크.lnk";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "zi링rəm크";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्द__ेशिका" << "प्रतिकात्मकਲਿੰਕ";
-            bad_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "प्रतिकमकਲਿੰਕ";
-            bad_symlinks.push_back( p );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "dir_symlink";
+        //     symlinks.push_back( p );
+        //     directory_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "dir_symlink";
+        //     symlinks.push_back( p );
+        //     directory_symlinks.push_back( p );
+        // }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "broken_link";
-            broken_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "broken_link";
-            broken_symlinks.push_back( p );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "symlink.txt";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "smylink";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test__dir" << "symlink";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "symlink.txt";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "rəmzi링크.lnk";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "zi링rəm크";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्द__ेशिका" << "प्रतिकात्मकਲਿੰਕ";
+        //     bad_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "測試_निर्देशिका" << "प्रतिकमकਲਿੰਕ";
+        //     bad_symlinks.push_back( p );
+        // }
+
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "broken_link";
+        //     broken_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "broken_link";
+        //     broken_symlinks.push_back( p );
+        // }
     }
 };
 

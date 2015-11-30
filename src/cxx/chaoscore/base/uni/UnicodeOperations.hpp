@@ -7,19 +7,13 @@
 #define CHAOSCORE_BASE_STRING_UNICODEOPERATIONS_HPP_
 
 #include "chaoscore/base/Types.hpp"
+#include "chaoscore/base/data/BinaryOperations.hpp"
 #include "chaoscore/base/uni/UTF8String.hpp"
 
 namespace chaos
 {
 namespace uni
 {
-
-namespace
-{
-
-static size_t dummy;
-
-} // namespace anonymous
 
 //------------------------------------------------------------------------------
 //                                   FUNCTIONS
@@ -49,11 +43,14 @@ bool is_digit( chaos::uint32 code_point );
  * \param data UTF8String object to convert to a c style string of UTF-16
  *             encoded data.
  * \param r_length Returns the length of the new UTF-16 encoded string in bytes.
+ * \param endianness The endian to use for the UTF-16 encoding, defaults to
+ *                   little endian.
  * \return Newly allocated UTF-16 encoded string.
  */
 char* utf8_to_utf16(
         const chaos::uni::UTF8String& data,
-        size_t& r_length = dummy );
+        size_t& r_length,
+        chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE );
 
 /*!
  * \brief Joins the given vector into a single chaos::uni::UTF8String.

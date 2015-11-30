@@ -20,6 +20,7 @@
 
 // TODO: REMOVE ME
 #include <iostream>
+#include <fstream>
 
 namespace chaos
 {
@@ -54,6 +55,28 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
     return false;
 
 #elif defined( CHAOS_OS_WINDOWS )
+
+    const char* n = path.to_windows();
+
+    std::cout << "narrow 1: " << n[ 0 ] << " : " << static_cast< int >( n[ 1 ] ) << std::endl;
+    std::cout << "narrow 2: " << n[ 2 ] << " : " << static_cast< int >( n[ 3 ] ) << std::endl;
+    std::cout << "narrow 3: " << n[ 4 ] << " : " << static_cast< int >( n[ 5 ] ) << std::endl;
+
+    const wchar_t* w_str = ( const wchar_t* )( &path.to_windows()[ 0 ] );
+
+    std::cout << "wide 1: " << w_str[ 0 ] << std::endl;
+    std::cout << "wide 2: " << w_str[ 1 ] << std::endl;
+    std::cout << "wide 3: " << w_str[ 2 ] << std::endl;
+
+    std::ifstream o( ( const void* ) path.to_windows() );
+    if ( o.good() )
+    {
+        std::cout << "opened: " << path << std::endl;
+    }
+    else
+    {
+        std::cout << "failed: " << path << std::endl;
+    }
 
     struct stat s;
     if ( stat( path.to_windows(), &s ) == 0 )

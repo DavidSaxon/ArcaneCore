@@ -1020,8 +1020,11 @@ CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-        const char* check =
-                chaos::uni::utf8_to_utf16( fixture->windows[ i ].get_raw() );
+        size_t dummy = 0;
+        const char* check = chaos::uni::utf8_to_utf16(
+                fixture->windows[ i ].get_raw(),
+                dummy
+        );
         CHAOS_CHECK_EQUAL(
                 strcmp(
                         fixture->as_paths[ i ].to_windows(),
@@ -1061,8 +1064,11 @@ CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
 {
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
-        const char* check =
-                chaos::uni::utf8_to_utf16( fixture->windows[ i ].get_raw() );
+        size_t dummy = 0;
+        const char* check = chaos::uni::utf8_to_utf16(
+                fixture->windows[ i ].get_raw(),
+                dummy
+        );
         CHAOS_CHECK_EQUAL(
                 strcmp(
                         fixture->as_paths[ i ].to_windows(),

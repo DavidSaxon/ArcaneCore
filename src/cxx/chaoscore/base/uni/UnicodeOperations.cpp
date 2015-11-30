@@ -12,18 +12,28 @@ bool is_digit( chaos::uint32 code_point )
     return code_point >= 48 && code_point <= 57;
 }
 
-char* utf8_to_utf16( const chaos::uni::UTF8String& data, size_t& r_length )
+char* utf8_to_utf16(
+        const chaos::uni::UTF8String& data,
+        size_t& r_length,
+        chaos::data::Endianness endianness )
 {
-    std::vector< char > v_str;
+    std::vector< unsigned char > v_str;
     // convert
     for( size_t i = 0; i < data.get_length(); ++i )
     {
         chaos::uint32 code_point = data.get_code_point( i );
         if ( code_point < 0xFFFF )
         {
-            v_str.push_back( code_point >> 8 );
-            v_str.push_back( code_point );
-
+            if ( endianness == chaos::data::ENDIAN_LITTLE )
+            {
+                v_str.push_back( code_point );
+                v_str.push_back( code_point >> 8 );
+            }
+            else
+            {
+                v_str.push_back( code_point >> 8 );
+                v_str.push_back( code_point );
+            }
         }
         else
         {
@@ -42,7 +52,7 @@ char* utf8_to_utf16( const chaos::uni::UTF8String& data, size_t& r_length )
     char* s = new char[ r_length ];
     for( size_t i = 0; i < v_str.size(); ++i )
     {
-        s[ i ] = v_str[ i ];
+        s[ i ] = static_cast< char >( v_str[ i ] );
     }
 
     return s;

@@ -297,7 +297,8 @@ const char* Path::to_windows() const
     // copy to internal data
     delete[] m_cstring_data;
     // TODO: convert to utf-16
-    m_cstring_data = chaos::uni::utf8_to_utf16( u );
+    size_t dummy = 0;
+    m_cstring_data = chaos::uni::utf8_to_utf16( u, dummy );
 
     return m_cstring_data;
 }
