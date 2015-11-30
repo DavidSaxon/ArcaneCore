@@ -28,9 +28,9 @@ bool \hyperlink{namespacechaos_1_1io_1_1sys_ad48945ad68ee4c84a37240ebc6b5a167}{i
 \begin{DoxyCompactList}\small\item\em Returns whether the given path is a directory. \end{DoxyCompactList}\item 
 bool \hyperlink{namespacechaos_1_1io_1_1sys_ac47b8476aea536b08a1c7a34b4e7e28c}{is\-\_\-symbolic\-\_\-link} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Returns whether the given path is a symbolic link. \end{DoxyCompactList}\item 
-std\-::vector$<$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} $>$ \hyperlink{namespacechaos_1_1io_1_1sys_ad9a4b38dc5e32ab7b0ccf0153d7ed388}{list} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path, bool resolve\-\_\-links=false)
+std\-::vector$<$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} $>$ \hyperlink{namespacechaos_1_1io_1_1sys_a21398064d60d0d4ac225a2c5004adf06}{list} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Lists the file system paths located under the given path. \end{DoxyCompactList}\item 
-std\-::vector$<$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} $>$ \hyperlink{namespacechaos_1_1io_1_1sys_a1d30db6ee911af61479ed4af9f963d1c}{list\-\_\-rec} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path, bool resolve\-\_\-links=false)
+std\-::vector$<$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} $>$ \hyperlink{namespacechaos_1_1io_1_1sys_a956856df76f476b3300ab1ebe733e2a7}{list\-\_\-rec} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Lists all descendant file system paths located under the given path. \end{DoxyCompactList}\item 
 bool \hyperlink{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{create\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Attempts to create the directory at the given path. \end{DoxyCompactList}\item 
@@ -132,55 +132,29 @@ Returns whether the given path is a symbolic link.
 \begin{DoxyNote}{Note}
 If the path does not exist this operation will return false. 
 \end{DoxyNote}
-\hypertarget{namespacechaos_1_1io_1_1sys_ad9a4b38dc5e32ab7b0ccf0153d7ed388}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!list@{list}}
+\hypertarget{namespacechaos_1_1io_1_1sys_a21398064d60d0d4ac225a2c5004adf06}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!list@{list}}
 \index{list@{list}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{list}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf chaos\-::io\-::sys\-::\-Path} $>$ chaos\-::io\-::sys\-::list (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path, }
-\item[{bool}]{resolve\-\_\-links = {\ttfamily false}}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1io_1_1sys_ad9a4b38dc5e32ab7b0ccf0153d7ed388}
+)}}\label{namespacechaos_1_1io_1_1sys_a21398064d60d0d4ac225a2c5004adf06}
 
 
 Lists the file system paths located under the given path. 
 
-This operation performs a similar function to the {\ttfamily ls} command on Linux, or the {\ttfamily dir} command on Windows. An empty vector will be returned if the given path does not exist or is a file.
-
-
-\begin{DoxyParams}{Parameters}
-{\em path} & The path to list sub paths of. \\
-\hline
-{\em resolve\-\_\-links} & Controls whether the operation will follow symbolic links and treat them as the path it points to or if the path to a symbolic link should be treated as the absolute path to the link itself (default behavior). This argument has no effect on Windows platforms since symbolic linking is not supported by Windows. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-std\-::vector that contains the sub paths. 
-\end{DoxyReturn}
-\hypertarget{namespacechaos_1_1io_1_1sys_a1d30db6ee911af61479ed4af9f963d1c}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!list\-\_\-rec@{list\-\_\-rec}}
+This operation performs a similar function to the {\ttfamily ls} command on Linux, or the {\ttfamily dir} command on Windows. An empty vector will be returned if the given path does not exist or is .not a directory. This function will not resolve a symbolic link if one is provided as the input path. \hypertarget{namespacechaos_1_1io_1_1sys_a956856df76f476b3300ab1ebe733e2a7}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!list\-\_\-rec@{list\-\_\-rec}}
 \index{list\-\_\-rec@{list\-\_\-rec}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{list\-\_\-rec}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ {\bf chaos\-::io\-::sys\-::\-Path} $>$ chaos\-::io\-::sys\-::list\-\_\-rec (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path, }
-\item[{bool}]{resolve\-\_\-links = {\ttfamily false}}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1io_1_1sys_a1d30db6ee911af61479ed4af9f963d1c}
+)}}\label{namespacechaos_1_1io_1_1sys_a956856df76f476b3300ab1ebe733e2a7}
 
 
 Lists all descendant file system paths located under the given path. 
 
-This operation returns a vector similar to that of \hyperlink{namespacechaos_1_1io_1_1sys_ad9a4b38dc5e32ab7b0ccf0153d7ed388}{list()}, except any sub paths that are also directories are traversed and so on, so that this function returns all paths that are a descendant of the given path.
-
-
-\begin{DoxyParams}{Parameters}
-{\em path} & The path to list all descendant paths of. \\
-\hline
-{\em resolve\-\_\-links} & Controls whether the operation will follow symbolic links and treat them as the path it points to or if the path to a symbolic link should be treated as the absolute path to the link itself (default behavior). This argument has no effect on Windows platforms since symbolic linking is not supported by Windows. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-std\-::vector that contains the the descendant paths. 
-\end{DoxyReturn}
-\hypertarget{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!create\-\_\-directory@{create\-\_\-directory}}
+This operation returns a vector similar to that of \hyperlink{namespacechaos_1_1io_1_1sys_a21398064d60d0d4ac225a2c5004adf06}{list()}, except any sub paths that are also directories are traversed and so on, so that this function returns all paths that are a descendant of the given path. This function will not resolve symbolics in order to avoid infinite recursion. \hypertarget{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!create\-\_\-directory@{create\-\_\-directory}}
 \index{create\-\_\-directory@{create\-\_\-directory}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{create\-\_\-directory}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::io\-::sys\-::create\-\_\-directory (
 \begin{DoxyParamCaption}
@@ -227,7 +201,7 @@ p << \textcolor{stringliteral}{"example"} << \textcolor{stringliteral}{"path"} <
 \textcolor{comment}{// failed an exception would have been thrown.}
 \textcolor{comment}{// We can now begin writing to filename.txt knowing that it's containing}
 \textcolor{comment}{// directory exists.}
-std::ofstream open\_file( p.\hyperlink{classchaos_1_1io_1_1sys_1_1_path_a9528370d2e3ab277a7e71a93469bbc45}{to\_native}().get\_raw() );
+std::ofstream open\_file( p.\hyperlink{classchaos_1_1io_1_1sys_1_1_path_adb68b7589d18dc78f19d9dd6936d9833}{to\_native}().\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string_a91d3bb4cfbfb573b3fa6ecf3312f4dee}{get\_raw}() );
 \end{DoxyCode}
 
 

@@ -341,7 +341,7 @@ CHAOS_TEST_UNIT_FIXTURE( string_constructor, StringConstructorFixture )
     for( size_t i = 0; i < fixture->inputs.size(); ++i )
     {
         chaos::io::sys::Path p( fixture->inputs[ i ] );
-        CHAOS_CHECK_EQUAL( p.to_native_utf8(), fixture->results[ i ] );
+        CHAOS_CHECK_EQUAL( p.to_native(), fixture->results[ i ] );
     }
 }
 
@@ -1008,31 +1008,19 @@ CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
 {
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
-#ifdef CHAOS_OS_UNIX
+#ifdef CHAOS_OS_WINDOWS
 
         CHAOS_CHECK_EQUAL(
-                strcmp(
-                        fixture->as_paths[ i ].to_unix(),
-                        fixture->unix[ i ].get_raw()
-                ),
-                0
+                fixture->as_paths[ i ].to_native(),
+                fixture->windows[ i ]
         );
 
-#elif defined( CHAOS_OS_WINDOWS )
+#else
 
-        size_t dummy = 0;
-        const char* check = chaos::uni::utf8_to_utf16(
-                fixture->windows[ i ].get_raw(),
-                dummy
-        );
         CHAOS_CHECK_EQUAL(
-                strcmp(
-                        fixture->as_paths[ i ].to_windows(),
-                        check
-                ),
-                0
+                fixture->as_paths[ i ].to_native(),
+                fixture->unix[ i ]
         );
-        delete[] check;
 
 #endif
     }
@@ -1047,11 +1035,8 @@ CHAOS_TEST_UNIT_FIXTURE( to_unix, PathGenericFixture )
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
-                strcmp(
-                        fixture->as_paths[ i ].to_unix(),
-                        fixture->unix[ i ].get_raw()
-                ),
-                0
+                fixture->as_paths[ i ].to_unix(),
+                fixture->unix[ i ]
         );
     }
 }
@@ -1064,74 +1049,9 @@ CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
 {
     for ( size_t i = 0; i < fixture->all.size(); ++i )
     {
-        size_t dummy = 0;
-        const char* check = chaos::uni::utf8_to_utf16(
-                fixture->windows[ i ].get_raw(),
-                dummy
-        );
         CHAOS_CHECK_EQUAL(
-                strcmp(
-                        fixture->as_paths[ i ].to_windows(),
-                        check
-                ),
-                0
-        );
-        delete[] check;
-    }
-}
-
-//------------------------------------------------------------------------------
-//                                 TO NATIVE UTF8
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE( to_native_utf8, PathGenericFixture )
-{
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
-    {
-#ifdef CHAOS_OS_WINDOWS
-
-        CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_native_utf8(),
+                fixture->as_paths[ i ].to_windows(),
                 fixture->windows[ i ]
-        );
-
-#else
-
-        CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_native_utf8(),
-                fixture->unix[ i ]
-        );
-
-#endif
-    }
-}
-
-//------------------------------------------------------------------------------
-//                                  TO UNIX UTF8
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE( to_unix_utf8, PathGenericFixture )
-{
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
-    {
-        CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_unix_utf8(),
-                fixture->unix[ i ]
-        );
-    }
-}
-
-//------------------------------------------------------------------------------
-//                                TO WINDOWS UTF8
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE( to_windows_utf8, PathGenericFixture )
-{
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
-    {
-        CHAOS_CHECK_EQUAL(
-                fixture->as_paths[ i ].to_windows_utf8(),
-                fixture->windows[ i ].get_raw()
         );
     }
 }

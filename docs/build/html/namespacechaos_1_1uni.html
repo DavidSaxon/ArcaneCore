@@ -103,9 +103,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a25a7549a0378aeac227c881220c23640"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#a25a7549a0378aeac227c881220c23640">is_digit</a> (<a class="el" href="namespacechaos.html#a3b3a47ba1e284655bf1a30c441121c60">chaos::uint32</a> code_point)</td></tr>
 <tr class="memdesc:a25a7549a0378aeac227c881220c23640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the given Unicode code point is a digit or not.  <a href="#a25a7549a0378aeac227c881220c23640">More...</a><br/></td></tr>
 <tr class="separator:a25a7549a0378aeac227c881220c23640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2ecaabcd23d2df0cddcc6d00a4a3485"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#aa2ecaabcd23d2df0cddcc6d00a4a3485">utf8_to_utf16</a> (const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;data, size_t &amp;r_length=dummy)</td></tr>
-<tr class="memdesc:aa2ecaabcd23d2df0cddcc6d00a4a3485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> encoded data to a new c style string of UTF-16 encoded data.  <a href="#aa2ecaabcd23d2df0cddcc6d00a4a3485">More...</a><br/></td></tr>
-<tr class="separator:aa2ecaabcd23d2df0cddcc6d00a4a3485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9ad4c8b653b2202e908fec0dce094e7"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#ae9ad4c8b653b2202e908fec0dce094e7">utf8_to_utf16</a> (const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;data, size_t &amp;r_length, <a class="el" href="namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3f">chaos::data::Endianness</a> endianness=<a class="el" href="namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d">chaos::data::ENDIAN_LITTLE</a>)</td></tr>
+<tr class="memdesc:ae9ad4c8b653b2202e908fec0dce094e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> encoded data to a new c style string of UTF-16 encoded data.  <a href="#ae9ad4c8b653b2202e908fec0dce094e7">More...</a><br/></td></tr>
+<tr class="separator:ae9ad4c8b653b2202e908fec0dce094e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2a77983423c8b10e2b18cae6f35d329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1uni.html#ad2a77983423c8b10e2b18cae6f35d329">join</a> (const std::vector&lt; <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &gt; &amp;components, const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;separator)</td></tr>
 <tr class="memdesc:ad2a77983423c8b10e2b18cae6f35d329"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joins the given vector into a single <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a>.  <a href="#ad2a77983423c8b10e2b18cae6f35d329">More...</a><br/></td></tr>
 <tr class="separator:ad2a77983423c8b10e2b18cae6f35d329"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,7 +137,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="aa2ecaabcd23d2df0cddcc6d00a4a3485"></a>
+<a class="anchor" id="ae9ad4c8b653b2202e908fec0dce094e7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -151,7 +151,13 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t &amp;&#160;</td>
-          <td class="paramname"><em>r_length</em> = <code>dummy</code>&#160;</td>
+          <td class="paramname"><em>r_length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3f">chaos::data::Endianness</a>&#160;</td>
+          <td class="paramname"><em>endianness</em> = <code><a class="el" href="namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d">chaos::data::ENDIAN_LITTLE</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -168,6 +174,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
   <table class="params">
     <tr><td class="paramname">data</td><td><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">UTF8String</a> object to convert to a c style string of UTF-16 encoded data. </td></tr>
     <tr><td class="paramname">r_length</td><td>Returns the length of the new UTF-16 encoded string in bytes. </td></tr>
+    <tr><td class="paramname">endianness</td><td>The endian to use for the UTF-16 encoding, defaults to little endian. </td></tr>
   </table>
   </dd>
 </dl>
@@ -221,7 +228,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 29 2015 21:59:10 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 1 2015 00:17:22 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

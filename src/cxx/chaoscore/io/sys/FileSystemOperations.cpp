@@ -40,11 +40,11 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
     int stat_ret = false;
     if ( resolve_links )
     {
-        stat_ret = stat( path.to_unix(), &s );
+        stat_ret = stat( path.to_unix().get_raw(), &s );
     }
     else
     {
-        stat_ret = lstat( path.to_unix(), &s );
+        stat_ret = lstat( path.to_unix().get_raw(), &s );
     }
 
     // return based on the stat return code
@@ -108,11 +108,11 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
     int stat_ret = false;
     if ( resolve_links )
     {
-        stat_ret = stat( path.to_unix(), &s );
+        stat_ret = stat( path.to_unix().get_raw(), &s );
     }
     else
     {
-        stat_ret = lstat( path.to_unix(), &s );
+        stat_ret = lstat( path.to_unix().get_raw(), &s );
     }
 
     if ( stat_ret == 0 )
@@ -159,11 +159,11 @@ bool is_directory(
     int stat_ret = false;
     if ( resolve_links )
     {
-        stat_ret = stat( path.to_unix(), &s );
+        stat_ret = stat( path.to_unix().get_raw(), &s );
     }
     else
     {
-        stat_ret = lstat( path.to_unix(), &s );
+        stat_ret = lstat( path.to_unix().get_raw(), &s );
     }
 
     if ( stat_ret == 0 )
@@ -202,7 +202,7 @@ bool is_symbolic_link( const chaos::io::sys::Path& path )
 #ifdef CHAOS_OS_UNIX
 
     struct stat s;
-    if ( lstat( path.to_unix(), &s ) == 0 )
+    if ( lstat( path.to_unix().get_raw(), &s ) == 0 )
     {
         if ( S_ISLNK( s.st_mode ) )
         {
@@ -242,7 +242,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
 
     // open the directory
     DIR* dir;
-    if ( ( dir = opendir( path.to_unix() ) ) == NULL )
+    if ( ( dir = opendir( path.to_unix().get_raw() ) ) == NULL )
     {
         // failed to open the directory
         return ret;
@@ -314,7 +314,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
 #ifdef CHAOS_OS_UNIX
 
-    if ( mkdir( path.to_unix(), 0777 ) != 0 )
+    if ( mkdir( path.to_unix().get_raw(), 0777 ) != 0 )
     {
         chaos::uni::UTF8String error_message;
         error_message << "Directory creation failed with error code: ";

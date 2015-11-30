@@ -329,83 +329,6 @@ public:
     void remove( size_t index );
 
     /*!
-     * \brief Returns a c string representation of this Path for the current
-     *        operating system.
-     *
-     * Example usage:
-     *
-     * \code
-     * chaos::io::file::Path p;
-     * p << "path" << "to" << "file.txt";
-     * const char* s = p.to_native();
-     * // on Unix systems s will be "path/to/file.txt"
-     * // on Windows systems s will be "path\to\file.txt"
-     * \endcode
-     *
-     * \note This operation returns a c style string to support platform
-     *       dependent encodings. For example Windows requires non-ascii file
-     *       paths to be UTF-16 encoded, therefore the returned c string will be
-     *       utf-16 encoded. Likewise on Unix systems this string will be utf-8
-     *       encoded. To get chaos::uni::UTF8String representations of this
-     *       path see to_native_utf8(), to_unix_utf8(), and to_windows_utf8().
-     *
-     *
-     * \warning The returned string is allocated by this object and will be
-     *          only exist for the life time of this Path object.
-     */
-    const char* to_native() const;
-
-    /*!
-     * \brief Returns the chaos::uni::UTF8String representation of this Path for
-     *        Unix based operating systems.
-     *
-     * Example usage:
-     *
-     * \code
-     * chaos::io::file::Path p;
-     * p << "path" << "to" << "file.txt";
-     * const char*  s = p.to_unix();
-     * // s is "path/to/file.txt"
-     * \endcode
-     *
-     * \note This operation returns a c style string to support platform
-     *       dependent encodings. For example Windows requires non-ascii file
-     *       paths to be UTF-16 encoded, therefore the returned c string will be
-     *       utf-16 encoded. Likewise on Unix systems this string will be utf-8
-     *       encoded. To get chaos::uni::UTF8String representations of this
-     *       path see to_native_utf8(), to_unix_utf8(), and to_windows_utf8().
-     *
-     * \warning The returned string is allocated by this object and will be
-     *          only exist for the life time of this Path object.
-     */
-    const char* to_unix() const;
-
-    /*!
-     * \brief Returns the chaos::uni::UTF8String representation of this Path for
-     *        Windows based operating systems.
-     *
-     * Example usage:
-     *
-     * \code
-     * chaos::io::file::Path p;
-     * p << "path" << "to" << "file.txt";
-     * const char*  s = p.to_windows();
-     * // s is "path\to\file.txt"
-     * \endcode
-     *
-     * \note This operation returns a c style string to support platform
-     *       dependent encodings. For example Windows requires non-ascii file
-     *       paths to be UTF-16 encoded, therefore the returned c string will be
-     *       utf-16 encoded. Likewise on Unix systems this string will be utf-8
-     *       encoded. To get chaos::uni::UTF8String representations of this
-     *       path see to_native_utf8(), to_unix_utf8(), and to_windows_utf8().
-     *
-     * \warning The returned string is allocated by this object and will be
-     *          only exist for the life time of this Path object.
-     */
-    const char* to_windows() const;
-
-    /*!
      * \brief Returns a chaos::uni::UTF8String representation of this Path for
      *        the current operating system.
      *
@@ -414,19 +337,21 @@ public:
      * \code
      * chaos::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::uni::UTF8String s = p.to_native_utf8();
+     * chaos::uni::UTF8String s = p.to_native();
      * // on Unix systems s will be "path/to/file.txt"
      * // on Windows systems s will be "path\to\file.txt"
      * \endcode
      *
-     * \note This operation returns a c style string to support platform
-     *       dependent encodings. For example Windows requires non-ascii file
-     *       paths to be UTF-16 encoded, therefore the returned c string will be
-     *       utf-16 encoded. Likewise on Unix systems this string will be utf-8
-     *       encoded. To get chaos::uni::UTF8String representations of this
-     *       path see to_native_utf8(), to_unix_utf8(), and to_windows_utf8().
+     * \warning The returned path is UTF-8 encoded which may not be suitable for
+     *          use with platform files systems. For example Windows requires
+     *          file paths to be little endian UTF-16 encoded in order to access
+     *          non-ascii file paths. It is recommend that file system actions
+     *          are done through ChaosCore, functions that take a Path object as
+     *          a parameter (e.g chaos::io::sys::create_directory()) will
+     *          automatically handle platform specific encodings on your behalf.
+     *
      */
-    chaos::uni::UTF8String to_native_utf8() const;
+    chaos::uni::UTF8String to_native() const;
 
     /*!
      * \brief Returns the chaos::uni::UTF8String representation of this Path for
@@ -437,12 +362,13 @@ public:
      * \code
      * chaos::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::uni::UTF8String s = p.to_unix_utf8();
+     * chaos::uni::UTF8String s = p.to_unix();
      * // s is "path/to/file.txt"
      * \endcode
      *
+     * \warning The returned path is UTF-8 encoded. See to_native() for details.
      */
-    chaos::uni::UTF8String to_unix_utf8() const;
+    chaos::uni::UTF8String to_unix() const;
 
     /*!
      * \brief Returns the chaos::uni::UTF8String representation of this Path for
@@ -453,12 +379,13 @@ public:
      * \code
      * chaos::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::uni::UTF8String s = p.to_windows_utf8();
+     * chaos::uni::UTF8String s = p.to_windows();
      * // s is "path\to\file.txt"
      * \endcode
      *
+     * \warning The returned path is UTF-8 encoded. See to_native() for details.
      */
-    chaos::uni::UTF8String to_windows_utf8() const;
+    chaos::uni::UTF8String to_windows() const;
 
 
     //--------------------------------ACCESSORS---------------------------------

@@ -7,6 +7,7 @@ Operations relating to Unicode string data.
 
 
 {\ttfamily \#include \char`\"{}chaoscore/base/\-Types.\-hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}chaoscore/base/data/\-Binary\-Operations.\-hpp\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}chaoscore/base/uni/\-U\-T\-F8\-String.\-hpp\char`\"{}}\\*
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
@@ -20,7 +21,7 @@ Operations relating to Unicode string data.
 \item 
 bool \hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{chaos\-::uni\-::is\-\_\-digit} (\hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\-::uint32} code\-\_\-point)
 \begin{DoxyCompactList}\small\item\em Returns whether the given Unicode code point is a digit or not. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{namespacechaos_1_1uni_aa2ecaabcd23d2df0cddcc6d00a4a3485}{chaos\-::uni\-::utf8\-\_\-to\-\_\-utf16} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&data, size\-\_\-t \&r\-\_\-length=dummy)
+char $\ast$ \hyperlink{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{chaos\-::uni\-::utf8\-\_\-to\-\_\-utf16} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&data, size\-\_\-t \&r\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
 \begin{DoxyCompactList}\small\item\em Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} encoded data to a new c style string of U\-T\-F-\/16 encoded data. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}{chaos\-::uni\-::join} (const std\-::vector$<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} $>$ \&components, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&separator)
 \begin{DoxyCompactList}\small\item\em Joins the given vector into a single \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \end{DoxyCompactList}\end{DoxyCompactItemize}
