@@ -1422,6 +1422,69 @@ CHAOS_TEST_UNIT_FIXTURE( starts_with, StartsWithFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                   ENDS WITH
+//------------------------------------------------------------------------------
+
+class EndsWithFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::uni::UTF8String > strings;
+    std::vector< chaos::uni::UTF8String > ends_with;
+    std::vector< chaos::uni::UTF8String > not_ends_with;
+
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        strings.push_back      ( "" );
+        ends_with.push_back    ( "" );
+        not_ends_with.push_back( "+" );
+
+        strings.push_back      ( "(" );
+        ends_with.push_back    ( "(" );
+        not_ends_with.push_back( "&" );
+
+        strings.push_back      ( "Hello World" );
+        ends_with.push_back    ( "World" );
+        not_ends_with.push_back( "\tWorld" );
+
+        strings.push_back      ( "         " );
+        ends_with.push_back    ( "         " );
+        not_ends_with.push_back( "          " );
+
+        strings.push_back      ( "γειά σου Κόσμε!" );
+        ends_with.push_back    ( "!" );
+        not_ends_with.push_back( "γ" );
+
+        strings.push_back      ( "ጺጹጸጷጶጵጴጳጲጱጰጯጮጭጬᚡ" );
+        ends_with.push_back    ( "ጮጭጬᚡ" );
+        not_ends_with.push_back( "ጵጴጳጲጱጰ" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    {
+        CHAOS_CHECK_TRUE(
+                fixture->strings[ i ].ends_with( fixture->ends_with[ i ] )
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    {
+        CHAOS_CHECK_FALSE( fixture->strings[ i ].ends_with(
+                fixture->not_ends_with[ i ] ) );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                   FIND FIRST
 //------------------------------------------------------------------------------
 

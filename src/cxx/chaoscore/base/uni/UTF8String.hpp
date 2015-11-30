@@ -490,11 +490,23 @@ public:
      * s_1.starts_with( s_2 ); // returns: true
      * s_1.starts_with( s_3 ); // returns: false
      * \endcode
-     *
-     * \return True if this string starts with the provided string, false
-     *         otherwise
      */
     bool starts_with( const UTF8String& substring ) const;
+
+    /*!
+     * \brief Checks whether this UTF8String ends with the given substring.
+     *
+     * Example usage:
+     *
+     * \code
+     * chaos::uni::UTF8String s_1( "Hello World" );
+     * chaos::uni::UTF8String s_2( "Hello" );
+     * chaos::uni::UTF8String s_3( "World" );
+     * s_1.ends_with( s_2 ); // returns: false
+     * s_1.ends_with( s_3 ); // returns: true
+     * \endcode
+     */
+    bool ends_with( const UTF8String& substring ) const;
 
     /*!
      * \brief Finds the first occurrence of the given substring and returns the

@@ -331,6 +331,27 @@ bool UTF8String::starts_with( const UTF8String& substring ) const
     return true;
 }
 
+bool UTF8String::ends_with( const UTF8String& substring ) const
+{
+    // the substring must be shorter than the actual string
+    if ( substring.m_length > m_length )
+    {
+        return false;
+    }
+    // check until we find a mismatch
+    size_t diff = m_length - substring.m_length;
+    for ( size_t i = substring.m_length; i > 0; --i )
+    {
+        if ( substring.get_symbol( i - 1 ) != get_symbol( diff + ( i - 1 ) ) )
+        {
+            return false;
+        }
+    }
+
+    // no mismatch
+    return true;
+}
+
 size_t UTF8String::find_first( const UTF8String& substring ) const
 {
     // the substring must be shorter than the actual string
