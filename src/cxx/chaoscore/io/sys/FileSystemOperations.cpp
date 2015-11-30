@@ -4,6 +4,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
+
 #ifdef CHAOS_OS_UNIX
 
     #include <cstring>
@@ -17,10 +19,6 @@
     #include <windows.h>
 
 #endif
-
-// TODO: REMOVE ME
-#include <iostream>
-#include <fstream>
 
 namespace chaos
 {
@@ -56,30 +54,16 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    const char* n = path.to_windows();
+    // utf-16
+    size_t length = 0;
+    const char* p = chaos::uni::utf8_to_utf16(
+            path.to_windows().get_raw(),
+            length,
+            chaos::data::ENDIAN_LITTLE
+    );
 
-    std::cout << "narrow 1: " << n[ 0 ] << " : " << static_cast< int >( n[ 1 ] ) << std::endl;
-    std::cout << "narrow 2: " << n[ 2 ] << " : " << static_cast< int >( n[ 3 ] ) << std::endl;
-    std::cout << "narrow 3: " << n[ 4 ] << " : " << static_cast< int >( n[ 5 ] ) << std::endl;
-
-    const wchar_t* w_str = ( const wchar_t* )( &path.to_windows()[ 0 ] );
-
-    std::cout << "wide 1: " << w_str[ 0 ] << std::endl;
-    std::cout << "wide 2: " << w_str[ 1 ] << std::endl;
-    std::cout << "wide 3: " << w_str[ 2 ] << std::endl;
-
-    std::ifstream o( ( const void* ) path.to_windows() );
-    if ( o.good() )
-    {
-        std::cout << "opened: " << path << std::endl;
-    }
-    else
-    {
-        std::cout << "failed: " << path << std::endl;
-    }
-
-    struct stat s;
-    if ( stat( path.to_windows(), &s ) == 0 )
+    struct _stat64i32 s;
+    if ( _wstat64i32( ( const wchar_t* ) p, &s ) == 0 )
     {
         return true;
     }
@@ -126,8 +110,16 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    struct stat s;
-    if ( stat( path.to_windows(), &s ) == 0 )
+    // utf-16
+    size_t length = 0;
+    const char* p = chaos::uni::utf8_to_utf16(
+            path.to_windows().get_raw(),
+            length,
+            chaos::data::ENDIAN_LITTLE
+    );
+
+    struct _stat64i32 s;
+    if ( _wstat64i32( ( const wchar_t* ) p, &s ) == 0 )
     {
         if ( s.st_mode & S_IFREG )
         {
@@ -177,8 +169,16 @@ bool is_directory(
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    struct stat s;
-    if ( stat( path.to_windows(), &s ) == 0 )
+    // utf-16
+    size_t length = 0;
+    const char* p = chaos::uni::utf8_to_utf16(
+            path.to_windows().get_raw(),
+            length,
+            chaos::data::ENDIAN_LITTLE
+    );
+
+    struct _stat64i32 s;
+    if ( _wstat64i32( ( const wchar_t* ) p, &s ) == 0 )
     {
         if ( s.st_mode & S_IFDIR )
         {
@@ -258,10 +258,10 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
 
 #else
 
-    throw chaos::ex::NotImplementedError(
-            "chaos::io::sys::list has not yet been implemented for this "
-            "platform"
-    );
+    // construct the directory path
+    chaos::uni::UTF8String u( path.to_windows() );
+    // TODO: ends with
+    // if ( u.end)
 
 #endif
 
@@ -326,7 +326,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    if ( !CreateDirectory( path.to_windows(), NULL ) )
+    if ( !CreateDirectory( path.to_windows().get_raw(), NULL ) )
     {
         chaos::uni::UTF8String error_message;
         error_message << "Directory creation failed with error code: ";
