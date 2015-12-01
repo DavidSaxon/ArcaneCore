@@ -19,6 +19,9 @@
 
 #endif
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace io
@@ -285,10 +288,17 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
         return ret;
     }
 
+    // iterate over sub paths
     do
     {
-        // TODO: need to convert this to UTF-8
-        std::cout << "list: " << find_data.cFileName << std::endl;
+        chaos::io::sys::Path p( path );
+
+        p << chaos::uni::utf16_to_utf8(
+                ( const char* ) find_data.cFileName,
+                chaos::uni::npos
+        );
+
+        ret.push_back( p );
     }
     while ( FindNextFileW( find_handle, &find_data ) != 0 );
 

@@ -2,9 +2,6 @@
 
 #include "chaoscore/base/BaseExceptions.hpp"
 
-// TODO: REMOVE ME
-#include <iostream>
-
 namespace chaos
 {
 namespace uni
@@ -43,7 +40,7 @@ chaos::uni::UTF8String utf16_to_utf8(
         }
 
         // null?
-        if ( code_point == 0 )
+        if ( code_point == 0 && symbol_length == chaos::uni::npos )
         {
             break;
         }
