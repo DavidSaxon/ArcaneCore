@@ -329,7 +329,7 @@ chaos::uni::UTF8String Path::get_extension() const
     {
         // does the final component contain a period?
         size_t loc = m_components.back().find_last( "." );
-        if ( loc != chaos::uni::UTF8String::npos )
+        if ( loc != chaos::uni::npos )
         {
             // return the extension substring
             return m_components.back().substring(

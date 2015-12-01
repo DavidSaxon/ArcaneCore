@@ -20,6 +20,9 @@
 
 #endif
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace io
@@ -244,6 +247,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     DIR* dir;
     if ( ( dir = opendir( path.to_unix().get_raw() ) ) == NULL )
     {
+        // TODO: should this throw an error?
         // failed to open the directory
         return ret;
     }
@@ -261,7 +265,36 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     // construct the directory path
     chaos::uni::UTF8String u( path.to_windows() );
     // TODO: ends with
-    // if ( u.end)
+    if ( !u.ends_with( "\\" ) )
+    {
+        u += "\\";
+    }
+    u += "*";
+
+    // utf-16
+    size_t length = 0;
+    const char* p = chaos::uni::utf8_to_utf16(
+            u,
+            length,
+            chaos::data::ENDIAN_LITTLE
+    );
+
+    WIN32_FIND_DATAW find_data;
+    HANDLE find_handle = FindFirstFileW( ( const wchar_t* ) p, &find_data );
+
+    if ( find_handle == INVALID_HANDLE_VALUE )
+    {
+        // failed to open the directory
+        // TODO: should this throw an error?
+        return ret;
+    }
+
+    do
+    {
+        // TODO: need to convert this to UTF-8
+        std::cout << "list: " << find_data.cFileName << std::endl;
+    }
+    while ( FindNextFileW( find_handle, &find_data ) != 0 );
 
 #endif
 

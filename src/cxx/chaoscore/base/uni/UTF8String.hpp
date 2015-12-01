@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "chaoscore/base/Types.hpp"
+#include "chaoscore/base/uni/UnicodeConstants.hpp"
 
 namespace chaos
 {
@@ -127,17 +128,6 @@ namespace uni
 class UTF8String
 {
 public:
-
-    //--------------------------------------------------------------------------
-    //                          PUBLIC STATIC ATTRIBUTES
-    //--------------------------------------------------------------------------
-
-
-    /*!
-     * \brief Value that is used to signify an index that does not exists within
-     *        the UTF8String.
-     */
-    static const size_t npos;
 
     //--------------------------------------------------------------------------
     //                                CONSTRUCTORS
@@ -519,14 +509,14 @@ public:
      * chaos::uni::UTF8String s_2( "World" );
      * chaos::uni::UTF8String s_3( "*" );
      * s_1.find_first( s_2 ); // returns: 6
-     * s_1.find_first( s_3 ); // returns: chaos::uni::UTF8String::npos
+     * s_1.find_first( s_3 ); // returns: chaos::uni::npos
      * \endcode
      *
      * \param substring UTF8String to find the first occurrence of in this
      *                  string.
      * \return The index of the beginning of the first occurrence of the
      *         substring in this string. If the substring could not be found,
-     *         chaos::uni::UTF8String::npos is returned instead.
+     *         chaos::uni::npos is returned instead.
      */
     size_t find_first( const UTF8String& substring ) const;
 
@@ -541,14 +531,14 @@ public:
      * chaos::uni::UTF8String s_2( "World" );
      * chaos::uni::UTF8String s_3( "*" );
      * s_1.find_first( s_2 ); // returns: 12
-     * s_1.find_first( s_3 ); // returns: chaos::uni::UTF8String::npos
+     * s_1.find_first( s_3 ); // returns: chaos::uni::npos
      * \endcode
      *
      * \param substring UTF8String to find the last occurrence of in this
      *                  string.
      * \return The index of the beginning of the last occurrence of the
      *         substring in this string. If the substring could not be found,
-     *         chaos::uni::UTF8String::npos is returned instead.
+     *         chaos::uni::npos is returned instead.
      */
     size_t find_last( const UTF8String& substring ) const;
 
@@ -929,14 +919,14 @@ private:
      *
      * \param data The input data to assign to the internal buffer
      * \param existing_length Optimisation parameter. If equal to
-     *                        chaos::uni::UTF8String::npos the length of the
+     *                        chaos::uni::npos the length of the
      *                        data will be evaluated, however if already known
      *                        the length can be passed in here to skip this
      *                        step.
      */
     void assign_internal(
             const char*  data,
-            size_t       existing_length = chaos::uni::UTF8String::npos );
+            size_t       existing_length = chaos::uni::npos );
 
     /*!
      * Internal function used to check if a given index is within the symbol

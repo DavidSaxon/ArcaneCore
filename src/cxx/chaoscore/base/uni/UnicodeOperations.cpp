@@ -12,6 +12,16 @@ bool is_digit( chaos::uint32 code_point )
     return code_point >= 48 && code_point <= 57;
 }
 
+chaos::uni::UTF8String utf16_to_utf8(
+        const char* data,
+        size_t symbol_length,
+        chaos::data::Endianness endianness )
+{
+    // TODO:
+
+    return chaos::uni::UTF8String();
+}
+
 char* utf8_to_utf16(
         const chaos::uni::UTF8String& data,
         size_t& r_length,

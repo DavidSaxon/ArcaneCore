@@ -3,8 +3,8 @@
  * \brief Operations relating to Unicode string data.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_STRING_UNICODEOPERATIONS_HPP_
-#define CHAOSCORE_BASE_STRING_UNICODEOPERATIONS_HPP_
+#ifndef CHAOSCORE_BASE_UNI_UNICODEOPERATIONS_HPP_
+#define CHAOSCORE_BASE_UNI_UNICODEOPERATIONS_HPP_
 
 #include "chaoscore/base/Types.hpp"
 #include "chaoscore/base/data/BinaryOperations.hpp"
@@ -31,6 +31,22 @@ namespace uni
  *
  */
 bool is_digit( chaos::uint32 code_point );
+
+/*!
+ * \brief Converts the given data stream of UTF-16 encoded text to new
+ *        chaos::uni::UTF8String.
+ *
+ * // TODO: not valid encoding?
+ *
+ * \param data UTF-16 string to convert to a chaos::uni::UTF8String.
+ * \param symbol_length The number of Unicode symbols in the input data. Note:
+ *                      this is not the number of bytes in the data. If this
+ *                      value is TODO: uni::npos
+ */
+chaos::uni::UTF8String utf16_to_utf8(
+        const char* data,
+        size_t symbol_length,
+        chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE );
 
 /*!
  * \brief Converts the given chaos::uni::UTF8String encoded data to a new c

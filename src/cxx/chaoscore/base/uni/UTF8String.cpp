@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <cstddef>
 #include <cstring>
-#include <limits>
 #include <sstream>
 #include <stdarg.h>
 
@@ -15,12 +14,6 @@ namespace chaos
 {
 namespace uni
 {
-
-//------------------------------------------------------------------------------
-//                            PUBLIC STATIC ATTRIBUTES
-//------------------------------------------------------------------------------
-
-const size_t UTF8String::npos = std::numeric_limits< size_t >::max();
 
 //------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
@@ -357,7 +350,7 @@ size_t UTF8String::find_first( const UTF8String& substring ) const
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
     {
-        return UTF8String::npos;
+        return chaos::uni::npos;
     }
     // check against each character
     for( size_t i = 0; i < m_length - ( substring.m_length - 1 ); ++i )
@@ -378,7 +371,7 @@ size_t UTF8String::find_first( const UTF8String& substring ) const
             return i;
         }
     }
-    return UTF8String::npos;
+    return chaos::uni::npos;
 }
 
 size_t UTF8String::find_last( const UTF8String& substring ) const
@@ -386,10 +379,10 @@ size_t UTF8String::find_last( const UTF8String& substring ) const
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
     {
-        return UTF8String::npos;
+        return chaos::uni::npos;
     }
     // check against each character
-    for( size_t i = m_length - substring.m_length; i != UTF8String::npos; --i )
+    for( size_t i = m_length - substring.m_length; i != chaos::uni::npos; --i )
     {
         // check that each symbol matches
         bool match = true;
@@ -406,7 +399,7 @@ size_t UTF8String::find_last( const UTF8String& substring ) const
             return i;
         }
     }
-    return UTF8String::npos;
+    return chaos::uni::npos;
 }
 
 const std::vector< UTF8String > UTF8String::split(
@@ -462,7 +455,7 @@ void UTF8String::remove_duplicates( const UTF8String& substring )
     UTF8String output;
 
     size_t i = input.find_first( substring );
-    while( i != UTF8String::npos )
+    while( i != chaos::uni::npos )
     {
         // add up to and including the substring
         output << input.substring(
@@ -752,7 +745,7 @@ size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
     }
 
     // something broke
-    return UTF8String::npos;
+    return chaos::uni::npos;
 }
 
 size_t UTF8String::get_symbol_width( size_t index ) const
@@ -795,7 +788,7 @@ size_t UTF8String::get_symbol_index_for_byte_index( size_t byte_index ) const
     }
 
     // something broke
-    return UTF8String::npos;
+    return chaos::uni::npos;
 }
 
 size_t UTF8String::get_byte_width( size_t byte_index ) const
@@ -839,7 +832,7 @@ void UTF8String::assign_internal( const char* data, size_t existing_length )
 
     // get number of bytes in the data
     bool is_null_terminated = true;
-    if ( existing_length == chaos::uni::UTF8String::npos )
+    if ( existing_length == chaos::uni::npos )
     {
         // the length includes the NULL terminator
         existing_length = strlen( data ) + 1;
@@ -915,4 +908,3 @@ std::ostream& operator<<( std::ostream& stream, const UTF8String& s )
 
 } // namespace uni
 } // namespace chaos
-

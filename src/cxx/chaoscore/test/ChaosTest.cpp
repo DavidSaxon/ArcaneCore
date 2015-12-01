@@ -308,7 +308,7 @@ void TestCore::run( RunInfo* run_info )
             chaos::uni::UTF8String path = m_it->first;
             // find the last period
             size_t lastIndex = path.find_last( "." );
-            if ( lastIndex == chaos::uni::UTF8String::npos )
+            if ( lastIndex == chaos::uni::npos )
             {
                 throw chaos::test::ex::TestRuntimeError(
                         "Unexpected error 67" );
@@ -334,7 +334,7 @@ void TestCore::run( RunInfo* run_info )
             chaos::uni::UTF8String path = *md_it;
             // find the last period
             size_t lastIndex = path.find_last( "." );
-            if ( lastIndex == chaos::uni::UTF8String::npos )
+            if ( lastIndex == chaos::uni::npos )
             {
                 continue;
             }

@@ -490,13 +490,13 @@ public:
         // super call
         FileSysBaseFixture::setup();
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_file.txt";
-            dirs.push_back( p );
-            std::vector< chaos::io::sys::Path > result;
-            results.push_back( result );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_file.txt";
+        //     dirs.push_back( p );
+        //     std::vector< chaos::io::sys::Path > result;
+        //     results.push_back( result );
+        // }
 
         {
             chaos::io::sys::Path p( base_path );
@@ -541,76 +541,76 @@ public:
             results.push_back( result );
         }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "list_dir" << "dir_a_1";
-            dirs.push_back( p );
-            std::vector< chaos::io::sys::Path > result;
-            {
-                chaos::io::sys::Path r( p );
-                r << ".";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "..";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "dir_b_1";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "dir_b_2";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "file_b_1";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "file_b_2";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "infinite_loop_b";
-                result.push_back( r );
-            }
-            results.push_back( result );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "list_dir" << "dir_a_1";
+        //     dirs.push_back( p );
+        //     std::vector< chaos::io::sys::Path > result;
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << ".";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "..";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "dir_b_1";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "dir_b_2";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "file_b_1";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "file_b_2";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "infinite_loop_b";
+        //         result.push_back( r );
+        //     }
+        //     results.push_back( result );
+        // }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "list_dir" << "dir_a_1" << "dir_b_1";
-            dirs.push_back( p );
-            std::vector< chaos::io::sys::Path > result;
-            {
-                chaos::io::sys::Path r( p );
-                r << ".";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "..";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "file_d_1";
-                result.push_back( r );
-            }
-            {
-                chaos::io::sys::Path r( p );
-                r << "file_d_2";
-                result.push_back( r );
-            }
-            results.push_back( result );
-        }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "list_dir" << "dir_a_1" << "dir_b_1";
+        //     dirs.push_back( p );
+        //     std::vector< chaos::io::sys::Path > result;
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << ".";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "..";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "file_d_1";
+        //         result.push_back( r );
+        //     }
+        //     {
+        //         chaos::io::sys::Path r( p );
+        //         r << "file_d_2";
+        //         result.push_back( r );
+        //     }
+        //     results.push_back( result );
+        // }
     }
 };
 

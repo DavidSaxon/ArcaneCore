@@ -259,8 +259,8 @@ public:
 
         strings.push_back( "Hello World" );
         find.push_back   ( "ጵ" );
-        first_results.push_back( chaos::uni::UTF8String::npos );
-        last_results.push_back( chaos::uni::UTF8String::npos );
+        first_results.push_back( chaos::uni::npos );
+        last_results.push_back( chaos::uni::npos );
 
         strings.push_back( "γειά σου Κόσμε!" );
         find.push_back   ( "μ" );
@@ -284,8 +284,8 @@ public:
 
         strings.push_back( "γειά σου Κόσμε" );
         find.push_back   ( "γειά σου Κόσμε!" );
-        first_results.push_back( chaos::uni::UTF8String::npos );
-        last_results.push_back( chaos::uni::UTF8String::npos );
+        first_results.push_back( chaos::uni::npos );
+        last_results.push_back( chaos::uni::npos );
     }
 };
 
@@ -2811,7 +2811,7 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
 
     CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
     CHAOS_CHECK_THROW(
-            fixture->symbols.get_byte_width( chaos::uni::UTF8String::npos ),
+            fixture->symbols.get_byte_width( chaos::uni::npos ),
             chaos::ex::IndexOutOfBoundsError
     );
 }
