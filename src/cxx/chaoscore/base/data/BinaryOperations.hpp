@@ -20,10 +20,10 @@ namespace data
  */
 enum Endianness
 {
-    /// The least-significant byte is stored at the lowest memory address.
-    ENDIAN_LITTLE = 0,
     /// The least-significant byte is stored at the highest memory address.
-    ENDIAN_BIG
+    ENDIAN_BIG = 0,
+    /// The least-significant byte is stored at the lowest memory address.
+    ENDIAN_LITTLE
 };
 
 //------------------------------------------------------------------------------

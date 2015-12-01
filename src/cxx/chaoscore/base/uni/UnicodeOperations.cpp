@@ -2,6 +2,9 @@
 
 #include "chaoscore/base/BaseExceptions.hpp"
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace uni
@@ -17,9 +20,67 @@ chaos::uni::UTF8String utf16_to_utf8(
         std::size_t symbol_length,
         chaos::data::Endianness endianness )
 {
-    // TODO:
+    // ensure data is unsigned
+    const unsigned char* d = reinterpret_cast< const unsigned char* >( data );
 
-    return chaos::uni::UTF8String();
+    // TODO: support 4 byte symbols
+    std::vector< unsigned char > utf8;
+    // iterate over each character
+    for ( size_t i = 0;
+          symbol_length == chaos::uni::npos || i < ( symbol_length * 2 );
+          i += 2 )
+    {
+        chaos::uint32 code_point = 0;
+        if ( endianness == chaos::data::ENDIAN_BIG )
+        {
+            code_point = ( static_cast< chaos::uint32 >( d[ i ] ) << 8 ) |
+                         static_cast< chaos::uint32 >( d[ i + 1 ] );
+        }
+        else
+        {
+            code_point = static_cast< chaos::uint32 >( d[ i ] ) |
+                         ( static_cast< chaos::uint32 >( d[ i + 1 ] << 8 ) );
+        }
+
+        // null?
+        if ( code_point == 0 )
+        {
+            break;
+        }
+        // one byte UTF-8 character
+        else if ( code_point < 0x80 )
+        {
+            utf8.push_back( static_cast< unsigned char >( code_point ) );
+        }
+        // two byte UTF-8 character
+        else if  ( code_point < 0x800 )
+        {
+            utf8.push_back( static_cast< unsigned char >(
+                    0xC0 + ( code_point >> 6 ) ) );
+            utf8.push_back( static_cast< unsigned char >(
+                    0x80 + ( code_point & 0x3F ) ) );
+        }
+        // three byte UTF-8 character
+        else if ( code_point < 0x10000 )
+        {
+            utf8.push_back( static_cast< unsigned char >(
+                    0xE0 + ( code_point >> 12 ) ) );
+            utf8.push_back( static_cast< unsigned char >(
+                    0x80 + ( ( code_point >> 6 ) & 0x3F ) ) );
+            utf8.push_back( static_cast< unsigned char >(
+                    0x80 + ( code_point & 0x3F ) ) );
+        }
+        // four byte UTF-8 character
+        else
+        {
+            throw chaos::ex::NotImplementedError(
+                    "converting UTF-16 symbols with greater than 2 byte"
+                    "width to UTF-8 is not yet supported."
+            );
+        }
+    }
+
+    return chaos::uni::UTF8String( ( const char* ) &utf8[ 0 ], utf8.size() );
 }
 
 char* utf8_to_utf16(

@@ -36,12 +36,12 @@ bool is_digit( chaos::uint32 code_point );
  * \brief Converts the given data stream of UTF-16 encoded text to new
  *        chaos::uni::UTF8String.
  *
- * // TODO: not valid encoding?
- *
- * \param data UTF-16 string to convert to a chaos::uni::UTF8String.
+ * \param data UTF-16 string stored as 2-4 chars per symbol.
  * \param symbol_length The number of Unicode symbols in the input data. Note:
  *                      this is not the number of bytes in the data. If this
- *                      value is TODO: uni::npos
+ *                      parameter is set to chaos::uni::npos the length of the
+ *                      input will be calculated with the assumption it is NULL
+ *                      terminated.
  */
 chaos::uni::UTF8String utf16_to_utf8(
         const char* data,

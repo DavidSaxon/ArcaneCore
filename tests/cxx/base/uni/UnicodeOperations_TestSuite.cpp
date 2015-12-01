@@ -260,6 +260,59 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
 }
 
 //------------------------------------------------------------------------------
+//                                 UTF16 TO UTF8
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( utf16_to_utf8, UTF8ToUTF16Fixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking little endian conversion" );
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    {
+        chaos::uni::UTF8String u = chaos::uni::utf16_to_utf8(
+                ( const char* ) &fixture->little_endian[ i ][ 0 ],
+                ( fixture->lengths[ i ] / 2 ) - 1,
+                chaos::data::ENDIAN_LITTLE
+        );
+        CHAOS_CHECK_EQUAL( u, fixture->utf8[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE(
+            "Checking little endian conversion with NULL terminator" );
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    {
+        chaos::uni::UTF8String u = chaos::uni::utf16_to_utf8(
+                ( const char* ) &fixture->little_endian[ i ][ 0 ],
+                chaos::uni::npos,
+                chaos::data::ENDIAN_LITTLE
+        );
+        CHAOS_CHECK_EQUAL( u, fixture->utf8[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking big endian conversion" );
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    {
+        chaos::uni::UTF8String u = chaos::uni::utf16_to_utf8(
+                ( const char* ) &fixture->big_endian[ i ][ 0 ],
+                ( fixture->lengths[ i ] / 2 ) - 1,
+                chaos::data::ENDIAN_BIG
+        );
+        CHAOS_CHECK_EQUAL( u, fixture->utf8[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE(
+            "Checking big endian conversion with NULL terminator" );
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    {
+        chaos::uni::UTF8String u = chaos::uni::utf16_to_utf8(
+                ( const char* ) &fixture->big_endian[ i ][ 0 ],
+                chaos::uni::npos,
+                chaos::data::ENDIAN_BIG
+        );
+        CHAOS_CHECK_EQUAL( u, fixture->utf8[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                      JOIN
 //------------------------------------------------------------------------------
 
