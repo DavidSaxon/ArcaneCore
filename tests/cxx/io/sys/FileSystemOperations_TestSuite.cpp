@@ -624,16 +624,16 @@ CHAOS_TEST_UNIT_FIXTURE( list, ListFixture )
 
 
     CHAOS_TEST_MESSAGE( "Checking returned lengths" );
-    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( l[ i ].size(), fixture->results[ i ].size() );
     }
 
     CHAOS_TEST_MESSAGE( "Checking returned elements" );
-    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
     {
-        size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
-        for ( size_t j = 0; j < s; ++j )
+        std::size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
+        for ( std::size_t j = 0; j < s; ++j )
         {
             CHAOS_CHECK_EQUAL( l[ i ][ j ], fixture->results[ i ][ j ] );
         }
@@ -873,16 +873,16 @@ CHAOS_TEST_UNIT_FIXTURE( list_rec, ListRecFixture )
 
 
     CHAOS_TEST_MESSAGE( "Checking returned lengths" );
-    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( l[ i ].size(), fixture->results[ i ].size() );
     }
 
     CHAOS_TEST_MESSAGE( "Checking returned elements" );
-    for ( size_t i = 0; i < fixture->dirs.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
     {
-        size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
-        for ( size_t j = 0; j < s; ++j )
+        std::size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
+        for ( std::size_t j = 0; j < s; ++j )
         {
             CHAOS_CHECK_EQUAL( l[ i ][ j ], fixture->results[ i ][ j ] );
         }
@@ -1140,7 +1140,7 @@ public:
         // TODO: use hard-delete here when implemented
         CHAOS_FOR_EACH( it, valid )
         {
-            for( size_t i = it->get_length() - 1;
+            for( std::size_t i = it->get_length() - 1;
                  i > base_path.get_length();
                  --i )
             {

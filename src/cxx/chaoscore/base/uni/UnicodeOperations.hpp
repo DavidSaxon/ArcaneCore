@@ -45,7 +45,7 @@ bool is_digit( chaos::uint32 code_point );
  */
 chaos::uni::UTF8String utf16_to_utf8(
         const char* data,
-        size_t symbol_length,
+        std::size_t symbol_length,
         chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE );
 
 /*!
@@ -65,7 +65,7 @@ chaos::uni::UTF8String utf16_to_utf8(
  */
 char* utf8_to_utf16(
         const chaos::uni::UTF8String& data,
-        size_t& r_length,
+        std::size_t& r_length,
         chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE );
 
 /*!

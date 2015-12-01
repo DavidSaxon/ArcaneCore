@@ -118,7 +118,7 @@ bool Path::operator==( const Path& other ) const
     }
 
     // check each component
-    for ( size_t i = 0; i < m_components.size(); ++i )
+    for ( std::size_t i = 0; i < m_components.size(); ++i )
     {
         if ( m_components[ i ] != other.m_components [ i ] )
         {
@@ -140,7 +140,7 @@ bool Path::operator<( const Path& other ) const
     if ( m_components.size() == other.m_components.size() )
     {
         // perform check on each component
-        for ( size_t i = 0; i < m_components.size(); ++i )
+        for ( std::size_t i = 0; i < m_components.size(); ++i )
         {
             if ( m_components[ i ] != other.m_components[ i ] )
             {
@@ -154,12 +154,12 @@ bool Path::operator<( const Path& other ) const
     return m_components.size() < other.m_components.size();
 }
 
-chaos::uni::UTF8String& Path::operator[]( size_t index )
+chaos::uni::UTF8String& Path::operator[]( std::size_t index )
 {
     return m_components[ index ];
 }
 
-const chaos::uni::UTF8String& Path::operator[]( size_t index ) const
+const chaos::uni::UTF8String& Path::operator[]( std::size_t index ) const
 {
     return m_components[ index ];
 }
@@ -198,7 +198,7 @@ Path& Path::join( const chaos::uni::UTF8String& component )
     return *this;
 }
 
-void Path::insert( size_t index, const chaos::uni::UTF8String& component )
+void Path::insert( std::size_t index, const chaos::uni::UTF8String& component )
 {
     // check bounds
     if ( index > m_components.size() )
@@ -213,7 +213,7 @@ void Path::insert( size_t index, const chaos::uni::UTF8String& component )
     // new vector to contain components
     std::vector< chaos::uni::UTF8String > components;
     // copy with the insert
-    for ( size_t i = 0; i <= m_components.size(); ++i )
+    for ( std::size_t i = 0; i <= m_components.size(); ++i )
     {
         if ( i < index )
         {
@@ -237,7 +237,7 @@ void Path::clear()
     m_components.clear();
 }
 
-void Path::remove( size_t index )
+void Path::remove( std::size_t index )
 {
     // check bounds
     if ( index >= m_components.size() )
@@ -252,7 +252,7 @@ void Path::remove( size_t index )
     // new vector to contain components
     std::vector< chaos::uni::UTF8String > components;
     // copy with the remove
-    for ( size_t i = 0; i < m_components.size(); ++i )
+    for ( std::size_t i = 0; i < m_components.size(); ++i )
     {
         if ( i < index )
         {
@@ -312,7 +312,7 @@ chaos::uni::UTF8String Path::to_windows() const
 
 //----------------------------------ACCESSORS-----------------------------------
 
-size_t Path::get_length() const
+std::size_t Path::get_length() const
 {
     return m_components.size();
 }
@@ -328,7 +328,7 @@ chaos::uni::UTF8String Path::get_extension() const
     if ( !m_components.empty() )
     {
         // does the final component contain a period?
-        size_t loc = m_components.back().find_last( "." );
+        std::size_t loc = m_components.back().find_last( "." );
         if ( loc != chaos::uni::npos )
         {
             // return the extension substring

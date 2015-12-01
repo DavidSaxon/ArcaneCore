@@ -24,11 +24,11 @@ public:
     // cstrings
     std::vector< const char* > cstrings;
     // lengths
-    std::vector< size_t > lengths;
+    std::vector< std::size_t > lengths;
     // utf8strings
     std::vector< chaos::uni::UTF8String > utf8_strings;
     // symbols
-    std::vector< std::map< size_t, chaos::uni::UTF8String > > symbols;
+    std::vector< std::map< std::size_t, chaos::uni::UTF8String > > symbols;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -38,14 +38,14 @@ public:
         cstrings.push_back( "" );
         lengths.push_back( 0 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbols.push_back( symbol_map );
         }
 
         cstrings.push_back( "Hello World" );
         lengths.push_back( 11 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbol_map[ 0  ] = chaos::uni::UTF8String( "H" );
             symbol_map[ 3  ] = chaos::uni::UTF8String( "l" );
             symbol_map[ 7  ] = chaos::uni::UTF8String( "o" );
@@ -56,7 +56,7 @@ public:
         cstrings.push_back( "a" );
         lengths.push_back( 1 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbol_map[ 0 ] = chaos::uni::UTF8String( "a" );
             symbols.push_back( symbol_map );
         }
@@ -68,7 +68,7 @@ public:
                             "end!\n\n\n\t\t\t" );
         lengths.push_back( 194 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbol_map[ 0   ] = chaos::uni::UTF8String( "T" );
             symbol_map[ 5   ] = chaos::uni::UTF8String( "i" );
             symbol_map[ 34  ] = chaos::uni::UTF8String( " " );
@@ -85,7 +85,7 @@ public:
         cstrings.push_back( "γειά σου Κόσμε" );
         lengths.push_back( 14 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbol_map[ 0  ] = chaos::uni::UTF8String( "γ" );
             symbol_map[ 1  ] = chaos::uni::UTF8String( "ε" );
             symbol_map[ 5  ] = chaos::uni::UTF8String( "σ" );
@@ -98,7 +98,7 @@ public:
         cstrings.push_back( "this is a مزيج of text" );
         lengths.push_back( 22 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbol_map[ 0  ] = chaos::uni::UTF8String( "t" );
             symbol_map[ 2  ] = chaos::uni::UTF8String( "i" );
             symbol_map[ 9  ] = chaos::uni::UTF8String( " " );
@@ -114,7 +114,7 @@ public:
         cstrings.push_back( "간" );
         lengths.push_back( 1 );
         {
-            std::map< size_t, chaos::uni::UTF8String > symbol_map;
+            std::map< std::size_t, chaos::uni::UTF8String > symbol_map;
             symbol_map[ 0  ] = chaos::uni::UTF8String( "간" );
             symbols.push_back( symbol_map );
         }
@@ -235,8 +235,8 @@ public:
 
     std::vector< chaos::uni::UTF8String > strings;
     std::vector< chaos::uni::UTF8String > find;
-    std::vector< size_t > first_results;
-    std::vector< size_t > last_results;
+    std::vector< std::size_t > first_results;
+    std::vector< std::size_t > last_results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -390,8 +390,14 @@ public:
 CHAOS_TEST_UNIT( default_constructor )
 {
     chaos::uni::UTF8String empty;
-    CHAOS_CHECK_EQUAL( empty.get_length(), static_cast< size_t >( 0 ) );
-    CHAOS_CHECK_EQUAL( empty.get_byte_length(), static_cast< size_t >( 1 ) );
+    CHAOS_CHECK_EQUAL(
+            empty.get_length(),
+            static_cast< std::size_t >( 0 )
+    );
+    CHAOS_CHECK_EQUAL(
+            empty.get_byte_length(),
+            static_cast< std::size_t >( 1 )
+    );
 }
 
 //------------------------------------------------------------------------------
@@ -445,20 +451,20 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
 {
     // populate strings to assign to
     std::vector< chaos::uni::UTF8String > assigns;
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         assigns.push_back( "data will be overridden" );
     }
 
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         chaos::uni::UTF8String r = assigns[ i ] = fixture->utf8_strings[ i ];
         CHAOS_CHECK_EQUAL( r, assigns[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking length" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 assigns[ i ].get_byte_length(),
@@ -471,7 +477,7 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking contents match" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( assigns[ i ], fixture->utf8_strings[ i ] );
     }
@@ -484,14 +490,14 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking from literal data" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         chaos::uni::UTF8String v( fixture->cstrings[ i ] );
         CHAOS_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking from copy constructor" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         chaos::uni::UTF8String v( fixture->utf8_strings[ i ] );
         CHAOS_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
@@ -505,14 +511,14 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking from literal data" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         chaos::uni::UTF8String v( "this שטריקל is not the same" );
         CHAOS_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking from copy constructor" );
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         chaos::uni::UTF8String org( "this שטריקל is not the same" );
         chaos::uni::UTF8String v( org );
@@ -563,23 +569,23 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking less than cases" );
-    for ( size_t i = 0; i < fixture->less.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->less.size(); ++i )
     {
         CHAOS_CHECK_TRUE( fixture->less[ i ] < fixture->more[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking greater than cases" );
-    for ( size_t i = 0; i < fixture->less.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->less.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking equals cases" );
-    for ( size_t i = 0; i < fixture->less.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->less.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->less[ i ] < fixture->less[ i ] );
     }
-    for ( size_t i = 0; i < fixture->more.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->more.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->more[ i ] );
     }
@@ -592,7 +598,7 @@ CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 CHAOS_TEST_UNIT_FIXTURE( addition_operator, ConcatenateFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] + fixture->comp_2[ i ],
@@ -608,7 +614,7 @@ CHAOS_TEST_UNIT_FIXTURE( addition_operator, ConcatenateFixture )
 CHAOS_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] += fixture->comp_2[ i ],
@@ -617,7 +623,7 @@ CHAOS_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -630,7 +636,7 @@ CHAOS_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
 CHAOS_TEST_UNIT_FIXTURE( multiplication_operator, RepeatFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp[ i ] * fixture->count[ i ],
@@ -646,7 +652,7 @@ CHAOS_TEST_UNIT_FIXTURE( multiplication_operator, RepeatFixture )
 CHAOS_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp[ i ] *= fixture->count[ i ],
@@ -655,7 +661,7 @@ CHAOS_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
     }
@@ -668,7 +674,7 @@ CHAOS_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
 CHAOS_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -677,7 +683,7 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -690,7 +696,7 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
 CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ].get_raw(),
@@ -699,7 +705,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -712,7 +718,7 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
 CHAOS_TEST_UNIT_FIXTURE( stdstring_stream_operator, ConcatenateFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ].to_std_string(),
@@ -721,7 +727,7 @@ CHAOS_TEST_UNIT_FIXTURE( stdstring_stream_operator, ConcatenateFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -766,7 +772,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( bool_stream_operator, BoolStreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -775,7 +781,7 @@ CHAOS_TEST_UNIT_FIXTURE( bool_stream_operator, BoolStreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -820,7 +826,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( char_stream_operator, CharStreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -829,7 +835,7 @@ CHAOS_TEST_UNIT_FIXTURE( char_stream_operator, CharStreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -874,7 +880,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( int8_stream_operator, Int8StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -883,7 +889,7 @@ CHAOS_TEST_UNIT_FIXTURE( int8_stream_operator, Int8StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -928,7 +934,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( uint8_stream_operator, Uint8StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -937,7 +943,7 @@ CHAOS_TEST_UNIT_FIXTURE( uint8_stream_operator, Uint8StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -982,7 +988,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( int16_stream_operator, Int16StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -991,7 +997,7 @@ CHAOS_TEST_UNIT_FIXTURE( int16_stream_operator, Int16StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1036,7 +1042,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( uint16_stream_operator, Uint16StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -1045,7 +1051,7 @@ CHAOS_TEST_UNIT_FIXTURE( uint16_stream_operator, Uint16StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1090,7 +1096,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( int32_stream_operator, Int32StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -1099,7 +1105,7 @@ CHAOS_TEST_UNIT_FIXTURE( int32_stream_operator, Int32StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1144,7 +1150,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( uint32_stream_operator, Uint32StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -1153,7 +1159,7 @@ CHAOS_TEST_UNIT_FIXTURE( uint32_stream_operator, Uint32StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1198,7 +1204,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( int64_stream_operator, Int64StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -1207,7 +1213,7 @@ CHAOS_TEST_UNIT_FIXTURE( int64_stream_operator, Int64StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1252,7 +1258,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
@@ -1261,7 +1267,7 @@ CHAOS_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1321,7 +1327,7 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_assign, UTF8StringGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( concatenate, ConcatenateFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp_1[ i ].concatenate( fixture->comp_2[ i ] ),
@@ -1330,7 +1336,7 @@ CHAOS_TEST_UNIT_FIXTURE( concatenate, ConcatenateFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp_1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
@@ -1343,7 +1349,7 @@ CHAOS_TEST_UNIT_FIXTURE( concatenate, ConcatenateFixture )
 CHAOS_TEST_UNIT_FIXTURE( repeat, RepeatFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking return value" );
-    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->comp[ i ].repeat( fixture->count[ i ] ),
@@ -1352,7 +1358,7 @@ CHAOS_TEST_UNIT_FIXTURE( repeat, RepeatFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking in place modification" );
-    for ( size_t i = 0; i < fixture->comp.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
     }
@@ -1406,7 +1412,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( starts_with, StartsWithFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking true cases" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_TRUE(
                 fixture->strings[ i ].starts_with( fixture->starts_with[ i ] )
@@ -1414,7 +1420,7 @@ CHAOS_TEST_UNIT_FIXTURE( starts_with, StartsWithFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking false cases" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->strings[ i ].starts_with(
                 fixture->not_starts_with[ i ] ) );
@@ -1469,7 +1475,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking true cases" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_TRUE(
                 fixture->strings[ i ].ends_with( fixture->ends_with[ i ] )
@@ -1477,7 +1483,7 @@ CHAOS_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking false cases" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->strings[ i ].ends_with(
                 fixture->not_ends_with[ i ] ) );
@@ -1490,7 +1496,7 @@ CHAOS_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( find_first, FindFixture )
 {
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->strings[ i ].find_first( fixture->find[ i ] ),
@@ -1505,7 +1511,7 @@ CHAOS_TEST_UNIT_FIXTURE( find_first, FindFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( find_last, FindFixture )
 {
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->strings[ i ].find_last( fixture->find[ i ] ),
@@ -1600,7 +1606,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
 {
     std::vector< std::vector< chaos::uni::UTF8String > > all_elements;
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         std::vector< chaos::uni::UTF8String > elements =
                 fixture->strings[ i ].split( fixture->delimiters[ i ] );
@@ -1608,7 +1614,7 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking elements length" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 all_elements[ i ].size(),
@@ -1617,14 +1623,14 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking elements contents" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        size_t check_count = std::min(
+        std::size_t check_count = std::min(
                 all_elements[ i ].size(),
                 fixture->results[ i ].size()
         );
 
-        for ( size_t j = 0; j < check_count; ++j )
+        for ( std::size_t j = 0; j < check_count; ++j )
         {
             CHAOS_CHECK_EQUAL(
                     all_elements[ i ][ j ],
@@ -1705,7 +1711,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( remove_duplicates, RemoveDuplicatesFixture )
 {
-    for( size_t i = 0; i < fixture->inputs.size(); ++i )
+    for( std::size_t i = 0; i < fixture->inputs.size(); ++i )
     {
         fixture->inputs[ i ].remove_duplicates( fixture->substrings[ i ] );
         CHAOS_CHECK_EQUAL(
@@ -1765,13 +1771,13 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( is_int, IsIntFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking true cases" );
-    for ( size_t i = 0; i < fixture->ints.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->ints.size(); ++i )
     {
         CHAOS_CHECK_TRUE( fixture->ints[ i ].is_int() );
     }
 
     CHAOS_TEST_MESSAGE( "Checking false cases" );
-    for ( size_t i = 0; i < fixture->not_ints.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->not_ints.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->not_ints[ i ].is_int() );
     }
@@ -1825,13 +1831,13 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( is_uint, IsUintFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking true cases" );
-    for ( size_t i = 0; i < fixture->uints.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->uints.size(); ++i )
     {
         CHAOS_CHECK_TRUE( fixture->uints[ i ].is_uint() );
     }
 
     CHAOS_TEST_MESSAGE( "Checking false cases" );
-    for ( size_t i = 0; i < fixture->not_uints.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->not_uints.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->not_uints[ i ].is_uint() );
     }
@@ -1888,13 +1894,13 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( is_float, IsFloatFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking true cases" );
-    for ( size_t i = 0; i < fixture->floats.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->floats.size(); ++i )
     {
         CHAOS_CHECK_TRUE( fixture->floats[ i ].is_float() );
     }
 
     CHAOS_TEST_MESSAGE( "Checking false cases" );
-    for ( size_t i = 0; i < fixture->not_floats.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->not_floats.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->not_floats[ i ].is_float() );
     }
@@ -1911,10 +1917,10 @@ public:
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     std::vector< chaos::uni::UTF8String > strings;
-    std::vector< size_t >                 indices;
-    std::vector< size_t >                 lengths;
+    std::vector< std::size_t >                 indices;
+    std::vector< std::size_t >                 lengths;
     std::vector< chaos::uni::UTF8String > results;
-    std::vector< size_t >                 out_of_bounds;
+    std::vector< std::size_t >                 out_of_bounds;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1961,7 +1967,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking values" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->strings[ i ].substring(
@@ -1972,7 +1978,7 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_THROW(
                 fixture->strings[ i ].substring(
@@ -1989,7 +1995,7 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( to_std_string, UTF8StringGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].to_std_string(),
@@ -2065,7 +2071,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( to_bool, ToBoolFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking valid cases" );
-    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->valid[ i ].to_bool(),
@@ -2153,7 +2159,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( to_int32, ToInt32Fixture )
 {
     CHAOS_TEST_MESSAGE( "Checking valid cases" );
-    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->valid[ i ].to_int32(),
@@ -2240,7 +2246,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( to_uint32, ToUint32Fixture )
 {
     CHAOS_TEST_MESSAGE( "Checking valid cases" );
-    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->valid[ i ].to_uint32(),
@@ -2262,7 +2268,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_uint32, ToUint32Fixture )
 CHAOS_TEST_UNIT_FIXTURE( to_int64, ToInt32Fixture )
 {
     CHAOS_TEST_MESSAGE( "Checking valid cases" );
-    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->valid[ i ].to_int64(),
@@ -2284,7 +2290,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_int64, ToInt32Fixture )
 CHAOS_TEST_UNIT_FIXTURE( to_uint64, ToUint32Fixture )
 {
     CHAOS_TEST_MESSAGE( "Checking valid cases" );
-    for ( size_t i = 0; i < fixture->valid.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->valid[ i ].to_uint64(),
@@ -2305,7 +2311,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_uint64, ToUint32Fixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].get_length(),
@@ -2353,7 +2359,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
 {
-    for ( size_t i = 0; i < fixture->strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->strings[ i ].is_empty(),
@@ -2368,7 +2374,7 @@ CHAOS_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_FOR_EACH( it, fixture->symbols[ i ] )
         {
@@ -2479,7 +2485,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( get_symbol_value, GetSymbolValueFixture )
 {
-    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->symbols.get_symbol_value( i ),
@@ -2587,7 +2593,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
 {
-    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->symbols.get_code_point( i ),
@@ -2603,7 +2609,7 @@ CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
 CHAOS_TEST_UNIT_FIXTURE( get_byte_index_for_symbol_index, IndexFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking values" );
-    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->symbols.get_byte_index_for_symbol_index( i ),
@@ -2715,7 +2721,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking values" );
-    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->symbols.get_symbol_width( i ),
@@ -2736,7 +2742,7 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_raw, UTF8StringGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( strcmp(
                 fixture->utf8_strings[ i ].get_raw(),
@@ -2751,7 +2757,7 @@ CHAOS_TEST_UNIT_FIXTURE( get_raw, UTF8StringGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_byte_length, UTF8StringGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->utf8_strings.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].get_byte_length(),
@@ -2767,8 +2773,8 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_length, UTF8StringGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking values" );
-    size_t symbol_index = 0;
-    for ( size_t i = 0; i < fixture->symbols.get_byte_length() - 1; ++i )
+    std::size_t symbol_index = 0;
+    for ( std::size_t i = 0; i < fixture->symbols.get_byte_length() - 1; ++i )
     {
         if ( symbol_index < fixture->symbols.get_length() - 1 &&
              i >= fixture->byte_indices[ symbol_index + 1 ] )
@@ -2796,9 +2802,9 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
 CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking values" );
-    for ( size_t i = 0; i < fixture->symbols.get_length(); ++i )
+    for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
-        size_t byte_index =
+        std::size_t byte_index =
                 fixture->symbols.get_byte_index_for_symbol_index( i );
 
         CHAOS_CHECK_EQUAL(

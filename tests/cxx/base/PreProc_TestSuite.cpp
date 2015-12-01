@@ -27,10 +27,10 @@ public:
     /*!
      * Returns a vector of the given length populated with random integers.
      */
-    std::vector< chaos::int32 > getIntVector( size_t length )
+    std::vector< chaos::int32 > getIntVector( std::size_t length )
     {
         std::vector< chaos::int32 > v;
-        for ( size_t i = 0; i < length; ++i )
+        for ( std::size_t i = 0; i < length; ++i )
         {
             v.push_back( ( rand() % 200 ) - 50 );
         }
@@ -53,7 +53,7 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     CHAOS_CHECK_EQUAL( v1.size(), v2.size() );
 
     CHAOS_TEST_MESSAGE( "Checking each value is iterated" );
-    size_t counter = 0;
+    std::size_t counter = 0;
     CHAOS_FOR_EACH( v_it_2, v1 )
     {
         ++counter;
@@ -61,7 +61,7 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     CHAOS_CHECK_EQUAL( counter, v1.size() );
 
     CHAOS_TEST_MESSAGE( "Checking correct for each assigned contents" );
-    for( size_t i = 0; i < v1.size(); ++i )
+    for( std::size_t i = 0; i < v1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] );
     }
@@ -71,19 +71,19 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     {
         *v_it_3 = *v_it_3 + 1;
     }
-    for( size_t i = 0; i < v1.size(); ++i )
+    for( std::size_t i = 0; i < v1.size(); ++i )
     {
         CHAOS_CHECK_EQUAL( v1[ i ], v2[ i ] + 1 );
     }
 
     CHAOS_TEST_MESSAGE( "Checking const-ness" );
-    size_t v1_total = 0;
+    std::size_t v1_total = 0;
     CHAOS_FOR_EACH( v_it_4, v1 )
     {
         v1_total += *v_it_4;
     }
     const std::vector< chaos::int32 > const_v1( v1 );
-    size_t const_v1_total = 0;
+    std::size_t const_v1_total = 0;
     CHAOS_FOR_EACH( v_it_5, v1 )
     {
         const_v1_total += *v_it_5;

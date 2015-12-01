@@ -10,18 +10,14 @@
 
     #include <cstring>
     #include <dirent.h>
-    #include <errno.h>
+    #include <cerrno>
     #include <unistd.h>
-
 
 #elif defined( CHAOS_OS_WINDOWS )
 
     #include <windows.h>
 
 #endif
-
-// TODO: REMOVE ME
-#include <iostream>
 
 namespace chaos
 {
@@ -58,7 +54,7 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
 #elif defined( CHAOS_OS_WINDOWS )
 
     // utf-16
-    size_t length = 0;
+    std::size_t length = 0;
     const char* p = chaos::uni::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
@@ -114,7 +110,7 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
 #elif defined( CHAOS_OS_WINDOWS )
 
     // utf-16
-    size_t length = 0;
+    std::size_t length = 0;
     const char* p = chaos::uni::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
@@ -173,7 +169,7 @@ bool is_directory(
 #elif defined( CHAOS_OS_WINDOWS )
 
     // utf-16
-    size_t length = 0;
+    std::size_t length = 0;
     const char* p = chaos::uni::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
@@ -272,7 +268,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     u += "*";
 
     // utf-16
-    size_t length = 0;
+    std::size_t length = 0;
     const char* p = chaos::uni::utf8_to_utf16(
             u,
             length,
@@ -383,7 +379,7 @@ void validate( const chaos::io::sys::Path& path )
     }
 
     // iterate over the path ensuring each path exists
-    for ( size_t i = 1; i < path.get_length(); ++i )
+    for ( std::size_t i = 1; i < path.get_length(); ++i )
     {
         chaos::io::sys::Path p(
                 path.get_components().begin(),

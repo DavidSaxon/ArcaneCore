@@ -1,5 +1,6 @@
-\hypertarget{namespacechaos_1_1uni}{}\section{chaos\+:\+:uni Namespace Reference}
-\label{namespacechaos_1_1uni}\index{chaos\+::uni@{chaos\+::uni}}
+\hypertarget{namespacechaos_1_1uni}{\section{chaos\-:\-:uni Namespace Reference}
+\label{namespacechaos_1_1uni}\index{chaos\-::uni@{chaos\-::uni}}
+}
 
 
 Module for Unicode related classes and operations.  
@@ -8,89 +9,119 @@ Module for Unicode related classes and operations.
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\+T\+F8\+String}
-\begin{DoxyCompactList}\small\item\em A string type designed for storing and manipulating U\+T\+F-\/8 encoded text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\-T\-F8\-String}
+\begin{DoxyCompactList}\small\item\em A string type designed for storing and manipulating U\-T\-F-\/8 encoded text. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{is\+\_\+digit} (\hyperlink{namespacechaos_a3b3a47ba1e284655bf1a30c441121c60}{chaos\+::uint32} code\+\_\+point)
+bool \hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{is\-\_\-digit} (\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} code\-\_\-point)
 \begin{DoxyCompactList}\small\item\em Returns whether the given Unicode code point is a digit or not. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{utf8\+\_\+to\+\_\+utf16} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \&data, size\+\_\+t \&r\+\_\+length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\+::data\+::\+Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\+::data\+::\+E\+N\+D\+I\+A\+N\+\_\+\+L\+I\+T\+T\+L\+E})
-\begin{DoxyCompactList}\small\item\em Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} encoded data to a new c style string of U\+T\+F-\/16 encoded data. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \hyperlink{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}{join} (const std\+::vector$<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} $>$ \&components, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} \&separator)
-\begin{DoxyCompactList}\small\item\em Joins the given vector into a single \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String}. \end{DoxyCompactList}\item 
-\hypertarget{namespacechaos_1_1uni_ab20a8223562ec1ee8f663bda07c7a3ad}{}std\+::ostream \& {\bfseries operator$<$$<$} (std\+::ostream \&stream, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\+T\+F8\+String} \&s)\label{namespacechaos_1_1uni_ab20a8223562ec1ee8f663bda07c7a3ad}
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1uni_a5cf55ebf5dfcdef4398023f15b673e1c}{utf16\-\_\-to\-\_\-utf8} (const char $\ast$data, size\-\_\-t symbol\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
+\begin{DoxyCompactList}\small\item\em Converts the given data stream of U\-T\-F-\/16 encoded text to new \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{utf8\-\_\-to\-\_\-utf16} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&data, size\-\_\-t \&r\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
+\begin{DoxyCompactList}\small\item\em Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} encoded data to a new c style string of U\-T\-F-\/16 encoded data. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}{join} (const std\-::vector$<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} $>$ \&components, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&separator)
+\begin{DoxyCompactList}\small\item\em Joins the given vector into a single \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \end{DoxyCompactList}\item 
+\hypertarget{namespacechaos_1_1uni_ab20a8223562ec1ee8f663bda07c7a3ad}{std\-::ostream \& {\bfseries operator$<$$<$} (std\-::ostream \&stream, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\-T\-F8\-String} \&s)}\label{namespacechaos_1_1uni_ab20a8223562ec1ee8f663bda07c7a3ad}
 
 \end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacechaos_1_1uni_af28f3dcb2b4845d8a39b3d16e86c174b}{const std\-::size\-\_\-t \hyperlink{namespacechaos_1_1uni_af28f3dcb2b4845d8a39b3d16e86c174b}{npos}}\label{namespacechaos_1_1uni_af28f3dcb2b4845d8a39b3d16e86c174b}
+
+\begin{DoxyCompactList}\small\item\em Value used to signify an invalid Unicode based index. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Module for Unicode related classes and operations. 
 
 \subsection{Function Documentation}
-\hypertarget{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{}\index{chaos\+::uni@{chaos\+::uni}!is\+\_\+digit@{is\+\_\+digit}}
-\index{is\+\_\+digit@{is\+\_\+digit}!chaos\+::uni@{chaos\+::uni}}
-\subsubsection[{is\+\_\+digit(chaos\+::uint32 code\+\_\+point)}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\+::uni\+::is\+\_\+digit (
+\hypertarget{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{\index{chaos\-::uni@{chaos\-::uni}!is\-\_\-digit@{is\-\_\-digit}}
+\index{is\-\_\-digit@{is\-\_\-digit}!chaos::uni@{chaos\-::uni}}
+\subsubsection[{is\-\_\-digit}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::uni\-::is\-\_\-digit (
 \begin{DoxyParamCaption}
-\item[{{\bf chaos\+::uint32}}]{code\+\_\+point}
+\item[{{\bf chaos\-::uint32}}]{code\-\_\-point}
 \end{DoxyParamCaption}
-)}\label{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}
+)}}\label{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}
 
 
 Returns whether the given Unicode code point is a digit or not. 
 
-Example usage\+:
+Example usage\-:
 
 
 \begin{DoxyCode}
 \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} s( \textcolor{stringliteral}{"5"} );
 \hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{chaos::uni::is\_digit}( s.\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string_a0032f18868d33ca5f5855657c4d2d147}{get\_code\_point}( 0 ) ); \textcolor{comment}{// returns: true}
 \end{DoxyCode}
- \hypertarget{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{}\index{chaos\+::uni@{chaos\+::uni}!utf8\+\_\+to\+\_\+utf16@{utf8\+\_\+to\+\_\+utf16}}
-\index{utf8\+\_\+to\+\_\+utf16@{utf8\+\_\+to\+\_\+utf16}!chaos\+::uni@{chaos\+::uni}}
-\subsubsection[{utf8\+\_\+to\+\_\+utf16(const chaos\+::uni\+::\+U\+T\+F8\+String \&data, size\+\_\+t \&r\+\_\+length, chaos\+::data\+::\+Endianness endianness=chaos\+::data\+::\+E\+N\+D\+I\+A\+N\+\_\+\+L\+I\+T\+T\+L\+E)}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ chaos\+::uni\+::utf8\+\_\+to\+\_\+utf16 (
+ \hypertarget{namespacechaos_1_1uni_a5cf55ebf5dfcdef4398023f15b673e1c}{\index{chaos\-::uni@{chaos\-::uni}!utf16\-\_\-to\-\_\-utf8@{utf16\-\_\-to\-\_\-utf8}}
+\index{utf16\-\_\-to\-\_\-utf8@{utf16\-\_\-to\-\_\-utf8}!chaos::uni@{chaos\-::uni}}
+\subsubsection[{utf16\-\_\-to\-\_\-utf8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\-::uni\-::\-U\-T\-F8\-String} chaos\-::uni\-::utf16\-\_\-to\-\_\-utf8 (
 \begin{DoxyParamCaption}
-\item[{const {\bf chaos\+::uni\+::\+U\+T\+F8\+String} \&}]{data, }
-\item[{size\+\_\+t \&}]{r\+\_\+length, }
-\item[{{\bf chaos\+::data\+::\+Endianness}}]{endianness = {\ttfamily {\bf chaos\+::data\+::\+E\+N\+D\+I\+A\+N\+\_\+\+L\+I\+T\+T\+L\+E}}}
+\item[{const char $\ast$}]{data, }
+\item[{size\-\_\-t}]{symbol\-\_\-length, }
+\item[{{\bf chaos\-::data\-::\-Endianness}}]{endianness = {\ttfamily {\bf chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E}}}
 \end{DoxyParamCaption}
-)}\label{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}
+)}}\label{namespacechaos_1_1uni_a5cf55ebf5dfcdef4398023f15b673e1c}
 
 
-Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} encoded data to a new c style string of U\+T\+F-\/16 encoded data. 
+Converts the given data stream of U\-T\-F-\/16 encoded text to new \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. 
 
-The resulting U\+T\+F-\/16 data will be null terminated with {\ttfamily 0x00}, {\ttfamily 0x00}.
+// T\-O\-D\-O\-: not valid encoding?
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & U\-T\-F-\/16 string to convert to a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \\
+\hline
+{\em symbol\-\_\-length} & The number of Unicode symbols in the input data. Note\-: this is not the number of bytes in the data. If this value is T\-O\-D\-O\-: \hyperlink{namespacechaos_1_1uni_af28f3dcb2b4845d8a39b3d16e86c174b}{uni\-::npos} \\
+\hline
+\end{DoxyParams}
+\hypertarget{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{\index{chaos\-::uni@{chaos\-::uni}!utf8\-\_\-to\-\_\-utf16@{utf8\-\_\-to\-\_\-utf16}}
+\index{utf8\-\_\-to\-\_\-utf16@{utf8\-\_\-to\-\_\-utf16}!chaos::uni@{chaos\-::uni}}
+\subsubsection[{utf8\-\_\-to\-\_\-utf16}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ chaos\-::uni\-::utf8\-\_\-to\-\_\-utf16 (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::uni\-::\-U\-T\-F8\-String} \&}]{data, }
+\item[{size\-\_\-t \&}]{r\-\_\-length, }
+\item[{{\bf chaos\-::data\-::\-Endianness}}]{endianness = {\ttfamily {\bf chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E}}}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}
+
+
+Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} encoded data to a new c style string of U\-T\-F-\/16 encoded data. 
+
+The resulting U\-T\-F-\/16 data will be null terminated with {\ttfamily 0x00}, {\ttfamily 0x00}.
 
 \begin{DoxyWarning}{Warning}
 This operation allocates a new char array that must be deleted.
 \end{DoxyWarning}
 
 \begin{DoxyParams}{Parameters}
-{\em data} & \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\+T\+F8\+String} object to convert to a c style string of U\+T\+F-\/16 encoded data. \\
+{\em data} & \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\-T\-F8\-String} object to convert to a c style string of U\-T\-F-\/16 encoded data. \\
 \hline
-{\em r\+\_\+length} & Returns the length of the new U\+T\+F-\/16 encoded string in bytes. \\
+{\em r\-\_\-length} & Returns the length of the new U\-T\-F-\/16 encoded string in bytes. \\
 \hline
-{\em endianness} & The endian to use for the U\+T\+F-\/16 encoding, defaults to little endian. \\
+{\em endianness} & The endian to use for the U\-T\-F-\/16 encoding, defaults to little endian. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Newly allocated U\+T\+F-\/16 encoded string. 
+Newly allocated U\-T\-F-\/16 encoded string. 
 \end{DoxyReturn}
-\hypertarget{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}{}\index{chaos\+::uni@{chaos\+::uni}!join@{join}}
-\index{join@{join}!chaos\+::uni@{chaos\+::uni}}
-\subsubsection[{join(const std\+::vector$<$ chaos\+::uni\+::\+U\+T\+F8\+String $>$ \&components, const chaos\+::uni\+::\+U\+T\+F8\+String \&separator)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\+::uni\+::\+U\+T\+F8\+String} chaos\+::uni\+::join (
+\hypertarget{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}{\index{chaos\-::uni@{chaos\-::uni}!join@{join}}
+\index{join@{join}!chaos::uni@{chaos\-::uni}}
+\subsubsection[{join}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\-::uni\-::\-U\-T\-F8\-String} chaos\-::uni\-::join (
 \begin{DoxyParamCaption}
-\item[{const std\+::vector$<$ {\bf chaos\+::uni\+::\+U\+T\+F8\+String} $>$ \&}]{components, }
-\item[{const {\bf chaos\+::uni\+::\+U\+T\+F8\+String} \&}]{separator}
+\item[{const std\-::vector$<$ {\bf chaos\-::uni\-::\-U\-T\-F8\-String} $>$ \&}]{components, }
+\item[{const {\bf chaos\-::uni\-::\-U\-T\-F8\-String} \&}]{separator}
 \end{DoxyParamCaption}
-)}\label{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}
+)}}\label{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}
 
 
-Joins the given vector into a single \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String}. 
+Joins the given vector into a single \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. 
 
 The components of the vector will be concatenated together with the separator string between each component.
 
-Example usage\+:
+Example usage\-:
 
 
 \begin{DoxyCode}
@@ -105,9 +136,9 @@ components.push\_back( \textcolor{stringliteral}{"World"} );
 \begin{DoxyParams}{Parameters}
 {\em components} & Vector of string components to join together as a single string. \\
 \hline
-{\em separator} & \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} to join each component together with. \\
+{\em separator} & \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} to join each component together with. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-New \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\+::uni\+::\+U\+T\+F8\+String} containing the results of the operation. 
+New \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} containing the results of the operation. 
 \end{DoxyReturn}

@@ -1,7 +1,7 @@
 var searchData=
 [
   ['operator_21_3d',['operator!=',['../classchaos_1_1uni_1_1_u_t_f8_string.html#ad2a48c9e0d16c41b64efae5b3c02d0a0',1,'chaos::uni::UTF8String::operator!=()'],['../classchaos_1_1io_1_1sys_1_1_path.html#acd6dea0a797c0307179a5523239a299a',1,'chaos::io::sys::Path::operator!=()']]],
-  ['operator_22_22_5futf8',['operator&quot;&quot;_utf8',['../namespacechaos_1_1literal.html#a07ff12ff0e49317fe54b9c14b65e902c',1,'chaos::literal']]],
+  ['operator_22_22_5futf8',['operator&quot;&quot;_utf8',['../namespacechaos_1_1literal.html#a0973a05858a2067e5654ea46423c350f',1,'chaos::literal']]],
   ['operator_2a',['operator*',['../classchaos_1_1uni_1_1_u_t_f8_string.html#ae281a6e92025aee3b31442574c3b335e',1,'chaos::uni::UTF8String']]],
   ['operator_2a_3d',['operator*=',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a58a3e44978ba53fc9430e7361f36cec3',1,'chaos::uni::UTF8String']]],
   ['operator_2b',['operator+',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a5fe1d0226ef6cb5517a57feb1b7f2170',1,'chaos::uni::UTF8String::operator+()'],['../classchaos_1_1io_1_1sys_1_1_path.html#a5e769fd87717e15f0580e9aacbc0a418',1,'chaos::io::sys::Path::operator+()']]],

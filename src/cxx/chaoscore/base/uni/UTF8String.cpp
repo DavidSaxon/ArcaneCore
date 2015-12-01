@@ -4,7 +4,6 @@
 #include <cstddef>
 #include <cstring>
 #include <sstream>
-#include <stdarg.h>
 
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/data/ByteOperations.hpp"
@@ -39,7 +38,7 @@ UTF8String::UTF8String( const char* data )
     assign_internal( data );
 }
 
-UTF8String::UTF8String( const char* data, size_t length )
+UTF8String::UTF8String( const char* data, std::size_t length )
     :
     m_data       ( nullptr ),
     m_data_length( 0 ),
@@ -96,7 +95,9 @@ bool UTF8String::operator<( const UTF8String& other ) const
 {
     // iterate over each code point until we find one that is less than the
     // other
-    for ( size_t i = 0; i < std::min( get_length(), other.get_length() ); ++i )
+    for ( std::size_t i = 0;
+          i < std::min( get_length(), other.get_length() );
+          ++i )
     {
         // do a straight comparison on each code point until we find a character
         // that is less than
@@ -251,7 +252,7 @@ void UTF8String::assign( const char* data )
     assign_internal( data );
 }
 
-void UTF8String::assign( const char* data, size_t length )
+void UTF8String::assign( const char* data, std::size_t length )
 {
     assign_internal( data, length );
 }
@@ -265,7 +266,7 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
 {
     // calculate the new size of the data (but remove the first string's NULL
     // terminator)
-    size_t new_length = ( m_data_length - 1 ) + other.m_data_length;
+    std::size_t new_length = ( m_data_length - 1 ) + other.m_data_length;
     // allocate a new array to hold the increase data size, ignoring one of the
     // NULL terminators
     char* new_data = new char[ new_length ];
@@ -283,13 +284,13 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
 
 UTF8String& UTF8String::repeat( chaos::uint32 count )
 {
-    size_t c_length = m_data_length - 1;
+    std::size_t c_length = m_data_length - 1;
     // calculate the new length
-    size_t new_length = ( c_length * count ) + 1;
+    std::size_t new_length = ( c_length * count ) + 1;
     // allocate a new block of data
     char* new_data = new char[ new_length ];
     // write new data
-    for( size_t i = 0; i < count; ++i )
+    for( std::size_t i = 0; i < count; ++i )
     {
         memcpy(
                 new_data + ( c_length * i ),
@@ -312,7 +313,7 @@ bool UTF8String::starts_with( const UTF8String& substring ) const
         return false;
     }
     // check until we find a mismatch
-    for ( size_t i = 0; i < substring.m_length; ++i )
+    for ( std::size_t i = 0; i < substring.m_length; ++i )
     {
         if ( substring.get_symbol( i ) != get_symbol( i ) )
         {
@@ -332,8 +333,8 @@ bool UTF8String::ends_with( const UTF8String& substring ) const
         return false;
     }
     // check until we find a mismatch
-    size_t diff = m_length - substring.m_length;
-    for ( size_t i = substring.m_length; i > 0; --i )
+    std::size_t diff = m_length - substring.m_length;
+    for ( std::size_t i = substring.m_length; i > 0; --i )
     {
         if ( substring.get_symbol( i - 1 ) != get_symbol( diff + ( i - 1 ) ) )
         {
@@ -345,7 +346,7 @@ bool UTF8String::ends_with( const UTF8String& substring ) const
     return true;
 }
 
-size_t UTF8String::find_first( const UTF8String& substring ) const
+std::size_t UTF8String::find_first( const UTF8String& substring ) const
 {
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
@@ -353,11 +354,11 @@ size_t UTF8String::find_first( const UTF8String& substring ) const
         return chaos::uni::npos;
     }
     // check against each character
-    for( size_t i = 0; i < m_length - ( substring.m_length - 1 ); ++i )
+    for( std::size_t i = 0; i < m_length - ( substring.m_length - 1 ); ++i )
     {
         // check that each symbol matches
         bool match = true;
-        for ( size_t j = 0; j < substring.m_length; ++j )
+        for ( std::size_t j = 0; j < substring.m_length; ++j )
         {
             if ( substring.get_symbol_value( j ) != get_symbol_value( i + j ) )
             {
@@ -374,7 +375,7 @@ size_t UTF8String::find_first( const UTF8String& substring ) const
     return chaos::uni::npos;
 }
 
-size_t UTF8String::find_last( const UTF8String& substring ) const
+std::size_t UTF8String::find_last( const UTF8String& substring ) const
 {
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
@@ -382,11 +383,13 @@ size_t UTF8String::find_last( const UTF8String& substring ) const
         return chaos::uni::npos;
     }
     // check against each character
-    for( size_t i = m_length - substring.m_length; i != chaos::uni::npos; --i )
+    for( std::size_t i = m_length - substring.m_length;
+         i != chaos::uni::npos;
+         --i )
     {
         // check that each symbol matches
         bool match = true;
-        for ( size_t j = 0; j < substring.m_length; ++j )
+        for ( std::size_t j = 0; j < substring.m_length; ++j )
         {
             if ( substring.get_symbol( j ) != get_symbol( i + j ) )
             {
@@ -415,7 +418,7 @@ const std::vector< UTF8String > UTF8String::split(
     std::vector< UTF8String > elements;
 
     UTF8String element;
-    for( size_t i = 0; i < m_length; )
+    for( std::size_t i = 0; i < m_length; )
     {
         // are we looking at the delimiter
         if ( substring( i, delimiter.get_length() ) == delimiter )
@@ -454,7 +457,7 @@ void UTF8String::remove_duplicates( const UTF8String& substring )
     UTF8String input( *this );
     UTF8String output;
 
-    size_t i = input.find_first( substring );
+    std::size_t i = input.find_first( substring );
     while( i != chaos::uni::npos )
     {
         // add up to and including the substring
@@ -485,7 +488,7 @@ void UTF8String::remove_duplicates( const UTF8String& substring )
 bool UTF8String::is_int() const
 {
     // iterate over each code point and ensure that it's a digit
-    for ( size_t i = 0; i < m_length; ++i )
+    for ( std::size_t i = 0; i < m_length; ++i )
     {
         chaos::uint32 code_point = get_code_point( i );
 
@@ -509,7 +512,7 @@ bool UTF8String::is_int() const
 bool UTF8String::is_uint() const
 {
     // iterate of each code point and ensure that it's a digit
-    for ( size_t i = 0; i < m_length; ++i )
+    for ( std::size_t i = 0; i < m_length; ++i )
     {
         if ( !chaos::uni::is_digit( get_symbol_value( i ) ) )
         {
@@ -525,7 +528,7 @@ bool UTF8String::is_float() const
 {
     bool point_found = false;
     // iterate of each code point
-    for ( size_t i = 0; i < m_length; ++i )
+    for ( std::size_t i = 0; i < m_length; ++i )
     {
         chaos::uint32 code_point = get_symbol_value( i );
 
@@ -546,7 +549,7 @@ bool UTF8String::is_float() const
     return !is_empty();
 }
 
-UTF8String UTF8String::substring( size_t start, size_t end ) const
+UTF8String UTF8String::substring( std::size_t start, std::size_t end ) const
 {
     // return empty if the index is the length of this string
     if ( start == get_length() )
@@ -560,7 +563,9 @@ UTF8String UTF8String::substring( size_t start, size_t end ) const
     // TODO: can this be optimised to copy raw data array?
 
     UTF8String result;
-    for ( size_t i = start; i < std::min( get_length(),  start + end ); ++i )
+    for ( std::size_t i = start;
+          i < std::min( get_length(),  start + end );
+          ++i )
     {
         result += get_symbol( i );
     }
@@ -587,7 +592,7 @@ bool UTF8String::to_bool() const
         throw chaos::ex::ConversionDataError( error_message );
     }
     // do conversion and return
-    for ( size_t i = 0; i < get_length(); ++i )
+    for ( std::size_t i = 0; i < get_length(); ++i )
     {
         if ( get_symbol( i ) != "0" )
         {
@@ -656,7 +661,7 @@ chaos::int64 UTF8String::to_uint64() const
 
 //----------------------------------ACCESSORS-----------------------------------
 
-size_t UTF8String::get_length() const
+std::size_t UTF8String::get_length() const
 {
     return m_length;
 }
@@ -667,38 +672,38 @@ bool UTF8String::is_empty() const
     return m_data_length <= 1;
 }
 
-UTF8String UTF8String::get_symbol( size_t index ) const
+UTF8String UTF8String::get_symbol( std::size_t index ) const
 {
     // is the index valid
     check_symbol_index( index );
 
     // get the byte position
-    size_t byte_index = get_byte_index_for_symbol_index( index );
+    std::size_t byte_index = get_byte_index_for_symbol_index( index );
     // get the width of the byte
-    size_t byte_width = get_byte_width( byte_index );
+    std::size_t byte_width = get_byte_width( byte_index );
 
     return UTF8String( &m_data[ byte_index ], byte_width );
 }
 
-chaos::uint32 UTF8String::get_symbol_value( size_t index ) const
+chaos::uint32 UTF8String::get_symbol_value( std::size_t index ) const
 {
     // is the index valid?
     check_symbol_index( index );
 
     // get the bytes that make up the symbol
-    size_t byte_index = get_byte_index_for_symbol_index( index );
-    size_t byte_width = get_byte_width( byte_index );
+    std::size_t byte_index = get_byte_index_for_symbol_index( index );
+    std::size_t byte_width = get_byte_width( byte_index );
 
     return chaos::data::bytes_to_uint32( &m_data[ byte_index ], byte_width );
 }
 
-chaos::uint32 UTF8String::get_code_point( size_t index ) const
+chaos::uint32 UTF8String::get_code_point( std::size_t index ) const
 {
     // is the index valid?
     check_symbol_index( index );
 
     // get the width so we know how to convert
-    size_t width = get_symbol_width( index );
+    std::size_t width = get_symbol_width( index );
     chaos::uint32 value = get_symbol_value( index );
 
     if ( width == 1 )
@@ -725,14 +730,15 @@ chaos::uint32 UTF8String::get_code_point( size_t index ) const
     }
 }
 
-size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
+std::size_t UTF8String::get_byte_index_for_symbol_index(
+        std::size_t symbol_index ) const
 {
     // is the index valid?
     check_symbol_index( symbol_index );
 
     // TODO: can this be optimized?
-    size_t current_index = 0;
-    for ( size_t i = 0; i < m_data_length - 1; )
+    std::size_t current_index = 0;
+    for ( std::size_t i = 0; i < m_data_length - 1; )
     {
         if ( current_index == symbol_index )
         {
@@ -748,12 +754,12 @@ size_t UTF8String::get_byte_index_for_symbol_index( size_t symbol_index ) const
     return chaos::uni::npos;
 }
 
-size_t UTF8String::get_symbol_width( size_t index ) const
+std::size_t UTF8String::get_symbol_width( std::size_t index ) const
 {
     // is the index valid
     check_symbol_index( index );
 
-    size_t byte_index = get_byte_index_for_symbol_index( index );
+    std::size_t byte_index = get_byte_index_for_symbol_index( index );
     return get_byte_width( byte_index );
 }
 
@@ -762,20 +768,21 @@ const char* UTF8String::get_raw() const
     return m_data;
 }
 
-size_t UTF8String::get_byte_length() const
+std::size_t UTF8String::get_byte_length() const
 {
     return m_data_length;
 }
 
-size_t UTF8String::get_symbol_index_for_byte_index( size_t byte_index ) const
+std::size_t UTF8String::get_symbol_index_for_byte_index(
+        std::size_t byte_index ) const
 {
     // is the index valid?
     check_byte_index( byte_index );
 
-    size_t current_index = 0;
-    for ( size_t i = 0; i < m_data_length - 1; )
+    std::size_t current_index = 0;
+    for ( std::size_t i = 0; i < m_data_length - 1; )
     {
-        size_t next = i + get_byte_width( i );
+        std::size_t next = i + get_byte_width( i );
 
         if ( byte_index >= i && byte_index < next )
         {
@@ -791,7 +798,7 @@ size_t UTF8String::get_symbol_index_for_byte_index( size_t byte_index ) const
     return chaos::uni::npos;
 }
 
-size_t UTF8String::get_byte_width( size_t byte_index ) const
+std::size_t UTF8String::get_byte_width( std::size_t byte_index ) const
 {
     // is the index valid?
     check_byte_index( byte_index );
@@ -822,7 +829,9 @@ size_t UTF8String::get_byte_width( size_t byte_index ) const
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void UTF8String::assign_internal( const char* data, size_t existing_length )
+void UTF8String::assign_internal(
+        const char* data,
+        std::size_t existing_length )
 {
     // if there is already content in the internal buffer delete it
     delete[] m_data;
@@ -864,7 +873,7 @@ void UTF8String::assign_internal( const char* data, size_t existing_length )
     // to calculate the number of utf-8 symbols in the string
     // TODO: could be optimised?
     m_length = 0;
-    for ( size_t i = 0; i < m_data_length - 1; )
+    for ( std::size_t i = 0; i < m_data_length - 1; )
     {
         ++m_length;
         // increase index by byte width
@@ -872,7 +881,7 @@ void UTF8String::assign_internal( const char* data, size_t existing_length )
     }
 }
 
-void UTF8String::check_symbol_index( size_t index ) const
+void UTF8String::check_symbol_index( std::size_t index ) const
 {
     if ( index >= m_length )
     {
@@ -883,7 +892,7 @@ void UTF8String::check_symbol_index( size_t index ) const
     }
 }
 
-void UTF8String::check_byte_index( size_t index ) const
+void UTF8String::check_byte_index( std::size_t index ) const
 {
     if ( index >= m_data_length )
     {

@@ -1,8 +1,6 @@
 /*!
  * \file
- *
  * The ChaosCore testing module.
- *
  * \author David Saxon
  */
 #ifndef CHAOSCORE_TEST_CHAOSTEST_HPP_

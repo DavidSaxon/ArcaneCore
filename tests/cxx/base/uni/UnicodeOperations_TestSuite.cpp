@@ -78,7 +78,7 @@ public:
     std::vector< chaos::uni::UTF8String >       utf8;
     std::vector< std::vector< unsigned char > > little_endian;
     std::vector< std::vector< unsigned char > > big_endian;
-    std::vector< size_t >                       lengths;
+    std::vector< std::size_t >                       lengths;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -191,7 +191,7 @@ public:
     void add_big_endian( std::vector< unsigned char> l )
     {
         std::vector< unsigned char > b;
-        for( size_t i = 0; i < l.size() - 1; i += 2 )
+        for( std::size_t i = 0; i < l.size() - 1; i += 2 )
         {
             b.push_back( l[ i + 1 ] );
             b.push_back( l[ i     ] );
@@ -203,9 +203,9 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
 {
     CHAOS_TEST_MESSAGE( "Checking little endian returned length" );
-    for( size_t i = 0; i < fixture->utf8.size(); ++i )
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
     {
-        size_t length = 0;
+        std::size_t length = 0;
         const char* u = chaos::uni::utf8_to_utf16(
                 fixture->utf8[ i ], length, chaos::data::ENDIAN_LITTLE );
         CHAOS_CHECK_EQUAL( length, fixture->lengths [ i ] );
@@ -213,9 +213,9 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking little endian contents" );
-    for( size_t i = 0; i < fixture->utf8.size(); ++i )
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
     {
-        size_t length = 0;
+        std::size_t length = 0;
         const char* u = chaos::uni::utf8_to_utf16(
                 fixture->utf8[ i ], length, chaos::data::ENDIAN_LITTLE );
         CHAOS_CHECK_EQUAL(
@@ -231,9 +231,9 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking big endian returned length" );
-    for( size_t i = 0; i < fixture->utf8.size(); ++i )
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
     {
-        size_t length = 0;
+        std::size_t length = 0;
         const char* u = chaos::uni::utf8_to_utf16(
                 fixture->utf8[ i ], length, chaos::data::ENDIAN_BIG );
         CHAOS_CHECK_EQUAL( length, fixture->lengths [ i ] );
@@ -241,9 +241,9 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking big endian contents" );
-    for( size_t i = 0; i < fixture->utf8.size(); ++i )
+    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
     {
-        size_t length = 0;
+        std::size_t length = 0;
         const char* u = chaos::uni::utf8_to_utf16(
                 fixture->utf8[ i ], length, chaos::data::ENDIAN_BIG );
         CHAOS_CHECK_EQUAL(
@@ -337,7 +337,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( join, JoinFixture )
 {
-    for ( size_t i = 0; i < fixture->components.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->components.size(); ++i )
     {
         chaos::uni::UTF8String s = chaos::uni::join(
                 fixture->components[ i ],

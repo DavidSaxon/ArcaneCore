@@ -97,7 +97,7 @@ namespace uni
  * We can now inspect each symbol in the string:
  *
  * \code
- * for ( size_t i = 0; i < utf8.get_length(); ++i )
+ * for ( std::size_t i = 0; i < utf8.get_length(); ++i )
  * {
  *     chaos::uni::UTF8String symbol( utf8.get_symbol( i ) );
  * }
@@ -111,7 +111,7 @@ namespace uni
  * We can also inspect the byte-widths of each symbol in our string:
  *
  * \code
- * for ( size_t i = 0; i < utf8.get_length(); ++i )
+ * for ( std::size_t i = 0; i < utf8.get_length(); ++i )
  * {
  *     utf8.get_symbol_width( i );
  * }
@@ -163,7 +163,7 @@ public:
      * \param data Character data to be used for this UTF8String.
      * \param length The number of bytes to read from the character data.
      */
-    UTF8String( const char* data, size_t length );
+    UTF8String( const char* data, std::size_t length );
 
     /*!
      * \brief Copy constructor.
@@ -418,7 +418,7 @@ public:
      * \param data Character data to be used for this UTF8String.
      * \param length The number of bytes to read from the character data.
      */
-    void assign( const char* data, size_t length );
+    void assign( const char* data, std::size_t length );
 
     /*!
      * \brief Assigns internal data from a copy of another UTF8String.
@@ -518,7 +518,7 @@ public:
      *         substring in this string. If the substring could not be found,
      *         chaos::uni::npos is returned instead.
      */
-    size_t find_first( const UTF8String& substring ) const;
+    std::size_t find_first( const UTF8String& substring ) const;
 
     /*!
      * \brief Finds the last occurrence of the given substring and returns the
@@ -540,7 +540,7 @@ public:
      *         substring in this string. If the substring could not be found,
      *         chaos::uni::npos is returned instead.
      */
-    size_t find_last( const UTF8String& substring ) const;
+    std::size_t find_last( const UTF8String& substring ) const;
 
     /*!
      * \brief Splits this UTF8String by the given delimiter and returns the
@@ -648,7 +648,7 @@ public:
      *               length of the string with relation to the starting index.
      * \return New UTF8String containing the substring.
      */
-    UTF8String substring( size_t start, size_t length ) const;
+    UTF8String substring( std::size_t start, std::size_t length ) const;
 
     /*!
      * \brief Returns this as a standard library string.
@@ -707,7 +707,7 @@ public:
      * The length is defined as how many UTF-8 symbols there are in the string,
      * this doesn't not necessarily equal the number of bytes in the string.
      */
-    size_t get_length() const;
+    std::size_t get_length() const;
 
     /*!
      * \brief Returns whether the this UTF8String contains any characters or
@@ -740,7 +740,7 @@ public:
      * \return A new UTF8String containing the single UTF-8 symbol at the given
      *         index.
      */
-    UTF8String get_symbol( size_t index ) const;
+    UTF8String get_symbol( std::size_t index ) const;
 
     /*!
      * \brief Returns the integer/hex value for the UTF-8 symbol at the given
@@ -760,7 +760,7 @@ public:
      *              string with respect to the symbol length. See get_length()
      * \return A uint32 containing the value of the symbol.
      */
-    chaos::uint32 get_symbol_value( size_t index = 0 ) const;
+    chaos::uint32 get_symbol_value( std::size_t index = 0 ) const;
 
     /*!
      * \brief Returns the Unicode code point for the UTF-8 symbol at the given
@@ -781,7 +781,7 @@ public:
      *              get_length()
      * \return A uint32 containing the code point of the symbol.
      */
-    chaos::uint32 get_code_point( size_t index = 0 ) const;
+    chaos::uint32 get_code_point( std::size_t index = 0 ) const;
 
     /*!
      * \brief Gets the index of the first byte for the symbol at the given
@@ -805,7 +805,8 @@ public:
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the string length.
      */
-    size_t get_byte_index_for_symbol_index( size_t symbol_index ) const;
+    std::size_t get_byte_index_for_symbol_index(
+            std::size_t symbol_index ) const;
 
     /*!
      * \brief Gets the number of bytes in the symbol at the given index in this
@@ -822,7 +823,7 @@ public:
      * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the string length.
      */
-    size_t get_symbol_width( size_t index ) const;
+    std::size_t get_symbol_width( std::size_t index ) const;
 
     /*!
      * \brief Gets the raw byte data of this UTF8String.
@@ -846,7 +847,7 @@ public:
      * \note This is not equal to the symbol length of the string as UTF-8
      *       encoded characters can consist of multiple bytes.
      */
-    size_t get_byte_length() const;
+    std::size_t get_byte_length() const;
 
     /*!
      * \brief Returns the index of the symbol that the byte at the given index
@@ -870,7 +871,8 @@ public:
      *                                          bounds of the string byte
      *                                          length.
      */
-    size_t get_symbol_index_for_byte_index( size_t byte_index ) const;
+    std::size_t get_symbol_index_for_byte_index(
+            std::size_t byte_index ) const;
 
     /*!
      * \brief Returns the number of bytes in the symbol at the given byte index.
@@ -891,7 +893,7 @@ public:
      *                                          bounds of the string byte
      *                                          length.
      */
-    size_t get_byte_width( size_t byte_index ) const;
+    std::size_t get_byte_width( std::size_t byte_index ) const;
 
 private:
 
@@ -902,10 +904,10 @@ private:
     // the array containing the data stored as consecutive bytes
     char* m_data;
     // the length of the data int bytes (not the length of the string)
-    size_t m_data_length;
+    std::size_t m_data_length;
 
     // the number of utf-8 symbols in this string
-    size_t m_length;
+    std::size_t m_length;
 
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS
@@ -926,21 +928,21 @@ private:
      */
     void assign_internal(
             const char*  data,
-            size_t       existing_length = chaos::uni::npos );
+            std::size_t existing_length = chaos::uni::npos );
 
     /*!
      * Internal function used to check if a given index is within the symbol
      * length (get_length) of the string. If it is not an IndexOutOfBoundsError
      * is thrown.
      */
-    void check_symbol_index( size_t index ) const;
+    void check_symbol_index( std::size_t index ) const;
 
     /*!
      * Internal function used to check if a given index is within the byte
      * length (get_byte_length) of the string. If it is not an
      * IndexOutOfBoundsError is thrown.
      */
-    void check_byte_index( size_t index ) const;
+    void check_byte_index( std::size_t index ) const;
 };
 
 //------------------------------------------------------------------------------

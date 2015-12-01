@@ -14,7 +14,7 @@ bool is_digit( chaos::uint32 code_point )
 
 chaos::uni::UTF8String utf16_to_utf8(
         const char* data,
-        size_t symbol_length,
+        std::size_t symbol_length,
         chaos::data::Endianness endianness )
 {
     // TODO:
@@ -24,12 +24,12 @@ chaos::uni::UTF8String utf16_to_utf8(
 
 char* utf8_to_utf16(
         const chaos::uni::UTF8String& data,
-        size_t& r_length,
+        std::size_t& r_length,
         chaos::data::Endianness endianness )
 {
     std::vector< unsigned char > v_str;
     // convert
-    for( size_t i = 0; i < data.get_length(); ++i )
+    for( std::size_t i = 0; i < data.get_length(); ++i )
     {
         chaos::uint32 code_point = data.get_code_point( i );
         if ( code_point < 0xFFFF )
@@ -60,7 +60,7 @@ char* utf8_to_utf16(
     r_length = v_str.size();
     // allocate to array and copy
     char* s = new char[ r_length ];
-    for( size_t i = 0; i < v_str.size(); ++i )
+    for( std::size_t i = 0; i < v_str.size(); ++i )
     {
         s[ i ] = static_cast< char >( v_str[ i ] );
     }
@@ -74,7 +74,7 @@ chaos::uni::UTF8String join(
 {
     chaos::uni::UTF8String ret;
 
-    for ( size_t i = 0; i < components.size(); ++i )
+    for ( std::size_t i = 0; i < components.size(); ++i )
     {
         ret << components[ i ];
         if ( i != components.size() - 1 )

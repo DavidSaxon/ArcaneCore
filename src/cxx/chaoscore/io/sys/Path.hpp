@@ -178,7 +178,7 @@ public:
      *                                          bounds of the number of
      *                                          components in this Path.
      */
-    chaos::uni::UTF8String& operator[]( size_t index );
+    chaos::uni::UTF8String& operator[]( std::size_t index );
 
     /*!
      * \brief Returns a const reference to the component of this Path at the
@@ -188,7 +188,7 @@ public:
      *                                          bounds of the number of
      *                                          components in this Path.
      */
-    const chaos::uni::UTF8String& operator[]( size_t index ) const;
+    const chaos::uni::UTF8String& operator[]( std::size_t index ) const;
 
     /*!
      * \brief Addition operator.
@@ -308,7 +308,7 @@ public:
      * \param component chaos::uni::UTF8String representing the new component to
      *                  be inserted.
      */
-    void insert( size_t index, const chaos::uni::UTF8String& component );
+    void insert( std::size_t index, const chaos::uni::UTF8String& component );
 
     /*!
      * \brief Reverts this Path to be an empty path.
@@ -326,7 +326,7 @@ public:
      *
      * \param index The index of the component to remove from this path.
      */
-    void remove( size_t index );
+    void remove( std::size_t index );
 
     /*!
      * \brief Returns a chaos::uni::UTF8String representation of this Path for
@@ -401,7 +401,7 @@ public:
      * p.get_length(); // returns: 3
      * \endcode
      */
-    size_t get_length() const;
+    std::size_t get_length() const;
 
     /*!
      * \brief Returns the individual components which make up this path.

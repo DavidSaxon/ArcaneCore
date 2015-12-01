@@ -65,7 +65,7 @@ int main( int argc, char* argv[] )
     bool stdout_defined = false;
 
     // parse args
-    for ( size_t i = 1; i < static_cast< size_t >( argc ); ++i )
+    for ( std::size_t i = 1; i < static_cast< std::size_t >( argc ); ++i )
     {
         // --single_proc
         if ( ARG_SINGLE_PROC == argv[ i ] )

@@ -29,8 +29,6 @@ public:
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
-    // TODO: don't need to use real paths for these tests
-
     virtual void setup()
     {
         {
@@ -173,7 +171,7 @@ CHAOS_TEST_UNIT_FIXTURE( component_constructor, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal component lengths" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 paths[ i ].get_components().size(),
@@ -182,13 +180,13 @@ CHAOS_TEST_UNIT_FIXTURE( component_constructor, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal components" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
-        size_t min = std::min(
+        std::size_t min = std::min(
                 paths[ i ].get_components().size(),
                 fixture->all[ i ].size()
         );
-        for ( size_t j = 0; j < min; ++j )
+        for ( std::size_t j = 0; j < min; ++j )
         {
             CHAOS_CHECK_EQUAL(
                     paths[ i ].get_components()[ j ],
@@ -211,7 +209,7 @@ CHAOS_TEST_UNIT_FIXTURE( iterator_constructor, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal component lengths" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 paths[ i ].get_components().size(),
@@ -220,13 +218,13 @@ CHAOS_TEST_UNIT_FIXTURE( iterator_constructor, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal components" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
-        size_t min = std::min(
+        std::size_t min = std::min(
                 paths[ i ].get_components().size(),
                 fixture->all[ i ].size()
         );
-        for ( size_t j = 0; j < min; ++j )
+        for ( std::size_t j = 0; j < min; ++j )
         {
             CHAOS_CHECK_EQUAL(
                     paths[ i ].get_components()[ j ],
@@ -338,7 +336,7 @@ public:
 
 CHAOS_TEST_UNIT_FIXTURE( string_constructor, StringConstructorFixture )
 {
-    for( size_t i = 0; i < fixture->inputs.size(); ++i )
+    for( std::size_t i = 0; i < fixture->inputs.size(); ++i )
     {
         chaos::io::sys::Path p( fixture->inputs[ i ] );
         CHAOS_CHECK_EQUAL( p.to_native(), fixture->results[ i ] );
@@ -359,7 +357,7 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal component lengths" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 paths[ i ].get_components().size(),
@@ -368,13 +366,13 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal components" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
-        size_t min = std::min(
+        std::size_t min = std::min(
                 paths[ i ].get_components().size(),
                 fixture->as_paths[ i ].get_components().size()
         );
-        for ( size_t j = 0; j < min; ++j )
+        for ( std::size_t j = 0; j < min; ++j )
         {
             CHAOS_CHECK_EQUAL(
                     paths[ i ].get_components()[ j ],
@@ -399,7 +397,7 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal component lengths" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 paths[ i ].get_components().size(),
@@ -408,13 +406,13 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking internal components" );
-    for ( size_t i = 0; i < paths.size(); ++i )
+    for ( std::size_t i = 0; i < paths.size(); ++i )
     {
-        size_t min = std::min(
+        std::size_t min = std::min(
                 paths[ i ].get_components().size(),
                 fixture->as_paths[ i ].get_components().size()
         );
-        for ( size_t j = 0; j < min; ++j )
+        for ( std::size_t j = 0; j < min; ++j )
         {
             CHAOS_CHECK_EQUAL(
                     paths[ i ].get_components()[ j ],
@@ -510,7 +508,7 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, EqualityFixture )
         chaos::io::sys::Path p( *it );
         CHAOS_CHECK_EQUAL( p, *it );
     }
-    for ( size_t i = 0; i < fixture->match.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->match.size(); ++i )
     {
         CHAOS_CHECK_FALSE( ( fixture->match[ i ] == fixture->mismatch[ i ] ) );
     }
@@ -522,11 +520,11 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, EqualityFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( inequality_operator, EqualityFixture )
 {
-    for ( size_t i = 0; i < fixture->match.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->match.size(); ++i )
     {
         CHAOS_CHECK_NOT_EQUAL( fixture->match[ i ], fixture->mismatch[ i ] );
     }
-    for ( size_t i = 0; i < fixture->match.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->match.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->match[ i ] != fixture->match[ i ] );
     }
@@ -614,23 +612,23 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking less than cases" );
-    for ( size_t i = 0; i < fixture->paths1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->paths1.size(); ++i )
     {
         CHAOS_CHECK_TRUE ( fixture->paths1[ i ] < fixture->paths2[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking greater than cases" );
-    for ( size_t i = 0; i < fixture->paths1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->paths1.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->paths2[ i ] < fixture->paths1[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking equals cases" );
-    for ( size_t i = 0; i < fixture->paths1.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->paths1.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->paths1[ i ] < fixture->paths1[ i ] );
     }
-    for ( size_t i = 0; i < fixture->paths2.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->paths2.size(); ++i )
     {
         CHAOS_CHECK_FALSE( fixture->paths2[ i ] < fixture->paths2[ i ] );
     }
@@ -643,19 +641,19 @@ CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 CHAOS_TEST_UNIT_FIXTURE( subscript_operator, PathGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking non-const" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size(); ++j )
         {
             CHAOS_CHECK_EQUAL( p[ j ], fixture->all[ i ][ j ] );
         }
 
     }
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size(); ++j )
         {
             p[ j ] = "now_for_something_completly_different";
             CHAOS_CHECK_NOT_EQUAL( p[ j ], fixture->all[ i ][ j ] );
@@ -663,10 +661,10 @@ CHAOS_TEST_UNIT_FIXTURE( subscript_operator, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking const" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         const chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size(); ++j )
         {
             CHAOS_CHECK_EQUAL( p[ j ], fixture->all[ i ][ j ] );
         }
@@ -683,12 +681,12 @@ CHAOS_TEST_UNIT_FIXTURE( addition_operator, PathGenericFixture )
     std::vector< chaos::io::sys::Path > paths1;
     std::vector< chaos::io::sys::Path > paths2;
 
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p1;
         chaos::io::sys::Path p2;
 
-        size_t j = 0;
+        std::size_t j = 0;
         for ( ; j < fixture->all[ i ].size() / 2; ++j )
         {
             p1 << fixture->all[ i ][ j ];
@@ -703,14 +701,14 @@ CHAOS_TEST_UNIT_FIXTURE( addition_operator, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking const addition" );
-    for ( size_t i = 0; i < paths1.size(); ++i )
+    for ( std::size_t i = 0; i < paths1.size(); ++i )
     {
         chaos::io::sys::Path p( paths1[ i ] + paths2[ i ] );
         CHAOS_CHECK_EQUAL( p, fixture->as_paths[ i ] );
     }
 
     CHAOS_TEST_MESSAGE( "Checking compound addition" );
-    for ( size_t i = 0; i < paths1.size(); ++i )
+    for ( std::size_t i = 0; i < paths1.size(); ++i )
     {
         paths1[ i ] += paths2[ i ];
         CHAOS_CHECK_EQUAL( paths1[ i ], fixture->as_paths[ i ] );
@@ -724,7 +722,7 @@ CHAOS_TEST_UNIT_FIXTURE( addition_operator, PathGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( join_operator, PathGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking individual calls" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
         CHAOS_FOR_EACH( it, fixture->all[ i ] )
@@ -736,7 +734,7 @@ CHAOS_TEST_UNIT_FIXTURE( join_operator, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking compound calls" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
 
@@ -782,7 +780,7 @@ CHAOS_TEST_UNIT_FIXTURE( join_operator, PathGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( join, PathGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking individual calls" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
         CHAOS_FOR_EACH( it, fixture->all[ i ] )
@@ -794,7 +792,7 @@ CHAOS_TEST_UNIT_FIXTURE( join, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking compound calls" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
 
@@ -840,10 +838,10 @@ CHAOS_TEST_UNIT_FIXTURE( join, PathGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( insert, PathGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking insert at beginning" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
-        for ( size_t j = fixture->all[ i ].size(); j > 0; --j )
+        for ( std::size_t j = fixture->all[ i ].size(); j > 0; --j )
         {
             p.insert( 0, fixture->all[ i ][ j - 1 ] );
         }
@@ -851,10 +849,10 @@ CHAOS_TEST_UNIT_FIXTURE( insert, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking insert at end" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
-        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size(); ++j )
         {
             p.insert( j, fixture->all[ i ][ j ] );
         }
@@ -862,10 +860,10 @@ CHAOS_TEST_UNIT_FIXTURE( insert, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking out of bounds" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         chaos::io::sys::Path p;
-        for ( size_t j = 0; j < fixture->all[ i ].size() / 2; ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size() / 2; ++j )
         {
             p.insert( j, fixture->all[ i ][ j ] );
         }
@@ -888,7 +886,7 @@ CHAOS_TEST_UNIT_FIXTURE( clear, PathGenericFixture )
         it->clear();
         CHAOS_CHECK_EQUAL(
                 it->get_components().size(),
-                static_cast< size_t >( 0 )
+                static_cast< std::size_t >( 0 )
         );
     }
 }
@@ -900,7 +898,7 @@ CHAOS_TEST_UNIT_FIXTURE( clear, PathGenericFixture )
 CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking remove at beginning" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         if ( fixture->all[ i ].size() == 0 )
         {
@@ -908,7 +906,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
         }
 
         chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size(); ++j )
         {
             p.remove( 0 );
             CHAOS_CHECK_EQUAL(
@@ -917,7 +915,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
             );
         }
     }
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         if ( fixture->all[ i ].size() == 0 )
         {
@@ -925,7 +923,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
         }
 
         chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = 0; j < fixture->all[ i ].size() - 1; ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size() - 1; ++j )
         {
             p.remove( 0 );
             CHAOS_CHECK_EQUAL(
@@ -936,7 +934,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking remove at end" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         if ( fixture->all[ i ].size() == 0 )
         {
@@ -944,7 +942,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
         }
 
         chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = fixture->all[ i ].size(); j > 0; --j )
+        for ( std::size_t j = fixture->all[ i ].size(); j > 0; --j )
         {
             p.remove( j - 1 );
             CHAOS_CHECK_EQUAL(
@@ -953,7 +951,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
             );
         }
     }
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         if ( fixture->all[ i ].size() == 0 )
         {
@@ -961,7 +959,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
         }
 
         chaos::io::sys::Path p( fixture->all[ i ] );
-        for ( size_t j = fixture->all[ i ].size(); j > 1; --j )
+        for ( std::size_t j = fixture->all[ i ].size(); j > 1; --j )
         {
             p.remove( j - 1 );
             CHAOS_CHECK_EQUAL(
@@ -972,7 +970,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking out of bounds" );
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         if ( fixture->all[ i ].size() == 0 )
         {
@@ -985,7 +983,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
                 chaos::ex::IndexOutOfBoundsError
         );
     }
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         if ( fixture->all[ i ].size() == 0 )
         {
@@ -1006,7 +1004,7 @@ CHAOS_TEST_UNIT_FIXTURE( remove, PathGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
 #ifdef CHAOS_OS_WINDOWS
 
@@ -1032,7 +1030,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_native, PathGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( to_unix, PathGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->as_paths[ i ].to_unix(),
@@ -1047,7 +1045,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_unix, PathGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->as_paths[ i ].to_windows(),
@@ -1063,7 +1061,7 @@ CHAOS_TEST_UNIT_FIXTURE( to_windows, PathGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_length, PathGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->as_paths[ i ].get_length(),
@@ -1078,9 +1076,9 @@ CHAOS_TEST_UNIT_FIXTURE( get_length, PathGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_components, PathGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
-        for ( size_t j = 0; j < fixture->all[ i ].size(); ++j )
+        for ( std::size_t j = 0; j < fixture->all[ i ].size(); ++j )
         {
             CHAOS_CHECK_EQUAL(
                     fixture->as_paths[ i ].get_components()[ j ],
@@ -1096,7 +1094,7 @@ CHAOS_TEST_UNIT_FIXTURE( get_components, PathGenericFixture )
 
 CHAOS_TEST_UNIT_FIXTURE( get_extension, PathGenericFixture )
 {
-    for ( size_t i = 0; i < fixture->all.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->all.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 fixture->as_paths[ i ].get_extension(),

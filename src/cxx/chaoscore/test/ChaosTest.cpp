@@ -55,7 +55,7 @@ void TestCore::declare_module(
             TestCore::throw_error( error_message, file, line );
         }
         // check that there are not two consecutive periods
-        for ( size_t i = 0; i < path.get_length() - 1; ++i )
+        for ( std::size_t i = 0; i < path.get_length() - 1; ++i )
         {
             if ( path.get_symbol( i )     == "." &&
                  path.get_symbol( i + 1 ) == "."    )
@@ -307,7 +307,7 @@ void TestCore::run( RunInfo* run_info )
             // extract the path to the test
             chaos::uni::UTF8String path = m_it->first;
             // find the last period
-            size_t lastIndex = path.find_last( "." );
+            std::size_t lastIndex = path.find_last( "." );
             if ( lastIndex == chaos::uni::npos )
             {
                 throw chaos::test::ex::TestRuntimeError(
@@ -333,7 +333,7 @@ void TestCore::run( RunInfo* run_info )
             // extract the path to the module
             chaos::uni::UTF8String path = *md_it;
             // find the last period
-            size_t lastIndex = path.find_last( "." );
+            std::size_t lastIndex = path.find_last( "." );
             if ( lastIndex == chaos::uni::npos )
             {
                 continue;

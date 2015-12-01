@@ -27,7 +27,7 @@ namespace literal
  */
 inline chaos::uni::UTF8String operator"" _utf8(
         const char*  literal,
-              size_t length )
+        std::size_t length )
 {
     return chaos::uni::UTF8String( literal, length );
 }

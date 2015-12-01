@@ -19,8 +19,11 @@ public:
 
     std::vector< unsigned char* >  big_endian_bytes;
     std::vector< unsigned char* >  little_endian_bytes;
-    std::vector< size_t > lengths;
+    std::vector< std::size_t > lengths;
     std::vector< chaos::uint32 > results;
+
+    std::vector< unsigned char* > bad_bytes;
+    std::vector< std::size_t > bad_lengths;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -137,23 +140,51 @@ public:
         }
 
         // reverse data for little endian check
-        for( size_t i = 0; i < big_endian_bytes.size(); ++i )
+        for( std::size_t i = 0; i < big_endian_bytes.size(); ++i )
         {
             unsigned char* b = new unsigned char[ lengths[ i ] ];
-            for ( size_t j = 0; j < lengths[ i ]; ++j )
+            for ( std::size_t j = 0; j < lengths[ i ]; ++j )
             {
                 b[ j ] = big_endian_bytes[ i ][ lengths[ i ] - j - 1 ];
             }
             little_endian_bytes.push_back( b );
         }
+
+        {
+            unsigned char* b = new unsigned char[ 5 ];
+            bad_bytes.push_back( b );
+            bad_lengths.push_back( 5 );
+        }
+
+        {
+            unsigned char* b = new unsigned char[ 3 ];
+            bad_bytes.push_back( b );
+            bad_lengths.push_back( 5 );
+        }
+
+        {
+            unsigned char* b = new unsigned char[ 10 ];
+            bad_bytes.push_back( b );
+            bad_lengths.push_back( 7 );
+        }
+
+        {
+            unsigned char* b = new unsigned char[ 340511 ];
+            bad_bytes.push_back( b );
+            bad_lengths.push_back( 340511 );
+        }
     }
 
     virtual void teardown()
     {
-        for( size_t i = 0; i < big_endian_bytes.size(); ++i )
+        for( std::size_t i = 0; i < big_endian_bytes.size(); ++i )
         {
             delete[] big_endian_bytes[ i ];
             delete[] little_endian_bytes[ i ];
+        }
+        for ( std::size_t i = 0; i < bad_bytes.size(); ++i )
+        {
+            delete[] bad_bytes[ i ];
         }
     }
 };
@@ -161,7 +192,7 @@ public:
 CHAOS_TEST_UNIT_FIXTURE( bytes_to_uint32, BytesToUint32Fixture )
 {
     CHAOS_TEST_MESSAGE( "Checking big endian bytes" );
-    for ( size_t i = 0; i < fixture->big_endian_bytes.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->big_endian_bytes.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 chaos::data::bytes_to_uint32(
@@ -174,7 +205,7 @@ CHAOS_TEST_UNIT_FIXTURE( bytes_to_uint32, BytesToUint32Fixture )
     }
 
     CHAOS_TEST_MESSAGE( "Checking little endian bytes" );
-    for ( size_t i = 0; i < fixture->little_endian_bytes.size(); ++i )
+    for ( std::size_t i = 0; i < fixture->little_endian_bytes.size(); ++i )
     {
         CHAOS_CHECK_EQUAL(
                 chaos::data::bytes_to_uint32(
@@ -184,6 +215,18 @@ CHAOS_TEST_UNIT_FIXTURE( bytes_to_uint32, BytesToUint32Fixture )
                 ),
                 fixture->results[ i ]
         );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking conversion errors" );
+    for ( std::size_t i = 0; i < fixture->bad_bytes.size(); ++i )
+    {
+        CHAOS_CHECK_THROW(
+                chaos::data::bytes_to_uint32(
+                        fixture->bad_bytes[ i ],
+                        fixture->bad_lengths[ i ]
+                ),
+                chaos::ex::ConversionDataError
+        )
     }
 }
 

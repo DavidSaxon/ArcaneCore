@@ -19,7 +19,7 @@
 
 // include for Unix
 #ifdef CHAOS_OS_UNIX
-    #include <inttypes.h>
+    #include <cinttypes>
 #endif
 
 namespace chaos
@@ -37,7 +37,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `signed char`.
       */
-    typedef int8_t int8;
+    typedef std::int8_t int8;
 
     /**
       * \brief a 8-bit unsigned integer type
@@ -46,7 +46,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `unsigned char`.
       */
-    typedef uint8_t uint8;
+    typedef std::uint8_t uint8;
 
     /**
       * \brief a 16-bit signed integer type
@@ -55,7 +55,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `signed short`.
       */
-    typedef int16_t int16;
+    typedef std::int16_t int16;
 
     /**
       * \brief a 16-bit unsigned integer type
@@ -64,7 +64,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `unsigned short`.
       */
-    typedef uint16_t uint16;
+    typedef std::uint16_t uint16;
 
     /**
       * \brief a 32-bit signed integer type
@@ -73,7 +73,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `signed int`.
       */
-    typedef int32_t int32;
+    typedef std::int32_t int32;
 
     /**
       * \brief a 32-bit unsigned integer type
@@ -82,7 +82,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `unsigned int`.
       */
-    typedef uint32_t uint32;
+    typedef std::uint32_t uint32;
 
     /**
       * \brief a 64-bit signed integer type
@@ -91,7 +91,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` a `signed long`.
       */
-    typedef int64_t int64;
+    typedef std::int64_t int64;
 
     /**
       * \brief a 64-bit unsigned integer type
@@ -100,7 +100,7 @@ namespace chaos
       *       specific. If the platform cannot be resolved this will naively
       *       `typedef` an `unsigned long`.
       */
-    typedef uint64_t uint64;
+    typedef std::uint64_t uint64;
 
 #elif defined( CHAOS_OS_WINDOWS )
 
