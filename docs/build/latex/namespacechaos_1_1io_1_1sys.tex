@@ -9,12 +9,18 @@ Module for File System operations.
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+class \hyperlink{classchaos_1_1io_1_1sys_1_1_file_handle}{File\-Handle}
+\begin{DoxyCompactList}\small\item\em Abstract base class used for representing an object that is writing or reading to/from a file. \end{DoxyCompactList}\item 
 class \hyperlink{classchaos_1_1io_1_1sys_1_1_file_system_error}{File\-System\-Error}
 \begin{DoxyCompactList}\small\item\em A generic error relating to the file system. \end{DoxyCompactList}\item 
+class \hyperlink{classchaos_1_1io_1_1sys_1_1_invalid_path_error}{Invalid\-Path\-Error}
+\begin{DoxyCompactList}\small\item\em Warns that given path cannot be accessed and/or modified because it does not exist permission is denied. \end{DoxyCompactList}\item 
 class \hyperlink{classchaos_1_1io_1_1sys_1_1_create_directory_error}{Create\-Directory\-Error}
 \begin{DoxyCompactList}\small\item\em Warns that creating a directory has failed. \end{DoxyCompactList}\item 
 class \hyperlink{classchaos_1_1io_1_1sys_1_1_ambiguous_path_error}{Ambiguous\-Path\-Error}
 \begin{DoxyCompactList}\small\item\em Warns that has a request has been made to create a file or directory that results in a ambiguous file system path. \end{DoxyCompactList}\item 
+class \hyperlink{classchaos_1_1io_1_1sys_1_1_file_writer}{File\-Writer}
+\begin{DoxyCompactList}\small\item\em Object used to write to new or existing files on the file system. \end{DoxyCompactList}\item 
 class \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}
 \begin{DoxyCompactList}\small\item\em Represents a filesystem path. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
@@ -34,6 +40,8 @@ std\-::vector$<$ \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys
 \begin{DoxyCompactList}\small\item\em Lists all descendant file system paths located under the given path. \end{DoxyCompactList}\item 
 bool \hyperlink{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{create\-\_\-directory} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Attempts to create the directory at the given path. \end{DoxyCompactList}\item 
+void \hyperlink{namespacechaos_1_1io_1_1sys_afe2226ee576ac8aba15ca3baa0322ff6}{delete\-\_\-path} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Deletes the given \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} on the file system if it exists. \end{DoxyCompactList}\item 
 void \hyperlink{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{validate} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Attempts to ensure all directories up to the provided path exist. \end{DoxyCompactList}\item 
 \hypertarget{namespacechaos_1_1io_1_1sys_a669178b3843d1716570b4b5ca8fd417d}{\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \& {\bfseries operator$<$$<$} (\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&s, const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&p)}\label{namespacechaos_1_1io_1_1sys_a669178b3843d1716570b4b5ca8fd417d}
@@ -175,6 +183,25 @@ Attempts to create the directory at the given path.
 \begin{DoxyReturn}{Returns}
 True is a new directory was created, false if the directory already exists. 
 \end{DoxyReturn}
+\hypertarget{namespacechaos_1_1io_1_1sys_afe2226ee576ac8aba15ca3baa0322ff6}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!delete\-\_\-path@{delete\-\_\-path}}
+\index{delete\-\_\-path@{delete\-\_\-path}!chaos::io::sys@{chaos\-::io\-::sys}}
+\subsubsection[{delete\-\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::io\-::sys\-::delete\-\_\-path (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1io_1_1sys_afe2226ee576ac8aba15ca3baa0322ff6}
+
+
+Deletes the given \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} on the file system if it exists. 
+
+\begin{DoxyNote}{Note}
+This operation will delete symbolic link objects but will not follow them to delete the path they point to.
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1io_1_1sys_1_1_invalid_path_error}{chaos\-::io\-::sys\-::\-Invalid\-Path\-Error}} & If the path cannot be accessed and/or modified to be deleted. \\
+\hline
+\end{DoxyExceptions}
 \hypertarget{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!validate@{validate}}
 \index{validate@{validate}!chaos::io::sys@{chaos\-::io\-::sys}}
 \subsubsection[{validate}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::io\-::sys\-::validate (

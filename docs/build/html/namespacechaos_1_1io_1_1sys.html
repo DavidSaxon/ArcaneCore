@@ -94,14 +94,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_file_handle.html">FileHandle</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class used for representing an object that is writing or reading to/from a file.  <a href="classchaos_1_1io_1_1sys_1_1_file_handle.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic error relating to the file system.  <a href="classchaos_1_1io_1_1sys_1_1_file_system_error.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html">InvalidPathError</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warns that given path cannot be accessed and/or modified because it does not exist permission is denied.  <a href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">CreateDirectoryError</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warns that creating a directory has failed.  <a href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">AmbiguousPathError</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Warns that has a request has been made to create a file or directory that results in a ambiguous file system path.  <a href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object used to write to new or existing files on the file system.  <a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">Path</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a filesystem path.  <a href="classchaos_1_1io_1_1sys_1_1_path.html#details">More...</a><br/></td></tr>
@@ -130,6 +139,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6bcdadf916b110395f4a2627c049da11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1sys.html#a6bcdadf916b110395f4a2627c049da11">create_directory</a> (const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;path)</td></tr>
 <tr class="memdesc:a6bcdadf916b110395f4a2627c049da11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to create the directory at the given path.  <a href="#a6bcdadf916b110395f4a2627c049da11">More...</a><br/></td></tr>
 <tr class="separator:a6bcdadf916b110395f4a2627c049da11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe2226ee576ac8aba15ca3baa0322ff6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1sys.html#afe2226ee576ac8aba15ca3baa0322ff6">delete_path</a> (const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;path)</td></tr>
+<tr class="memdesc:afe2226ee576ac8aba15ca3baa0322ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the given <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a> on the file system if it exists.  <a href="#afe2226ee576ac8aba15ca3baa0322ff6">More...</a><br/></td></tr>
+<tr class="separator:afe2226ee576ac8aba15ca3baa0322ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15e20b105c40cf4d73b13afe87ce1781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1sys.html#a15e20b105c40cf4d73b13afe87ce1781">validate</a> (const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;path)</td></tr>
 <tr class="memdesc:a15e20b105c40cf4d73b13afe87ce1781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to ensure all directories up to the provided path exist.  <a href="#a15e20b105c40cf4d73b13afe87ce1781">More...</a><br/></td></tr>
 <tr class="separator:a15e20b105c40cf4d73b13afe87ce1781"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -335,6 +347,31 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 
 </div>
 </div>
+<a class="anchor" id="afe2226ee576ac8aba15ca3baa0322ff6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::io::sys::delete_path </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes the given <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a> on the file system if it exists. </p>
+<dl class="section note"><dt>Note</dt><dd>This operation will delete symbolic link objects but will not follow them to delete the path they point to.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html" title="Warns that given path cannot be accessed and/or modified because it does not exist permission is deni...">chaos::io::sys::InvalidPathError</a></td><td>If the path cannot be accessed and/or modified to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a15e20b105c40cf4d73b13afe87ce1781"></a>
 <div class="memitem">
 <div class="memproto">
@@ -375,7 +412,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 1 2015 17:29:45 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 3 2015 15:11:28 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

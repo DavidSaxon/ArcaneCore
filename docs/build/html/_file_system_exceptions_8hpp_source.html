@@ -109,45 +109,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">CreateDirectoryError</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">CreateDirectoryError</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; message )</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        :</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a>( message )</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">   55</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">AmbiguousPathError</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">AmbiguousPathError</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; message )</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        :</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a>( message )</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;} <span class="comment">// namespace sys</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_create_directory_error_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">chaos::io::sys::CreateDirectoryError</a></div><div class="ttdoc">Warns that creating a directory has failed. </div><div class="ttdef"><b>Definition:</b> FileSystemExceptions.hpp:37</div></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html">InvalidPathError</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1ex_1_1_chaos_exception.html">chaos::ex::ChaosException</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html">InvalidPathError</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; message )</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        :</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classchaos_1_1ex_1_1_chaos_exception.html#a66463bad3b8d75073ae73c27717ae70d">ChaosException</a>( message )</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">   52</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">CreateDirectoryError</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">CreateDirectoryError</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; message )</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        :</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a>( message )</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;};</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">   70</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">AmbiguousPathError</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">AmbiguousPathError</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; message )</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        :</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">FileSystemError</a>( message )</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;} <span class="comment">// namespace sys</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_create_directory_error_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_create_directory_error.html">chaos::io::sys::CreateDirectoryError</a></div><div class="ttdoc">Warns that creating a directory has failed. </div><div class="ttdef"><b>Definition:</b> FileSystemExceptions.hpp:52</div></div>
 <div class="ttc" id="_base_exceptions_8hpp_html"><div class="ttname"><a href="_base_exceptions_8hpp.html">BaseExceptions.hpp</a></div></div>
 <div class="ttc" id="classchaos_1_1ex_1_1_chaos_exception_html_a66463bad3b8d75073ae73c27717ae70d"><div class="ttname"><a href="classchaos_1_1ex_1_1_chaos_exception.html#a66463bad3b8d75073ae73c27717ae70d">chaos::ex::ChaosException::ChaosException</a></div><div class="ttdeci">ChaosException(const chaos::uni::UTF8String &amp;message)</div><div class="ttdoc">Super constructor for objects derived from ChaosException. </div><div class="ttdef"><b>Definition:</b> BaseExceptions.hpp:67</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_invalid_path_error_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html">chaos::io::sys::InvalidPathError</a></div><div class="ttdoc">Warns that given path cannot be accessed and/or modified because it does not exist permission is deni...</div><div class="ttdef"><b>Definition:</b> FileSystemExceptions.hpp:38</div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_system_error_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_system_error.html">chaos::io::sys::FileSystemError</a></div><div class="ttdoc">A generic error relating to the file system. </div><div class="ttdef"><b>Definition:</b> FileSystemExceptions.hpp:23</div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">chaos::io::sys::AmbiguousPathError</a></div><div class="ttdoc">Warns that has a request has been made to create a file or directory that results in a ambiguous file...</div><div class="ttdef"><b>Definition:</b> FileSystemExceptions.hpp:55</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_ambiguous_path_error.html">chaos::io::sys::AmbiguousPathError</a></div><div class="ttdoc">Warns that has a request has been made to create a file or directory that results in a ambiguous file...</div><div class="ttdef"><b>Definition:</b> FileSystemExceptions.hpp:70</div></div>
 <div class="ttc" id="classchaos_1_1uni_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:128</div></div>
 <div class="ttc" id="classchaos_1_1ex_1_1_chaos_exception_html"><div class="ttname"><a href="classchaos_1_1ex_1_1_chaos_exception.html">chaos::ex::ChaosException</a></div><div class="ttdoc">Abstract base class that all ChaosCore Exceptions extend from. </div><div class="ttdef"><b>Definition:</b> BaseExceptions.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 1 2015 17:29:45 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 3 2015 15:11:27 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

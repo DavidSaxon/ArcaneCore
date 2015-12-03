@@ -108,6 +108,17 @@ std::vector< chaos::io::sys::Path > list_rec(
 bool create_directory( const chaos::io::sys::Path& path );
 
 /*!
+ * \brief Deletes the given Path on the file system if it exists.
+ *
+ * \note This operation will delete symbolic link objects but will not follow
+ *       them to delete the path they point to.
+ *
+ * \throws chaos::io::sys::InvalidPathError If the path cannot be accessed
+ *                                          and/or modified to be deleted.
+ */
+void delete_path( const chaos::io::sys::Path& path );
+
+/*!
  * \brief Attempts to ensure all directories up to the provided path exist.
  *
  * If any directories up to the final component of the provided path do not

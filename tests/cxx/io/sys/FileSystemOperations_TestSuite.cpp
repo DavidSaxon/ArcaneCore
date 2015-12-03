@@ -5,6 +5,7 @@ CHAOS_TEST_MODULE( io.sys.file_system_operations )
 #include <algorithm>
 
 #include "chaoscore/io/sys/FileSystemOperations.hpp"
+#include "chaoscore/io/sys/FileWriter.hpp"
 
 namespace file_system_operations_tests
 {
@@ -1064,6 +1065,104 @@ CHAOS_TEST_UNIT_FIXTURE( create_directory, FileSysCreateDirectoryFixture )
                 chaos::io::sys::create_directory( *it_5 ),
                 chaos::io::sys::CreateDirectoryError
         );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                  DELETE PATH
+//------------------------------------------------------------------------------
+
+class DeletePathFixture : public FileSysBaseFixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::sys::Path > directories;
+    std::vector< chaos::io::sys::Path > files;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        // super call
+        FileSysBaseFixture::setup();
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "delete_me";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "бришење";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "delete_me";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "silmək";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "delete_me.txt";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "文件名.ಪಠ್ಯ";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "delete_me.txt";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "文件名.ಪಠ್ಯ";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( delete_path, DeletePathFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking deleting directories" );
+    CHAOS_FOR_EACH( it_1, fixture->directories )
+    {
+        chaos::io::sys::delete_path( *it_1 );
+        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_1 ) );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking deleting files" );
+    CHAOS_FOR_EACH( it_2, fixture->files )
+    {
+        chaos::io::sys::delete_path( *it_2 );
+        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_2 ) );
     }
 }
 

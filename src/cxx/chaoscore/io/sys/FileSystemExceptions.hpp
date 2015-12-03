@@ -32,6 +32,21 @@ public:
 };
 
 /*!
+ * \brief Warns that given path cannot be accessed and/or modified because it
+ *        does not exist permission is denied.
+ */
+class InvalidPathError : public chaos::ex::ChaosException
+{
+public:
+
+    InvalidPathError( const chaos::uni::UTF8String& message )
+        :
+        ChaosException( message )
+    {
+    }
+};
+
+/*!
  * \brief Warns that creating a directory has failed.
  */
 class CreateDirectoryError : public FileSystemError

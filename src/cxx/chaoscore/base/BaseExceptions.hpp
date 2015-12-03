@@ -116,6 +116,25 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                  STATE ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns that an action has been requested that is not valid for the
+ *        current state.
+ */
+class StateError : public ChaosException
+{
+public:
+
+    StateError( const chaos::uni::UTF8String& message )
+        :
+        ChaosException( message )
+    {
+    }
+};
+
+//------------------------------------------------------------------------------
 //                           INDEX OUT OF BOUNDS ERROR
 //------------------------------------------------------------------------------
 

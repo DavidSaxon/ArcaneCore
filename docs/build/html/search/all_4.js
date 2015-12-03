@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['fileexceptions_2ehpp',['FileExceptions.hpp',['../_file_exceptions_8hpp.html',1,'']]],
-  ['fileoperations_2ehpp',['FileOperations.hpp',['../_file_operations_8hpp.html',1,'']]],
-  ['filesystemerror',['FileSystemError',['../classchaos_1_1io_1_1file_1_1ex_1_1_file_system_error.html',1,'chaos::io::file::ex']]],
-  ['filesystemerror',['FileSystemError',['../classchaos_1_1io_1_1sys_1_1_file_system_error.html',1,'chaos::io::sys']]],
-  ['filesystemexceptions_2ehpp',['FileSystemExceptions.hpp',['../_file_system_exceptions_8hpp.html',1,'']]],
-  ['filesystemoperations_2ehpp',['FileSystemOperations.hpp',['../_file_system_operations_8hpp.html',1,'']]],
-  ['find_5ffirst',['find_first',['../classchaos_1_1uni_1_1_u_t_f8_string.html#ab305c0004c47513225b18bad24b174e9',1,'chaos::uni::UTF8String']]],
-  ['find_5flast',['find_last',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a339b29461067299eebef2cd2a71278ee',1,'chaos::uni::UTF8String']]],
-  ['fixture',['Fixture',['../classchaos_1_1test_1_1_fixture.html',1,'chaos::test']]],
-  ['formatoperations_2ehpp',['FormatOperations.hpp',['../_format_operations_8hpp.html',1,'']]]
+  ['endian_5fbig',['ENDIAN_BIG',['../namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3fa0e1ed99b965cedefe24534be309738ad',1,'chaos::data']]],
+  ['endian_5flittle',['ENDIAN_LITTLE',['../namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d',1,'chaos::data']]],
+  ['endianness',['Endianness',['../namespacechaos_1_1data.html#adb2657d50c0b84cdc1153001031bbf3f',1,'chaos::data']]],
+  ['ends_5fwith',['ends_with',['../classchaos_1_1uni_1_1_u_t_f8_string.html#abdf7eeafa6a476ea484d7a2a0e5060e5',1,'chaos::uni::UTF8String']]],
+  ['exists',['exists',['../namespacechaos_1_1io_1_1file.html#a30e2d7207df6af04322b7f9e11674825',1,'chaos::io::file::exists()'],['../namespacechaos_1_1io_1_1sys.html#ae8f4abc1388c24e0ce7a655a50cd0212',1,'chaos::io::sys::exists()']]]
 ];

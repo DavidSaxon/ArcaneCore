@@ -16,9 +16,9 @@ class \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{U\-T\-F8\-String}
 \item 
 bool \hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{is\-\_\-digit} (\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} code\-\_\-point)
 \begin{DoxyCompactList}\small\item\em Returns whether the given Unicode code point is a digit or not. \end{DoxyCompactList}\item 
-\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1uni_a5cf55ebf5dfcdef4398023f15b673e1c}{utf16\-\_\-to\-\_\-utf8} (const char $\ast$data, size\-\_\-t symbol\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
+\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1uni_abde7063d11cab650cbe316f20b94c4e9}{utf16\-\_\-to\-\_\-utf8} (const char $\ast$data, std\-::size\-\_\-t symbol\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
 \begin{DoxyCompactList}\small\item\em Converts the given data stream of U\-T\-F-\/16 encoded text to new \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{utf8\-\_\-to\-\_\-utf16} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&data, size\-\_\-t \&r\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
+char $\ast$ \hyperlink{namespacechaos_1_1uni_a3ec4746c1c3433619edfd24c8b0b8b9d}{utf8\-\_\-to\-\_\-utf16} (const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&data, std\-::size\-\_\-t \&r\-\_\-length, \hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3f}{chaos\-::data\-::\-Endianness} endianness=\hyperlink{namespacechaos_1_1data_adb2657d50c0b84cdc1153001031bbf3fa7fc5455bb6147c278dfa4a84e255c66d}{chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E})
 \begin{DoxyCompactList}\small\item\em Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} encoded data to a new c style string of U\-T\-F-\/16 encoded data. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1uni_ad2a77983423c8b10e2b18cae6f35d329}{join} (const std\-::vector$<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} $>$ \&components, const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&separator)
 \begin{DoxyCompactList}\small\item\em Joins the given vector into a single \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \end{DoxyCompactList}\item 
@@ -53,39 +53,37 @@ Example usage\-:
 
 \begin{DoxyCode}
 \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos::uni::UTF8String} s( \textcolor{stringliteral}{"5"} );
-\hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{chaos::uni::is\_digit}( s.\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string_a0032f18868d33ca5f5855657c4d2d147}{get\_code\_point}( 0 ) ); \textcolor{comment}{// returns: true}
+\hyperlink{namespacechaos_1_1uni_a25a7549a0378aeac227c881220c23640}{chaos::uni::is\_digit}( s.\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string_a20b2a700379ac8ba32882d99b8a2a539}{get\_code\_point}( 0 ) ); \textcolor{comment}{// returns: true}
 \end{DoxyCode}
- \hypertarget{namespacechaos_1_1uni_a5cf55ebf5dfcdef4398023f15b673e1c}{\index{chaos\-::uni@{chaos\-::uni}!utf16\-\_\-to\-\_\-utf8@{utf16\-\_\-to\-\_\-utf8}}
+ \hypertarget{namespacechaos_1_1uni_abde7063d11cab650cbe316f20b94c4e9}{\index{chaos\-::uni@{chaos\-::uni}!utf16\-\_\-to\-\_\-utf8@{utf16\-\_\-to\-\_\-utf8}}
 \index{utf16\-\_\-to\-\_\-utf8@{utf16\-\_\-to\-\_\-utf8}!chaos::uni@{chaos\-::uni}}
 \subsubsection[{utf16\-\_\-to\-\_\-utf8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\-::uni\-::\-U\-T\-F8\-String} chaos\-::uni\-::utf16\-\_\-to\-\_\-utf8 (
 \begin{DoxyParamCaption}
 \item[{const char $\ast$}]{data, }
-\item[{size\-\_\-t}]{symbol\-\_\-length, }
+\item[{std\-::size\-\_\-t}]{symbol\-\_\-length, }
 \item[{{\bf chaos\-::data\-::\-Endianness}}]{endianness = {\ttfamily {\bf chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E}}}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1uni_a5cf55ebf5dfcdef4398023f15b673e1c}
+)}}\label{namespacechaos_1_1uni_abde7063d11cab650cbe316f20b94c4e9}
 
 
 Converts the given data stream of U\-T\-F-\/16 encoded text to new \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. 
 
-// T\-O\-D\-O\-: not valid encoding?
-
 
 \begin{DoxyParams}{Parameters}
-{\em data} & U\-T\-F-\/16 string to convert to a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \\
+{\em data} & U\-T\-F-\/16 string stored as 2-\/4 chars per symbol. \\
 \hline
-{\em symbol\-\_\-length} & The number of Unicode symbols in the input data. Note\-: this is not the number of bytes in the data. If this value is T\-O\-D\-O\-: \hyperlink{namespacechaos_1_1uni_af28f3dcb2b4845d8a39b3d16e86c174b}{uni\-::npos} \\
+{\em symbol\-\_\-length} & The number of Unicode symbols in the input data. Note\-: this is not the number of bytes in the data. If this parameter is set to \hyperlink{namespacechaos_1_1uni_af28f3dcb2b4845d8a39b3d16e86c174b}{chaos\-::uni\-::npos} the length of the input will be calculated with the assumption it is N\-U\-L\-L terminated. \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}{\index{chaos\-::uni@{chaos\-::uni}!utf8\-\_\-to\-\_\-utf16@{utf8\-\_\-to\-\_\-utf16}}
+\hypertarget{namespacechaos_1_1uni_a3ec4746c1c3433619edfd24c8b0b8b9d}{\index{chaos\-::uni@{chaos\-::uni}!utf8\-\_\-to\-\_\-utf16@{utf8\-\_\-to\-\_\-utf16}}
 \index{utf8\-\_\-to\-\_\-utf16@{utf8\-\_\-to\-\_\-utf16}!chaos::uni@{chaos\-::uni}}
 \subsubsection[{utf8\-\_\-to\-\_\-utf16}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ chaos\-::uni\-::utf8\-\_\-to\-\_\-utf16 (
 \begin{DoxyParamCaption}
 \item[{const {\bf chaos\-::uni\-::\-U\-T\-F8\-String} \&}]{data, }
-\item[{size\-\_\-t \&}]{r\-\_\-length, }
+\item[{std\-::size\-\_\-t \&}]{r\-\_\-length, }
 \item[{{\bf chaos\-::data\-::\-Endianness}}]{endianness = {\ttfamily {\bf chaos\-::data\-::\-E\-N\-D\-I\-A\-N\-\_\-\-L\-I\-T\-T\-L\-E}}}
 \end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1uni_ae9ad4c8b653b2202e908fec0dce094e7}
+)}}\label{namespacechaos_1_1uni_a3ec4746c1c3433619edfd24c8b0b8b9d}
 
 
 Converts the given \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} encoded data to a new c style string of U\-T\-F-\/16 encoded data. 

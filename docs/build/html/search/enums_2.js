@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timemetric',['TimeMetric',['../namespacechaos_1_1clock.html#ad8f76a285e7d26251910d5e006c57cca',1,'chaos::clock']]]
+  ['flag',['Flag',['../classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b',1,'chaos::io::sys::FileWriter']]]
 ];

@@ -19,9 +19,6 @@
 
 #endif
 
-// TODO: REMOVE ME
-#include <iostream>
-
 namespace chaos
 {
 namespace io
@@ -380,9 +377,62 @@ bool create_directory( const chaos::io::sys::Path& path )
 #endif
 }
 
+void delete_path( const chaos::io::sys::Path& path )
+{
+    // does the file exist?
+    if ( !exists( path ) )
+    {
+        chaos::uni::UTF8String error_message;
+        error_message << "Cannot delete path because it does not exist: \'";
+        error_message << path.to_native() << "\'";
+        throw chaos::io::sys::InvalidPathError( error_message );
+    }
+
+#ifdef CHAOS_OS_UNIX
+
+    if ( remove( path.to_unix().get_raw() ) != 0 )
+    {
+        chaos::uni::UTF8String error_message;
+        error_message << "Failed to delete path: \'" << path.to_native();
+        error_message << " \'. Error " << errno << ": " << strerror( errno );
+        throw chaos::io::sys::InvalidPathError( error_message );
+    }
+
+#elif defined( CHAOS_OS_WINDOWS )
+
+    // utf-16
+    std::size_t length = 0;
+    const char* p = chaos::uni::utf8_to_utf16(
+            path.to_windows().get_raw(),
+            length,
+            chaos::data::ENDIAN_LITTLE
+    );
+
+    BOOL result = 0;
+    if ( is_file( path ) )
+    {
+        result = DeleteFileW( ( const wchar_t* ) p );
+        // TODO: get error message
+    }
+    else if ( is_directory )
+    {
+
+    }
+
+    delete[] p;
+
+    if ( !result )
+    {
+        // TODO: throw exception
+    }
+
+
+#endif
+}
+
 void validate( const chaos::io::sys::Path& path )
 {
-    // do nothing of the path is too short
+    // do nothing if the path is too short
     if ( path.get_length() < 2 )
     {
         return;
