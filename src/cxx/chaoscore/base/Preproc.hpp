@@ -146,6 +146,6 @@
  *
  * TODO: DOC
  */
-#define CHAOS_UNIQUE_NAME( base ) PP_CAT( base, __COUNTER__ )
+#define CHAOS_UNIQUE_NAME( base ) PP_CAT( base, __LINE__ )
 
 #endif

@@ -18,6 +18,9 @@
 #include "chaoscore/base/os/OSOperations.hpp"
 #include "chaoscore/base/uni/UnicodeOperations.hpp"
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace io
@@ -443,7 +446,7 @@ void delete_path( const chaos::io::sys::Path& path )
         chaos::uni::UTF8String error_message;
         error_message << "Deleting path failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
-        throw CreateDirectoryError( error_message );
+        throw InvalidPathError( error_message );
     }
 
 
@@ -464,10 +467,19 @@ void delete_path_rec( const chaos::io::sys::Path& path )
     // is this a directory? do we need to traverse it?
     if ( is_directory( path ) )
     {
-        CHAOS_FOR_EACH( it, list( path ) )
+        std::vector< chaos::io::sys::Path > sub_paths = list( path );
+        CHAOS_FOR_EACH( it, sub_paths )
         {
             // skip . and ..
-            // TODO: path .back()
+            if ( it->is_empty()        ||
+                 it->get_back() == "." ||
+                 it->get_back() == ".."   )
+            {
+                continue;
+            }
+
+            // follow paths
+            delete_path_rec( *it );
         }
     }
 

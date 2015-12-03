@@ -1020,8 +1020,7 @@ public:
         // delete the valid file paths
         CHAOS_FOR_EACH( it, valid )
         {
-            // TODO: this should use delete_path_rec!!!
-            chaos::io::sys::delete_path( *it );
+            chaos::io::sys::delete_path_rec( *it );
         }
     }
 };
@@ -1080,6 +1079,7 @@ public:
 
     std::vector< chaos::io::sys::Path > directories;
     std::vector< chaos::io::sys::Path > files;
+    std::vector< chaos::io::sys::Path > invalid;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1144,6 +1144,27 @@ public:
 
             chaos::io::sys::FileWriter w( p );
             w.write_line( "Hello World!" );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "does not exist";
+            invalid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "не існує";
+            invalid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir";
+            invalid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "list_dir" << "dir_a_1" << "dir_b_1";
+            invalid.push_back( p );
         }
     }
 };
@@ -1163,6 +1184,15 @@ CHAOS_TEST_UNIT_FIXTURE( delete_path, DeletePathFixture )
         chaos::io::sys::delete_path( *it_2 );
         CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_2 ) );
     }
+
+    CHAOS_TEST_MESSAGE( "Checking InvalidPathError" );
+    CHAOS_FOR_EACH( it_3, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW(
+                chaos::io::sys::delete_path( *it_3 ),
+                chaos::io::sys::InvalidPathError
+        );
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -1177,6 +1207,7 @@ public:
 
     std::vector< chaos::io::sys::Path > directories;
     std::vector< chaos::io::sys::Path > files;
+    std::vector< chaos::io::sys::Path > invalid;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1212,6 +1243,86 @@ public:
 
         {
             chaos::io::sys::Path p( base_path );
+            p << "has_sub";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_dir_1";
+                chaos::io::sys::create_directory( p1 );
+            }
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_dir_2";
+                chaos::io::sys::create_directory( p1 );
+            }
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_file_1.txt";
+                chaos::io::sys::FileWriter w( p1 );
+                w.write_line( "Hello World!" );
+            }
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_file_2.png";
+                chaos::io::sys::FileWriter w( p1 );
+                w.write_line( "Hello World!" );
+            }
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "has_more_subs";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_dir_1";
+                chaos::io::sys::create_directory( p1 );
+                {
+                    chaos::io::sys::Path p2( p1 );
+                    p2 << "sub_dir_1";
+                    chaos::io::sys::create_directory( p2 );
+                }
+                {
+                    chaos::io::sys::Path p2( p1 );
+                    p2 << "sub_dir_2";
+                    chaos::io::sys::create_directory( p2 );
+                }
+            }
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_dir_2";
+                chaos::io::sys::create_directory( p1 );
+                {
+                    chaos::io::sys::Path p2( p1 );
+                    p2 << "sub_file_1.txt";
+                    chaos::io::sys::FileWriter w( p2 );
+                    w.write_line( "Hello World!" );
+                }
+                {
+                    chaos::io::sys::Path p2( p1 );
+                    p2 << "sub_file_2.png";
+                    chaos::io::sys::FileWriter w( p2 );
+                    w.write_line( "Hello World!" );
+                }
+            }
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_file_1.txt";
+                chaos::io::sys::FileWriter w( p1 );
+                w.write_line( "Hello World!" );
+            }
+            {
+                chaos::io::sys::Path p1( p );
+                p1 << "sub_file_2.png";
+                chaos::io::sys::FileWriter w( p1 );
+                w.write_line( "Hello World!" );
+            }
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
             p << "delete_me.txt";
             files.push_back( p );
 
@@ -1242,18 +1353,43 @@ public:
             chaos::io::sys::FileWriter w( p );
             w.write_line( "Hello World!" );
         }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "does not exist";
+            invalid.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "не існує";
+            invalid.push_back( p );
+        }
     }
 };
 
 CHAOS_TEST_UNIT_FIXTURE( delete_path_rec, DeletePathRecFixture )
 {
     CHAOS_TEST_MESSAGE( "Checking deleting directories" );
+    CHAOS_FOR_EACH( it_1, fixture->directories )
+    {
+        chaos::io::sys::delete_path_rec( *it_1 );
+        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_1 ) );
+    }
 
     CHAOS_TEST_MESSAGE( "Checking deleting files" );
     CHAOS_FOR_EACH( it_2, fixture->files )
     {
-        chaos::io::sys::delete_path( *it_2 );
+        chaos::io::sys::delete_path_rec( *it_2 );
         CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_2 ) );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking InvalidPathError" );
+    CHAOS_FOR_EACH( it_3, fixture->invalid )
+    {
+        CHAOS_CHECK_THROW(
+                chaos::io::sys::delete_path_rec( *it_3 ),
+                chaos::io::sys::InvalidPathError
+        );
     }
 }
 
