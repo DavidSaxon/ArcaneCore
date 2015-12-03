@@ -142,6 +142,9 @@ Functions</h2></td></tr>
 <tr class="memitem:afe2226ee576ac8aba15ca3baa0322ff6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1sys.html#afe2226ee576ac8aba15ca3baa0322ff6">delete_path</a> (const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;path)</td></tr>
 <tr class="memdesc:afe2226ee576ac8aba15ca3baa0322ff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the given <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a> on the file system if it exists.  <a href="#afe2226ee576ac8aba15ca3baa0322ff6">More...</a><br/></td></tr>
 <tr class="separator:afe2226ee576ac8aba15ca3baa0322ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c090bbfe1da7e7cb00dc99c7459a21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1sys.html#a00c090bbfe1da7e7cb00dc99c7459a21">delete_path_rec</a> (const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;path)</td></tr>
+<tr class="memdesc:a00c090bbfe1da7e7cb00dc99c7459a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes the given path on the file system and all subsequent paths under the given path.  <a href="#a00c090bbfe1da7e7cb00dc99c7459a21">More...</a><br/></td></tr>
+<tr class="separator:a00c090bbfe1da7e7cb00dc99c7459a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15e20b105c40cf4d73b13afe87ce1781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1sys.html#a15e20b105c40cf4d73b13afe87ce1781">validate</a> (const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;path)</td></tr>
 <tr class="memdesc:a15e20b105c40cf4d73b13afe87ce1781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to ensure all directories up to the provided path exist.  <a href="#a15e20b105c40cf4d73b13afe87ce1781">More...</a><br/></td></tr>
 <tr class="separator:a15e20b105c40cf4d73b13afe87ce1781"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,10 +365,37 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 </div><div class="memdoc">
 
 <p>Deletes the given <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a> on the file system if it exists. </p>
+<p>This operation will fail if the given path is a non-empty directory, see <a class="el" href="namespacechaos_1_1io_1_1sys.html#a00c090bbfe1da7e7cb00dc99c7459a21" title="Deletes the given path on the file system and all subsequent paths under the given path...">chaos::io::sys::delete_path_rec()</a> to delete non-empty directories.</p>
 <dl class="section note"><dt>Note</dt><dd>This operation will delete symbolic link objects but will not follow them to delete the path they point to.</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html" title="Warns that given path cannot be accessed and/or modified because it does not exist permission is deni...">chaos::io::sys::InvalidPathError</a></td><td>If the path cannot be accessed and/or modified to be deleted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a00c090bbfe1da7e7cb00dc99c7459a21"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chaos::io::sys::delete_path_rec </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deletes the given path on the file system and all subsequent paths under the given path. </p>
+<p>This effectively performs the same job as <a class="el" href="namespacechaos_1_1io_1_1sys.html#afe2226ee576ac8aba15ca3baa0322ff6" title="Deletes the given Path on the file system if it exists. ">chaos::io::sys::delete_path()</a> except that non-empty directories will also be deleted by this operation.</p>
+<dl class="section note"><dt>Note</dt><dd>This operation will delete symbolic link objects but will not follow them to delete the path they point to.</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classchaos_1_1io_1_1sys_1_1_invalid_path_error.html" title="Warns that given path cannot be accessed and/or modified because it does not exist permission is deni...">chaos::io::sys::InvalidPathError</a></td><td>If a path in the directory hierarchy cannot be accessed and/or modified to be deleted. </td></tr>
   </table>
   </dd>
 </dl>
@@ -412,7 +442,7 @@ std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operato
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 15:11:28 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 4 2015 11:10:10 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

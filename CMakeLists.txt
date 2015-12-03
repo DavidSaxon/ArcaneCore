@@ -6,6 +6,7 @@ set( CORE_SRC
     src/cxx/chaoscore/base/clock/ClockOperations.cpp
     src/cxx/chaoscore/base/data/BinaryOperations.cpp
     src/cxx/chaoscore/base/data/ByteOperations.cpp
+    src/cxx/chaoscore/base/os/OSOperations.cpp
     src/cxx/chaoscore/base/uni/UnicodeConstants.cpp
     src/cxx/chaoscore/base/uni/UnicodeOperations.cpp
     src/cxx/chaoscore/base/uni/UTF8String.cpp

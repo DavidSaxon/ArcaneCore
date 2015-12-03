@@ -1020,8 +1020,8 @@ public:
         // delete the valid file paths
         CHAOS_FOR_EACH( it, valid )
         {
-            std::cout << "delete!" << *it << std::endl;
-            remove( it->to_native().get_raw() );
+            // TODO: this should use delete_path_rec!!!
+            chaos::io::sys::delete_path( *it );
         }
     }
 };
@@ -1100,7 +1100,6 @@ public:
             directories.push_back( p );
             chaos::io::sys::create_directory( p );
         }
-
         {
             chaos::io::sys::Path p( base_path );
             p << "test_dir" << "delete_me";
@@ -1157,6 +1156,98 @@ CHAOS_TEST_UNIT_FIXTURE( delete_path, DeletePathFixture )
         chaos::io::sys::delete_path( *it_1 );
         CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_1 ) );
     }
+
+    CHAOS_TEST_MESSAGE( "Checking deleting files" );
+    CHAOS_FOR_EACH( it_2, fixture->files )
+    {
+        chaos::io::sys::delete_path( *it_2 );
+        CHAOS_CHECK_FALSE( chaos::io::sys::exists( *it_2 ) );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                DELETE PATH REC
+//------------------------------------------------------------------------------
+
+class DeletePathRecFixture : public FileSysBaseFixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::sys::Path > directories;
+    std::vector< chaos::io::sys::Path > files;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        // super call
+        FileSysBaseFixture::setup();
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "delete_me";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "бришење";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "delete_me";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "silmək";
+            directories.push_back( p );
+            chaos::io::sys::create_directory( p );
+        }
+
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "delete_me.txt";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "文件名.ಪಠ್ಯ";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "delete_me.txt";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "文件名.ಪಠ್ಯ";
+            files.push_back( p );
+
+            chaos::io::sys::FileWriter w( p );
+            w.write_line( "Hello World!" );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( delete_path_rec, DeletePathRecFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking deleting directories" );
 
     CHAOS_TEST_MESSAGE( "Checking deleting files" );
     CHAOS_FOR_EACH( it_2, fixture->files )

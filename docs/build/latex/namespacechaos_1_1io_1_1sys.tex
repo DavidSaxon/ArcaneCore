@@ -42,6 +42,8 @@ bool \hyperlink{namespacechaos_1_1io_1_1sys_a6bcdadf916b110395f4a2627c049da11}{c
 \begin{DoxyCompactList}\small\item\em Attempts to create the directory at the given path. \end{DoxyCompactList}\item 
 void \hyperlink{namespacechaos_1_1io_1_1sys_afe2226ee576ac8aba15ca3baa0322ff6}{delete\-\_\-path} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Deletes the given \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} on the file system if it exists. \end{DoxyCompactList}\item 
+void \hyperlink{namespacechaos_1_1io_1_1sys_a00c090bbfe1da7e7cb00dc99c7459a21}{delete\-\_\-path\-\_\-rec} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
+\begin{DoxyCompactList}\small\item\em Deletes the given path on the file system and all subsequent paths under the given path. \end{DoxyCompactList}\item 
 void \hyperlink{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{validate} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Attempts to ensure all directories up to the provided path exist. \end{DoxyCompactList}\item 
 \hypertarget{namespacechaos_1_1io_1_1sys_a669178b3843d1716570b4b5ca8fd417d}{\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \& {\bfseries operator$<$$<$} (\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&s, const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} \&p)}\label{namespacechaos_1_1io_1_1sys_a669178b3843d1716570b4b5ca8fd417d}
@@ -194,12 +196,35 @@ True is a new directory was created, false if the directory already exists.
 
 Deletes the given \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} on the file system if it exists. 
 
+This operation will fail if the given path is a non-\/empty directory, see \hyperlink{namespacechaos_1_1io_1_1sys_a00c090bbfe1da7e7cb00dc99c7459a21}{chaos\-::io\-::sys\-::delete\-\_\-path\-\_\-rec()} to delete non-\/empty directories.
+
 \begin{DoxyNote}{Note}
 This operation will delete symbolic link objects but will not follow them to delete the path they point to.
 \end{DoxyNote}
 
 \begin{DoxyExceptions}{Exceptions}
 {\em \hyperlink{classchaos_1_1io_1_1sys_1_1_invalid_path_error}{chaos\-::io\-::sys\-::\-Invalid\-Path\-Error}} & If the path cannot be accessed and/or modified to be deleted. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{namespacechaos_1_1io_1_1sys_a00c090bbfe1da7e7cb00dc99c7459a21}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!delete\-\_\-path\-\_\-rec@{delete\-\_\-path\-\_\-rec}}
+\index{delete\-\_\-path\-\_\-rec@{delete\-\_\-path\-\_\-rec}!chaos::io::sys@{chaos\-::io\-::sys}}
+\subsubsection[{delete\-\_\-path\-\_\-rec}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::io\-::sys\-::delete\-\_\-path\-\_\-rec (
+\begin{DoxyParamCaption}
+\item[{const {\bf chaos\-::io\-::sys\-::\-Path} \&}]{path}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1io_1_1sys_a00c090bbfe1da7e7cb00dc99c7459a21}
+
+
+Deletes the given path on the file system and all subsequent paths under the given path. 
+
+This effectively performs the same job as \hyperlink{namespacechaos_1_1io_1_1sys_afe2226ee576ac8aba15ca3baa0322ff6}{chaos\-::io\-::sys\-::delete\-\_\-path()} except that non-\/empty directories will also be deleted by this operation.
+
+\begin{DoxyNote}{Note}
+This operation will delete symbolic link objects but will not follow them to delete the path they point to.
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1io_1_1sys_1_1_invalid_path_error}{chaos\-::io\-::sys\-::\-Invalid\-Path\-Error}} & If a path in the directory hierarchy cannot be accessed and/or modified to be deleted. \\
 \hline
 \end{DoxyExceptions}
 \hypertarget{namespacechaos_1_1io_1_1sys_a15e20b105c40cf4d73b13afe87ce1781}{\index{chaos\-::io\-::sys@{chaos\-::io\-::sys}!validate@{validate}}

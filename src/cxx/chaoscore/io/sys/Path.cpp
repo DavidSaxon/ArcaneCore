@@ -317,9 +317,40 @@ std::size_t Path::get_length() const
     return m_components.size();
 }
 
+bool Path::is_empty() const
+{
+    return get_length() == 0;
+}
+
 const std::vector< chaos::uni::UTF8String >& Path::get_components() const
 {
     return m_components;
+}
+
+const chaos::uni::UTF8String& Path::get_front() const
+{
+    // is the path empty?
+    if ( is_empty() )
+    {
+        throw chaos::ex::IndexOutOfBoundsError(
+                "Cannot get the front component of an empty path."
+        );
+    }
+
+    return m_components.front();
+}
+
+const chaos::uni::UTF8String& Path::get_back() const
+{
+    // is the path empty?
+    if ( is_empty() )
+    {
+        throw chaos::ex::IndexOutOfBoundsError(
+                "Cannot get the back component of an empty path."
+        );
+    }
+
+    return m_components.back();
 }
 
 chaos::uni::UTF8String Path::get_extension() const

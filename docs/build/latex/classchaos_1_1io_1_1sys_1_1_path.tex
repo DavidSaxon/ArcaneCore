@@ -57,9 +57,15 @@ void \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ae1f5ed612b5d85f99eb5dd436dd7b1
 \begin{DoxyCompactList}\small\item\em Returns the \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} representation of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} for Windows based operating systems. \end{DoxyCompactList}\item 
 std\-::size\-\_\-t \hyperlink{classchaos_1_1io_1_1sys_1_1_path_aa3edecd81cd92a4fb16803bd9de9e7a4}{get\-\_\-length} () const 
 \begin{DoxyCompactList}\small\item\em Returns the number of components in this path. \end{DoxyCompactList}\item 
+bool \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ad0eda5171d722eae64332dc143b6840b}{is\-\_\-empty} () const 
+\begin{DoxyCompactList}\small\item\em Returns whether the this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} contains any components or not. \end{DoxyCompactList}\item 
 const std\-::vector\\*
 $<$ \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} $>$ \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ae20cae838af510b945e716d529e19bf4}{get\-\_\-components} () const 
 \begin{DoxyCompactList}\small\item\em Returns the individual components which make up this path. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ab9dc2b0c35756b853f75b5eb664be046}{get\-\_\-front} () const 
+\begin{DoxyCompactList}\small\item\em Returns the first component of this path. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_path_abb776687ed013a911b239a0b49da1896}{get\-\_\-back} () const 
+\begin{DoxyCompactList}\small\item\em Returns the last component of this path. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{classchaos_1_1io_1_1sys_1_1_path_ac7a2b7c374c1e4059b021b2c8751fb39}{get\-\_\-extension} () const 
 \begin{DoxyCompactList}\small\item\em Returns the file extension of the leaf component of this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -576,7 +582,18 @@ chaos::io::file::Path p;
 p << \textcolor{stringliteral}{"path"} << \textcolor{stringliteral}{"to"} << \textcolor{stringliteral}{"file.txt"};
 p.get\_length(); \textcolor{comment}{// returns: 3}
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ae20cae838af510b945e716d529e19bf4}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!get\-\_\-components@{get\-\_\-components}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ad0eda5171d722eae64332dc143b6840b}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!is\-\_\-empty@{is\-\_\-empty}}
+\index{is\-\_\-empty@{is\-\_\-empty}!chaos::io::sys::Path@{chaos\-::io\-::sys\-::\-Path}}
+\subsubsection[{is\-\_\-empty}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::io\-::sys\-::\-Path\-::is\-\_\-empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1io_1_1sys_1_1_path_ad0eda5171d722eae64332dc143b6840b}
+
+
+Returns whether the this \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{Path} contains any components or not. 
+
+This operation is the same as checking whether \hyperlink{classchaos_1_1io_1_1sys_1_1_path_aa3edecd81cd92a4fb16803bd9de9e7a4}{get\-\_\-length()} returns {\ttfamily 0} or not. \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ae20cae838af510b945e716d529e19bf4}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!get\-\_\-components@{get\-\_\-components}}
 \index{get\-\_\-components@{get\-\_\-components}!chaos::io::sys::Path@{chaos\-::io\-::sys\-::\-Path}}
 \subsubsection[{get\-\_\-components}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::vector$<$ {\bf chaos\-::uni\-::\-U\-T\-F8\-String} $>$\& chaos\-::io\-::sys\-::\-Path\-::get\-\_\-components (
 \begin{DoxyParamCaption}
@@ -610,7 +627,39 @@ Would contain the components\-:
 \begin{DoxyCode}
 [ \textcolor{stringliteral}{"path"}, \textcolor{stringliteral}{"to"}, \textcolor{stringliteral}{"file.txt"} ]
 \end{DoxyCode}
- \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ac7a2b7c374c1e4059b021b2c8751fb39}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!get\-\_\-extension@{get\-\_\-extension}}
+ \hypertarget{classchaos_1_1io_1_1sys_1_1_path_ab9dc2b0c35756b853f75b5eb664be046}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!get\-\_\-front@{get\-\_\-front}}
+\index{get\-\_\-front@{get\-\_\-front}!chaos::io::sys::Path@{chaos\-::io\-::sys\-::\-Path}}
+\subsubsection[{get\-\_\-front}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\-::uni\-::\-U\-T\-F8\-String}\& chaos\-::io\-::sys\-::\-Path\-::get\-\_\-front (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1io_1_1sys_1_1_path_ab9dc2b0c35756b853f75b5eb664be046}
+
+
+Returns the first component of this path. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\-::ex\-::\-Index\-Out\-Of\-Bounds\-Error}} & If this path is empty. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_abb776687ed013a911b239a0b49da1896}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!get\-\_\-back@{get\-\_\-back}}
+\index{get\-\_\-back@{get\-\_\-back}!chaos::io::sys::Path@{chaos\-::io\-::sys\-::\-Path}}
+\subsubsection[{get\-\_\-back}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf chaos\-::uni\-::\-U\-T\-F8\-String}\& chaos\-::io\-::sys\-::\-Path\-::get\-\_\-back (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1io_1_1sys_1_1_path_abb776687ed013a911b239a0b49da1896}
+
+
+Returns the last component of this path. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_index_out_of_bounds_error}{chaos\-::ex\-::\-Index\-Out\-Of\-Bounds\-Error}} & If this path is empty. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classchaos_1_1io_1_1sys_1_1_path_ac7a2b7c374c1e4059b021b2c8751fb39}{\index{chaos\-::io\-::sys\-::\-Path@{chaos\-::io\-::sys\-::\-Path}!get\-\_\-extension@{get\-\_\-extension}}
 \index{get\-\_\-extension@{get\-\_\-extension}!chaos::io::sys::Path@{chaos\-::io\-::sys\-::\-Path}}
 \subsubsection[{get\-\_\-extension}]{\setlength{\rightskip}{0pt plus 5cm}{\bf chaos\-::uni\-::\-U\-T\-F8\-String} chaos\-::io\-::sys\-::\-Path\-::get\-\_\-extension (
 \begin{DoxyParamCaption}

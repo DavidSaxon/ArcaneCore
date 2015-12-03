@@ -162,10 +162,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3edecd81cd92a4fb16803bd9de9e7a4"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#aa3edecd81cd92a4fb16803bd9de9e7a4">get_length</a> () const </td></tr>
 <tr class="memdesc:aa3edecd81cd92a4fb16803bd9de9e7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of components in this path.  <a href="#aa3edecd81cd92a4fb16803bd9de9e7a4">More...</a><br/></td></tr>
 <tr class="separator:aa3edecd81cd92a4fb16803bd9de9e7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0eda5171d722eae64332dc143b6840b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#ad0eda5171d722eae64332dc143b6840b">is_empty</a> () const </td></tr>
+<tr class="memdesc:ad0eda5171d722eae64332dc143b6840b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the this <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a> contains any components or not.  <a href="#ad0eda5171d722eae64332dc143b6840b">More...</a><br/></td></tr>
+<tr class="separator:ad0eda5171d722eae64332dc143b6840b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae20cae838af510b945e716d529e19bf4"><td class="memItemLeft" align="right" valign="top">const std::vector<br class="typebreak"/>
 &lt; <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#ae20cae838af510b945e716d529e19bf4">get_components</a> () const </td></tr>
 <tr class="memdesc:ae20cae838af510b945e716d529e19bf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the individual components which make up this path.  <a href="#ae20cae838af510b945e716d529e19bf4">More...</a><br/></td></tr>
 <tr class="separator:ae20cae838af510b945e716d529e19bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9dc2b0c35756b853f75b5eb664be046"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#ab9dc2b0c35756b853f75b5eb664be046">get_front</a> () const </td></tr>
+<tr class="memdesc:ab9dc2b0c35756b853f75b5eb664be046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first component of this path.  <a href="#ab9dc2b0c35756b853f75b5eb664be046">More...</a><br/></td></tr>
+<tr class="separator:ab9dc2b0c35756b853f75b5eb664be046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb776687ed013a911b239a0b49da1896"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#abb776687ed013a911b239a0b49da1896">get_back</a> () const </td></tr>
+<tr class="memdesc:abb776687ed013a911b239a0b49da1896"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the last component of this path.  <a href="#abb776687ed013a911b239a0b49da1896">More...</a><br/></td></tr>
+<tr class="separator:abb776687ed013a911b239a0b49da1896"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7a2b7c374c1e4059b021b2c8751fb39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#ac7a2b7c374c1e4059b021b2c8751fb39">get_extension</a> () const </td></tr>
 <tr class="memdesc:ac7a2b7c374c1e4059b021b2c8751fb39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the file extension of the leaf component of this <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a>.  <a href="#ac7a2b7c374c1e4059b021b2c8751fb39">More...</a><br/></td></tr>
 <tr class="separator:ac7a2b7c374c1e4059b021b2c8751fb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -757,6 +766,24 @@ Public Member Functions</h2></td></tr>
 </div><!-- fragment --> 
 </div>
 </div>
+<a class="anchor" id="ad0eda5171d722eae64332dc143b6840b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool chaos::io::sys::Path::is_empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether the this <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html" title="Represents a filesystem path. ">Path</a> contains any components or not. </p>
+<p>This operation is the same as checking whether <a class="el" href="classchaos_1_1io_1_1sys_1_1_path.html#aa3edecd81cd92a4fb16803bd9de9e7a4" title="Returns the number of components in this path. ">get_length()</a> returns <code>0</code> or not. </p>
+
+</div>
+</div>
 <a class="anchor" id="ae20cae838af510b945e716d529e19bf4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -779,6 +806,52 @@ Public Member Functions</h2></td></tr>
 </div><!-- fragment --><p>Would contain the components:</p>
 <div class="fragment"><div class="line">[ <span class="stringliteral">&quot;path&quot;</span>, <span class="stringliteral">&quot;to&quot;</span>, <span class="stringliteral">&quot;file.txt&quot;</span> ]</div>
 </div><!-- fragment --> 
+</div>
+</div>
+<a class="anchor" id="ab9dc2b0c35756b853f75b5eb664be046"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; chaos::io::sys::Path::get_front </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the first component of this path. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classchaos_1_1ex_1_1_index_out_of_bounds_error.html" title="Warns that an index has been requested outside of the allowed bounds. ">chaos::ex::IndexOutOfBoundsError</a></td><td>If this path is empty. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abb776687ed013a911b239a0b49da1896"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; chaos::io::sys::Path::get_back </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the last component of this path. </p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classchaos_1_1ex_1_1_index_out_of_bounds_error.html" title="Warns that an index has been requested outside of the allowed bounds. ">chaos::ex::IndexOutOfBoundsError</a></td><td>If this path is empty. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ac7a2b7c374c1e4059b021b2c8751fb39"></a>
@@ -810,7 +883,7 @@ Public Member Functions</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 15:11:28 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 4 2015 11:10:10 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

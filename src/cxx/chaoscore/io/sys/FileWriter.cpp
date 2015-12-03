@@ -4,6 +4,7 @@
 #include <fstream>
 
 #include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
 #include "chaoscore/io/sys/FileSystemExceptions.hpp"
 
 // TODO: REMOVE ME

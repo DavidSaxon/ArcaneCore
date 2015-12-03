@@ -23,6 +23,8 @@ virtual void \hyperlink{classchaos_1_1io_1_1sys_1_1_file_handle_aaab721e850f11cd
 \begin{DoxyCompactList}\small\item\em Opens the file handle to the internal path. \end{DoxyCompactList}\item 
 virtual void \hyperlink{classchaos_1_1io_1_1sys_1_1_file_handle_ac38cdc6e3d48bba2d6e143265c7aaaad}{open} (const \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \&path)
 \begin{DoxyCompactList}\small\item\em Sets the path and opens this handle to it. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classchaos_1_1io_1_1sys_1_1_file_handle_ac4dd796f7080d16fd2b141806e23f004}{close} ()=0
+\begin{DoxyCompactList}\small\item\em Closes this file handle. \end{DoxyCompactList}\item 
 \hypertarget{classchaos_1_1io_1_1sys_1_1_file_handle_aeb0c8615f3b16ceb7f9130b1482b3b42}{virtual const \\*
 \hyperlink{classchaos_1_1io_1_1sys_1_1_path}{chaos\-::io\-::sys\-::\-Path} \& \hyperlink{classchaos_1_1io_1_1sys_1_1_file_handle_aeb0c8615f3b16ceb7f9130b1482b3b42}{get\-\_\-path} () const }\label{classchaos_1_1io_1_1sys_1_1_file_handle_aeb0c8615f3b16ceb7f9130b1482b3b42}
 
@@ -126,7 +128,7 @@ This function is to be implemented by derived classes.
 \end{DoxyExceptions}
 
 
-Implemented in \hyperlink{classchaos_1_1io_1_1sys_1_1_file_writer_abddc915a52d4b589631d80bb24e013fe}{chaos\-::io\-::sys\-::\-File\-Writer}.
+Implemented in \hyperlink{classchaos_1_1io_1_1sys_1_1_file_writer_a2ed0e1f9c6cdf4120e6c9b61cf14738a}{chaos\-::io\-::sys\-::\-File\-Writer}.
 
 \hypertarget{classchaos_1_1io_1_1sys_1_1_file_handle_ac38cdc6e3d48bba2d6e143265c7aaaad}{\index{chaos\-::io\-::sys\-::\-File\-Handle@{chaos\-::io\-::sys\-::\-File\-Handle}!open@{open}}
 \index{open@{open}!chaos::io::sys::FileHandle@{chaos\-::io\-::sys\-::\-File\-Handle}}
@@ -155,6 +157,28 @@ my\_file\_handle.open();
 {\em \hyperlink{classchaos_1_1io_1_1sys_1_1_invalid_path_error}{chaos\-::io\-::sys\-::\-Invalid\-Path\-Error}} & If the path cannot be opened \\
 \hline
 \end{DoxyExceptions}
+
+
+Reimplemented in \hyperlink{classchaos_1_1io_1_1sys_1_1_file_writer_ae979d1d88397de34ede7b023e5d4306a}{chaos\-::io\-::sys\-::\-File\-Writer}.
+
+\hypertarget{classchaos_1_1io_1_1sys_1_1_file_handle_ac4dd796f7080d16fd2b141806e23f004}{\index{chaos\-::io\-::sys\-::\-File\-Handle@{chaos\-::io\-::sys\-::\-File\-Handle}!close@{close}}
+\index{close@{close}!chaos::io::sys::FileHandle@{chaos\-::io\-::sys\-::\-File\-Handle}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::io\-::sys\-::\-File\-Handle\-::close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{classchaos_1_1io_1_1sys_1_1_file_handle_ac4dd796f7080d16fd2b141806e23f004}
+
+
+Closes this file handle. 
+
+\begin{DoxyNote}{Note}
+This function is to be implemented by derived classes. 
+\end{DoxyNote}
+
+
+Implemented in \hyperlink{classchaos_1_1io_1_1sys_1_1_file_writer_ad5b7240d9d4856d6e2b8ddf99a11bced}{chaos\-::io\-::sys\-::\-File\-Writer}.
+
 \hypertarget{classchaos_1_1io_1_1sys_1_1_file_handle_a14272fcf341c329bf15f7198b5e08573}{\index{chaos\-::io\-::sys\-::\-File\-Handle@{chaos\-::io\-::sys\-::\-File\-Handle}!set\-\_\-path@{set\-\_\-path}}
 \index{set\-\_\-path@{set\-\_\-path}!chaos::io::sys::FileHandle@{chaos\-::io\-::sys\-::\-File\-Handle}}
 \subsubsection[{set\-\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}virtual void chaos\-::io\-::sys\-::\-File\-Handle\-::set\-\_\-path (

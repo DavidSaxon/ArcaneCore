@@ -4,13 +4,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#include "chaoscore/base/uni/UnicodeOperations.hpp"
-
 #ifdef CHAOS_OS_UNIX
 
-    #include <cstring>
     #include <dirent.h>
-    #include <cerrno>
     #include <unistd.h>
 
 #elif defined( CHAOS_OS_WINDOWS )
@@ -18,6 +14,9 @@
     #include <windows.h>
 
 #endif
+
+#include "chaoscore/base/os/OSOperations.hpp"
+#include "chaoscore/base/uni/UnicodeOperations.hpp"
 
 namespace chaos
 {
@@ -62,7 +61,10 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
     );
 
     struct _stat64i32 s;
-    if ( _wstat64i32( ( const wchar_t* ) p, &s ) == 0 )
+    int result =  _wstat64i32( ( const wchar_t* ) p, &s );
+    delete[] p;
+
+    if ( result == 0 )
     {
         return true;
     }
@@ -118,7 +120,10 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
     );
 
     struct _stat64i32 s;
-    if ( _wstat64i32( ( const wchar_t* ) p, &s ) == 0 )
+    int result = _wstat64i32( ( const wchar_t* ) p, &s );
+    delete[] p;
+
+    if ( result == 0 )
     {
         if ( s.st_mode & S_IFREG )
         {
@@ -177,7 +182,10 @@ bool is_directory(
     );
 
     struct _stat64i32 s;
-    if ( _wstat64i32( ( const wchar_t* ) p, &s ) == 0 )
+    int result =_wstat64i32( ( const wchar_t* ) p, &s );
+    delete[] p;
+
+    if ( result == 0 )
     {
         if ( s.st_mode & S_IFDIR )
         {
@@ -277,6 +285,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
 
     WIN32_FIND_DATAW find_data;
     HANDLE find_handle = FindFirstFileW( ( const wchar_t* ) p, &find_data );
+    delete[] p;
 
     if ( find_handle == INVALID_HANDLE_VALUE )
     {
@@ -288,14 +297,14 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     // iterate over sub paths
     do
     {
-        chaos::io::sys::Path p( path );
+        chaos::io::sys::Path sub_path( path );
 
-        p << chaos::uni::utf16_to_utf8(
+        sub_path << chaos::uni::utf16_to_utf8(
                 ( const char* ) find_data.cFileName,
                 chaos::uni::npos
         );
 
-        ret.push_back( p );
+        ret.push_back( sub_path );
     }
     while ( FindNextFileW( find_handle, &find_data ) != 0 );
 
@@ -353,8 +362,8 @@ bool create_directory( const chaos::io::sys::Path& path )
     if ( mkdir( path.to_unix().get_raw(), 0777 ) != 0 )
     {
         chaos::uni::UTF8String error_message;
-        error_message << "Directory creation failed with error code: ";
-        error_message << errno << ": " << strerror( errno );
+        error_message << "Directory creation failed with OS error: ";
+        error_message << chaos::os::get_last_system_error_message();
         throw CreateDirectoryError( error_message );
     }
 
@@ -362,14 +371,23 @@ bool create_directory( const chaos::io::sys::Path& path )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    if ( !CreateDirectory( path.to_windows().get_raw(), NULL ) )
+    // utf-16
+    std::size_t length = 0;
+    const char* p = chaos::uni::utf8_to_utf16(
+            path.to_windows().get_raw(),
+            length,
+            chaos::data::ENDIAN_LITTLE
+    );
+
+    BOOL result = CreateDirectoryW( ( const wchar_t* ) p, NULL );
+    delete[] p;
+
+    if ( !result )
     {
         chaos::uni::UTF8String error_message;
-        error_message << "Directory creation failed with error code: ";
-        error_message << GetLastError();
-        // << ": " << strerror( errno ); // TODO:
+        error_message << "Directory creation failed with OS error: ";
+        error_message << chaos::os::get_last_system_error_message();
         throw CreateDirectoryError( error_message );
-
     }
 
     return true;
@@ -394,7 +412,8 @@ void delete_path( const chaos::io::sys::Path& path )
     {
         chaos::uni::UTF8String error_message;
         error_message << "Failed to delete path: \'" << path.to_native();
-        error_message << " \'. Error " << errno << ": " << strerror( errno );
+        error_message << " \'. OS error: ";
+        error_message << chaos::os::get_last_system_error_message();
         throw chaos::io::sys::InvalidPathError( error_message );
     }
 
@@ -412,22 +431,48 @@ void delete_path( const chaos::io::sys::Path& path )
     if ( is_file( path ) )
     {
         result = DeleteFileW( ( const wchar_t* ) p );
-        // TODO: get error message
     }
-    else if ( is_directory )
+    else if ( is_directory( path ) )
     {
-
+        result = RemoveDirectoryW( ( const wchar_t* ) p );
     }
-
     delete[] p;
 
     if ( !result )
     {
-        // TODO: throw exception
+        chaos::uni::UTF8String error_message;
+        error_message << "Deleting path failed with OS error: ";
+        error_message << chaos::os::get_last_system_error_message();
+        throw CreateDirectoryError( error_message );
     }
 
 
 #endif
+}
+
+void delete_path_rec( const chaos::io::sys::Path& path )
+{
+    // does the file exist?
+    if ( !exists( path ) )
+    {
+        chaos::uni::UTF8String error_message;
+        error_message << "Cannot delete path because it does not exist: \'";
+        error_message << path.to_native() << "\'";
+        throw chaos::io::sys::InvalidPathError( error_message );
+    }
+
+    // is this a directory? do we need to traverse it?
+    if ( is_directory( path ) )
+    {
+        CHAOS_FOR_EACH( it, list( path ) )
+        {
+            // skip . and ..
+            // TODO: path .back()
+        }
+    }
+
+    // delete the path
+    delete_path( path );
 }
 
 void validate( const chaos::io::sys::Path& path )

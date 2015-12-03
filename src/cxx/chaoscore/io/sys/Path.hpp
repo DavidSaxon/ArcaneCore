@@ -404,6 +404,14 @@ public:
     std::size_t get_length() const;
 
     /*!
+     * \brief Returns whether the this Path contains any components or not.
+     *
+     * This operation is the same as checking whether get_length() returns `0`
+     * or not.
+     */
+    bool is_empty() const;
+
+    /*!
      * \brief Returns the individual components which make up this path.
      *
      * For example the native Linux path:
@@ -426,6 +434,20 @@ public:
      * \endcode
      */
     const std::vector< chaos::uni::UTF8String >& get_components() const;
+
+        /*!
+     * \brief Returns the first component of this path.
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If this path is empty.
+     */
+    const chaos::uni::UTF8String& get_front() const;
+
+    /*!
+     * \brief Returns the last component of this path.
+     *
+     * \throws chaos::ex::IndexOutOfBoundsError If this path is empty.
+     */
+    const chaos::uni::UTF8String& get_back() const;
 
     /*!
      * \brief Returns the file extension of the leaf component of this Path.

@@ -110,6 +110,9 @@ bool create_directory( const chaos::io::sys::Path& path );
 /*!
  * \brief Deletes the given Path on the file system if it exists.
  *
+ * This operation will fail if the given path is a non-empty directory, see
+ * chaos::io::sys::delete_path_rec() to delete non-empty directories.
+ *
  * \note This operation will delete symbolic link objects but will not follow
  *       them to delete the path they point to.
  *
@@ -117,6 +120,22 @@ bool create_directory( const chaos::io::sys::Path& path );
  *                                          and/or modified to be deleted.
  */
 void delete_path( const chaos::io::sys::Path& path );
+
+/*!
+ * \brief Deletes the given path on the file system and all subsequent paths
+ *        under the given path.
+ *
+ * This effectively performs the same job as chaos::io::sys::delete_path()
+ * except that non-empty directories will also be deleted by this operation.
+ *
+ * \note This operation will delete symbolic link objects but will not follow
+ *       them to delete the path they point to.
+ *
+ * \throws chaos::io::sys::InvalidPathError If a path in the directory hierarchy
+ *                                          cannot be accessed and/or modified
+ *                                          to be deleted.
+ */
+void delete_path_rec( const chaos::io::sys::Path& path );
 
 /*!
  * \brief Attempts to ensure all directories up to the provided path exist.

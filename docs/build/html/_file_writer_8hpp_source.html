@@ -91,70 +91,105 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_file_handle_8hpp.html">chaoscore/io/sys/FileHandle.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">namespace </span>chaos</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>io</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span>ofstream;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span>chaos</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>sys</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>io</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_handle.html">chaos::io::sys::FileHandle</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    CHAOS_DISALLOW_COPY_AND_ASSIGN( <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a> );</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">namespace </span>sys</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">   26</a></span>&#160;<span class="keyword">class </span><a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a> : <span class="keyword">public</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_handle.html">chaos::io::sys::FileHandle</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">//                                 ENUMERATOR</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    CHAOS_DISALLOW_COPY_AND_ASSIGN( <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a> );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b">   40</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b">Flag</a></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">   43</a></span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">FLAG_NONE</a>   = 0,</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc">   45</a></span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc">FLAG_BINARY</a> = 1,</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8">   49</a></span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8">FLAG_APPEND</a> = 2</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    };</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//                                CONSTRUCTORS</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">//                                 ENUMERATOR</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b">   44</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b">Flag</a></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">   47</a></span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">FLAG_NONE</a>   = 0,</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc">   49</a></span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc">FLAG_BINARY</a> = 1,</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8">   53</a></span>&#160;        <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8">FLAG_APPEND</a> = 2</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    };</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a84eee0f6699f145dd314201bbb60cab5">FileWriter</a>( <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> flags = <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">FileWriter::FLAG_NONE</a> );</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a84eee0f6699f145dd314201bbb60cab5">FileWriter</a>(</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> flags = <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">FileWriter::FLAG_NONE</a> );</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//                          PUBLIC MEMBER FUNCTIONS</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#abddc915a52d4b589631d80bb24e013fe">open</a>();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;};</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;} <span class="comment">// namespace sys</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc">chaos::io::sys::FileWriter::FLAG_BINARY</a></div><div class="ttdoc">Operations are performed in binary mode rather than text mode. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:45</div></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">//                                CONSTRUCTORS</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a84eee0f6699f145dd314201bbb60cab5">FileWriter</a>( <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> flags = <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">FileWriter::FLAG_NONE</a> );</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a84eee0f6699f145dd314201bbb60cab5">FileWriter</a>(</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path,</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> flags = <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">FileWriter::FLAG_NONE</a> );</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">//                                 OPERATORS</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a>&amp; <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a4b94a57e0cde394a9a3ade4a5022dc43">operator&lt;&lt;</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; text );</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">//                                 DESTRUCTOR</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    ~<a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html">FileWriter</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">//                          PUBLIC MEMBER FUNCTIONS</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a2ed0e1f9c6cdf4120e6c9b61cf14738a">open</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a2ed0e1f9c6cdf4120e6c9b61cf14738a">open</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a>&amp; path );</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#ad5b7240d9d4856d6e2b8ddf99a11bced">close</a>();</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#adb940c8094f94604f78879b3901584d4">write</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; text );</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a76915355409987ffb0a8376e76fda7ca">write_line</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; text );</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="comment">//                             PRIVATE ATTRIBUTES</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    std::ofstream* m_stream;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;};</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;} <span class="comment">// namespace sys</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc">chaos::io::sys::FileWriter::FLAG_BINARY</a></div><div class="ttdoc">Operations are performed in binary mode rather than text mode. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:49</div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_path_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_path.html">chaos::io::sys::Path</a></div><div class="ttdoc">Represents a filesystem path. </div><div class="ttdef"><b>Definition:</b> Path.hpp:32</div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_handle_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_handle.html">chaos::io::sys::FileHandle</a></div><div class="ttdoc">Abstract base class used for representing an object that is writing or reading to/from a file...</div><div class="ttdef"><b>Definition:</b> FileHandle.hpp:25</div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0b"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b">chaos::io::sys::FileWriter::Flag</a></div><div class="ttdeci">Flag</div><div class="ttdoc">Flags that can be used to describe how the file handle should be opened. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:40</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0b"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0b">chaos::io::sys::FileWriter::Flag</a></div><div class="ttdeci">Flag</div><div class="ttdoc">Flags that can be used to describe how the file handle should be opened. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:44</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_a2ed0e1f9c6cdf4120e6c9b61cf14738a"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a2ed0e1f9c6cdf4120e6c9b61cf14738a">chaos::io::sys::FileWriter::open</a></div><div class="ttdeci">void open()</div><div class="ttdoc">Opens the writer to the internal path. </div></div>
 <div class="ttc" id="namespacechaos_html_a8641b3ae4551f0b35570d4f9f4ec22d9"><div class="ttname"><a href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a></div><div class="ttdeci">std::uint32_t uint32</div><div class="ttdoc">a 32-bit unsigned integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:85</div></div>
 <div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_a84eee0f6699f145dd314201bbb60cab5"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a84eee0f6699f145dd314201bbb60cab5">chaos::io::sys::FileWriter::FileWriter</a></div><div class="ttdeci">FileWriter(chaos::uint32 flags=FileWriter::FLAG_NONE)</div><div class="ttdoc">Default constructor. </div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">chaos::io::sys::FileWriter::FLAG_NONE</a></div><div class="ttdoc">No flags specified. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:43</div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html">chaos::io::sys::FileWriter</a></div><div class="ttdoc">Object used to write to new or existing files on the file system. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:22</div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_abddc915a52d4b589631d80bb24e013fe"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#abddc915a52d4b589631d80bb24e013fe">chaos::io::sys::FileWriter::open</a></div><div class="ttdeci">virtual void open()</div><div class="ttdoc">Opens the writer to the internal path. </div></div>
-<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8">chaos::io::sys::FileWriter::FLAG_APPEND</a></div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:49</div></div>
+<div class="ttc" id="classchaos_1_1uni_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:128</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458">chaos::io::sys::FileWriter::FLAG_NONE</a></div><div class="ttdoc">No flags specified. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:47</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html">chaos::io::sys::FileWriter</a></div><div class="ttdoc">Object used to write to new or existing files on the file system. </div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:26</div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_adb940c8094f94604f78879b3901584d4"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#adb940c8094f94604f78879b3901584d4">chaos::io::sys::FileWriter::write</a></div><div class="ttdeci">void write(const chaos::uni::UTF8String &amp;text)</div><div class="ttdoc">Writes an chaos::uni::UTF8String to the internal buffer of this file writer. </div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_a4b94a57e0cde394a9a3ade4a5022dc43"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a4b94a57e0cde394a9a3ade4a5022dc43">chaos::io::sys::FileWriter::operator&lt;&lt;</a></div><div class="ttdeci">FileWriter &amp; operator&lt;&lt;(const chaos::uni::UTF8String &amp;text)</div><div class="ttdoc">chaos::uni::UTF8String stream operator. </div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_ad5b7240d9d4856d6e2b8ddf99a11bced"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#ad5b7240d9d4856d6e2b8ddf99a11bced">chaos::io::sys::FileWriter::close</a></div><div class="ttdeci">void close()</div><div class="ttdoc">Closes this file writer and writes data to the file system. </div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8">chaos::io::sys::FileWriter::FLAG_APPEND</a></div><div class="ttdef"><b>Definition:</b> FileWriter.hpp:53</div></div>
 <div class="ttc" id="_file_handle_8hpp_html"><div class="ttname"><a href="_file_handle_8hpp.html">FileHandle.hpp</a></div></div>
+<div class="ttc" id="classchaos_1_1io_1_1sys_1_1_file_writer_html_a76915355409987ffb0a8376e76fda7ca"><div class="ttname"><a href="classchaos_1_1io_1_1sys_1_1_file_writer.html#a76915355409987ffb0a8376e76fda7ca">chaos::io::sys::FileWriter::write_line</a></div><div class="ttdeci">void write_line(const chaos::uni::UTF8String &amp;text)</div><div class="ttdoc">Convenience function to write text with a following new line character. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 3 2015 15:11:27 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 4 2015 11:10:10 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

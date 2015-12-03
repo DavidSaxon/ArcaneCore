@@ -1,5 +1,5 @@
-#ifndef CHAOSCORE_BASE_DATA_HPP_
-#define CHAOSCORE_BASE_DATA_HPP_
+#ifndef CHAOSCORE_BASE_CLOCK_HPP_
+#define CHAOSCORE_BASE_CLOCK_HPP_
 
 namespace chaos
 {

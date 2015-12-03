@@ -1071,6 +1071,62 @@ CHAOS_TEST_UNIT_FIXTURE( get_length, PathGenericFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                    IS EMPTY
+//------------------------------------------------------------------------------
+
+
+class IsEmptyFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::io::sys::Path > empty;
+    std::vector< chaos::io::sys::Path > not_empty;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        {
+            chaos::io::sys::Path p;
+            empty.push_back( p );
+        }
+
+        {
+            chaos::io::sys::Path p;
+            p << ".";
+            not_empty.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p;
+            p << "..";
+            not_empty.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p;
+            p << ".this" << "path" << "is" << "not" << "empty";
+            not_empty.push_back( p );
+        }
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking empty paths" );
+    CHAOS_FOR_EACH( it_1, fixture->empty )
+    {
+        CHAOS_CHECK_TRUE( it_1->is_empty() );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking non-empty paths" );
+    CHAOS_FOR_EACH( it_2, fixture->not_empty )
+    {
+        CHAOS_CHECK_FALSE( it_2->is_empty() );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                 GET COMPONENTS
 //------------------------------------------------------------------------------
 
@@ -1086,6 +1142,56 @@ CHAOS_TEST_UNIT_FIXTURE( get_components, PathGenericFixture )
             );
         }
     }
+}
+
+//------------------------------------------------------------------------------
+//                                   GET FRONT
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_front, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Check valid cases" );
+    for( std::size_t i = 0; i < fixture->as_paths.size(); ++i )
+    {
+        if ( fixture->as_paths[ i ].is_empty() )
+        {
+            continue;
+        }
+
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].get_front(),
+                fixture->all[ i ].front()
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    chaos::io::sys::Path p;
+    CHAOS_CHECK_THROW( p.get_front(), chaos::ex::IndexOutOfBoundsError );
+}
+
+//------------------------------------------------------------------------------
+//                                    GET BACK
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( get_back, PathGenericFixture )
+{
+    CHAOS_TEST_MESSAGE( "Check valid cases" );
+    for( std::size_t i = 0; i < fixture->as_paths.size(); ++i )
+    {
+        if ( fixture->as_paths[ i ].is_empty() )
+        {
+            continue;
+        }
+
+        CHAOS_CHECK_EQUAL(
+                fixture->as_paths[ i ].get_back(),
+                fixture->all[ i ].back()
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    chaos::io::sys::Path p;
+    CHAOS_CHECK_THROW( p.get_back(), chaos::ex::IndexOutOfBoundsError );
 }
 
 //------------------------------------------------------------------------------
