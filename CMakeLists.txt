@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
 project(ChaosCore)
 
+set( HEADERS
+)
+
 set( BASE_SRC
     src/cxx/chaoscore/base/clock/ClockOperations.cpp
     src/cxx/chaoscore/base/data/BinaryOperations.cpp
@@ -45,6 +48,7 @@ set( TESTS_SUITES
 
 set(BASEPATH "${CMAKE_SOURCE_DIR}")
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs")
@@ -55,7 +59,9 @@ link_directories(${LINK_DIRECTORIES})
 
 add_executable(tests ${BASE_SRC} ${IO_SRC} ${TEST_SRC} ${TESTS_SUITES})
 
-#add_library
+add_library(chaoscore_base SHARED ${BASE_SRC})
+add_library(chaoscore_io SHARED ${IO_SRC})
+add_library(chaoscore_test SHARED ${TEST_SRC})
 
 target_link_libraries( tests
 )
