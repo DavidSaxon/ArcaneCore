@@ -1020,7 +1020,10 @@ public:
         // delete the valid file paths
         CHAOS_FOR_EACH( it, valid )
         {
-            chaos::io::sys::delete_path_rec( *it );
+            if ( chaos::io::sys::exists( *it ) )
+            {
+                chaos::io::sys::delete_path_rec( *it );
+            }
         }
     }
 };
@@ -1463,20 +1466,20 @@ public:
 
     virtual void teardown()
     {
-        // TODO: use hard-delete here when implemented
-        CHAOS_FOR_EACH( it, valid )
         {
-            for( std::size_t i = it->get_length() - 1;
-                 i > base_path.get_length();
-                 --i )
+            chaos::io::sys::Path p( base_path );
+            p << "new_dir";
+            if ( chaos::io::sys::exists( p ) )
             {
-                // create a new path to be cleaned up
-                chaos::io::sys::Path p(
-                        it->get_components().begin(),
-                        it->get_components().begin() + i
-                );
-
-                remove( p.to_native().get_raw() );
+                chaos::io::sys::delete_path_rec( p );
+            }
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "nový_ディレクトリ";
+            if ( chaos::io::sys::exists( p ) )
+            {
+                chaos::io::sys::delete_path_rec( p );
             }
         }
     }

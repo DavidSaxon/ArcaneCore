@@ -189,7 +189,11 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
             // close stream
             in_file.close();
             // delete the file
-            chaos::io::sys::delete_path( sub_path );
+            try
+            {
+                chaos::io::sys::delete_path( sub_path );
+            }
+            catch( ... ) {}
         }
     }
 
@@ -228,10 +232,15 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
             m_global_check_fail_count +=
                     chaos::uni::UTF8String( line.c_str() ).to_uint64();
         }
-    }
 
-    // clean up metadata
-    chaos::io::sys::delete_path( m_meta_path );
+        // clean up metadata
+        metadata.close();
+        try
+        {
+            chaos::io::sys::delete_path( m_meta_path );
+        }
+        catch( ... ) {}
+    }
 }
 
 void TestLogger::report_crash(
@@ -247,13 +256,21 @@ void TestLogger::report_crash(
         if ( chaos::io::sys::exists ( sub_path ) &&
              chaos::io::sys::is_file( sub_path )    )
         {
-            chaos::io::sys::delete_path( sub_path );
+            try
+            {
+                chaos::io::sys::delete_path( sub_path );
+            }
+            catch( ... ) {}
         }
     }
     if ( chaos::io::sys::exists ( m_meta_path ) &&
          chaos::io::sys::is_file( m_meta_path )    )
     {
-        chaos::io::sys::delete_path( m_meta_path );
+        try
+        {
+            chaos::io::sys::delete_path( m_meta_path );
+        }
+        catch( ... ) {}
     }
 
     // increment errored tests

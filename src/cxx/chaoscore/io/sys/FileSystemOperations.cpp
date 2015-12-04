@@ -310,6 +310,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
         ret.push_back( sub_path );
     }
     while ( FindNextFileW( find_handle, &find_data ) != 0 );
+    FindClose( find_handle );
 
 #endif
 
@@ -443,6 +444,7 @@ void delete_path( const chaos::io::sys::Path& path )
 
     if ( !result )
     {
+
         chaos::uni::UTF8String error_message;
         error_message << "Deleting path failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
@@ -468,6 +470,8 @@ void delete_path_rec( const chaos::io::sys::Path& path )
     if ( is_directory( path ) )
     {
         std::vector< chaos::io::sys::Path > sub_paths = list( path );
+        // std::vector< chaos::io::sys::Path >::iterator = sub_paths.begin();
+
         CHAOS_FOR_EACH( it, sub_paths )
         {
             // skip . and ..
