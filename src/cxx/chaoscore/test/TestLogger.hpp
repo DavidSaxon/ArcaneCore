@@ -14,6 +14,7 @@
 #include <vector>
 
 #include "chaoscore/base/uni/UTF8String.hpp"
+#include "chaoscore/io/sys/Path.hpp"
 
 namespace chaos
 {
@@ -222,7 +223,7 @@ private:
     /*!
      * \brief Path to metadata file.
      */
-    chaos::uni::UTF8String m_meta_path;
+    chaos::io::sys::Path m_meta_path;
 
     /*!
      * \brief The number of unit tests that have had a 100% pass rate.

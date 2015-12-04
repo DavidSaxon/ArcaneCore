@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "chaoscore/io/file/FileOperations.hpp"
+#include "chaoscore/io/sys/FileSystemOperations.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/log_formatter/HTMLTestLogFormatter.hpp"
 #include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"
@@ -60,7 +60,7 @@ void TestLogger::set_global_id( const chaos::uni::UTF8String& id )
 {
     // set global id and meta path
     m_global_id = id;
-    m_meta_path = id + ".metadata";
+    m_meta_path = chaos::io::sys::Path( id + ".metadata" );
 }
 
 void TestLogger::set_as_parent( bool state )
@@ -91,9 +91,6 @@ void TestLogger::add_file_output(
               chaos::uint16           verbosity,
               OutFormat               format )
 {
-    // the path should be validated at this point..
-    chaos::io::file::validate_path( path );
-
     // open a file stream
     std::ofstream* file_stream = new std::ofstream( path.get_raw() );
     // did the stream open ok?
@@ -173,13 +170,14 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
     CHAOS_FOR_EACH( f_it, m_file_streams )
     {
         // add the id as to the filename
-        chaos::uni::UTF8String sub_name( f_it->first + "." + id );
+        chaos::io::sys::Path sub_path( f_it->first + "." + id );
         // does the sub file exist?
-        if ( chaos::io::file::exists ( sub_name ) &&
-             chaos::io::file::is_file( sub_name )    )
+        if ( chaos::io::sys::exists ( sub_path ) &&
+             chaos::io::sys::is_file( sub_path )    )
         {
+            // TODO: this doesn't support windows utf-16 encoded paths
             // open the file and read the contents into the matching stream
-            std::ifstream in_file( sub_name.get_raw() );
+            std::ifstream in_file( sub_path.to_native().get_raw() );
             if ( in_file.is_open() )
             {
                 std::string line;
@@ -191,7 +189,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
             // close stream
             in_file.close();
             // delete the file
-            remove( sub_name.get_raw() );
+            chaos::io::sys::delete_path( sub_path );
         }
     }
 
@@ -202,11 +200,11 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
     }
 
     // read in metadata file
-    // does the sub file exist?
-    if ( chaos::io::file::exists ( m_meta_path ) &&
-         chaos::io::file::is_file( m_meta_path )    )
+    if ( chaos::io::sys::exists ( m_meta_path ) &&
+         chaos::io::sys::is_file( m_meta_path )    )
     {
-        std::ifstream metadata( m_meta_path.get_raw() );
+        // TODO: this doesn't support Windows UTF-16 encoded file paths
+        std::ifstream metadata( m_meta_path.to_native().get_raw() );
         std::string line;
         if( getline( metadata, line ) )
         {
@@ -233,7 +231,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
     }
 
     // clean up metadata
-    remove( m_meta_path.get_raw() );
+    chaos::io::sys::delete_path( m_meta_path );
 }
 
 void TestLogger::report_crash(
@@ -245,17 +243,17 @@ void TestLogger::report_crash(
     CHAOS_FOR_EACH( f_it, m_file_streams )
     {
         // add the id as to the filename
-        chaos::uni::UTF8String sub_name( f_it->first + "." + id );
-        if ( chaos::io::file::exists ( sub_name ) &&
-             chaos::io::file::is_file( sub_name )    )
+        chaos::io::sys::Path sub_path( f_it->first + "." + id );
+        if ( chaos::io::sys::exists ( sub_path ) &&
+             chaos::io::sys::is_file( sub_path )    )
         {
-            remove( sub_name.get_raw() );
+            chaos::io::sys::delete_path( sub_path );
         }
     }
-    if ( chaos::io::file::exists ( m_meta_path ) &&
-         chaos::io::file::is_file( m_meta_path )    )
+    if ( chaos::io::sys::exists ( m_meta_path ) &&
+         chaos::io::sys::is_file( m_meta_path )    )
     {
-        remove( m_meta_path.get_raw() );
+        chaos::io::sys::delete_path( m_meta_path );
     }
 
     // increment errored tests
@@ -318,7 +316,8 @@ void TestLogger::finialise_test_report()
     chaos::uni::UTF8String contents;
     contents << ( m_check_fail_count == 0 ) << "\n" << m_check_pass_count
              << "\n" << m_check_fail_count << "\n";
-    std::ofstream metadata( m_meta_path.get_raw() );
+    // TODO: this doesn't support Windows UTF-16 encoded data
+    std::ofstream metadata( m_meta_path.to_native().get_raw() );
     metadata << contents.get_raw() << std::endl;
     metadata.close();
     // clear

@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "chaoscore/io/file/FileExceptions.hpp"
-#include "chaoscore/io/file/FileOperations.hpp"
+#include "chaoscore/io/sys/FileSystemExceptions.hpp"
+#include "chaoscore/io/sys/FileSystemOperations.hpp"
 #include "chaoscore/test/ChaosTest.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 
@@ -197,31 +197,41 @@ int main( int argc, char* argv[] )
                 return -1;
             }
 
-            // get the file to write to
-            chaos::uni::UTF8String file_path( argv[ ++i ] );
-
-            // ensure the provided path is a file
-            if ( file_path.get_symbol( file_path.get_length() - 1 ) == "/" ||
-                 file_path.get_symbol( file_path.get_length() - 1 ) == "\\"   )
+            // get provided path to write to
+            chaos::uni::UTF8String path_arg( argv[ ++i ] );
+            // ensure the provided path is a file path
+            if ( path_arg.get_symbol( path_arg.get_length() - 1 ) == "/" ||
+                 path_arg.get_symbol( path_arg.get_length() - 1 ) == "\\"   )
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_FILEOUT << "\' has been provided with an "
-                          << "invalid file path: \'" << file_path << "\' The "
+                          << "invalid file path: \'" << path_arg << "\' The "
                           << "provided path must not be a directory.\n"
                           << std::endl;
                 return -1;
             }
 
+            // create as a path
+            chaos::io::sys::Path file_path( path_arg );
             // attempt to validate the path
             try
             {
-                chaos::io::file::validate_path( file_path );
+                chaos::io::sys::validate( file_path );
             }
-            catch( chaos::io::file::ex::FileSystemError e )
+            catch( chaos::io::sys::FileSystemError e )
             {
-                std::cerr << "\nERROR: validating the provided path \'"
-                          << file_path << "\' has failed with the reason:\n"
-                          << e.what() << "\n" << std::endl;
+                std::cerr << "\nERROR: validating the provided file output "
+                          "path: \'" << file_path << "\' has failed with the "
+                          << "reason:\n" << e.what() << "\n" << std::endl;
+                return -1;
+            }
+            // does the path already exists but is not a regular file?
+            if ( chaos::io::sys::exists( file_path ) &&
+                 !chaos::io::sys::is_file( file_path )   )
+            {
+                std::cerr << "\nERROR: The provided output file path: \'"
+                          << file_path << "\' cannot be written to because it "
+                          << "already exists but is not a fle." << std::endl;
                 return -1;
             }
 
@@ -238,7 +248,8 @@ int main( int argc, char* argv[] )
             }
 
             // does the file output already exist?
-            if ( run_info.files.find( file_path ) != run_info.files.end() )
+            if ( run_info.files.find( file_path.to_native() ) !=
+                run_info.files.end() )
             {
                 std::cerr << "\nMultiple output definitions for the file: \'"
                           << file_path << "\'.\n" << std::endl;
@@ -267,7 +278,7 @@ int main( int argc, char* argv[] )
             }
 
             // add to run information
-            run_info.files[ file_path ] =
+            run_info.files[ file_path.to_native() ] =
                     new chaos::test::internal::OutInfo( verbosity, out_format );
             // if stdout hasn't be defined removed it
             if ( !stdout_defined )
