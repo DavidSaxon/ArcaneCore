@@ -243,6 +243,14 @@ UTF8String& UTF8String::operator<<( chaos::uint64 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
+UTF8String& UTF8String::operator<<( float other )
+{
+    // TODO: implement correctly
+    std::stringstream ss;
+    ss << other;
+    return this->concatenate( UTF8String( ss.str().c_str() ) );
+}
+
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------

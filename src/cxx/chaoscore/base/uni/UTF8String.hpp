@@ -389,6 +389,13 @@ public:
      */
     UTF8String& operator<<( chaos::uint64 other );
 
+    /*!
+     * \brief Stream operator.
+     *
+     * Extends this UTF8String with the given float.
+     */
+    UTF8String& operator<<( float other );
+
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------

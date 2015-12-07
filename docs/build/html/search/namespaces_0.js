@@ -5,6 +5,7 @@ var searchData=
   ['data',['data',['../namespacechaos_1_1data.html',1,'chaos']]],
   ['ex',['ex',['../namespacechaos_1_1ex.html',1,'chaos']]],
   ['format',['format',['../namespacechaos_1_1io_1_1format.html',1,'chaos::io']]],
+  ['gfx',['gfx',['../namespacechaos_1_1gfx.html',1,'chaos']]],
   ['io',['io',['../namespacechaos_1_1io.html',1,'chaos']]],
   ['literal',['literal',['../namespacechaos_1_1literal.html',1,'chaos']]],
   ['math',['math',['../namespacechaos_1_1math.html',1,'chaos']]],

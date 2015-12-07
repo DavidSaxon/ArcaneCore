@@ -1274,6 +1274,64 @@ CHAOS_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
 }
 
 //------------------------------------------------------------------------------
+//                             FLOAT STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class FloatStreamOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::uni::UTF8String > comp_1;
+    std::vector< float >                  comp_2;
+    std::vector< chaos::uni::UTF8String > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back( "" );
+        comp_2.push_back( 0.0F );
+        results.push_back( "0" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( 1.0F );
+        results.push_back( "1" );
+
+        comp_1.push_back( "" );
+        comp_2.push_back( 3.14F );
+        results.push_back( "3.14" );
+
+        comp_1.push_back( "Hello" );
+        comp_2.push_back( 12.3456F );
+        results.push_back( "Hello12.3456" );
+
+        comp_1.push_back( "Κόσμε " );
+        comp_2.push_back( 0.00034F );
+        results.push_back( "Κόσμε 0.00034" );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( float_stream_operator, FloatStreamOperatorFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking return value" );
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL(
+                fixture->comp_1[ i ] << fixture->comp_2[ i ],
+                fixture->results[ i ]
+        );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                 CSTRING ASSIGN
 //------------------------------------------------------------------------------
 

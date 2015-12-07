@@ -106,23 +106,49 @@
 //-----------------------------------FOREACH------------------------------------
 
 /*!
- * \brief TODO: DOC
+ * \brief Performs iteration over the given collection.
  *
- * TODO: DOC
+ * \param it The name of the iterator object that will return results.
+ * \param collection Iterable object that will be iterated over.
+ *
+ * \warning The collection parameter must be passed in from an existing object.
+ *          The collection should not be defined as the result of a function,
+ *          otherwise macro expansion will cause this function to be resolved
+ *          multiple times.
+ *
+ * Example usage:
+ *
+ * \code
+ * std::vector< int > vec;
+ * vec.push_back( 1 );
+ * vec.push_back( 2 );
+ * vec.push_back( 3 );
+ *
+ * CHAOS_FOR_EACH( it, vec )
+ * {
+ *     std::cout << *it << std::endl;
+ * }
+ *
+ * // prints:
+ * // 1
+ * // 2
+ * // 3
+ * \endcode
  */
 #define CHAOS_FOR_EACH( it, collection )                                       \
-        auto it = collection.begin();                                          \
-        for ( ; it != collection.end(); ++it )
+        for (  auto it = collection.begin(); it != collection.end(); ++it )
 
 /*!
- * \brief TODO: DOC
+ * \brief Prints the given iterable object to std::cout.
  *
- * TODO: DOC
+ * \warning The collection parameter must be passed in from an existing object.
+ *          The collection should not be defined as the result of a function,
+ *          otherwise macro expansion will cause this function to be resolved
+ *          multiple times.
  */
 #define CHAOS_PRINT_ITERABLE( collection )                                     \
-        auto it = collection.begin();                                          \
         std::cout << "[ ";                                                     \
-        for ( ; it != collection.end(); ++it )                                 \
+        for ( auto it = collection.begin(); it != collection.end(); ++it )     \
         {                                                                      \
             std::cout << *it << ", ";                                          \
         }                                                                      \
@@ -133,7 +159,6 @@
 // hide from Doxygen
 #ifndef IN_DOXYGEN
 
-// TODO: DOC?
 #define PP_CAT( a, b ) PP_CAT_I( a, b )
 #define PP_CAT_I( a, b ) PP_CAT_II( ~, a ## b )
 #define PP_CAT_II( p, res ) res
@@ -142,9 +167,7 @@
 // IN_DOXYGEN
 
 /*!
- * \brief TODO: DOC
- *
- * TODO: DOC
+ * \brief Generates a unique name using  the provided base and the line number.
  */
 #define CHAOS_UNIQUE_NAME( base ) PP_CAT( base, __LINE__ )
 

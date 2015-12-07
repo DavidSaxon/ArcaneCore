@@ -6,7 +6,34 @@
 Math related classes and operations.  
 
 
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{namespacechaos_1_1math_a8cdea3a2be1387d86833df4e8ca1d8f9}{float\-\_\-equals} (float a, float b, float error\-\_\-threshold=\hyperlink{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{chaos\-::math\-::\-E\-P\-S\-I\-L\-O\-N})
+\begin{DoxyCompactList}\small\item\em Checks whether two floating point values are considered equal or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{const float \hyperlink{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{E\-P\-S\-I\-L\-O\-N}}\label{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}
+
+\begin{DoxyCompactList}\small\item\em Small value used for the default margin of error in floating point comparisons. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Math related classes and operations. 
+
+\subsection{Function Documentation}
+\hypertarget{namespacechaos_1_1math_a8cdea3a2be1387d86833df4e8ca1d8f9}{\index{chaos\-::math@{chaos\-::math}!float\-\_\-equals@{float\-\_\-equals}}
+\index{float\-\_\-equals@{float\-\_\-equals}!chaos::math@{chaos\-::math}}
+\subsubsection[{float\-\_\-equals}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::math\-::float\-\_\-equals (
+\begin{DoxyParamCaption}
+\item[{float}]{a, }
+\item[{float}]{b, }
+\item[{float}]{error\-\_\-threshold = {\ttfamily {\bf chaos\-::math\-::\-E\-P\-S\-I\-L\-O\-N}}}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1math_a8cdea3a2be1387d86833df4e8ca1d8f9}
+
+
+Checks whether two floating point values are considered equal or not. 
+
+This check is done by using the {\ttfamily error\-\_\-threshold} parameter. If the difference between the two values is less than {\ttfamily error\-\_\-threshold} then the values are considered to be equal. 

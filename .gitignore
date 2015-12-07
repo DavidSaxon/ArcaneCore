@@ -1,8 +1,7 @@
 # Windows
 Debug
 Release
-ChaosCore.vcxproj
-ChaosCore.vcxproj.filters
+ChaosCore.vcxproj*
 
 # Linux
 CMakeFiles
