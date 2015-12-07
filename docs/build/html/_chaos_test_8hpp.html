@@ -95,6 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;sstream&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_preproc_8hpp_source.html">chaoscore/base/Preproc.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_math_operations_8hpp_source.html">chaoscore/base/math/MathOperations.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="_u_t_f8_string_8hpp_source.html">chaoscore/base/uni/UTF8String.hpp</a>&quot;</code><br/>
 <code>#include &quot;chaoscore/test/TestExceptions.hpp&quot;</code><br/>
 <code>#include &quot;chaoscore/test/TestLogger.hpp&quot;</code><br/>
@@ -142,6 +143,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a1db31c76ae65af6e87d1fc121b67e10a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a1db31c76ae65af6e87d1fc121b67e10a">CHAOS_CHECK_NOT_EQUAL</a>(a, b)</td></tr>
 <tr class="memdesc:a1db31c76ae65af6e87d1fc121b67e10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the given value are considered not equal.  <a href="#a1db31c76ae65af6e87d1fc121b67e10a">More...</a><br/></td></tr>
 <tr class="separator:a1db31c76ae65af6e87d1fc121b67e10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1c608c3fa87a96ded1969b45a0ee3e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1c608c3fa87a96ded1969b45a0ee3e0"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CHAOS_CHECK_FLOAT_EQUAL</b>(a, b)</td></tr>
+<tr class="separator:aa1c608c3fa87a96ded1969b45a0ee3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac00ec4593714f90154324140ae4e62d6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac00ec4593714f90154324140ae4e62d6"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>CHAOS_CHECK_FLOAT_NOT_EQUAL</b>(a, b)</td></tr>
+<tr class="separator:ac00ec4593714f90154324140ae4e62d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13cd47edeb4e22560e6719ae7b9d848d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_chaos_test_8hpp.html#a13cd47edeb4e22560e6719ae7b9d848d">CHAOS_CHECK_THROW</a>(statement, exception_type)</td></tr>
 <tr class="memdesc:a13cd47edeb4e22560e6719ae7b9d848d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the given statement throws the exception type.  <a href="#a13cd47edeb4e22560e6719ae7b9d848d">More...</a><br/></td></tr>
 <tr class="separator:a13cd47edeb4e22560e6719ae7b9d848d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -400,7 +407,7 @@ Macros</h2></td></tr>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 7 2015 14:21:53 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 8 2015 02:14:55 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

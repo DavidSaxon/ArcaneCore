@@ -113,33 +113,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#a9803cd26cb4f18bd3bc0f646af5bc35e">Vector2</a>();</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#a9803cd26cb4f18bd3bc0f646af5bc35e">Vector2</a>( <span class="keywordtype">float</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#a98989a2809ad9c6ac3091550ad5f5118">x</a>, <span class="keywordtype">float</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#adf4d8ed8e49c84c2fe1596c2b9d55d49">y</a> );</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">//                               EXTERNAL OPERATORS</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; operator&lt;&lt;(</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; s,</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; v );</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;std::ostream&amp; operator&lt;&lt;( std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; v );</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#a9803cd26cb4f18bd3bc0f646af5bc35e">Vector2</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; other );</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">//                                 OPERATORS</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">//--------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;} <span class="comment">// namespace gfx</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#a8d20c5c57ae0f34a83710df13846c9ef">operator=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; other );</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#aee957f369c27fd28b8f387e13c4fb085">operator==</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; other ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html#ab90c48bca7d89e8594b3eef0571c7824">operator!=</a>( <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; other ) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//                               EXTERNAL OPERATORS</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; operator&lt;&lt;(</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; s,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; v );</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;std::ostream&amp; operator&lt;&lt;( std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&amp; v );</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;} <span class="comment">// namespace gfx</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html">chaos::gfx::Vector2</a></div><div class="ttdoc">Represents a 2 dimensional vector. </div><div class="ttdef"><b>Definition:</b> Vector2.hpp:14</div></div>
+<div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html_aee957f369c27fd28b8f387e13c4fb085"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html#aee957f369c27fd28b8f387e13c4fb085">chaos::gfx::Vector2::operator==</a></div><div class="ttdeci">bool operator==(const Vector2 &amp;other) const </div><div class="ttdoc">Equality operator. </div></div>
 <div class="ttc" id="classchaos_1_1uni_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:128</div></div>
 <div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html_a9803cd26cb4f18bd3bc0f646af5bc35e"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html#a9803cd26cb4f18bd3bc0f646af5bc35e">chaos::gfx::Vector2::Vector2</a></div><div class="ttdeci">Vector2()</div><div class="ttdoc">Default constructor. </div></div>
 <div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html_a98989a2809ad9c6ac3091550ad5f5118"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html#a98989a2809ad9c6ac3091550ad5f5118">chaos::gfx::Vector2::x</a></div><div class="ttdeci">float x</div><div class="ttdoc">X access component of this vector. </div><div class="ttdef"><b>Definition:</b> Vector2.hpp:25</div></div>
 <div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
+<div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html_ab90c48bca7d89e8594b3eef0571c7824"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html#ab90c48bca7d89e8594b3eef0571c7824">chaos::gfx::Vector2::operator!=</a></div><div class="ttdeci">bool operator!=(const Vector2 &amp;other) const </div><div class="ttdoc">Inequality operator. </div></div>
 <div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html_adf4d8ed8e49c84c2fe1596c2b9d55d49"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html#adf4d8ed8e49c84c2fe1596c2b9d55d49">chaos::gfx::Vector2::y</a></div><div class="ttdeci">float y</div><div class="ttdoc">Y access component of this vector. </div><div class="ttdef"><b>Definition:</b> Vector2.hpp:29</div></div>
+<div class="ttc" id="classchaos_1_1gfx_1_1_vector2_html_a8d20c5c57ae0f34a83710df13846c9ef"><div class="ttname"><a href="classchaos_1_1gfx_1_1_vector2.html#a8d20c5c57ae0f34a83710df13846c9ef">chaos::gfx::Vector2::operator=</a></div><div class="ttdeci">Vector2 &amp; operator=(const Vector2 &amp;other)</div><div class="ttdoc">Assignment operator. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Dec 7 2015 14:21:53 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 8 2015 02:14:55 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

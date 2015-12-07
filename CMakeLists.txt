@@ -50,6 +50,7 @@ set( TESTS_SUITES
     tests/cxx/base/uni/UTF8String_TestSuite.cpp
     tests/cxx/base/uni/UnicodeOperations_TestSuite.cpp
 
+    tests/cxx/io/format/FormatOperations_TestSuite.cpp
     tests/cxx/io/sys/FileSystemOperations_TestSuite.cpp
     tests/cxx/io/sys/Path_TestSuite.cpp
 

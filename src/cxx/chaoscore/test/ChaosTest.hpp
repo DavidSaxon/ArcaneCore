@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "chaoscore/base/Preproc.hpp"
+#include "chaoscore/base/math/MathOperations.hpp"
 #include "chaoscore/base/uni/UTF8String.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
 #include "chaoscore/test/TestLogger.hpp"
@@ -515,8 +516,39 @@ private:
     }                                                                          \
     }
 
-} // namespace test
-} // namespace chaos
+#define CHAOS_CHECK_FLOAT_EQUAL( a, b )                                        \
+    {                                                                          \
+    auto _a = ( a ); auto _b = ( b );                                          \
+    if ( chaos::math::float_equals( _a, _b ) )                                 \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_FLOAT_EQUAL", __FILE__, __LINE__ );               \
+    }                                                                          \
+    else                                                                       \
+    {                                                                          \
+        chaos::uni::UTF8String f_e_m;                                          \
+        f_e_m << _a << " does not equal " << _b;                               \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_FLOAT_EQUAL", __FILE__, __LINE__, f_e_m );        \
+    }                                                                          \
+    }
+
+#define CHAOS_CHECK_FLOAT_NOT_EQUAL( a, b )                                    \
+    {                                                                          \
+    auto _a = ( a ); auto _b = ( b );                                          \
+    if ( !chaos::math::float_equals( _a, _b ) )                                \
+    {                                                                          \
+        chaos::test::internal::TestCore::logger.report_check_pass(             \
+                "CHAOS_CHECK_FLOAT_NOT_EQUAL", __FILE__, __LINE__ );           \
+    }                                                                          \
+    else                                                                       \
+    {                                                                          \
+        chaos::uni::UTF8String f_e_m;                                          \
+        f_e_m << _a << " does not equal " << _b;                               \
+        chaos::test::internal::TestCore::logger.report_check_fail(             \
+                "CHAOS_CHECK_FLOAT_EQUAL", __FILE__, __LINE__, f_e_m );        \
+    }                                                                          \
+    }
 
 /*!
  * \brief Checks whether the given statement throws the exception type.
@@ -549,6 +581,9 @@ private:
 
 
 #endif
+
+} // namespace test
+} // namespace chaos
 
 // reset the current module
 namespace chaos_test_include

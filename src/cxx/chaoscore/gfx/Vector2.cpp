@@ -1,5 +1,7 @@
 #include "chaoscore/gfx/Vector2.hpp"
 
+#include "chaoscore/base/math/MathOperations.hpp"
+
 namespace chaos
 {
 namespace gfx
@@ -22,6 +24,36 @@ Vector2::Vector2( float i_x, float i_y )
     x( i_x ),
     y( i_y )
 {
+}
+
+Vector2::Vector2( const Vector2& other )
+    :
+    x( other.x ),
+    y( other.y )
+{
+}
+
+//------------------------------------------------------------------------------
+//                                   OPERATORS
+//------------------------------------------------------------------------------
+
+Vector2& Vector2::operator=( const Vector2& other )
+{
+    x = other.x;
+    y = other.y;
+
+    return *this;
+}
+
+bool Vector2::operator==( const Vector2& other ) const
+{
+    return chaos::math::float_equals( x, other.x ) &&
+           chaos::math::float_equals( y, other.y );
+}
+
+bool Vector2::operator!=( const Vector2& other ) const
+{
+    return !( ( *this ) == other );
 }
 
 //------------------------------------------------------------------------------
