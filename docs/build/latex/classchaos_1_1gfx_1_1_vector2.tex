@@ -17,6 +17,8 @@ Represents a 2 dimensional vector.
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2_ac01190ae1b84237183e213db95fd0606}{Vector2} (float \hyperlink{classchaos_1_1gfx_1_1_vector2_a98989a2809ad9c6ac3091550ad5f5118}{x}, float \hyperlink{classchaos_1_1gfx_1_1_vector2_adf4d8ed8e49c84c2fe1596c2b9d55d49}{y})
 \begin{DoxyCompactList}\small\item\em Component constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2_adb6901e860aeb3c7bffb4235d75ffaa6}{Vector2} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2_ac09ba6b8b19d06f79a2de9498fdc272c}{Vector2} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchaos_1_1gfx_1_1_vector2_a8d20c5c57ae0f34a83710df13846c9ef}{operator=} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other)
@@ -24,7 +26,15 @@ Represents a 2 dimensional vector.
 bool \hyperlink{classchaos_1_1gfx_1_1_vector2_aee957f369c27fd28b8f387e13c4fb085}{operator==} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other) const 
 \begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
 bool \hyperlink{classchaos_1_1gfx_1_1_vector2_ab90c48bca7d89e8594b3eef0571c7824}{operator!=} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other) const 
-\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a4e28157ab025cdc32da4017758bef4ff}{operator+} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar addition operator. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchaos_1_1gfx_1_1_vector2_a4405ead202e4cb2c4a229afa0d412356}{operator+=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound addition operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a52eb8f6053de6ae27773d42763ab2107}{operator+} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other) const 
+\begin{DoxyCompactList}\small\item\em Vector addition operator. \end{DoxyCompactList}\item 
+const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchaos_1_1gfx_1_1_vector2_a5b0e2d630e9de9c0ec5c856250ec3d78}{operator+=} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other)
+\begin{DoxyCompactList}\small\item\em Compound vector addition operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -63,7 +73,18 @@ Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} with the x and 
 
 Component constructor. 
 
-Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} with the given x any y component values. \hypertarget{classchaos_1_1gfx_1_1_vector2_ac09ba6b8b19d06f79a2de9498fdc272c}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!Vector2@{Vector2}}
+Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} with the given x any y component values. \hypertarget{classchaos_1_1gfx_1_1_vector2_adb6901e860aeb3c7bffb4235d75ffaa6}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!Vector2@{Vector2}}
+\index{Vector2@{Vector2}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::gfx\-::\-Vector2\-::\-Vector2 (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_adb6901e860aeb3c7bffb4235d75ffaa6}
+
+
+Scalar constructor. 
+
+Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} with both the x and y components set to the given value. \hypertarget{classchaos_1_1gfx_1_1_vector2_ac09ba6b8b19d06f79a2de9498fdc272c}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!Vector2@{Vector2}}
 \index{Vector2@{Vector2}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
 \subsubsection[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::gfx\-::\-Vector2\-::\-Vector2 (
 \begin{DoxyParamCaption}
@@ -139,6 +160,70 @@ Compares whether this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} and the
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Whether the vectors are not considered equal. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a4e28157ab025cdc32da4017758bef4ff}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator+@{operator+}}
+\index{operator+@{operator+}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector2_a4e28157ab025cdc32da4017758bef4ff}
+
+
+Scalar addition operator. 
+
+Computes the result of this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} being added with the given scalar and returns the result a a new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. \hypertarget{classchaos_1_1gfx_1_1_vector2_a4405ead202e4cb2c4a229afa0d412356}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector2}\& chaos\-::gfx\-::\-Vector2\-::operator+= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_a4405ead202e4cb2c4a229afa0d412356}
+
+
+Scalar compound addition operator. 
+
+Adds the given scalar to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to add to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this vector once the addition has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a52eb8f6053de6ae27773d42763ab2107}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator+@{operator+}}
+\index{operator+@{operator+}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector2_a52eb8f6053de6ae27773d42763ab2107}
+
+
+Vector addition operator. 
+
+Computes the result of this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} being added with the other given \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. The result is returned as a new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. \hypertarget{classchaos_1_1gfx_1_1_vector2_a5b0e2d630e9de9c0ec5c856250ec3d78}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector2}\& chaos\-::gfx\-::\-Vector2\-::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_a5b0e2d630e9de9c0ec5c856250ec3d78}
+
+
+Compound vector addition operator. 
+
+Adds the given \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} to add to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this vector after the addition has taken place. 
 \end{DoxyReturn}
 
 

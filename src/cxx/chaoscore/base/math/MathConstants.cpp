@@ -5,7 +5,7 @@ namespace chaos
 namespace math
 {
 
-extern const float EPSILON = 0.0000000001F;
+extern const float EPSILON = 0.000001F;
 
 } // namespace math
 } // namespace chaos

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y',['y',['../classchaos_1_1gfx_1_1_vector2.html#adf4d8ed8e49c84c2fe1596c2b9d55d49',1,'chaos::gfx::Vector2']]]
+  ['npos',['npos',['../namespacechaos_1_1uni.html#af28f3dcb2b4845d8a39b3d16e86c174b',1,'chaos::uni']]]
 ];

@@ -47,6 +47,14 @@ public:
     Vector2( float x, float y );
 
     /*!
+     * \brief Scalar constructor.
+     *
+     * Creates a new Vector2 with both the x and y components set to the given
+     * value.
+     */
+    Vector2( float scalar );
+
+    /*!
      * \brief Copy constructor.
      *
      * Creates a copy of the other given Vector2.
@@ -89,6 +97,42 @@ public:
      * \return Whether the vectors are not considered equal.
      */
     bool operator!=( const Vector2& other ) const;
+
+    /*!
+     * \brief Scalar addition operator.
+     *
+     * Computes the result of this Vector2 being added with the given scalar and
+     * returns the result a a new Vector2.
+     */
+    Vector2 operator+( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound addition operator.
+     *
+     * Adds the given scalar to this Vector2.
+     *
+     * \param scalar The scalar to add to this Vector2.
+     * \return A reference to this vector once the addition has taken place.
+     */
+    const Vector2& operator+=( float scalar );
+
+    /*!
+     * \brief Vector addition operator.
+     *
+     * Computes the result of this Vector2 being added with the other given
+     * Vector2. The result is returned as a new Vector2.
+     */
+    Vector2 operator+( const Vector2& other ) const;
+
+    /*!
+     * \brief Compound vector addition operator.
+     *
+     * Adds the given Vector2 to this Vector2.
+     *
+     * \param other The Vector2 to add to this Vector2.
+     * \return A reference to this vector after the addition has taken place.
+     */
+    const Vector2& operator+=( const Vector2& other );
 };
 
 //------------------------------------------------------------------------------

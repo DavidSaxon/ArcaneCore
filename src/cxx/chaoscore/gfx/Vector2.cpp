@@ -26,6 +26,13 @@ Vector2::Vector2( float i_x, float i_y )
 {
 }
 
+Vector2::Vector2( float scalar )
+    :
+    x( scalar ),
+    y( scalar )
+{
+}
+
 Vector2::Vector2( const Vector2& other )
     :
     x( other.x ),
@@ -54,6 +61,34 @@ bool Vector2::operator==( const Vector2& other ) const
 bool Vector2::operator!=( const Vector2& other ) const
 {
     return !( ( *this ) == other );
+}
+
+Vector2 Vector2::operator+( float scalar ) const
+{
+    Vector2 v( *this );
+    return v += scalar;
+}
+
+const Vector2& Vector2::operator+=( float scalar )
+{
+    x += scalar;
+    y += scalar;
+
+    return *this;
+}
+
+Vector2 Vector2::operator+( const Vector2& other ) const
+{
+    Vector2 v( *this );
+    return v += other;
+}
+
+const Vector2& Vector2::operator+=( const Vector2& other )
+{
+    x += other.x;
+    y += other.y;
+
+    return *this;
 }
 
 //------------------------------------------------------------------------------

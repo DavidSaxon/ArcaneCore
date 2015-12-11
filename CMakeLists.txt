@@ -7,6 +7,7 @@ set( HEADERS
 set( BASE_SRC
     src/cxx/chaoscore/base/clock/ClockOperations.cpp
     src/cxx/chaoscore/base/data/BinaryOperations.cpp
+    src/cxx/chaoscore/base/data/BitwiseFloat.cpp
     src/cxx/chaoscore/base/data/ByteOperations.cpp
     src/cxx/chaoscore/base/math/MathConstants.cpp
     src/cxx/chaoscore/base/math/MathOperations.cpp
@@ -45,6 +46,7 @@ set( TESTS_SUITES
 
     tests/cxx/base/PreProc_TestSuite.cpp
     tests/cxx/base/Types_TestSuite.cpp
+    tests/cxx/base/data/BitwiseFloat_TestSuite.cpp
     tests/cxx/base/data/ByteOperations_TestSuite.cpp
     tests/cxx/base/math/MathOperations_TestSuite.cpp
     tests/cxx/base/uni/UTF8String_TestSuite.cpp

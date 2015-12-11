@@ -68,14 +68,14 @@ public:
         comp_x.push_back( 1.0F );
         comp_y.push_back( 1.0F );
 
-        comp_x.push_back( 333.0F );
-        comp_y.push_back( 89234.0F );
+        comp_x.push_back( -333.0F );
+        comp_y.push_back( -89234.0F );
 
         comp_x.push_back( 0.04F );
         comp_y.push_back( 0.003294F );
 
         comp_x.push_back( 1.34324F );
-        comp_y.push_back( 20.003294F );
+        comp_y.push_back( -20.003294F );
 
         comp_x.push_back( 3411.76F );
         comp_y.push_back( 0.200019F );
@@ -103,6 +103,57 @@ CHAOS_TEST_UNIT_FIXTURE( component_constructor, ComponentConstructorFixture )
     for ( std::size_t i = 0; i < fixture->comp_x.size(); ++i )
     {
         CHAOS_CHECK_FLOAT_EQUAL( results[ i ].y, fixture->comp_y[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                               SCALAR CONSTRUCTOR
+//------------------------------------------------------------------------------
+
+class ScalarConstructorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< float > scalars;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        scalars.push_back( 0.0F );
+
+        scalars.push_back( 1.0F );
+
+        scalars.push_back( -333.0F );
+
+        scalars.push_back( 0.04F );
+
+        scalars.push_back( -1.34324F );
+
+        scalars.push_back( 3411.76F );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( scalar_constructor, ScalarConstructorFixture )
+{
+    std::vector< chaos::gfx::Vector2 > results;
+    for ( std::size_t i = 0; i < fixture->scalars.size(); ++i )
+    {
+        results.push_back( chaos::gfx::Vector2( fixture->scalars[ i ] ) );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking x component" );
+    for ( std::size_t i = 0; i < fixture->scalars.size(); ++i )
+    {
+        CHAOS_CHECK_FLOAT_EQUAL( results[ i ].x, fixture->scalars[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking y component" );
+    for ( std::size_t i = 0; i < fixture->scalars.size(); ++i )
+    {
+        CHAOS_CHECK_FLOAT_EQUAL( results[ i ].y, fixture->scalars[ i ] );
     }
 }
 
@@ -217,6 +268,134 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, EqualityFixture )
     for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
     {
         CHAOS_CHECK_TRUE( fixture->vecs[ i ] == fixture->not_equal[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                SCALAR ADDITION
+//------------------------------------------------------------------------------
+
+class ScalarAdditionFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector2 > vecs;
+    std::vector< float > scalars;
+    std::vector< chaos::gfx::Vector2 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector2() );
+        scalars.push_back( 0.0F );
+        results.push_back( chaos::gfx::Vector2() );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        scalars.push_back( 1.0F );
+        results.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        scalars.push_back( -0.048F );
+        results.push_back( chaos::gfx::Vector2( -0.048F, -0.048F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 0.3F, -84.08F ) );
+        scalars.push_back( 0.0F );
+        results.push_back( chaos::gfx::Vector2(  0.3F, -84.08F  ) );
+
+        vecs.push_back( chaos::gfx::Vector2( -20.007F, 0.009F ) );
+        scalars.push_back( 0.01F );
+        results.push_back( chaos::gfx::Vector2(  -19.997, 0.019F  ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 0.34F, 2.6F ) );
+        scalars.push_back( -1.5F );
+        results.push_back( chaos::gfx::Vector2( -1.16F, 1.1F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( scalar_addition, ScalarAdditionFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking addition" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] + fixture->scalars[ i ] );
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound addition" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] );
+        v += fixture->scalars[ i ];
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                VECTOR ADDITION
+//------------------------------------------------------------------------------
+
+class VectorAdditionFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector2 > vecs;
+    std::vector< chaos::gfx::Vector2 > add;
+    std::vector< chaos::gfx::Vector2 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector2() );
+        add.push_back( chaos::gfx::Vector2() );
+        results.push_back( chaos::gfx::Vector2() );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        add.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
+        results.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        add.push_back( chaos::gfx::Vector2( -9.49F, -0.34 ) );
+        results.push_back( chaos::gfx::Vector2( -9.49F, -0.34 ) );
+
+        vecs.push_back( chaos::gfx::Vector2( -4.98F, 0.0074F ) );
+        add.push_back( chaos::gfx::Vector2() );
+        results.push_back( chaos::gfx::Vector2( -4.98F, 0.0074F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 3.083F, 0.23F ) );
+        add.push_back( chaos::gfx::Vector2( -1.2F, -0.08F ) );
+        results.push_back( chaos::gfx::Vector2( 1.883F, 0.15F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 10.3F, -2.004F ) );
+        add.push_back( chaos::gfx::Vector2( 49.94F, 0.054F ) );
+        results.push_back( chaos::gfx::Vector2( 60.24F, -1.95F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( vector_addition, VectorAdditionFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking addition" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] + fixture->add[ i ] );
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound addition" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] );
+        v += fixture->add[ i ];
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
     }
 }
 

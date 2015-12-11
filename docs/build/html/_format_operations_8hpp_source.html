@@ -102,16 +102,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//                                   FUNCTIONS</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1format.html#ac53c87508bb81f6fc26efd9bfca7b027">centre_text</a>(</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; text,</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a>     line_length,</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">bool</span>                    trim_trailing = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;} <span class="comment">// namespace format</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;} <span class="comment">// namespace io</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">template</span>&lt; <span class="keyword">typename</span> T &gt;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacechaos_1_1io_1_1format.html#a1a0d0c026284787a225be9073770e264">   43</a></span>&#160;<a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> <a class="code" href="namespacechaos_1_1io_1_1format.html#a1a0d0c026284787a225be9073770e264">int_to_hex</a>( T value, <span class="keywordtype">bool</span> zero_pad = <span class="keyword">true</span> )</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacechaos_1_1io_1_1format.html#ac53c87508bb81f6fc26efd9bfca7b027">centre_text</a>(</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&amp; text,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a>     line_length,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">bool</span>                    trim_trailing = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// namespace format</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;} <span class="comment">// namespace io</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="namespacechaos_1_1io_1_1format_html_a1a0d0c026284787a225be9073770e264"><div class="ttname"><a href="namespacechaos_1_1io_1_1format.html#a1a0d0c026284787a225be9073770e264">chaos::io::format::int_to_hex</a></div><div class="ttdeci">chaos::uni::UTF8String int_to_hex(T value, bool zero_pad=true)</div><div class="ttdoc">Converts the given integer type to a hexadecimal representation chaos::uni::UTF8String. </div><div class="ttdef"><b>Definition:</b> FormatOperations.hpp:43</div></div>
 <div class="ttc" id="namespacechaos_html_a8641b3ae4551f0b35570d4f9f4ec22d9"><div class="ttname"><a href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a></div><div class="ttdeci">std::uint32_t uint32</div><div class="ttdoc">a 32-bit unsigned integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:85</div></div>
 <div class="ttc" id="classchaos_1_1uni_1_1_u_t_f8_string_html"><div class="ttname"><a href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a></div><div class="ttdoc">A string type designed for storing and manipulating UTF-8 encoded text. </div><div class="ttdef"><b>Definition:</b> UTF8String.hpp:128</div></div>
 <div class="ttc" id="_u_t_f8_string_8hpp_html"><div class="ttname"><a href="_u_t_f8_string_8hpp.html">UTF8String.hpp</a></div></div>
@@ -120,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 8 2015 02:14:55 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 10 2015 14:20:00 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

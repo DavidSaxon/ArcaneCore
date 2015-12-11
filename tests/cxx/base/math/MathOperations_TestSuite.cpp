@@ -71,13 +71,13 @@ public:
         epsilon.push_back( chaos::math::EPSILON );
         results.push_back( false );
 
-        comp_1.push_back( 0.000004721F );
-        comp_2.push_back( 0.00000472F );
+        comp_1.push_back( 0.04721F );
+        comp_2.push_back( 0.0472F );
         epsilon.push_back( chaos::math::EPSILON );
         results.push_back( false );
 
-        comp_1.push_back( 24393.458935F );
-        comp_2.push_back( 24383.4589356F );
+        comp_1.push_back( 24393.35F );
+        comp_2.push_back( 24393.356F );
         epsilon.push_back( chaos::math::EPSILON );
         results.push_back( false );
 

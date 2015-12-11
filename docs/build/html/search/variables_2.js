@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['npos',['npos',['../namespacechaos_1_1uni.html#af28f3dcb2b4845d8a39b3d16e86c174b',1,'chaos::uni']]]
+  ['int_5frep',['int_rep',['../unionchaos_1_1data_1_1_bitwise_float.html#aca337da432b03bc3802e6a91952dd99d',1,'chaos::data::BitwiseFloat']]]
 ];
