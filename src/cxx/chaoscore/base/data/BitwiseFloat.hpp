@@ -18,6 +18,9 @@ union BitwiseFloat
 {
 public:
 
+    // TODO: getters and setters
+
+
     //--------------------------------------------------------------------------
     //                             PUBLIC ATTRIBUTES
     //--------------------------------------------------------------------------
@@ -29,7 +32,7 @@ public:
     /*!
      * \brief Access to the int representation.
      */
-    chaos::int32 int_rep;
+    chaos::uint32 int_rep;
 
     //--------------------------------------------------------------------------
     //                                CONSTRUCTOR
@@ -49,15 +52,24 @@ public:
      */
     bool get_sign_bit() const;
 
+    // TODO: DOC
+    void set_sign_bit( bool sign );
+
     /*!
      * \brief Retrieves the exponent section of the floating point number.
      */
-    chaos::int32 get_exponent() const;
+    chaos::uint32 get_exponent() const;
+
+    // TODO: DOC
+    void set_exponent( chaos::uint32 exponent );
 
     /*!
      * \brief Retrieves the mantissa section of the floating point number.
      */
-    chaos::int32 get_mantissa() const;
+    chaos::uint32 get_mantissa() const;
+
+    // TODO: DOC
+    void set_mantissa( chaos::uint32 mantissa );
 };
 
 } // namespace data
