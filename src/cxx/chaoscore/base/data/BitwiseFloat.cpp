@@ -21,7 +21,7 @@ BitwiseFloat::BitwiseFloat( float value )
 
 bool BitwiseFloat::get_sign_bit() const
 {
-    return int_rep >> 31;
+    return ( int_rep >> 31 ) == 1;
 }
 
 void BitwiseFloat::set_sign_bit( bool sign )

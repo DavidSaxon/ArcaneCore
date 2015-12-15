@@ -2,7 +2,6 @@
 
 CHAOS_TEST_MODULE( base.data.bitwise_float )
 
-#include <cmath>
 #include <limits>
 
 #include "chaoscore/base/data/BitwiseFloat.hpp"
@@ -37,13 +36,13 @@ public:
         exponent.push_back( 0 );
         mantissa.push_back( 0 );
 
-        floats.push_back( chaos::data::BitwiseFloat( 1.40129846e-45 ) );
+        floats.push_back( chaos::data::BitwiseFloat( 1.40129846e-45F ) );
         raw.push_back( 1 );
         sign.push_back( 0 );
         exponent.push_back( 0 );
         mantissa.push_back( 1 );
 
-        floats.push_back( chaos::data::BitwiseFloat( 1.17549435e-38 ) );
+        floats.push_back( chaos::data::BitwiseFloat( 1.17549435e-38F ) );
         raw.push_back( 0x800000 );
         sign.push_back( 0 );
         exponent.push_back( 1 );
@@ -55,7 +54,7 @@ public:
         exponent.push_back( 127 );
         mantissa.push_back( 0 );
 
-        floats.push_back( chaos::data::BitwiseFloat( 1.99999988 ) );
+        floats.push_back( chaos::data::BitwiseFloat( 1.99999988F ) );
         raw.push_back( 0x3FFFFFFF );
         sign.push_back( 0 );
         exponent.push_back( 127 );
@@ -65,12 +64,6 @@ public:
         raw.push_back( 0x4B7FFFFF );
         sign.push_back( 0 );
         exponent.push_back( 150 );
-        mantissa.push_back( 0x7FFFFF );
-
-        floats.push_back( chaos::data::BitwiseFloat( 3.40282347e+38 ) );
-        raw.push_back( 0x7F7FFFFF );
-        sign.push_back( 0 );
-        exponent.push_back( 254 );
         mantissa.push_back( 0x7FFFFF );
 
         floats.push_back( chaos::data::BitwiseFloat( -1.0 ) );
@@ -92,12 +85,6 @@ public:
         sign.push_back( 1 );
         exponent.push_back( 255 );
         mantissa.push_back( 0 );
-
-        floats.push_back( chaos::data::BitwiseFloat( NAN ) );
-        raw.push_back( 0x7FC00000 );
-        sign.push_back( 0 );
-        exponent.push_back( 255 );
-        mantissa.push_back( 4194304 );
     }
 };
 

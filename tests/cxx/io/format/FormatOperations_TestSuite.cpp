@@ -59,9 +59,9 @@ public:
         int16_pad.push_back( "0b0000000001011101" );
         int16_nopad.push_back( "0b1011101" );
 
-        int16.push_back( 48934 );
-        int16_pad.push_back( "0b1011111100100110" );
-        int16_nopad.push_back( "0b1011111100100110" );
+        int16.push_back( 23435 );
+        int16_pad.push_back( "0b0101101110001011" );
+        int16_nopad.push_back( "0b101101110001011" );
 
         int16.push_back( -2 );
         int16_pad.push_back( "0b1111111111111110" );
@@ -379,9 +379,9 @@ public:
         int16_pad.push_back( "0x005D" );
         int16_nopad.push_back( "0x5D" );
 
-        int16.push_back( 48934 );
-        int16_pad.push_back( "0xBF26" );
-        int16_nopad.push_back( "0xBF26" );
+        int16.push_back( 23435 );
+        int16_pad.push_back( "0x5B8B" );
+        int16_nopad.push_back( "0x5B8B" );
 
         int16.push_back( -2 );
         int16_pad.push_back( "0xFFFE" );
