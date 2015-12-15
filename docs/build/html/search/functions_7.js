@@ -1,6 +1,7 @@
 var searchData=
 [
   ['insert',['insert',['../classchaos_1_1io_1_1sys_1_1_path.html#a61c635ca77aee10536594cb86ed008fa',1,'chaos::io::sys::Path']]],
+  ['int_5fto_5fbinary',['int_to_binary',['../namespacechaos_1_1io_1_1format.html#a959b39b5d59d3cbbe277f214fe31c70a',1,'chaos::io::format']]],
   ['int_5fto_5fhex',['int_to_hex',['../namespacechaos_1_1io_1_1format.html#a1a0d0c026284787a225be9073770e264',1,'chaos::io::format']]],
   ['is_5fdigit',['is_digit',['../namespacechaos_1_1uni.html#a25a7549a0378aeac227c881220c23640',1,'chaos::uni']]],
   ['is_5fdirectory',['is_directory',['../namespacechaos_1_1io_1_1sys.html#ad48945ad68ee4c84a37240ebc6b5a167',1,'chaos::io::sys']]],

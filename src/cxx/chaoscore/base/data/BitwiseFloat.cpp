@@ -26,9 +26,9 @@ bool BitwiseFloat::get_sign_bit() const
 
 void BitwiseFloat::set_sign_bit( bool sign )
 {
-    // int_rep =
-    //         ( static_cast< chaos::uint32 >( sign ) << 31 ) |
-    //         ( int_rep & 0x7FFFFFFF );
+    int_rep =
+            ( static_cast< chaos::uint32 >( sign ) << 31 ) |
+            ( int_rep & 0x7FFFFFFF );
 }
 
 chaos::uint32 BitwiseFloat::get_exponent() const
@@ -36,10 +36,10 @@ chaos::uint32 BitwiseFloat::get_exponent() const
     return ( int_rep >> 23 ) & 0xFF;
 }
 
-void BitwiseFloat::set_exponent( chaos::uint32 exponent )
+void BitwiseFloat::set_exponent( chaos::uint8 exponent )
 {
-    int_rep = ( ( exponent & 0xFF )  << 23 );// |
-              // ( int_rep & 0x807FFFFF );
+    int_rep = ( static_cast< chaos::uint32 >( exponent )  << 23 ) |
+              ( int_rep & 0x807FFFFF );
 }
 
 chaos::uint32 BitwiseFloat::get_mantissa() const
@@ -49,8 +49,7 @@ chaos::uint32 BitwiseFloat::get_mantissa() const
 
 void BitwiseFloat::set_mantissa( chaos::uint32 mantissa )
 {
-    int_rep = ( mantissa & 0x7FFFFF ) | ( int_rep );
-    // int_rep = ( mantissa & 0x7FFFFF ) | ( int_rep & 0xFF800000 );
+    int_rep = ( mantissa & 0x7FFFFF ) | ( int_rep & 0xFF800000 );
 }
 
 } // namespace data

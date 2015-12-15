@@ -18,20 +18,28 @@ Object that can be used to read and write the bits of a floating point number.
 \begin{DoxyCompactList}\small\item\em Creates a new Bitewise\-Float initialised with the given value. \end{DoxyCompactList}\item 
 \hypertarget{unionchaos_1_1data_1_1_bitwise_float_aec1ad0a94dcf984131cc528b574c7d2d}{bool \hyperlink{unionchaos_1_1data_1_1_bitwise_float_aec1ad0a94dcf984131cc528b574c7d2d}{get\-\_\-sign\-\_\-bit} () const }\label{unionchaos_1_1data_1_1_bitwise_float_aec1ad0a94dcf984131cc528b574c7d2d}
 
-\begin{DoxyCompactList}\small\item\em Retrieves the sign bit of the floating point number. \end{DoxyCompactList}\item 
-\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a2ba081eec75c0046f11de70fa08263e3}{\hyperlink{namespacechaos_aba819cd899114dc5873e32e7b26411c4}{chaos\-::int32} \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a2ba081eec75c0046f11de70fa08263e3}{get\-\_\-exponent} () const }\label{unionchaos_1_1data_1_1_bitwise_float_a2ba081eec75c0046f11de70fa08263e3}
+\begin{DoxyCompactList}\small\item\em Retrieves the sign bit of this floating point number. \end{DoxyCompactList}\item 
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a53663822515d674b2fbcad78a758559c}{void \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a53663822515d674b2fbcad78a758559c}{set\-\_\-sign\-\_\-bit} (bool sign)}\label{unionchaos_1_1data_1_1_bitwise_float_a53663822515d674b2fbcad78a758559c}
 
-\begin{DoxyCompactList}\small\item\em Retrieves the exponent section of the floating point number. \end{DoxyCompactList}\item 
-\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a5de1db534ca075097f3796e215485d9a}{\hyperlink{namespacechaos_aba819cd899114dc5873e32e7b26411c4}{chaos\-::int32} \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a5de1db534ca075097f3796e215485d9a}{get\-\_\-mantissa} () const }\label{unionchaos_1_1data_1_1_bitwise_float_a5de1db534ca075097f3796e215485d9a}
+\begin{DoxyCompactList}\small\item\em Sets the sign bit (most significant bit) of this float. \end{DoxyCompactList}\item 
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a18da7f215f0f901943f24556cd9f1f4e}{\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a18da7f215f0f901943f24556cd9f1f4e}{get\-\_\-exponent} () const }\label{unionchaos_1_1data_1_1_bitwise_float_a18da7f215f0f901943f24556cd9f1f4e}
 
-\begin{DoxyCompactList}\small\item\em Retrieves the mantissa section of the floating point number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Retrieves the 8-\/bit exponent section of this floating point number. \end{DoxyCompactList}\item 
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_af3558e3752a224efb2b5e1b7df0ff473}{void \hyperlink{unionchaos_1_1data_1_1_bitwise_float_af3558e3752a224efb2b5e1b7df0ff473}{set\-\_\-exponent} (\hyperlink{namespacechaos_acbc0796d6929e3182cfd4f5c0176ab51}{chaos\-::uint8} exponent)}\label{unionchaos_1_1data_1_1_bitwise_float_af3558e3752a224efb2b5e1b7df0ff473}
+
+\begin{DoxyCompactList}\small\item\em Sets the 8-\/bit exponent section of this floating point number. \end{DoxyCompactList}\item 
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_afe4e313f09b01b6492a0dffce0d47b0b}{\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} \hyperlink{unionchaos_1_1data_1_1_bitwise_float_afe4e313f09b01b6492a0dffce0d47b0b}{get\-\_\-mantissa} () const }\label{unionchaos_1_1data_1_1_bitwise_float_afe4e313f09b01b6492a0dffce0d47b0b}
+
+\begin{DoxyCompactList}\small\item\em Retrieves the 23-\/bit mantissa section of this floating point number. \end{DoxyCompactList}\item 
+void \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a57629a8a0c7aaff58ba05bcab7831ce6}{set\-\_\-mantissa} (\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} mantissa)
+\begin{DoxyCompactList}\small\item\em Sets the 23-\/bit mantissa section of this floating point number. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{unionchaos_1_1data_1_1_bitwise_float_ab763103c6f0079798d187c8c27612259}{float \hyperlink{unionchaos_1_1data_1_1_bitwise_float_ab763103c6f0079798d187c8c27612259}{float\-\_\-rep}}\label{unionchaos_1_1data_1_1_bitwise_float_ab763103c6f0079798d187c8c27612259}
 
 \begin{DoxyCompactList}\small\item\em Access to the float representation. \end{DoxyCompactList}\item 
-\hypertarget{unionchaos_1_1data_1_1_bitwise_float_aca337da432b03bc3802e6a91952dd99d}{\hyperlink{namespacechaos_aba819cd899114dc5873e32e7b26411c4}{chaos\-::int32} \hyperlink{unionchaos_1_1data_1_1_bitwise_float_aca337da432b03bc3802e6a91952dd99d}{int\-\_\-rep}}\label{unionchaos_1_1data_1_1_bitwise_float_aca337da432b03bc3802e6a91952dd99d}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a5dc7a9d68bc17cecceec14da1ac9b592}{\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a5dc7a9d68bc17cecceec14da1ac9b592}{int\-\_\-rep}}\label{unionchaos_1_1data_1_1_bitwise_float_a5dc7a9d68bc17cecceec14da1ac9b592}
 
 \begin{DoxyCompactList}\small\item\em Access to the int representation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -39,7 +47,37 @@ Object that can be used to read and write the bits of a floating point number.
 \subsection{Detailed Description}
 Object that can be used to read and write the bits of a floating point number. 
 
-T\-O\-D\-O\-: D\-O\-C 
+Floating point numbers are composed of three sections\-: sign, exponent, and mantissa. These sections are laid out like so\-:
+
+
+\begin{DoxyCode}
+0 00000000 00000000000000000000000
+^ \(\backslash\)------/ \(\backslash\)---------------------/
+|     |                |
+\(\backslash\) 8-bit exponent       |
+ \(\backslash\)                23-bit mantissa
+sign bit
+\end{DoxyCode}
+
+
+This object provides functions for reading and writing these sections of a floating point number. 
+
+\subsection{Member Function Documentation}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a57629a8a0c7aaff58ba05bcab7831ce6}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!set\-\_\-mantissa@{set\-\_\-mantissa}}
+\index{set\-\_\-mantissa@{set\-\_\-mantissa}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{set\-\_\-mantissa}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::data\-::\-Bitwise\-Float\-::set\-\_\-mantissa (
+\begin{DoxyParamCaption}
+\item[{{\bf chaos\-::uint32}}]{mantissa}
+\end{DoxyParamCaption}
+)}}\label{unionchaos_1_1data_1_1_bitwise_float_a57629a8a0c7aaff58ba05bcab7831ce6}
+
+
+Sets the 23-\/bit mantissa section of this floating point number. 
+
+\begin{DoxyNote}{Note}
+While a 32-\/bit input value is accepted only the least significant 23-\/bits of this value will be used. 
+\end{DoxyNote}
+
 
 The documentation for this union was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 

@@ -142,9 +142,13 @@ Functions</h2></td></tr>
 <tr class="memitem:ae9aebf86c855cb5ed332902264a507b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#ae9aebf86c855cb5ed332902264a507b7">apply_escape_sequence</a> (<a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;text, <a class="el" href="namespacechaos_1_1io_1_1format.html#aa30dcff2478ffc94e33504c8886a5b1a">ANSIColour</a> colour, <a class="el" href="namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccf">ANSIAttribute</a> attribute=<a class="el" href="namespacechaos_1_1io_1_1format.html#af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5">ANSI_ATTR_NONE</a>)</td></tr>
 <tr class="memdesc:ae9aebf86c855cb5ed332902264a507b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies an ANSI escape sequence to the provided text.  <a href="#ae9aebf86c855cb5ed332902264a507b7">More...</a><br/></td></tr>
 <tr class="separator:ae9aebf86c855cb5ed332902264a507b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959b39b5d59d3cbbe277f214fe31c70a"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a959b39b5d59d3cbbe277f214fe31c70a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#a959b39b5d59d3cbbe277f214fe31c70a">int_to_binary</a> (T value, bool zero_pad=true)</td></tr>
+<tr class="memdesc:a959b39b5d59d3cbbe277f214fe31c70a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given integer type to a <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> binary representation.  <a href="#a959b39b5d59d3cbbe277f214fe31c70a">More...</a><br/></td></tr>
+<tr class="separator:a959b39b5d59d3cbbe277f214fe31c70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a0d0c026284787a225be9073770e264"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a1a0d0c026284787a225be9073770e264"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#a1a0d0c026284787a225be9073770e264">int_to_hex</a> (T value, bool zero_pad=true)</td></tr>
-<tr class="memdesc:a1a0d0c026284787a225be9073770e264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given integer type to a hexadecimal representation <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a>.  <a href="#a1a0d0c026284787a225be9073770e264">More...</a><br/></td></tr>
+<tr class="memdesc:a1a0d0c026284787a225be9073770e264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the given integer type to a <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> hexadecimal representation.  <a href="#a1a0d0c026284787a225be9073770e264">More...</a><br/></td></tr>
 <tr class="separator:a1a0d0c026284787a225be9073770e264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac53c87508bb81f6fc26efd9bfca7b027"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1io_1_1format.html#ac53c87508bb81f6fc26efd9bfca7b027">centre_text</a> (<a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> &amp;text, const <a class="el" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> line_length, bool trim_trailing=false)</td></tr>
 <tr class="memdesc:ac53c87508bb81f6fc26efd9bfca7b027"><td class="mdescLeft">&#160;</td><td class="mdescRight">Centres the given text with whitespace on either side so that has a symbol length equal to line_length.  <a href="#ac53c87508bb81f6fc26efd9bfca7b027">More...</a><br/></td></tr>
@@ -243,6 +247,42 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a959b39b5d59d3cbbe277f214fe31c70a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html">chaos::uni::UTF8String</a> chaos::io::format::int_to_binary </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>zero_pad</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts the given integer type to a <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> binary representation. </p>
+<dl class="section warning"><dt>Warning</dt><dd>If the input <code>value</code> is not an integer type (int, long, <a class="el" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9" title="a 32-bit unsigned integer type ">chaos::uint32</a>, <a class="el" href="namespacechaos.html#aa4cfe70894188e01134a2694db2eb2db" title="a 64-bit signed integer type ">chaos::int64</a>, etc) this function may return unexpected results.</dd></dl>
+<p>The <code>zero_pad</code> parameter controls whether the resulting string will be padded with <code>0</code> digits so that it has the maximum number of bits for the input type.</p>
+<p>Example of using the zero_pad functionality:</p>
+<div class="fragment"><div class="line"><a class="code" href="namespacechaos.html#aba819cd899114dc5873e32e7b26411c4">chaos::int32</a> i = 34892347;</div>
+<div class="line"><a class="code" href="namespacechaos_1_1io_1_1format.html#a959b39b5d59d3cbbe277f214fe31c70a">chaos::io::format::int_to_binary</a>( i );</div>
+<div class="line"><span class="comment">// returns: &quot;0b00000010000101000110101000111011&quot;</span></div>
+</div><!-- fragment --> 
+</div>
+</div>
 <a class="anchor" id="a1a0d0c026284787a225be9073770e264"></a>
 <div class="memitem">
 <div class="memproto">
@@ -269,8 +309,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Converts the given integer type to a hexadecimal representation <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a>. </p>
-<dl class="section warning"><dt>Warning</dt><dd>If the input <code>value</code> is not an integer type (bool, char, int, long, <a class="el" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9" title="a 32-bit unsigned integer type ">chaos::uint32</a>, <a class="el" href="namespacechaos.html#aa4cfe70894188e01134a2694db2eb2db" title="a 64-bit signed integer type ">chaos::int64</a>, etc) this function may return unexpected results.</dd></dl>
+<p>Converts the given integer type to a <a class="el" href="classchaos_1_1uni_1_1_u_t_f8_string.html" title="A string type designed for storing and manipulating UTF-8 encoded text. ">chaos::uni::UTF8String</a> hexadecimal representation. </p>
+<dl class="section warning"><dt>Warning</dt><dd>If the input <code>value</code> is not an integer type (int, long, <a class="el" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9" title="a 32-bit unsigned integer type ">chaos::uint32</a>, <a class="el" href="namespacechaos.html#aa4cfe70894188e01134a2694db2eb2db" title="a 64-bit signed integer type ">chaos::int64</a>, etc) this function may return unexpected results.</dd></dl>
 <p>The <code>zero_pad</code> parameter controls whether the resulting string will be padded with <code>0</code> digits so that it has the maximum number of digits for the input type.</p>
 <p>Example of using the zero_pad functionality:</p>
 <div class="fragment"><div class="line"><a class="code" href="namespacechaos.html#aba819cd899114dc5873e32e7b26411c4">chaos::int32</a> i = 3425;</div>
@@ -326,7 +366,7 @@ template&lt;typename T &gt; </div>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 10 2015 14:20:00 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 15 2015 09:48:01 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

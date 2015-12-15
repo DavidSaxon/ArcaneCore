@@ -52,8 +52,10 @@ enum \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf
 \item 
 void \hyperlink{namespacechaos_1_1io_1_1format_ae9aebf86c855cb5ed332902264a507b7}{apply\-\_\-escape\-\_\-sequence} (\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&text, \hyperlink{namespacechaos_1_1io_1_1format_aa30dcff2478ffc94e33504c8886a5b1a}{A\-N\-S\-I\-Colour} colour, \hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccf}{A\-N\-S\-I\-Attribute} attribute=\hyperlink{namespacechaos_1_1io_1_1format_af01119682ec0bc616b49641e0c2a7ccfa3154b286513beb167bb516ea15f1cfb5}{A\-N\-S\-I\-\_\-\-A\-T\-T\-R\-\_\-\-N\-O\-N\-E})
 \begin{DoxyCompactList}\small\item\em Applies an A\-N\-S\-I escape sequence to the provided text. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1io_1_1format_a959b39b5d59d3cbbe277f214fe31c70a}{int\-\_\-to\-\_\-binary} (T value, bool zero\-\_\-pad=true)
+\begin{DoxyCompactList}\small\item\em Converts the given integer type to a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} binary representation. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \hyperlink{namespacechaos_1_1io_1_1format_a1a0d0c026284787a225be9073770e264}{int\-\_\-to\-\_\-hex} (T value, bool zero\-\_\-pad=true)
-\begin{DoxyCompactList}\small\item\em Converts the given integer type to a hexadecimal representation \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Converts the given integer type to a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} hexadecimal representation. \end{DoxyCompactList}\item 
 void \hyperlink{namespacechaos_1_1io_1_1format_ac53c87508bb81f6fc26efd9bfca7b027}{centre\-\_\-text} (\hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} \&text, const \hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} line\-\_\-length, bool trim\-\_\-trailing=false)
 \begin{DoxyCompactList}\small\item\em Centres the given text with whitespace on either side so that has a symbol length equal to line\-\_\-length. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -116,7 +118,32 @@ Applies an A\-N\-S\-I escape sequence to the provided text.
 {\em attribute} & the attribute to use on the text. \\
 \hline
 \end{DoxyParams}
-\hypertarget{namespacechaos_1_1io_1_1format_a1a0d0c026284787a225be9073770e264}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!int\-\_\-to\-\_\-hex@{int\-\_\-to\-\_\-hex}}
+\hypertarget{namespacechaos_1_1io_1_1format_a959b39b5d59d3cbbe277f214fe31c70a}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!int\-\_\-to\-\_\-binary@{int\-\_\-to\-\_\-binary}}
+\index{int\-\_\-to\-\_\-binary@{int\-\_\-to\-\_\-binary}!chaos::io::format@{chaos\-::io\-::format}}
+\subsubsection[{int\-\_\-to\-\_\-binary}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ {\bf chaos\-::uni\-::\-U\-T\-F8\-String} chaos\-::io\-::format\-::int\-\_\-to\-\_\-binary (
+\begin{DoxyParamCaption}
+\item[{T}]{value, }
+\item[{bool}]{zero\-\_\-pad = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{namespacechaos_1_1io_1_1format_a959b39b5d59d3cbbe277f214fe31c70a}
+
+
+Converts the given integer type to a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} binary representation. 
+
+\begin{DoxyWarning}{Warning}
+If the input {\ttfamily value} is not an integer type (int, long, \hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32}, \hyperlink{namespacechaos_aa4cfe70894188e01134a2694db2eb2db}{chaos\-::int64}, etc) this function may return unexpected results.
+\end{DoxyWarning}
+The {\ttfamily zero\-\_\-pad} parameter controls whether the resulting string will be padded with {\ttfamily 0} digits so that it has the maximum number of bits for the input type.
+
+Example of using the zero\-\_\-pad functionality\-:
+
+
+\begin{DoxyCode}
+\hyperlink{namespacechaos_aba819cd899114dc5873e32e7b26411c4}{chaos::int32} i = 34892347;
+\hyperlink{namespacechaos_1_1io_1_1format_a959b39b5d59d3cbbe277f214fe31c70a}{chaos::io::format::int\_to\_binary}( i );
+\textcolor{comment}{// returns: "0b00000010000101000110101000111011"}
+\end{DoxyCode}
+ \hypertarget{namespacechaos_1_1io_1_1format_a1a0d0c026284787a225be9073770e264}{\index{chaos\-::io\-::format@{chaos\-::io\-::format}!int\-\_\-to\-\_\-hex@{int\-\_\-to\-\_\-hex}}
 \index{int\-\_\-to\-\_\-hex@{int\-\_\-to\-\_\-hex}!chaos::io::format@{chaos\-::io\-::format}}
 \subsubsection[{int\-\_\-to\-\_\-hex}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename T $>$ {\bf chaos\-::uni\-::\-U\-T\-F8\-String} chaos\-::io\-::format\-::int\-\_\-to\-\_\-hex (
 \begin{DoxyParamCaption}
@@ -126,10 +153,10 @@ Applies an A\-N\-S\-I escape sequence to the provided text.
 )}}\label{namespacechaos_1_1io_1_1format_a1a0d0c026284787a225be9073770e264}
 
 
-Converts the given integer type to a hexadecimal representation \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String}. 
+Converts the given integer type to a \hyperlink{classchaos_1_1uni_1_1_u_t_f8_string}{chaos\-::uni\-::\-U\-T\-F8\-String} hexadecimal representation. 
 
 \begin{DoxyWarning}{Warning}
-If the input {\ttfamily value} is not an integer type (bool, char, int, long, \hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32}, \hyperlink{namespacechaos_aa4cfe70894188e01134a2694db2eb2db}{chaos\-::int64}, etc) this function may return unexpected results.
+If the input {\ttfamily value} is not an integer type (int, long, \hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32}, \hyperlink{namespacechaos_aa4cfe70894188e01134a2694db2eb2db}{chaos\-::int64}, etc) this function may return unexpected results.
 \end{DoxyWarning}
 The {\ttfamily zero\-\_\-pad} parameter controls whether the resulting string will be padded with {\ttfamily 0} digits so that it has the maximum number of digits for the input type.
 
