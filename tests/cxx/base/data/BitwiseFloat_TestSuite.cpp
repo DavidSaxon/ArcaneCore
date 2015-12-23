@@ -102,6 +102,47 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                               FLOAT CONSTRUCTOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( float_constructor, BitwiseFloatGenericFixture )
+{
+    CHAOS_FOR_EACH( it, fixture->floats )
+    {
+        chaos::data::BitwiseFloat f( it->float_rep );
+        CHAOS_CHECK_EQUAL( f.int_rep, it->int_rep );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                COPY CONSTRUCTOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( copy_constructor, BitwiseFloatGenericFixture )
+{
+    CHAOS_FOR_EACH( it, fixture->floats )
+    {
+        chaos::data::BitwiseFloat f( *it );
+        CHAOS_CHECK_EQUAL( f.int_rep, it->int_rep );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              ASSIGNMENT OPERATOR
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE( assignment_operator, BitwiseFloatGenericFixture )
+{
+    CHAOS_FOR_EACH( it, fixture->floats )
+    {
+        chaos::data::BitwiseFloat f( 0 );
+        f = *it;
+
+        CHAOS_CHECK_EQUAL( f.int_rep, it->int_rep );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                    INT REP
 //------------------------------------------------------------------------------
 
@@ -176,5 +217,17 @@ CHAOS_TEST_UNIT_FIXTURE( set_values, BitwiseFloatGenericFixture )
     }
 }
 
+//------------------------------------------------------------------------------
+//                            PRECISION AWAY FROM ZERO
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT( precision_away_from_zero )
+{
+    chaos::data::BitwiseFloat f( std::numeric_limits<float>::infinity() );
+    CHAOS_CHECK_THROW(
+            f.precision_away_from_zero(),
+            chaos::ex::ArithmeticError
+    );
+}
 
 } // namespace bitwise_float_tests

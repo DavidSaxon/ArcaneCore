@@ -152,6 +152,23 @@ public:
     }
 };
 
+//------------------------------------------------------------------------------
+//                                ARITHMETIC ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns of a failure due to bad arithmetic, e.g. zero division error.
+ */
+class ArithmeticError : public ChaosException
+{
+public:
+
+    ArithmeticError( const chaos::uni::UTF8String& message )
+        :
+        ChaosException( message )
+    {
+    }
+};
 
 //------------------------------------------------------------------------------
 //                             CONVERSION DATA ERROR

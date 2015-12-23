@@ -45,13 +45,66 @@ public:
     chaos::uint32 int_rep;
 
     //--------------------------------------------------------------------------
-    //                                CONSTRUCTOR
+    //                                CONSTRUCTORS
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Creates a new BitewiseFloat initialised with the given value.
+     * \brief Float constructor.
+     *
+     * Creates a new BitewiseFloat initialised with the given value.
      */
     BitwiseFloat( float value );
+
+    /*!
+     * \brief Copy constructor.
+     *
+     * Creates a copy of the other given BitwiseFloat.
+     */
+    BitwiseFloat( const BitwiseFloat& other );
+
+    //--------------------------------------------------------------------------
+    //                                 OPERATORS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Assignment operator.
+     *
+     * Assigns the value of this BitwiseFloat to be a copy of the value of the
+     * other given BitwiseFloat.
+     *
+     * \param other BitwiseFloat to copy from.
+     * \return A reference to this BitwiseFloat once the assignment has taken
+     *         place.
+     */
+    BitwiseFloat& operator=( const BitwiseFloat& other );
+
+    /*!
+     * \brief Equality operator.
+     *
+     * Compares whether this BitwiseFloat and the other BitwiseFloat are
+     * considered equal.
+     *
+     * Equality is defined by a comparison of the exact BitwiseFloat.int_rep
+     * values.
+     *
+     * For more flexible floating point comparisons see
+     * chaos::math::float_equals().
+     */
+    bool operator==( const BitwiseFloat& other ) const;
+
+    /*!
+     * \brief Inequality operator.
+     *
+     * Compares whether this BitwiseFloat and the other BitwiseFloat are
+     * considered not equal.
+     *
+     * Equality is defined by a comparison of the exact BitwiseFloat.int_rep
+     * values.
+     *
+     * For more flexible floating point comparisons see
+     * chaos::math::float_equals().
+     */
+    bool operator!=( const BitwiseFloat& other ) const;
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -91,6 +144,26 @@ public:
      *       23-bits of this value will be used.
      */
     void set_mantissa( chaos::uint32 mantissa );
+
+    /*!
+     * \brief Returns the precision of this float away from zero.
+     *
+     * Floating point precision is measured as the difference between this
+     * number and the next possible float value away from zero.
+     *
+     * \throws chaos::ex::ArithmeticError If this float is infinity or NaN.
+     */
+    float precision_away_from_zero() const;
+
+    /*!
+     * \brief Returns the precision of this float away from zero.
+     *
+     * Floating point precision is measured as the difference between this
+     * number and the next possible float value towards zero.
+     *
+     * \throws chaos::ex::ArithmeticError If this float is 0 or NaN.
+     */
+    float precision_towards_zero() const;
 };
 
 } // namespace data

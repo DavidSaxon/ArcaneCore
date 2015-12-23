@@ -13,9 +13,16 @@ Object that can be used to read and write the bits of a floating point number.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a7713ceaaa7cf2a487304088003d94135}{\hyperlink{unionchaos_1_1data_1_1_bitwise_float_a7713ceaaa7cf2a487304088003d94135}{Bitwise\-Float} (float value)}\label{unionchaos_1_1data_1_1_bitwise_float_a7713ceaaa7cf2a487304088003d94135}
-
-\begin{DoxyCompactList}\small\item\em Creates a new Bitewise\-Float initialised with the given value. \end{DoxyCompactList}\item 
+\hyperlink{unionchaos_1_1data_1_1_bitwise_float_a7713ceaaa7cf2a487304088003d94135}{Bitwise\-Float} (float value)
+\begin{DoxyCompactList}\small\item\em Float constructor. \end{DoxyCompactList}\item 
+\hyperlink{unionchaos_1_1data_1_1_bitwise_float_a37070cb9a8ad9c96c709a2a08467ae77}{Bitwise\-Float} (const \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} \& \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a2d2fdb0bfa06452e43184cb9a1db30f7}{operator=} (const \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} \&other)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+bool \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a8c9504d5df1069a3b7af9bb1986dcab3}{operator==} (const \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} \&other) const 
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+bool \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a103eeef1d692951938c2f269ea0accf3}{operator!=} (const \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} \&other) const 
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
 \hypertarget{unionchaos_1_1data_1_1_bitwise_float_aec1ad0a94dcf984131cc528b574c7d2d}{bool \hyperlink{unionchaos_1_1data_1_1_bitwise_float_aec1ad0a94dcf984131cc528b574c7d2d}{get\-\_\-sign\-\_\-bit} () const }\label{unionchaos_1_1data_1_1_bitwise_float_aec1ad0a94dcf984131cc528b574c7d2d}
 
 \begin{DoxyCompactList}\small\item\em Retrieves the sign bit of this floating point number. \end{DoxyCompactList}\item 
@@ -32,7 +39,11 @@ Object that can be used to read and write the bits of a floating point number.
 
 \begin{DoxyCompactList}\small\item\em Retrieves the 23-\/bit mantissa section of this floating point number. \end{DoxyCompactList}\item 
 void \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a57629a8a0c7aaff58ba05bcab7831ce6}{set\-\_\-mantissa} (\hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} mantissa)
-\begin{DoxyCompactList}\small\item\em Sets the 23-\/bit mantissa section of this floating point number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the 23-\/bit mantissa section of this floating point number. \end{DoxyCompactList}\item 
+float \hyperlink{unionchaos_1_1data_1_1_bitwise_float_ab38870254ea2295c45556e9aa51c2554}{precision\-\_\-away\-\_\-from\-\_\-zero} () const 
+\begin{DoxyCompactList}\small\item\em Returns the precision of this float away from zero. \end{DoxyCompactList}\item 
+float \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a4acc915134b0cdab21c6e3c30842754d}{precision\-\_\-towards\-\_\-zero} () const 
+\begin{DoxyCompactList}\small\item\em Returns the precision of this float away from zero. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -62,8 +73,84 @@ sign bit
 
 This object provides functions for reading and writing these sections of a floating point number. 
 
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a7713ceaaa7cf2a487304088003d94135}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!Bitwise\-Float@{Bitwise\-Float}}
+\index{Bitwise\-Float@{Bitwise\-Float}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{Bitwise\-Float}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::data\-::\-Bitwise\-Float\-::\-Bitwise\-Float (
+\begin{DoxyParamCaption}
+\item[{float}]{value}
+\end{DoxyParamCaption}
+)}}\label{unionchaos_1_1data_1_1_bitwise_float_a7713ceaaa7cf2a487304088003d94135}
+
+
+Float constructor. 
+
+Creates a new Bitewise\-Float initialised with the given value. \hypertarget{unionchaos_1_1data_1_1_bitwise_float_a37070cb9a8ad9c96c709a2a08467ae77}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!Bitwise\-Float@{Bitwise\-Float}}
+\index{Bitwise\-Float@{Bitwise\-Float}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{Bitwise\-Float}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::data\-::\-Bitwise\-Float\-::\-Bitwise\-Float (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitwise\-Float} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{unionchaos_1_1data_1_1_bitwise_float_a37070cb9a8ad9c96c709a2a08467ae77}
+
+
+Copy constructor. 
+
+Creates a copy of the other given \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float}. 
+
 \subsection{Member Function Documentation}
-\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a57629a8a0c7aaff58ba05bcab7831ce6}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!set\-\_\-mantissa@{set\-\_\-mantissa}}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a2d2fdb0bfa06452e43184cb9a1db30f7}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!operator=@{operator=}}
+\index{operator=@{operator=}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Bitwise\-Float}\& chaos\-::data\-::\-Bitwise\-Float\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitwise\-Float} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{unionchaos_1_1data_1_1_bitwise_float_a2d2fdb0bfa06452e43184cb9a1db30f7}
+
+
+Assignment operator. 
+
+Assigns the value of this \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} to be a copy of the value of the other given \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} to copy from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} once the assignment has taken place. 
+\end{DoxyReturn}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a8c9504d5df1069a3b7af9bb1986dcab3}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!operator==@{operator==}}
+\index{operator==@{operator==}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::data\-::\-Bitwise\-Float\-::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitwise\-Float} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{unionchaos_1_1data_1_1_bitwise_float_a8c9504d5df1069a3b7af9bb1986dcab3}
+
+
+Equality operator. 
+
+Compares whether this \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} and the other \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} are considered equal.
+
+Equality is defined by a comparison of the exact \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a5dc7a9d68bc17cecceec14da1ac9b592}{Bitwise\-Float.\-int\-\_\-rep} values.
+
+For more flexible floating point comparisons see \hyperlink{namespacechaos_1_1math_a8cdea3a2be1387d86833df4e8ca1d8f9}{chaos\-::math\-::float\-\_\-equals()}. \hypertarget{unionchaos_1_1data_1_1_bitwise_float_a103eeef1d692951938c2f269ea0accf3}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::data\-::\-Bitwise\-Float\-::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitwise\-Float} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{unionchaos_1_1data_1_1_bitwise_float_a103eeef1d692951938c2f269ea0accf3}
+
+
+Inequality operator. 
+
+Compares whether this \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} and the other \hyperlink{unionchaos_1_1data_1_1_bitwise_float}{Bitwise\-Float} are considered not equal.
+
+Equality is defined by a comparison of the exact \hyperlink{unionchaos_1_1data_1_1_bitwise_float_a5dc7a9d68bc17cecceec14da1ac9b592}{Bitwise\-Float.\-int\-\_\-rep} values.
+
+For more flexible floating point comparisons see \hyperlink{namespacechaos_1_1math_a8cdea3a2be1387d86833df4e8ca1d8f9}{chaos\-::math\-::float\-\_\-equals()}. \hypertarget{unionchaos_1_1data_1_1_bitwise_float_a57629a8a0c7aaff58ba05bcab7831ce6}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!set\-\_\-mantissa@{set\-\_\-mantissa}}
 \index{set\-\_\-mantissa@{set\-\_\-mantissa}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
 \subsubsection[{set\-\_\-mantissa}]{\setlength{\rightskip}{0pt plus 5cm}void chaos\-::data\-::\-Bitwise\-Float\-::set\-\_\-mantissa (
 \begin{DoxyParamCaption}
@@ -77,6 +164,42 @@ Sets the 23-\/bit mantissa section of this floating point number.
 \begin{DoxyNote}{Note}
 While a 32-\/bit input value is accepted only the least significant 23-\/bits of this value will be used. 
 \end{DoxyNote}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_ab38870254ea2295c45556e9aa51c2554}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!precision\-\_\-away\-\_\-from\-\_\-zero@{precision\-\_\-away\-\_\-from\-\_\-zero}}
+\index{precision\-\_\-away\-\_\-from\-\_\-zero@{precision\-\_\-away\-\_\-from\-\_\-zero}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{precision\-\_\-away\-\_\-from\-\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}float chaos\-::data\-::\-Bitwise\-Float\-::precision\-\_\-away\-\_\-from\-\_\-zero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{unionchaos_1_1data_1_1_bitwise_float_ab38870254ea2295c45556e9aa51c2554}
+
+
+Returns the precision of this float away from zero. 
+
+Floating point precision is measured as the difference between this number and the next possible float value away from zero.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_arithmetic_error}{chaos\-::ex\-::\-Arithmetic\-Error}} & If this float is infinity or Na\-N. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{unionchaos_1_1data_1_1_bitwise_float_a4acc915134b0cdab21c6e3c30842754d}{\index{chaos\-::data\-::\-Bitwise\-Float@{chaos\-::data\-::\-Bitwise\-Float}!precision\-\_\-towards\-\_\-zero@{precision\-\_\-towards\-\_\-zero}}
+\index{precision\-\_\-towards\-\_\-zero@{precision\-\_\-towards\-\_\-zero}!chaos::data::BitwiseFloat@{chaos\-::data\-::\-Bitwise\-Float}}
+\subsubsection[{precision\-\_\-towards\-\_\-zero}]{\setlength{\rightskip}{0pt plus 5cm}float chaos\-::data\-::\-Bitwise\-Float\-::precision\-\_\-towards\-\_\-zero (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{unionchaos_1_1data_1_1_bitwise_float_a4acc915134b0cdab21c6e3c30842754d}
+
+
+Returns the precision of this float away from zero. 
+
+Floating point precision is measured as the difference between this number and the next possible float value towards zero.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classchaos_1_1ex_1_1_arithmetic_error}{chaos\-::ex\-::\-Arithmetic\-Error}} & If this float is 0 or Na\-N. \\
+\hline
+\end{DoxyExceptions}
 
 
 The documentation for this union was generated from the following file\-:\begin{DoxyCompactItemize}

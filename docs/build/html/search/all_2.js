@@ -4,6 +4,8 @@ var searchData=
   ['chaos',['chaos',['../namespacechaos.html',1,'']]],
   ['chaos_5fcheck_5fequal',['CHAOS_CHECK_EQUAL',['../_chaos_test_8hpp.html#a6ddd8fa30ae2b6a7763c64b583e80919',1,'ChaosTest.hpp']]],
   ['chaos_5fcheck_5ffalse',['CHAOS_CHECK_FALSE',['../_chaos_test_8hpp.html#aefb7d9c1993d368a391cf2ca46cdb392',1,'ChaosTest.hpp']]],
+  ['chaos_5fcheck_5ffloat_5fequal',['CHAOS_CHECK_FLOAT_EQUAL',['../_chaos_test_8hpp.html#aa1c608c3fa87a96ded1969b45a0ee3e0',1,'ChaosTest.hpp']]],
+  ['chaos_5fcheck_5ffloat_5fnot_5fequal',['CHAOS_CHECK_FLOAT_NOT_EQUAL',['../_chaos_test_8hpp.html#ac00ec4593714f90154324140ae4e62d6',1,'ChaosTest.hpp']]],
   ['chaos_5fcheck_5fnot_5fequal',['CHAOS_CHECK_NOT_EQUAL',['../_chaos_test_8hpp.html#a1db31c76ae65af6e87d1fc121b67e10a',1,'ChaosTest.hpp']]],
   ['chaos_5fcheck_5fthrow',['CHAOS_CHECK_THROW',['../_chaos_test_8hpp.html#a13cd47edeb4e22560e6719ae7b9d848d',1,'ChaosTest.hpp']]],
   ['chaos_5fcheck_5ftrue',['CHAOS_CHECK_TRUE',['../_chaos_test_8hpp.html#a28bb56198c83ac0334bd20da4b5fb120',1,'ChaosTest.hpp']]],
