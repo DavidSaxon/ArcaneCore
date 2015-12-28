@@ -94,9 +94,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8cdea3a2be1387d86833df4e8ca1d8f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1math.html#a8cdea3a2be1387d86833df4e8ca1d8f9">float_equals</a> (float a, float b, float error_threshold=<a class="el" href="namespacechaos_1_1math.html#a592b0721bd50c7f638c5f09d6db661fe">chaos::math::EPSILON</a>)</td></tr>
-<tr class="memdesc:a8cdea3a2be1387d86833df4e8ca1d8f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether two floating point values are considered equal or not.  <a href="#a8cdea3a2be1387d86833df4e8ca1d8f9">More...</a><br/></td></tr>
-<tr class="separator:a8cdea3a2be1387d86833df4e8ca1d8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b789648ddacd3e1d2403834c1953a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechaos_1_1math.html#a45b789648ddacd3e1d2403834c1953a6">float_equals</a> (float a, float b, float delta_threshold=FLT_EPSILON, <a class="el" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> ulps_threshold=8)</td></tr>
+<tr class="memdesc:a45b789648ddacd3e1d2403834c1953a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether two floating point values are equal or almost equal.  <a href="#a45b789648ddacd3e1d2403834c1953a6">More...</a><br/></td></tr>
+<tr class="separator:a45b789648ddacd3e1d2403834c1953a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -108,7 +108,7 @@ const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Math related classes and operations. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a8cdea3a2be1387d86833df4e8ca1d8f9"></a>
+<a class="anchor" id="a45b789648ddacd3e1d2403834c1953a6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -128,7 +128,13 @@ const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>error_threshold</em> = <code><a class="el" href="namespacechaos_1_1math.html#a592b0721bd50c7f638c5f09d6db661fe">chaos::math::EPSILON</a></code>&#160;</td>
+          <td class="paramname"><em>delta_threshold</em> = <code>FLT_EPSILON</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a>&#160;</td>
+          <td class="paramname"><em>ulps_threshold</em> = <code>8</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -138,8 +144,23 @@ const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
       </table>
 </div><div class="memdoc">
 
-<p>Checks whether two floating point values are considered equal or not. </p>
-<p>This check is done by using the <code>error_threshold</code> parameter. If the difference between the two values is less than <code>error_threshold</code> then the values are considered to be equal. </p>
+<p>Checks whether two floating point values are equal or almost equal. </p>
+<p>This performs a two stage check:</p>
+<ul>
+<li>First the values are subtracted from one another and if the absolute result is less than or equal to <code>delta_threshold</code> then this operation resolves true.</li>
+<li>Second the integer representations of the values are subtracted from one another and if the absolute result is less than or equal to <code>ulps_threshold</code> then this function resolves true.</li>
+</ul>
+<p>The first check is performed for the purpose of values near 0 where ULPs style comparisons break down, e.g. <code>0.0F == -0.0F</code>.</p>
+<p>The second comparison is a comparison of the difference of units in last place (ULPs) between the two floats. This effectively compares the number of possible float representations between the two values. Larger numbers with less precision will have a bigger numerical difference than two smaller values with more precision for the same ULPs difference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The first float to compare. </td></tr>
+    <tr><td class="paramname">b</td><td>The second float to compare. </td></tr>
+    <tr><td class="paramname">delta_threshold</td><td>If <code>a</code> and <code>b</code> have a difference less than or equal to this, they are considered equal. </td></tr>
+    <tr><td class="paramname">ulps_threshold</td><td>If <code>a</code> and <code>b</code> have units in last place difference less than or equal to this, they are considered equal. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -147,7 +168,7 @@ const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 23 2015 09:48:16 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 29 2015 11:00:50 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

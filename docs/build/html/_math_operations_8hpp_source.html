@@ -89,30 +89,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef CHAOSCORE_BASE_MATHOPERATIONS_HPP_</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CHAOSCORE_BASE_MATHOPERATIONS_HPP_</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_math_constants_8hpp.html">chaoscore/base/math/MathConstants.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;cfloat&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">namespace </span>chaos</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>math</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_math_constants_8hpp.html">chaoscore/base/math/MathConstants.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span>chaos</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1math.html#a8cdea3a2be1387d86833df4e8ca1d8f9">float_equals</a>(</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">float</span> a,</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">float</span> b,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">float</span> error_threshold = <a class="code" href="namespacechaos_1_1math.html#a592b0721bd50c7f638c5f09d6db661fe">chaos::math::EPSILON</a> );</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <span class="comment">// namespace math</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;} <span class="comment">// namespace chaos</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespacechaos_1_1math_html_a592b0721bd50c7f638c5f09d6db661fe"><div class="ttname"><a href="namespacechaos_1_1math.html#a592b0721bd50c7f638c5f09d6db661fe">chaos::math::EPSILON</a></div><div class="ttdeci">const float EPSILON</div><div class="ttdoc">Small value used for the default margin of error in floating point comparisons. </div></div>
-<div class="ttc" id="namespacechaos_1_1math_html_a8cdea3a2be1387d86833df4e8ca1d8f9"><div class="ttname"><a href="namespacechaos_1_1math.html#a8cdea3a2be1387d86833df4e8ca1d8f9">chaos::math::float_equals</a></div><div class="ttdeci">bool float_equals(float a, float b, float error_threshold=chaos::math::EPSILON)</div><div class="ttdoc">Checks whether two floating point values are considered equal or not. </div></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">namespace </span>math</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacechaos_1_1math.html#a45b789648ddacd3e1d2403834c1953a6">float_equals</a>(</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">float</span> a,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">float</span> b,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">float</span> delta_threshold = FLT_EPSILON,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a> ulps_threshold = 8 );</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;} <span class="comment">// namespace math</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;} <span class="comment">// namespace chaos</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="namespacechaos_html_a8641b3ae4551f0b35570d4f9f4ec22d9"><div class="ttname"><a href="namespacechaos.html#a8641b3ae4551f0b35570d4f9f4ec22d9">chaos::uint32</a></div><div class="ttdeci">std::uint32_t uint32</div><div class="ttdoc">a 32-bit unsigned integer type </div><div class="ttdef"><b>Definition:</b> Types.hpp:85</div></div>
+<div class="ttc" id="namespacechaos_1_1math_html_a45b789648ddacd3e1d2403834c1953a6"><div class="ttname"><a href="namespacechaos_1_1math.html#a45b789648ddacd3e1d2403834c1953a6">chaos::math::float_equals</a></div><div class="ttdeci">bool float_equals(float a, float b, float delta_threshold=FLT_EPSILON, chaos::uint32 ulps_threshold=8)</div><div class="ttdoc">Checks whether two floating point values are equal or almost equal. </div></div>
 <div class="ttc" id="_math_constants_8hpp_html"><div class="ttname"><a href="_math_constants_8hpp.html">MathConstants.hpp</a></div><div class="ttdoc">Global constants relating to math. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 23 2015 09:48:15 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 29 2015 11:00:49 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

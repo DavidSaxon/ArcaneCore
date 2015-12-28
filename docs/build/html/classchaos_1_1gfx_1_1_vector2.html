@@ -130,6 +130,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b0e2d630e9de9c0ec5c856250ec3d78"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html#a5b0e2d630e9de9c0ec5c856250ec3d78">operator+=</a> (const <a class="el" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a> &amp;other)</td></tr>
 <tr class="memdesc:a5b0e2d630e9de9c0ec5c856250ec3d78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compound vector addition operator.  <a href="#a5b0e2d630e9de9c0ec5c856250ec3d78">More...</a><br/></td></tr>
 <tr class="separator:a5b0e2d630e9de9c0ec5c856250ec3d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f4f7749c5841b8ff46b5b60c1114863"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html#a0f4f7749c5841b8ff46b5b60c1114863">operator-</a> (float scalar) const </td></tr>
+<tr class="memdesc:a0f4f7749c5841b8ff46b5b60c1114863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar subtraction operator.  <a href="#a0f4f7749c5841b8ff46b5b60c1114863">More...</a><br/></td></tr>
+<tr class="separator:a0f4f7749c5841b8ff46b5b60c1114863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658877f9e37d57f11d796b58b870f29f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html#a658877f9e37d57f11d796b58b870f29f">operator-=</a> (float scalar)</td></tr>
+<tr class="memdesc:a658877f9e37d57f11d796b58b870f29f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scalar compound subtraction operator.  <a href="#a658877f9e37d57f11d796b58b870f29f">More...</a><br/></td></tr>
+<tr class="separator:a658877f9e37d57f11d796b58b870f29f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -272,7 +278,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Equality operator. </p>
-<p>Compares whether this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> and the other given <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> are considered equal.</p>
+<p>Compares whether this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> and the other given <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> are considered "equal". A comparison of the components of the vector is performed using <a class="el" href="namespacechaos_1_1math.html#a45b789648ddacd3e1d2403834c1953a6" title="Checks whether two floating point values are equal or almost equal. ">chaos::math::float_equals</a> using the default values for <code>delta_threshold</code> and <code>ulps_threshold</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td><a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> to compare this vector against. </td></tr>
@@ -298,7 +304,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Inequality operator. </p>
-<p>Compares whether this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> and the other given <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> are not considered equal.</p>
+<p>Compares whether this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> and the other given <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> are not considered equal. See <a class="el" href="classchaos_1_1gfx_1_1_vector2.html#aee957f369c27fd28b8f387e13c4fb085" title="Equality operator. ">Vector2::operator==</a> for further information.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td><a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> to compare this vector against. </td></tr>
@@ -324,7 +330,13 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Scalar addition operator. </p>
-<p>Computes the result of this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> being added with the given scalar and returns the result a a new <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>The scalar to add to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> containing the results of the addition. </dd></dl>
 
 </div>
 </div>
@@ -343,14 +355,13 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Scalar compound addition operator. </p>
-<p>Adds the given scalar to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scalar</td><td>The scalar to add to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to this vector once the addition has taken place. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> once the addition has taken place. </dd></dl>
 
 </div>
 </div>
@@ -369,7 +380,13 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Vector addition operator. </p>
-<p>Computes the result of this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> being added with the other given <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. The result is returned as a new <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>The other <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> to add to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> containing the results of the addition. </dd></dl>
 
 </div>
 </div>
@@ -388,14 +405,63 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 </div><div class="memdoc">
 
 <p>Compound vector addition operator. </p>
-<p>Adds the given <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td>The <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> to add to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
+    <tr><td class="paramname">other</td><td>The other <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> to add to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference to this vector after the addition has taken place. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> once the addition has taken place. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0f4f7749c5841b8ff46b5b60c1114863"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a> chaos::gfx::Vector2::operator- </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scalar</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scalar subtraction operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>The scalar to subtract from this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A new <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> containing the results of the subtraction. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a658877f9e37d57f11d796b58b870f29f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classchaos_1_1gfx_1_1_vector2.html">Vector2</a> chaos::gfx::Vector2::operator-= </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scalar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scalar compound subtraction operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">scalar</td><td>The scalar to subtract from this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to this <a class="el" href="classchaos_1_1gfx_1_1_vector2.html" title="Represents a 2 dimensional vector. ">Vector2</a> once the subtraction has taken place. </dd></dl>
 
 </div>
 </div>
@@ -406,7 +472,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 23 2015 09:48:15 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Dec 29 2015 11:00:50 for ChaosCore  |  API by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

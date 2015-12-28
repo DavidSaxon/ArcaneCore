@@ -6,6 +6,8 @@
 #ifndef CHAOSCORE_BASE_MATH_MATHCONSTANTS_HPP_
 #define CHAOSCORE_BASE_MATH_MATHCONSTANTS_HPP_
 
+#include "chaoscore/base/Types.hpp"
+
 namespace chaos
 {
 namespace math

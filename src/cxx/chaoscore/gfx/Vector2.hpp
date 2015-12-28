@@ -80,7 +80,9 @@ public:
      * \brief Equality operator.
      *
      * Compares whether this Vector2 and the other given Vector2 are considered
-     * equal.
+     * "equal". A comparison of the components of the vector is performed using
+     * chaos::math::float_equals using the default values for
+     * ```delta_threshold``` and ```ulps_threshold```.
      *
      * \param other Vector2 to compare this vector against.
      * \return Whether the vectors are considered equal.
@@ -91,7 +93,7 @@ public:
      * \brief Inequality operator.
      *
      * Compares whether this Vector2 and the other given Vector2 are not
-     * considered equal.
+     * considered equal. See Vector2::operator== for further information.
      *
      * \param other Vector2 to compare this vector against.
      * \return Whether the vectors are not considered equal.
@@ -101,38 +103,66 @@ public:
     /*!
      * \brief Scalar addition operator.
      *
-     * Computes the result of this Vector2 being added with the given scalar and
-     * returns the result a a new Vector2.
+     * \param scalar The scalar to add to this Vector2.
+     * \return A new Vector2 containing the results of the addition.
      */
     Vector2 operator+( float scalar ) const;
 
     /*!
      * \brief Scalar compound addition operator.
      *
-     * Adds the given scalar to this Vector2.
-     *
      * \param scalar The scalar to add to this Vector2.
-     * \return A reference to this vector once the addition has taken place.
+     * \return A reference to this Vector2 once the addition has taken place.
      */
     const Vector2& operator+=( float scalar );
 
     /*!
      * \brief Vector addition operator.
      *
-     * Computes the result of this Vector2 being added with the other given
-     * Vector2. The result is returned as a new Vector2.
+     * \param other The other Vector2 to add to this Vector2.
+     * \return A new Vector2 containing the results of the addition.
      */
     Vector2 operator+( const Vector2& other ) const;
 
     /*!
      * \brief Compound vector addition operator.
      *
-     * Adds the given Vector2 to this Vector2.
-     *
-     * \param other The Vector2 to add to this Vector2.
-     * \return A reference to this vector after the addition has taken place.
+     * \param other The other Vector2 to add to this Vector2.
+     * \return A reference to this Vector2 once the addition has taken place.
      */
     const Vector2& operator+=( const Vector2& other );
+
+    /*!
+     * \brief Scalar subtraction operator.
+     *
+     * \param scalar The scalar to subtract from this Vector2.
+     * \return A new Vector2 containing the results of the subtraction.
+     */
+    Vector2 operator-( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound subtraction operator.
+     *
+     * \param scalar The scalar to subtract from this Vector2.
+     * \return A reference to this Vector2 once the subtraction has taken place.
+     */
+    Vector2 operator-=( float scalar );
+
+    /*!
+     * \brief Vector subtraction operator.
+     *
+     * \param other The other Vector2 to subtract from this Vector2.
+     * \return A new Vector2 containing the results of the subtraction.
+     */
+    Vector2 operator-( const Vector2& other ) const;
+
+    /*!
+     * \brief Vector compound subtraction operator.
+     *
+     * \param other The other Vector2 to subtract from this Vector2.
+     * \return A reference to this Vector2 once the subtraction has taken place.
+     */
+    Vector2 operator-=( const Vector2& other );
 };
 
 //------------------------------------------------------------------------------

@@ -399,4 +399,72 @@ CHAOS_TEST_UNIT_FIXTURE( vector_addition, VectorAdditionFixture )
     }
 }
 
+//------------------------------------------------------------------------------
+//                               SCALAR SUBTRACTION
+//------------------------------------------------------------------------------
+
+class ScalarSubtractionFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector2 > vecs;
+    std::vector< float > scalars;
+    std::vector< chaos::gfx::Vector2 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector2() );
+        scalars.push_back( 0.0F );
+        results.push_back( chaos::gfx::Vector2() );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        scalars.push_back( 1.0F );
+        results.push_back( chaos::gfx::Vector2( -1.0F, -1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
+        scalars.push_back( 1.0F );
+        results.push_back( chaos::gfx::Vector2( 0.0F, 0.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        scalars.push_back( -0.048F );
+        results.push_back( chaos::gfx::Vector2( 0.048F, 0.048F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 0.3F, -84.08F ) );
+        scalars.push_back( 0.0F );
+        results.push_back( chaos::gfx::Vector2(  0.3F, -84.08F  ) );
+
+        vecs.push_back( chaos::gfx::Vector2( -20.007F, 0.009F ) );
+        scalars.push_back( 0.01F );
+        results.push_back( chaos::gfx::Vector2(  -20.017F, -0.001F  ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 0.34F, 2.6F ) );
+        scalars.push_back( 1.5F );
+        results.push_back( chaos::gfx::Vector2( -1.16F, 1.1F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( scalar_subtraction, ScalarSubtractionFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking subtraction" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] - fixture->scalars[ i ] );
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound subtraction" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] );
+        v -= fixture->scalars[ i ];
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+}
+
 } // namespace vector2_tests

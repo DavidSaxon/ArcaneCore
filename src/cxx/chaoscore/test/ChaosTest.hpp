@@ -520,6 +520,8 @@ private:
  * \brief Checks whether the given float values are considered equal.
  *
  * If a and b are equal this check will pass, else this will cause test failure.
+ * Equality is checked using chaos::math::float_equals with the default values
+ * for ```delta_threshold``` and ```ulps_threshold```.
  */
 #define CHAOS_CHECK_FLOAT_EQUAL( a, b )                                        \
     {                                                                          \
@@ -542,7 +544,8 @@ private:
  * \brief Checks whether the given float value are considered not equal.
  *
  * If a and b are not equal this check will pass, else this will cause test
- * failure.
+ * failure.  * Equality is checked using chaos::math::float_equals with the
+ * default values for ```delta_threshold``` and ```ulps_threshold```.
  */
 #define CHAOS_CHECK_FLOAT_NOT_EQUAL( a, b )                                    \
     {                                                                          \

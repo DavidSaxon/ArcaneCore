@@ -16,7 +16,7 @@ var searchData=
   ['flag_5fappend',['FLAG_APPEND',['../classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0ba2e28c6095d07cd49bee60edfcb9c4ec8',1,'chaos::io::sys::FileWriter']]],
   ['flag_5fbinary',['FLAG_BINARY',['../classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0baf46420535aaf1e5a6cf757485acaa2bc',1,'chaos::io::sys::FileWriter']]],
   ['flag_5fnone',['FLAG_NONE',['../classchaos_1_1io_1_1sys_1_1_file_writer.html#aafcaef6dd3171373d8dfadadcc3c1b0bab1c0f867f11da4ed8678148548fa9458',1,'chaos::io::sys::FileWriter']]],
-  ['float_5fequals',['float_equals',['../namespacechaos_1_1math.html#a8cdea3a2be1387d86833df4e8ca1d8f9',1,'chaos::math']]],
+  ['float_5fequals',['float_equals',['../namespacechaos_1_1math.html#a45b789648ddacd3e1d2403834c1953a6',1,'chaos::math']]],
   ['float_5frep',['float_rep',['../unionchaos_1_1data_1_1_bitwise_float.html#ab763103c6f0079798d187c8c27612259',1,'chaos::data::BitwiseFloat']]],
   ['formatoperations_2ehpp',['FormatOperations.hpp',['../_format_operations_8hpp.html',1,'']]]
 ];
