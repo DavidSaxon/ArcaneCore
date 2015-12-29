@@ -163,6 +163,39 @@ public:
      * \return A reference to this Vector2 once the subtraction has taken place.
      */
     Vector2 operator-=( const Vector2& other );
+
+    /*!
+     * \brief Scalar multiplication operator.
+     *
+     * \param scalar The scalar to multiply this Vector2 by.
+     * \return A new Vector2 containing the results of the multiplication.
+     */
+    Vector2 operator*( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound multiplication operator.
+     *
+     * \param scalar The scalar to multiply this Vector2 by.
+     * \return A reference to this Vector2 once the multiplication has taken
+     *         place.
+     */
+    Vector2 operator*=( float scalar );
+
+    /*!
+     * \brief Scalar division operator.
+     *
+     * \param scalar The scalar to divide this Vector2 by.
+     * \return A new Vector2 containing the results of the division.
+     */
+    Vector2 operator/( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound division operator.
+     *
+     * \param scalar The scalar to divide this Vector2 by.
+     * \return A reference to this Vector2 once the division has taken place.
+     */
+    Vector2 operator/=( float scalar );
 };
 
 //------------------------------------------------------------------------------

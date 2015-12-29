@@ -38,7 +38,19 @@ const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchao
 \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a0f4f7749c5841b8ff46b5b60c1114863}{operator-\/} (float scalar) const 
 \begin{DoxyCompactList}\small\item\em Scalar subtraction operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a658877f9e37d57f11d796b58b870f29f}{operator-\/=} (float scalar)
-\begin{DoxyCompactList}\small\item\em Scalar compound subtraction operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Scalar compound subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a5054c54e89586fdf158a5bc82ae3bb7f}{operator-\/} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other) const 
+\begin{DoxyCompactList}\small\item\em Vector subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a0d97d413a864a358728a93899446e454}{operator-\/=} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other)
+\begin{DoxyCompactList}\small\item\em Vector compound subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a3a082c7e2592573a665f3614af5ecd92}{operator$\ast$} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar multiplication operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a1ec390cd7ea976dd0f55067a233b1516}{operator$\ast$=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound multiplication operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a86fcd257dd859953cafffd69be1616f8}{operator/} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar division operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a38a7cb083ca406aee3cd24281cd9e775}{operator/=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound division operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -278,6 +290,120 @@ Scalar compound subtraction operator.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} once the subtraction has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a5054c54e89586fdf158a5bc82ae3bb7f}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector2_a5054c54e89586fdf158a5bc82ae3bb7f}
+
+
+Vector subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} to subtract from this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} containing the results of the subtraction. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a0d97d413a864a358728a93899446e454}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_a0d97d413a864a358728a93899446e454}
+
+
+Vector compound subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} to subtract from this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} once the subtraction has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a3a082c7e2592573a665f3614af5ecd92}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector2_a3a082c7e2592573a665f3614af5ecd92}
+
+
+Scalar multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} containing the results of the multiplication. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a1ec390cd7ea976dd0f55067a233b1516}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_a1ec390cd7ea976dd0f55067a233b1516}
+
+
+Scalar compound multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} once the multiplication has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a86fcd257dd859953cafffd69be1616f8}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator/@{operator/}}
+\index{operator/@{operator/}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator/ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector2_a86fcd257dd859953cafffd69be1616f8}
+
+
+Scalar division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} containing the results of the division. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a38a7cb083ca406aee3cd24281cd9e775}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator/= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_a38a7cb083ca406aee3cd24281cd9e775}
+
+
+Scalar compound division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} once the division has taken place. 
 \end{DoxyReturn}
 
 
