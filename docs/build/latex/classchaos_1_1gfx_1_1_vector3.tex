@@ -1,0 +1,416 @@
+\hypertarget{classchaos_1_1gfx_1_1_vector3}{\section{chaos\-:\-:gfx\-:\-:Vector3 Class Reference}
+\label{classchaos_1_1gfx_1_1_vector3}\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}}
+}
+
+
+Represents a 3 dimensional vector.  
+
+
+
+
+{\ttfamily \#include $<$Vector3.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3_a8cd3092f89afc127d6fd993e3291bd2b}{Vector3} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3_a62a4131e3f8bfbc1fc076149db944c94}{Vector3} (float \hyperlink{classchaos_1_1gfx_1_1_vector3_ac58f0d4a6e611ae3eec8e9f56476fc13}{x}, float \hyperlink{classchaos_1_1gfx_1_1_vector3_ac001a2e7468d6c6cfc5119d486817f0b}{y}, float \hyperlink{classchaos_1_1gfx_1_1_vector3_a7ec457e7ef3054557dacdc89bf7ce77b}{z})
+\begin{DoxyCompactList}\small\item\em Component constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3_a0ab061f754dac90c843317d979defb70}{Vector3} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3_a32fd7944a73e7f8d9bb6a9e6ee6d4bce}{Vector3} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_a3c26200a523e201ef3697797732951cb}{operator=} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+bool \hyperlink{classchaos_1_1gfx_1_1_vector3_aea8b9895ae2781f79a02dde0e22a1938}{operator==} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other) const 
+\begin{DoxyCompactList}\small\item\em Equality operator. \end{DoxyCompactList}\item 
+bool \hyperlink{classchaos_1_1gfx_1_1_vector3_ad8ceb4ba622ba969ab58f163d32f8e6e}{operator!=} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other) const 
+\begin{DoxyCompactList}\small\item\em Inequality operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \hyperlink{classchaos_1_1gfx_1_1_vector3_a70135c109acc45256567d9c50f160bda}{operator+} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar addition operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_acb76c6c076cc7448503b09edab578569}{operator+=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound addition operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \hyperlink{classchaos_1_1gfx_1_1_vector3_a94c67b5eb0b4bba1732019bc9eef459f}{operator+} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other) const 
+\begin{DoxyCompactList}\small\item\em Vector addition operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_a05bb1715123edd7d137ebe2277d0b16f}{operator+=} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other)
+\begin{DoxyCompactList}\small\item\em Vector compound addition operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \hyperlink{classchaos_1_1gfx_1_1_vector3_a4dae54ff2ff65a8a43572e7aad2b21ba}{operator-\/} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_a7da527567f0c3f950386cfde14e0c01a}{operator-\/=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \hyperlink{classchaos_1_1gfx_1_1_vector3_aa04a47959b61f1e3f1c48b8709889f9d}{operator-\/} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other) const 
+\begin{DoxyCompactList}\small\item\em Vector subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_a66c22970fa9dc7499b894313d1c66961}{operator-\/=} (const \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \&other)
+\begin{DoxyCompactList}\small\item\em Vector compound subtraction operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \hyperlink{classchaos_1_1gfx_1_1_vector3_a39855071d6101e932fe6fb382e3a2f9e}{operator$\ast$} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar multiplication operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_abd751363ea77af4f9e673cf092f49473}{operator$\ast$=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound multiplication operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \hyperlink{classchaos_1_1gfx_1_1_vector3_abc909457ea9721592932f00502978886}{operator/} (float scalar) const 
+\begin{DoxyCompactList}\small\item\em Scalar division operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \& \hyperlink{classchaos_1_1gfx_1_1_vector3_a9f61bd9beaabb1de857258d96d46c093}{operator/=} (float scalar)
+\begin{DoxyCompactList}\small\item\em Scalar compound division operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classchaos_1_1gfx_1_1_vector3_ac58f0d4a6e611ae3eec8e9f56476fc13}{float \hyperlink{classchaos_1_1gfx_1_1_vector3_ac58f0d4a6e611ae3eec8e9f56476fc13}{x}}\label{classchaos_1_1gfx_1_1_vector3_ac58f0d4a6e611ae3eec8e9f56476fc13}
+
+\begin{DoxyCompactList}\small\item\em X component of this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1gfx_1_1_vector3_ac001a2e7468d6c6cfc5119d486817f0b}{float \hyperlink{classchaos_1_1gfx_1_1_vector3_ac001a2e7468d6c6cfc5119d486817f0b}{y}}\label{classchaos_1_1gfx_1_1_vector3_ac001a2e7468d6c6cfc5119d486817f0b}
+
+\begin{DoxyCompactList}\small\item\em Y component of this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \end{DoxyCompactList}\item 
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a7ec457e7ef3054557dacdc89bf7ce77b}{float \hyperlink{classchaos_1_1gfx_1_1_vector3_a7ec457e7ef3054557dacdc89bf7ce77b}{z}}\label{classchaos_1_1gfx_1_1_vector3_a7ec457e7ef3054557dacdc89bf7ce77b}
+
+\begin{DoxyCompactList}\small\item\em Z component of this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a 3 dimensional vector. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a8cd3092f89afc127d6fd993e3291bd2b}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::gfx\-::\-Vector3\-::\-Vector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a8cd3092f89afc127d6fd993e3291bd2b}
+
+
+Default constructor. 
+
+Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} with the x, y, and z components initialized as 0. \hypertarget{classchaos_1_1gfx_1_1_vector3_a62a4131e3f8bfbc1fc076149db944c94}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::gfx\-::\-Vector3\-::\-Vector3 (
+\begin{DoxyParamCaption}
+\item[{float}]{x, }
+\item[{float}]{y, }
+\item[{float}]{z}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a62a4131e3f8bfbc1fc076149db944c94}
+
+
+Component constructor. 
+
+Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} with the given x, y, and z component values. \hypertarget{classchaos_1_1gfx_1_1_vector3_a0ab061f754dac90c843317d979defb70}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::gfx\-::\-Vector3\-::\-Vector3 (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a0ab061f754dac90c843317d979defb70}
+
+
+Scalar constructor. 
+
+Creates a new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} with the x, y, and z components initialised to the given scalar. \hypertarget{classchaos_1_1gfx_1_1_vector3_a32fd7944a73e7f8d9bb6a9e6ee6d4bce}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}chaos\-::gfx\-::\-Vector3\-::\-Vector3 (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a32fd7944a73e7f8d9bb6a9e6ee6d4bce}
+
+
+Copy constructor. 
+
+Creates a new copy of the given \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a3c26200a523e201ef3697797732951cb}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a3c26200a523e201ef3697797732951cb}
+
+
+Assignment operator. 
+
+Assigns the values of this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to be a copy of the values of the other given \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to copy data from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the assignment has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_aea8b9895ae2781f79a02dde0e22a1938}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::gfx\-::\-Vector3\-::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_aea8b9895ae2781f79a02dde0e22a1938}
+
+
+Equality operator. 
+
+Compares whether this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} and the other given \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} are considered \char`\"{}equal\char`\"{}. A comparison of the components of the vector is performed using \hyperlink{namespacechaos_1_1math_a45b789648ddacd3e1d2403834c1953a6}{chaos\-::math\-::float\-\_\-equals} using he default values for {\ttfamily delta\-\_\-threshold} and {\ttfamily ulps\-\_\-threshold}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to compare this vector against. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether the vectors are considered equal. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_ad8ceb4ba622ba969ab58f163d32f8e6e}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::gfx\-::\-Vector3\-::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_ad8ceb4ba622ba969ab58f163d32f8e6e}
+
+
+Inequality operator. 
+
+Compares this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} and the other given \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} are not considered \char`\"{}equal\char`\"{}. See \hyperlink{classchaos_1_1gfx_1_1_vector3_aea8b9895ae2781f79a02dde0e22a1938}{Vector3\-::operator==} for further information.
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to compare this vector against. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether the vectors are not considered equal. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a70135c109acc45256567d9c50f160bda}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} chaos\-::gfx\-::\-Vector3\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_a70135c109acc45256567d9c50f160bda}
+
+
+Scalar addition operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to add to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} containing the results of the addition. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_acb76c6c076cc7448503b09edab578569}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator+= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_acb76c6c076cc7448503b09edab578569}
+
+
+Scalar compound addition operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to add to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the addition has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a94c67b5eb0b4bba1732019bc9eef459f}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} chaos\-::gfx\-::\-Vector3\-::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_a94c67b5eb0b4bba1732019bc9eef459f}
+
+
+Vector addition operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to add to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} containing the results of the addition. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a05bb1715123edd7d137ebe2277d0b16f}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a05bb1715123edd7d137ebe2277d0b16f}
+
+
+Vector compound addition operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to add to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the addition has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a4dae54ff2ff65a8a43572e7aad2b21ba}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} chaos\-::gfx\-::\-Vector3\-::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_a4dae54ff2ff65a8a43572e7aad2b21ba}
+
+
+Scalar subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to subtract from this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} containing the results of the subtraction. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a7da527567f0c3f950386cfde14e0c01a}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a7da527567f0c3f950386cfde14e0c01a}
+
+
+Scalar compound subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to subtract from this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the subtraction has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_aa04a47959b61f1e3f1c48b8709889f9d}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} chaos\-::gfx\-::\-Vector3\-::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_aa04a47959b61f1e3f1c48b8709889f9d}
+
+
+Vector subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to subtract from this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} containing the results of the subtraction. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a66c22970fa9dc7499b894313d1c66961}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a66c22970fa9dc7499b894313d1c66961}
+
+
+Vector compound subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} to subtract from this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the subtraction has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a39855071d6101e932fe6fb382e3a2f9e}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} chaos\-::gfx\-::\-Vector3\-::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_a39855071d6101e932fe6fb382e3a2f9e}
+
+
+Scalar multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new vector containing the results of the multiplication. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_abd751363ea77af4f9e673cf092f49473}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_abd751363ea77af4f9e673cf092f49473}
+
+
+Scalar compound multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the multiplication has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_abc909457ea9721592932f00502978886}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} chaos\-::gfx\-::\-Vector3\-::operator/ (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector3_abc909457ea9721592932f00502978886}
+
+
+Scalar division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} containing the results of the division. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector3_a9f61bd9beaabb1de857258d96d46c093}{\index{chaos\-::gfx\-::\-Vector3@{chaos\-::gfx\-::\-Vector3}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!chaos::gfx::Vector3@{chaos\-::gfx\-::\-Vector3}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3}\& chaos\-::gfx\-::\-Vector3\-::operator/= (
+\begin{DoxyParamCaption}
+\item[{float}]{scalar}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector3_a9f61bd9beaabb1de857258d96d46c093}
+
+
+Scalar compound division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em scalar} & The scalar to divide this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector3}{Vector3} once the division has taken place. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/david/\-Dropbox/\-Development/\-Chaos\-Core/\-Chaos\-Core/src/cxx/chaoscore/gfx/Vector3.\-hpp\end{DoxyCompactItemize}

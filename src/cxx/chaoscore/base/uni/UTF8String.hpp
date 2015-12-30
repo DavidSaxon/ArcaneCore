@@ -253,7 +253,7 @@ public:
      * \return A reference to this UTF8String after the concatenation has taken
      *         place.
      */
-    const UTF8String& operator+=( const UTF8String& other );
+    UTF8String& operator+=( const UTF8String& other );
 
     /*!
      * \brief Multiplication operator.
@@ -277,7 +277,7 @@ public:
      * \return A reference to this UTF8String after the repeat operation has
      *         taken place.
      */
-    const UTF8String& operator*=( chaos::uint32 count );
+    UTF8String& operator*=( chaos::uint32 count );
 
     /*!
      * \brief Stream operator.
@@ -568,7 +568,7 @@ public:
      *                  elements.
      * \return std::vector containing the results of the split.
      */
-    const std::vector< UTF8String > split( const UTF8String& delimiter ) const;
+    std::vector< UTF8String > split( const UTF8String& delimiter ) const;
 
     /*!
      * \brief Removes consecutive duplicates of the given substring within this

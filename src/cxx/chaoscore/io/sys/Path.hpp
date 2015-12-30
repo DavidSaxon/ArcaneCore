@@ -231,7 +231,7 @@ public:
      * \endcode
      *
      */
-    const Path& operator+=( const Path& other );
+    Path& operator+=( const Path& other );
 
     /*!
      * \brief Join operator.

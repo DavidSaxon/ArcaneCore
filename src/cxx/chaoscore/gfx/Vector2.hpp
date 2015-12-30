@@ -49,15 +49,15 @@ public:
     /*!
      * \brief Scalar constructor.
      *
-     * Creates a new Vector2 with both the x and y components set to the given
-     * value.
+     * Creates a new Vector2 with both the x and y components initialised to the
+     * given scalar.
      */
     Vector2( float scalar );
 
     /*!
      * \brief Copy constructor.
      *
-     * Creates a copy of the other given Vector2.
+     * Creates a copy of the given Vector2.
      */
     Vector2( const Vector2& other );
 
@@ -93,7 +93,7 @@ public:
      * \brief Inequality operator.
      *
      * Compares whether this Vector2 and the other given Vector2 are not
-     * considered equal. See Vector2::operator== for further information.
+     * considered "equal". See Vector2::operator== for further information.
      *
      * \param other Vector2 to compare this vector against.
      * \return Whether the vectors are not considered equal.
@@ -114,7 +114,7 @@ public:
      * \param scalar The scalar to add to this Vector2.
      * \return A reference to this Vector2 once the addition has taken place.
      */
-    const Vector2& operator+=( float scalar );
+    Vector2& operator+=( float scalar );
 
     /*!
      * \brief Vector addition operator.
@@ -130,7 +130,7 @@ public:
      * \param other The other Vector2 to add to this Vector2.
      * \return A reference to this Vector2 once the addition has taken place.
      */
-    const Vector2& operator+=( const Vector2& other );
+    Vector2& operator+=( const Vector2& other );
 
     /*!
      * \brief Scalar subtraction operator.
@@ -146,7 +146,7 @@ public:
      * \param scalar The scalar to subtract from this Vector2.
      * \return A reference to this Vector2 once the subtraction has taken place.
      */
-    Vector2 operator-=( float scalar );
+    Vector2& operator-=( float scalar );
 
     /*!
      * \brief Vector subtraction operator.
@@ -162,7 +162,7 @@ public:
      * \param other The other Vector2 to subtract from this Vector2.
      * \return A reference to this Vector2 once the subtraction has taken place.
      */
-    Vector2 operator-=( const Vector2& other );
+    Vector2& operator-=( const Vector2& other );
 
     /*!
      * \brief Scalar multiplication operator.
@@ -179,7 +179,7 @@ public:
      * \return A reference to this Vector2 once the multiplication has taken
      *         place.
      */
-    Vector2 operator*=( float scalar );
+    Vector2& operator*=( float scalar );
 
     /*!
      * \brief Scalar division operator.
@@ -195,7 +195,7 @@ public:
      * \param scalar The scalar to divide this Vector2 by.
      * \return A reference to this Vector2 once the division has taken place.
      */
-    Vector2 operator/=( float scalar );
+    Vector2& operator/=( float scalar );
 };
 
 //------------------------------------------------------------------------------

@@ -172,7 +172,7 @@ Path Path::operator+( const Path& other ) const
     return copy += other;
 }
 
-const Path& Path::operator+=( const Path& other )
+Path& Path::operator+=( const Path& other )
 {
     // extend with other path's components
     CHAOS_FOR_EACH( it, other.m_components )

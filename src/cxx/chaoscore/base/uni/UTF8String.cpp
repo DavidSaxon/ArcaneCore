@@ -121,7 +121,7 @@ UTF8String UTF8String::operator+( const UTF8String& other ) const
     return UTF8String( *this ).concatenate( other );
 }
 
-const UTF8String& UTF8String::operator+=( const UTF8String& other )
+UTF8String& UTF8String::operator+=( const UTF8String& other )
 {
     return this->concatenate( other );
 }
@@ -131,7 +131,7 @@ UTF8String UTF8String::operator*( chaos::uint32 count ) const
     return UTF8String( *this ).repeat( count );
 }
 
-const UTF8String& UTF8String::operator*=( chaos::uint32 count )
+UTF8String& UTF8String::operator*=( chaos::uint32 count )
 {
     return this->repeat( count );
 }
@@ -413,7 +413,7 @@ std::size_t UTF8String::find_last( const UTF8String& substring ) const
     return chaos::uni::npos;
 }
 
-const std::vector< UTF8String > UTF8String::split(
+std::vector< UTF8String > UTF8String::split(
         const UTF8String& delimiter ) const
 {
     // check the delimiter

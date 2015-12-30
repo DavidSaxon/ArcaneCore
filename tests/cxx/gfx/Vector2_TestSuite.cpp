@@ -204,36 +204,35 @@ public:
     {
         vecs.push_back( chaos::gfx::Vector2() );
         equal.push_back( chaos::gfx::Vector2() );
-        not_equal.push_back( chaos::gfx::Vector2() );
+        not_equal.push_back( chaos::gfx::Vector2( 0.1F, 0.0F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 0.0F, 1.0F ) );
         equal.push_back( chaos::gfx::Vector2( 0.0F, 1.0F ) );
-        not_equal.push_back( chaos::gfx::Vector2( 0.0F, 1.0F ) );
-
+        not_equal.push_back( chaos::gfx::Vector2( 0.0F, 0.0F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 1.0F, 0.0F ) );
         equal.push_back( chaos::gfx::Vector2( 1.0F, 0.0F ) );
-        not_equal.push_back( chaos::gfx::Vector2( 1.0F, 0.0F ) );
+        not_equal.push_back( chaos::gfx::Vector2( 1.001F, 0.0F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
         equal.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
-        not_equal.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
+        not_equal.push_back( chaos::gfx::Vector2( 0.0F, 2.0F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 1.0F, -1.0F ) );
         equal.push_back( chaos::gfx::Vector2( 1.0F, -1.0F ) );
-        not_equal.push_back( chaos::gfx::Vector2( 1.0F, -1.0F ) );
+        not_equal.push_back( chaos::gfx::Vector2( -1.0F, 1.0F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 12.0F, 53.945F ) );
         equal.push_back( chaos::gfx::Vector2( 12.0F, 53.945F ) );
-        not_equal.push_back( chaos::gfx::Vector2( 12.0F, 53.945F ) );
+        not_equal.push_back( chaos::gfx::Vector2( 12.0F, 54.945F ) );
 
         vecs.push_back( chaos::gfx::Vector2( -0.3434F, 0.00234F ) );
         equal.push_back( chaos::gfx::Vector2( -0.3434F, 0.00234F ) );
-        not_equal.push_back( chaos::gfx::Vector2( -0.3434F, 0.00234F ) );
+        not_equal.push_back( chaos::gfx::Vector2( -0.3434F, 0.00235F ) );
 
         vecs.push_back( chaos::gfx::Vector2( -849895.9F, -32424.2F ) );
         equal.push_back( chaos::gfx::Vector2( -849895.9F, -32424.2F ) );
-        not_equal.push_back( chaos::gfx::Vector2( -849895.9F, -32424.2F ) );
+        not_equal.push_back( chaos::gfx::Vector2( -849895.01F, -31424.2F ) );
     }
 };
 
@@ -248,7 +247,7 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, EqualityFixture )
     CHAOS_TEST_MESSAGE( "Checking not equals" );
     for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->vecs[ i ] != fixture->not_equal[ i ] );
+        CHAOS_CHECK_FALSE( fixture->vecs[ i ] == fixture->not_equal[ i ] );
     }
 }
 
@@ -267,7 +266,7 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, EqualityFixture )
     CHAOS_TEST_MESSAGE( "Checking equals" );
     for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
     {
-        CHAOS_CHECK_TRUE( fixture->vecs[ i ] == fixture->not_equal[ i ] );
+        CHAOS_CHECK_TRUE( fixture->vecs[ i ] != fixture->not_equal[ i ] );
     }
 }
 
@@ -507,7 +506,7 @@ public:
 
         vecs.push_back( chaos::gfx::Vector2( 3.083F, 0.23F ) );
         sub.push_back( chaos::gfx::Vector2( -1.2F, -0.08F ) );
-        results.push_back( chaos::gfx::Vector2( 4.283, 0.31 ) );
+        results.push_back( chaos::gfx::Vector2( 4.283, 0.31F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 10.3F, -2.004F ) );
         sub.push_back( chaos::gfx::Vector2( 49.94F, 0.054F ) );

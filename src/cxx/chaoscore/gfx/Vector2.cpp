@@ -69,7 +69,7 @@ Vector2 Vector2::operator+( float scalar ) const
     return v += scalar;
 }
 
-const Vector2& Vector2::operator+=( float scalar )
+Vector2& Vector2::operator+=( float scalar )
 {
     x += scalar;
     y += scalar;
@@ -83,7 +83,7 @@ Vector2 Vector2::operator+( const Vector2& other ) const
     return v += other;
 }
 
-const Vector2& Vector2::operator+=( const Vector2& other )
+Vector2& Vector2::operator+=( const Vector2& other )
 {
     x += other.x;
     y += other.y;
@@ -97,7 +97,7 @@ Vector2 Vector2::operator-( float scalar ) const
     return v -= scalar;
 }
 
-Vector2 Vector2::operator-=( float scalar )
+Vector2& Vector2::operator-=( float scalar )
 {
     x -= scalar;
     y -= scalar;
@@ -111,7 +111,7 @@ Vector2 Vector2::operator-( const Vector2& other ) const
     return v -= other;
 }
 
-Vector2 Vector2::operator-=( const Vector2& other )
+Vector2& Vector2::operator-=( const Vector2& other )
 {
     x -= other.x;
     y -= other.y;
@@ -125,7 +125,7 @@ Vector2 Vector2::operator*( float scalar ) const
     return v *= scalar;
 }
 
-Vector2 Vector2::operator*=( float scalar )
+Vector2& Vector2::operator*=( float scalar )
 {
     x *= scalar;
     y *= scalar;
@@ -139,7 +139,7 @@ Vector2 Vector2::operator/( float scalar ) const
     return v /= scalar;
 }
 
-Vector2 Vector2::operator/=( float scalar )
+Vector2& Vector2::operator/=( float scalar )
 {
     x /= scalar;
     y /= scalar;
