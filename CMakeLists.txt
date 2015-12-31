@@ -29,6 +29,7 @@ set( IO_SRC
 set( GFX_SRC
     src/cxx/chaoscore/gfx/Vector2.cpp
     src/cxx/chaoscore/gfx/Vector3.cpp
+    src/cxx/chaoscore/gfx/Vector4.cpp
 )
 
 set( TEST_SRC
@@ -59,6 +60,7 @@ set( TESTS_SUITES
 
     tests/cxx/gfx/Vector2_TestSuite.cpp
     tests/cxx/gfx/Vector3_TestSuite.cpp
+    tests/cxx/gfx/Vector4_TestSuite.cpp
 )
 
 set(BASEPATH "${CMAKE_SOURCE_DIR}")
