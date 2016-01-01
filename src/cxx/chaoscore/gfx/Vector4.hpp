@@ -60,10 +60,28 @@ public:
      */
     Vector4( float scalar );
 
+    /*!
+     * \brief Copy constructor.
+     *
+     * Creates a new copy of the given Vector4.
+     */
+    Vector4( const Vector4& other );
+
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS
     //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Assignment operator.
+     *
+     * Assigns the values of this Vector4 to be a copy of the values of the
+     * other given Vector4.
+     *
+     * \param other Vector4 to copy data from.
+     * \return A reference to this Vector4 once the assignment has taken place.
+     */
+    Vector4& operator=( const Vector4& other );
 
     /*!
      * \brief Equality operator.
@@ -88,6 +106,103 @@ public:
      * \return Whether the vectors are not considered equal.
      */
     bool operator!=( const Vector4& other ) const;
+
+    /*!
+     * \brief Scalar addition operator.
+     *
+     * \param scalar The scalar to add to this Vector4.
+     * \return A new Vector4 containing the results of the addition.
+     */
+    Vector4 operator+( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound addition operator.
+     *
+     * \param scalar The scalar to add to this Vector4.
+     * \return A reference to this Vector4 once the addition has taken place.
+     */
+    Vector4& operator+=( float scalar );
+
+    /*!
+     * \brief Vector addition operator.
+     *
+     * \param other The other Vector4 to add to this Vector4
+     * \return A new Vector4 containing the results of the addition.
+     */
+    Vector4 operator+( const Vector4& other ) const;
+
+    /*!
+     * \brief Vector compound addition operator.
+     *
+     * \param other The other Vector4 to add to this Vector4.
+     * \return A reference to this Vector4 once the addition has taken place.
+     */
+    Vector4& operator+=( const Vector4& other );
+
+    /*!
+     * \brief Scalar subtraction operator.
+     *
+     * \param scalar The scalar to subtract from this Vector4.
+     * \return A new Vector4 containing the results of the subtraction.
+     */
+    Vector4 operator-( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound subtraction operator.
+     *
+     * \param scalar The scalar to subtract from this Vector4.
+     * \return A reference to this Vector4 once the subtraction has taken place.
+     */
+    Vector4& operator-=( float scalar );
+
+    /*!
+     * \brief Vector subtraction operator.
+     *
+     * \param other The other Vector4 to subtract from this Vector4.
+     * \return A new Vector4 containing the results of the subtraction.
+     */
+    Vector4 operator-( const Vector4& other ) const;
+
+    /*!
+     * \brief Vector compound subtraction operator.
+     *
+     * \param other The other Vector4 to subtract from this Vector4.
+     * \return A reference to this Vector4 once the subtraction has taken place.
+     */
+    Vector4& operator-=( const Vector4& other );
+
+    /*!
+     * \brief Scalar multiplication operator.
+     *
+     * \param scalar The scalar to multiply this Vector4 by.
+     * \return A new vector containing the results of the multiplication.
+     */
+    Vector4 operator*( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound multiplication operator.
+     *
+     * \param scalar The scalar to multiply this Vector4 by.
+     * \return A reference to this Vector4 once the multiplication has taken
+     *         place.
+     */
+    Vector4& operator*=( float scalar );
+
+    /*!
+     * \brief Scalar division operator.
+     *
+     * \param scalar The scalar to divide this Vector4 by.
+     * \return A new Vector4 containing the results of the division.
+     */
+    Vector4 operator/( float scalar ) const;
+
+    /*!
+     * \brief Scalar compound division operator.
+     *
+     * \param scalar The scalar to divide this Vector4 by.
+     * \return A reference to this Vector4 once the division has taken place.
+     */
+    Vector4& operator/=( float scalar );
 
 };
 
