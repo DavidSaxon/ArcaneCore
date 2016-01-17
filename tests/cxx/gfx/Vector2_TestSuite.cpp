@@ -306,7 +306,7 @@ public:
 
         vecs.push_back( chaos::gfx::Vector2( -20.007F, 0.009F ) );
         scalars.push_back( 0.01F );
-        results.push_back( chaos::gfx::Vector2(  -19.997, 0.019F  ) );
+        results.push_back( chaos::gfx::Vector2(  -19.997F, 0.019F  ) );
 
         vecs.push_back( chaos::gfx::Vector2( 0.34F, 2.6F ) );
         scalars.push_back( -1.5F );
@@ -361,8 +361,8 @@ public:
         results.push_back( chaos::gfx::Vector2( 1.0F, 1.0F ) );
 
         vecs.push_back( chaos::gfx::Vector2() );
-        add.push_back( chaos::gfx::Vector2( -9.49F, -0.34 ) );
-        results.push_back( chaos::gfx::Vector2( -9.49F, -0.34 ) );
+        add.push_back( chaos::gfx::Vector2( -9.49F, -0.34F ) );
+        results.push_back( chaos::gfx::Vector2( -9.49F, -0.34F ) );
 
         vecs.push_back( chaos::gfx::Vector2( -4.98F, 0.0074F ) );
         add.push_back( chaos::gfx::Vector2() );
@@ -497,8 +497,8 @@ public:
         results.push_back( chaos::gfx::Vector2() );
 
         vecs.push_back( chaos::gfx::Vector2() );
-        sub.push_back( chaos::gfx::Vector2( 9.49F, 0.34 ) );
-        results.push_back( chaos::gfx::Vector2( -9.49F, -0.34 ) );
+        sub.push_back( chaos::gfx::Vector2( 9.49F, 0.34F ) );
+        results.push_back( chaos::gfx::Vector2( -9.49F, -0.34F ) );
 
         vecs.push_back( chaos::gfx::Vector2( -4.98F, 0.0074F ) );
         sub.push_back( chaos::gfx::Vector2() );
@@ -506,11 +506,11 @@ public:
 
         vecs.push_back( chaos::gfx::Vector2( 3.083F, 0.23F ) );
         sub.push_back( chaos::gfx::Vector2( -1.2F, -0.08F ) );
-        results.push_back( chaos::gfx::Vector2( 4.283, 0.31F ) );
+        results.push_back( chaos::gfx::Vector2( 4.283F, 0.31F ) );
 
         vecs.push_back( chaos::gfx::Vector2( 10.3F, -2.004F ) );
         sub.push_back( chaos::gfx::Vector2( 49.94F, 0.054F ) );
-        results.push_back( chaos::gfx::Vector2( -39.64, -2.058 ) );
+        results.push_back( chaos::gfx::Vector2( -39.64F, -2.058F ) );
     }
 };
 

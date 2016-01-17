@@ -1,3 +1,7 @@
+/*!
+ * \file
+ * \author David Saxon
+ */
 #ifndef CHAOSCORE_GFX_VECTOR2_HPP_
 #define CHAOSCORE_GFX_VECTOR2_HPP_
 

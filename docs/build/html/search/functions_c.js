@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['remove',['remove',['../classchaos_1_1io_1_1sys_1_1_path.html#ae1f5ed612b5d85f99eb5dd436dd7b1ed',1,'chaos::io::sys::Path']]],
-  ['remove_5fduplicates',['remove_duplicates',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a940e7ccc70fe1d6c486a5a89941dd2ef',1,'chaos::uni::UTF8String']]],
-  ['repeat',['repeat',['../classchaos_1_1uni_1_1_u_t_f8_string.html#aae17e9b7d3522e4b504d7d0b5ec22b6e',1,'chaos::uni::UTF8String']]]
+  ['path',['Path',['../classchaos_1_1io_1_1sys_1_1_path.html#a4212b2acfcc365769080ea5e915568ee',1,'chaos::io::sys::Path::Path()'],['../classchaos_1_1io_1_1sys_1_1_path.html#a3647583a07600e50e51d70f1dadabcf5',1,'chaos::io::sys::Path::Path(const std::vector&lt; chaos::uni::UTF8String &gt; &amp;components)'],['../classchaos_1_1io_1_1sys_1_1_path.html#af77a957df51fe41a9c5df2d52ca05585',1,'chaos::io::sys::Path::Path(const std::vector&lt; chaos::uni::UTF8String &gt;::const_iterator &amp;begin, const std::vector&lt; chaos::uni::UTF8String &gt;::const_iterator &amp;end)'],['../classchaos_1_1io_1_1sys_1_1_path.html#a1a18b44624caafeceb66edc7b99dbad6',1,'chaos::io::sys::Path::Path(const chaos::uni::UTF8String &amp;string_path)'],['../classchaos_1_1io_1_1sys_1_1_path.html#a40b3bf651b667adbd3eeb1ee55564211',1,'chaos::io::sys::Path::Path(const Path &amp;other)']]],
+  ['precision_5faway_5ffrom_5fzero',['precision_away_from_zero',['../unionchaos_1_1data_1_1_bitwise_float.html#ab38870254ea2295c45556e9aa51c2554',1,'chaos::data::BitwiseFloat']]],
+  ['precision_5ftowards_5fzero',['precision_towards_zero',['../unionchaos_1_1data_1_1_bitwise_float.html#a4acc915134b0cdab21c6e3c30842754d',1,'chaos::data::BitwiseFloat']]]
 ];

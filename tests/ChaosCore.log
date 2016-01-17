@@ -1,0 +1,56 @@
+﻿Build started 15/01/2016 12:03:19 a.m..
+     1>Project "D:\Dropbox\Development\ChaosCore\ChaosCore\ChaosCore.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Programs\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ID:\Libraries\boost_1_58_0 /ID:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"tests\\" /Fd"tests\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\cxx\chaoscore\base\math\MathOperations.cpp
+         MathOperations.cpp
+       Link:
+         D:\Programs\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Dropbox\Development\ChaosCore\ChaosCore\build\win_x86\ChaosCore.exe" /NOLOGO /LIBPATH:D:\Libraries\boost_1_58_0\stage\lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Dropbox\Development\ChaosCore\ChaosCore\build\win_x86\ChaosCore.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Dropbox\Development\ChaosCore\ChaosCore\build\win_x86\ChaosCore.lib" /MACHINE:X86 /SAFESEH tests\ClockOperations.obj
+         tests\BinaryOperations.obj
+         tests\BitwiseFloat.obj
+         tests\ByteOperations.obj
+         tests\MathConstants.obj
+         tests\MathOperations.obj
+         tests\OSOperations.obj
+         tests\UnicodeConstants.obj
+         tests\UnicodeOperations.obj
+         tests\UTF8String.obj
+         tests\Vector2.obj
+         tests\Vector3.obj
+         tests\Vector4.obj
+         tests\VectorOperations.obj
+         tests\ANSI.obj
+         tests\FormatOperations.obj
+         tests\FileHandle.obj
+         tests\FileSystemOperations.obj
+         tests\FileWriter.obj
+         tests\Path.obj
+         tests\ChaosTest.obj
+         tests\ChaosTestMain.obj
+         tests\AbstractTestLogFormatter.obj
+         tests\HTMLTestLogFormatter.obj
+         tests\PlainTestLogFormatter.obj
+         tests\PrettyTestLogFormatter.obj
+         tests\XMLTestLogFormatter.obj
+         tests\TestLogger.obj
+         tests\BitwiseFloat_TestSuite.obj
+         tests\ByteOperations_TestSuite.obj
+         tests\MathOperations_TestSuite.obj
+         tests\PreProc_TestSuite.obj
+         tests\Types_TestSuite.obj
+         tests\UnicodeOperations_TestSuite.obj
+         tests\UTF8String_TestSuite.obj
+         tests\Vector2_TestSuite.obj
+         tests\Vector3_TestSuite.obj
+         tests\Vector4_TestSuite.obj
+         tests\VectorOperations_TestSuite.obj
+         tests\FormatOperations_TestSuite.obj
+         tests\FileSystemOperations_TestSuite.obj
+         tests\Path_TestSuite.obj
+         Generating code
+         Finished generating code
+         ChaosCore.vcxproj -> D:\Dropbox\Development\ChaosCore\ChaosCore\build\win_x86\ChaosCore.exe
+     1>Done Building Project "D:\Dropbox\Development\ChaosCore\ChaosCore\ChaosCore.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.28

@@ -5,6 +5,9 @@
 
 #include "chaoscore/base/data/BitwiseFloat.hpp"
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace math
@@ -33,7 +36,6 @@ bool float_equals(
     {
         return false;
     }
-
 
     // find the difference in ulps
     chaos::int64 ulps = std::labs(

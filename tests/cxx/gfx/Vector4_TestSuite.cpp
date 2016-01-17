@@ -365,7 +365,7 @@ public:
                 -20.007F, 0.009F, 8.0F, -13.76F ) );
         scalars.push_back( 0.01F );
         results.push_back( chaos::gfx::Vector4(
-                -19.997, 0.019F, 8.01F, -13.75F ) );
+                -19.997F, 0.019F, 8.01F, -13.75F ) );
 
         vecs.push_back( chaos::gfx::Vector4(
                 0.34F, 2.6F, 34.87F, 74.32F ) );
@@ -422,9 +422,9 @@ public:
         results.push_back( chaos::gfx::Vector4( 1.0F, 1.0F, 1.0F, 1.0F ) );
 
         vecs.push_back( chaos::gfx::Vector4() );
-        add.push_back( chaos::gfx::Vector4( -9.49F, -0.34, 3.045F, 0.045F ) );
+        add.push_back( chaos::gfx::Vector4( -9.49F, -0.34F, 3.045F, 0.045F ) );
         results.push_back( chaos::gfx::Vector4(
-                -9.49F, -0.34, 3.045F, 0.045F ) );
+                -9.49F, -0.34F, 3.045F, 0.045F ) );
 
         vecs.push_back( chaos::gfx::Vector4(
                 -4.98F, 0.0074F, -5.00034F, 34.89F ) );
@@ -571,9 +571,9 @@ public:
         results.push_back( chaos::gfx::Vector4() );
 
         vecs.push_back( chaos::gfx::Vector4() );
-        sub.push_back( chaos::gfx::Vector4( 9.49F, 0.34, -345.39F, -87.25F ) );
+        sub.push_back( chaos::gfx::Vector4( 9.49F, 0.34F, -345.39F, -87.25F ) );
         results.push_back( chaos::gfx::Vector4(
-                -9.49F, -0.34, 345.39F, 87.25F ) );
+                -9.49F, -0.34F, 345.39F, 87.25F ) );
 
         vecs.push_back( chaos::gfx::Vector4(
                 -4.98F, 0.0074F, 670.34F, 0.3583F ) );
@@ -586,14 +586,14 @@ public:
         sub.push_back( chaos::gfx::Vector4(
                 -1.2F, -0.08F, 0.12F, 6.66F ) );
         results.push_back( chaos::gfx::Vector4(
-                4.283, 0.31F, -13.01F, -41.53F ) );
+                4.283F, 0.31F, -13.01F, -41.53F ) );
 
         vecs.push_back( chaos::gfx::Vector4(
-                10.3F, -2.004F, 0.0037, 45.23F ) );
+                10.3F, -2.004F, 0.0037F, 45.23F ) );
         sub.push_back( chaos::gfx::Vector4(
                 49.94F, 0.054F, -47.0F, 0.04F ) );
         results.push_back( chaos::gfx::Vector4(
-                -39.64, -2.058, 47.0037F, 45.19F ) );
+                -39.64F, -2.058F, 47.0037F, 45.19F ) );
     }
 };
 
@@ -656,7 +656,7 @@ public:
         scalars.push_back( 0.5F );
         results.push_back( chaos::gfx::Vector4( 6.0F, 2.75F, 14.25F, -22.1F ) );
 
-        vecs.push_back( chaos::gfx::Vector4( 456.0F, 549.23F, 0.1, 0.04F ) );
+        vecs.push_back( chaos::gfx::Vector4( 456.0F, 549.23F, 0.1F, 0.04F ) );
         scalars.push_back( 12.0F );
         results.push_back( chaos::gfx::Vector4(
                 5472.0F, 6590.76F, 1.2F, 0.48F ) );
