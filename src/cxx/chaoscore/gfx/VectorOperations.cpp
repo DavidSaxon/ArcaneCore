@@ -24,5 +24,21 @@ float magnitude( const Vector4& v )
     );
 }
 
+float dot_product( const Vector2& v_1, const Vector2& v_2 )
+{
+    return ( v_1.x * v_2.x ) + ( v_1.y * v_2.y );
+}
+
+float dot_product( const Vector3& v_1, const Vector3& v_2 )
+{
+    return ( v_1.x * v_2.x ) + ( v_1.y * v_2.y ) + ( v_1.z * v_2.z );
+}
+
+float dot_product( const Vector4& v_1, const Vector4& v_2 )
+{
+    return ( v_1.x * v_2.x ) + ( v_1.y * v_2.y ) +
+           ( v_1.z * v_2.z ) + ( v_1.w * v_2.w );
+}
+
 } // namespace gfx
 } // namespace chaos

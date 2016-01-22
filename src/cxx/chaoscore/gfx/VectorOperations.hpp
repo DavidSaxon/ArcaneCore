@@ -30,6 +30,21 @@ float magnitude( const Vector3& v );
  */
 float magnitude( const Vector4& v );
 
+/*!
+ * |brief Calculate the dot product of the given Vector2s
+ */
+float dot_product( const Vector2& v_1, const Vector2& v_2 );
+
+/*!
+ * |brief Calculate the dot product of the given Vector3s
+ */
+float dot_product( const Vector3& v_1, const Vector3& v_2 );
+
+/*!
+ * |brief Calculate the dot product of the given Vector4s
+ */
+float dot_product( const Vector4& v_1, const Vector4& v_2 );
+
 } // namespace gfx
 } // namespace chaos
 
