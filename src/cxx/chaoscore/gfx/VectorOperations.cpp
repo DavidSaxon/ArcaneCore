@@ -24,6 +24,36 @@ float magnitude( const Vector4& v )
     );
 }
 
+void normalise( Vector2& v )
+{
+    float mag = magnitude( v );
+    if ( mag > 0.0F )
+    {
+        float inverse = 1.0F / mag;
+        v *= inverse;
+    }
+}
+
+void normalise( Vector3& v )
+{
+    float mag = magnitude( v );
+    if ( mag > 0.0F )
+    {
+        float inverse = 1.0F / mag;
+        v *= inverse;
+    }
+}
+
+void normalise( Vector4& v )
+{
+    float mag = magnitude( v );
+    if ( mag > 0.0F )
+    {
+        float inverse = 1.0F / mag;
+        v *= inverse;
+    }
+}
+
 float dot_product( const Vector2& v_1, const Vector2& v_2 )
 {
     return ( v_1.x * v_2.x ) + ( v_1.y * v_2.y );

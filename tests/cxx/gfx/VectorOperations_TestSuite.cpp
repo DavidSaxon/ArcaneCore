@@ -123,6 +123,73 @@ CHAOS_TEST_UNIT_FIXTURE( magnitude, MagnitudeFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                   NORMALISE
+//------------------------------------------------------------------------------
+
+class NormaliseFixture : public VectorOperationsBaseFixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector2 > vec2_results;
+    std::vector< chaos::gfx::Vector3 > vec3_results;
+    std::vector< chaos::gfx::Vector4 > vec4_results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        build_vecs( 0.0F, 0.0F, 0.0F, 0.0F );
+        vec2_results.push_back( chaos::gfx::Vector2( 0.0F, 0.0F ) );
+        vec3_results.push_back( chaos::gfx::Vector3( 0.0F, 0.0F, 0.0F ) );
+        vec4_results.push_back( chaos::gfx::Vector4( 0.0F, 0.0F, 0.0F, 0.0F ) );
+
+        build_vecs( 1.0F, 0.0F, 2.0F, 0.0F );
+        vec2_results.push_back( chaos::gfx::Vector2( 1.0F, 0.0F ) );
+        vec3_results.push_back( chaos::gfx::Vector3(
+                0.447213595F, 0.0F, 0.894427191F ) );
+        vec4_results.push_back( chaos::gfx::Vector4(
+                0.447213595F, 0.0F, 0.894427191F, 0.0F ) );
+
+        build_vecs( -2.0F, 5.0F, 8.0F, -1.0F );
+        vec2_results.push_back( chaos::gfx::Vector2(
+                -0.371390676F, 0.928476691F ) );
+        vec3_results.push_back( chaos::gfx::Vector3(
+                -0.207390339F, 0.518475847F, 0.829561356F ) );
+        vec4_results.push_back( chaos::gfx::Vector4(
+                -0.206284249F, 0.515710623F, 0.825136997F, -0.103142125F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( normalise, NormaliseFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking normalise Vector2" );
+    for ( std::size_t i = 0; i < fixture->vec2.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vec2[ i ] );
+        chaos::gfx::normalise( v );
+        CHAOS_CHECK_EQUAL( v, fixture->vec2_results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking normalise Vector3" );
+    for ( std::size_t i = 0; i < fixture->vec3.size(); ++i )
+    {
+        chaos::gfx::Vector3 v( fixture->vec3[ i ] );
+        chaos::gfx::normalise( v );
+        CHAOS_CHECK_EQUAL( v, fixture->vec3_results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking normalise Vector4" );
+    for ( std::size_t i = 0; i < fixture->vec4.size(); ++i )
+    {
+        chaos::gfx::Vector4 v( fixture->vec4[ i ] );
+        chaos::gfx::normalise( v );
+        CHAOS_CHECK_EQUAL( v, fixture->vec4_results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                  DOT PRODUCT
 //------------------------------------------------------------------------------
 

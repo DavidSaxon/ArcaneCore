@@ -31,6 +31,21 @@ float magnitude( const Vector3& v );
 float magnitude( const Vector4& v );
 
 /*!
+ * \brief Normalises the given Vector2.
+ */
+void normalise( Vector2& v );
+
+/*!
+ * \brief Normalises the given Vector3.
+ */
+void normalise( Vector3& v );
+
+/*!
+ * \brief Normalises the given Vector4.
+ */
+void normalise( Vector4& v );
+
+/*!
  * |brief Calculate the dot product of the given Vector2s
  */
 float dot_product( const Vector2& v_1, const Vector2& v_2 );
