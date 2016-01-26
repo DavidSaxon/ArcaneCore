@@ -207,19 +207,19 @@ public:
         //     symlinks.push_back( p );
         //     file_symlinks.push_back( p );
         // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "dir_symlink";
+        //     symlinks.push_back( p );
+        //     directory_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "dir_symlink";
+        //     symlinks.push_back( p );
+        //     directory_symlinks.push_back( p );
+        // }
         // ---- end of disabled block ----
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "dir_symlink";
-            symlinks.push_back( p );
-            directory_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "dir_symlink";
-            symlinks.push_back( p );
-            directory_symlinks.push_back( p );
-        }
 
         {
             chaos::io::sys::Path p( base_path );
@@ -262,16 +262,18 @@ public:
             bad_symlinks.push_back( p );
         }
 
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "broken_link";
-            broken_symlinks.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "broken_link";
-            broken_symlinks.push_back( p );
-        }
+        // TODO: these files have currently been deleting due to multi-platform
+        //       file syncing issues
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "broken_link";
+        //     broken_symlinks.push_back( p );
+        // }
+        // {
+        //     chaos::io::sys::Path p( base_path );
+        //     p << "test_dir" << "broken_link";
+        //     broken_symlinks.push_back( p );
+        // }
     }
 };
 
