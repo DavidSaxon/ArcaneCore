@@ -641,6 +641,66 @@ CHAOS_TEST_UNIT_FIXTURE( scalar_multiplication, ScalarMultiplicationFixture )
 }
 
 //------------------------------------------------------------------------------
+//                             VECTOR MULTIPLICATION
+//------------------------------------------------------------------------------
+
+class VectorMultiplicationFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector2 > vecs;
+    std::vector< chaos::gfx::Vector2 > mul;
+    std::vector< chaos::gfx::Vector2 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector2() );
+        mul.push_back( chaos::gfx::Vector2() );
+        results.push_back( chaos::gfx::Vector2() );
+
+        vecs.push_back( chaos::gfx::Vector2() );
+        mul.push_back( chaos::gfx::Vector2( 1.0F ) );
+        results.push_back( chaos::gfx::Vector2() );
+
+        vecs.push_back( chaos::gfx::Vector2( 1.0F ) );
+        mul.push_back( chaos::gfx::Vector2( 1.0F ) );
+        results.push_back( chaos::gfx::Vector2( 1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( -1.0F, 2.0F ) );
+        mul.push_back( chaos::gfx::Vector2( 3.0F, -2.0F ) );
+        results.push_back( chaos::gfx::Vector2( -3.0F, -4.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 0.4F, -2.556F ) );
+        mul.push_back( chaos::gfx::Vector2( -0.5F, -1.56F ) );
+        results.push_back( chaos::gfx::Vector2( -0.2F, 3.98736F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( vector_multiplication, VectorMultiplicationFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking multiplication" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] * fixture->mul[ i ] );
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound multiplication" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] );
+        v *= fixture->mul[ i ];
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                SCALAR DIVISION
 //------------------------------------------------------------------------------
 
