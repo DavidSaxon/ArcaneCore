@@ -230,6 +230,23 @@ public:
      */
     Vector3& operator/=( float scalar );
 
+    /*!
+     * \brief Vector division operator.
+     *
+     * \param other The other Vector3 to divide this Vector3 by.
+     * \return A new Vector3 containing the results of the division.
+     */
+    Vector3 operator/( const Vector3& other ) const;
+
+    /*!
+     * \brief Vector compound division operator.
+     *
+     * \param other The other Vector3 to divide this Vector3 by.
+     * \return A reference to this Vector3 once the division has taken
+     *         place.
+     */
+    Vector3& operator/=( const Vector3& other );
+
 };
 
 //------------------------------------------------------------------------------

@@ -166,6 +166,20 @@ Vector2& Vector2::operator/=( float scalar )
     return *this;
 }
 
+Vector2 Vector2::operator/( const Vector2& other ) const
+{
+    Vector2 v( *this );
+    return v /= other;
+}
+
+Vector2& Vector2::operator/=( const Vector2& other )
+{
+    x /= other.x;
+    y /= other.y;
+
+    return *this;
+}
+
 //------------------------------------------------------------------------------
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------

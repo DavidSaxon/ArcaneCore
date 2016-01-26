@@ -191,6 +191,22 @@ Vector4& Vector4::operator/=( float scalar )
     return *this;
 }
 
+Vector4 Vector4::operator/( const Vector4& other ) const
+{
+    Vector4 v( *this );
+    return v /= other;
+}
+
+Vector4& Vector4::operator/=( const Vector4& other )
+{
+    x /= other.x;
+    y /= other.y;
+    z /= other.z;
+    w /= other.w;
+
+    return *this;
+}
+
 //------------------------------------------------------------------------------
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------

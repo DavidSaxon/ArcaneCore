@@ -56,7 +56,11 @@ bool \hyperlink{classchaos_1_1gfx_1_1_vector4_ae0ac2f2346e0e56523f8f263286d3954}
 \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} \hyperlink{classchaos_1_1gfx_1_1_vector4_accffe88c758a09b13b68ee1692663de9}{operator/} (float scalar) const 
 \begin{DoxyCompactList}\small\item\em Scalar division operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} \& \hyperlink{classchaos_1_1gfx_1_1_vector4_a1ce1c817fbc1999faeb34d08f4df284b}{operator/=} (float scalar)
-\begin{DoxyCompactList}\small\item\em Scalar compound division operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Scalar compound division operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} \hyperlink{classchaos_1_1gfx_1_1_vector4_a49903452ff2a9748523e035227d27e6f}{operator/} (const \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} \&other) const 
+\begin{DoxyCompactList}\small\item\em Vector division operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} \& \hyperlink{classchaos_1_1gfx_1_1_vector4_a106dd26fa45540a0620a0cf494081b47}{operator/=} (const \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} \&other)
+\begin{DoxyCompactList}\small\item\em Vector compound division operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -466,6 +470,44 @@ Scalar compound division operator.
 
 \begin{DoxyParams}{Parameters}
 {\em scalar} & The scalar to divide this \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} once the division has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector4_a49903452ff2a9748523e035227d27e6f}{\index{chaos\-::gfx\-::\-Vector4@{chaos\-::gfx\-::\-Vector4}!operator/@{operator/}}
+\index{operator/@{operator/}!chaos::gfx::Vector4@{chaos\-::gfx\-::\-Vector4}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector4} chaos\-::gfx\-::\-Vector4\-::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector4} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector4_a49903452ff2a9748523e035227d27e6f}
+
+
+Vector division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} to divide this \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} containing the results of the division. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector4_a106dd26fa45540a0620a0cf494081b47}{\index{chaos\-::gfx\-::\-Vector4@{chaos\-::gfx\-::\-Vector4}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!chaos::gfx::Vector4@{chaos\-::gfx\-::\-Vector4}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector4}\& chaos\-::gfx\-::\-Vector4\-::operator/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector4} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector4_a106dd26fa45540a0620a0cf494081b47}
+
+
+Vector compound division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} to divide this \hyperlink{classchaos_1_1gfx_1_1_vector4}{Vector4} by. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

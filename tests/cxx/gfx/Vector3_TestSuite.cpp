@@ -785,4 +785,60 @@ CHAOS_TEST_UNIT_FIXTURE( scalar_division, ScalarDivisionFixture )
     }
 }
 
+//------------------------------------------------------------------------------
+//                                VECTOR DIVISION
+//------------------------------------------------------------------------------
+
+class VectorDivisionFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector3 > vecs;
+    std::vector< chaos::gfx::Vector3 > div;
+    std::vector< chaos::gfx::Vector3 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector3() );
+        div.push_back( chaos::gfx::Vector3( 1.0F ) );
+        results.push_back( chaos::gfx::Vector3() );
+
+        vecs.push_back( chaos::gfx::Vector3( 1.0F ) );
+        div.push_back( chaos::gfx::Vector3( 1.0F ) );
+        results.push_back( chaos::gfx::Vector3( 1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector3( 1.0F, -2.0F, 3.0 ) );
+        div.push_back( chaos::gfx::Vector3( 2.0F, 8.0F, -2.0F ) );
+        results.push_back( chaos::gfx::Vector3( 0.5F, -0.25F, -1.5F ) );
+
+        vecs.push_back( chaos::gfx::Vector3( 0.054F, 1.4F, -4.4F ) );
+        div.push_back( chaos::gfx::Vector3( -0.2F, 2.4F, -8.0F ) );
+        results.push_back( chaos::gfx::Vector3( -0.27F, 0.583333F, 0.55F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( vector_division, VectorDivisionFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking multiplication" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector3 v( fixture->vecs[ i ] / fixture->div[ i ] );
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound multiplication" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector3 v( fixture->vecs[ i ] );
+        v /= fixture->div[ i ];
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+}
+
 } // namespace vector3_tests

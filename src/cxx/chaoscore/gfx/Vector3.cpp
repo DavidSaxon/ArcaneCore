@@ -178,6 +178,21 @@ Vector3& Vector3::operator/=( float scalar )
     return *this;
 }
 
+Vector3 Vector3::operator/( const Vector3& other ) const
+{
+    Vector3 v( *this );
+    return v /= other;
+}
+
+Vector3& Vector3::operator/=( const Vector3& other )
+{
+    x /= other.x;
+    y /= other.y;
+    z /= other.z;
+
+    return *this;
+}
+
 //------------------------------------------------------------------------------
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------

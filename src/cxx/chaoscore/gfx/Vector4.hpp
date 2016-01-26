@@ -236,6 +236,22 @@ public:
      */
     Vector4& operator/=( float scalar );
 
+    /*!
+     * \brief Vector division operator.
+     *
+     * \param other The other Vector4 to divide this Vector4 by.
+     * \return A new Vector4 containing the results of the division.
+     */
+    Vector4 operator/( const Vector4& other ) const;
+
+    /*!
+     * \brief Vector compound division operator.
+     *
+     * \param other The other Vector4 to divide this Vector4 by.
+     * \return A reference to this Vector4 once the division has taken
+     *         place.
+     */
+    Vector4& operator/=( const Vector4& other );
 };
 
 //------------------------------------------------------------------------------

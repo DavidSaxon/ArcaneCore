@@ -225,6 +225,23 @@ public:
      * \return A reference to this Vector2 once the division has taken place.
      */
     Vector2& operator/=( float scalar );
+
+    /*!
+     * \brief Vector division operator.
+     *
+     * \param other The other Vector2 to divide this Vector2 by.
+     * \return A new Vector2 containing the results of the division.
+     */
+    Vector2 operator/( const Vector2& other ) const;
+
+    /*!
+     * \brief Vector compound division operator.
+     *
+     * \param other The other Vector2 to divide this Vector2 by.
+     * \return A reference to this Vector2 once the division has taken
+     *         place.
+     */
+    Vector2& operator/=( const Vector2& other );
 };
 
 //------------------------------------------------------------------------------

@@ -760,4 +760,60 @@ CHAOS_TEST_UNIT_FIXTURE( scalar_division, ScalarDivisionFixture )
     }
 }
 
+//------------------------------------------------------------------------------
+//                                VECTOR DIVISION
+//------------------------------------------------------------------------------
+
+class VectorDivisionFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector2 > vecs;
+    std::vector< chaos::gfx::Vector2 > div;
+    std::vector< chaos::gfx::Vector2 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector2() );
+        div.push_back( chaos::gfx::Vector2( 1.0F ) );
+        results.push_back( chaos::gfx::Vector2() );
+
+        vecs.push_back( chaos::gfx::Vector2( 1.0F ) );
+        div.push_back( chaos::gfx::Vector2( 1.0F ) );
+        results.push_back( chaos::gfx::Vector2( 1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 1.0F, -2.0F ) );
+        div.push_back( chaos::gfx::Vector2( 2.0F, 8.0F ) );
+        results.push_back( chaos::gfx::Vector2( 0.5F, -0.25F ) );
+
+        vecs.push_back( chaos::gfx::Vector2( 0.054F, 1.4F ) );
+        div.push_back( chaos::gfx::Vector2( -0.2F, 2.4F ) );
+        results.push_back( chaos::gfx::Vector2( -0.27F, 0.583333F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( vector_division, VectorDivisionFixture )
+{
+    CHAOS_TEST_MESSAGE( "Checking multiplication" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] / fixture->div[ i ] );
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+
+    CHAOS_TEST_MESSAGE( "Checking compound multiplication" );
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        chaos::gfx::Vector2 v( fixture->vecs[ i ] );
+        v /= fixture->div[ i ];
+
+        CHAOS_CHECK_EQUAL( v, fixture->results[ i ] );
+    }
+}
+
 } // namespace vector2_tests
