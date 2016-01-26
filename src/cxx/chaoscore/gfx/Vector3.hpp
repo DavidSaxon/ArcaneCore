@@ -109,6 +109,14 @@ public:
     bool operator!=( const Vector3& other ) const;
 
     /*!
+     * \brief Inverse operator.
+     *
+     * \return A new Vector3 which is a copy of this Vector3 with its values
+     * inverted.
+     */
+    Vector3 operator-() const;
+
+    /*!
      * \brief Scalar addition operator.
      *
      * \param scalar The scalar to add to this Vector3.

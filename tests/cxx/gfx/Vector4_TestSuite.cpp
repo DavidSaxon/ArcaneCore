@@ -325,6 +325,49 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, EqualityFixture )
 }
 
 //------------------------------------------------------------------------------
+//                                INVERSE OPERATOR
+//------------------------------------------------------------------------------
+
+class InverseOperatorFixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector< chaos::gfx::Vector4 > vecs;
+    std::vector< chaos::gfx::Vector4 > results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        vecs.push_back( chaos::gfx::Vector4() );
+        results.push_back( chaos::gfx::Vector4() );
+
+        vecs.push_back( chaos::gfx::Vector4( 1.0F ) );
+        results.push_back( chaos::gfx::Vector4( -1.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector4( 1.0F, 2.0F, 3.0F, 4.0F ) );
+        results.push_back( chaos::gfx::Vector4( -1.0F, -2.0F, -3.0F, -4.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector4( -4.0F, 0.0F, 12.0F, -5.0F ) );
+        results.push_back( chaos::gfx::Vector4( 4.0F, -0.0F, -12.0F, 5.0F ) );
+
+        vecs.push_back( chaos::gfx::Vector4( 0.045F, -1.345F, -3.14F, 0.32F ) );
+        results.push_back( chaos::gfx::Vector4(
+                -0.045F, 1.345F, 3.14F, -0.32F ) );
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE( inverse_operator, InverseOperatorFixture )
+{
+    for ( std::size_t i = 0; i < fixture->vecs.size(); ++i )
+    {
+        CHAOS_CHECK_EQUAL( -fixture->vecs[ i ], fixture->results[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                SCALAR ADDITION
 //------------------------------------------------------------------------------
 

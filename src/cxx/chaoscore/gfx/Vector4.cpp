@@ -74,6 +74,11 @@ bool Vector4::operator!=( const Vector4& other ) const
     return !( ( *this ) == other );
 }
 
+Vector4 Vector4::operator-() const
+{
+    return Vector4( -x, -y, -z, -w );
+}
+
 Vector4 Vector4::operator+( float scalar ) const
 {
     Vector4 v( *this );

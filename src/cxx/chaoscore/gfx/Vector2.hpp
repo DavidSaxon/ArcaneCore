@@ -105,6 +105,14 @@ public:
     bool operator!=( const Vector2& other ) const;
 
     /*!
+     * \brief Inverse operator.
+     *
+     * \return A new Vector2 which is a copy of this Vector2 with its values
+     * inverted.
+     */
+    Vector2 operator-() const;
+
+    /*!
      * \brief Scalar addition operator.
      *
      * \param scalar The scalar to add to this Vector2.
