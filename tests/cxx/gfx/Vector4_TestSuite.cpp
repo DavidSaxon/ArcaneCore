@@ -216,6 +216,45 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, Vector4GenericFixture )
 }
 
 //------------------------------------------------------------------------------
+//                               COMPONENT ALIASES
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT( component_aliases )
+{
+    CHAOS_TEST_MESSAGE( "Checking r component" );
+    chaos::gfx::Vector4 vr;
+    CHAOS_CHECK_EQUAL( vr.x, vr.r );
+    vr.x = 1.44F;
+    CHAOS_CHECK_EQUAL( vr.x, vr.r );
+    vr.r = -0.847F;
+    CHAOS_CHECK_EQUAL( vr.x, vr.r );
+
+    CHAOS_TEST_MESSAGE( "Checking g component" );
+    chaos::gfx::Vector4 vg;
+    CHAOS_CHECK_EQUAL( vg.y, vg.g );
+    vg.y = 3242.4F;
+    CHAOS_CHECK_EQUAL( vg.y, vg.g );
+    vg.g = -2.22222F;
+    CHAOS_CHECK_EQUAL( vg.y, vg.g );
+
+    CHAOS_TEST_MESSAGE( "Checking b component" );
+    chaos::gfx::Vector4 vb;
+    CHAOS_CHECK_EQUAL( vb.z, vb.b );
+    vb.z = -87.08F;
+    CHAOS_CHECK_EQUAL( vb.z, vb.b );
+    vb.b = 0.0076F;
+    CHAOS_CHECK_EQUAL( vb.z, vb.b );
+
+    CHAOS_TEST_MESSAGE( "Checking a component" );
+    chaos::gfx::Vector4 va;
+    CHAOS_CHECK_EQUAL( va.w, va.a );
+    va.w = 0.0034F;
+    CHAOS_CHECK_EQUAL( va.w, va.a );
+    va.a = 23.87F;
+    CHAOS_CHECK_EQUAL( va.w, va.a );
+}
+
+//------------------------------------------------------------------------------
 //                              ASSIGNMENT OPERATOR
 //------------------------------------------------------------------------------
 

@@ -15,28 +15,36 @@ namespace gfx
 Vector2::Vector2()
     :
     x( 0.0F ),
-    y( 0.0F )
+    y( 0.0F ),
+    r( x ),
+    g( y )
 {
 }
 
 Vector2::Vector2( float i_x, float i_y )
     :
     x( i_x ),
-    y( i_y )
+    y( i_y ),
+    r( x ),
+    g( y )
 {
 }
 
 Vector2::Vector2( float scalar )
     :
     x( scalar ),
-    y( scalar )
+    y( scalar ),
+    r( x ),
+    g( y )
 {
 }
 
 Vector2::Vector2( const Vector2& other )
     :
     x( other.x ),
-    y( other.y )
+    y( other.y ),
+    r( x ),
+    g( y )
 {
 }
 

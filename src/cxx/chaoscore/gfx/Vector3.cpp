@@ -15,7 +15,10 @@ Vector3::Vector3()
     :
     x( 0.0F ),
     y( 0.0F ),
-    z( 0.0F )
+    z( 0.0F ),
+    r( x ),
+    g( y ),
+    b( z )
 {
 }
 
@@ -23,7 +26,10 @@ Vector3::Vector3( float i_x, float i_y, float i_z )
     :
     x( i_x ),
     y( i_y ),
-    z( i_z )
+    z( i_z ),
+    r( x ),
+    g( y ),
+    b( z )
 {
 }
 
@@ -31,7 +37,10 @@ Vector3::Vector3( float scalar )
     :
     x( scalar ),
     y( scalar ),
-    z( scalar )
+    z( scalar ),
+    r( x ),
+    g( y ),
+    b( z )
 {
 }
 
@@ -39,7 +48,10 @@ Vector3::Vector3( const Vector3& other )
     :
     x( other.x ),
     y( other.y ),
-    z( other.z )
+    z( other.z ),
+    r( x ),
+    g( y ),
+    b( z )
 {
 }
 

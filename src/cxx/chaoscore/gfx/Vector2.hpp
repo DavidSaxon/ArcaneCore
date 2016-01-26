@@ -32,6 +32,15 @@ public:
      */
     float y;
 
+    /*!
+     * \brief R access component of this vector (Alias of the X component).
+     */
+    float& r;
+    /*!
+     * \brief G access component of this vector (Alias of the Y component).
+     */
+    float& g;
+
     //--------------------------------------------------------------------------
     //                                CONSTRUCTORS
     //--------------------------------------------------------------------------

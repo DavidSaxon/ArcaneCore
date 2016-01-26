@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['g',['g',['../classchaos_1_1gfx_1_1_vector2.html#aac258d8c196b9f734121f7ba67c0059f',1,'chaos::gfx::Vector2::g()'],['../classchaos_1_1gfx_1_1_vector3.html#a3ecbc6e07f1b55f11e6174e173ce67df',1,'chaos::gfx::Vector3::g()'],['../classchaos_1_1gfx_1_1_vector4.html#ac67f5b9a42563f296a785cfabed59931',1,'chaos::gfx::Vector4::g()']]],
   ['get_5fback',['get_back',['../classchaos_1_1io_1_1sys_1_1_path.html#abb776687ed013a911b239a0b49da1896',1,'chaos::io::sys::Path']]],
   ['get_5fbyte_5findex_5ffor_5fsymbol_5findex',['get_byte_index_for_symbol_index',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a1c8f623ae90b3ebbd28a95135e5c81f0',1,'chaos::uni::UTF8String']]],
   ['get_5fbyte_5flength',['get_byte_length',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a608a9a344875410a9b6e50d9ee0dbb65',1,'chaos::uni::UTF8String']]],

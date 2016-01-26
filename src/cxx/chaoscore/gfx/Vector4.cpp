@@ -16,7 +16,11 @@ Vector4::Vector4()
     x( 0.0F ),
     y( 0.0F ),
     z( 0.0F ),
-    w( 0.0F )
+    w( 0.0F ),
+    r( x ),
+    g( y ),
+    b( z ),
+    a( w )
 {
 }
 
@@ -25,7 +29,11 @@ Vector4::Vector4( float i_x, float i_y, float i_z, float i_w )
     x( i_x ),
     y( i_y ),
     z( i_z ),
-    w( i_w )
+    w( i_w ),
+    r( x ),
+    g( y ),
+    b( z ),
+    a( w )
 {
 }
 
@@ -34,7 +42,11 @@ Vector4::Vector4( float scalar )
     x( scalar ),
     y( scalar ),
     z( scalar ),
-    w( scalar )
+    w( scalar ),
+    r( x ),
+    g( y ),
+    b( z ),
+    a( w )
 {
 }
 
@@ -43,7 +55,11 @@ Vector4::Vector4( const Vector4& other )
     x( other.x ),
     y( other.y ),
     z( other.z ),
-    w( other.w )
+    w( other.w ),
+    r( x ),
+    g( y ),
+    b( z ),
+    a( w )
 {
 }
 

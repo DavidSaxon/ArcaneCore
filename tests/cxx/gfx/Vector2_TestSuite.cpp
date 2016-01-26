@@ -171,6 +171,30 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, Vector2GenericFixture )
 }
 
 //------------------------------------------------------------------------------
+//                               COMPONENT ALIASES
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT( component_aliases )
+{
+    CHAOS_TEST_MESSAGE( "Checking r component" );
+    chaos::gfx::Vector2 vr;
+    CHAOS_CHECK_EQUAL( vr.x, vr.r );
+    vr.x = 1.44F;
+    CHAOS_CHECK_EQUAL( vr.x, vr.r );
+    vr.r = -0.847F;
+    CHAOS_CHECK_EQUAL( vr.x, vr.r );
+
+    CHAOS_TEST_MESSAGE( "Checking g component" );
+    chaos::gfx::Vector2 vg;
+    CHAOS_CHECK_EQUAL( vg.y, vg.g );
+    vg.y = 3242.4F;
+    CHAOS_CHECK_EQUAL( vg.y, vg.g );
+    vg.g = -2.22222F;
+    CHAOS_CHECK_EQUAL( vg.y, vg.g );
+
+}
+
+//------------------------------------------------------------------------------
 //                              ASSIGNMENT OPERATOR
 //------------------------------------------------------------------------------
 
