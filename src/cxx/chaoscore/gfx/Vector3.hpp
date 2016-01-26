@@ -198,6 +198,23 @@ public:
     Vector3& operator*=( float scalar );
 
     /*!
+     * \brief Vector multiplication operator.
+     *
+     * \param other The other Vector3 to multiply this Vector3 by.
+     * \return A new Vector3 containing the results of the multiplication.
+     */
+    Vector3 operator*( const Vector3& other ) const;
+
+    /*!
+     * \brief Vector compound multiplication operator.
+     *
+     * \param other The other Vector3 to multiply this Vector3 by.
+     * \return A reference to this Vector3 once the multiplication has taken
+     *         place.
+     */
+    Vector3& operator*=( const Vector3& other );
+
+    /*!
      * \brief Scalar division operator.
      *
      * \param scalar The scalar to divide this Vector3 by.

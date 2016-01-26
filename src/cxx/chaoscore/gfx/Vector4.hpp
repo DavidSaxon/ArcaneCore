@@ -12,6 +12,9 @@ namespace chaos
 namespace gfx
 {
 
+/*!
+ * \brief Represents a 4 dimensional vector.
+ */
 class Vector4
 {
 public:
@@ -199,6 +202,23 @@ public:
      *         place.
      */
     Vector4& operator*=( float scalar );
+
+    /*!
+     * \brief Vector multiplication operator.
+     *
+     * \param other The other Vector4 to multiply this Vector4 by.
+     * \return A new Vector4 containing the results of the multiplication.
+     */
+    Vector4 operator*( const Vector4& other ) const;
+
+    /*!
+     * \brief Vector compound multiplication operator.
+     *
+     * \param other The other Vector4 to multiply this Vector4 by.
+     * \return A reference to this Vector4 once the multiplication has taken
+     *         place.
+     */
+    Vector4& operator*=( const Vector4& other );
 
     /*!
      * \brief Scalar division operator.

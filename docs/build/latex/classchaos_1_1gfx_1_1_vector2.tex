@@ -49,6 +49,10 @@ bool \hyperlink{classchaos_1_1gfx_1_1_vector2_ab90c48bca7d89e8594b3eef0571c7824}
 \begin{DoxyCompactList}\small\item\em Scalar multiplication operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchaos_1_1gfx_1_1_vector2_a7ec2f2358e64d1164652ad2f8acfc556}{operator$\ast$=} (float scalar)
 \begin{DoxyCompactList}\small\item\em Scalar compound multiplication operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_ad490baee5933b993226a950220acf3f6}{operator$\ast$} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other) const 
+\begin{DoxyCompactList}\small\item\em Vector multiplication operator. \end{DoxyCompactList}\item 
+\hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchaos_1_1gfx_1_1_vector2_a1b7945cb00bf4f39c71747a041bae9ce}{operator$\ast$=} (const \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \&other)
+\begin{DoxyCompactList}\small\item\em Vector compound multiplication operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \hyperlink{classchaos_1_1gfx_1_1_vector2_a86fcd257dd859953cafffd69be1616f8}{operator/} (float scalar) const 
 \begin{DoxyCompactList}\small\item\em Scalar division operator. \end{DoxyCompactList}\item 
 \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} \& \hyperlink{classchaos_1_1gfx_1_1_vector2_abc4ba70fb8c781d02f97cce17f2ef31a}{operator/=} (float scalar)
@@ -378,6 +382,44 @@ Scalar compound multiplication operator.
 
 \begin{DoxyParams}{Parameters}
 {\em scalar} & The scalar to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} once the multiplication has taken place. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_ad490baee5933b993226a950220acf3f6}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} chaos\-::gfx\-::\-Vector2\-::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{other}
+\end{DoxyParamCaption}
+) const}}\label{classchaos_1_1gfx_1_1_vector2_ad490baee5933b993226a950220acf3f6}
+
+
+Vector multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} containing the results of the multiplication. 
+\end{DoxyReturn}
+\hypertarget{classchaos_1_1gfx_1_1_vector2_a1b7945cb00bf4f39c71747a041bae9ce}{\index{chaos\-::gfx\-::\-Vector2@{chaos\-::gfx\-::\-Vector2}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!chaos::gfx::Vector2@{chaos\-::gfx\-::\-Vector2}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2}\& chaos\-::gfx\-::\-Vector2\-::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{other}
+\end{DoxyParamCaption}
+)}}\label{classchaos_1_1gfx_1_1_vector2_a1b7945cb00bf4f39c71747a041bae9ce}
+
+
+Vector compound multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} to multiply this \hyperlink{classchaos_1_1gfx_1_1_vector2}{Vector2} by. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
