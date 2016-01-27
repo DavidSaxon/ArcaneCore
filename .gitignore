@@ -1,6 +1,5 @@
 # Windows
-Debug
-Release
+intermediate
 ChaosCore.vcxproj*
 
 # Linux
