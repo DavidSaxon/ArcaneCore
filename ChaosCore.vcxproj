@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Base_lib|Win32">
+      <Configuration>Base_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="GFX_lib|Win32">
+      <Configuration>GFX_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="IO_lib|Win32">
+      <Configuration>IO_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_lib|Win32">
+      <Configuration>Test_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test|Win32">
+      <Configuration>Test</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\cxx\chaoscore\base\BaseExceptions.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\BaseLiterals.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\clock\ClockOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\clock\__clock.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\data\BinaryOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\data\BitwiseFloat.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\data\ByteOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\data\__data.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\math\MathConstants.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\math\MathOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\math\__math.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\os\OSOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\os\__os.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\Preproc.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\Types.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\uni\UnicodeConstants.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\uni\UnicodeOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\uni\UTF8String.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\base\uni\__uni.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\gfx\Vector2.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\gfx\Vector3.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\gfx\Vector4.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\gfx\VectorOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\gfx\__gfx.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\format\ANSI.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\format\FormatOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\format\__format.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileHandle.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileSystemExceptions.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileSystemOperations.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileWriter.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\sys\Path.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\sys\__sys.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\io\__io.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\ChaosTest.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\AbstractTestLogFormatter.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\HTMLTestLogFormatter.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\PlainTestLogFormatter.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\PrettyTestLogFormatter.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\XMLTestLogFormatter.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\test\TestLogger.hpp" />
+    <ClInclude Include="src\cxx\chaoscore\__chaoscore.hpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Base_lib'Or'$(Configuration)'=='Test'">
+    <ClCompile Include="src\cxx\chaoscore\base\clock\ClockOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\data\BinaryOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\data\BitwiseFloat.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\data\ByteOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\math\MathConstants.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\math\MathOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\os\OSOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\uni\UnicodeConstants.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\uni\UnicodeOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\uni\UTF8String.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='GFX_lib'Or'$(Configuration)'=='Test'">
+    <ClCompile Include="src\cxx\chaoscore\gfx\Vector2.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\gfx\Vector3.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\gfx\Vector4.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\gfx\VectorOperations.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='IO_lib'Or'$(Configuration)'=='Test'">
+    <ClCompile Include="src\cxx\chaoscore\io\format\ANSI.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\io\format\FormatOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\io\sys\FileHandle.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\io\sys\FileSystemOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\io\sys\FileWriter.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\io\sys\Path.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Test_lib'Or'$(Configuration)'=='Test'">
+    <ClCompile Include="src\cxx\chaoscore\test\ChaosTest.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\ChaosTestMain.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\log_formatter\AbstractTestLogFormatter.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\log_formatter\HTMLTestLogFormatter.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\log_formatter\PlainTestLogFormatter.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\log_formatter\PrettyTestLogFormatter.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\log_formatter\XMLTestLogFormatter.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\test\TestLogger.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Test'">
+    <ClCompile Include="tests\cxx\base\data\BitwiseFloat_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\base\data\ByteOperations_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\base\math\MathOperations_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\base\PreProc_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\base\Types_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\base\uni\UnicodeOperations_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\base\uni\UTF8String_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\gfx\Vector2_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\gfx\Vector3_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\gfx\Vector4_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\gfx\VectorOperations_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\io\format\FormatOperations_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\io\sys\FileSystemOperations_TestSuite.cpp" />
+    <ClCompile Include="tests\cxx\io\sys\Path_TestSuite.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{123E5CB0-5FE4-4850-976B-E4BE93D03E02}</ProjectGuid>
+    <RootNamespace>ChaosCore</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'">
+    <OutDir>$(SolutionDir)ChaosCore\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>chaoscore_base</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'">
+    <OutDir>$(SolutionDir)ChaosCore\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>chaoscore_gfx</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'">
+    <OutDir>$(SolutionDir)ChaosCore\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>chaoscore_io</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'">
+    <OutDir>$(SolutionDir)ChaosCore\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>chaoscore_test</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">
+    <OutDir>$(SolutionDir)ChaosCore\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Libraries\boost_1_58_0;D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Libraries\boost_1_58_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Libraries\boost_1_58_0;D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Libraries\boost_1_58_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Libraries\boost_1_58_0;D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Libraries\boost_1_58_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Libraries\boost_1_58_0;D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Libraries\boost_1_58_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Libraries\boost_1_58_0;D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Libraries\boost_1_58_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{a576c5e3-07cb-4d49-964c-c7b69d189f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx">
+      <UniqueIdentifier>{d0faafb7-8319-4fc0-9c45-7f189ab89baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore">
+      <UniqueIdentifier>{b9412e6a-90fc-41be-a474-c6a4a42df0ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\base">
+      <UniqueIdentifier>{938e2cb3-9f99-4d1a-a226-42fcdd782d08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\test">
+      <UniqueIdentifier>{2523f75b-7c35-48a7-82c9-f276e1848ad6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests">
+      <UniqueIdentifier>{89f9ad13-73f9-4fb2-b20d-2f1a84f7ab6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx">
+      <UniqueIdentifier>{9833e974-4d9f-489a-8008-e666559f3b89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\base">
+      <UniqueIdentifier>{150a7ae9-8fb0-4919-851b-e18d7393a717}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\test\log_formatter">
+      <UniqueIdentifier>{0c1ecce7-1dd0-4a60-992a-a513dd1abe49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\io">
+      <UniqueIdentifier>{edefcce7-1504-4e29-95d9-79ee7a83c7ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\io\format">
+      <UniqueIdentifier>{20bbca53-5aed-472a-ba7d-a791c44192d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\base\math">
+      <UniqueIdentifier>{bb0dfd58-d2ee-46f7-b5bc-9784187d0b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\base\math">
+      <UniqueIdentifier>{49a68568-6ebe-4bb2-a86b-011b6c8d0313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\base\data">
+      <UniqueIdentifier>{51fe90dc-3d81-48f6-a39d-d8053c7684ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\base\data">
+      <UniqueIdentifier>{cef574f4-5c0b-4697-8689-99f0b228d10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\io">
+      <UniqueIdentifier>{e08a9d3c-c05f-4807-8673-793b0917c741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\base\clock">
+      <UniqueIdentifier>{9c5235ba-548b-4e33-a69a-8aa7885a3611}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\io\sys">
+      <UniqueIdentifier>{a385d6dd-6120-45ba-b719-7dbfdbc40605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\io\sys">
+      <UniqueIdentifier>{fdda6419-7031-44da-bfe2-71f0ee7d04b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\base\uni">
+      <UniqueIdentifier>{8ffbec77-084f-432a-83c3-9b33b4425080}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\base\uni">
+      <UniqueIdentifier>{54346399-df45-4a30-9a33-33158859cf00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\base\os">
+      <UniqueIdentifier>{9badbbb5-445c-467b-86bc-aa357428d875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\io\io">
+      <UniqueIdentifier>{3d42ca6f-793c-4ede-8b91-f91a1b60b9e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\cxx\chaoscore\gfx">
+      <UniqueIdentifier>{67275deb-bba2-4be8-a742-17c7fbb69a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tests\cxx\base\gfx">
+      <UniqueIdentifier>{8a8b95e1-4fba-4a0d-8085-4e59068d20b0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\cxx\chaoscore\__chaoscore.hpp">
+      <Filter>src\cxx\chaoscore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\BaseExceptions.hpp">
+      <Filter>src\cxx\chaoscore\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\BaseLiterals.hpp">
+      <Filter>src\cxx\chaoscore\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\Preproc.hpp">
+      <Filter>src\cxx\chaoscore\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\Types.hpp">
+      <Filter>src\cxx\chaoscore\base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\ChaosTest.hpp">
+      <Filter>src\cxx\chaoscore\test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\TestLogger.hpp">
+      <Filter>src\cxx\chaoscore\test</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\AbstractTestLogFormatter.hpp">
+      <Filter>src\cxx\chaoscore\test\log_formatter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\HTMLTestLogFormatter.hpp">
+      <Filter>src\cxx\chaoscore\test\log_formatter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\PlainTestLogFormatter.hpp">
+      <Filter>src\cxx\chaoscore\test\log_formatter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\PrettyTestLogFormatter.hpp">
+      <Filter>src\cxx\chaoscore\test\log_formatter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\test\log_formatter\XMLTestLogFormatter.hpp">
+      <Filter>src\cxx\chaoscore\test\log_formatter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\__io.hpp">
+      <Filter>src\cxx\chaoscore\io</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\format\__format.hpp">
+      <Filter>src\cxx\chaoscore\io\format</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\format\ANSI.hpp">
+      <Filter>src\cxx\chaoscore\io\format</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\math\__math.hpp">
+      <Filter>src\cxx\chaoscore\base\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\data\__data.hpp">
+      <Filter>src\cxx\chaoscore\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\data\BinaryOperations.hpp">
+      <Filter>src\cxx\chaoscore\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\data\ByteOperations.hpp">
+      <Filter>src\cxx\chaoscore\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\math\MathOperations.hpp">
+      <Filter>src\cxx\chaoscore\base\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\format\FormatOperations.hpp">
+      <Filter>src\cxx\chaoscore\io\format</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\clock\__clock.hpp">
+      <Filter>src\cxx\chaoscore\base\clock</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\clock\ClockOperations.hpp">
+      <Filter>src\cxx\chaoscore\base\clock</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\sys\__sys.hpp">
+      <Filter>src\cxx\chaoscore\io\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\sys\Path.hpp">
+      <Filter>src\cxx\chaoscore\io\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\uni\__uni.hpp">
+      <Filter>src\cxx\chaoscore\base\uni</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\uni\UnicodeOperations.hpp">
+      <Filter>src\cxx\chaoscore\base\uni</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\uni\UTF8String.hpp">
+      <Filter>src\cxx\chaoscore\base\uni</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileSystemExceptions.hpp">
+      <Filter>src\cxx\chaoscore\io\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileSystemOperations.hpp">
+      <Filter>src\cxx\chaoscore\io\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\uni\UnicodeConstants.hpp">
+      <Filter>src\cxx\chaoscore\base\uni</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileHandle.hpp">
+      <Filter>src\cxx\chaoscore\io\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\io\sys\FileWriter.hpp">
+      <Filter>src\cxx\chaoscore\io\sys</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\os\__os.hpp">
+      <Filter>src\cxx\chaoscore\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\os\OSOperations.hpp">
+      <Filter>src\cxx\chaoscore\base\os</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\math\MathConstants.hpp">
+      <Filter>src\cxx\chaoscore\base\math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\base\data\BitwiseFloat.hpp">
+      <Filter>src\cxx\chaoscore\base\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\gfx\__gfx.hpp">
+      <Filter>src\cxx\chaoscore\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\gfx\Vector2.hpp">
+      <Filter>src\cxx\chaoscore\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\gfx\Vector3.hpp">
+      <Filter>src\cxx\chaoscore\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\gfx\Vector4.hpp">
+      <Filter>src\cxx\chaoscore\gfx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\chaoscore\gfx\VectorOperations.hpp">
+      <Filter>src\cxx\chaoscore\gfx</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cxx\chaoscore\gfx\Vector2.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\gfx\Vector3.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\gfx\Vector4.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\gfx\VectorOperations.cpp" />
+  </ItemGroup>
+</Project>
