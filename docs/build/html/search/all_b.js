@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['normalise',['normalise',['../namespacechaos_1_1gfx.html#a270105ffeca64653e8c76e981b289d74',1,'chaos::gfx::normalise(Vector2 &amp;v)'],['../namespacechaos_1_1gfx.html#a8ff835eed5388318c10770d04cac51f6',1,'chaos::gfx::normalise(Vector3 &amp;v)'],['../namespacechaos_1_1gfx.html#ac6a7b42950415c9292e26fa3e3f668cd',1,'chaos::gfx::normalise(Vector4 &amp;v)']]],
-  ['notimplementederror',['NotImplementedError',['../classchaos_1_1ex_1_1_not_implemented_error.html',1,'chaos::ex']]],
-  ['npos',['npos',['../namespacechaos_1_1uni.html#af28f3dcb2b4845d8a39b3d16e86c174b',1,'chaos::uni']]]
+  ['m_5fflags',['m_flags',['../classchaos_1_1io_1_1sys_1_1_file_handle.html#aa6a2c99d5e0b94ed1d9c4b511352f78a',1,'chaos::io::sys::FileHandle']]],
+  ['m_5fopen',['m_open',['../classchaos_1_1io_1_1sys_1_1_file_handle.html#a4047ce2fadb3410ce99b5869da16007d',1,'chaos::io::sys::FileHandle']]],
+  ['m_5fpath',['m_path',['../classchaos_1_1io_1_1sys_1_1_file_handle.html#a8e6a9c9ab7d7abec8fc2bbcf595cfba1',1,'chaos::io::sys::FileHandle']]],
+  ['magnitude',['magnitude',['../namespacechaos_1_1gfx.html#a9ba43b8cdaa6b28dfeb2c7ed6036a54b',1,'chaos::gfx::magnitude(const Vector2 &amp;v)'],['../namespacechaos_1_1gfx.html#afb2d655cd9f5cd51f31f8126112689aa',1,'chaos::gfx::magnitude(const Vector3 &amp;v)'],['../namespacechaos_1_1gfx.html#aecc53831b19cb7a86e0c32e6d9c148a9',1,'chaos::gfx::magnitude(const Vector4 &amp;v)']]],
+  ['mathconstants_2ehpp',['MathConstants.hpp',['../_math_constants_8hpp.html',1,'']]],
+  ['mathoperations_2ehpp',['MathOperations.hpp',['../_math_operations_8hpp.html',1,'']]]
 ];

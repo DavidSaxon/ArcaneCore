@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 465.116279
+%%BoundingBox: 0 0 500 511.627907
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 1.075000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 0.977273 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 10 def
+/rows 11 def
 /cols 2 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -178,6 +178,7 @@ boxfont setfont
 (chaos::ex::ArithmeticError) cw
 (chaos::ex::ConversionDataError) cw
 (chaos::ex::IndexOutOfBoundsError) cw
+(chaos::ex::KeyError) cw
 (chaos::ex::NotImplementedError) cw
 (chaos::ex::StateError) cw
 (chaos::ex::ValueError) cw
@@ -194,11 +195,12 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (chaos::ex::ChaosException) 0.000000 8.000000 box
- (exception) 0.000000 9.000000 box
- (chaos::ex::ArithmeticError) 1.000000 7.000000 box
- (chaos::ex::ConversionDataError) 1.000000 6.000000 box
- (chaos::ex::IndexOutOfBoundsError) 1.000000 5.000000 box
+ (chaos::ex::ChaosException) 0.000000 9.000000 box
+ (exception) 0.000000 10.000000 box
+ (chaos::ex::ArithmeticError) 1.000000 8.000000 box
+ (chaos::ex::ConversionDataError) 1.000000 7.000000 box
+ (chaos::ex::IndexOutOfBoundsError) 1.000000 6.000000 box
+ (chaos::ex::KeyError) 1.000000 5.000000 box
  (chaos::ex::NotImplementedError) 1.000000 4.000000 box
  (chaos::ex::StateError) 1.000000 3.000000 box
  (chaos::ex::ValueError) 1.000000 2.000000 box
@@ -209,11 +211,13 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- relations -----
 
 solid
-0 0.000000 8.000000 out
+0 0.000000 9.000000 out
 solid
-1 0.000000 9.000000 in
+1 0.000000 10.000000 in
 solid
-1 0.000000 7.250000 out
+1 0.000000 8.250000 out
+solid
+0 0.000000 8.500000 hedge
 solid
 0 0.000000 7.500000 hedge
 solid
@@ -231,4 +235,4 @@ solid
 solid
 0 0.000000 0.500000 hedge
 solid
-0.000000 8.000000 0.500000 vedge
+0.000000 9.000000 0.500000 vedge

@@ -11,6 +11,11 @@
 
 #endif
 
+namespace chaos
+{
+namespace test
+{
+
 //------------------------------------------------------------------------------
 //                             COMMAND LINE ARGUMENTS
 //------------------------------------------------------------------------------
@@ -56,7 +61,7 @@ void usage();
 //                                 MAIN FUNCTION
 //------------------------------------------------------------------------------
 
-int main( int argc, char* argv[] )
+int deferred_main( int argc, char* argv[] )
 {
     // create run configuration information with default values
     chaos::test::internal::RunInfo run_info;
@@ -413,3 +418,6 @@ std::cout << "\n" <<
 "  --help                                    : Shows this information."
 << "\n" << std::endl;
 }
+
+} // namespace test
+} // namespace chaos

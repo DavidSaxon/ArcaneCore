@@ -23,16 +23,6 @@ namespace internal
 {
 
 //------------------------------------------------------------------------------
-//                            PUBLIC STATIC ATTRIBUTES
-//------------------------------------------------------------------------------
-
-TestLogger                                    TestCore::logger;
-std::map< chaos::uni::UTF8String, UnitTest* > TestCore::test_map;
-std::set< chaos::uni::UTF8String >            TestCore::base_modules;
-std::set< chaos::uni::UTF8String >            TestCore::known_modules;
-chaos::uni::UTF8String                        TestCore::current_module;
-
-//------------------------------------------------------------------------------
 //                               TESTCORE FUNCTIONS
 //------------------------------------------------------------------------------
 
@@ -72,7 +62,7 @@ void TestCore::declare_module(
                 path.split( "." );
         chaos::uni::UTF8String check_path;
         // add the first element to the base modules
-        TestCore::base_modules.insert( elements[ 0 ] );
+        TestCore::base_modules().insert( elements[ 0 ] );
         CHAOS_FOR_EACH( it, elements )
         {
             if ( !check_path.is_empty() )
@@ -81,10 +71,10 @@ void TestCore::declare_module(
             }
             check_path += *it;
             // add to the list of known modules
-            TestCore::known_modules.insert( check_path );
+            TestCore::known_modules().insert( check_path );
 
-            if ( TestCore::test_map.find( check_path ) !=
-                 TestCore::test_map.end() )
+            if ( TestCore::test_map().find( check_path ) !=
+                 TestCore::test_map().end() )
             {
                 chaos::uni::UTF8String error_message;
                 error_message << "Ambiguous test module path: \""
@@ -95,7 +85,7 @@ void TestCore::declare_module(
         }
     }
 
-    TestCore::current_module = path;
+    TestCore::current_module() = path;
 }
 
 void TestCore::declare_unit(
@@ -105,7 +95,7 @@ void TestCore::declare_unit(
               chaos::int32            line )
 {
     // ensure a module has been declared
-    if ( TestCore::current_module.is_empty() )
+    if ( TestCore::current_module().is_empty() )
     {
         TestCore::throw_error(
                 "CHAOS_TEST_MODULE( <module_name> ) must be declared in "
@@ -125,9 +115,9 @@ void TestCore::declare_unit(
     }
     // build the full path
     chaos::uni::UTF8String full_path;
-    full_path << TestCore::current_module << "." << path;
+    full_path << TestCore::current_module() << "." << path;
     // check that path is not already in the map
-    if ( TestCore::test_map.find( full_path ) != TestCore::test_map.end() )
+    if ( TestCore::test_map().find( full_path ) != TestCore::test_map().end() )
     {
         chaos::uni::UTF8String error_message;
         error_message << "Test path: \"" << full_path << "\" has multiple "
@@ -136,7 +126,7 @@ void TestCore::declare_unit(
     }
 
     // check that the full path doesn't match any known modules
-    CHAOS_FOR_EACH( it, TestCore::known_modules )
+    CHAOS_FOR_EACH( it, TestCore::known_modules() )
     {
         if ( full_path == *it )
         {
@@ -148,7 +138,7 @@ void TestCore::declare_unit(
         }
     }
     // pass the test unit into the global mapping
-    TestCore::test_map[ full_path ] = unit_test;
+    TestCore::test_map()[ full_path ] = unit_test;
 }
 
 void TestCore::setup( RunInfo* run_info )
@@ -159,24 +149,24 @@ void TestCore::setup( RunInfo* run_info )
         run_info->id << "chaoscore_tests_"
                      << chaos::clock::get_current_time();
     }
-    TestCore::logger.set_global_id( run_info->id );
+    TestCore::logger().set_global_id( run_info->id );
 
     // mark parent logger?
     if ( !run_info->sub_proc )
     {
-        TestCore::logger.set_as_parent( true );
+        TestCore::logger().set_as_parent( true );
     }
 
     // pass outputs to the logger
     if ( run_info->use_stdout )
     {
-        TestCore::logger.add_stdout(
+        TestCore::logger().add_stdout(
                 run_info->stdout_info.verbosity,
                 run_info->stdout_info.format );
     }
     CHAOS_FOR_EACH( f_it, run_info->files )
     {
-        TestCore::logger.add_file_output(
+        TestCore::logger().add_file_output(
                 f_it->first,
                 f_it->second->verbosity,
                 f_it->second->format
@@ -184,13 +174,13 @@ void TestCore::setup( RunInfo* run_info )
     }
 
     // open the logger
-    TestCore::logger.open_log();
+    TestCore::logger().open_log();
 }
 
 void TestCore::teardown( RunInfo* run_info )
 {
     // close the logger
-    TestCore::logger.close_log();
+    TestCore::logger().close_log();
 
     // clean up run info
     CHAOS_FOR_EACH( r_t_it, run_info->files )
@@ -198,7 +188,7 @@ void TestCore::teardown( RunInfo* run_info )
         delete r_t_it->second;
     }
     // clean up unit test pointers
-    CHAOS_FOR_EACH( t_it, test_map )
+    CHAOS_FOR_EACH( t_it, test_map() )
     {
         delete t_it->second;
     }
@@ -210,7 +200,7 @@ void TestCore::run( RunInfo* run_info )
     if ( run_info->paths.empty() )
     {
         // run this function again with each of the base modules
-        CHAOS_FOR_EACH( it, TestCore::base_modules )
+        CHAOS_FOR_EACH( it, TestCore::base_modules() )
         {
             RunInfo base_run_info( *run_info );
             base_run_info.paths.insert( *it );
@@ -226,7 +216,7 @@ void TestCore::run( RunInfo* run_info )
         // check if the path is even valid
         bool match = false;
         // is the path a non-module
-        CHAOS_FOR_EACH( mIt, TestCore::known_modules )
+        CHAOS_FOR_EACH( mIt, TestCore::known_modules() )
         {
             if ( *p_it == *mIt )
             {
@@ -238,7 +228,7 @@ void TestCore::run( RunInfo* run_info )
         // not a module, is it an exact path?
         if ( !match )
         {
-            CHAOS_FOR_EACH( u_p_it, TestCore::test_map )
+            CHAOS_FOR_EACH( u_p_it, TestCore::test_map() )
             {
                 if ( *p_it == u_p_it->first )
                 {
@@ -296,7 +286,7 @@ void TestCore::run( RunInfo* run_info )
 
         // find tests that are directly under this module or match this
         // exact module
-        CHAOS_FOR_EACH( m_it, TestCore::test_map )
+        CHAOS_FOR_EACH( m_it, TestCore::test_map() )
         {
             // is there an exact match?
             if ( m_it->first == *it )
@@ -323,7 +313,7 @@ void TestCore::run( RunInfo* run_info )
         }
 
         // find other modules that are directly under this path
-        CHAOS_FOR_EACH( md_it, TestCore::known_modules )
+        CHAOS_FOR_EACH( md_it, TestCore::known_modules() )
         {
             // ignore exact match
             if ( *md_it == *it )
@@ -358,7 +348,7 @@ void TestCore::run( RunInfo* run_info )
         CHAOS_FOR_EACH( t_p_it, p_g_it->test_paths )
         {
             TestCore::run_test(
-                    TestCore::test_map[ *t_p_it ], *t_p_it, run_info );
+                    TestCore::test_map()[ *t_p_it ], *t_p_it, run_info );
         }
         // run any of the sub modules
         CHAOS_FOR_EACH( m_p_it, p_g_it->module_paths )
@@ -403,7 +393,7 @@ void TestCore::run_current_proc(
     // generate an unique id for this test
     chaos::uni::UTF8String id = generate_id( full_path );
     // open the test in logger
-    TestCore::logger.open_test( full_path, id );
+    TestCore::logger().open_test( full_path, id );
     // set up fixture
     unit_test->get_fixture()->setup();
     // execute
@@ -411,9 +401,9 @@ void TestCore::run_current_proc(
     // teardown
     unit_test->get_fixture()->teardown();
     // finialise report
-    TestCore::logger.finialise_test_report();
+    TestCore::logger().finialise_test_report();
     // close the test in logger
-    TestCore::logger.close_test( id );
+    TestCore::logger().close_test( id );
 }
 
 void TestCore::run_current_proc_no_open(
@@ -425,7 +415,7 @@ void TestCore::run_current_proc_no_open(
     // execute
     unit_test->execute();
     // finialise report
-    TestCore::logger.finialise_test_report();
+    TestCore::logger().finialise_test_report();
     // teardown
     unit_test->get_fixture()->teardown();
 }
@@ -442,7 +432,7 @@ void TestCore::run_new_proc(
     #ifdef CHAOS_OS_UNIX
 
         // open the test in the logger
-        TestCore::logger.open_test( full_path, id );
+        TestCore::logger().open_test( full_path, id );
 
         // fork to run the new process
         pid_t proc_id = fork();
@@ -465,11 +455,11 @@ void TestCore::run_new_proc(
                 chaos::uni::UTF8String message;
                 // TODO: hex
                 message << static_cast< chaos::int32 >( exit_status );
-                TestCore::logger.report_crash( id, message );
+                TestCore::logger().report_crash( id, message );
             }
 
             // close the test in the logger
-            TestCore::logger.close_test( id );
+            TestCore::logger().close_test( id );
         }
 
     #elif defined( CHAOS_OS_WINDOWS )
@@ -510,7 +500,7 @@ void TestCore::run_new_proc(
         GetModuleFileName( NULL, exe_path, MAX_PATH );
 
         // open the test in the logger
-        TestCore::logger.open_test( full_path, id );
+        TestCore::logger().open_test( full_path, id );
 
         // start the child process
         BOOL create_success = CreateProcess(
@@ -559,7 +549,7 @@ void TestCore::run_new_proc(
             chaos::uni::UTF8String message;
             // TODO: hex
             message << static_cast< chaos::uint32 >( exit_code );
-            TestCore::logger.report_crash( id, message );
+            TestCore::logger().report_crash( id, message );
         }
 
         // close process and thread handles
@@ -567,7 +557,7 @@ void TestCore::run_new_proc(
         CloseHandle( proc_info.hThread );
 
         // close the test in the logger
-        TestCore::logger.close_test( id );
+        TestCore::logger().close_test( id );
 
     #else
 

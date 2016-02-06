@@ -1,62 +1,17 @@
-\hypertarget{namespacechaos_1_1math}{\section{chaos\-:\-:math Namespace Reference}
-\label{namespacechaos_1_1math}\index{chaos\-::math@{chaos\-::math}}
-}
+\hypertarget{namespacechaos_1_1math}{}\section{chaos\+:\+:math Namespace Reference}
+\label{namespacechaos_1_1math}\index{chaos\+::math@{chaos\+::math}}
 
 
 Math related classes and operations.  
 
 
-\subsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-bool \hyperlink{namespacechaos_1_1math_a45b789648ddacd3e1d2403834c1953a6}{float\-\_\-equals} (float a, float b, float delta\-\_\-threshold=F\-L\-T\-\_\-\-E\-P\-S\-I\-L\-O\-N, \hyperlink{namespacechaos_a8641b3ae4551f0b35570d4f9f4ec22d9}{chaos\-::uint32} ulps\-\_\-threshold=8)
-\begin{DoxyCompactList}\small\item\em Checks whether two floating point values are equal or almost equal. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{const float \hyperlink{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{E\-P\-S\-I\-L\-O\-N}}\label{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}
+\hypertarget{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{}const float \hyperlink{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}{E\+P\+S\+I\+L\+O\+N}\label{namespacechaos_1_1math_a592b0721bd50c7f638c5f09d6db661fe}
 
 \begin{DoxyCompactList}\small\item\em Small value used for the default margin of error in floating point comparisons. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Math related classes and operations. 
-
-\subsection{Function Documentation}
-\hypertarget{namespacechaos_1_1math_a45b789648ddacd3e1d2403834c1953a6}{\index{chaos\-::math@{chaos\-::math}!float\-\_\-equals@{float\-\_\-equals}}
-\index{float\-\_\-equals@{float\-\_\-equals}!chaos::math@{chaos\-::math}}
-\subsubsection[{float\-\_\-equals}]{\setlength{\rightskip}{0pt plus 5cm}bool chaos\-::math\-::float\-\_\-equals (
-\begin{DoxyParamCaption}
-\item[{float}]{a, }
-\item[{float}]{b, }
-\item[{float}]{delta\-\_\-threshold = {\ttfamily FLT\-\_\-EPSILON}, }
-\item[{{\bf chaos\-::uint32}}]{ulps\-\_\-threshold = {\ttfamily 8}}
-\end{DoxyParamCaption}
-)}}\label{namespacechaos_1_1math_a45b789648ddacd3e1d2403834c1953a6}
-
-
-Checks whether two floating point values are equal or almost equal. 
-
-This performs a two stage check\-:
-
-
-\begin{DoxyItemize}
-\item First the values are subtracted from one another and if the absolute result is less than or equal to {\ttfamily delta\-\_\-threshold} then this operation resolves true.
-\item Second the integer representations of the values are subtracted from one another and if the absolute result is less than or equal to {\ttfamily ulps\-\_\-threshold} then this function resolves true.
-\end{DoxyItemize}
-
-The first check is performed for the purpose of values near 0 where U\-L\-Ps style comparisons break down, e.\-g. {\ttfamily 0.\-0\-F == -\/0.\-0\-F}.
-
-The second comparison is a comparison of the difference of units in last place (U\-L\-Ps) between the two floats. This effectively compares the number of possible float representations between the two values. Larger numbers with less precision will have a bigger numerical difference than two smaller values with more precision for the same U\-L\-Ps difference.
-
-
-\begin{DoxyParams}{Parameters}
-{\em a} & The first float to compare. \\
-\hline
-{\em b} & The second float to compare. \\
-\hline
-{\em delta\-\_\-threshold} & If {\ttfamily a} and {\ttfamily b} have a difference less than or equal to this, they are considered equal. \\
-\hline
-{\em ulps\-\_\-threshold} & If {\ttfamily a} and {\ttfamily b} have units in last place difference less than or equal to this, they are considered equal. \\
-\hline
-\end{DoxyParams}

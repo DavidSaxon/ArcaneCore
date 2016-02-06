@@ -1,13 +1,7 @@
 var searchData=
 [
-  ['set_5fexponent',['set_exponent',['../unionchaos_1_1data_1_1_bitwise_float.html#af3558e3752a224efb2b5e1b7df0ff473',1,'chaos::data::BitwiseFloat']]],
-  ['set_5fflags',['set_flags',['../classchaos_1_1io_1_1sys_1_1_file_handle.html#a8ad8c2176597a8c56e38a3bd51b1c7dd',1,'chaos::io::sys::FileHandle']]],
-  ['set_5fmantissa',['set_mantissa',['../unionchaos_1_1data_1_1_bitwise_float.html#a57629a8a0c7aaff58ba05bcab7831ce6',1,'chaos::data::BitwiseFloat']]],
-  ['set_5fpath',['set_path',['../classchaos_1_1io_1_1sys_1_1_file_handle.html#a14272fcf341c329bf15f7198b5e08573',1,'chaos::io::sys::FileHandle']]],
-  ['set_5fsign_5fbit',['set_sign_bit',['../unionchaos_1_1data_1_1_bitwise_float.html#a53663822515d674b2fbcad78a758559c',1,'chaos::data::BitwiseFloat']]],
-  ['setup',['setup',['../classchaos_1_1test_1_1_fixture.html#a24819cdf1af94789cb66a95f736f53c5',1,'chaos::test::Fixture']]],
-  ['split',['split',['../classchaos_1_1uni_1_1_u_t_f8_string.html#afcdc19149409834d2e28f46c597f4a15',1,'chaos::uni::UTF8String']]],
-  ['starts_5fwith',['starts_with',['../classchaos_1_1uni_1_1_u_t_f8_string.html#aa4c4a2af7ab4fd921b47a3cb6942ce32',1,'chaos::uni::UTF8String']]],
-  ['stateerror',['StateError',['../classchaos_1_1ex_1_1_state_error.html',1,'chaos::ex']]],
-  ['substring',['substring',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a6a92e0b096b7d0087e3c784fa7f891aa',1,'chaos::uni::UTF8String']]]
+  ['r',['r',['../classchaos_1_1gfx_1_1_vector2.html#a8d73d9df20f4653e3d9ea01264b1b0c7',1,'chaos::gfx::Vector2::r()'],['../classchaos_1_1gfx_1_1_vector3.html#a1871c73a8c5f77294a62c9de0c6b17f6',1,'chaos::gfx::Vector3::r()'],['../classchaos_1_1gfx_1_1_vector4.html#a946268284c2cf0543d79a278e191c67c',1,'chaos::gfx::Vector4::r()']]],
+  ['remove',['remove',['../classchaos_1_1io_1_1sys_1_1_path.html#ae1f5ed612b5d85f99eb5dd436dd7b1ed',1,'chaos::io::sys::Path']]],
+  ['remove_5fduplicates',['remove_duplicates',['../classchaos_1_1uni_1_1_u_t_f8_string.html#a940e7ccc70fe1d6c486a5a89941dd2ef',1,'chaos::uni::UTF8String']]],
+  ['repeat',['repeat',['../classchaos_1_1uni_1_1_u_t_f8_string.html#aae17e9b7d3522e4b504d7d0b5ec22b6e',1,'chaos::uni::UTF8String']]]
 ];

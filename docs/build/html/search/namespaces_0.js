@@ -7,7 +7,6 @@ var searchData=
   ['format',['format',['../namespacechaos_1_1io_1_1format.html',1,'chaos::io']]],
   ['gfx',['gfx',['../namespacechaos_1_1gfx.html',1,'chaos']]],
   ['io',['io',['../namespacechaos_1_1io.html',1,'chaos']]],
-  ['literal',['literal',['../namespacechaos_1_1literal.html',1,'chaos']]],
   ['math',['math',['../namespacechaos_1_1math.html',1,'chaos']]],
   ['os',['os',['../namespacechaos_1_1os.html',1,'chaos']]],
   ['sys',['sys',['../namespacechaos_1_1io_1_1sys.html',1,'chaos::io']]],
