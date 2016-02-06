@@ -1,10 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 project(ChaosCore)
 
-set( HEADERS
-)
-
-set( BASE_SRC
+set(BASE_SRC
     src/cxx/chaoscore/base/clock/ClockOperations.cpp
     src/cxx/chaoscore/base/data/BinaryOperations.cpp
     src/cxx/chaoscore/base/data/BitwiseFloat.cpp
@@ -17,7 +14,7 @@ set( BASE_SRC
     src/cxx/chaoscore/base/uni/UTF8String.cpp
 )
 
-set( IO_SRC
+set(IO_SRC
     src/cxx/chaoscore/io/format/ANSI.cpp
     src/cxx/chaoscore/io/format/FormatOperations.cpp
     src/cxx/chaoscore/io/sys/FileHandle.cpp
@@ -26,14 +23,14 @@ set( IO_SRC
     src/cxx/chaoscore/io/sys/Path.cpp
 )
 
-set( GFX_SRC
+set(GFX_SRC
     src/cxx/chaoscore/gfx/Vector2.cpp
     src/cxx/chaoscore/gfx/Vector3.cpp
     src/cxx/chaoscore/gfx/Vector4.cpp
     src/cxx/chaoscore/gfx/VectorOperations.cpp
 )
 
-set( TEST_SRC
+set(TEST_SRC
     src/cxx/chaoscore/test/ChaosTest.cpp
     src/cxx/chaoscore/test/ChaosTestMain.cpp
     src/cxx/chaoscore/test/TestLogger.cpp
@@ -45,8 +42,7 @@ set( TEST_SRC
 )
 
 
-set( TESTS_SUITES
-
+set(TESTS_SUITES
     tests/cxx/base/PreProc_TestSuite.cpp
     tests/cxx/base/Types_TestSuite.cpp
     tests/cxx/base/data/BitwiseFloat_TestSuite.cpp
@@ -65,29 +61,25 @@ set( TESTS_SUITES
     tests/cxx/gfx/VectorOperations_TestSuite.cpp
 )
 
-set(BASEPATH "${CMAKE_SOURCE_DIR}")
-
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86/)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs")
 
-include_directories("${BASEPATH}" ${INCLUDE_DIRECTORIES} src/cxx/ tests/cxx/)
+include_directories(${INCLUDE_DIRECTORIES} src/cxx/ tests/cxx/)
 
-link_directories(${LINK_DIRECTORIES})
-
-add_executable( tests
-    ${BASE_SRC}
-    ${IO_SRC}
-    ${GFX_SRC}
-    ${TEST_SRC}
-    ${TESTS_SUITES}
-)
+link_directories(${LINK_DIRECTORIES} ${CMAKE_BINARY_DIR}/build/linux_x86)
 
 add_library(chaoscore_base SHARED ${BASE_SRC})
 add_library(chaoscore_io SHARED ${IO_SRC})
 add_library(chaoscore_gfx SHARED ${GFX_SRC})
 add_library(chaoscore_test SHARED ${TEST_SRC})
 
-target_link_libraries( tests
+add_executable(tests ${TESTS_SUITES})
+
+target_link_libraries(tests
+    chaoscore_test
+    chaoscore_base
+    chaoscore_io
+    chaoscore_gfx
 )
