@@ -9,9 +9,9 @@ import sys
 
 # --- globals ---
 
-ARGS = [ 'all', 'tests', 'libs', 'deploy' ]
+ARGS = [ 'all', 'libs', 'deploy' ]
 TEST_LOG_PATH = 'logs/tests/log.xml'
-BUILD_DIR = 'build/linux_x86'
+BUILD_DIR = 'build'
 SRC_DIR = 'src/cxx'
 
 DIVIDER = '-' * 80
@@ -44,36 +44,12 @@ if mode != 'deploy':
 
     make_command = 'make '
     if mode == 'libs':
-        make_command += 'chaoscore_base chaoscore_io chaoscore_gfx chaoscore_test'
+        make_command += \
+            'chaoscore_base chaoscore_io chaoscore_gfx chaoscore_test'
     else:
         make_command += mode
 
     os.system( make_command )
-
-# --- run tests ---
-
-test_passed = True
-# if mode == 'all' or mode == 'tests':
-
-#     # TODO: path for windows
-
-#     test_command = \
-#             './build/linux_x86/tests --stdout pretty 3 --fileout {0} xml 3' \
-#             .format( TEST_LOG_PATH )
-
-#     os.system( test_command )
-
-#     with open( TEST_LOG_PATH, 'r' ) as f:
-#         for line in f:
-#             if line.startswith( '  <FinalSummary' ):
-#                 components = line.strip().split( ' ' )
-#                 for comp in components:
-#                     if comp.startswith( 'UnitsFailed' ) or \
-#                        comp.startswith( 'UnitsErrored' ):
-#                         count = int( comp.split( '=' )[ 1 ] )
-#                         if count != 0:
-#                             test_passed = False
-
 
 # --- deploy ---
 
@@ -83,9 +59,6 @@ if mode == 'all' or mode == 'deploy':
     print( '                                    deploying...' )
     print( DIVIDER )
 
-    if not test_passed:
-        print( 'TESTS FAILED: Deployment halted.' )
-        exit()
 
     # get semantic version
     major = 0
@@ -118,10 +91,25 @@ if mode == 'all' or mode == 'deploy':
     libs_location = deploy_location + '/lib'
     os.makedirs( libs_location )
 
+    # create linux lib director
+    linux_libs_location = libs_location + '/linux_x86'
+    os.makedirs( linux_libs_location )
+
     # move libs in
-    for f in os.listdir( BUILD_DIR ):
-        if f.endswith( '.so' ) or f.endswith( '.dll' ):
-            shutil.copy( BUILD_DIR + '/' + f, libs_location )
+    linux_build_dir = BUILD_DIR + '/linux_x86'
+    for f in os.listdir( linux_build_dir ):
+        if f.endswith( '.so' ) or f.endswith( '.lib' ):
+            shutil.copy( linux_build_dir + '/' + f, linux_libs_location )
+
+    # create linux lib director
+    win_libs_location = libs_location + '/win_x86'
+    os.makedirs( win_libs_location )
+
+    # move libs in
+    win_build_dir = BUILD_DIR + '/win_x86'
+    for f in os.listdir( win_build_dir ):
+        if f.endswith( '.so' ) or f.endswith( '.lib' ):
+            shutil.copy( win_build_dir + '/' + f, win_libs_location )
 
     # create the include directory
     include_location = deploy_location + '/include'
@@ -137,6 +125,12 @@ if mode == 'all' or mode == 'deploy':
         for f in files:
             if not f.startswith( '__' ) and f.endswith( '.hpp' ):
                 shutil.copy( root + '/' + f, current_dir )
+
+    # create a meta file with the version number
+    version_meta_path = deploy_location + '/Version: {0}.{1}.{2}'.format(
+            major, minor, patch)
+    version_meta = open(version_meta_path, 'a')
+    version_meta.close();
 
     # write back to semantic version file
     with open( 'semver', 'w' ) as f:

@@ -43,6 +43,8 @@ set(TEST_SRC
 
 
 set(TESTS_SUITES
+    tests/cxx/TestsMain.cpp
+
     tests/cxx/base/PreProc_TestSuite.cpp
     tests/cxx/base/Types_TestSuite.cpp
     tests/cxx/base/data/BitwiseFloat_TestSuite.cpp
