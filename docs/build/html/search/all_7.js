@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['illegalactionerror',['IllegalActionError',['../classchaos_1_1ex_1_1_illegal_action_error.html',1,'chaos::ex']]],
   ['indexoutofboundserror',['IndexOutOfBoundsError',['../classchaos_1_1ex_1_1_index_out_of_bounds_error.html',1,'chaos::ex']]],
   ['insert',['insert',['../classchaos_1_1io_1_1sys_1_1_path.html#a61c635ca77aee10536594cb86ed008fa',1,'chaos::io::sys::Path']]],
   ['int16',['int16',['../namespacechaos.html#a5dd2297d965311a05d313aaba7752f55',1,'chaos']]],

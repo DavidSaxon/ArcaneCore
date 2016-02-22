@@ -1,17 +1,17 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE( base.pre_proc )
+CHAOS_TEST_MODULE( base.preproc )
 
 #include <map>
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
 
-namespace pre_proc_tests
+namespace
 {
 
 //------------------------------------------------------------------------------
-//                                    FOREACH
+//                                    FOR EACH
 //------------------------------------------------------------------------------
 
 class ForEachFixture : public chaos::test::Fixture
@@ -91,4 +91,36 @@ CHAOS_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
     CHAOS_CHECK_EQUAL( v1_total, const_v1_total );
 }
 
-} // namespace pre_proc_tests
+//------------------------------------------------------------------------------
+//                                 CONST FOR EACH
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE(const_for_each, ForEachFixture)
+{
+    // test on a vector
+    const std::vector< chaos::int32 > v1(fixture->getIntVector(100));
+    std::vector< chaos::int32 > v2;
+    // copy using a for each loop
+    CHAOS_CONST_FOR_EACH(v_it_1, v1)
+    {
+        v2.push_back(*v_it_1);
+    }
+    CHAOS_TEST_MESSAGE("Checking for each assigned size");
+    CHAOS_CHECK_EQUAL(v1.size(), v2.size());
+
+    CHAOS_TEST_MESSAGE("Checking each value is iterated");
+    std::size_t counter = 0;
+    CHAOS_CONST_FOR_EACH(v_it_2, v1)
+    {
+        ++counter;
+    }
+    CHAOS_CHECK_EQUAL(counter, v1.size());
+
+    CHAOS_TEST_MESSAGE( "Checking correct for each assigned contents" );
+    for(std::size_t i = 0; i < v1.size(); ++i)
+    {
+        CHAOS_CHECK_EQUAL(v1[i], v2[i]);
+    }
+}
+
+} // namespace anonymous
