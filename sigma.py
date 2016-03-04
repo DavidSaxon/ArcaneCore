@@ -130,7 +130,7 @@ if mode == 'all' or mode == 'deploy':
     version_meta_path = deploy_location + '/Version: {0}.{1}.{2}'.format(
             major, minor, patch)
     version_meta = open(version_meta_path, 'a')
-    version_meta.write('\n')
+    version_meta.write('.\n\n')
     version_meta.close()
 
     # write back to semantic version file
