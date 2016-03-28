@@ -40,11 +40,19 @@ public:
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     /*!
+     * \brief Returns the type of this exception as a string.
+     */
+    const chaos::uni::UTF8String& get_type() const
+    {
+        return m_type;
+    }
+
+    /*!
      * \return The reason for the exception.
      */
     virtual const char* what() const throw()
     {
-        return m_Message.get_raw();
+        return m_message.get_raw();
     }
 
     /*!
@@ -52,7 +60,7 @@ public:
      */
     const chaos::uni::UTF8String& get_message() const
     {
-        return m_Message;
+        return m_message;
     }
 
 protected:
@@ -64,9 +72,12 @@ protected:
      *
      * \param message A message decribing the reason for the exception.
      */
-    ChaosException( const chaos::uni::UTF8String& message )
+    ChaosException(
+            const chaos::uni::UTF8String& type,
+            const chaos::uni::UTF8String& message)
         :
-        m_Message ( message )
+        m_type   (type),
+        m_message(message)
     {
     }
 
@@ -74,8 +85,10 @@ private:
 
     //----------------------------PRIVATE ATTRIBUTES----------------------------
 
+    // The string representing the type of this exception
+    const chaos::uni::UTF8String m_type;
     // The message explaining the reason for the exception
-    chaos::uni::UTF8String m_Message;
+    const chaos::uni::UTF8String m_message;
 };
 
 //------------------------------------------------------------------------------
@@ -90,9 +103,9 @@ class NotImplementedError : public ChaosException
 {
 public:
 
-    NotImplementedError( const chaos::uni::UTF8String& message )
+    NotImplementedError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("NotImplementedError", message)
     {
     }
 };
@@ -108,9 +121,9 @@ class ValueError : public ChaosException
 {
 public:
 
-    ValueError( const chaos::uni::UTF8String& message )
+    ValueError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("ValueError", message)
     {
     }
 };
@@ -127,9 +140,9 @@ class StateError : public ChaosException
 {
 public:
 
-    StateError( const chaos::uni::UTF8String& message )
+    StateError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("StateError", message)
     {
     }
 };
@@ -145,9 +158,9 @@ class IllegalActionError : public ChaosException
 {
 public:
 
-    IllegalActionError( const chaos::uni::UTF8String& message )
+    IllegalActionError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("IllegalActionError", message)
     {
     }
 };
@@ -163,9 +176,9 @@ class IndexOutOfBoundsError : public ChaosException
 {
 public:
 
-    IndexOutOfBoundsError( const chaos::uni::UTF8String& message )
+    IndexOutOfBoundsError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("IndexOutOfBoundsError", message)
     {
     }
 };
@@ -181,9 +194,9 @@ class KeyError : public ChaosException
 {
 public:
 
-    KeyError( const chaos::uni::UTF8String& message )
+    KeyError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("KeyError", message)
     {
     }
 };
@@ -199,9 +212,9 @@ class ArithmeticError : public ChaosException
 {
 public:
 
-    ArithmeticError( const chaos::uni::UTF8String& message )
+    ArithmeticError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("ArithmeticError", message)
     {
     }
 };
@@ -217,9 +230,9 @@ class ConversionDataError : public ChaosException
 {
 public:
 
-    ConversionDataError( const chaos::uni::UTF8String& message )
+    ConversionDataError(const chaos::uni::UTF8String& message)
         :
-        ChaosException( message )
+        ChaosException("ConversionDataError", message)
     {
     }
 };
