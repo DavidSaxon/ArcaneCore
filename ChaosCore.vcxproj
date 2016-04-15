@@ -234,14 +234,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Dropbox\Development\ChaosCore\ChaosCore\src\cxx;C:\Users\David\AppData\Local\Programs\Python\Python35-32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>D:\Dropbox\Development\ChaosCore\ChaosCore\build\win_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>chaoscore_test.lib;chaoscore_base.lib;chaoscore_io.lib;chaoscore_gfx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Dropbox\Development\ChaosCore\ChaosCore\build\win_x86;C:\Users\David\AppData\Local\Programs\Python\Python35-32\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>chaoscore_test.lib;chaoscore_base.lib;chaoscore_io.lib;chaoscore_gfx.lib;python35.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
