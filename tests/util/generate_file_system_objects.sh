@@ -32,3 +32,33 @@ ln -s "${TEST_DIR}" "${TEST_DIR}/dir_symlink" 2> /dev/null
 # make broken symbolic links
 ln -s "${BASE_DIR}/garbage/path.txt" "${BASE_DIR}/broken_link" 2> /dev/null
 ln -s "${TEST_DIR}another/garbage/path" "${TEST_DIR}/broken_link" 2> /dev/null
+
+# list structure
+LIST_BASE="${BASE_DIR}/list_dir"
+LIST_DIR_A_1="${LIST_BASE}/dir_a_1"
+LIST_DIR_A_2="${LIST_BASE}/dir_a_2"
+
+mkdir "${LIST_BASE}" 2> /dev/null
+mkdir "${LIST_DIR_A_1}" 2> /dev/null
+mkdir "${LIST_DIR_A_2}" 2> /dev/null
+mkdir "${LIST_DIR_A_1}/dir_b_1" 2> /dev/null
+mkdir "${LIST_DIR_A_1}/dir_b_2" 2> /dev/null
+mkdir "${LIST_DIR_A_2}/dir_c_1" 2> /dev/null
+mkdir "${LIST_DIR_A_2}/dir_c_2" 2> /dev/null
+
+touch "${LIST_BASE}/file_a_1" 2> /dev/null
+touch "${LIST_BASE}/file_a_2" 2> /dev/null
+touch "${LIST_DIR_A_1}/file_b_1" 2> /dev/null
+touch "${LIST_DIR_A_1}/file_b_2" 2> /dev/null
+touch "${LIST_DIR_A_1}/dir_b_1/file_d_1" 2> /dev/null
+touch "${LIST_DIR_A_1}/dir_b_1/file_d_2" 2> /dev/null
+touch "${LIST_DIR_A_1}/dir_b_2/file_e_1" 2> /dev/null
+touch "${LIST_DIR_A_1}/dir_b_2/file_e_2" 2> /dev/null
+touch "${LIST_DIR_A_2}/file_c_1" 2> /dev/null
+touch "${LIST_DIR_A_2}/file_c_2" 2> /dev/null
+touch "${LIST_DIR_A_2}/dir_c_1/file_f_1" 2> /dev/null
+touch "${LIST_DIR_A_2}/dir_c_1/file_f_2" 2> /dev/null
+touch "${LIST_DIR_A_2}/dir_c_2/file_g_1" 2> /dev/null
+touch "${LIST_DIR_A_2}/dir_c_2/file_g_2" 2> /dev/null
+
+

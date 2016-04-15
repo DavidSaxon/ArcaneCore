@@ -969,29 +969,26 @@ public:
             p << "測試_निर्देशिका" << "ການທົດສອບ.טֶקסט";
             ambiguous.push_back( p );
         }
-        // File symbolic link tests are currently disable since Dropbox resolves
-        // them. To run these tests the valid symlinks will need to be
-        // recreated
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "symlink";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "symlink";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "rəmzi링크";
-        //     ambiguous.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
-        //     ambiguous.push_back( p );
-        // }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "symlink";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "symlink";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "rəmzi링크";
+            ambiguous.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
+            ambiguous.push_back( p );
+        }
 
         {
             chaos::io::sys::Path p( base_path );
