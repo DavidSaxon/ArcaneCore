@@ -26,8 +26,7 @@ public:
 
     virtual void setup()
     {
-        base_path << "tests" << "cxx" << "io" << "sys"
-                  << "file_system_test_objects";
+        base_path << "tests" << "data" << "file_system";
     }
 };
 
@@ -180,46 +179,42 @@ public:
             bad_files.push_back( p );
         }
 
-        // File symbolic link tests are currently disable since Dropbox resolves
-        // them. To run these tests the valid symlinks will need to be
-        // recreated
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "symlink";
-        //     symlinks.push_back( p );
-        //     file_symlinks.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "symlink";
-        //     symlinks.push_back( p );
-        //     file_symlinks.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "rəmzi링크";
-        //     symlinks.push_back( p );
-        //     file_symlinks.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
-        //     symlinks.push_back( p );
-        //     file_symlinks.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "dir_symlink";
-        //     symlinks.push_back( p );
-        //     directory_symlinks.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "dir_symlink";
-        //     symlinks.push_back( p );
-        //     directory_symlinks.push_back( p );
-        // }
-        // ---- end of disabled block ----
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "symlink";
+            symlinks.push_back( p );
+            file_symlinks.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "symlink";
+            symlinks.push_back( p );
+            file_symlinks.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "rəmzi링크";
+            symlinks.push_back( p );
+            file_symlinks.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
+            symlinks.push_back( p );
+            file_symlinks.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "dir_symlink";
+            symlinks.push_back( p );
+            directory_symlinks.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "dir_symlink";
+            symlinks.push_back( p );
+            directory_symlinks.push_back( p );
+        }
 
         {
             chaos::io::sys::Path p( base_path );
@@ -262,18 +257,16 @@ public:
             bad_symlinks.push_back( p );
         }
 
-        // TODO: these files have currently been deleting due to multi-platform
-        //       file syncing issues
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "broken_link";
-        //     broken_symlinks.push_back( p );
-        // }
-        // {
-        //     chaos::io::sys::Path p( base_path );
-        //     p << "test_dir" << "broken_link";
-        //     broken_symlinks.push_back( p );
-        // }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "broken_link";
+            broken_symlinks.push_back( p );
+        }
+        {
+            chaos::io::sys::Path p( base_path );
+            p << "test_dir" << "broken_link";
+            broken_symlinks.push_back( p );
+        }
     }
 };
 
