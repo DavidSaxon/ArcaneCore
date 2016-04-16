@@ -9,6 +9,8 @@ int main(int argc, char* argv[])
     // we're going to use python to do setup and teardown
     Py_Initialize();
 
+    // TODO: set up and tear down should be defered only for the main runtime
+
     // get a handle to the generate script
     chaos::uni::UTF8String generate_path(
         "tests/util/generate_file_system_objects.py");

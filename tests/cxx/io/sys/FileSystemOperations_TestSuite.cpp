@@ -933,16 +933,20 @@ public:
             p << "test_dir" << "test_dir";
             existing.push_back( p );
         }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "dir_symlink";
-            existing.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "dir_symlink";
-            existing.push_back( p );
-        }
+
+        // only test symlinks on Unix
+        #ifdef CHAOS_OS_UNIX
+            {
+                chaos::io::sys::Path p( base_path );
+                p << "dir_symlink";
+                existing.push_back( p );
+            }
+            {
+                chaos::io::sys::Path p( base_path );
+                p << "test_dir" << "dir_symlink";
+                existing.push_back( p );
+            }
+        #endif
 
         {
             chaos::io::sys::Path p( base_path );
@@ -969,26 +973,30 @@ public:
             p << "測試_निर्देशिका" << "ການທົດສອບ.טֶקסט";
             ambiguous.push_back( p );
         }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "symlink";
-            ambiguous.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "test_dir" << "symlink";
-            ambiguous.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "rəmzi링크";
-            ambiguous.push_back( p );
-        }
-        {
-            chaos::io::sys::Path p( base_path );
-            p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
-            ambiguous.push_back( p );
-        }
+
+        // only test symlinks on Unix
+        #ifdef CHAOS_OS_UNIX
+            {
+                chaos::io::sys::Path p( base_path );
+                p << "symlink";
+                ambiguous.push_back( p );
+            }
+            {
+                chaos::io::sys::Path p( base_path );
+                p << "test_dir" << "symlink";
+                ambiguous.push_back( p );
+            }
+            {
+                chaos::io::sys::Path p( base_path );
+                p << "rəmzi링크";
+                ambiguous.push_back( p );
+            }
+            {
+                chaos::io::sys::Path p( base_path );
+                p << "測試_निर्देशिका" << "प्रतिकात्मकਲਿੰਕ";
+                ambiguous.push_back( p );
+            }
+        #endif
 
         {
             chaos::io::sys::Path p( base_path );
