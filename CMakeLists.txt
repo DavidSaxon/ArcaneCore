@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.2)
 project(ChaosCore)
 
 set(BASE_SRC
@@ -41,7 +41,6 @@ set(TEST_SRC
     src/cxx/chaoscore/test/log_formatter/XMLTestLogFormatter.cpp
 )
 
-
 set(TESTS_SUITES
     tests/cxx/TestsMain.cpp
 
@@ -68,9 +67,18 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs")
 
-include_directories(${INCLUDE_DIRECTORIES} src/cxx/ tests/cxx/)
+include_directories(
+    ${INCLUDE_DIRECTORIES}
+    /usr/include/python3.4
+    src/cxx
+    tests/cxx
+)
 
-link_directories(${LINK_DIRECTORIES} ${CMAKE_BINARY_DIR}/build/linux_x86)
+link_directories(
+    ${LINK_DIRECTORIES}
+    /usr/lib/python3.4/
+    ${CMAKE_BINARY_DIR}/build/linux_x86
+)
 
 add_library(chaoscore_base SHARED ${BASE_SRC})
 add_library(chaoscore_io SHARED ${IO_SRC})
@@ -84,4 +92,5 @@ target_link_libraries(tests
     chaoscore_base
     chaoscore_io
     chaoscore_gfx
+    python3.4m
 )

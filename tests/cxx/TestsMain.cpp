@@ -1,3 +1,5 @@
+#include <cstdio>
+
 #include <chaoscore/test/ChaosTest.hpp>
 
 #include <Python.h>
