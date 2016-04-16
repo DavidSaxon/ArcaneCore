@@ -1,3 +1,5 @@
+#include <queue>
+
 #include "chaoscore/test/ChaosTest.hpp"
 
 // fork
@@ -19,6 +21,38 @@ namespace chaos
 {
 namespace test
 {
+
+//------------------------------------------------------------------------------
+//                                   VARIABLES
+//------------------------------------------------------------------------------
+
+namespace
+{
+
+// global fixture setup functions
+static std::vector<void (*)()> global_fixture_setup;
+// global fixture teardown functions
+static std::queue<void (*)()> global_fixture_teardown;
+
+} // namespace anonymous
+
+//------------------------------------------------------------------------------
+//                                GLOBAL FUNCTIONS
+//------------------------------------------------------------------------------
+
+void register_global_fixture(void (*setup)(), void (*teardown)())
+{
+    // add to global lists
+    if (setup)
+    {
+        global_fixture_setup.push_back(setup);
+    }
+    if (teardown)
+    {
+        global_fixture_teardown.push(teardown);
+    }
+}
+
 namespace internal
 {
 
@@ -144,27 +178,35 @@ void TestCore::declare_unit(
 void TestCore::setup( RunInfo* run_info )
 {
     // generate id?
-    if ( run_info->id.is_empty() )
+    if (run_info->id.is_empty())
     {
         run_info->id << "chaoscore_tests_"
                      << chaos::clock::get_current_time();
     }
-    TestCore::logger().set_global_id( run_info->id );
+    TestCore::logger().set_global_id(run_info->id);
 
-    // mark parent logger?
-    if ( !run_info->sub_proc )
+    // is this the parent process?
+    if (!run_info->sub_proc)
     {
-        TestCore::logger().set_as_parent( true );
+        // mark this logger as the parent logger
+        TestCore::logger().set_as_parent(true);
+
+        // call global fixture setup functions
+        CHAOS_FOR_EACH(it, global_fixture_setup)
+        {
+            (**it)();
+        }
     }
 
     // pass outputs to the logger
-    if ( run_info->use_stdout )
+    if (run_info->use_stdout)
     {
         TestCore::logger().add_stdout(
                 run_info->stdout_info.verbosity,
-                run_info->stdout_info.format );
+                run_info->stdout_info.format
+        );
     }
-    CHAOS_FOR_EACH( f_it, run_info->files )
+    CHAOS_FOR_EACH(f_it, run_info->files)
     {
         TestCore::logger().add_file_output(
                 f_it->first,
@@ -181,6 +223,21 @@ void TestCore::teardown( RunInfo* run_info )
 {
     // close the logger
     TestCore::logger().close_log();
+
+    // is this the parent process?
+    if (!run_info->sub_proc)
+    {
+        // call global fixture teardown functions
+        while(!global_fixture_teardown.empty())
+        {
+            (*global_fixture_teardown.back())();
+            global_fixture_teardown.pop();
+        }
+        // CHAOS_FOR_EACH(it, global_fixture_teardown)
+        // {
+        //     (**it)();
+        // }
+    }
 
     // clean up run info
     CHAOS_FOR_EACH( r_t_it, run_info->files )

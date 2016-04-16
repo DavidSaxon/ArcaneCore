@@ -35,6 +35,14 @@ namespace test
  */
 int deferred_main(int argc, char* argv[]);
 
+/*!
+ * \brief Registers a globals fixture functions.
+ *
+ * \param setup Function that will be called once when the test engine begins.
+ * \param teardown Function that will be called once the test engine ends.
+ */
+void register_global_fixture(void (*setup)(), void (*teardown)());
+
 //------------------------------------------------------------------------------
 //                                    CLASSES
 //------------------------------------------------------------------------------
