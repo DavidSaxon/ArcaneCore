@@ -46,11 +46,11 @@ public:
         /// No flags specified
         FLAG_NONE   = 0,
         /// Operations are performed in binary mode rather than text mode.
-        FLAG_BINARY = 1,
+        FLAG_BINARY = 1U << 0,
         /// If the file already exists new data will be written to the end of
         /// of the file. If this flag is not specified writing to existing file
         /// will cause the original contents to be discarded.
-        FLAG_APPEND = 2
+        FLAG_APPEND = 1U << 1
     };
 
     //--------------------------------------------------------------------------

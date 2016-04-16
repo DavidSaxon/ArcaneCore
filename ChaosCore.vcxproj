@@ -68,6 +68,7 @@
     <ClCompile Include="tests/cxx/base/uni/UTF8String_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/base/uni/UnicodeOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/format/FormatOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cxx/io/sys/FileHandle_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileSystemOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/Path_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/gfx/Vector2_TestSuite.cpp" />

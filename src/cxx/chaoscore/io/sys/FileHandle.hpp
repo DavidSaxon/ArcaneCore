@@ -26,9 +26,15 @@ class FileHandle
 {
 private:
 
-    CHAOS_DISALLOW_COPY_AND_ASSIGN( FileHandle );
+    CHAOS_DISALLOW_COPY_AND_ASSIGN(FileHandle);
 
 public:
+
+    //--------------------------------------------------------------------------
+    //                              MOVE CONSTRUCTOR
+    //--------------------------------------------------------------------------
+
+    FileHandle(FileHandle&& other) = default;
 
     //--------------------------------------------------------------------------
     //                                 DESTRUCTOR
@@ -67,7 +73,7 @@ public:
      *
      ** \throws chaos::io::sys::InvalidPathError If the path cannot be opened
      */
-    virtual void open( const chaos::io::sys::Path& path );
+    void open(const chaos::io::sys::Path& path);
 
     /*!
      * \brief Closes this file handle.
@@ -79,7 +85,7 @@ public:
     /*!
      * \brief Returns the path being used by this file handle.
      */
-    virtual const chaos::io::sys::Path& get_path() const;
+    const chaos::io::sys::Path& get_path() const;
 
     /*!
      * \brief Sets the path to be used by this file handle.
@@ -88,12 +94,12 @@ public:
      *
      * \throws chaos::ex::StateError If this file handle is open.
      */
-    virtual void set_path( const chaos::io::sys::Path& path );
+    void set_path( const chaos::io::sys::Path& path );
 
     /*!
      * \brief Returns the descriptor flags of the this file handle.
      */
-    virtual chaos::uint32 get_flags() const;
+    chaos::uint32 get_flags() const;
 
     /*!
      * \brief Sets the descriptor flags to be used by this file handle.
@@ -102,7 +108,7 @@ public:
      *
      * \throws chaos::ex::StateError If this file handle is open.
      */
-    virtual void set_flags( chaos::uint32 flags );
+    void set_flags( chaos::uint32 flags );
 
 
 protected:
