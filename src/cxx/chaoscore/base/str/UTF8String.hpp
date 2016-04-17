@@ -133,27 +133,54 @@ public:
     //                           OPTIMISATION STRUCTURE
     //--------------------------------------------------------------------------
 
-    // struct Opt
-    // {
-    // public:
+    /*!
+     * \brief TODO:
+     *
+     * TODO:
+     */
+    struct Opt
+    {
+    public:
 
-    //     //------------------------------ENUMERATOR------------------------------
+        //------------------------------ENUMERATOR------------------------------
 
-    //     enum Flag
-    //     {
-    //         NONE        = 0,
-    //         NO_CHECK    = 1L << 1,
-    //         FIXED_WIDTH = 1L << 2
-    //     };
+        /*!
+         * \brief Flags that represent the UTF8String optimisations that can be
+         *        enabled.
+         */
+        enum Flag
+        {
+            /// No optimisation
+            NONE        = 0,
+            /// Means that input character array data given to a UTF8String will
+            /// not be checked to see if it's valid UTF-8 encoded data.
+            /// This optimisation can be used in most cases since input data is
+            /// already known to be UTF-8 before construction.
+            /// Characters data can be checked to see if it's valid UTF-8
+            /// encoded data through chaos::str::is_utf8
+            NO_CHECK    = 1L << 1,
+            FIXED_WIDTH = 1L << 2
+        };
 
-    //     //------------------------------ATTRIBUTES------------------------------
+        //------------------------------ATTRIBUTES------------------------------
 
-    //     flags =
+        /*!
+         * \brief Bitwise OR of the flags representing optimisations that this
+         *        structure is enabling.
+         */
+        chaos::uint64 flags;
+        /*!
+         * \brief If FIXED_WIDTH is enabled this represents the width that all
+         *        symbols are expected to be. Defaults to ```1```.
+         */
+        chaos::uint16 fixed_width_size;
 
-    //     //-----------------------------CONSTRUCTOR------------------------------
+        //-----------------------------CONSTRUCTOR------------------------------
 
 
-    // };
+    };
+
+    // TODO: global optimisations
 
     //--------------------------------------------------------------------------
     //                                CONSTRUCTORS

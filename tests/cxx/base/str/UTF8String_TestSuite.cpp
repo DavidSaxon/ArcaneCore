@@ -65,7 +65,8 @@ public:
                             "going on and on and on! It never seems to end, "
                             "but just when you think that it will not end. It "
                             "ends.\n\n\n\n\nNope still going here.\t\t\tThe "
-                            "end!\n\n\n\t\t\t" );
+                            "end!\n\n\n\t\t\t"
+        );
         lengths.push_back( 194 );
         {
             std::map< std::size_t, chaos::str::UTF8String > symbol_map;

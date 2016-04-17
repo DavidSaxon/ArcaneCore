@@ -825,6 +825,7 @@ std::size_t UTF8String::get_byte_width( std::size_t byte_index ) const
     {
         return 3;
     }
+    // TODO: should we ever check validity here?
     // quad byte character
     else
     {
@@ -879,6 +880,8 @@ void UTF8String::assign_internal(
 
     // to calculate the number of utf-8 symbols in the string
     // TODO: could be optimised?
+    // TODO: at the very least could find bit widths without checking valid
+    //       index
     m_length = 0;
     for ( std::size_t i = 0; i < m_data_length - 1; )
     {

@@ -1,6 +1,6 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE( base.str.unicode_operations )
+CHAOS_TEST_MODULE(base.str.UnicodeOperations)
 
 #include <cstring>
 
@@ -309,6 +309,91 @@ CHAOS_TEST_UNIT_FIXTURE( utf16_to_utf8, UTF8ToUTF16Fixture )
                 chaos::data::ENDIAN_BIG
         );
         CHAOS_CHECK_EQUAL( u, fixture->utf8[ i ] );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                    IS_UTF8
+//------------------------------------------------------------------------------
+
+class IsUtf8Fixture : public chaos::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector<const char*> valid;
+    std::vector<const char*> invalid;
+
+    //-------------------------------CONSTRUCTOR--------------------------------
+
+    virtual void setup()
+    {
+        // valid.push_back("");
+        valid.push_back("Hello World");
+        valid.push_back("a");
+        valid.push_back(
+            "This is a really long string, that just keeps on going on and on "
+            "and on! It never seems to end, but just when you think that it "
+            "will not end. It ends.\n\n\n\n\nNope still going here.\t\t\tThe "
+            "end!\n\n\n\t\t\t"
+        );
+        valid.push_back("γειά σου Κόσμε");
+        valid.push_back("this is a مزيج of text");
+        valid.push_back("간");
+
+        invalid.push_back("\x80");
+        invalid.push_back("\x0A\x80");
+        invalid.push_back("\xC2\x80\x80");
+        invalid.push_back("\xC8\x02");
+        invalid.push_back("\xE1\x80\x80\x80");
+        invalid.push_back("\xE3\x06");
+        invalid.push_back("\xEE\x80\xC3");
+        invalid.push_back("\xFA\x80\x80\x80\x80");
+        invalid.push_back("\xFA\xC4");
+        invalid.push_back("\xFA\x80\x05");
+        invalid.push_back("\xFA\x80\x80\xEE");
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
+{
+    CHAOS_TEST_MESSAGE("Checking valid data with null terminators");
+    CHAOS_FOR_EACH(it, fixture->valid)
+    {
+        CHAOS_CHECK_TRUE(chaos::str::is_utf8(*it));
+    }
+
+    CHAOS_TEST_MESSAGE("Checking valid data without null terminators");
+    CHAOS_FOR_EACH(it, fixture->valid)
+    {
+        // get the length of the data
+        std::size_t length = strlen(*it);
+        // create non null terminated data
+        char* cpy = new char[length];
+        memcpy(cpy, *it, length);
+        // check
+        CHAOS_CHECK_TRUE(chaos::str::is_utf8(cpy, length));
+        // clean up
+        delete[] cpy;
+    }
+
+    CHAOS_TEST_MESSAGE("Checking invalid data with null terminators");
+    CHAOS_FOR_EACH(it, fixture->invalid)
+    {
+        CHAOS_CHECK_FALSE(chaos::str::is_utf8(*it));
+    }
+
+    CHAOS_TEST_MESSAGE("Checking invalid data without null terminators");
+    CHAOS_FOR_EACH(it, fixture->invalid)
+    {
+        // get the length of the data
+        std::size_t length = strlen(*it);
+        // create non null terminated data
+        char* cpy = new char[length];
+        memcpy(cpy, *it, length);
+        // check
+        CHAOS_CHECK_FALSE(chaos::str::is_utf8(cpy, length));
     }
 }
 
