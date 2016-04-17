@@ -12,7 +12,7 @@
 #endif
 
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/uni/UnicodeOperations.hpp"
+#include "chaoscore/base/str/UnicodeOperations.hpp"
 
 namespace chaos
 {
@@ -23,13 +23,13 @@ namespace os
  * \brief Gets the last system error message.
  *
  * This should be used after platform specific call that has failed. The related
- * error message will attempt to be retrieved as an chaos::uni::UTF8String.
+ * error message will attempt to be retrieved as an chaos::str::UTF8String.
  */
-chaos::uni::UTF8String get_last_system_error_message()
+chaos::str::UTF8String get_last_system_error_message()
 {
 #ifdef CHAOS_OS_UNIX
 
-    return chaos::uni::UTF8String( strerror( errno ) );
+    return chaos::str::UTF8String( strerror( errno ) );
 
 #elif defined( CHAOS_OS_WINDOWS )
 
@@ -44,10 +44,10 @@ chaos::uni::UTF8String get_last_system_error_message()
             NULL
     );
 
-    return chaos::uni::UTF8String(
-            chaos::uni::utf16_to_utf8(
+    return chaos::str::UTF8String(
+            chaos::str::utf16_to_utf8(
                     ( const char* ) error_message,
-                    chaos::uni::npos
+                    chaos::str::npos
             )
     );
 

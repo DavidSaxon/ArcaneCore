@@ -5,7 +5,7 @@ CHAOS_TEST_MODULE( io.sys.path )
 #include <algorithm>
 #include <cstring>
 
-#include "chaoscore/base/uni/UnicodeOperations.hpp"
+#include "chaoscore/base/str/UnicodeOperations.hpp"
 #include "chaoscore/io/sys/Path.hpp"
 
 namespace path_tests
@@ -21,10 +21,10 @@ public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< std::vector< chaos::uni::UTF8String > > all;
-    std::vector< chaos::uni::UTF8String > unix;
-    std::vector< chaos::uni::UTF8String > windows;
-    std::vector< chaos::uni::UTF8String > extensions;
+    std::vector< std::vector< chaos::str::UTF8String > > all;
+    std::vector< chaos::str::UTF8String > unix;
+    std::vector< chaos::str::UTF8String > windows;
+    std::vector< chaos::str::UTF8String > extensions;
     std::vector< chaos::io::sys::Path > as_paths;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -32,7 +32,7 @@ public:
     virtual void setup()
     {
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             all.push_back( v );
             unix.push_back( "" );
             windows.push_back( "" );
@@ -40,7 +40,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "test_dir" );
             all.push_back( v );
             unix.push_back( "test_dir" );
@@ -49,7 +49,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "test_dir" );
             v.push_back( "another_dir" );
             v.push_back( "file.txt" );
@@ -60,7 +60,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "/" );
             v.push_back( "path" );
             v.push_back( "from" );
@@ -72,7 +72,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "~" );
             v.push_back( "path" );
             v.push_back( "from" );
@@ -85,7 +85,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "." );
             v.push_back( "current" );
             v.push_back( "dir" );
@@ -97,7 +97,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( ".." );
             v.push_back( ".." );
             v.push_back( "up" );
@@ -110,7 +110,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "path" );
             v.push_back( "with a" );
             v.push_back( "space" );
@@ -122,7 +122,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "γειά" );
             v.push_back( "σου" );
             v.push_back( "Κόσμε" );
@@ -133,7 +133,7 @@ public:
             as_paths.push_back( chaos::io::sys::Path( v ) );
         }
         {
-            std::vector< chaos::uni::UTF8String > v;
+            std::vector< chaos::str::UTF8String > v;
             v.push_back( "this" );
             v.push_back( "path" );
             v.push_back( "has a" );
@@ -244,35 +244,35 @@ public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::uni::UTF8String > inputs;
-    std::vector< chaos::uni::UTF8String > results;
+    std::vector< chaos::str::UTF8String > inputs;
+    std::vector< chaos::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     virtual void setup()
     {
 #ifdef CHAOS_OS_WINDOWS
-        const chaos::uni::UTF8String sep( "\\" );
+        const chaos::str::UTF8String sep( "\\" );
 #else
-        const chaos::uni::UTF8String sep( "/" );
+        const chaos::str::UTF8String sep( "/" );
 #endif
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "path" << sep << "to" << sep << "file.txt";
             inputs.push_back( p );
             results.push_back( p );
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "longer" << sep << "path" << sep << "to" << sep << "file.txt";
             inputs.push_back( p );
             results.push_back( p );
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "even" << sep << "longer" << sep << "path" << sep << "to"
               << sep << "file.txt";
             inputs.push_back( p );
@@ -280,14 +280,14 @@ public:
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "path" << sep << "to" << sep << "directory";
             inputs.push_back( p );
             results.push_back( p );
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "path" << sep << "to" << sep << "directory" << sep
               << "separator_end";
             results.push_back( p );
@@ -296,36 +296,36 @@ public:
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "path" << sep << sep << "with" << sep << "double" << sep << sep
               << "separators";
             inputs.push_back( p );
-            chaos::uni::UTF8String p2;
+            chaos::str::UTF8String p2;
             p2 << "path" << sep << "with" << sep << "double" << sep
                << "separators";
             results.push_back( p2 );
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << "path" << sep << sep << sep << sep << "with" << sep << sep
               << sep << "lots" << sep << sep << "of" << sep << "separators";
             inputs.push_back( p );
-            chaos::uni::UTF8String p2;
+            chaos::str::UTF8String p2;
             p2 << "path" << sep << "with" << sep << "lots" << sep << "of" << sep
                << "separators";
             results.push_back( p2 );
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << sep << "path" << sep << "from" << sep << "root";
             inputs.push_back( p );
             results.push_back( p );
         }
 
         {
-            chaos::uni::UTF8String p;
+            chaos::str::UTF8String p;
             p << sep << "path" << sep << "from" << sep << "root";
             results.push_back( p );
             p << sep;

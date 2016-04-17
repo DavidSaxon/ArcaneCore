@@ -12,7 +12,7 @@ namespace format
 //------------------------------------------------------------------------------
 
 void centre_text(
-        chaos::uni::UTF8String& text,
+        chaos::str::UTF8String& text,
         const chaos::uint32     line_length,
         bool                    trim_trailing )
 {
@@ -27,14 +27,14 @@ void centre_text(
     chaos::uint32 half = whitespace / 2;
 
     // prefix white-space
-    chaos::uni::UTF8String s( " " );
+    chaos::str::UTF8String s( " " );
     s *= ( whitespace - half );
     // text
     s << text;
     // trailing whitespace
     if ( !trim_trailing )
     {
-        s << chaos::uni::UTF8String( " " ) * half;
+        s << chaos::str::UTF8String( " " ) * half;
     }
 
     // done

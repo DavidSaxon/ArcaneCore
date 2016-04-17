@@ -1,7 +1,7 @@
 #include "chaoscore/base/data/ByteOperations.hpp"
 
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/uni/UTF8String.hpp"
+#include "chaoscore/base/str/UTF8String.hpp"
 
 namespace chaos
 {
@@ -16,7 +16,7 @@ chaos::uint32 bytes_to_uint32(
     // valid data?
     if ( length > sizeof( chaos::uint32 ) )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Too many bytes to convert to chaos::uint32. A ";
         error_message << "chaos::uint32 consists of ";
         error_message << sizeof( chaos::uint32 ) << " bytes, where " << length;

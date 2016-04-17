@@ -227,8 +227,8 @@ Vector4& Vector4::operator/=( const Vector4& other )
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-chaos::uni::UTF8String& operator<<(
-        chaos::uni::UTF8String& s,
+chaos::str::UTF8String& operator<<(
+        chaos::str::UTF8String& s,
         const Vector4& v )
 {
     s << "(" << v.x << ", " << v.y << ", " << v.z << ", " << v.w << ")";

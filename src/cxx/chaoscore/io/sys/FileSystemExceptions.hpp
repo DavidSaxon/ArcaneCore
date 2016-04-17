@@ -25,8 +25,8 @@ class FileSystemError : public chaos::ex::ChaosException
 protected:
 
     FileSystemError(
-        const chaos::uni::UTF8String& type,
-        const chaos::uni::UTF8String& message)
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& message)
         :
         ChaosException(type, message)
     {
@@ -41,7 +41,7 @@ class InvalidPathError : public chaos::ex::ChaosException
 {
 public:
 
-    InvalidPathError(const chaos::uni::UTF8String& message)
+    InvalidPathError(const chaos::str::UTF8String& message)
         :
         ChaosException("InvalidPathError", message)
     {
@@ -55,7 +55,7 @@ class CreateDirectoryError : public FileSystemError
 {
 public:
 
-    CreateDirectoryError(const chaos::uni::UTF8String& message)
+    CreateDirectoryError(const chaos::str::UTF8String& message)
         :
         FileSystemError("CreateDirectoryError", message)
     {
@@ -73,7 +73,7 @@ class AmbiguousPathError : public FileSystemError
 {
 public:
 
-    AmbiguousPathError(const chaos::uni::UTF8String& message)
+    AmbiguousPathError(const chaos::str::UTF8String& message)
         :
         FileSystemError("AmbiguousPathError", message)
     {

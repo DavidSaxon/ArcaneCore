@@ -34,7 +34,7 @@ public:
     //                              MOVE CONSTRUCTOR
     //--------------------------------------------------------------------------
 
-    FileHandle(FileHandle&& other) = default;
+    // FileHandle(FileHandle&& other) = default;
 
     //--------------------------------------------------------------------------
     //                                 DESTRUCTOR

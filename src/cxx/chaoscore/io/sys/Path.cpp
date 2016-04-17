@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/uni/UnicodeOperations.hpp"
+#include "chaoscore/base/str/UnicodeOperations.hpp"
 
 namespace chaos
 {
@@ -20,8 +20,8 @@ namespace sys
 namespace
 {
 
-static const chaos::uni::UTF8String UNIX_SEP   ( "/" );
-static const chaos::uni::UTF8String WINDOWS_SEP( "\\" );
+static const chaos::str::UTF8String UNIX_SEP   ( "/" );
+static const chaos::str::UTF8String WINDOWS_SEP( "\\" );
 
 } // namespace anonymous
 
@@ -35,7 +35,7 @@ Path::Path()
 {
 }
 
-Path::Path( const std::vector< chaos::uni::UTF8String >& components )
+Path::Path( const std::vector< chaos::str::UTF8String >& components )
     :
     m_components  ( components ),
     m_cstring_data( nullptr )
@@ -43,22 +43,22 @@ Path::Path( const std::vector< chaos::uni::UTF8String >& components )
 }
 
 Path::Path(
-        const std::vector< chaos::uni::UTF8String >::const_iterator& begin,
-        const std::vector< chaos::uni::UTF8String >::const_iterator& end )
+        const std::vector< chaos::str::UTF8String >::const_iterator& begin,
+        const std::vector< chaos::str::UTF8String >::const_iterator& end )
     :
     m_components  ( begin, end ),
     m_cstring_data( nullptr )
 {
 }
 
-Path::Path( const chaos::uni::UTF8String& string_path )
+Path::Path( const chaos::str::UTF8String& string_path )
     :
     m_cstring_data( nullptr )
 {
     // split the path into components based on the operating system
 #ifdef CHAOS_OS_UNIX
 
-    chaos::uni::UTF8String santised_path( string_path );
+    chaos::str::UTF8String santised_path( string_path );
     santised_path.remove_duplicates( UNIX_SEP );
     m_components = santised_path.split( UNIX_SEP );
 
@@ -69,7 +69,7 @@ Path::Path( const chaos::uni::UTF8String& string_path )
 
 #elif defined( CHAOS_OS_WINDOWS )
 
-    chaos::uni::UTF8String santised_path( string_path );
+    chaos::str::UTF8String santised_path( string_path );
     santised_path.remove_duplicates( WINDOWS_SEP );
     m_components = santised_path.split( WINDOWS_SEP );
 
@@ -78,7 +78,7 @@ Path::Path( const chaos::uni::UTF8String& string_path )
     // remove final space if the path ended with /
     if ( m_components.size() > 0 && m_components.back() == "" )
     {
-        m_components = std::vector< chaos::uni::UTF8String >(
+        m_components = std::vector< chaos::str::UTF8String >(
             m_components.begin(), m_components.end() - 1 );
     }
 }
@@ -154,12 +154,12 @@ bool Path::operator<( const Path& other ) const
     return m_components.size() < other.m_components.size();
 }
 
-chaos::uni::UTF8String& Path::operator[]( std::size_t index )
+chaos::str::UTF8String& Path::operator[]( std::size_t index )
 {
     return m_components[ index ];
 }
 
-const chaos::uni::UTF8String& Path::operator[]( std::size_t index ) const
+const chaos::str::UTF8String& Path::operator[]( std::size_t index ) const
 {
     return m_components[ index ];
 }
@@ -183,7 +183,7 @@ Path& Path::operator+=( const Path& other )
     return *this;
 }
 
-Path& Path::operator<<( const chaos::uni::UTF8String& component )
+Path& Path::operator<<( const chaos::str::UTF8String& component )
 {
     return join( component );
 }
@@ -192,18 +192,18 @@ Path& Path::operator<<( const chaos::uni::UTF8String& component )
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-Path& Path::join( const chaos::uni::UTF8String& component )
+Path& Path::join( const chaos::str::UTF8String& component )
 {
     m_components.push_back( component );
     return *this;
 }
 
-void Path::insert( std::size_t index, const chaos::uni::UTF8String& component )
+void Path::insert( std::size_t index, const chaos::str::UTF8String& component )
 {
     // check bounds
     if ( index > m_components.size() )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Provided index: " << index << " is greater than the "
                       << "number of components in the path: "
                       << m_components.size();
@@ -211,7 +211,7 @@ void Path::insert( std::size_t index, const chaos::uni::UTF8String& component )
     }
 
     // new vector to contain components
-    std::vector< chaos::uni::UTF8String > components;
+    std::vector< chaos::str::UTF8String > components;
     // copy with the insert
     for ( std::size_t i = 0; i <= m_components.size(); ++i )
     {
@@ -242,7 +242,7 @@ void Path::remove( std::size_t index )
     // check bounds
     if ( index >= m_components.size() )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Provided index: " << index << " is greater or equal "
                       << "to the number of components in the path: "
                       << m_components.size();
@@ -250,7 +250,7 @@ void Path::remove( std::size_t index )
     }
 
     // new vector to contain components
-    std::vector< chaos::uni::UTF8String > components;
+    std::vector< chaos::str::UTF8String > components;
     // copy with the remove
     for ( std::size_t i = 0; i < m_components.size(); ++i )
     {
@@ -267,7 +267,7 @@ void Path::remove( std::size_t index )
     m_components = components;
 }
 
-chaos::uni::UTF8String Path::to_native() const
+chaos::str::UTF8String Path::to_native() const
 {
 #ifdef CHAOS_OS_UNIX
 
@@ -280,15 +280,15 @@ chaos::uni::UTF8String Path::to_native() const
 #endif
 }
 
-chaos::uni::UTF8String Path::to_unix() const
+chaos::str::UTF8String Path::to_unix() const
 {
-    std::vector< chaos::uni::UTF8String > components;
+    std::vector< chaos::str::UTF8String > components;
     // special case for root ( / )
     bool is_root = false;
     if ( m_components.size() > 0 && m_components[ 0 ] == "/"  )
     {
         is_root = true;
-        components = std::vector< chaos::uni::UTF8String >(
+        components = std::vector< chaos::str::UTF8String >(
                 m_components.begin() + 1, m_components.end() );
     }
     else
@@ -296,18 +296,18 @@ chaos::uni::UTF8String Path::to_unix() const
         components = m_components;
     }
 
-    chaos::uni::UTF8String ret = chaos::uni::join( components, "/" );
+    chaos::str::UTF8String ret = chaos::str::join( components, "/" );
     if ( is_root )
     {
-        ret = chaos::uni::UTF8String( "/" ) + ret;
+        ret = chaos::str::UTF8String( "/" ) + ret;
     }
 
     return ret;
 }
 
-chaos::uni::UTF8String Path::to_windows() const
+chaos::str::UTF8String Path::to_windows() const
 {
-    return chaos::uni::join( m_components, "\\" );
+    return chaos::str::join( m_components, "\\" );
 }
 
 //----------------------------------ACCESSORS-----------------------------------
@@ -322,12 +322,12 @@ bool Path::is_empty() const
     return get_length() == 0;
 }
 
-const std::vector< chaos::uni::UTF8String >& Path::get_components() const
+const std::vector< chaos::str::UTF8String >& Path::get_components() const
 {
     return m_components;
 }
 
-const chaos::uni::UTF8String& Path::get_front() const
+const chaos::str::UTF8String& Path::get_front() const
 {
     // is the path empty?
     if ( is_empty() )
@@ -340,7 +340,7 @@ const chaos::uni::UTF8String& Path::get_front() const
     return m_components.front();
 }
 
-const chaos::uni::UTF8String& Path::get_back() const
+const chaos::str::UTF8String& Path::get_back() const
 {
     // is the path empty?
     if ( is_empty() )
@@ -353,14 +353,14 @@ const chaos::uni::UTF8String& Path::get_back() const
     return m_components.back();
 }
 
-chaos::uni::UTF8String Path::get_extension() const
+chaos::str::UTF8String Path::get_extension() const
 {
     // is there a final component?
     if ( !m_components.empty() )
     {
         // does the final component contain a period?
         std::size_t loc = m_components.back().find_last( "." );
-        if ( loc != chaos::uni::npos )
+        if ( loc != chaos::str::npos )
         {
             // return the extension substring
             return m_components.back().substring(
@@ -377,7 +377,7 @@ chaos::uni::UTF8String Path::get_extension() const
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-chaos::uni::UTF8String& operator<<( chaos::uni::UTF8String& s, const Path& p )
+chaos::str::UTF8String& operator<<( chaos::str::UTF8String& s, const Path& p )
 {
     s << p.to_native();
     return s;

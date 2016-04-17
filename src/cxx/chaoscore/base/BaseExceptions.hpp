@@ -7,7 +7,7 @@
 
 #include <exception>
 
-#include "chaoscore/base/uni/UTF8String.hpp"
+#include "chaoscore/base/str/UTF8String.hpp"
 
 namespace chaos
 {
@@ -42,7 +42,7 @@ public:
     /*!
      * \brief Returns the type of this exception as a string.
      */
-    const chaos::uni::UTF8String& get_type() const
+    const chaos::str::UTF8String& get_type() const
     {
         return m_type;
     }
@@ -58,7 +58,7 @@ public:
     /*!
      * \return The reason for the exception.
      */
-    const chaos::uni::UTF8String& get_message() const
+    const chaos::str::UTF8String& get_message() const
     {
         return m_message;
     }
@@ -73,8 +73,8 @@ protected:
      * \param message A message decribing the reason for the exception.
      */
     ChaosException(
-            const chaos::uni::UTF8String& type,
-            const chaos::uni::UTF8String& message)
+            const chaos::str::UTF8String& type,
+            const chaos::str::UTF8String& message)
         :
         m_type   (type),
         m_message(message)
@@ -86,9 +86,9 @@ private:
     //----------------------------PRIVATE ATTRIBUTES----------------------------
 
     // The string representing the type of this exception
-    const chaos::uni::UTF8String m_type;
+    const chaos::str::UTF8String m_type;
     // The message explaining the reason for the exception
-    const chaos::uni::UTF8String m_message;
+    const chaos::str::UTF8String m_message;
 };
 
 //------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ class NotImplementedError : public ChaosException
 {
 public:
 
-    NotImplementedError(const chaos::uni::UTF8String& message)
+    NotImplementedError(const chaos::str::UTF8String& message)
         :
         ChaosException("NotImplementedError", message)
     {
@@ -121,7 +121,7 @@ class ValueError : public ChaosException
 {
 public:
 
-    ValueError(const chaos::uni::UTF8String& message)
+    ValueError(const chaos::str::UTF8String& message)
         :
         ChaosException("ValueError", message)
     {
@@ -140,7 +140,7 @@ class StateError : public ChaosException
 {
 public:
 
-    StateError(const chaos::uni::UTF8String& message)
+    StateError(const chaos::str::UTF8String& message)
         :
         ChaosException("StateError", message)
     {
@@ -158,7 +158,7 @@ class IllegalActionError : public ChaosException
 {
 public:
 
-    IllegalActionError(const chaos::uni::UTF8String& message)
+    IllegalActionError(const chaos::str::UTF8String& message)
         :
         ChaosException("IllegalActionError", message)
     {
@@ -176,7 +176,7 @@ class IndexOutOfBoundsError : public ChaosException
 {
 public:
 
-    IndexOutOfBoundsError(const chaos::uni::UTF8String& message)
+    IndexOutOfBoundsError(const chaos::str::UTF8String& message)
         :
         ChaosException("IndexOutOfBoundsError", message)
     {
@@ -194,7 +194,7 @@ class KeyError : public ChaosException
 {
 public:
 
-    KeyError(const chaos::uni::UTF8String& message)
+    KeyError(const chaos::str::UTF8String& message)
         :
         ChaosException("KeyError", message)
     {
@@ -212,7 +212,7 @@ class ArithmeticError : public ChaosException
 {
 public:
 
-    ArithmeticError(const chaos::uni::UTF8String& message)
+    ArithmeticError(const chaos::str::UTF8String& message)
         :
         ChaosException("ArithmeticError", message)
     {
@@ -230,7 +230,7 @@ class ConversionDataError : public ChaosException
 {
 public:
 
-    ConversionDataError(const chaos::uni::UTF8String& message)
+    ConversionDataError(const chaos::str::UTF8String& message)
         :
         ChaosException("ConversionDataError", message)
     {

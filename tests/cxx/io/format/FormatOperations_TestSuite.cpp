@@ -18,28 +18,28 @@ public:
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     std::vector< chaos::int16 > int16;
-    std::vector< chaos::uni::UTF8String > int16_pad;
-    std::vector< chaos::uni::UTF8String > int16_nopad;
+    std::vector< chaos::str::UTF8String > int16_pad;
+    std::vector< chaos::str::UTF8String > int16_nopad;
 
     std::vector< chaos::uint16 > uint16;
-    std::vector< chaos::uni::UTF8String > uint16_pad;
-    std::vector< chaos::uni::UTF8String > uint16_nopad;
+    std::vector< chaos::str::UTF8String > uint16_pad;
+    std::vector< chaos::str::UTF8String > uint16_nopad;
 
     std::vector< chaos::int32 > int32;
-    std::vector< chaos::uni::UTF8String > int32_pad;
-    std::vector< chaos::uni::UTF8String > int32_nopad;
+    std::vector< chaos::str::UTF8String > int32_pad;
+    std::vector< chaos::str::UTF8String > int32_nopad;
 
     std::vector< chaos::uint32 > uint32;
-    std::vector< chaos::uni::UTF8String > uint32_pad;
-    std::vector< chaos::uni::UTF8String > uint32_nopad;
+    std::vector< chaos::str::UTF8String > uint32_pad;
+    std::vector< chaos::str::UTF8String > uint32_nopad;
 
     std::vector< chaos::int64 > int64;
-    std::vector< chaos::uni::UTF8String > int64_pad;
-    std::vector< chaos::uni::UTF8String > int64_nopad;
+    std::vector< chaos::str::UTF8String > int64_pad;
+    std::vector< chaos::str::UTF8String > int64_nopad;
 
     std::vector< chaos::uint64 > uint64;
-    std::vector< chaos::uni::UTF8String > uint64_pad;
-    std::vector< chaos::uni::UTF8String > uint64_nopad;
+    std::vector< chaos::str::UTF8String > uint64_pad;
+    std::vector< chaos::str::UTF8String > uint64_nopad;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -338,28 +338,28 @@ public:
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     std::vector< chaos::int16 > int16;
-    std::vector< chaos::uni::UTF8String > int16_pad;
-    std::vector< chaos::uni::UTF8String > int16_nopad;
+    std::vector< chaos::str::UTF8String > int16_pad;
+    std::vector< chaos::str::UTF8String > int16_nopad;
 
     std::vector< chaos::uint16 > uint16;
-    std::vector< chaos::uni::UTF8String > uint16_pad;
-    std::vector< chaos::uni::UTF8String > uint16_nopad;
+    std::vector< chaos::str::UTF8String > uint16_pad;
+    std::vector< chaos::str::UTF8String > uint16_nopad;
 
     std::vector< chaos::int32 > int32;
-    std::vector< chaos::uni::UTF8String > int32_pad;
-    std::vector< chaos::uni::UTF8String > int32_nopad;
+    std::vector< chaos::str::UTF8String > int32_pad;
+    std::vector< chaos::str::UTF8String > int32_nopad;
 
     std::vector< chaos::uint32 > uint32;
-    std::vector< chaos::uni::UTF8String > uint32_pad;
-    std::vector< chaos::uni::UTF8String > uint32_nopad;
+    std::vector< chaos::str::UTF8String > uint32_pad;
+    std::vector< chaos::str::UTF8String > uint32_nopad;
 
     std::vector< chaos::int64 > int64;
-    std::vector< chaos::uni::UTF8String > int64_pad;
-    std::vector< chaos::uni::UTF8String > int64_nopad;
+    std::vector< chaos::str::UTF8String > int64_pad;
+    std::vector< chaos::str::UTF8String > int64_nopad;
 
     std::vector< chaos::uint64 > uint64;
-    std::vector< chaos::uni::UTF8String > uint64_pad;
-    std::vector< chaos::uni::UTF8String > uint64_nopad;
+    std::vector< chaos::str::UTF8String > uint64_pad;
+    std::vector< chaos::str::UTF8String > uint64_nopad;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -642,10 +642,10 @@ public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::uni::UTF8String > input;
+    std::vector< chaos::str::UTF8String > input;
     std::vector< chaos::uint32 > line_lengths;
-    std::vector< chaos::uni::UTF8String > no_trim_results;
-    std::vector< chaos::uni::UTF8String > trim_results;
+    std::vector< chaos::str::UTF8String > no_trim_results;
+    std::vector< chaos::str::UTF8String > trim_results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -703,7 +703,7 @@ CHAOS_TEST_UNIT_FIXTURE( centre_text, CentreTextFixture )
     CHAOS_TEST_MESSAGE( "Checking no trim trailing spaces" );
     for ( std::size_t i = 0; i < fixture->input.size(); ++i )
     {
-        chaos::uni::UTF8String u( fixture->input[ i ] );
+        chaos::str::UTF8String u( fixture->input[ i ] );
         chaos::io::format::centre_text( u, fixture->line_lengths[ i ] );
 
         CHAOS_CHECK_EQUAL( u, fixture->no_trim_results[ i ] );
@@ -712,7 +712,7 @@ CHAOS_TEST_UNIT_FIXTURE( centre_text, CentreTextFixture )
     CHAOS_TEST_MESSAGE( "Checking trim trailing spaces" );
     for ( std::size_t i = 0; i < fixture->input.size(); ++i )
     {
-        chaos::uni::UTF8String u( fixture->input[ i ] );
+        chaos::str::UTF8String u( fixture->input[ i ] );
         chaos::io::format::centre_text( u, fixture->line_lengths[ i ], true );
 
         CHAOS_CHECK_EQUAL( u, fixture->trim_results[ i ] );

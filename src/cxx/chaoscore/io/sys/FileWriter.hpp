@@ -87,13 +87,13 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief chaos::uni::UTF8String stream operator.
+     * \brief chaos::str::UTF8String stream operator.
      *
-     * Writes the given chaos::uni::UTF8String to the file writer's buffer.
+     * Writes the given chaos::str::UTF8String to the file writer's buffer.
      *
      * \throws chaos::ex::StateError If this file handle is not open.
      */
-    FileWriter& operator<<( const chaos::uni::UTF8String& text );
+    FileWriter& operator<<( const chaos::str::UTF8String& text );
 
     //--------------------------------------------------------------------------
     //                                 DESTRUCTOR
@@ -145,7 +145,7 @@ public:
     void close();
 
     /*!
-     * \brief Writes an chaos::uni::UTF8String to the internal buffer of this
+     * \brief Writes an chaos::str::UTF8String to the internal buffer of this
      *        file writer.
      *
      * The internal buffer is only written to the file system when this file
@@ -153,7 +153,7 @@ public:
      *
      * \throws chaos::ex::StateError If this file handle is not open.
      */
-    void write( const chaos::uni::UTF8String& text );
+    void write( const chaos::str::UTF8String& text );
 
     /*!
      * \brief Convenience function to write text with a following new line
@@ -163,7 +163,7 @@ public:
      *
      * \throws chaos::ex::StateError If this file handle is not open.
      */
-    void write_line( const chaos::uni::UTF8String& text );
+    void write_line( const chaos::str::UTF8String& text );
 
 private:
 

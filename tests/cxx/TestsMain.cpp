@@ -21,7 +21,7 @@ void end_py_runtime()
 void generate_file_system_objects()
 {
     // get a handle to the generate script
-    chaos::uni::UTF8String generate_path(
+    chaos::str::UTF8String generate_path(
         "tests/util/generate_file_system_objects.py");
     PyObject* py_generate_path = Py_BuildValue("s", generate_path.get_raw());
     FILE* generate_script = _Py_fopen_obj(py_generate_path, "r+");
@@ -36,7 +36,7 @@ void generate_file_system_objects()
 void destroy_file_system_objects()
 {
     // get a handle to the destroy script
-    chaos::uni::UTF8String destroy_path(
+    chaos::str::UTF8String destroy_path(
         "tests/util/destroy_file_system_objects.py");
     PyObject* py_destroy_path = Py_BuildValue("s", destroy_path.get_raw());
     FILE* destroy_script = _Py_fopen_obj(py_destroy_path, "r+");

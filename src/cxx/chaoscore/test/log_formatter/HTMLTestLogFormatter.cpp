@@ -40,8 +40,8 @@ void HTMLTestLogFormatter::close_log(
 }
 
 void HTMLTestLogFormatter::open_test(
-        const chaos::uni::UTF8String& path,
-        const chaos::uni::UTF8String& id )
+        const chaos::str::UTF8String& path,
+        const chaos::str::UTF8String& id )
 {
     // TODO:
 }
@@ -51,30 +51,30 @@ void HTMLTestLogFormatter::close_test()
     // TODO:
 }
 
-void HTMLTestLogFormatter::report_crash( const chaos::uni::UTF8String& info )
+void HTMLTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
 {
     // TODO:
 }
 
 void HTMLTestLogFormatter::report_check_pass(
-        const chaos::uni::UTF8String& type,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
     // TODO:
 }
 
 void HTMLTestLogFormatter::report_check_fail(
-        const chaos::uni::UTF8String& type,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
               chaos::int32            line,
-        const chaos::uni::UTF8String& message )
+        const chaos::str::UTF8String& message )
 {
     // TODO:
 }
 
 void HTMLTestLogFormatter::write_message(
-        const chaos::uni::UTF8String& message )
+        const chaos::str::UTF8String& message )
 {
     // TODO:
 }

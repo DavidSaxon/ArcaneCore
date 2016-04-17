@@ -30,9 +30,9 @@
     <ClCompile Include="src\cxx\chaoscore\base\math\MathConstants.cpp" />
     <ClCompile Include="src\cxx\chaoscore\base\math\MathOperations.cpp" />
     <ClCompile Include="src\cxx\chaoscore\base\os\OSOperations.cpp" />
-    <ClCompile Include="src\cxx\chaoscore\base\uni\UnicodeConstants.cpp" />
-    <ClCompile Include="src\cxx\chaoscore\base\uni\UnicodeOperations.cpp" />
-    <ClCompile Include="src\cxx\chaoscore\base\uni\UTF8String.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\str\StringConstants.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\str\UnicodeOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\str\UTF8String.cpp" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)'=='IO_lib'">
     <ClCompile Include="src/cxx/chaoscore/io/format/ANSI.cpp" />
@@ -65,8 +65,8 @@
     <ClCompile Include="tests/cxx/base/data/BitwiseFloat_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/base/data/ByteOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/base/math/MathOperations_TestSuite.cpp" />
-    <ClCompile Include="tests/cxx/base/uni/UTF8String_TestSuite.cpp" />
-    <ClCompile Include="tests/cxx/base/uni/UnicodeOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cxx/base/str/UTF8String_TestSuite.cpp" />
+    <ClCompile Include="tests/cxx/base/str/UnicodeOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/format/FormatOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileHandle_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileSystemOperations_TestSuite.cpp" />

@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/uni/UnicodeOperations.hpp"
+#include "chaoscore/base/str/UnicodeOperations.hpp"
 #include "chaoscore/io/sys/FileSystemExceptions.hpp"
 
 // TODO: REMOVE ME
@@ -67,7 +67,7 @@ FileWriter::~FileWriter()
 //                                   OPERATORS
 //------------------------------------------------------------------------------
 
-FileWriter& FileWriter::operator<<( const chaos::uni::UTF8String& text )
+FileWriter& FileWriter::operator<<( const chaos::str::UTF8String& text )
 {
     write( text );
 
@@ -110,7 +110,7 @@ void FileWriter::open()
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             m_path.to_windows().get_raw(),
             length,
             chaos::data::ENDIAN_LITTLE
@@ -131,7 +131,7 @@ void FileWriter::open()
         delete m_stream;
 
         // throw exception
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Failed to FileWriter to path: \'";
         error_message << m_path.to_native() << "\'";
         throw chaos::io::sys::InvalidPathError( error_message );
@@ -176,7 +176,7 @@ void FileWriter::close()
     m_open = false;
 }
 
-void FileWriter::write( const chaos::uni::UTF8String& text )
+void FileWriter::write( const chaos::str::UTF8String& text )
 {
     // ensure the file writer if not already closed
     if ( !m_open )
@@ -189,7 +189,7 @@ void FileWriter::write( const chaos::uni::UTF8String& text )
     m_stream->write( text.get_raw(), text.get_byte_length() - 1 );
 }
 
-void FileWriter::write_line( const chaos::uni::UTF8String& text )
+void FileWriter::write_line( const chaos::str::UTF8String& text )
 {
     write( text );
     m_stream->write( "\n", 1 );

@@ -56,7 +56,7 @@ TestLogger::~TestLogger()
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void TestLogger::set_global_id( const chaos::uni::UTF8String& id )
+void TestLogger::set_global_id( const chaos::str::UTF8String& id )
 {
     // set global id and meta path
     m_global_id = id;
@@ -87,7 +87,7 @@ void TestLogger::add_stdout( chaos::uint16 verbosity, OutFormat format )
 }
 
 void TestLogger::add_file_output(
-        const chaos::uni::UTF8String& path,
+        const chaos::str::UTF8String& path,
               chaos::uint16           verbosity,
               OutFormat               format )
 {
@@ -97,7 +97,7 @@ void TestLogger::add_file_output(
     if ( !file_stream->good() )
     {
         file_stream->close();
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Failed to open path for logging: " << path;
         throw chaos::test::ex::TestRuntimeError( error_message );
     }
@@ -143,8 +143,8 @@ void TestLogger::close_log()
 }
 
 void TestLogger::open_test(
-        const chaos::uni::UTF8String& path,
-        const chaos::uni::UTF8String& id )
+        const chaos::str::UTF8String& path,
+        const chaos::str::UTF8String& id )
 {
     // only handled by the parent logger
     if ( !m_is_parent )
@@ -158,7 +158,7 @@ void TestLogger::open_test(
     }
 }
 
-void TestLogger::close_test( const chaos::uni::UTF8String& id )
+void TestLogger::close_test( const chaos::str::UTF8String& id )
 {
     // only handled by the parent logger
     if ( !m_is_parent )
@@ -212,7 +212,7 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
         std::string line;
         if( getline( metadata, line ) )
         {
-            bool unit_pass = chaos::uni::UTF8String( line.c_str() ).to_bool();
+            bool unit_pass = chaos::str::UTF8String( line.c_str() ).to_bool();
             if ( unit_pass )
             {
                 ++m_unit_passes;
@@ -225,12 +225,12 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
         if( getline( metadata, line ) )
         {
             m_global_check_pass_count +=
-                    chaos::uni::UTF8String( line.c_str() ).to_uint64();
+                    chaos::str::UTF8String( line.c_str() ).to_uint64();
         }
         if( getline( metadata, line ) )
         {
             m_global_check_fail_count +=
-                    chaos::uni::UTF8String( line.c_str() ).to_uint64();
+                    chaos::str::UTF8String( line.c_str() ).to_uint64();
         }
 
         // clean up metadata
@@ -244,8 +244,8 @@ void TestLogger::close_test( const chaos::uni::UTF8String& id )
 }
 
 void TestLogger::report_crash(
-        const chaos::uni::UTF8String& id,
-        const chaos::uni::UTF8String& info )
+        const chaos::str::UTF8String& id,
+        const chaos::str::UTF8String& info )
 {
     // clean up the sub files and metadata -- there's no point reading as they're
     // likely incomplete or corrupted
@@ -284,8 +284,8 @@ void TestLogger::report_crash(
 }
 
 void TestLogger::report_check_pass(
-        const chaos::uni::UTF8String& type,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
     // record success
@@ -298,10 +298,10 @@ void TestLogger::report_check_pass(
 }
 
 void TestLogger::report_check_fail(
-        const chaos::uni::UTF8String& type,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& type,
+        const chaos::str::UTF8String& file,
               chaos::int32            line,
-        const chaos::uni::UTF8String& message )
+        const chaos::str::UTF8String& message )
 {
     // record failure
     ++m_check_fail_count;
@@ -312,7 +312,7 @@ void TestLogger::report_check_fail(
     }
 }
 
-void TestLogger::write_message( const chaos::uni::UTF8String& message )
+void TestLogger::write_message( const chaos::str::UTF8String& message )
 {
     // send to formatters
     CHAOS_FOR_EACH( it, m_formatters )
@@ -330,7 +330,7 @@ void TestLogger::finialise_test_report()
                 m_check_pass_count, m_check_fail_count );
     }
     // write to meta-data
-    chaos::uni::UTF8String contents;
+    chaos::str::UTF8String contents;
     contents << ( m_check_fail_count == 0 ) << "\n" << m_check_pass_count
              << "\n" << m_check_fail_count << "\n";
     // TODO: this doesn't support Windows UTF-16 encoded data

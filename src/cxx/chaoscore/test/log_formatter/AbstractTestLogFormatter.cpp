@@ -25,7 +25,7 @@ AbstractTestLogFormatter::AbstractTestLogFormatter(
 //------------------------------------------------------------------------------
 
 void AbstractTestLogFormatter::add_occurrence(
-        const chaos::uni::UTF8String& entry )
+        const chaos::str::UTF8String& entry )
 {
     // is there no occurrence yet?
     if ( m_occurrence_map.find( entry ) == m_occurrence_map.end() )

@@ -16,10 +16,7 @@
 #endif
 
 #include "chaoscore/base/os/OSOperations.hpp"
-#include "chaoscore/base/uni/UnicodeOperations.hpp"
-
-// TODO: REMOVE ME
-#include <iostream>
+#include "chaoscore/base/str/UnicodeOperations.hpp"
 
 namespace chaos
 {
@@ -57,7 +54,7 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links )
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
             chaos::data::ENDIAN_LITTLE
@@ -116,7 +113,7 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links )
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
             chaos::data::ENDIAN_LITTLE
@@ -178,7 +175,7 @@ bool is_directory(
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
             chaos::data::ENDIAN_LITTLE
@@ -270,7 +267,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
 #else
 
     // construct the directory path
-    chaos::uni::UTF8String u( path.to_windows() );
+    chaos::str::UTF8String u( path.to_windows() );
     // TODO: ends with
     if ( !u.ends_with( "\\" ) )
     {
@@ -280,7 +277,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             u,
             length,
             chaos::data::ENDIAN_LITTLE
@@ -302,9 +299,9 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     {
         chaos::io::sys::Path sub_path( path );
 
-        sub_path << chaos::uni::utf16_to_utf8(
+        sub_path << chaos::str::utf16_to_utf8(
                 ( const char* ) find_data.cFileName,
-                chaos::uni::npos
+                chaos::str::npos
         );
 
         ret.push_back( sub_path );
@@ -350,7 +347,7 @@ bool create_directory( const chaos::io::sys::Path& path )
         // is this an ambiguous path?
         if ( !is_directory( path ) )
         {
-            chaos::uni::UTF8String error_message;
+            chaos::str::UTF8String error_message;
             error_message << "Directory path: \'" << path << "\' failed to be ";
             error_message << "created as it already exists but is not a ";
             error_message << "directory.";
@@ -365,7 +362,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
     if ( mkdir( path.to_unix().get_raw(), 0777 ) != 0 )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
         throw CreateDirectoryError( error_message );
@@ -377,7 +374,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
             chaos::data::ENDIAN_LITTLE
@@ -388,7 +385,7 @@ bool create_directory( const chaos::io::sys::Path& path )
 
     if ( !result )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
         throw CreateDirectoryError( error_message );
@@ -404,7 +401,7 @@ void delete_path( const chaos::io::sys::Path& path )
     // does the file exist?
     if ( !exists( path ) )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Cannot delete path because it does not exist: \'";
         error_message << path.to_native() << "\'";
         throw chaos::io::sys::InvalidPathError( error_message );
@@ -414,7 +411,7 @@ void delete_path( const chaos::io::sys::Path& path )
 
     if ( remove( path.to_unix().get_raw() ) != 0 )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Failed to delete path: \'" << path.to_native();
         error_message << " \'. OS error: ";
         error_message << chaos::os::get_last_system_error_message();
@@ -425,7 +422,7 @@ void delete_path( const chaos::io::sys::Path& path )
 
     // utf-16
     std::size_t length = 0;
-    const char* p = chaos::uni::utf8_to_utf16(
+    const char* p = chaos::str::utf8_to_utf16(
             path.to_windows().get_raw(),
             length,
             chaos::data::ENDIAN_LITTLE
@@ -445,7 +442,7 @@ void delete_path( const chaos::io::sys::Path& path )
     if ( !result )
     {
 
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Deleting path failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
         throw InvalidPathError( error_message );
@@ -460,7 +457,7 @@ void delete_path_rec( const chaos::io::sys::Path& path )
     // does the file exist?
     if ( !exists( path ) )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Cannot delete path because it does not exist: \'";
         error_message << path.to_native() << "\'";
         throw chaos::io::sys::InvalidPathError( error_message );

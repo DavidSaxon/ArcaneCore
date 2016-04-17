@@ -61,8 +61,8 @@ namespace internal
 //------------------------------------------------------------------------------
 
 void TestCore::declare_module(
-        const chaos::uni::UTF8String& path,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& path,
+        const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
     // has a path been provided? if not this is clearing the current module
@@ -72,7 +72,7 @@ void TestCore::declare_module(
         if ( path.get_symbol( 0 )                    == "." ||
              path.get_symbol( path.get_length() - 1 ) == "."    )
         {
-            chaos::uni::UTF8String error_message;
+            chaos::str::UTF8String error_message;
             error_message << "Invalid test module path: \"" << path
                           << "\". Test paths cannot start or end with "
                           << "\'.\'";
@@ -84,7 +84,7 @@ void TestCore::declare_module(
             if ( path.get_symbol( i )     == "." &&
                  path.get_symbol( i + 1 ) == "."    )
             {
-                chaos::uni::UTF8String error_message;
+                chaos::str::UTF8String error_message;
                 error_message << "Invalid test module path: \"" << path
                               << "\". Test paths cannot contain two or "
                               << "more consecutive \'.\'";
@@ -92,9 +92,9 @@ void TestCore::declare_module(
             }
         }
         // check any variation of the path exists in the map
-        std::vector< chaos::uni::UTF8String > elements =
+        std::vector< chaos::str::UTF8String > elements =
                 path.split( "." );
-        chaos::uni::UTF8String check_path;
+        chaos::str::UTF8String check_path;
         // add the first element to the base modules
         TestCore::base_modules().insert( elements[ 0 ] );
         CHAOS_FOR_EACH( it, elements )
@@ -110,7 +110,7 @@ void TestCore::declare_module(
             if ( TestCore::test_map().find( check_path ) !=
                  TestCore::test_map().end() )
             {
-                chaos::uni::UTF8String error_message;
+                chaos::str::UTF8String error_message;
                 error_message << "Ambiguous test module path: \""
                              << check_path << "\". Unit test already "
                              << "defined with this exact path.";
@@ -123,9 +123,9 @@ void TestCore::declare_module(
 }
 
 void TestCore::declare_unit(
-        const chaos::uni::UTF8String& path,
+        const chaos::str::UTF8String& path,
               UnitTest*               unit_test,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
     // ensure a module has been declared
@@ -148,12 +148,12 @@ void TestCore::declare_unit(
         );
     }
     // build the full path
-    chaos::uni::UTF8String full_path;
+    chaos::str::UTF8String full_path;
     full_path << TestCore::current_module() << "." << path;
     // check that path is not already in the map
     if ( TestCore::test_map().find( full_path ) != TestCore::test_map().end() )
     {
-        chaos::uni::UTF8String error_message;
+        chaos::str::UTF8String error_message;
         error_message << "Test path: \"" << full_path << "\" has multiple "
                       << "definitions.";
         TestCore::throw_error( error_message, file, line );
@@ -164,7 +164,7 @@ void TestCore::declare_unit(
     {
         if ( full_path == *it )
         {
-            chaos::uni::UTF8String error_message;
+            chaos::str::UTF8String error_message;
             error_message << "Ambiguous test path: \"" << full_path
                           << "\". Test module already defined with this "
                           << "exact path.";
@@ -267,7 +267,7 @@ void TestCore::run( RunInfo* run_info )
     }
 
     // sanitize the provided paths
-    std::set< chaos::uni::UTF8String > paths;
+    std::set< chaos::str::UTF8String > paths;
     CHAOS_FOR_EACH( p_it, run_info->paths )
     {
         // check if the path is even valid
@@ -328,9 +328,9 @@ void TestCore::run( RunInfo* run_info )
     // structure for grouping tests by path
     struct PathGroup
     {
-        chaos::uni::UTF8String path;
-        std::set< chaos::uni::UTF8String > test_paths;
-        std::set< chaos::uni::UTF8String > module_paths;
+        chaos::str::UTF8String path;
+        std::set< chaos::str::UTF8String > test_paths;
+        std::set< chaos::str::UTF8String > module_paths;
     };
     std::vector< PathGroup > path_groups;
 
@@ -352,10 +352,10 @@ void TestCore::run( RunInfo* run_info )
                 continue;
             }
             // extract the path to the test
-            chaos::uni::UTF8String path = m_it->first;
+            chaos::str::UTF8String path = m_it->first;
             // find the last period
             std::size_t lastIndex = path.find_last( "." );
-            if ( lastIndex == chaos::uni::npos )
+            if ( lastIndex == chaos::str::npos )
             {
                 throw chaos::test::ex::TestRuntimeError(
                         "Unexpected error 67" );
@@ -378,10 +378,10 @@ void TestCore::run( RunInfo* run_info )
                 continue;
             }
             // extract the path to the module
-            chaos::uni::UTF8String path = *md_it;
+            chaos::str::UTF8String path = *md_it;
             // find the last period
             std::size_t lastIndex = path.find_last( "." );
-            if ( lastIndex == chaos::uni::npos )
+            if ( lastIndex == chaos::str::npos )
             {
                 continue;
             }
@@ -421,7 +421,7 @@ void TestCore::run( RunInfo* run_info )
 
 void TestCore::run_test(
         UnitTest*                     unit_test,
-        const chaos::uni::UTF8String& full_path,
+        const chaos::str::UTF8String& full_path,
         RunInfo*                      run_info )
 {
     // run the test dependent on the mode
@@ -444,11 +444,11 @@ void TestCore::run_test(
 
 void TestCore::run_current_proc(
         UnitTest*                     unit_test,
-        const chaos::uni::UTF8String& full_path,
+        const chaos::str::UTF8String& full_path,
         RunInfo*                      run_info )
 {
     // generate an unique id for this test
-    chaos::uni::UTF8String id = generate_id( full_path );
+    chaos::str::UTF8String id = generate_id( full_path );
     // open the test in logger
     TestCore::logger().open_test( full_path, id );
     // set up fixture
@@ -479,11 +479,11 @@ void TestCore::run_current_proc_no_open(
 
 void TestCore::run_new_proc(
         UnitTest*                     unit_test,
-        const chaos::uni::UTF8String& full_path,
+        const chaos::str::UTF8String& full_path,
         RunInfo*                      run_info )
 {
     // generate the unique id for this this test
-    chaos::uni::UTF8String id = TestCore::generate_id( full_path );
+    chaos::str::UTF8String id = TestCore::generate_id( full_path );
 
     // The method spawning a new process is platform dependent
     #ifdef CHAOS_OS_UNIX
@@ -509,7 +509,7 @@ void TestCore::run_new_proc(
             // check that the process finished successfully
             if ( exit_status != 0 )
             {
-                chaos::uni::UTF8String message;
+                chaos::str::UTF8String message;
                 // TODO: hex
                 message << static_cast< chaos::int32 >( exit_status );
                 TestCore::logger().report_crash( id, message );
@@ -522,7 +522,7 @@ void TestCore::run_new_proc(
     #elif defined( CHAOS_OS_WINDOWS )
 
         // rebuild the command line arguments
-        chaos::uni::UTF8String command_line_args;
+        chaos::str::UTF8String command_line_args;
         command_line_args << " --single_proc --sub_proc " << run_info->id
                           << " --silent_crash --test " << full_path;
         // std out
@@ -588,7 +588,7 @@ void TestCore::run_new_proc(
                     511,
                     NULL
             );
-            chaos::uni::UTF8String error_message;
+            chaos::str::UTF8String error_message;
             error_message << "Spawning separate test process using "
                           << "CreateProcess (Windows) has failed with the "
                           << "error message: " << win_error_message;
@@ -603,7 +603,7 @@ void TestCore::run_new_proc(
         GetExitCodeProcess( proc_info.hProcess, &exit_code );
         if ( exit_code != 0 )
         {
-            chaos::uni::UTF8String message;
+            chaos::str::UTF8String message;
             // TODO: hex
             message << static_cast< chaos::uint32 >( exit_code );
             TestCore::logger().report_crash( id, message );
@@ -626,15 +626,15 @@ void TestCore::run_new_proc(
     #endif
 }
 
-chaos::uni::UTF8String TestCore::generate_id(
-        const chaos::uni::UTF8String& name )
+chaos::str::UTF8String TestCore::generate_id(
+        const chaos::str::UTF8String& name )
 {
-    chaos::uni::UTF8String id = name;
+    chaos::str::UTF8String id = name;
     id << "_" << chaos::clock::get_current_time();
     return id;
 }
 
-chaos::uni::UTF8String TestCore::log_format_to_string(
+chaos::str::UTF8String TestCore::log_format_to_string(
         TestLogger::OutFormat format )
 {
     switch( format )
@@ -661,12 +661,12 @@ chaos::uni::UTF8String TestCore::log_format_to_string(
 }
 
 void TestCore::throw_error(
-        const chaos::uni::UTF8String& message,
-        const chaos::uni::UTF8String& file,
+        const chaos::str::UTF8String& message,
+        const chaos::str::UTF8String& file,
               chaos::int32            line )
 {
     //format the error message.
-    chaos::uni::UTF8String error_message;
+    chaos::str::UTF8String error_message;
     error_message << "\n\n\t" << message << "\n\n\tFILE: " << file
                   << "\n\tLINE: " << line << "\n";
     throw chaos::test::ex::TestDeclerationError( error_message );
