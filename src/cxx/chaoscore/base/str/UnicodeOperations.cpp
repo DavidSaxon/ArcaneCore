@@ -178,7 +178,7 @@ bool is_utf8(const char* data, std::size_t length)
             following_bytes = 2;
             continue;
         }
-        else if((data[i] & 0xF8) == 0xF8)
+        else if((data[i] & 0xF8) == 0xF0)
         {
             // quad byte character
             following_bytes = 3;

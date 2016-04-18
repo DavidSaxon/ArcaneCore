@@ -341,6 +341,7 @@ public:
         valid.push_back("γειά σου Κόσμε");
         valid.push_back("this is a مزيج of text");
         valid.push_back("간");
+        valid.push_back("𐂣");
 
         invalid.push_back("\x80");
         invalid.push_back("\x0A\x80");

@@ -220,6 +220,24 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                 ENCODING ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns that data was not provided in the expected encoding format.
+ */
+class EncodingError : public ChaosException
+{
+public:
+
+    EncodingError(const chaos::str::UTF8String& message)
+        :
+        ChaosException("EncodingError", message)
+    {
+    }
+};
+
+//------------------------------------------------------------------------------
 //                             CONVERSION DATA ERROR
 //------------------------------------------------------------------------------
 

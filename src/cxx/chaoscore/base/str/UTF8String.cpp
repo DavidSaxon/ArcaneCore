@@ -14,47 +14,60 @@ namespace str
 {
 
 //------------------------------------------------------------------------------
+//                            PUBLIC STATIC ATTRIBUTES
+//------------------------------------------------------------------------------
+
+UTF8String::Opt UTF8String::default_opt(UTF8String::Opt::NONE);
+
+//------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
 //------------------------------------------------------------------------------
 
-UTF8String::UTF8String()
+UTF8String::UTF8String(Opt optimisations)
     :
-    m_data       ( nullptr ),
-    m_data_length( 0 ),
-    m_length     ( 0 )
+    m_opt        (optimisations),
+    m_data       (nullptr),
+    m_data_length(0),
+    m_length     (0)
 {
     // assign the empty string
-    assign_internal( "", 0 );
+    assign_internal("", 0);
 }
 
-UTF8String::UTF8String( const char* data )
+UTF8String::UTF8String(const char* data, Opt optimisations)
     :
-    m_data       ( nullptr ),
-    m_data_length( 0 ),
-    m_length     ( 0 )
+    m_opt        (optimisations),
+    m_data       (nullptr),
+    m_data_length(0),
+    m_length     (0)
 {
     // assign the data
-    assign_internal( data );
+    assign_internal(data);
 }
 
-UTF8String::UTF8String( const char* data, std::size_t length )
+UTF8String::UTF8String(
+        const char* data,
+        std::size_t length,
+        Opt optimisations)
     :
-    m_data       ( nullptr ),
-    m_data_length( 0 ),
-    m_length     ( 0 )
+    m_opt        (optimisations),
+    m_data       (nullptr),
+    m_data_length(0),
+    m_length     (0)
 {
     // assign the data
-    assign_internal( data, length );
+    assign_internal(data, length);
 }
 
-UTF8String::UTF8String( const UTF8String& other )
+UTF8String::UTF8String(const UTF8String& other)
     :
-    m_data       ( nullptr ),
-    m_data_length( 0 ),
-    m_length     ( 0 )
+    m_opt        (other.m_opt),
+    m_data       (nullptr),
+    m_data_length(0),
+    m_length     (0)
 {
     // assign the data with the known length
-   assign_internal( other.m_data, other.m_data_length );
+   assign_internal(other.m_data, other.m_data_length);
 }
 
 //------------------------------------------------------------------------------
@@ -71,9 +84,11 @@ UTF8String::~UTF8String()
 //                                   OPERATORS
 //------------------------------------------------------------------------------
 
-const UTF8String& UTF8String::operator=( const UTF8String& other )
+const UTF8String& UTF8String::operator=(const UTF8String& other)
 {
-    assign( other );
+    // copy optimisation parameters
+    m_opt = other.m_opt;
+    assign(other);
     return *this;
 }
 
@@ -273,16 +288,16 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
 {
     // calculate the new size of the data (but remove the first string's NULL
     // terminator)
-    std::size_t new_length = ( m_data_length - 1 ) + other.m_data_length;
+    std::size_t new_length = (m_data_length - 1) + other.m_data_length;
     // allocate a new array to hold the increase data size, ignoring one of the
     // NULL terminators
     char* new_data = new char[ new_length ];
     // copy over the data from the strings
-    memcpy( new_data, m_data, m_data_length - 1 );
+    memcpy(new_data, m_data, m_data_length - 1);
     memcpy(
-            new_data + ( m_data_length - 1 ),
-            other.m_data,
-            other.m_data_length
+        new_data + (m_data_length - 1),
+        other.m_data,
+        other.m_data_length
     );
     // finally assign and return
     assign_internal( new_data, new_length );
@@ -738,36 +753,47 @@ chaos::uint32 UTF8String::get_code_point( std::size_t index ) const
 }
 
 std::size_t UTF8String::get_byte_index_for_symbol_index(
-        std::size_t symbol_index ) const
+        std::size_t symbol_index) const
 {
     // is the index valid?
-    check_symbol_index( symbol_index );
+    check_symbol_index(symbol_index);
 
-    // TODO: can this be optimized?
-    std::size_t current_index = 0;
-    for ( std::size_t i = 0; i < m_data_length - 1; )
+    if(m_opt.flags & Opt::FIXED_WIDTH)
     {
-        if ( current_index == symbol_index )
+        // we can just calculate based on fixed width
+        return symbol_index * m_opt.fixed_width_size;
+    }
+
+    std::size_t current_index = 0;
+    for(std::size_t i = 0; i < m_data_length - 1;)
+    {
+        if (current_index == symbol_index)
         {
             return i;
         }
 
         ++current_index;
         // increase by byte width
-        i += get_byte_width( i );
+        i += get_byte_width(i);
     }
 
     // something broke
     return chaos::str::npos;
 }
 
-std::size_t UTF8String::get_symbol_width( std::size_t index ) const
+std::size_t UTF8String::get_symbol_width(std::size_t index) const
 {
     // is the index valid
-    check_symbol_index( index );
+    check_symbol_index(index);
 
-    std::size_t byte_index = get_byte_index_for_symbol_index( index );
-    return get_byte_width( byte_index );
+    if(m_opt.flags & Opt::FIXED_WIDTH)
+    {
+        // return from optimisation parameters
+        return m_opt.fixed_width_size;
+    }
+
+    std::size_t byte_index = get_byte_index_for_symbol_index(index);
+    return get_byte_width(byte_index);
 }
 
 const char* UTF8String::get_raw() const
@@ -781,17 +807,23 @@ std::size_t UTF8String::get_byte_length() const
 }
 
 std::size_t UTF8String::get_symbol_index_for_byte_index(
-        std::size_t byte_index ) const
+        std::size_t byte_index) const
 {
     // is the index valid?
-    check_byte_index( byte_index );
+    check_byte_index(byte_index);
+
+    if(m_opt.flags & Opt::FIXED_WIDTH)
+    {
+        // we can just calculate based on fixed width
+        return byte_index / m_opt.fixed_width_size;
+    }
 
     std::size_t current_index = 0;
-    for ( std::size_t i = 0; i < m_data_length - 1; )
+    for (std::size_t i = 0; i < m_data_length - 1;)
     {
-        std::size_t next = i + get_byte_width( i );
+        std::size_t next = i + get_byte_width(i);
 
-        if ( byte_index >= i && byte_index < next )
+        if (byte_index >= i && byte_index < next)
         {
             return current_index;
         }
@@ -805,32 +837,45 @@ std::size_t UTF8String::get_symbol_index_for_byte_index(
     return chaos::str::npos;
 }
 
-std::size_t UTF8String::get_byte_width( std::size_t byte_index ) const
+std::size_t UTF8String::get_byte_width(std::size_t byte_index) const
 {
     // is the index valid?
-    check_byte_index( byte_index );
+    check_byte_index(byte_index);
 
-    // single byte character
-    if ( ( m_data[ byte_index ] & 0x80 ) == 0 )
+    if(m_opt.flags & Opt::FIXED_WIDTH)
     {
+        // return from optimisation parameters
+        return m_opt.fixed_width_size;
+    }
+
+    // TODO: function for single byte width?
+    if((m_data[byte_index] & 0x80) == 0)
+    {
+        // single byte character
         return 1;
     }
-    // double byte character
-    else if ( ( m_data[ byte_index ] & 0xE0 ) == 0xC0 )
+    else if((m_data[byte_index] & 0xE0) == 0xC0)
     {
+        // double byte character
         return 2;
     }
-    // triple byte character
-    else if ( ( m_data[ byte_index ] & 0xF0 ) == 0xE0 )
+    else if((m_data[byte_index] & 0xF0) == 0xE0)
     {
+        // triple byte character
         return 3;
     }
-    // TODO: should we ever check validity here?
-    // quad byte character
-    else
+    else if((m_data[byte_index] & 0xF8) == 0xF0)
     {
+        // quad byte character
         return 4;
     }
+
+    return npos;
+}
+
+const UTF8String::Opt& UTF8String::get_optimisations() const
+{
+    return m_opt;
 }
 
 //------------------------------------------------------------------------------
@@ -878,17 +923,8 @@ void UTF8String::assign_internal(
         m_data[ m_data_length - 1 ] = '\0';
     }
 
-    // to calculate the number of utf-8 symbols in the string
-    // TODO: could be optimised?
-    // TODO: at the very least could find bit widths without checking valid
-    //       index
-    m_length = 0;
-    for ( std::size_t i = 0; i < m_data_length - 1; )
-    {
-        ++m_length;
-        // increase index by byte width
-        i += get_byte_width( i );
-    }
+    // process the raw data
+    process_raw();
 }
 
 void UTF8String::check_symbol_index( std::size_t index ) const
@@ -911,6 +947,118 @@ void UTF8String::check_byte_index( std::size_t index ) const
                       << "to the number of bytes in the string: "
                       << m_data_length;
         throw chaos::ex::IndexOutOfBoundsError( error_message );
+    }
+}
+
+void UTF8String::process_raw()
+{
+    // the number of bytes, not including the null terminator
+    std::size_t char_count = m_data_length - 1;
+
+    // clear length
+    m_length = 0;
+
+    if(m_opt.flags & Opt::FIXED_WIDTH)
+    {
+        // all symbols have the same number of bytes so just calculate the
+        // the number of symbols based on the number of bytes
+        m_length = char_count / m_opt.fixed_width_size;
+
+        // we don't need to check data validity so skip over
+        if(m_opt.flags & Opt::SKIP_VALID_CHECK)
+        {
+            return;
+        }
+    }
+
+    // to calculate the number of utf-8 symbols in the string and check
+    // the validity of the string
+    // the current byte and symbol that are being checked
+    std::size_t last_byte = 0;
+    std::size_t last_symbol = 0;
+    // the number of bytes in the current symbol
+    chaos::uint16 current_width = 0;
+    // marks the number of bytes after a primary byte that are required to start
+    // with 10xxxxxx, needed for checking validity
+    chaos::uint8 following_bytes = 0;
+    // iterate over each bytes
+    for(std::size_t i = 0; i < char_count; ++i)
+    {
+        // is this a following byte we need to check that it matches the
+        // pattern: 10xxxxxx
+        if(following_bytes > 0)
+        {
+            if((m_data[i] & 0xC0) == 0x80)
+            {
+                // valid following byte
+                --following_bytes;
+                continue;
+            }
+            else
+            {
+                chaos::str::UTF8String error_message;
+                error_message << "Error while reading byte: \'" << m_data[i]
+                              << "\' following symbol at byte: " << last_byte
+                              << " and symbol index: " << last_symbol << ". "
+                              << "Expected symbol to consist of "
+                              << current_width << " bytes.";
+                throw chaos::ex::EncodingError(error_message);
+            }
+        }
+
+        // update the current byte
+        last_byte = i;
+
+        // since this is not a following byte check against valid primary bytes
+        if((m_data[i] & 0x80) == 0)
+        {
+            // single byte character
+            current_width = 1;
+        }
+        else if((m_data[i] & 0xE0) == 0xC0)
+        {
+            // double byte character
+            current_width = 2;
+        }
+        else if((m_data[i] & 0xF0) == 0xE0)
+        {
+            // triple byte character
+            current_width = 3;
+        }
+        else if((m_data[i] & 0xF8) == 0xF0)
+        {
+            // quad byte character
+            current_width = 4;
+        }
+        else
+        {
+            chaos::str::UTF8String error_message;
+            error_message << "Error while reading first byte: \'" << m_data[i]
+                          << "\' of symbol at byte: " << last_byte << " and "
+                          << "symbol index: " << last_symbol << ". Expected "
+                          << "byte to match one of the following binary "
+                          << "patterns: 0xxxxxxx, 110xxxxx, 1110xxxx, or "
+                          << "11110xxx.";
+            throw chaos::ex::EncodingError(error_message);
+        }
+
+        // update the current symbol
+        ++last_symbol;
+        // update the length
+        if(m_opt.flags ^ Opt::FIXED_WIDTH)
+        {
+            ++m_length;
+        }
+        if(m_opt.flags ^ Opt::SKIP_VALID_CHECK)
+        {
+            // update the expected following bytes to be checked
+            following_bytes = current_width - 1;
+        }
+        else
+        {
+            // jump to the next symbol byte
+            i += (current_width -1);
+        }
     }
 }
 
