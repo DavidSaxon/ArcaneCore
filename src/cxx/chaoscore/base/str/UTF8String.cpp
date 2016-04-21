@@ -175,6 +175,7 @@ UTF8String& UTF8String::operator<<( bool other )
 
 UTF8String& UTF8String::operator<<( char other )
 {
+    // TODO: if over 128 cast to int to avoid encoding errors
     // TODO: implement correctly
     std::stringstream ss;
     ss << other;
@@ -195,6 +196,7 @@ UTF8String& UTF8String::operator<<( unsigned long other )
 
 UTF8String& UTF8String::operator<<( chaos::int8 other )
 {
+    // TODO: if over 128 cast to int to avoid encoding errors?
     // TODO: implement correctly
     std::stringstream ss;
     ss << other;
@@ -203,6 +205,7 @@ UTF8String& UTF8String::operator<<( chaos::int8 other )
 
 UTF8String& UTF8String::operator<<( chaos::uint8 other )
 {
+    // TODO: if over 128 cast to int to avoid encoding errors?
     // TODO: implement correctly
     std::stringstream ss;
     ss << other;
@@ -869,6 +872,11 @@ std::size_t UTF8String::get_byte_width(std::size_t byte_index) const
         // quad byte character
         return 4;
     }
+    else if(m_opt.flags & Opt::SKIP_VALID_CHECK)
+    {
+        // assume byte size of 1
+        return 1;
+    }
 
     return npos;
 }
@@ -1030,10 +1038,16 @@ void UTF8String::process_raw()
             // quad byte character
             current_width = 4;
         }
+        else if(m_opt.flags & Opt::SKIP_VALID_CHECK)
+        {
+            // assume byte size of 1
+            current_width = 1;
+        }
         else
         {
             chaos::str::UTF8String error_message;
-            error_message << "Error while reading first byte: \'" << m_data[i]
+            error_message << "Error while reading first byte: \'"
+                          << static_cast<chaos::uint32>(m_data[i])
                           << "\' of symbol at byte: " << last_byte << " and "
                           << "symbol index: " << last_symbol << ". Expected "
                           << "byte to match one of the following binary "
@@ -1045,11 +1059,11 @@ void UTF8String::process_raw()
         // update the current symbol
         ++last_symbol;
         // update the length
-        if(m_opt.flags ^ Opt::FIXED_WIDTH)
+        if(!(m_opt.flags & Opt::FIXED_WIDTH))
         {
             ++m_length;
         }
-        if(m_opt.flags ^ Opt::SKIP_VALID_CHECK)
+        if(!(m_opt.flags & Opt::SKIP_VALID_CHECK))
         {
             // update the expected following bytes to be checked
             following_bytes = current_width - 1;

@@ -1,6 +1,6 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE( base.str.utf8_string )
+CHAOS_TEST_MODULE(base.str.UTF8String)
 
 #include <algorithm>
 #include <cstring>
@@ -2879,6 +2879,126 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
             fixture->symbols.get_byte_width( chaos::str::npos ),
             chaos::ex::IndexOutOfBoundsError
     );
+}
+
+//------------------------------------------------------------------------------
+//                                 OPTIMISATIONS
+//------------------------------------------------------------------------------
+
+class OptimisationsFixture : public chaos::test::Fixture
+{
+public:
+
+    //--------------------------------ATTRIBUTES--------------------------------
+
+    chaos::str::UTF8String::Opt skip_valid;
+    std::vector<const char*> valid_utf8;
+    std::vector<const char*> invalid_utf8;
+
+    chaos::str::UTF8String::Opt fixed_width;
+    std::vector<const char*> width_1;
+    std::vector<const char*> width_mixed;
+
+    // TODO: ASCII
+
+    //--------------------------------FUNCTIONS---------------------------------
+
+    void setup()
+    {
+        skip_valid.flags = chaos::str::UTF8String::Opt::SKIP_VALID_CHECK;
+
+        valid_utf8.push_back("");
+        valid_utf8.push_back("Hello World");
+        valid_utf8.push_back("a");
+        valid_utf8.push_back(
+            "This is a really long string, that just keeps on going on and on "
+            "and on! It never seems to end, but just when you think that it "
+            "will not end. It ends.\n\n\n\n\nNope still going here.\t\t\tThe "
+            "end!\n\n\n\t\t\t"
+        );
+        valid_utf8.push_back("γειά σου Κόσμε");
+        valid_utf8.push_back("this is a مزيج of text");
+        valid_utf8.push_back("간");
+        valid_utf8.push_back("𐂣");
+
+        invalid_utf8.push_back("\x80");
+        invalid_utf8.push_back("\x0A\x80");
+        invalid_utf8.push_back("\xC2\x80\x80");
+        invalid_utf8.push_back("\xC8\x02");
+        invalid_utf8.push_back("\xE1\x80\x80\x80");
+        invalid_utf8.push_back("\xE3\x06");
+        invalid_utf8.push_back("\xEE\x80\xC3");
+        invalid_utf8.push_back("\xFA\x80\x80\x80\x80");
+        invalid_utf8.push_back("\xFA\xC4");
+        invalid_utf8.push_back("\xFA\x80\x05");
+        invalid_utf8.push_back("\xFA\x80\x80\xEE");
+
+        fixed_width.flags = chaos::str::UTF8String::Opt::FIXED_WIDTH;
+
+        width_1.push_back("");
+        width_1.push_back("Hello World");
+        width_1.push_back("a");
+        width_1.push_back(
+            "This is a really long string, that just keeps on going on and on "
+            "and on! It never seems to end, but just when you think that it "
+            "will not end. It ends.\n\n\n\n\nNope still going here.\t\t\tThe "
+            "end!\n\n\n\t\t\t"
+        );
+        width_1.push_back("abcdefgehijklmnopqrstuvwxyz1234567890");
+
+        width_mixed.push_back("γειά σου Κόσμε");
+        width_mixed.push_back("this is a مزيج of text");
+        width_mixed.push_back("γειά σου Κόσμε");
+        width_mixed.push_back("간");
+    }
+};
+
+CHAOS_TEST_UNIT_FIXTURE(optimisations, OptimisationsFixture)
+{
+    CHAOS_TEST_MESSAGE("Testing valid UTF-8 with no optimisations");
+    CHAOS_FOR_EACH(it_1, fixture->valid_utf8)
+    {
+        chaos::str::UTF8String s(*it_1);
+    }
+
+    CHAOS_TEST_MESSAGE("Testing invalid UTF-8 with no optimisations");
+    CHAOS_FOR_EACH(it_2, fixture->invalid_utf8)
+    {
+        CHAOS_CHECK_THROW(
+                chaos::str::UTF8String(*it_2),
+                chaos::ex::EncodingError
+        );
+    }
+
+    CHAOS_TEST_MESSAGE("Testing valid UTF-8 with SKIP_VALID_CHECK");
+    CHAOS_FOR_EACH(it_3, fixture->valid_utf8)
+    {
+        chaos::str::UTF8String(*it_3, fixture->skip_valid);
+    }
+
+    CHAOS_TEST_MESSAGE("Testing invalid UTF-8 with SKIP_VALID_CHECK");
+    CHAOS_FOR_EACH(it_4, fixture->invalid_utf8)
+    {
+        chaos::str::UTF8String(*it_4, fixture->skip_valid);
+    }
+
+    CHAOS_TEST_MESSAGE("Testing 1 byte sized symbols with fixed width");
+    CHAOS_FOR_EACH(it_5, fixture->width_1)
+    {
+        chaos::str::UTF8String s(*it_5);
+        chaos::str::UTF8String s_opt(*it_5, fixture->fixed_width);
+
+        CHAOS_CHECK_EQUAL(s_opt.get_length(), s.get_length());
+    }
+
+    CHAOS_TEST_MESSAGE("Testing mixed byte sized symbols with fixed width");
+    CHAOS_FOR_EACH(it_6, fixture->width_mixed)
+    {
+        chaos::str::UTF8String s(*it_6);
+        chaos::str::UTF8String s_opt(*it_6, fixture->fixed_width);
+
+        CHAOS_CHECK_NOT_EQUAL(s_opt.get_length(), s.get_length());
+    }
 }
 
 } // namespace utf8_string_tests

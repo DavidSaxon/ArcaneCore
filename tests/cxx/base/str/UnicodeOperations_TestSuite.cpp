@@ -329,7 +329,7 @@ public:
 
     virtual void setup()
     {
-        // valid.push_back("");
+        valid.push_back("");
         valid.push_back("Hello World");
         valid.push_back("a");
         valid.push_back(

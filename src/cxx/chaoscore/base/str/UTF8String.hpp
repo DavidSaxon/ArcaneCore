@@ -163,7 +163,10 @@ public:
             /// This optimisation can be used in most cases since input data is
             /// already known to be UTF-8 before construction.
             /// Character data can be checked to see if it's valid UTF-8 encoded
-            /// data through the chaos::str::is_utf8 function.
+            /// data through the chaos::str::is_utf8 function. The character
+            /// data will still need to be iterated over in order to inspect the
+            /// first byte to determine the byte-width of each symbol, if the
+            /// symbol width cannot be determined a width of 1 is assumed.
             SKIP_VALID_CHECK = 1L << 1,
             /// All symbols within the string will have a byte width equal to
             /// Opt::fixed_width_size. This commonly useful for handling pure
@@ -197,7 +200,7 @@ public:
          * \param _flags Bitwise OR of Opt::Flag parameters this structure
          *               represents.
          */
-        Opt(chaos::uint32 _flags)
+        Opt(chaos::uint32 _flags = NONE)
             :
             flags           (_flags),
             fixed_width_size(1)
