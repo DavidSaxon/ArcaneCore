@@ -65,7 +65,9 @@ public:
      * \param flags Flags used to described how the FileWriter should be opened.
      *              See chaos::io::sys::FileWriter::Flag for more details.
      */
-    FileWriter( chaos::uint32 flags = FileWriter::FLAG_NONE );
+    FileWriter(
+            chaos::uint32 flags = FileWriter::FLAG_NONE,
+            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
 
     /*!
      * \brief Open constructor.
@@ -80,7 +82,15 @@ public:
      */
     FileWriter(
             const chaos::io::sys::Path& path,
-            chaos::uint32 flags = FileWriter::FLAG_NONE );
+            chaos::uint32 flags = FileWriter::FLAG_NONE,
+            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
+
+    /*!
+     * \brief Move constructor.
+     *
+     * \param other The FileWriter to move resources from.
+     */
+    FileWriter(FileWriter&& other);
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS

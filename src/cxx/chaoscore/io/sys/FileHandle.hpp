@@ -34,7 +34,12 @@ public:
     //                              MOVE CONSTRUCTOR
     //--------------------------------------------------------------------------
 
-    // FileHandle(FileHandle&& other) = default;
+    /*!
+     * \brief Move constructor.
+     *
+     * \param other The FileHandle to move resources from.
+     */
+    FileHandle(FileHandle&& other);
 
     //--------------------------------------------------------------------------
     //                                 DESTRUCTOR
@@ -47,6 +52,11 @@ public:
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
+
+    /*!
+     * brief Returns whether the file handle is currently open or not.
+     */
+    bool is_open() const;
 
     /*!
      * \brief Opens the file handle to the internal path.
@@ -65,7 +75,7 @@ public:
      * This function is short hand for:
      *
      * \code
-     * my_file_handle.set_path( m_path );
+     * my_file_handle.set_path(path);
      * my_file_handle.open();
      * \endcode
      *
@@ -94,7 +104,7 @@ public:
      *
      * \throws chaos::ex::StateError If this file handle is open.
      */
-    void set_path( const chaos::io::sys::Path& path );
+    void set_path(const chaos::io::sys::Path& path);
 
     /*!
      * \brief Returns the descriptor flags of the this file handle.
@@ -108,7 +118,21 @@ public:
      *
      * \throws chaos::ex::StateError If this file handle is open.
      */
-    void set_flags( chaos::uint32 flags );
+    void set_flags(chaos::uint32 flags);
+
+    /*!
+     * \brief Returns the string encoding being used by the file handle.
+     */
+    chaos::str::Encoding get_encoding() const;
+
+    /*!
+     * \brief Sets the string encoding to be used by the file handle.
+     *
+     * The encoding can only be set if the file handle is not currently open.
+     *
+     * \throws chaos::ex::StateError If this file handle is open.
+     */
+    void set_encoding(chaos::str::Encoding encoding);
 
 
 protected:
@@ -121,11 +145,14 @@ protected:
      * \brief The file path this handle is currently using.
      */
     chaos::io::sys::Path m_path;
-
     /*!
      * \brief Descriptor flags of the file handle.
      */
     chaos::uint32 m_flags;
+    /*!
+     * \brief Encoding of the file handle.
+     */
+    chaos::str::Encoding m_encoding;
 
     /*!
      * \brief Whether the file handle is currently open or not.
@@ -143,7 +170,9 @@ protected:
      *
      * \param flags Flags used to describe how the file handle should be opened.
      */
-    FileHandle( chaos::uint32 flags = 0U );
+    FileHandle(
+            chaos::uint32 flags = 0U,
+            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
 
     /*!
      * \brief Path super constructor.
@@ -155,7 +184,10 @@ protected:
      * \param path Path to the file to open.
      * \param flags Flags used to describe how the file handle should be opened.
      */
-    FileHandle( const chaos::io::sys::Path& path, chaos::uint32 flags = 0U );
+    FileHandle(
+            const chaos::io::sys::Path& path,
+            chaos::uint32 flags = 0U,
+            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
 };
 
 } // namespace sys

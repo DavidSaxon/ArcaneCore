@@ -33,15 +33,26 @@ public:
 
     //-------------------------------CONSTRUCTORS-------------------------------
 
-    TestFileHandle(const chaos::io::sys::Path& path, chaos::uint32 flags = 0U)
+    TestFileHandle(
+            const chaos::io::sys::Path& path,
+            chaos::uint32 flags = 0U,
+            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8)
         :
-        FileHandle(path, flags)
+        FileHandle(path, flags, encoding)
     {
     }
 
-    TestFileHandle(chaos::uint32 flags = 0U)
+    TestFileHandle(
+            chaos::uint32 flags = 0U,
+            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8)
         :
-        FileHandle(flags)
+        FileHandle(flags, encoding)
+    {
+    }
+
+    TestFileHandle(TestFileHandle&& other)
+        :
+        FileHandle(std::move(other))
     {
     }
 
@@ -49,12 +60,12 @@ public:
 
     virtual void open()
     {
-        // do nothing
+        m_open = true;
     }
 
     virtual void close()
     {
-        // do nothing
+        m_open = false;
     }
 };
 
@@ -70,6 +81,7 @@ public:
 
     std::vector<chaos::io::sys::Path> paths;
     std::vector<chaos::uint32> flags;
+    std::vector<chaos::str::Encoding> encodings;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -81,6 +93,7 @@ public:
             p << "file.txt";
             paths.push_back(p);
             flags.push_back(TestFileHandle::FLAG_NONE);
+            encodings.push_back(chaos::str::ENCODING_ASCII);
         }
         {
             chaos::io::sys::Path p;
@@ -90,6 +103,7 @@ public:
                 TestFileHandle::FLAG_FIRST  |
                 TestFileHandle::FLAG_EIGHTH
             );
+            encodings.push_back(chaos::str::ENCODING_UTF8);
         }
         {
             chaos::io::sys::Path p;
@@ -100,6 +114,7 @@ public:
                 TestFileHandle::FLAG_FIRST  |
                 TestFileHandle::FLAG_SECOND
             );
+            encodings.push_back(chaos::str::ENCODING_UTF16_LITTLE_ENDIAN);
         }
         {
             chaos::io::sys::Path p;
@@ -109,6 +124,7 @@ public:
                 TestFileHandle::FLAG_SIXTH   |
                 TestFileHandle::FLAG_SEVENTH
             );
+            encodings.push_back(chaos::str::ENCODING_UTF16_BIG_ENDIAN);
         }
         {
             chaos::io::sys::Path p;
@@ -120,6 +136,7 @@ public:
                 TestFileHandle::FLAG_FIFTH   |
                 TestFileHandle::FLAG_SEVENTH
             );
+            encodings.push_back(chaos::str::ENCODING_UTF16_BIG_ENDIAN);
         }
         {
             chaos::io::sys::Path p;
@@ -131,6 +148,7 @@ public:
                 TestFileHandle::FLAG_SIXTH  |
                 TestFileHandle::FLAG_EIGHTH
             );
+            encodings.push_back(chaos::str::ENCODING_UTF8);
         }
         {
             chaos::io::sys::Path p;
@@ -146,6 +164,7 @@ public:
                 TestFileHandle::FLAG_SEVENTH |
                 TestFileHandle::FLAG_EIGHTH
             );
+            encodings.push_back(chaos::str::ENCODING_UTF16_LITTLE_ENDIAN);
         }
     }
 };
@@ -169,25 +188,80 @@ CHAOS_TEST_UNIT_FIXTURE(flag_constructor, FileHandleGenericFixture)
 
 CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
 {
-    // std::vector<TestFileHandle> file_handles;
+    std::vector<TestFileHandle> file_handles;
 
-    // for(std::size_t i = 0; i < fixture->paths.size(); ++i)
-    // {
-    //     TestFileHandle f(fixture->paths[i], fixture->flags[i]);
-    //     file_handles.push_back(std::move(f));
-    // }
+    for(std::size_t i = 0; i < fixture->paths.size(); ++i)
+    {
+        TestFileHandle f(
+            fixture->paths[i],
+            fixture->flags[i],
+            fixture->encodings[i]
+        );
+        file_handles.push_back(std::move(f));
+    }
 
-    // CHAOS_TEST_MESSAGE("Checking paths");
-    // for(std::size_t i = 0; i < file_handles.size(); ++i)
-    // {
-    //     CHAOS_CHECK_EQUAL(file_handles[i].get_path(), fixture->paths[i]);
-    // }
+    CHAOS_TEST_MESSAGE("Checking paths");
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        CHAOS_CHECK_EQUAL(file_handles[i].get_path(), fixture->paths[i]);
+    }
 
-    // CHAOS_TEST_MESSAGE("Checking flags");
-    // for(std::size_t i = 0; i < file_handles.size(); ++i)
-    // {
-    //     CHAOS_CHECK_EQUAL(file_handles[i].get_path(), fixture->paths[i]);
-    // }
+    CHAOS_TEST_MESSAGE("Checking flags");
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        CHAOS_CHECK_EQUAL(file_handles[i].get_path(), fixture->paths[i]);
+    }
+
+    CHAOS_TEST_MESSAGE("Checking encoding");
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        CHAOS_CHECK_EQUAL(
+            file_handles[i].get_encoding(), fixture->encodings[i]);
+    }
+
+    CHAOS_TEST_MESSAGE("Checking that files are closed");
+    CHAOS_FOR_EACH(it, file_handles)
+    {
+        CHAOS_CHECK_FALSE(it->is_open());
+    }
+
+    CHAOS_TEST_MESSAGE("Opening files");
+    CHAOS_FOR_EACH(it_1, file_handles)
+    {
+        it_1->open();
+    }
+
+    CHAOS_TEST_MESSAGE("Checking that files are open");
+    CHAOS_FOR_EACH(it_2, file_handles)
+    {
+        CHAOS_CHECK_TRUE(it_2->is_open());
+    }
+
+
+    CHAOS_TEST_MESSAGE("Checking that getters are locked");
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        CHAOS_CHECK_THROW(
+            file_handles[i].set_path(fixture->paths[i]),
+            chaos::ex::StateError
+        );
+    }
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        CHAOS_CHECK_THROW(
+            file_handles[i].set_flags(fixture->flags[i]),
+            chaos::ex::StateError
+        );
+    }
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        CHAOS_CHECK_THROW(
+            file_handles[i].set_encoding(fixture->encodings[i]),
+            chaos::ex::StateError
+        );
+    }
+
+    // TODO: test closing file and re-writing
 }
 
 } // namespace anonymous

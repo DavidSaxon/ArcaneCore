@@ -7,9 +7,6 @@
 #include "chaoscore/base/str/UnicodeOperations.hpp"
 #include "chaoscore/io/sys/FileSystemExceptions.hpp"
 
-// TODO: REMOVE ME
-#include <iostream>
-
 namespace chaos
 {
 namespace io
@@ -24,7 +21,7 @@ namespace sys
 namespace
 {
 
-unsigned char utf8_bom[ 3 ] = { 0xEF, 0xBB, 0xBF };
+unsigned char utf8_bom[3] = {0xEF, 0xBB, 0xBF};
 
 } // namespace anonymous
 
@@ -32,19 +29,33 @@ unsigned char utf8_bom[ 3 ] = { 0xEF, 0xBB, 0xBF };
 //                                  CONSTRUCTORS
 //------------------------------------------------------------------------------
 
-FileWriter::FileWriter( chaos::uint32 flags )
+FileWriter::FileWriter(
+        chaos::uint32 flags,
+        chaos::str::Encoding encoding)
     :
-    FileHandle( flags ),
-    m_stream  ( nullptr )
+    FileHandle(flags, encoding),
+    m_stream  (nullptr)
 {
 }
 
-FileWriter::FileWriter( const chaos::io::sys::Path& path, chaos::uint32 flags )
+FileWriter::FileWriter(
+        const chaos::io::sys::Path& path,
+        chaos::uint32 flags,
+        chaos::str::Encoding encoding)
     :
-    FileHandle( path, flags ),
-    m_stream  ( nullptr )
+    FileHandle(path, flags, encoding),
+    m_stream  (nullptr)
 {
     open();
+}
+
+FileWriter::FileWriter(FileWriter&& other)
+    :
+    FileHandle(std::move(other)),
+    m_stream(other.m_stream)
+{
+    // reset other resources
+    other.m_stream = nullptr;
 }
 
 //------------------------------------------------------------------------------
