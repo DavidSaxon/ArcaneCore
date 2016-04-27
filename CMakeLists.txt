@@ -18,6 +18,7 @@ set(IO_SRC
     src/cxx/chaoscore/io/format/ANSI.cpp
     src/cxx/chaoscore/io/format/FormatOperations.cpp
     src/cxx/chaoscore/io/sys/FileHandle.cpp
+    src/cxx/chaoscore/io/sys/FileReader.cpp
     src/cxx/chaoscore/io/sys/FileSystemOperations.cpp
     src/cxx/chaoscore/io/sys/FileWriter.cpp
     src/cxx/chaoscore/io/sys/Path.cpp
@@ -54,6 +55,7 @@ set(TESTS_SUITES
 
     tests/cxx/io/format/FormatOperations_TestSuite.cpp
     tests/cxx/io/sys/FileHandle_TestSuite.cpp
+    tests/cxx/io/sys/FileReader_TestSuite.cpp
     tests/cxx/io/sys/FileSystemOperations_TestSuite.cpp
     tests/cxx/io/sys/Path_TestSuite.cpp
 

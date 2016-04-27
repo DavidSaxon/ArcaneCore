@@ -169,6 +169,7 @@ protected:
      * Super constructor used to create a new unopened file handle.
      *
      * \param flags Flags used to describe how the file handle should be opened.
+     * \param encoding The encoding of the file handle.
      */
     FileHandle(
             chaos::uint32 flags = 0U,
@@ -183,6 +184,7 @@ protected:
      *
      * \param path Path to the file to open.
      * \param flags Flags used to describe how the file handle should be opened.
+     * \param encoding The encoding of the file handle.
      */
     FileHandle(
             const chaos::io::sys::Path& path,

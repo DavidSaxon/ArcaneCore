@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import codecs
 import os
 import sys
 
@@ -102,5 +103,57 @@ touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_1/file_f_1'))
 touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_1/file_f_2'))
 touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_2/file_g_1'))
 touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_2/file_g_2'))
+
+# files to read
+with open(os.path.join(BASE_DIR, 'empty_file'), 'w+') as f:
+    pass
+
+with open(os.path.join(BASE_DIR, 'ascii.txt'), 'w+', newline='\n') as f:
+    f.write('Hello World!\n')
+    f.write('This is another line.\n')
+    f.write('\n')
+    f.write('\t\t     \t\t\n')
+    f.write('And another line.\n')
+    f.write('And some symbols:\n')
+    f.write('$&*@$)@@\":\">?|\n')
+    f.write('>>End of Transmission<<\n')
+
+with codecs.open(os.path.join(BASE_DIR, 'utf8.txt'), 'w+', 'utf-8-sig') as f:
+    f.write(u'Hello World!\n')
+    f.write(u'γειά σου Κόσμε\n')
+    f.write(u'\n')
+    f.write(u'\t\t     \t\t\n')
+    f.write(u'this is a مزيج of text\n')
+    f.write(u'간\n')
+    f.write(u'𐂣\n')
+
+with open(os.path.join(BASE_DIR, 'ascii.binary'), 'bw+') as f:
+    f.write(b'Hello World!\n')
+    f.write(b'This is another line.\n')
+    f.write(b'\n')
+    f.write(b'\t\t     \t\t\n')
+    f.write(b'And another line.\n')
+    f.write(b'And some symbols:\n')
+    f.write(b'$&*@$)@@\":\">?|\n')
+    f.write(b'>>End of Transmission<<\n')
+
+with open(os.path.join(BASE_DIR, 'win_nl'), 'w+', newline='\r\n') as f:
+    f.write('Hello World!\n')
+    f.write('This is another line.\n')
+    f.write('\n')
+    f.write('\t\t     \t\t\n')
+    f.write('And another line.\n')
+    f.write('And some symbols:\n')
+    f.write('$&*@$)@@\":\">?|\n')
+    f.write('>>End of Transmission<<\n')
+
+with codecs.open(os.path.join(BASE_DIR, 'mix_nl'), 'w+', 'utf-8-sig') as f:
+    f.write(u'Hello World!\n')
+    f.write(u'γειά σου Κόσμε\r\n')
+    f.write(u'\n')
+    f.write(u'\t\t     \t\t\r\n')
+    f.write(u'this is a مزيج of text\r\n')
+    f.write(u'간\r\n')
+    f.write(u'𐂣\n')
 
 

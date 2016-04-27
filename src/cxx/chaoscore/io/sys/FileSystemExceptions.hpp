@@ -80,6 +80,20 @@ public:
     }
 };
 
+/*!
+ * \brief Warns that the end of file marker has been reached.
+ */
+class EOFError : public FileSystemError
+{
+public:
+
+    EOFError(const chaos::str::UTF8String& message)
+        :
+        FileSystemError("EOFError", message)
+    {
+    }
+};
+
 } // namespace sys
 } // namespace io
 } // namespace chaos

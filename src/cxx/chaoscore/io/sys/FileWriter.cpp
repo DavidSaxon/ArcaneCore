@@ -21,7 +21,7 @@ namespace sys
 namespace
 {
 
-unsigned char utf8_bom[3] = {0xEF, 0xBB, 0xBF};
+const unsigned char UTF8_BOM[3] = {0xEF, 0xBB, 0xBF};
 
 } // namespace anonymous
 
@@ -36,6 +36,7 @@ FileWriter::FileWriter(
     FileHandle(flags, encoding),
     m_stream  (nullptr)
 {
+    // TODO: encoding error
 }
 
 FileWriter::FileWriter(
@@ -46,13 +47,14 @@ FileWriter::FileWriter(
     FileHandle(path, flags, encoding),
     m_stream  (nullptr)
 {
+    // TODO: not implemented encoding errors
     open();
 }
 
 FileWriter::FileWriter(FileWriter&& other)
     :
     FileHandle(std::move(other)),
-    m_stream(other.m_stream)
+    m_stream  (other.m_stream)
 {
     // reset other resources
     other.m_stream = nullptr;
@@ -64,11 +66,11 @@ FileWriter::FileWriter(FileWriter&& other)
 
 FileWriter::~FileWriter()
 {
-    if ( m_open )
+    if (m_open)
     {
         m_stream->close();
     }
-    if ( m_stream )
+    if (m_stream)
     {
         delete m_stream;
     }
@@ -92,88 +94,89 @@ FileWriter& FileWriter::operator<<( const chaos::str::UTF8String& text )
 void FileWriter::open()
 {
     // ensure the file writer is not open
-    if ( m_open )
+    if (m_open)
     {
         throw chaos::ex::StateError(
-                "FileHandle cannot be opened since the handle is already open."
+            "FileHandle cannot be opened since the handle is already open."
         );
     }
 
     // ensure we clean up the existing stream
-    if ( m_stream )
+    if (m_stream)
     {
         delete m_stream;
     }
 
     // convert flags
     std::ios_base::openmode flags = std::ios_base::out;
-    if ( m_flags & FLAG_BINARY )
+    if (m_flags & FLAG_BINARY)
     {
         flags |= std::ios_base::binary;
     }
-    if ( m_flags & FLAG_APPEND )
+    if (m_flags & FLAG_APPEND)
     {
         flags |= std::ios_base::app;
     }
 
+    // TODO: support other encodings
+
     // create a new stream
 #ifdef CHAOS_OS_WINDOWS
 
-    // utf-16
+    // utf-16 path
     std::size_t length = 0;
     const char* p = chaos::str::utf8_to_utf16(
-            m_path.to_windows().get_raw(),
-            length,
-            chaos::data::ENDIAN_LITTLE
+        m_path.to_windows().get_raw(),
+        length,
+        chaos::data::ENDIAN_LITTLE
     );
 
-    m_stream = new std::ofstream( ( const wchar_t* ) p, flags );
+    m_stream = new std::ofstream((const wchar_t*) p, flags);
 
 #else
 
-    m_stream = new std::ofstream( m_path.to_native().get_raw(), flags );
+    m_stream = new std::ofstream(m_path.to_native().get_raw(), flags);
 
 #endif
 
-
-    if ( !m_stream->good() )
+    // did opening fail?
+    if (!m_stream->good())
     {
         // clean up
         delete m_stream;
 
         // throw exception
         chaos::str::UTF8String error_message;
-        error_message << "Failed to FileWriter to path: \'";
+        error_message << "Failed to open FileWriter to path: \'";
         error_message << m_path.to_native() << "\'";
-        throw chaos::io::sys::InvalidPathError( error_message );
+        throw chaos::io::sys::InvalidPathError(error_message);
     }
 
+    // TODO: support other encodings
     // if we are not in binary mode or appending to the file write the UTF-8 BOM
-    if ( m_flags == FileWriter::FLAG_NONE )
+    if (m_flags == FileWriter::FLAG_NONE)
     {
-        ( *m_stream ) << utf8_bom;
+        (*m_stream) << UTF8_BOM;
     }
 
     // file writer is open
     m_open = true;
 }
 
-void FileWriter::open( const chaos::io::sys::Path& path )
+void FileWriter::open(const chaos::io::sys::Path& path)
 {
     // just call super function, this function is only implemented here to avoid
     // C++ function hiding.
-    FileHandle::open( path );
+    FileHandle::open(path);
 }
 
 void FileWriter::close()
 {
     // ensure the file writer is not already closed
-    if ( !m_open )
+    if (!m_open)
     {
         throw chaos::ex::StateError(
-                "FileHandle cannot be closed since the handle is already"
-                "closed."
-        );
+            "FileHandle cannot be closed since the handle is already closed.");
     }
 
     m_stream->close();
@@ -193,7 +196,7 @@ void FileWriter::write( const chaos::str::UTF8String& text )
     if ( !m_open )
     {
         throw chaos::ex::StateError(
-                "FileHandle cannot be written to since the handle is closed."
+                "FileWriter cannot be written to since the handle is closed."
         );
     }
 

@@ -226,19 +226,19 @@ CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
     }
 
     CHAOS_TEST_MESSAGE("Opening files");
-    CHAOS_FOR_EACH(it_1, file_handles)
+    CHAOS_FOR_EACH(it, file_handles)
     {
-        it_1->open();
+        it->open();
     }
 
     CHAOS_TEST_MESSAGE("Checking that files are open");
-    CHAOS_FOR_EACH(it_2, file_handles)
+    CHAOS_FOR_EACH(it, file_handles)
     {
-        CHAOS_CHECK_TRUE(it_2->is_open());
+        CHAOS_CHECK_TRUE(it->is_open());
     }
 
 
-    CHAOS_TEST_MESSAGE("Checking that getters are locked");
+    CHAOS_TEST_MESSAGE("Checking that setters are locked");
     for(std::size_t i = 0; i < file_handles.size(); ++i)
     {
         CHAOS_CHECK_THROW(
@@ -261,7 +261,38 @@ CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
         );
     }
 
-    // TODO: test closing file and re-writing
+    CHAOS_TEST_MESSAGE("Closing files");
+    CHAOS_FOR_EACH(it, file_handles)
+    {
+        it->close();
+    }
+
+    CHAOS_TEST_MESSAGE("Checking that setters are unlocked");
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        file_handles[i].set_path(fixture->paths[file_handles.size() - i]);
+        CHAOS_CHECK_EQUAL(
+            file_handles[i].get_path(),
+            fixture->paths[file_handles.size() - i]
+        );
+    }
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        file_handles[i].set_flags(fixture->flags[file_handles.size() - i]);
+        CHAOS_CHECK_EQUAL(
+            file_handles[i].get_flags(),
+            fixture->flags[file_handles.size() - i]
+        );
+    }
+    for(std::size_t i = 0; i < file_handles.size(); ++i)
+    {
+        file_handles[i].set_encoding(
+            fixture->encodings[file_handles.size() - i]);
+        CHAOS_CHECK_EQUAL(
+            file_handles[i].get_encoding(),
+            fixture->encodings[file_handles.size() - i]
+        );
+    }
 }
 
 } // namespace anonymous

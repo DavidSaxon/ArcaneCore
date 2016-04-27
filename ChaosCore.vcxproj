@@ -38,6 +38,7 @@
     <ClCompile Include="src/cxx/chaoscore/io/format/ANSI.cpp" />
     <ClCompile Include="src/cxx/chaoscore/io/format/FormatOperations.cpp" />
     <ClCompile Include="src/cxx/chaoscore/io/sys/FileHandle.cpp" />
+    <ClCompile Include="src/cxx/chaoscore/io/sys/FileReader.cpp" />
     <ClCompile Include="src/cxx/chaoscore/io/sys/FileSystemOperations.cpp" />
     <ClCompile Include="src/cxx/chaoscore/io/sys/FileWriter.cpp" />
     <ClCompile Include="src/cxx/chaoscore/io/sys/Path.cpp" />
@@ -69,6 +70,7 @@
     <ClCompile Include="tests/cxx/base/str/UnicodeOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/format/FormatOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileHandle_TestSuite.cpp" />
+    <ClCompile Include="tests/cxx/io/sys/FileReader_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileSystemOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/Path_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/gfx/Vector2_TestSuite.cpp" />
