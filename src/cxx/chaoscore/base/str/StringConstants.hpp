@@ -17,6 +17,7 @@ namespace str
 //                                  ENUMERATORS
 //------------------------------------------------------------------------------
 
+// TODO: DELETE ME
 /*!
  * \brief Encoding types for string data.
  */
