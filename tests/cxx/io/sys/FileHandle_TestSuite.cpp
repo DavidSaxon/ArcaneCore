@@ -21,7 +21,7 @@ public:
             chaos::io::sys::FileHandle2::Encoding encoding =
                 chaos::io::sys::FileHandle2::ENCODING_DETECT,
             chaos::io::sys::FileHandle2::Newline newline =
-                chaos::io::sys::FileHandle2::NEWLINE_LINUX)
+                chaos::io::sys::FileHandle2::NEWLINE_UNIX)
         :
         FileHandle2(encoding, newline)
     {
@@ -32,7 +32,7 @@ public:
             chaos::io::sys::FileHandle2::Encoding encoding =
                 chaos::io::sys::FileHandle2::ENCODING_DETECT,
             chaos::io::sys::FileHandle2::Newline newline =
-                chaos::io::sys::FileHandle2::NEWLINE_LINUX)
+                chaos::io::sys::FileHandle2::NEWLINE_UNIX)
         :
         FileHandle2(path, encoding, newline)
     {
@@ -118,7 +118,7 @@ public:
             p << "d1" << "d2" << "a_";
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_LINUX);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
         }
         {
             chaos::io::sys::Path p;
@@ -133,7 +133,7 @@ public:
             p << ".." << "file.txt";
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_DETECT);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_LINUX);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
         }
         {
             chaos::io::sys::Path p;

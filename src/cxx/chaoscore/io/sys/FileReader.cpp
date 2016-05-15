@@ -16,33 +16,30 @@ namespace sys
 //                                  CONSTRUCTORS
 //------------------------------------------------------------------------------
 
-FileReader::FileReader(
-        chaos::uint32 flags,
-        chaos::str::Encoding encoding)
+FileReader::FileReader(Encoding encoding, Newline newline)
     :
-    FileHandle(flags, encoding),
+    FileHandle2(encoding, newline),
     m_stream  (nullptr),
     m_size    (0)
 {
-    // TODO: not implemented encoding errors
 }
+
 
 FileReader::FileReader(
         const chaos::io::sys::Path& path,
-        chaos::uint32 flags,
-        chaos::str::Encoding encoding)
+        Encoding encoding,
+        Newline newline)
     :
-    FileHandle(path, flags, encoding),
+    FileHandle2(path, encoding, newline),
     m_stream  (nullptr),
     m_size    (0)
 {
-    // TODO: not implemented encoding errors
     open();
 }
 
 FileReader::FileReader(FileReader&& other)
     :
-    FileHandle(std::move(other)),
+    FileHandle2(std::move(other)),
     m_stream  (other.m_stream),
     m_size    (other.m_size)
 {
@@ -57,21 +54,15 @@ FileReader::FileReader(FileReader&& other)
 
 FileReader::~FileReader()
 {
-    if (m_open)
+    if(m_open)
     {
         m_stream->close();
     }
-    if (m_stream)
+    if(m_stream)
     {
         delete m_stream;
     }
 }
-
-//------------------------------------------------------------------------------
-//                                   OPERATORS
-//------------------------------------------------------------------------------
-
-// TODO:
 
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
@@ -80,10 +71,10 @@ FileReader::~FileReader()
 void FileReader::open()
 {
     // ensure the file reader is not open
-    if (m_open)
+    if(m_open)
     {
         throw chaos::ex::StateError(
-            "FileReader cannot be opened since the handle is already open.");
+            "FileReader cannot be opened since it is already open.");
     }
 
     // ensure we clean up the existing stream
@@ -91,15 +82,6 @@ void FileReader::open()
     {
         delete m_stream;
     }
-
-    // convert flags
-    std::ios_base::openmode flags = std::ios_base::in;
-    if (m_flags & FLAG_BINARY)
-    {
-        flags |= std::ios_base::binary;
-    }
-
-    // TODO: support other encodings
 
     // create a new stream
 #ifdef CHAOS_OS_WINDOWS
@@ -112,16 +94,24 @@ void FileReader::open()
         chaos::data::ENDIAN_LITTLE
     );
 
-    m_stream = new std::ifstream((const wchar_t*) p, flags);
+    m_stream = new std::ifstream(
+        (const wchar_t*) p,
+        std::ios_base::in | std::ios_base::binary
+    );
+
+    delete[] p;
 
 #else
 
-    m_stream = new std::ifstream(m_path.to_native().get_raw(), flags);
+    m_stream = new std::ifstream(
+        m_path.to_native().get_raw(),
+        std::ios_base::in | std::ios_base::binary
+    );
 
 #endif
 
     // did opening fail?
-    if (!m_stream->good())
+    if(!m_stream->good())
     {
         // clean up
         delete m_stream;
@@ -129,7 +119,7 @@ void FileReader::open()
         // throw exception
         chaos::str::UTF8String error_message;
         error_message << "Failed to open FileReader to path: \'"
-                      << m_path.to_native() << "\'";
+                      << m_path.to_native() << "\'.";
         throw chaos::io::sys::InvalidPathError(error_message);
     }
 
@@ -146,26 +136,22 @@ void FileReader::open(const chaos::io::sys::Path& path)
 {
     // just call super function, this function is only implemented here to avoid
     // C++ function hiding.
-    FileHandle::open(path);
+    FileHandle2::open(path);
 }
 
 void FileReader::close()
 {
     // ensure the file reader is not already closed
-    if (!m_open)
+    if(!m_open)
     {
         throw chaos::ex::StateError(
-            "FileReader cannot be closed since the handle is already closed.");
+            "FileReader cannot be closed since it is already closed.");
     }
 
+    // close and delete the stream
     m_stream->close();
-
-    // TODO: check for errors?
-
-    // delete the stream
     delete m_stream;
     m_stream = nullptr;
-
     m_open = false;
 }
 
@@ -174,7 +160,7 @@ chaos::int64 FileReader::get_size() const
     // TODO: should size be dynamic?
 
     // ensure the FileReader is open
-    if (!m_open)
+    if(!m_open)
     {
         throw chaos::ex::StateError(
             "File size cannot be queried while the FileReader is closed.");
@@ -185,49 +171,52 @@ chaos::int64 FileReader::get_size() const
 
 chaos::int64 FileReader::tell() const
 {
+    // ensure the FileReader is open
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "File position indicator cannot be queried while the FileReader is "
+            "closed."
+        );
+    }
+
     return m_stream->tellg();
 }
 
 void FileReader::seek(chaos::int64 index)
 {
+    // ensure the FileReader is open
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "File position indicator cannot be moved while the FileReader is "
+            "closed."
+        );
+    }
+
+    // TODO: check size
+
     m_stream->seekg(index);
 }
 
 bool FileReader::eof() const
 {
-    // TODO:
-    return false;
+    // ensure the FileReader is open
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "End of File cannot be queried while the FileReader is "
+            "closed."
+        );
+    }
+
+    return m_stream->eof();
 }
 
 void FileReader::read(char* data, chaos::int64 length)
 {
-    // get the current indicator position, this will check if the reader is
-    // open
-    chaos::int64 pos = tell();
-
-    // zero data requested: do nothing
-    if(length == 0)
-    {
-        return;
-    }
-
-    // check if the read extends past the end of the file
-    if(pos + length > get_size())
-    {
-        throw chaos::io::sys::EOFError(
-            "Cannot read data, as the requested length from the file position "
-            "indicator extends past the end of the file."
-        );
-    }
-
-    m_stream->read(data, length);
-}
-
-void FileReader::read_line(chaos::str::UTF8String& text)
-{
     // TODO:
 }
-
 
 } // namespace sys
 } // namespace io

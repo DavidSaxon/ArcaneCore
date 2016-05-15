@@ -23,7 +23,7 @@ FileHandle2::FileHandle2(FileHandle2&& other)
     // reset other resources
     other.m_open     = false;
     other.m_encoding = ENCODING_DETECT;
-    other.m_newline  = NEWLINE_LINUX;
+    other.m_newline  = NEWLINE_UNIX;
 }
 
 //------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ FileHandle2::Newline FileHandle2::get_newline() const
 void FileHandle2::set_path(const chaos::io::sys::Path& path)
 {
     // ensure the handle isn't open
-    if (m_open)
+    if(m_open)
     {
         throw chaos::ex::StateError(
             "FileHandle path cannot be changed since the handle is open.");
@@ -65,7 +65,7 @@ void FileHandle2::set_path(const chaos::io::sys::Path& path)
 void FileHandle2::set_encoding(Encoding encoding)
 {
     // ensure the handle isn't open
-    if (m_open)
+    if(m_open)
     {
         throw chaos::ex::StateError(
             "FileHandle encoding cannot be changed since the handle is "
@@ -79,7 +79,7 @@ void FileHandle2::set_encoding(Encoding encoding)
 void FileHandle2::set_newline(Newline newline)
 {
     // ensure the handle isn't open
-    if (m_open)
+    if(m_open)
     {
         throw chaos::ex::StateError(
             "FileHandle newline symbol cannot be changed since the handle is "

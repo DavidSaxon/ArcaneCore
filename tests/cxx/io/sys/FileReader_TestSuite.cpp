@@ -8,6 +8,10 @@ CHAOS_TEST_MODULE(io.sys.FileReader)
 namespace
 {
 
+//------------------------------------------------------------------------------
+//                                GENERIC FIXTURE
+//------------------------------------------------------------------------------
+
 class FileReaderFixture : public chaos::test::Fixture
 {
 public:
@@ -17,10 +21,13 @@ public:
     chaos::io::sys::Path base_path;
 
     std::vector<chaos::io::sys::Path> paths;
-    std::vector<chaos::uint32> flags;
-    std::vector<chaos::str::Encoding> encodings;
+    std::vector<chaos::io::sys::FileHandle2::Encoding> encodings;
+    std::vector<chaos::io::sys::FileHandle2::Newline> newlines;
     std::vector<chaos::int64> sizes;
-    std::vector<std::vector<chaos::str::UTF8String>> lines;
+    std::vector<std::size_t> bom_lengths;
+    std::vector<const char*> boms;
+    std::vector<std::vector<std::size_t>> line_lengths;
+    std::vector<std::vector<const char*>> lines;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -33,183 +40,238 @@ public:
             chaos::io::sys::Path p(base_path);
             p << "empty_file";
             paths.push_back(p);
-            flags.push_back(chaos::io::sys::FileReader::FLAG_NONE);
-            encodings.push_back(chaos::str::ENCODING_ASCII);
+            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
             sizes.push_back(0);
-            std::vector<chaos::str::UTF8String> l;
+            bom_lengths.push_back(0);
+            boms.push_back("");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            line_lengths.push_back(ll);
             lines.push_back(l);
         }
         {
             chaos::io::sys::Path p(base_path);
-            p << "ascii.txt";
+            p << "ascii.linux.txt";
             paths.push_back(p);
-            flags.push_back(chaos::io::sys::FileReader::FLAG_NONE);
-            encodings.push_back(chaos::str::ENCODING_ASCII);
+            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
             sizes.push_back(121);
-            std::vector<chaos::str::UTF8String> l;
-            l.push_back("Hello World!\n");
-            l.push_back("This is another line.\n");
-            l.push_back("\n");
-            l.push_back("\t\t     \t\t\n");
-            l.push_back("And another line.\n");
-            l.push_back("And some symbols:\n");
-            l.push_back("$&*@$)@@\":\">?|\n");
-            l.push_back(">>End of Transmission<<\n");
-            lines.push_back(l);
-        }
-        // {
-        //     chaos::io::sys::Path p(base_path);
-        //     p << "utf8.txt";
-        //     paths.push_back(p);
-        //     flags.push_back(chaos::io::sys::FileReader::FLAG_NONE);
-        //     encodings.push_back(chaos::str::ENCODING_UTF8);
-        //     sizes.push_back(90);
-        //     std::vector<chaos::str::UTF8String> l;
-        //     l.push_back("Hello World!\n");
-        //     l.push_back("γειά σου Κόσμε\n");
-        //     l.push_back("\n");
-        //     l.push_back("\t\t     \t\t\n");
-        //     l.push_back("this is a مزيج of text\n");
-        //     l.push_back("간\n");
-        //     l.push_back("𐂣\n");
-        //     lines.push_back(l);
-        // }
-        {
-            chaos::io::sys::Path p(base_path);
-            p << "ascii.binary";
-            paths.push_back(p);
-            flags.push_back(chaos::io::sys::FileReader::FLAG_BINARY);
-            encodings.push_back(chaos::str::ENCODING_ASCII);
-            sizes.push_back(121);
-            std::vector<chaos::str::UTF8String> l;
-            l.push_back("Hello World!\n");
-            l.push_back("This is another line.\n");
-            l.push_back("\n");
-            l.push_back("\t\t     \t\t\n");
-            l.push_back("And another line.\n");
-            l.push_back("And some symbols:\n");
-            l.push_back("$&*@$)@@\":\">?|\n");
-            l.push_back(">>End of Transmission<<\n");
+            bom_lengths.push_back(0);
+            boms.push_back("");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_ascii_line("Hello World!\n", ll, l);
+            insert_ascii_line("This is another line.\n", ll, l);
+            insert_ascii_line("\n", ll, l);
+            insert_ascii_line("\t\t     \t\t\n", ll, l);
+            insert_ascii_line("And another line.\n", ll, l);
+            insert_ascii_line("And some symbols:\n", ll, l);
+            insert_ascii_line("$&*@$)@@\":\">?|\n", ll, l);
+            insert_ascii_line(">>End of Transmission<<\n", ll, l);
+            line_lengths.push_back(ll);
             lines.push_back(l);
         }
         {
             chaos::io::sys::Path p(base_path);
-            p << "win_nl";
+            p << "ascii.windows.txt";
             paths.push_back(p);
-            flags.push_back(chaos::io::sys::FileReader::FLAG_NONE);
-            encodings.push_back(chaos::str::ENCODING_ASCII);
+            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
             sizes.push_back(129);
-            std::vector<chaos::str::UTF8String> l;
-            l.push_back("Hello World!\r\n");
-            l.push_back("This is another line.\r\n");
-            l.push_back("\r\n");
-            l.push_back("\t\t     \t\t\r\n");
-            l.push_back("And another line.\r\n");
-            l.push_back("And some symbols:\r\n");
-            l.push_back("$&*@$)@@\":\">?|\r\n");
-            l.push_back(">>End of Transmission<<\r\n");
+            bom_lengths.push_back(0);
+            boms.push_back("");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_ascii_line("Hello World!\r\n", ll, l);
+            insert_ascii_line("This is another line.\r\n", ll, l);
+            insert_ascii_line("\r\n", ll, l);
+            insert_ascii_line("\t\t     \t\t\r\n", ll, l);
+            insert_ascii_line("And another line.\r\n", ll, l);
+            insert_ascii_line("And some symbols:\r\n", ll, l);
+            insert_ascii_line("$&*@$)@@\":\">?|\r\n", ll, l);
+            insert_ascii_line(">>End of Transmission<<\r\n", ll, l);
+            line_lengths.push_back(ll);
             lines.push_back(l);
         }
-        // {
-        //     chaos::io::sys::Path p(base_path);
-        //     p << "mix_nl";
-        //     paths.push_back(p);
-        //     flags.push_back(chaos::io::sys::FileReader::FLAG_NONE);
-        //     encodings.push_back(chaos::str::ENCODING_UTF8);
-        //     sizes.push_back(94);
-        //     std::vector<chaos::str::UTF8String> l;
-        //     l.push_back("Hello World!\n");
-        //     l.push_back("γειά σου Κόσμε\r\n");
-        //     l.push_back("\n");
-        //     l.push_back("\t\t     \t\t\r\n");
-        //     l.push_back("this is a مزيج of text\r\n");
-        //     l.push_back("간\r\n");
-        //     l.push_back("𐂣\n");
-        //     lines.push_back(l);
-        // }
+        {
+            chaos::io::sys::Path p(base_path);
+            p << "utf8.linux.txt";
+            paths.push_back(p);
+            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            sizes.push_back(90);
+            bom_lengths.push_back(3);
+            boms.push_back("\xEF\xBB\xBF");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_utf8_line("Hello World!\n", ll, l);
+            insert_utf8_line("γειά σου Κόσμε\n", ll, l);
+            insert_utf8_line("\n", ll, l);
+            insert_utf8_line("\t\t     \t\t\n", ll, l);
+            insert_utf8_line("this is a مزيج of text\n", ll, l);
+            insert_utf8_line("간\n", ll, l);
+            insert_utf8_line("𐂣\n", ll, l);
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+        {
+            chaos::io::sys::Path p(base_path);
+            p << "utf8.windows.txt";
+            paths.push_back(p);
+            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            sizes.push_back(97);
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            bom_lengths.push_back(3);
+            boms.push_back("\xEF\xBB\xBF");
+            insert_utf8_line("Hello World!\r\n", ll, l);
+            insert_utf8_line("γειά σου Κόσμε\r\n", ll, l);
+            insert_utf8_line("\r\n", ll, l);
+            insert_utf8_line("\t\t     \t\t\r\n", ll, l);
+            insert_utf8_line("this is a مزيج of text\r\n", ll, l);
+            insert_utf8_line("간\r\n", ll, l);
+            insert_utf8_line("𐂣\r\n", ll, l);
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+        {
+            chaos::io::sys::Path p(base_path);
+            p << "utf16le.linux.txt";
+            paths.push_back(p);
+            encodings.push_back(
+                chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            sizes.push_back(136);
+            bom_lengths.push_back(2);
+            boms.push_back("\xFF\xFE");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_utf16le_line("Hello World!\n", ll, l);
+            insert_utf16le_line("γειά σου Κόσμε\n", ll, l);
+            insert_utf16le_line("\n", ll, l);
+            insert_utf16le_line("\t\t     \t\t\n", ll, l);
+            insert_utf16le_line("this is a مزيج of text\n", ll, l);
+            insert_utf16le_line("간\n", ll, l);
+            insert_utf16le_line("𐂣\n", ll, l);
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+        {
+            chaos::io::sys::Path p(base_path);
+            p << "utf16le.windows.txt";
+            paths.push_back(p);
+            encodings.push_back(
+                chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            sizes.push_back(150);
+            bom_lengths.push_back(2);
+            boms.push_back("\xFF\xFE");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_utf16le_line("Hello World!\r\n", ll, l);
+            insert_utf16le_line("γειά σου Κόσμε\r\n", ll, l);
+            insert_utf16le_line("\r\n", ll, l);
+            insert_utf16le_line("\t\t     \t\t\r\n", ll, l);
+            insert_utf16le_line("this is a مزيج of text\r\n", ll, l);
+            insert_utf16le_line("간\r\n", ll, l);
+            insert_utf16le_line("𐂣\r\n", ll, l);
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+        {
+            chaos::io::sys::Path p(base_path);
+            p << "utf16be.linux.txt";
+            paths.push_back(p);
+            encodings.push_back(
+                chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            sizes.push_back(136);
+            bom_lengths.push_back(2);
+            boms.push_back("\xFE\xFF");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_utf16be_line("Hello World!\n", ll, l);
+            insert_utf16be_line("γειά σου Κόσμε\n", ll, l);
+            insert_utf16be_line("\n", ll, l);
+            insert_utf16be_line("\t\t     \t\t\n", ll, l);
+            insert_utf16be_line("this is a مزيج of text\n", ll, l);
+            insert_utf16be_line("간\n", ll, l);
+            insert_utf16be_line("𐂣\n", ll, l);
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+        {
+            chaos::io::sys::Path p(base_path);
+            p << "utf16be.windows.txt";
+            paths.push_back(p);
+            encodings.push_back(
+                chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            sizes.push_back(150);
+            bom_lengths.push_back(2);
+            boms.push_back("\xFE\xFF");
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            insert_utf16be_line("Hello World!\r\n", ll, l);
+            insert_utf16be_line("γειά σου Κόσμε\r\n", ll, l);
+            insert_utf16be_line("\r\n", ll, l);
+            insert_utf16be_line("\t\t     \t\t\r\n", ll, l);
+            insert_utf16be_line("this is a مزيج of text\r\n", ll, l);
+            insert_utf16be_line("간\r\n", ll, l);
+            insert_utf16be_line("𐂣\r\n", ll, l);
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+    }
+
+    void insert_ascii_line(
+            const chaos::str::UTF8String& line,
+            std::vector<std::size_t>& _line_lengths,
+            std::vector<const char*>& _lines)
+    {
+        _line_lengths.push_back(line.get_byte_length() - 1);
+        _lines.push_back(line.get_raw());
+    }
+
+    void insert_utf8_line(
+            const chaos::str::UTF8String& line,
+            std::vector<std::size_t>& _line_lengths,
+            std::vector<const char*>& _lines)
+    {
+        _line_lengths.push_back(line.get_byte_length() - 1);
+        _lines.push_back(line.get_raw());
+    }
+
+    void insert_utf16le_line(
+            const chaos::str::UTF8String& line,
+            std::vector<std::size_t>& _line_lengths,
+            std::vector<const char*>& _lines)
+    {
+        std::size_t r_length = 0;
+        _lines.push_back(chaos::str::utf8_to_utf16(
+            line,
+            r_length,
+            chaos::data::ENDIAN_LITTLE
+        ));
+        _line_lengths.push_back(r_length - 2);
+    }
+
+    void insert_utf16be_line(
+            const chaos::str::UTF8String& line,
+            std::vector<std::size_t>& _line_lengths,
+            std::vector<const char*>& _lines)
+    {
+        std::size_t r_length = 0;
+        _lines.push_back(chaos::str::utf8_to_utf16(
+            line,
+            r_length,
+            chaos::data::ENDIAN_BIG
+        ));
+        _line_lengths.push_back(r_length - 2);
     }
 };
-
-//------------------------------------------------------------------------------
-//                              DEFAULT CONSTRUCTOR
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileReaderFixture)
-{
-    // empty path definition
-    chaos::io::sys::Path empty_path;
-
-    CHAOS_TEST_MESSAGE("Checking default values");
-    chaos::io::sys::FileReader default_reader;
-    CHAOS_CHECK_EQUAL(default_reader.get_path(), empty_path);
-    CHAOS_CHECK_EQUAL(
-        default_reader.get_flags(),
-        chaos::io::sys::FileReader::FLAG_NONE
-    );
-    CHAOS_CHECK_EQUAL(default_reader.get_encoding(), chaos::str::ENCODING_UTF8);
-
-    CHAOS_TEST_MESSAGE("Checking with defined values");
-    std::vector<chaos::io::sys::FileReader> file_readers;
-    for(std::size_t i = 0; i < fixture->paths.size(); ++i)
-    {
-        chaos::io::sys::FileReader r(
-            fixture->flags[i],
-            fixture->encodings[i]
-        );
-        file_readers.push_back(std::move(r));
-    }
-
-    CHAOS_TEST_MESSAGE("Checking flags");
-    for(std::size_t i = 0; i < file_readers.size(); ++i)
-    {
-        CHAOS_CHECK_EQUAL(file_readers[i].get_flags(), fixture->flags[i]);
-    }
-
-    CHAOS_TEST_MESSAGE("Checking encoding");
-    for(std::size_t i = 0; i < file_readers.size(); ++i)
-    {
-        CHAOS_CHECK_EQUAL(
-            file_readers[i].get_encoding(), fixture->encodings[i]);
-    }
-}
-
-//------------------------------------------------------------------------------
-//                                PATH CONSTRUCTOR
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileReaderFixture)
-{
-    // create readers
-    std::vector<chaos::io::sys::FileReader> file_readers;
-    for(std::size_t i = 0; i < fixture->paths.size(); ++i)
-    {
-        chaos::io::sys::FileReader r(
-            fixture->paths[i],
-            fixture->flags[i],
-            fixture->encodings[i]
-        );
-        file_readers.push_back(std::move(r));
-    }
-
-    CHAOS_TEST_MESSAGE("Checking paths");
-    for(std::size_t i = 0; i < file_readers.size(); ++i)
-    {
-        CHAOS_CHECK_EQUAL(file_readers[i].get_path(), fixture->paths[i]);
-    }
-
-    CHAOS_TEST_MESSAGE("Checking flags");
-    for(std::size_t i = 0; i < file_readers.size(); ++i)
-    {
-        CHAOS_CHECK_EQUAL(file_readers[i].get_flags(), fixture->flags[i]);
-    }
-
-    CHAOS_TEST_MESSAGE("Checking encoding");
-    for(std::size_t i = 0; i < file_readers.size(); ++i)
-    {
-        CHAOS_CHECK_EQUAL(
-            file_readers[i].get_encoding(), fixture->encodings[i]);
-    }
-}
 
 //------------------------------------------------------------------------------
 //                                    GET SIZE
@@ -223,8 +285,8 @@ CHAOS_TEST_UNIT_FIXTURE(get_size, FileReaderFixture)
     {
         chaos::io::sys::FileReader r(
             fixture->paths[i],
-            fixture->flags[i],
-            fixture->encodings[i]
+            fixture->encodings[i],
+            fixture->newlines[i]
         );
         file_readers.push_back(std::move(r));
     }
@@ -232,46 +294,6 @@ CHAOS_TEST_UNIT_FIXTURE(get_size, FileReaderFixture)
     for(std::size_t i = 0; i < file_readers.size(); ++i)
     {
         CHAOS_CHECK_EQUAL(file_readers[i].get_size(), fixture->sizes[i]);
-    }
-}
-
-//------------------------------------------------------------------------------
-//                                      READ
-//------------------------------------------------------------------------------
-
-CHAOS_TEST_UNIT_FIXTURE(read, FileReaderFixture)
-{
-    // create readers
-    std::vector<chaos::io::sys::FileReader> file_readers;
-    for(std::size_t i = 0; i < fixture->paths.size(); ++i)
-    {
-        chaos::io::sys::FileReader r(
-            fixture->paths[i],
-            fixture->flags[i],
-            fixture->encodings[i]
-        );
-        file_readers.push_back(std::move(r));
-    }
-
-    CHAOS_TEST_MESSAGE("Testing reading entire file");
-    for(std::size_t i = 0; i < file_readers.size(); ++i)
-    {
-        // TODO: should move UnicodeOperations to StringOperations
-        // create the contents
-        chaos::str::UTF8String contents(
-            chaos::str::join(fixture->lines[i], ""));
-
-        // read data
-        std::size_t read_size =
-            static_cast<std::size_t>(file_readers[i].get_size());
-        char* read_data = new char[read_size];
-        file_readers[i].read(read_data, read_size);
-        std::cout << "post pos: " << file_readers[i].tell() << std::endl;
-        chaos::str::UTF8String data(read_data, read_size);
-        // TODO: use claim
-        // data.claim(read_data);
-
-        CHAOS_CHECK_EQUAL(data, contents);
     }
 }
 

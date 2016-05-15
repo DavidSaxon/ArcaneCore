@@ -94,25 +94,25 @@ char* utf8_to_utf16(
     for(std::size_t i = 0; i < data.get_length(); ++i)
     {
         chaos::uint32 code_point = data.get_code_point(i);
-        if(code_point < 0xFFFF)
+        if(endianness == chaos::data::ENDIAN_LITTLE)
         {
-            if(endianness == chaos::data::ENDIAN_LITTLE)
+            v_str.push_back(code_point);
+            v_str.push_back(code_point >> 8);
+            if(code_point > 0xFFFF)
             {
-                v_str.push_back(code_point);
-                v_str.push_back(code_point >> 8);
-            }
-            else
-            {
-                v_str.push_back(code_point >> 8);
-                v_str.push_back(code_point);
+                v_str.push_back(code_point >> 16);
+                v_str.push_back(code_point >> 24);
             }
         }
         else
         {
-            throw chaos::ex::NotImplementedError(
-                "converting to UTF-16 symbols with greater than 2 byte width "
-                "is not yet supported."
-           );
+            if(code_point > 0xFFFF)
+            {
+                v_str.push_back(code_point >> 24);
+                v_str.push_back(code_point >> 16);
+            }
+            v_str.push_back(code_point >> 8);
+            v_str.push_back(code_point);
         }
     }
     // add the NULL terminator

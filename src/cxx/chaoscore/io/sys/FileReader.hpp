@@ -17,11 +17,11 @@ namespace sys
 {
 
 /*!
- * \brief TODO:
+ * \brief Used for reading the contents of a file from disk.
  *
- * TODO:
+ * TODO: usage
  */
-class FileReader : public chaos::io::sys::FileHandle
+class FileReader : public chaos::io::sys::FileHandle2
 {
 private:
 
@@ -30,58 +30,52 @@ private:
 public:
 
     //--------------------------------------------------------------------------
-    //                                 ENUMERATOR
-    //--------------------------------------------------------------------------
-
-    /*!
-     * \brief Flags that can be used to describe how the file handle should be
-     *        opened.
-     *
-     * These flags can be combined together using the logical OR operator.
-     */
-    enum Flag
-    {
-        /// No flags specified
-        FLAG_NONE   = 0,
-        /// Operations are performed in binary mode rather than text mode.
-        FLAG_BINARY = 1U << 0
-    };
-
-    //--------------------------------------------------------------------------
     //                                CONSTRUCTORS
     //--------------------------------------------------------------------------
 
     /*!
      * \brief Default constructor.
      *
-     * Creates a new unopened FileReader with no initial path set.
+     * Creates a new unopened FileReader with no file path yet defined.
      *
-     * \param flags Flags used to describe how the FileReader should be opened.
-     *              See chaos::io::sys::FileReader::Flag for more details.
-     * \param encoding The encoding that will be used to read text from the
-     *                 file.
+     * \param encoding Defines the encoding of the contents of the file to read.
+     *                 If chaos::io::sys::FileHandle2::ENCODING_DETECT is used
+     *                 the FileReader will attempt to detect the encoding used
+     *                 in the file at the time of opening. If the encoding
+     *                 cannot be detected
+     *                 chaos::io::sys::FileHandle2::ENCODING_RAW will be used.
+     *                 The detected encoding can be queried using get_encoding()
+     *                 once the file has been opened.
+     * \param newline The newline symbol used in the file to read.
+     *                See set_newline().
      */
     FileReader(
-            chaos::uint32 flags = FileReader::FLAG_NONE,
-            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
+            Encoding encoding = ENCODING_DETECT,
+            Newline newline   = NEWLINE_UNIX);
 
     /*!
-     * \brief Open constructor.
+     * \brief Path constructor.
      *
-     * Creates a new FileReader and attempts to open it to the given path.
+     * Creates a new FileReader opened to the given path.
+     *
+     * \param path The path to the file to read from.
+     * \param encoding Defines the encoding of the contents of the file to read.
+     *                 If chaos::io::sys::FileHandle2::ENCODING_DETECT is used
+     *                 the FileReader will attempt to detect the encoding used
+     *                 in the file at the time of opening. If the encoding
+     *                 cannot be detected
+     *                 chaos::io::sys::FileHandle2::ENCODING_RAW will be used.
+     *                 The detected encoding can be queried using get_encoding()
+     *                 once the file has been opened.
+     * \param newline The newline symbol used in the file to read.
+     *                See set_newline().
      *
      * \throws chaos::io::sys::InvalidPathError If the path cannot be opened.
-     *
-     * \param path Path to open this FileReader to.
-     * \param flags Flags used to describe how the FileReader should be opened.
-     *              See chaos::io::sys::FileReader::Flag for more details.
-     * \param encoding The encoding that will be used to read text from the
-     *                 file.
      */
     FileReader(
             const chaos::io::sys::Path& path,
-            chaos::uint32 flags = FileReader::FLAG_NONE,
-            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
+            Encoding encoding = ENCODING_DETECT,
+            Newline newline   = NEWLINE_UNIX);
 
     /*!
      * \brief Move constructor.
@@ -100,122 +94,68 @@ public:
     //                                 OPERATORS
     //--------------------------------------------------------------------------
 
-    /*!
-     * \brief chaos::str::UTF8String stream operator.
-     *
-     * Reads a line from the file into the given chaos::str::UTF8String.
-     *
-     * \throws chaos::ex::StateError If this file handle is not open.
-     * \throws chaos::io::sys::EOFError If the position indicator is at the end
-     *                                  of the file.
-     */
-    // FileReader& operator>>(chaos::str::UTF8String& text);
+    // TODO: << char*
+
+    // TODO: << chaos::str::UTF8String
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Opens the reader to the internal path.
-     *
+     * \brief Opens this FileReader to the internal path.
      *
      * \throws chaos::ex::StateError If this FileReader is already open.
      * \throws chaos::io::sys::InvalidPathError If the path cannot be opened.
      */
     virtual void open();
 
-    /*!
-     * \brief Sets the path and opens the reader to it.
-     *
-     * This function is synonymous to:
-     *
-     * \code
-     * my_file_reader.set_path(path);
-     * my_file_reader.open();
-     * \endcode
-     *
-     * \throws chaos::ex::StateError If this FileReader is already open.
-     *
-     * \throws chaos::io::sys::InvalidPathError If the path cannot be opened.
-     */
+    // override to avoid C++ function hiding
     virtual void open(const chaos::io::sys::Path& path);
 
     /*!
-     * \brief Closes this reader.
-     *
-     * Once the file has been closed, read operations cannot be performed until
-     * the reader is reopened.
-     *
-     * This function does not need to be explicitly called. When this object is
-     * destroyed it will ensure that the file handle is closed.
-     *
-     * \throws chaos::ex::StateError If this file handle is not open.
+     * \brief Closes this FileReader.
      */
     virtual void close();
 
     /*!
-     * \brief Returns the size of the file in bytes.
+     * \brief Returns the size of the file being read in bytes.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws chaos::ex::StateError If the FileReader is not open.
      */
-    chaos::int64 get_size() const;
+    virtual chaos::int64 get_size() const;
 
     /*!
      * \brief Returns the index of the byte the file position indicator is
      *        currently at.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws chaos::ex::StateError If the FileReader is not open.
      */
-    chaos::int64 tell() const;
+    virtual chaos::int64 tell() const;
 
     /*!
      * \brief Sets the file position indicator to the given byte index.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws chaos::ex::StateError If the FileReader is not open.
      * \throws chaos::ex::IndexOutOfBoundsError If the given byte index is
      *                                          greater than the number of bytes
-     *                                          in the file.
+     *                                          in the file or is less than 0.
      */
-    void seek(chaos::int64 index);
+    virtual void seek(chaos::int64 index);
 
     /*!
-     * \brief Returns whether the file indicator position is at the End of File
-     *        indicator.
+     * \brief Returns whether file position indicated is at the End of File.
      *
      * \throws chaos::ex::StateError If this FileReader is not open.
      */
     bool eof() const;
 
-    // TODO: c string variations of the read functions
-
-    /*!
-     * \brief Reads byte data from the file into the given character array.
-     *
-     * Once the read has taken place the file position indicator will be set to
-     * the next position beyond the read data.
-     *
-     * \param data character array the data will be read into.
-     * \param The number of bytes from the file position indicator to read from
-     *        the file. This should not extend past the end of the file.
-     *
-     * \throws chaos::ex::StateError If this FileReader is not open.
-     * \throws chaos::io::sys::EOFError If the length from the file position
-     *                                  indicator extends past the end of the
-     *                                  file.
-     */
+    // TODO: review: past EOF and length + 1
     void read(char* data, chaos::int64 length);
 
-    /*!
-     * \brief Reads a line from the file into the given chaos::str::UTF8String.
-     *
-     * Once the read has taken place the file position indicator will be set to
-     * the position of the next line.
-     *
-     * \throws chaos::ex::StateError If this FileReader is not open.
-     * \throws chaos::io::sys::EOFError If the position indicator is at the end
-     *                                  of the file.
-     */
-    void read_line(chaos::str::UTF8String& text);
+    // TODO: read line (and only do with UTF8String?)
+
+    // TODO: UTF8String
 
 private:
 
@@ -224,7 +164,7 @@ private:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief The input stream being used to read from disk.
+     * \brief The input stream used to read the file.
      */
     std::ifstream* m_stream;
 
@@ -232,7 +172,6 @@ private:
      * \brief The size of the file in bytes.
      */
     chaos::int64 m_size;
-
 };
 
 } // namespace sys

@@ -56,8 +56,8 @@ public:
     {
         /// Line endings will be detected based on the current operating system.
         NEWLINE_DETECT = 0,
-        /// Linux style newlines will be used: ```'\n'```.
-        NEWLINE_LINUX,
+        /// Unix style newlines will be used: ```'\n'```.
+        NEWLINE_UNIX,
         /// Windows style newlines will be used: ```'\r\n'```.
         NEWLINE_WINDOWS
     };
@@ -135,7 +135,7 @@ public:
     void set_newline(Newline newline);
 
     /*!
-     * \brief Opens the FileHandle to its internal path.
+     * \brief Opens the FileHandle to the internal path.
      *
      * \throws chaos::ex::StateError If this FileHandle is already open.
      * \throws chaos::io::sys::InvalidPathError If the path cannot be opened.
@@ -157,7 +157,7 @@ public:
      * \throws chaos::ex::StateError If this FileHandle is already open.
      * \throws chaos::io::sys::InvalidPathError If the path cannot be opened.
      */
-    void open(const chaos::io::sys::Path& path);
+    virtual void open(const chaos::io::sys::Path& path);
 
     /*!
      * \brief Closes this FileHandle.
@@ -228,7 +228,7 @@ protected:
      */
     FileHandle2(
             Encoding encoding = ENCODING_DETECT,
-            Newline newline   = NEWLINE_LINUX);
+            Newline newline   = NEWLINE_UNIX);
 
     /*!
      * \brief Path super constructor.
@@ -248,7 +248,7 @@ protected:
     FileHandle2(
             const chaos::io::sys::Path& path,
             Encoding encoding = ENCODING_DETECT,
-            Newline newline   = NEWLINE_LINUX);
+            Newline newline   = NEWLINE_UNIX);
 };
 
 /*!

@@ -105,29 +105,10 @@ touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_2/file_g_1'))
 touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_2/file_g_2'))
 
 # files to read
-with open(os.path.join(BASE_DIR, 'empty_file'), 'w+') as f:
+with open(os.path.join(BASE_DIR, 'empty_file'), 'bw+') as f:
     pass
 
-with open(os.path.join(BASE_DIR, 'ascii.txt'), 'w+', newline='\n') as f:
-    f.write('Hello World!\n')
-    f.write('This is another line.\n')
-    f.write('\n')
-    f.write('\t\t     \t\t\n')
-    f.write('And another line.\n')
-    f.write('And some symbols:\n')
-    f.write('$&*@$)@@\":\">?|\n')
-    f.write('>>End of Transmission<<\n')
-
-with codecs.open(os.path.join(BASE_DIR, 'utf8.txt'), 'w+', 'utf-8-sig') as f:
-    f.write(u'Hello World!\n')
-    f.write(u'γειά σου Κόσμε\n')
-    f.write(u'\n')
-    f.write(u'\t\t     \t\t\n')
-    f.write(u'this is a مزيج of text\n')
-    f.write(u'간\n')
-    f.write(u'𐂣\n')
-
-with open(os.path.join(BASE_DIR, 'ascii.binary'), 'bw+') as f:
+with open(os.path.join(BASE_DIR, 'ascii.linux.txt'), 'bw+') as f:
     f.write(b'Hello World!\n')
     f.write(b'This is another line.\n')
     f.write(b'\n')
@@ -137,23 +118,76 @@ with open(os.path.join(BASE_DIR, 'ascii.binary'), 'bw+') as f:
     f.write(b'$&*@$)@@\":\">?|\n')
     f.write(b'>>End of Transmission<<\n')
 
-with open(os.path.join(BASE_DIR, 'win_nl'), 'w+', newline='\r\n') as f:
-    f.write('Hello World!\n')
-    f.write('This is another line.\n')
-    f.write('\n')
-    f.write('\t\t     \t\t\n')
-    f.write('And another line.\n')
-    f.write('And some symbols:\n')
-    f.write('$&*@$)@@\":\">?|\n')
-    f.write('>>End of Transmission<<\n')
+with open(os.path.join(BASE_DIR, 'ascii.windows.txt'), 'bw+') as f:
+    f.write(b'Hello World!\r\n')
+    f.write(b'This is another line.\r\n')
+    f.write(b'\r\n')
+    f.write(b'\t\t     \t\t\r\n')
+    f.write(b'And another line.\r\n')
+    f.write(b'And some symbols:\r\n')
+    f.write(b'$&*@$)@@\":\">?|\r\n')
+    f.write(b'>>End of Transmission<<\r\n')
 
-with codecs.open(os.path.join(BASE_DIR, 'mix_nl'), 'w+', 'utf-8-sig') as f:
+with codecs.open(
+        os.path.join(BASE_DIR, 'utf8.linux.txt'), 'bw+', 'utf-8-sig') as f:
     f.write(u'Hello World!\n')
-    f.write(u'γειά σου Κόσμε\r\n')
+    f.write(u'γειά σου Κόσμε\n')
     f.write(u'\n')
+    f.write(u'\t\t     \t\t\n')
+    f.write(u'this is a مزيج of text\n')
+    f.write(u'간\n')
+    f.write(u'𐂣\n')
+
+with codecs.open(
+        os.path.join(BASE_DIR, 'utf8.windows.txt'), 'bw+', 'utf-8-sig') as f:
+    f.write(u'Hello World!\r\n')
+    f.write(u'γειά σου Κόσμε\r\n')
+    f.write(u'\r\n')
     f.write(u'\t\t     \t\t\r\n')
     f.write(u'this is a مزيج of text\r\n')
     f.write(u'간\r\n')
-    f.write(u'𐂣\n')
+    f.write(u'𐂣\r\n')
 
+with codecs.open(
+        os.path.join(BASE_DIR, 'utf16le.linux.txt'), 'bw+') as f:
+    f.write(codecs.BOM_UTF16_LE)
+    f.write('Hello World!\n'.encode('utf-16-le'))
+    f.write('γειά σου Κόσμε\n'.encode('utf-16-le'))
+    f.write('\n'.encode('utf-16-le'))
+    f.write('\t\t     \t\t\n'.encode('utf-16-le'))
+    f.write('this is a مزيج of text\n'.encode('utf-16-le'))
+    f.write('간\n'.encode('utf-16-le'))
+    f.write('𐂣\n'.encode('utf-16-le'))
 
+with codecs.open(
+        os.path.join(BASE_DIR, 'utf16le.windows.txt'), 'bw+') as f:
+    f.write(codecs.BOM_UTF16_LE)
+    f.write('Hello World!\r\n'.encode('utf-16-le'))
+    f.write('γειά σου Κόσμε\r\n'.encode('utf-16-le'))
+    f.write('\r\n'.encode('utf-16-le'))
+    f.write('\t\t     \t\t\r\n'.encode('utf-16-le'))
+    f.write('this is a مزيج of text\r\n'.encode('utf-16-le'))
+    f.write('간\r\n'.encode('utf-16-le'))
+    f.write('𐂣\r\n'.encode('utf-16-le'))
+
+with codecs.open(
+        os.path.join(BASE_DIR, 'utf16be.linux.txt'), 'bw+') as f:
+    f.write(codecs.BOM_UTF16_BE)
+    f.write('Hello World!\n'.encode('utf-16-be'))
+    f.write('γειά σου Κόσμε\n'.encode('utf-16-be'))
+    f.write('\n'.encode('utf-16-be'))
+    f.write('\t\t     \t\t\n'.encode('utf-16-be'))
+    f.write('this is a مزيج of text\n'.encode('utf-16-be'))
+    f.write('간\n'.encode('utf-16-be'))
+    f.write('𐂣\n'.encode('utf-16-be'))
+
+with codecs.open(
+        os.path.join(BASE_DIR, 'utf16be.windows.txt'), 'bw+') as f:
+    f.write(codecs.BOM_UTF16_BE)
+    f.write('Hello World!\r\n'.encode('utf-16-be'))
+    f.write('γειά σου Κόσμε\r\n'.encode('utf-16-be'))
+    f.write('\r\n'.encode('utf-16-be'))
+    f.write('\t\t     \t\t\r\n'.encode('utf-16-be'))
+    f.write('this is a مزيج of text\r\n'.encode('utf-16-be'))
+    f.write('간\r\n'.encode('utf-16-be'))
+    f.write('𐂣\r\n'.encode('utf-16-be'))
