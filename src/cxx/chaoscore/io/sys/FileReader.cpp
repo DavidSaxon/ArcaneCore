@@ -215,7 +215,7 @@ bool FileReader::eof() const
 
 void FileReader::read(char* data, chaos::int64 length)
 {
-    // TODO:
+    m_stream->read(data, length);
 }
 
 } // namespace sys

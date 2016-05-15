@@ -226,13 +226,18 @@ public:
         }
     }
 
+    // TODO: delete BOMs?
+    // TODO delete lines
+
     void insert_ascii_line(
             const chaos::str::UTF8String& line,
             std::vector<std::size_t>& _line_lengths,
             std::vector<const char*>& _lines)
     {
         _line_lengths.push_back(line.get_byte_length() - 1);
-        _lines.push_back(line.get_raw());
+        char* copy = new char[line.get_byte_length()];
+        memcpy(copy, line.get_raw(), line.get_byte_length());
+        _lines.push_back(copy);
     }
 
     void insert_utf8_line(
@@ -241,7 +246,9 @@ public:
             std::vector<const char*>& _lines)
     {
         _line_lengths.push_back(line.get_byte_length() - 1);
-        _lines.push_back(line.get_raw());
+        char* copy = new char[line.get_byte_length()];
+        memcpy(copy, line.get_raw(), line.get_byte_length());
+        _lines.push_back(copy);
     }
 
     void insert_utf16le_line(
@@ -294,6 +301,50 @@ CHAOS_TEST_UNIT_FIXTURE(get_size, FileReaderFixture)
     for(std::size_t i = 0; i < file_readers.size(); ++i)
     {
         CHAOS_CHECK_EQUAL(file_readers[i].get_size(), fixture->sizes[i]);
+    }
+}
+
+CHAOS_TEST_UNIT_FIXTURE(read_char, FileReaderFixture)
+{
+    // create readers
+    std::vector<chaos::io::sys::FileReader> file_readers;
+    for(std::size_t i = 0; i < fixture->paths.size(); ++i)
+    {
+        chaos::io::sys::FileReader r(
+            fixture->paths[i],
+            fixture->encodings[i],
+            fixture->newlines[i]
+        );
+        file_readers.push_back(std::move(r));
+    }
+
+    // read and compare contents
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        std::size_t byte_size = static_cast<std::size_t>(fixture->sizes[i]);
+
+        // combine lines
+        char* combined_lines = new char[byte_size + 1];
+        combined_lines[byte_size] = '\0';
+        std::size_t l_pos = fixture->bom_lengths[i];
+        memcpy(combined_lines, fixture->boms[i], l_pos);
+        for(std::size_t j = 0; j < fixture->lines[i].size(); ++j)
+        {
+            memcpy(
+                combined_lines + l_pos,
+                fixture->lines[i][j],
+                fixture->line_lengths[i][j]
+            );
+            l_pos += fixture->line_lengths[i][j];
+        }
+
+        //perform read
+        char* read_data = new char[byte_size + 1];
+        read_data[byte_size] = '\0';
+        file_readers[i].read(read_data, byte_size);
+
+        // check
+        CHAOS_CHECK_TRUE(memcmp(read_data, combined_lines, byte_size) == 0);
     }
 }
 

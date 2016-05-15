@@ -186,74 +186,86 @@ public:
             add_big_endian( u );
             lengths.push_back( 4 );
         }
+
+        // TODO: 4-byte checks
+        // {
+        //     utf8.push_back("𛱜");
+        //     std::vector<unsigned char> u;
+        //     u.push_back(0x5C); u.push_back(0xBC);
+        //     u.push_back(0x01); u.push_back(0x00); // 🝠
+        //     u.push_back(0x00); u.push_back(0x00);
+        //     little_endian.push_back(u);
+        //     add_big_endian(u);
+        //     lengths.push_back(6);
+        // }
     }
 
-    void add_big_endian( std::vector< unsigned char> l )
+    void add_big_endian(std::vector<unsigned char> l)
     {
-        std::vector< unsigned char > b;
-        for( std::size_t i = 0; i < l.size() - 1; i += 2 )
+        std::vector<unsigned char> b;
+        for(std::size_t i = 0; i < l.size() - 1; i += 2)
         {
-            b.push_back( l[ i + 1 ] );
-            b.push_back( l[ i     ] );
+            b.push_back(l[i + 1]);
+            b.push_back(l[i    ]);
         }
-        big_endian.push_back( b );
+        big_endian.push_back(b);
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( utf8_to_utf16, UTF8ToUTF16Fixture )
+CHAOS_TEST_UNIT_FIXTURE(utf8_to_utf16, UTF8ToUTF16Fixture)
 {
-    CHAOS_TEST_MESSAGE( "Checking little endian returned length" );
-    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    CHAOS_TEST_MESSAGE("Checking little endian returned length");
+    for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
         const char* u = chaos::str::utf8_to_utf16(
-                fixture->utf8[ i ], length, chaos::data::ENDIAN_LITTLE );
-        CHAOS_CHECK_EQUAL( length, fixture->lengths [ i ] );
+            fixture->utf8[i], length, chaos::data::ENDIAN_LITTLE);
+        CHAOS_CHECK_EQUAL(length, fixture->lengths[i]);
         delete[] u;
     }
 
-    CHAOS_TEST_MESSAGE( "Checking little endian contents" );
-    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    CHAOS_TEST_MESSAGE("Checking little endian contents");
+    for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
         const char* u = chaos::str::utf8_to_utf16(
-                fixture->utf8[ i ], length, chaos::data::ENDIAN_LITTLE );
+            fixture->utf8[i], length, chaos::data::ENDIAN_LITTLE);
         CHAOS_CHECK_EQUAL(
-                memcmp(
-                        u,
-                        reinterpret_cast< const char* >(
-                                &fixture->little_endian[ i ][ 0 ] ),
-                        length
-                ),
-                0
-        );
+            memcmp(
+                u,
+                reinterpret_cast<const char*>(
+                        &fixture->little_endian[i][0]),
+                length
+            ),
+            0
+       );
         delete[] u;
     }
 
-    CHAOS_TEST_MESSAGE( "Checking big endian returned length" );
-    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    CHAOS_TEST_MESSAGE("Checking big endian returned length");
+    for(std::size_t i = 0; i <fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
         const char* u = chaos::str::utf8_to_utf16(
-                fixture->utf8[ i ], length, chaos::data::ENDIAN_BIG );
-        CHAOS_CHECK_EQUAL( length, fixture->lengths [ i ] );
+            fixture->utf8[i], length, chaos::data::ENDIAN_BIG);
+        CHAOS_CHECK_EQUAL(length, fixture->lengths[i]);
         delete[] u;
     }
 
-    CHAOS_TEST_MESSAGE( "Checking big endian contents" );
-    for( std::size_t i = 0; i < fixture->utf8.size(); ++i )
+    CHAOS_TEST_MESSAGE("Checking big endian contents");
+    for(std::size_t i = 0; i <fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
         const char* u = chaos::str::utf8_to_utf16(
-                fixture->utf8[ i ], length, chaos::data::ENDIAN_BIG );
+            fixture->utf8[i], length, chaos::data::ENDIAN_BIG);
         CHAOS_CHECK_EQUAL(
-                memcmp(
-                        u,
-                        reinterpret_cast< const char* >(
-                                &fixture->big_endian[ i ][ 0 ] ),
-                        length
-                ),
-                0
+            memcmp(
+                u,
+                reinterpret_cast<const char*>(
+                        &fixture->big_endian[i][0]),
+                length
+            ),
+            0
         );
         delete[] u;
     }
