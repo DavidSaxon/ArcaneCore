@@ -19,7 +19,6 @@ chaos::str::UTF8String utf16_to_utf8(
     // ensure data is unsigned
     const unsigned char* d = reinterpret_cast<const unsigned char*>(data);
 
-    // TODO: support 4 byte symbols
     std::vector<unsigned char> utf8;
     // iterate over each character
     for(size_t i = 0;
@@ -31,13 +30,36 @@ chaos::str::UTF8String utf16_to_utf8(
         {
             code_point = (static_cast<chaos::uint32>(d[i]) << 8) |
                           static_cast<chaos::uint32>(d[i + 1]);
-            // TODO: is this part of a surrogate pair?
         }
         else
         {
             code_point = static_cast<chaos::uint32>(d[i]) |
                          (static_cast<chaos::uint32>(d[i + 1] << 8));
-            // TODO: is this part of a surrogate pair?
+        }
+
+        // is this actually a 4-byte UTF-16 symbol, if so decode the code point
+        if(code_point >= chaos::str::UTF16_HIGH_SURROGATE_MIN &&
+           code_point <= chaos::str::UTF16_HIGH_SURROGATE_MAX    )
+        {
+            chaos::uint32 high_surrogate = code_point;
+            chaos::uint32 low_surrogate = 0;
+            if(endianness == chaos::data::ENDIAN_BIG)
+            {
+                low_surrogate = (static_cast<chaos::uint32>(d[i + 2]) << 8) |
+                                 static_cast<chaos::uint32>(d[i + 3]);
+            }
+            else
+            {
+                low_surrogate = static_cast<chaos::uint32>(d[i + 2]) |
+                               (static_cast<chaos::uint32>(d[i + 3] << 8));
+            }
+            // decompose the surrogates
+            high_surrogate -= chaos::str::UTF16_HIGH_SURROGATE_MIN;
+            low_surrogate  -= chaos::str::UTF16_LOW_SURROGATE_MIN;
+            code_point = (high_surrogate << 10) | low_surrogate;
+            code_point += chaos::str::UTF16_4BYTE_OFFSET;
+            // we passed an extra two bytes
+            i += 2;
         }
 
         // null?
@@ -76,10 +98,19 @@ chaos::str::UTF8String utf16_to_utf8(
         // four byte UTF-8 character
         else
         {
-            throw chaos::ex::NotImplementedError(
-                "converting UTF-16 symbols with greater than 2 byte width to "
-                "UTF-8 is not yet supported."
-           );
+            // TODO: could check the value is less than the max... utf16
+            utf8.push_back(static_cast<unsigned char>(
+                0xF0 + ((code_point >> 18) & 0x0F))
+            );
+            utf8.push_back(static_cast<unsigned char>(
+                0x80 + ((code_point >> 12) & 0x3F))
+            );
+            utf8.push_back(static_cast<unsigned char>(
+                0x80 + ((code_point >> 6) & 0x3F))
+            );
+            utf8.push_back(static_cast<unsigned char>(
+                0x80 + (code_point & 0x3F))
+            );
         }
     }
 
@@ -99,15 +130,16 @@ char* utf8_to_utf16(
         chaos::uint32 code_point = data.get_code_point(i);
         // if this is a 4 byte character apply the surrogate to the code point
         bool is_surrogate_pair = false;
-        if(code_point > 0xFFFF)
+        if(code_point > chaos::str::UTF16_MAX_2BYTE)
         {
-            // TODO: these should be constants, when rename this to
             // StringOperations
             is_surrogate_pair = true;
-            code_point -= 0x010000;
+            code_point -= chaos::str::UTF16_4BYTE_OFFSET;
             chaos::uint32 high_surrogate =
-                0xD800U + ((code_point >> 10) & 0x3FFU);
-            chaos::uint32 low_surrogate = 0xDC00 + (code_point & 0x3FF);
+                chaos::str::UTF16_HIGH_SURROGATE_MIN +
+                ((code_point >> 10) & 0x3FF);
+            chaos::uint32 low_surrogate =
+                chaos::str::UTF16_LOW_SURROGATE_MIN + (code_point & 0x3FF);
             code_point = (high_surrogate << 16) | low_surrogate;
         }
 
