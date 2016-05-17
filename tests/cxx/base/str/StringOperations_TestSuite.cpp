@@ -1,10 +1,10 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE(base.str.UnicodeOperations)
+CHAOS_TEST_MODULE(base.str.StringOperations)
 
 #include <cstring>
 
-#include "chaoscore/base/str/UnicodeOperations.hpp"
+#include "chaoscore/base/str/StringOperations.hpp"
 
 namespace unicode_operations_tests
 {

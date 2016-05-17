@@ -2,7 +2,7 @@
 
 CHAOS_TEST_MODULE(io.sys.FileReader)
 
-#include <chaoscore/base/str/UnicodeOperations.hpp>
+#include <chaoscore/base/str/StringOperations.hpp>
 #include <chaoscore/io/sys/FileReader.hpp>
 
 namespace

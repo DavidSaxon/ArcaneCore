@@ -1,8 +1,5 @@
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/str/UnicodeOperations.hpp"
-
-// TODO: REMOVE ME
-#include <iostream>
+#include "chaoscore/base/str/StringOperations.hpp"
 
 namespace chaos
 {
@@ -34,11 +31,13 @@ chaos::str::UTF8String utf16_to_utf8(
         {
             code_point = (static_cast<chaos::uint32>(d[i]) << 8) |
                           static_cast<chaos::uint32>(d[i + 1]);
+            // TODO: is this part of a surrogate pair?
         }
         else
         {
             code_point = static_cast<chaos::uint32>(d[i]) |
                          (static_cast<chaos::uint32>(d[i + 1] << 8));
+            // TODO: is this part of a surrogate pair?
         }
 
         // null?
@@ -124,13 +123,13 @@ char* utf8_to_utf16(
         }
         else
         {
-            v_str.push_back(code_point >> 8);
-            v_str.push_back(code_point);
             if(is_surrogate_pair)
             {
                 v_str.push_back(code_point >> 24);
                 v_str.push_back(code_point >> 16);
             }
+            v_str.push_back(code_point >> 8);
+            v_str.push_back(code_point);
         }
     }
     // add the NULL terminator

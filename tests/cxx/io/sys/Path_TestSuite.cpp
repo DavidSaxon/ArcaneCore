@@ -5,7 +5,7 @@ CHAOS_TEST_MODULE( io.sys.path )
 #include <algorithm>
 #include <cstring>
 
-#include "chaoscore/base/str/UnicodeOperations.hpp"
+#include "chaoscore/base/str/StringOperations.hpp"
 #include "chaoscore/io/sys/Path.hpp"
 
 namespace path_tests

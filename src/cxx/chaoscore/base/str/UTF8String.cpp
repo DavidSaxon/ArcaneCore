@@ -6,7 +6,7 @@
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/data/ByteOperations.hpp"
 #include "chaoscore/base/str/UTF8String.hpp"
-#include "chaoscore/base/str/UnicodeOperations.hpp"
+#include "chaoscore/base/str/StringOperations.hpp"
 
 namespace chaos
 {

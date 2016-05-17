@@ -4,7 +4,7 @@
 #include <cstring>
 
 #include "chaoscore/base/BaseExceptions.hpp"
-#include "chaoscore/base/str/UnicodeOperations.hpp"
+#include "chaoscore/base/str/StringOperations.hpp"
 
 namespace chaos
 {

@@ -31,7 +31,7 @@
     <ClCompile Include="src\cxx\chaoscore\base\math\MathOperations.cpp" />
     <ClCompile Include="src\cxx\chaoscore\base\os\OSOperations.cpp" />
     <ClCompile Include="src\cxx\chaoscore\base\str\StringConstants.cpp" />
-    <ClCompile Include="src\cxx\chaoscore\base\str\UnicodeOperations.cpp" />
+    <ClCompile Include="src\cxx\chaoscore\base\str\StringOperations.cpp" />
     <ClCompile Include="src\cxx\chaoscore\base\str\UTF8String.cpp" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)'=='IO_lib'">
@@ -67,7 +67,7 @@
     <ClCompile Include="tests/cxx/base/data/ByteOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/base/math/MathOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/base/str/UTF8String_TestSuite.cpp" />
-    <ClCompile Include="tests/cxx/base/str/UnicodeOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cxx/base/str/StringOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/format/FormatOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileHandle_TestSuite.cpp" />
     <ClCompile Include="tests/cxx/io/sys/FileReader_TestSuite.cpp" />

@@ -16,7 +16,7 @@
 #endif
 
 #include "chaoscore/base/os/OSOperations.hpp"
-#include "chaoscore/base/str/UnicodeOperations.hpp"
+#include "chaoscore/base/str/StringOperations.hpp"
 
 namespace chaos
 {
