@@ -61,12 +61,16 @@ chaos::str::UTF8String utf16_to_utf8(
  * \param r_length Returns the length of the new UTF-16 encoded string in bytes.
  * \param endianness The endian to use for the UTF-16 encoding, defaults to
  *                   little endian.
+ * \param null_terminated Whether the returned string should end with the UTF-16
+ *                        null terminator (0x00, 0x00).
+ *
  * \return Newly allocated UTF-16 encoded string.
  */
 char* utf8_to_utf16(
         const chaos::str::UTF8String& data,
         std::size_t& r_length,
-        chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE);
+        chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE,
+        bool null_terminated = true);
 
 /*!
  * \brief Checks whether the given character data is valid UTF-8 encoded data.

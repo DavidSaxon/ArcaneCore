@@ -1,6 +1,9 @@
 #include "chaoscore/base/BaseExceptions.hpp"
 #include "chaoscore/base/str/UnicodeOperations.hpp"
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace str
@@ -87,37 +90,55 @@ chaos::str::UTF8String utf16_to_utf8(
 char* utf8_to_utf16(
         const chaos::str::UTF8String& data,
         std::size_t& r_length,
-        chaos::data::Endianness endianness)
+        chaos::data::Endianness endianness,
+        bool null_terminated)
 {
     std::vector<unsigned char> v_str;
     // convert
     for(std::size_t i = 0; i < data.get_length(); ++i)
     {
         chaos::uint32 code_point = data.get_code_point(i);
+        // if this is a 4 byte character apply the surrogate to the code point
+        bool is_surrogate_pair = false;
+        if(code_point > 0xFFFF)
+        {
+            // TODO: these should be constants, when rename this to
+            // StringOperations
+            is_surrogate_pair = true;
+            code_point -= 0x010000;
+            chaos::uint32 high_surrogate =
+                0xD800U + ((code_point >> 10) & 0x3FFU);
+            chaos::uint32 low_surrogate = 0xDC00 + (code_point & 0x3FF);
+            code_point = (high_surrogate << 16) | low_surrogate;
+        }
+
         if(endianness == chaos::data::ENDIAN_LITTLE)
         {
-            v_str.push_back(code_point);
-            v_str.push_back(code_point >> 8);
-            if(code_point > 0xFFFF)
+            if(is_surrogate_pair)
             {
                 v_str.push_back(code_point >> 16);
                 v_str.push_back(code_point >> 24);
             }
+            v_str.push_back(code_point);
+            v_str.push_back(code_point >> 8);
         }
         else
         {
-            if(code_point > 0xFFFF)
+            v_str.push_back(code_point >> 8);
+            v_str.push_back(code_point);
+            if(is_surrogate_pair)
             {
                 v_str.push_back(code_point >> 24);
                 v_str.push_back(code_point >> 16);
             }
-            v_str.push_back(code_point >> 8);
-            v_str.push_back(code_point);
         }
     }
     // add the NULL terminator
-    v_str.push_back(0x00);
-    v_str.push_back(0x00);
+    if(null_terminated)
+    {
+        v_str.push_back(0x00);
+        v_str.push_back(0x00);
+    }
 
     r_length = v_str.size();
     // allocate to array and copy

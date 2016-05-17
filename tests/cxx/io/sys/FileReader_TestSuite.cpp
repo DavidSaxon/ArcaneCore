@@ -260,9 +260,10 @@ public:
         _lines.push_back(chaos::str::utf8_to_utf16(
             line,
             r_length,
-            chaos::data::ENDIAN_LITTLE
+            chaos::data::ENDIAN_LITTLE,
+            false
         ));
-        _line_lengths.push_back(r_length - 2);
+        _line_lengths.push_back(r_length);
     }
 
     void insert_utf16be_line(
@@ -274,9 +275,10 @@ public:
         _lines.push_back(chaos::str::utf8_to_utf16(
             line,
             r_length,
-            chaos::data::ENDIAN_BIG
+            chaos::data::ENDIAN_BIG,
+            false
         ));
-        _line_lengths.push_back(r_length - 2);
+        _line_lengths.push_back(r_length);
     }
 };
 
