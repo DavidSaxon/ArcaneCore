@@ -150,14 +150,41 @@ public:
      */
     bool eof() const;
 
-    // TODO: review: past EOF and length + 1
+    /*!
+     * \brief Returns whether this file starts with a Unicode Byte Order Marker.
+     *
+     * \note This function will only return ```true``` if the file starts with
+     *       a BOM that matches the file's encoding, see get_encoding().
+     *
+     * \warning This function will cause a read into the file. The file position
+     *          indicator will be moved from its current position to the
+     *          beginning of the file to check for the BOM, then moved back to
+     *          its initial position before this function was called.
+     *
+     * \throws chaos::ex::StateError If this FileReader is not open.
+     */
+    bool has_bom();
+
+    /*!
+     * \brief Reads a block of data from the file and moves the position
+     *        indicator to the index beyond the last read character in the file.
+     *
+     * This function is a pure copy of data, the copied data will include the
+     * Unicode BOM (if the file has one).
+     *
+     * TODO: move past BOM.
+     *
+     * continue (not null terminator)
+     *
+     * TODO: length greater than size?
+     */
     void read(char* data, chaos::int64 length);
 
     // TODO: read line (and only do with UTF8String?)
 
     // TODO: UTF8String
 
-private:
+// private:
 
     //--------------------------------------------------------------------------
     //                             PRIVATE ATTRIBUTES

@@ -85,6 +85,7 @@ public:
     std::vector<chaos::io::sys::Path> paths;
     std::vector<chaos::io::sys::FileHandle2::Encoding> encodings;
     std::vector<chaos::io::sys::FileHandle2::Newline> newlines;
+    std::vector<std::size_t> bom_sizes;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -97,6 +98,7 @@ public:
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_DETECT);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_DETECT);
+            bom_sizes.push_back(0);
         }
         {
             chaos::io::sys::Path p;
@@ -104,6 +106,7 @@ public:
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_DETECT);
+            bom_sizes.push_back(3);
         }
         {
             chaos::io::sys::Path p;
@@ -112,6 +115,7 @@ public:
             encodings.push_back(
                 chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            bom_sizes.push_back(2);
         }
         {
             chaos::io::sys::Path p;
@@ -119,6 +123,7 @@ public:
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            bom_sizes.push_back(0);
         }
         {
             chaos::io::sys::Path p;
@@ -127,6 +132,7 @@ public:
             encodings.push_back(
                     chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_DETECT);
+            bom_sizes.push_back(2);
         }
         {
             chaos::io::sys::Path p;
@@ -134,6 +140,7 @@ public:
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_DETECT);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            bom_sizes.push_back(0);
         }
         {
             chaos::io::sys::Path p;
@@ -141,6 +148,7 @@ public:
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
             newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            bom_sizes.push_back(0);
         }
     }
 };
@@ -218,6 +226,12 @@ CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandle2GenericFixture)
     CHAOS_FOR_EACH(it, handles)
     {
         CHAOS_CHECK_TRUE(it->is_open());
+    }
+
+    CHAOS_TEST_MESSAGE("Checking BOM sizes");
+    for(std::size_t i = 0; i < handles.size(); ++i)
+    {
+        CHAOS_CHECK_EQUAL(handles[i].get_bom_size(), fixture->bom_sizes[i]);
     }
 }
 

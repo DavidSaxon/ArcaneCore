@@ -205,17 +205,77 @@ bool FileReader::eof() const
     if(!m_open)
     {
         throw chaos::ex::StateError(
-            "End of File cannot be queried while the FileReader is "
-            "closed."
+            "End of File cannot be queried while the FileReader is closed."
         );
     }
 
     return m_stream->eof();
 }
 
+bool FileReader::has_bom()
+{
+    // ensure the FileReader is open
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "Unicode BOM cannot be queried while the FileReader is closed."
+        );
+    }
+
+
+    // does this encoding actually use a BOM? and is there actually enough data
+    // in the file?
+    std::size_t bom_size = get_bom_size();
+    if(bom_size == 0 || m_size < bom_size)
+    {
+        return false;
+    }
+
+    // store the current position indicator
+    chaos::int64 pos = tell();
+    // seek to the beginning of the file
+    seek(0);
+    // read the BOM character
+    char* bom = new char[bom_size];
+    read(bom, bom_size);
+
+    bool correct = false;
+    switch(m_encoding)
+    {
+        case ENCODING_UTF8:
+            correct = memcmp(bom, chaos::str::UTF8_BOM, bom_size) == 0;
+            break;
+        case ENCODING_UTF16_LITTLE_ENDIAN:
+            correct = memcmp(bom, chaos::str::UTF16LE_BOM, bom_size) == 0;
+            break;
+        case ENCODING_UTF16_BIG_ENDIAN:
+            correct = memcmp(bom, chaos::str::UTF16BE_BOM, bom_size) == 0;
+            break;
+        default:
+            chaos::str::UTF8String error_message;
+            error_message << "Unexpected file encoding when checking for BOM: "
+                          << m_encoding;
+            throw chaos::ex::NotImplementedError(error_message);
+    }
+
+    // clean up
+    delete[] bom;
+    seek(pos);
+
+    return correct;
+}
+
 void FileReader::read(char* data, chaos::int64 length)
 {
     m_stream->read(data, length);
+
+    // little bit of hack but for some reason ifstream::read doesn't set the eof
+    // flag unless you read past the end of the file. So we will forcibly set it
+    // if the we are at the end of the file.
+    if(!eof() && tell() >= get_size())
+    {
+        m_stream->get();
+    }
 }
 
 } // namespace sys

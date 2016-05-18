@@ -96,6 +96,21 @@ void FileHandle2::open(const chaos::io::sys::Path& path)
     open();
 }
 
+std::size_t FileHandle2::get_bom_size() const
+{
+    switch(m_encoding)
+    {
+        case ENCODING_UTF8:
+            return chaos::str::UTF8_BOM_SIZE;
+        case ENCODING_UTF16_LITTLE_ENDIAN:
+            return chaos::str::UTF16_BOM_SIZE;
+        case ENCODING_UTF16_BIG_ENDIAN:
+            return chaos::str::UTF16_BOM_SIZE;
+        default:
+            return 0;
+    }
+}
+
 //------------------------------------------------------------------------------
 //                             PROTECTED CONSTRUCTORS
 //------------------------------------------------------------------------------

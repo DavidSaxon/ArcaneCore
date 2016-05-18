@@ -42,6 +42,28 @@ enum Encoding
 extern const std::size_t npos;
 
 /*!
+ * \brief The number of Bytes in the UTF-8 Byte Order Marker.
+ */
+extern const std::size_t UTF8_BOM_SIZE;
+/*!
+ * \brief Bytes representing the UTF-8 Byte Order Marker.
+ */
+extern const char UTF8_BOM[];
+
+/*!
+ * \brief The number of Bytes in the UTF-16 Byte Order Marker.
+ */
+extern const std::size_t UTF16_BOM_SIZE;
+/*!
+ * \brief Bytes representing the Little Endian UTF-16 Byte Order Marker.
+ */
+extern const char UTF16LE_BOM[];
+/*!
+ * \brief Bytes representing the Big Endian UTF-16 Byte Order Marker.
+ */
+extern const char UTF16BE_BOM[];
+
+/*!
  * \brief The maximum code point that will be stored within 2 bytes when encoded
  *        using UTF-16.
  */

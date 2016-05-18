@@ -172,6 +172,14 @@ public:
     virtual chaos::int64 get_size() const = 0;
 
     /*!
+     * \brief Returns the size in bytes of the Byte Order Marker that should be
+     *        used in this file based on the encoding type.
+     *
+     * \note This function does not imply that the file actually has a BOM.
+     */
+    std::size_t get_bom_size() const;
+
+    /*!
      * \brief Returns the index of the byte the file position indicator is
      *        currently at.
      *
