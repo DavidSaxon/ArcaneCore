@@ -2,6 +2,8 @@
 
 CHAOS_TEST_MODULE(io.sys.FileReader)
 
+#include <cstring>
+
 #include <chaoscore/base/str/StringOperations.hpp>
 #include <chaoscore/io/sys/FileReader.hpp>
 

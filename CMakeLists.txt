@@ -10,7 +10,7 @@ set(BASE_SRC
     src/cxx/chaoscore/base/math/MathOperations.cpp
     src/cxx/chaoscore/base/os/OSOperations.cpp
     src/cxx/chaoscore/base/str/StringConstants.cpp
-    src/cxx/chaoscore/base/str/UnicodeOperations.cpp
+    src/cxx/chaoscore/base/str/StringOperations.cpp
     src/cxx/chaoscore/base/str/UTF8String.cpp
 )
 
@@ -51,7 +51,7 @@ set(TESTS_SUITES
     tests/cxx/base/data/ByteOperations_TestSuite.cpp
     tests/cxx/base/math/MathOperations_TestSuite.cpp
     tests/cxx/base/str/UTF8String_TestSuite.cpp
-    tests/cxx/base/str/UnicodeOperations_TestSuite.cpp
+    tests/cxx/base/str/StringOperations_TestSuite.cpp
 
     tests/cxx/io/format/FormatOperations_TestSuite.cpp
     tests/cxx/io/sys/FileHandle_TestSuite.cpp
