@@ -350,6 +350,19 @@ CHAOS_TEST_UNIT_FIXTURE(has_bom, FileReaderFixture)
     }
 }
 
+CHAOS_TEST_UNIT_FIXTURE(seek_to_data_start, FileReaderFixture)
+{
+    // create readers
+    std::vector<chaos::io::sys::FileReader> file_readers;
+    fixture->build_file_readers(file_readers);
+
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        file_readers[i].seek_to_data_start();
+        CHAOS_CHECK_EQUAL(file_readers[i].tell(), fixture->bom_sizes[i]);
+    }
+}
+
 CHAOS_TEST_UNIT_FIXTURE(read_char, FileReaderFixture)
 {
     // create readers

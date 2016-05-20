@@ -1,5 +1,6 @@
 #include "chaoscore/io/sys/FileReader.hpp"
 
+#include <cstring>
 #include <fstream>
 
 #include "chaoscore/base/str/StringOperations.hpp"
@@ -225,7 +226,7 @@ bool FileReader::has_bom()
 
     // does this encoding actually use a BOM? and is there actually enough data
     // in the file?
-    std::size_t bom_size = get_bom_size();
+    chaos::int64 bom_size = static_cast<chaos::int64>(get_bom_size());
     if(bom_size == 0 || m_size < bom_size)
     {
         return false;
@@ -265,8 +266,29 @@ bool FileReader::has_bom()
     return correct;
 }
 
+chaos::int64 FileReader::seek_to_data_start()
+{
+    // does the file have a byte order marker, if so seek past it
+    if(has_bom())
+    {
+        seek(static_cast<chaos::int64>(get_bom_size()));
+    }
+    // else seek to the start of the file
+    else
+    {
+        seek(0);
+    }
+    return tell();
+}
+
 void FileReader::read(char* data, chaos::int64 length)
 {
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "File read cannot be performed while the FileReader is closed.");
+    }
+
     m_stream->read(data, length);
 
     // little bit of hack but for some reason ifstream::read doesn't set the eof
@@ -276,6 +298,28 @@ void FileReader::read(char* data, chaos::int64 length)
     {
         m_stream->get();
     }
+}
+
+void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
+{
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "File read cannot be performed while the FileReader is closed.");
+    }
+
+    // is length negative or grater than the remainder of the file
+    chaos::int64 remaining_length = get_size() - tell();
+    if(length < 0 || length > remaining_length)
+    {
+        length = remaining_length;
+    }
+
+    // read from file
+    char* c_data = new char[length];
+    read(c_data, length);
+
+    // TODO: need chaos::str::UTF8String claim function
 }
 
 } // namespace sys

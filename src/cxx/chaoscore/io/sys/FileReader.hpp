@@ -166,19 +166,46 @@ public:
     bool has_bom();
 
     /*!
+     * \brief Sets the file position indicator to the start of the actual file
+     *        data.
+     *
+     * This function checks if the file has a Byte Order Marker and if so, the
+     * file position indicator is set to the next character after the BOM. If
+     * the file does not have a BOM the file position indicator is set to the
+     * start of the file.
+     *
+     * \returns The file position indicator after this action has been applied.
+     */
+    chaos::int64 seek_to_data_start();
+
+    /*!
      * \brief Reads a block of data from the file and moves the position
      *        indicator to the index beyond the last read character in the file.
      *
      * This function is a pure copy of data, the copied data will include the
-     * Unicode BOM (if the file has one).
+     * Unicode BOM (if the file has one). To read the data starting after the
+     * BOM the seek_to_data_start() function can be used.
      *
-     * TODO: move past BOM.
+     * \param data Character array that file data will be copied into.
+     * \param length The number of characters to read from the file. If this is
+     *               greater than the number of characters in the file this
+     *               function will read the remaining characters up to the end
+     *               of the file.
      *
-     * continue (not null terminator)
-     *
-     * TODO: length greater than size?
+     * \throws chaos::ex::StateError If this FileReader is not open.
      */
     void read(char* data, chaos::int64 length);
+
+    /*!
+     * \brief Reads a block of data from the file and returns it (converting
+     *        the data encoding if needed) represented as a
+     *        chaos::str::UTF8String.
+     *
+     * \TODO:
+     *
+     * \throws chaos::ex::StateError If this FileReader is not open.
+     */
+    void read(chaos::str::UTF8String& data, chaos::int64 length = -1);
 
     // TODO: read line (and only do with UTF8String?)
 
