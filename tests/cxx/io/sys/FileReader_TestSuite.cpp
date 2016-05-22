@@ -308,6 +308,30 @@ public:
 //                                    GET SIZE
 //------------------------------------------------------------------------------
 
+CHAOS_TEST_UNIT_FIXTURE(detect_encoding, FileReaderFixture)
+{
+    // create readers
+    std::vector<chaos::io::sys::FileReader> file_readers;
+    for(std::size_t i = 0; i < fixture->paths.size(); ++i)
+    {
+        chaos::io::sys::FileReader r(
+            fixture->paths[i],
+            chaos::io::sys::FileHandle2::ENCODING_DETECT,
+            fixture->newlines[i]
+        );
+        file_readers.push_back(std::move(r));
+    }
+
+    // check encodings
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        CHAOS_CHECK_EQUAL(
+            file_readers[i].get_encoding(),
+            fixture->encodings[i]
+        );
+    }
+}
+
 CHAOS_TEST_UNIT_FIXTURE(get_size, FileReaderFixture)
 {
     // create readers
@@ -508,6 +532,15 @@ CHAOS_TEST_UNIT_FIXTURE(read_utf8, FileReaderFixture)
         chaos::str::UTF8String read_data;
         file_readers[i].read(read_data);
         CHAOS_CHECK_EQUAL(read_data, combined_lines[i]);
+    }
+
+    CHAOS_TEST_MESSAGE("Checking EOF");
+    CHAOS_FOR_EACH(reader, file_readers)
+    {
+        CHAOS_CHECK_TRUE(reader->eof());
+        // reset the file
+        reader->close();
+        reader->open();
     }
 }
 

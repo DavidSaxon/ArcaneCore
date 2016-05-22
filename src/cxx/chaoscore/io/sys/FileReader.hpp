@@ -222,7 +222,7 @@ public:
 
     // TODO: UTF8String
 
-// private:
+private:
 
     //--------------------------------------------------------------------------
     //                             PRIVATE ATTRIBUTES

@@ -6,6 +6,9 @@
 #include "chaoscore/base/str/StringOperations.hpp"
 #include "chaoscore/io/sys/FileSystemExceptions.hpp"
 
+// TODO: REMOVE ME
+#include <iostream>
+
 namespace chaos
 {
 namespace io
@@ -129,6 +132,43 @@ void FileReader::open()
     m_size = m_stream->tellg();
     m_stream->seekg(0, std::ios_base::beg);
 
+    // should we detect the encoding, check for UTF-8 first since it's the most
+    // common
+    if(m_encoding == ENCODING_DETECT && m_size >= chaos::str::UTF8_BOM_SIZE)
+    {
+        char* bom = new char[chaos::str::UTF8_BOM_SIZE];
+        m_stream->read(bom, chaos::str::UTF8_BOM_SIZE);
+        if(memcmp(bom, chaos::str::UTF8_BOM, chaos::str::UTF8_BOM_SIZE) == 0)
+        {
+            m_encoding = ENCODING_UTF8;
+        }
+        m_stream->seekg(0);
+        delete[] bom;
+    }
+    // the encoding still hasn't been detected, check for UTF-16 encodings next
+    if(m_encoding == ENCODING_DETECT && m_size >= chaos::str::UTF16_BOM_SIZE)
+    {
+        char* bom = new char[chaos::str::UTF16_BOM_SIZE];
+        m_stream->read(bom, chaos::str::UTF16_BOM_SIZE);
+        if(memcmp(bom, chaos::str::UTF16LE_BOM, chaos::str::UTF16_BOM_SIZE)
+           == 0)
+        {
+            m_encoding = ENCODING_UTF16_LITTLE_ENDIAN;
+        }
+        else if(memcmp(bom, chaos::str::UTF16BE_BOM, chaos::str::UTF16_BOM_SIZE)
+                == 0)
+        {
+            m_encoding = ENCODING_UTF16_BIG_ENDIAN;
+        }
+        m_stream->seekg(0);
+        delete[] bom;
+    }
+    // still no encoding, assume RAW
+    if(m_encoding == ENCODING_DETECT)
+    {
+        m_encoding = ENCODING_RAW;
+    }
+
     // file reader is open
     m_open = true;
 }
@@ -227,6 +267,7 @@ bool FileReader::has_bom()
     // does this encoding actually use a BOM? and is there actually enough data
     // in the file?
     chaos::int64 bom_size = static_cast<chaos::int64>(get_bom_size());
+    std::size_t bom_size_t = static_cast<std::size_t>(bom_size);
     if(bom_size == 0 || m_size < bom_size)
     {
         return false;
@@ -237,20 +278,20 @@ bool FileReader::has_bom()
     // seek to the beginning of the file
     seek(0);
     // read the BOM character
-    char* bom = new char[bom_size];
+    char* bom = new char[bom_size_t];
     read(bom, bom_size);
 
     bool correct = false;
     switch(m_encoding)
     {
         case ENCODING_UTF8:
-            correct = memcmp(bom, chaos::str::UTF8_BOM, bom_size) == 0;
+            correct = memcmp(bom, chaos::str::UTF8_BOM, bom_size_t) == 0;
             break;
         case ENCODING_UTF16_LITTLE_ENDIAN:
-            correct = memcmp(bom, chaos::str::UTF16LE_BOM, bom_size) == 0;
+            correct = memcmp(bom, chaos::str::UTF16LE_BOM, bom_size_t) == 0;
             break;
         case ENCODING_UTF16_BIG_ENDIAN:
-            correct = memcmp(bom, chaos::str::UTF16BE_BOM, bom_size) == 0;
+            correct = memcmp(bom, chaos::str::UTF16BE_BOM, bom_size_t) == 0;
             break;
         default:
             chaos::str::UTF8String error_message;
@@ -331,10 +372,11 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
     }
 
     // read from file
-    char* c_data = new char[length + 1];
+    std::size_t length_t = static_cast<std::size_t>(length);
+    char* c_data = new char[length_t + 1];
     read(c_data, length);
     // ensure the data is null terminated
-    c_data[length] = '\0';
+    c_data[length_t] = '\0';
 
     // do we need to convert the encoding
     switch(m_encoding)
@@ -343,7 +385,7 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
         {
             data = chaos::str::utf16_to_utf8(
                 c_data,
-                length,
+                length_t,
                 chaos::data::ENDIAN_LITTLE
             );
             break;
@@ -352,7 +394,7 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
         {
             data = chaos::str::utf16_to_utf8(
                 c_data,
-                length,
+                length_t,
                 chaos::data::ENDIAN_BIG
             );
             break;
