@@ -97,7 +97,7 @@ public:
             p << "file.txt";
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_DETECT);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_DETECT);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
@@ -105,7 +105,7 @@ public:
             p << "directory" << "file.txt";
             paths.push_back(p);
             encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_DETECT);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
             bom_sizes.push_back(3);
         }
         {
@@ -131,7 +131,7 @@ public:
             paths.push_back(p);
             encodings.push_back(
                     chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_DETECT);
+            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
             bom_sizes.push_back(2);
         }
         {

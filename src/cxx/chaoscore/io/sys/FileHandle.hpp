@@ -257,6 +257,19 @@ protected:
             const chaos::io::sys::Path& path,
             Encoding encoding = ENCODING_DETECT,
             Newline newline   = NEWLINE_UNIX);
+
+private:
+
+    //--------------------------------------------------------------------------
+    //                          PRIVATE MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief If this FileHandle's newline is currently set to
+     *        chaos::io::sys::FileHandle2::NEWLINE_DETECT this function will
+     *        reassign the newline value based on the current Operating System.
+     */
+    void handle_newline_detect();
 };
 
 /*!

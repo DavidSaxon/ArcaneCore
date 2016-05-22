@@ -88,6 +88,7 @@ void FileHandle2::set_newline(Newline newline)
     }
 
     m_newline = newline;
+    handle_newline_detect();
 }
 
 void FileHandle2::open(const chaos::io::sys::Path& path)
@@ -121,6 +122,7 @@ FileHandle2::FileHandle2(Encoding encoding, Newline newline)
     m_encoding(encoding),
     m_newline (newline)
 {
+    handle_newline_detect();
 }
 
 FileHandle2::FileHandle2(
@@ -133,7 +135,27 @@ FileHandle2::FileHandle2(
     m_encoding(encoding),
     m_newline (newline)
 {
+    handle_newline_detect();
 }
+
+//------------------------------------------------------------------------------
+//                            PRIVATE MEMBER FUNCTIONS
+//------------------------------------------------------------------------------
+
+void FileHandle2::handle_newline_detect()
+{
+    if(m_newline == NEWLINE_DETECT)
+    {
+#ifdef CHAOS_OS_WINDOWS
+        m_newline = NEWLINE_WINDOWS;
+#else
+        m_newline = NEWLINE_UNIX;
+#endif
+    }
+}
+
+
+
 
 //------------------------------------------------------------------------------
 //                                MOVE CONSTRUCTOR
