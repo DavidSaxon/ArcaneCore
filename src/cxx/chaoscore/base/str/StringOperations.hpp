@@ -37,15 +37,13 @@ bool is_digit(chaos::uint32 code_point);
  *        chaos::str::UTF8String.
  *
  * \param data UTF-16 string stored as 2-4 chars per symbol.
- * \param symbol_length The number of Unicode symbols in the input data. Note:
- *                      this is not the number of bytes in the data. If this
- *                      parameter is set to chaos::str::npos the length of the
- *                      input will be calculated with the assumption it is NULL
- *                      terminated.
+ * \param byte_length The number of bytes in the input data. If this parameter
+ *                      is set to chaos::str::npos the length of the input will
+ *                      be calculated with the assumption it is null terminated.
  */
 chaos::str::UTF8String utf16_to_utf8(
         const char* data,
-        std::size_t symbol_length,
+        std::size_t byte_length,
         chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE);
 
 /*!

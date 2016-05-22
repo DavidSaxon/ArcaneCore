@@ -201,7 +201,18 @@ public:
      *        the data encoding if needed) represented as a
      *        chaos::str::UTF8String.
      *
-     * \TODO:
+     * This function will return data from the file and ensuring that it is
+     * UTF-8 encoded. This function does not affect the newlines of the data,
+     * they will be returned as they are in the file. If the file has a BOM it
+     * will not be read into the returned data, however the bytes of the BOM
+     * will be counted towards the length of data to read.
+     *
+     * \param data UTF8String that the file data will be read into. This
+     *             function will remove any existing data contained within the
+     *             UTF8String.
+     * \param length The number of bytes to read from the file. If ```-1``` is
+     *               provided this function will read from file position
+     *               indicator to the end of the file.
      *
      * \throws chaos::ex::StateError If this FileReader is not open.
      */

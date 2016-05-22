@@ -22,7 +22,7 @@ public:
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     // cstrings
-    std::vector< const char* > cstrings;
+    std::vector<const char*> cstrings;
     // lengths
     std::vector< std::size_t > lengths;
     // utf8strings
@@ -1376,6 +1376,25 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_assign, UTF8StringGenericFixture )
         v.assign( *it );
         CHAOS_CHECK_EQUAL( v, *it );
         CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), it->get_raw() ), 0 );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                     CLAIM
+//------------------------------------------------------------------------------
+
+CHAOS_TEST_UNIT_FIXTURE(claim, UTF8StringGenericFixture)
+{
+    CHAOS_FOR_EACH(it, fixture->cstrings)
+    {
+        // copy the string first
+        std::size_t length = strlen(*it) + 1;
+        char* copy = new char[length];
+        memcpy(copy, *it, length);
+
+        chaos::str::UTF8String v;
+        v.claim(copy);
+        CHAOS_CHECK_EQUAL(strcmp( v.get_raw(), *it), 0);
     }
 }
 

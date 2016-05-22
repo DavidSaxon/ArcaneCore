@@ -245,6 +245,9 @@ public:
      * \param data Character data to be used for this UTF8String instance.
      * \param optimisations Optimisations parameters to be used by this
      *                      UTF8String instance.
+     *
+     * \throws chaos::ex::EncodingError If the provided data is not valid UTF-8
+     *                                  encoded data.
      */
     UTF8String(const char* data, Opt optimisations = default_opt);
 
@@ -261,6 +264,9 @@ public:
      * \param length The number of bytes to read from the character data.
      * \param optimisations Optimisations parameters to be used by this
      *                      UTF8String instance.
+     *
+     * \throws chaos::ex::EncodingError If the provided data is not valid UTF-8
+     *                                  encoded data.
      */
     UTF8String(
             const char* data,
@@ -274,6 +280,9 @@ public:
      * UTF8String.
      *
      * \note Optimisation parameters will be coped from the given UTF8String.
+     *
+     * \throws chaos::ex::EncodingError If the internal data of the provided
+     *                                  object is not valid UTF-8 encoded data.
      */
     UTF8String(const UTF8String& other);
 
@@ -301,6 +310,9 @@ public:
      * \param other UTF8String to copy internal data from.
      * \return A reference to this UTF8String after the assignment has taken
      *         place.
+     *
+     * \throws chaos::ex::EncodingError If the internal data of the provided
+     *                                  object is not valid UTF-8 encoded data.
      */
     const UTF8String& operator=(const UTF8String& other);
 
@@ -341,6 +353,8 @@ public:
      */
     bool operator<(const UTF8String& other) const;
 
+    // TODO: does the result copy opts from first string?
+    // TODO: encoding error, check both??
     /*!
      * \brief Addition operator.
      *
@@ -350,9 +364,11 @@ public:
      *
      * \param other UTF8String to append to the end of a copy of this string.
      * \return UTF8String that contains the results of the concatenation.
+     *
      */
     UTF8String operator+(const UTF8String& other) const;
 
+    // TODO: encoding error, check only second
     /*!
      * \brief Compound addition operator.
      *
@@ -364,6 +380,8 @@ public:
      */
     UTF8String& operator+=(const UTF8String& other);
 
+    // TODO: does the result copy opts from first string?
+    // TODO: encoding error, check both??
     /*!
      * \brief Multiplication operator.
      *
@@ -374,9 +392,9 @@ public:
      * \param count the number of times to repeat the string
      * \return UTF8String that contains the results of the repeat.
      */
-    // TODO: const
     UTF8String operator*(chaos::uint32 count) const;
 
+    // TODO: encoding error, check only second
     /*!
      * \brief Compound multiplication operator.
      *
@@ -388,6 +406,7 @@ public:
      */
     UTF8String& operator*=(chaos::uint32 count);
 
+    // TODO: encoding error, check only second
     /*!
      * \brief Stream operator.
      *
@@ -395,6 +414,7 @@ public:
      */
     UTF8String& operator<<(const UTF8String& other);
 
+    // TODO: encoding error, check only second
     /*!
      * \brief Stream operator.
      *
@@ -405,6 +425,7 @@ public:
      */
     UTF8String& operator<<(const char* other);
 
+    // TODO: encoding error, check only second
     /*!
      * \brief Stream operator.
      *
@@ -423,6 +444,7 @@ public:
      */
     UTF8String& operator<<(bool other);
 
+    // TODO: character range???
     /*!
      * \brief Stream operator.
      *
@@ -517,6 +539,9 @@ public:
      *
      * \note The input data is expected to be UTF-8 encoded and NULL terminated.
      *       For functions to convert encodings see StringOperations.hpp
+     *
+     * \throws chaos::ex::EncodingError If the provided data is not valid UTF-8
+     *                                  encoded data.
      */
     void assign(const char* data);
 
@@ -533,6 +558,9 @@ public:
      *
      * \param data Character data to be used for this UTF8String.
      * \param length The number of bytes to read from the character data.
+     *
+     * \throws chaos::ex::EncodingError If the provided data is not valid UTF-8
+     *                                  encoded data.
      */
     void assign(const char* data, std::size_t length);
 
@@ -540,9 +568,28 @@ public:
      * \brief Assigns internal data from a copy of another UTF8String.
      *
      * This operation will delete any current internal data of this UTF8String.
+     *
+     * \throws chaos::ex::EncodingError If the internal data of the provided
+     *                                  object is not valid UTF-8 encoded data.
      */
     void assign(const UTF8String& other);
 
+    /*!
+     * \brief Uses the given data array as the internal data array of this
+     *        chaos::str::UTF8String.
+     *
+     * This function causes this object to delete any existing internal data it
+     * already has and claim the given data array as it's own internal data
+     * without performing any memory copies.
+     * The provided data must be null terminated, and should not be used or
+     * deleted one passed to this function.
+     *
+     * \throws chaos::ex::EncodingError If the provided data is not valid UTF-8
+     *                                  encoded data.
+     */
+    void claim(char* data);
+
+    // TODO: encoding error, check only second
     /*!
      * \brief Concatenates another UTF8String on to the end of this string.
      *
@@ -564,6 +611,7 @@ public:
      */
     UTF8String& concatenate(const UTF8String& other);
 
+    // TODO: encoding error, check only second
     /*!
      * \brief Extends this string with a copy of itself the given number of
      *  times.
@@ -658,6 +706,8 @@ public:
      */
     std::size_t find_last(const UTF8String& substring) const;
 
+    // TODO: does the result copy opts from first string?
+    // TODO: encoding error, check both??
     /*!
      * \brief Splits this UTF8String by the given delimiter and returns the
      *        split elements in a std::vector.
@@ -679,6 +729,8 @@ public:
      */
     std::vector<UTF8String> split(const UTF8String& delimiter) const;
 
+    // TODO: does the result copy opts from first string?
+    // TODO: encoding error, check both??
     /*!
      * \brief Removes consecutive duplicates of the given substring within this
      *        string.
@@ -742,6 +794,8 @@ public:
      */
     bool is_float() const;
 
+    // TODO: does the result copy opts from first string?
+    // TODO: encoding error, check both??
     /*!
      * \brief Returns a new UTF8String composed of a substring of this string.
      *
@@ -834,6 +888,8 @@ public:
      */
     bool is_empty() const;
 
+    // TODO: does the result copy opts from first string?
+    // TODO: encoding error, check both??
     /*!
      * \brief Returns the UTF-8 symbol at the given index in this string.
      *

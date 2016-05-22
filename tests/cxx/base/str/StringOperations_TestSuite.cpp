@@ -327,7 +327,7 @@ CHAOS_TEST_UNIT_FIXTURE(utf16_to_utf8, UTF8ToUTF16Fixture)
     {
         chaos::str::UTF8String u = chaos::str::utf16_to_utf8(
                 (const char*) &fixture->little_endian[ i ][ 0 ],
-                (fixture->lengths[ i ] / 2) - 1,
+                fixture->lengths[i] - 1,
                 chaos::data::ENDIAN_LITTLE
         );
         CHAOS_CHECK_EQUAL(u, fixture->utf8[ i ]);
@@ -350,7 +350,7 @@ CHAOS_TEST_UNIT_FIXTURE(utf16_to_utf8, UTF8ToUTF16Fixture)
     {
         chaos::str::UTF8String u = chaos::str::utf16_to_utf8(
                 (const char*) &fixture->big_endian[ i ][ 0 ],
-                (fixture->lengths[ i ] / 2) - 1,
+                fixture->lengths[i] - 1,
                 chaos::data::ENDIAN_BIG
         );
         CHAOS_CHECK_EQUAL(u, fixture->utf8[ i ]);

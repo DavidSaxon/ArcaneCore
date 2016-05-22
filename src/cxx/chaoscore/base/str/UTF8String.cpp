@@ -287,6 +287,19 @@ void UTF8String::assign( const UTF8String& other )
     assign_internal( other.m_data, other.m_data_length );
 }
 
+void UTF8String::claim(char* data)
+{
+    // if there is already content in the internal buffer delete it
+    delete[] m_data;
+    // reassign
+    m_data = data;
+    // get number of bytes in the data
+    m_data_length = strlen(data) + 1;
+
+    // process the raw data
+    process_raw();
+}
+
 UTF8String& UTF8String::concatenate( const UTF8String& other )
 {
     // calculate the new size of the data (but remove the first string's NULL
@@ -897,9 +910,6 @@ void UTF8String::assign_internal(
     // if there is already content in the internal buffer delete it
     delete[] m_data;
 
-    // cast the incoming data to a cstring
-    // const char* data = static_cast< const char* >( data );
-
     // get number of bytes in the data
     bool is_null_terminated = true;
     if ( existing_length == chaos::str::npos )
@@ -1047,7 +1057,7 @@ void UTF8String::process_raw()
         {
             chaos::str::UTF8String error_message;
             error_message << "Error while reading first byte: \'"
-                          << static_cast<chaos::uint32>(m_data[i])
+                          << static_cast<chaos::int32>(m_data[i])
                           << "\' of symbol at byte: " << last_byte << " and "
                           << "symbol index: " << last_symbol << ". Expected "
                           << "byte to match one of the following binary "

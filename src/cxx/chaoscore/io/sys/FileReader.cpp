@@ -291,9 +291,9 @@ void FileReader::read(char* data, chaos::int64 length)
 
     m_stream->read(data, length);
 
-    // little bit of hack but for some reason ifstream::read doesn't set the eof
-    // flag unless you read past the end of the file. So we will forcibly set it
-    // if the we are at the end of the file.
+    // little bit of a hack, but for some reason ifstream::read doesn't set the
+    // EOF flag unless you read past the end of the file. So we will forcibly
+    // set it if the we are at the end of the file.
     if(!eof() && tell() >= get_size())
     {
         m_stream->get();
@@ -308,18 +308,63 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
             "File read cannot be performed while the FileReader is closed.");
     }
 
-    // is length negative or grater than the remainder of the file
+    // is length negative or greater than the remainder of the file
     chaos::int64 remaining_length = get_size() - tell();
     if(length < 0 || length > remaining_length)
     {
         length = remaining_length;
     }
 
-    // read from file
-    char* c_data = new char[length];
-    read(c_data, length);
+    // if we are the beginning of the file, skip the BOM if there is one.
+    if(tell() == 0 && has_bom())
+    {
+        chaos::int64 bom_size = static_cast<chaos::int64>(get_bom_size());
+        // are we not reading past the BOM?
+        if(length < bom_size)
+        {
+            seek(length);
+            data = "";
+            return;
+        }
+        seek(bom_size);
+        length -= bom_size;
+    }
 
-    // TODO: need chaos::str::UTF8String claim function
+    // read from file
+    char* c_data = new char[length + 1];
+    read(c_data, length);
+    // ensure the data is null terminated
+    c_data[length] = '\0';
+
+    // do we need to convert the encoding
+    switch(m_encoding)
+    {
+        case ENCODING_UTF16_LITTLE_ENDIAN:
+        {
+            data = chaos::str::utf16_to_utf8(
+                c_data,
+                length,
+                chaos::data::ENDIAN_LITTLE
+            );
+            break;
+        }
+        case ENCODING_UTF16_BIG_ENDIAN:
+        {
+            data = chaos::str::utf16_to_utf8(
+                c_data,
+                length,
+                chaos::data::ENDIAN_BIG
+            );
+            break;
+        }
+        default:
+        {
+            // TODO: optimised version of claim that takes length?
+            // give the character data to the UTF8String
+            data.claim(c_data);
+            break;
+        }
+    }
 }
 
 } // namespace sys

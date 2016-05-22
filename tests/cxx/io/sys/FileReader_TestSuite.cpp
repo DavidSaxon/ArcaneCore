@@ -459,4 +459,56 @@ CHAOS_TEST_UNIT_FIXTURE(read_char, FileReaderFixture)
     }
 }
 
+CHAOS_TEST_UNIT_FIXTURE(read_utf8, FileReaderFixture)
+{
+    // create readers
+    std::vector<chaos::io::sys::FileReader> file_readers;
+    fixture->build_file_readers(file_readers);
+
+    // combine lines
+    std::vector<chaos::str::UTF8String> combined_lines;
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        chaos::str::UTF8String s;
+        for(std::size_t j = 0; j < fixture->lines[i].size(); ++j)
+        {
+            if(fixture->encodings[i] ==
+               chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN)
+            {
+                s += chaos::str::utf16_to_utf8(
+                    fixture->lines[i][j],
+                    fixture->line_lengths[i][j],
+                    chaos::data::ENDIAN_LITTLE
+                );
+            }
+            else if(fixture->encodings[i] ==
+                    chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN)
+            {
+                s += chaos::str::utf16_to_utf8(
+                    fixture->lines[i][j],
+                    fixture->line_lengths[i][j],
+                    chaos::data::ENDIAN_BIG
+                );
+            }
+            else
+            {
+                s += chaos::str::UTF8String(
+                    fixture->lines[i][j],
+                    fixture->line_lengths[i][j]
+                );
+            }
+        }
+        combined_lines.push_back(s);
+    }
+
+    CHAOS_TEST_MESSAGE("Checking reading the entire file");
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        //perform read
+        chaos::str::UTF8String read_data;
+        file_readers[i].read(read_data);
+        CHAOS_CHECK_EQUAL(read_data, combined_lines[i]);
+    }
+}
+
 } // namespace anonymous

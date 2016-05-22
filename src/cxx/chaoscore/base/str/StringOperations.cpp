@@ -13,7 +13,7 @@ bool is_digit(chaos::uint32 code_point)
 
 chaos::str::UTF8String utf16_to_utf8(
         const char* data,
-        std::size_t symbol_length,
+        std::size_t byte_length,
         chaos::data::Endianness endianness)
 {
     // ensure data is unsigned
@@ -22,7 +22,7 @@ chaos::str::UTF8String utf16_to_utf8(
     std::vector<unsigned char> utf8;
     // iterate over each character
     for(size_t i = 0;
-        symbol_length == chaos::str::npos || i < (symbol_length * 2);
+        byte_length == chaos::str::npos || i < byte_length;
         i += 2)
     {
         chaos::uint32 code_point = 0;
@@ -63,7 +63,7 @@ chaos::str::UTF8String utf16_to_utf8(
         }
 
         // null?
-        if(code_point == 0 && symbol_length == chaos::str::npos)
+        if(code_point == 0 && byte_length == chaos::str::npos)
         {
             break;
         }
