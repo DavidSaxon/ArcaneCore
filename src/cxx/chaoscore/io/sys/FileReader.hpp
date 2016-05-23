@@ -210,13 +210,13 @@ public:
      *        the data encoding if needed) represented as a
      *        chaos::str::UTF8String.
      *
-     * This function will return data from the file and ensuring that it is
-     * UTF-8 encoded. This function does not affect the newlines of the data,
-     * they will be returned as they are in the file. If the file has a BOM it
-     * will not be read into the returned data, however the bytes of the BOM
-     * will be counted towards the length of data to read.
+     * This function will return data from the file ensuring that it is UTF-8
+     * encoded. This function does not affect the newlines of the data, they
+     * will be returned as they are in the file. If the file has a BOM it will
+     * not be read into the returned data, however the bytes of the BOM will be
+     * counted towards the length of data to read.
      *
-     * \param data UTF8String that the file data will be read into. This
+     * \param data String that the file data will be read into. This
      *             function will remove any existing data contained within the
      *             UTF8String.
      * \param length The number of bytes to read from the file. If ```-1``` is
@@ -232,10 +232,15 @@ public:
      * \brief Reads a line of data from the file, allocates the memory to hold
      *        the contents of the line and copies the line data to be returned.
      *
-     * This function will return the raw data from the line in the file. The
-     * encoding of the data will not be modified and the data will not be null
-     * terminator. However the newline symbols will not be included in the
-     * returned data.
+     * This function will return the raw data from the next line in the file
+     * from the file position indicator. The encoding of the data will not be
+     * modified and the data will not be null terminated. However the newline
+     * symbols will not be included in the returned data. Once the data has been
+     * read the file position indicator will be moved to the start of the next
+     * line.
+     *
+     * \note If the file has a Unicode BOM the data representing it will be
+     *       ignored by this function.
      *
      * \param data Returns allocated data for a line that has been read from
      *             the file. The allocated data will be owned by the callee so
@@ -252,7 +257,30 @@ public:
      */
     std::size_t read_line(char** data);
 
-    // void read_line(chaos::str::UTF8String data);
+    /*!
+     * \brief Reads a line of data from the file and returns it (converting the
+     *        data encoding if needed) represented as a chaos::str::UTF8String.
+     *
+     * This function will return the next line in the file from the file
+     * position indicator and ensure that it is UTF-8 encoded. The newline
+     * symbols will not be included in the returned string. Once the data has
+     * been read the file position indicator will be moved to the start of the
+     * next line.
+     *
+     * \note If the file has a Unicode BOM the data representing it will be
+     *       ignored by this function.
+     *
+     * \param data String that the next line in the file will be read into. This
+     *             function will remove any existing data in the UTF8String.
+     *
+     * \throws chaos::ex::StateError If this FileReader is not open. If this
+     *                               exception is thrown no data will be
+     *                               allocated.
+     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
+     *                             If this exception is thrown no data will be
+     *                             allocated.
+     */
+    void read_line(chaos::str::UTF8String& data);
 
 private:
 

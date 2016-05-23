@@ -491,6 +491,41 @@ std::size_t FileReader::read_line(char** data)
     return data_size;
 }
 
+void FileReader::read_line(chaos::str::UTF8String& data)
+{
+    // get raw
+    char* c_data;
+    std::size_t length = read_line(&c_data);
+
+    // set string data based on encoding
+    switch(m_encoding)
+    {
+        case ENCODING_UTF16_LITTLE_ENDIAN:
+        {
+            data = chaos::str::utf16_to_utf8(
+                c_data,
+                length,
+                chaos::data::ENDIAN_LITTLE
+            );
+            break;
+        }
+        case ENCODING_UTF16_BIG_ENDIAN:
+        {
+            data = chaos::str::utf16_to_utf8(
+                c_data,
+                length,
+                chaos::data::ENDIAN_BIG
+            );
+            break;
+        }
+        default:
+        {
+            data.assign(c_data, length);
+            break;
+        }
+    }
+}
+
 //------------------------------------------------------------------------------
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
