@@ -6,6 +6,7 @@ CHAOS_TEST_MODULE(io.sys.FileReader)
 
 #include <chaoscore/base/str/StringOperations.hpp>
 #include <chaoscore/io/sys/FileReader.hpp>
+#include <chaoscore/io/sys/FileSystemExceptions.hpp>
 
 // TODO: REMOVE ME
 #include <fstream>
@@ -440,6 +441,12 @@ CHAOS_TEST_UNIT_FIXTURE(read_char, FileReaderFixture)
     CHAOS_TEST_MESSAGE("Checking reading the file in two parts");
     for(std::size_t i = 0; i < file_readers.size(); ++i)
     {
+        // don't check the empty file
+        if(file_readers[i].get_size() == 0)
+        {
+            continue;
+        }
+
         std::size_t byte_size = static_cast<std::size_t>(fixture->sizes[i]);
         std::size_t first_size = byte_size / 2;
         std::size_t second_size = byte_size - first_size;
@@ -451,12 +458,9 @@ CHAOS_TEST_UNIT_FIXTURE(read_char, FileReaderFixture)
         CHAOS_CHECK_TRUE(
             memcmp(read_data_1, combined_lines[i], first_size) == 0);
 
-        // check position (but don't bother for the empty file)
-        if(file_readers[i].get_size() != 0)
-        {
-            CHAOS_CHECK_EQUAL(file_readers[i].tell(), first_size);
-            CHAOS_CHECK_FALSE(file_readers[i].eof());
-        }
+        // check position
+        CHAOS_CHECK_EQUAL(file_readers[i].tell(), first_size);
+        CHAOS_CHECK_FALSE(file_readers[i].eof());
 
         // perform second read
         char* read_data_2 = new char[second_size];
@@ -538,9 +542,72 @@ CHAOS_TEST_UNIT_FIXTURE(read_utf8, FileReaderFixture)
     CHAOS_FOR_EACH(reader, file_readers)
     {
         CHAOS_CHECK_TRUE(reader->eof());
+    }
+
+    CHAOS_TEST_MESSAGE("Checking EOF throws exception on read");
+    CHAOS_FOR_EACH(reader, file_readers)
+    {
+        chaos::str::UTF8String read_data;
+        CHAOS_CHECK_THROW(
+            reader->read(read_data),
+            chaos::io::sys::EOFError
+        );
         // reset the file
         reader->close();
         reader->open();
+    }
+}
+
+CHAOS_TEST_UNIT_FIXTURE(read_line_char, FileReaderFixture)
+{
+    // create readers
+    std::vector<chaos::io::sys::FileReader> file_readers;
+    fixture->build_file_readers(file_readers);
+
+    // read the file line by line
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        if(file_readers[i].get_size() == 0)
+        {
+            continue;
+        }
+
+        // calculate the newline size for this file
+        std::size_t newline_size = 1;
+        if(file_readers[i].get_encoding() ==
+           chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN
+           ||
+           file_readers[i].get_encoding() ==
+           chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN)
+        {
+            newline_size = 2;
+        }
+        // apply os size
+        if(file_readers[i].get_newline() ==
+           chaos::io::sys::FileHandle2::NEWLINE_WINDOWS)
+        {
+            newline_size *= 2;
+        }
+
+        std::size_t l_n = 0;
+        while(!file_readers[i].eof())
+        {
+            if(l_n == fixture->lines[i].size())
+            {
+                break;
+            }
+
+            char* read_data = nullptr;
+            file_readers[i].read_line(&read_data);
+
+            CHAOS_CHECK_TRUE(memcmp(
+                read_data,
+                fixture->lines[i][l_n],
+                fixture->line_lengths[i][l_n] - newline_size
+            ) == 0);
+            delete[] read_data;
+            ++l_n;
+        }
     }
 }
 

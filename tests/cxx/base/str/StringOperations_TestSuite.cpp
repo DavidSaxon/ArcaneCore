@@ -84,108 +84,108 @@ public:
 
     virtual void setup()
     {
-        // {
-        //     utf8.push_back( "" );
-        //     std::vector< unsigned char > u;
-        //     u.push_back( 0x00 ); u.push_back( 0x00 );
-        //     little_endian.push_back( u );
-        //     add_big_endian( u );
-        //     lengths.push_back( 2 );
-        // }
+        {
+            utf8.push_back( "" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            little_endian.push_back( u );
+            add_big_endian( u );
+            lengths.push_back( 2 );
+        }
 
-        // {
-        //     utf8.push_back( "a" );
-        //     std::vector< unsigned char > u;
-        //     u.push_back( 0x61 ); u.push_back( 0x00 ); // a
-        //     u.push_back( 0x00 ); u.push_back( 0x00 );
-        //     little_endian.push_back( u );
-        //     add_big_endian( u );
-        //     lengths.push_back( 4 );
-        // }
+        {
+            utf8.push_back( "a" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x61 ); u.push_back( 0x00 ); // a
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            little_endian.push_back( u );
+            add_big_endian( u );
+            lengths.push_back( 4 );
+        }
 
-        // {
-        //     utf8.push_back( "Hello World" );
-        //     std::vector< unsigned char > u;
-        //     u.push_back( 0x48 ); u.push_back( 0x00 ); // H
-        //     u.push_back( 0x65 ); u.push_back( 0x00 ); // e
-        //     u.push_back( 0x6C ); u.push_back( 0x00 ); // l
-        //     u.push_back( 0x6C ); u.push_back( 0x00 ); // l
-        //     u.push_back( 0x6F ); u.push_back( 0x00 ); // o
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x57 ); u.push_back( 0x00 ); // W
-        //     u.push_back( 0x6F ); u.push_back( 0x00 ); // o
-        //     u.push_back( 0x72 ); u.push_back( 0x00 ); // r
-        //     u.push_back( 0x6C ); u.push_back( 0x00 ); // l
-        //     u.push_back( 0x64 ); u.push_back( 0x00 ); // d
-        //     u.push_back( 0x00 ); u.push_back( 0x00 );
-        //     little_endian.push_back( u );
-        //     add_big_endian( u );
-        //     lengths.push_back( 24 );
-        // }
+        {
+            utf8.push_back( "Hello World" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x48 ); u.push_back( 0x00 ); // H
+            u.push_back( 0x65 ); u.push_back( 0x00 ); // e
+            u.push_back( 0x6C ); u.push_back( 0x00 ); // l
+            u.push_back( 0x6C ); u.push_back( 0x00 ); // l
+            u.push_back( 0x6F ); u.push_back( 0x00 ); // o
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x57 ); u.push_back( 0x00 ); // W
+            u.push_back( 0x6F ); u.push_back( 0x00 ); // o
+            u.push_back( 0x72 ); u.push_back( 0x00 ); // r
+            u.push_back( 0x6C ); u.push_back( 0x00 ); // l
+            u.push_back( 0x64 ); u.push_back( 0x00 ); // d
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            little_endian.push_back( u );
+            add_big_endian( u );
+            lengths.push_back( 24 );
+        }
 
-        // {
-        //     utf8.push_back( "γειά σου Κόσμε" );
-        //     std::vector< unsigned char > u;
-        //     u.push_back( 0xB3 ); u.push_back( 0x03 ); // γ
-        //     u.push_back( 0xB5 ); u.push_back( 0x03 ); // ε
-        //     u.push_back( 0xB9 ); u.push_back( 0x03 ); // ι
-        //     u.push_back( 0xAC ); u.push_back( 0x03 ); // ά
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0xC3 ); u.push_back( 0x03 ); // σ
-        //     u.push_back( 0xBF ); u.push_back( 0x03 ); // ο
-        //     u.push_back( 0xC5 ); u.push_back( 0x03 ); // υ
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x9A ); u.push_back( 0x03 ); // Κ
-        //     u.push_back( 0xCC ); u.push_back( 0x03 ); // ό
-        //     u.push_back( 0xC3 ); u.push_back( 0x03 ); // σ
-        //     u.push_back( 0xBC ); u.push_back( 0x03 ); // μ
-        //     u.push_back( 0xB5 ); u.push_back( 0x03 ); // ε
-        //     u.push_back( 0x00 ); u.push_back( 0x00 );
-        //     little_endian.push_back( u );
-        //     add_big_endian( u );
-        //     lengths.push_back( 30 );
-        // }
+        {
+            utf8.push_back( "γειά σου Κόσμε" );
+            std::vector< unsigned char > u;
+            u.push_back( 0xB3 ); u.push_back( 0x03 ); // γ
+            u.push_back( 0xB5 ); u.push_back( 0x03 ); // ε
+            u.push_back( 0xB9 ); u.push_back( 0x03 ); // ι
+            u.push_back( 0xAC ); u.push_back( 0x03 ); // ά
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0xC3 ); u.push_back( 0x03 ); // σ
+            u.push_back( 0xBF ); u.push_back( 0x03 ); // ο
+            u.push_back( 0xC5 ); u.push_back( 0x03 ); // υ
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x9A ); u.push_back( 0x03 ); // Κ
+            u.push_back( 0xCC ); u.push_back( 0x03 ); // ό
+            u.push_back( 0xC3 ); u.push_back( 0x03 ); // σ
+            u.push_back( 0xBC ); u.push_back( 0x03 ); // μ
+            u.push_back( 0xB5 ); u.push_back( 0x03 ); // ε
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            little_endian.push_back( u );
+            add_big_endian( u );
+            lengths.push_back( 30 );
+        }
 
-        // {
-        //     utf8.push_back( "this is a مزيج of text" );
-        //     std::vector< unsigned char > u;
-        //     u.push_back( 0x74 ); u.push_back( 0x00 ); // t
-        //     u.push_back( 0x68 ); u.push_back( 0x00 ); // h
-        //     u.push_back( 0x69 ); u.push_back( 0x00 ); // i
-        //     u.push_back( 0x73 ); u.push_back( 0x00 ); // s
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x69 ); u.push_back( 0x00 ); // i
-        //     u.push_back( 0x73 ); u.push_back( 0x00 ); // s
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x61 ); u.push_back( 0x00 ); // q
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x45 ); u.push_back( 0x06 ); // م
-        //     u.push_back( 0x32 ); u.push_back( 0x06 ); // ز
-        //     u.push_back( 0x4A ); u.push_back( 0x06 ); // ي
-        //     u.push_back( 0x2C ); u.push_back( 0x06 ); // ج
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x6F ); u.push_back( 0x00 ); // o
-        //     u.push_back( 0x66 ); u.push_back( 0x00 ); // f
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x74 ); u.push_back( 0x00 ); // t
-        //     u.push_back( 0x65 ); u.push_back( 0x00 ); // e
-        //     u.push_back( 0x78 ); u.push_back( 0x00 ); // x
-        //     u.push_back( 0x74 ); u.push_back( 0x00 ); // t
-        //     u.push_back( 0x00 ); u.push_back( 0x00 );
-        //     little_endian.push_back( u );
-        //     add_big_endian( u );
-        //     lengths.push_back( 46 );
-        // }
+        {
+            utf8.push_back( "this is a مزيج of text" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x74 ); u.push_back( 0x00 ); // t
+            u.push_back( 0x68 ); u.push_back( 0x00 ); // h
+            u.push_back( 0x69 ); u.push_back( 0x00 ); // i
+            u.push_back( 0x73 ); u.push_back( 0x00 ); // s
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x69 ); u.push_back( 0x00 ); // i
+            u.push_back( 0x73 ); u.push_back( 0x00 ); // s
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x61 ); u.push_back( 0x00 ); // q
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x45 ); u.push_back( 0x06 ); // م
+            u.push_back( 0x32 ); u.push_back( 0x06 ); // ز
+            u.push_back( 0x4A ); u.push_back( 0x06 ); // ي
+            u.push_back( 0x2C ); u.push_back( 0x06 ); // ج
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x6F ); u.push_back( 0x00 ); // o
+            u.push_back( 0x66 ); u.push_back( 0x00 ); // f
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x74 ); u.push_back( 0x00 ); // t
+            u.push_back( 0x65 ); u.push_back( 0x00 ); // e
+            u.push_back( 0x78 ); u.push_back( 0x00 ); // x
+            u.push_back( 0x74 ); u.push_back( 0x00 ); // t
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            little_endian.push_back( u );
+            add_big_endian( u );
+            lengths.push_back( 46 );
+        }
 
-        // {
-        //     utf8.push_back( "간" );
-        //     std::vector< unsigned char > u;
-        //     u.push_back( 0x04 ); u.push_back( 0xAC ); // 간
-        //     u.push_back( 0x00 ); u.push_back( 0x00 );
-        //     little_endian.push_back( u );
-        //     add_big_endian( u );
-        //     lengths.push_back( 4 );
-        // }
+        {
+            utf8.push_back( "간" );
+            std::vector< unsigned char > u;
+            u.push_back( 0x04 ); u.push_back( 0xAC ); // 간
+            u.push_back( 0x00 ); u.push_back( 0x00 );
+            little_endian.push_back( u );
+            add_big_endian( u );
+            lengths.push_back( 4 );
+        }
 
         {
             utf8.push_back("𝕽");
@@ -198,51 +198,51 @@ public:
             lengths.push_back(6);
         }
 
-        // {
-        //     utf8.push_back("𠭃");
-        //     std::vector<unsigned char> u;
-        //     u.push_back(0x42); u.push_back(0xD8);
-        //     u.push_back(0x43); u.push_back(0xDF); // 𠭃
-        //     u.push_back(0x00); u.push_back(0x00);
-        //     little_endian.push_back(u);
-        //     add_big_endian(u);
-        //     lengths.push_back(6);
-        // }
+        {
+            utf8.push_back("𠭃");
+            std::vector<unsigned char> u;
+            u.push_back(0x42); u.push_back(0xD8);
+            u.push_back(0x43); u.push_back(0xDF); // 𠭃
+            u.push_back(0x00); u.push_back(0x00);
+            little_endian.push_back(u);
+            add_big_endian(u);
+            lengths.push_back(6);
+        }
 
-        // {
-        //     utf8.push_back("𡝯");
-        //     std::vector<unsigned char> u;
-        //     u.push_back(0x45); u.push_back(0xD8);
-        //     u.push_back(0x6F); u.push_back(0xDF); // 𡝯
-        //     u.push_back(0x00); u.push_back(0x00);
-        //     little_endian.push_back(u);
-        //     add_big_endian(u);
-        //     lengths.push_back(6);
-        // }
+        {
+            utf8.push_back("𡝯");
+            std::vector<unsigned char> u;
+            u.push_back(0x45); u.push_back(0xD8);
+            u.push_back(0x6F); u.push_back(0xDF); // 𡝯
+            u.push_back(0x00); u.push_back(0x00);
+            little_endian.push_back(u);
+            add_big_endian(u);
+            lengths.push_back(6);
+        }
 
-        // {
-        //     utf8.push_back("𝕽Hello World𡝯");
-        //     std::vector<unsigned char> u;
-        //     u.push_back(0x35); u.push_back(0xD8);
-        //     u.push_back(0x7D); u.push_back(0xDD); // 𝕽
-        //     u.push_back( 0x48 ); u.push_back( 0x00 ); // H
-        //     u.push_back( 0x65 ); u.push_back( 0x00 ); // e
-        //     u.push_back( 0x6C ); u.push_back( 0x00 ); // l
-        //     u.push_back( 0x6C ); u.push_back( 0x00 ); // l
-        //     u.push_back( 0x6F ); u.push_back( 0x00 ); // o
-        //     u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
-        //     u.push_back( 0x57 ); u.push_back( 0x00 ); // W
-        //     u.push_back( 0x6F ); u.push_back( 0x00 ); // o
-        //     u.push_back( 0x72 ); u.push_back( 0x00 ); // r
-        //     u.push_back( 0x6C ); u.push_back( 0x00 ); // l
-        //     u.push_back( 0x64 ); u.push_back( 0x00 ); // d
-        //     u.push_back(0x45); u.push_back(0xD8);
-        //     u.push_back(0x6F); u.push_back(0xDF); // 𡝯
-        //     u.push_back(0x00); u.push_back(0x00);
-        //     little_endian.push_back(u);
-        //     add_big_endian(u);
-        //     lengths.push_back(32);
-        // }
+        {
+            utf8.push_back("𝕽Hello World𡝯");
+            std::vector<unsigned char> u;
+            u.push_back(0x35); u.push_back(0xD8);
+            u.push_back(0x7D); u.push_back(0xDD); // 𝕽
+            u.push_back( 0x48 ); u.push_back( 0x00 ); // H
+            u.push_back( 0x65 ); u.push_back( 0x00 ); // e
+            u.push_back( 0x6C ); u.push_back( 0x00 ); // l
+            u.push_back( 0x6C ); u.push_back( 0x00 ); // l
+            u.push_back( 0x6F ); u.push_back( 0x00 ); // o
+            u.push_back( 0x20 ); u.push_back( 0x00 ); // [space]
+            u.push_back( 0x57 ); u.push_back( 0x00 ); // W
+            u.push_back( 0x6F ); u.push_back( 0x00 ); // o
+            u.push_back( 0x72 ); u.push_back( 0x00 ); // r
+            u.push_back( 0x6C ); u.push_back( 0x00 ); // l
+            u.push_back( 0x64 ); u.push_back( 0x00 ); // d
+            u.push_back(0x45); u.push_back(0xD8);
+            u.push_back(0x6F); u.push_back(0xDF); // 𡝯
+            u.push_back(0x00); u.push_back(0x00);
+            little_endian.push_back(u);
+            add_big_endian(u);
+            lengths.push_back(32);
+        }
     }
 
     void add_big_endian(std::vector<unsigned char> l)

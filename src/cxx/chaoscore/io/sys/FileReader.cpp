@@ -6,9 +6,6 @@
 #include "chaoscore/base/str/StringOperations.hpp"
 #include "chaoscore/io/sys/FileSystemExceptions.hpp"
 
-// TODO: REMOVE ME
-#include <iostream>
-
 namespace chaos
 {
 namespace io
@@ -17,14 +14,61 @@ namespace sys
 {
 
 //------------------------------------------------------------------------------
+//                                    OBJECTS
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Simple object that can be used to check whether the given vector ends
+ *        with a newline byte sequence.
+ */
+struct NewlineChecker
+{
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+    std::size_t sequence_length;
+    char* newline_sequence;
+    //-------------------------------CONSTRUCTOR--------------------------------
+    NewlineChecker()
+        :
+        sequence_length (0),
+        newline_sequence(nullptr)
+    {
+    }
+    //--------------------------------DESTRUCTOR--------------------------------
+    ~NewlineChecker()
+    {
+        delete[] newline_sequence;
+    }
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+    bool check(const std::vector<char>& data)
+    {
+        if(data.size() < sequence_length)
+        {
+            return false;
+        }
+        // could perform some sort of caching?
+        for(std::size_t i = 0; i < sequence_length; ++i)
+        {
+            if(data[data.size() - (sequence_length - i)]
+               != newline_sequence[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+//------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
 //------------------------------------------------------------------------------
 
 FileReader::FileReader(Encoding encoding, Newline newline)
     :
-    FileHandle2(encoding, newline),
-    m_stream  (nullptr),
-    m_size    (0)
+    FileHandle2            (encoding, newline),
+    m_stream               (nullptr),
+    m_size                 (0),
+    m_newline_checker_valid(false),
+    m_newline_checker      (new NewlineChecker())
 {
 }
 
@@ -34,22 +78,27 @@ FileReader::FileReader(
         Encoding encoding,
         Newline newline)
     :
-    FileHandle2(path, encoding, newline),
-    m_stream  (nullptr),
-    m_size    (0)
+    FileHandle2            (path, encoding, newline),
+    m_stream               (nullptr),
+    m_size                 (0),
+    m_newline_checker_valid(false),
+    m_newline_checker      (new NewlineChecker())
 {
     open();
 }
 
 FileReader::FileReader(FileReader&& other)
     :
-    FileHandle2(std::move(other)),
-    m_stream  (other.m_stream),
-    m_size    (other.m_size)
+    FileHandle2            (std::move(other)),
+    m_stream               (other.m_stream),
+    m_size                 (other.m_size),
+    m_newline_checker_valid(other.m_newline_checker_valid),
+    m_newline_checker      (std::move(other.m_newline_checker))
 {
     // reset other resources
     other.m_stream = nullptr;
     other.m_size = 0;
+    other.m_newline_checker_valid = false;
 }
 
 //------------------------------------------------------------------------------
@@ -134,7 +183,8 @@ void FileReader::open()
 
     // should we detect the encoding, check for UTF-8 first since it's the most
     // common
-    if(m_encoding == ENCODING_DETECT && m_size >= chaos::str::UTF8_BOM_SIZE)
+    std::size_t size_st = static_cast<std::size_t>(m_size);
+    if(m_encoding == ENCODING_DETECT && size_st >= chaos::str::UTF8_BOM_SIZE)
     {
         char* bom = new char[chaos::str::UTF8_BOM_SIZE];
         m_stream->read(bom, chaos::str::UTF8_BOM_SIZE);
@@ -146,7 +196,7 @@ void FileReader::open()
         delete[] bom;
     }
     // the encoding still hasn't been detected, check for UTF-16 encodings next
-    if(m_encoding == ENCODING_DETECT && m_size >= chaos::str::UTF16_BOM_SIZE)
+    if(m_encoding == ENCODING_DETECT && size_st >= chaos::str::UTF16_BOM_SIZE)
     {
         char* bom = new char[chaos::str::UTF16_BOM_SIZE];
         m_stream->read(bom, chaos::str::UTF16_BOM_SIZE);
@@ -171,6 +221,7 @@ void FileReader::open()
 
     // file reader is open
     m_open = true;
+    m_newline_checker_valid = false;
 }
 
 void FileReader::open(const chaos::io::sys::Path& path)
@@ -324,11 +375,7 @@ chaos::int64 FileReader::seek_to_data_start()
 
 void FileReader::read(char* data, chaos::int64 length)
 {
-    if(!m_open)
-    {
-        throw chaos::ex::StateError(
-            "File read cannot be performed while the FileReader is closed.");
-    }
+    check_can_read();
 
     m_stream->read(data, length);
 
@@ -343,11 +390,7 @@ void FileReader::read(char* data, chaos::int64 length)
 
 void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
 {
-    if(!m_open)
-    {
-        throw chaos::ex::StateError(
-            "File read cannot be performed while the FileReader is closed.");
-    }
+    check_can_read();
 
     // is length negative or greater than the remainder of the file
     chaos::int64 remaining_length = get_size() - tell();
@@ -406,6 +449,142 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
             data.claim(c_data);
             break;
         }
+    }
+}
+
+std::size_t FileReader::read_line(char** data)
+{
+    check_can_read();
+
+    // skip the BOM if we are at the start of the file.
+    if(tell() == 0)
+    {
+        seek_to_data_start();
+    }
+
+    // get the newline checker to use
+    NewlineChecker* newline_checker = get_newline_checker();
+
+    // read characters into a vector
+    std::vector<char> read_data;
+    std::size_t data_size = 0;
+    while(!m_stream->eof())
+    {
+        read_data.push_back('\0');
+        m_stream->get(read_data[read_data.size() - 1]);
+        data_size = read_data.size();
+        // have we read the newline character?
+        if(newline_checker->check(read_data))
+        {
+            data_size -= newline_checker->sequence_length;
+            break;
+        }
+    }
+
+    // allocate new data
+    *data = new char[data_size + 1];
+    // copy
+    memcpy(*data, &read_data[0], data_size);
+    // write null terminator
+    (*data)[data_size] = '\0';
+
+    return data_size;
+}
+
+//------------------------------------------------------------------------------
+//                            PRIVATE MEMBER FUNCTIONS
+//------------------------------------------------------------------------------
+
+NewlineChecker* FileReader::get_newline_checker()
+{
+    // does the new line checker need to be initialized?
+    if(!m_newline_checker_valid)
+    {
+        // delete any data currently held by the checker
+        if(m_newline_checker->newline_sequence)
+        {
+            delete[] m_newline_checker->newline_sequence;
+        }
+
+        // initialise based on encoding and file type
+        switch(m_encoding)
+        {
+            case ENCODING_UTF16_LITTLE_ENDIAN:
+            {
+                if(m_newline == NEWLINE_WINDOWS)
+                {
+                    m_newline_checker->sequence_length  = 4;
+                    m_newline_checker->newline_sequence = new char[4];
+                    m_newline_checker->newline_sequence[0] = '\r';
+                    m_newline_checker->newline_sequence[1] = '\0';
+                    m_newline_checker->newline_sequence[2] = '\n';
+                    m_newline_checker->newline_sequence[3] = '\0';
+                }
+                else
+                {
+                    m_newline_checker->sequence_length  = 2;
+                    m_newline_checker->newline_sequence = new char[2];
+                    m_newline_checker->newline_sequence[0] = '\n';
+                    m_newline_checker->newline_sequence[1] = '\0';
+                }
+                break;
+            }
+            case ENCODING_UTF16_BIG_ENDIAN:
+            {
+                if(m_newline == NEWLINE_WINDOWS)
+                {
+                    m_newline_checker->sequence_length  = 4;
+                    m_newline_checker->newline_sequence = new char[4];
+                    m_newline_checker->newline_sequence[0] = '\0';
+                    m_newline_checker->newline_sequence[1] = '\r';
+                    m_newline_checker->newline_sequence[2] = '\0';
+                    m_newline_checker->newline_sequence[3] = '\n';
+                }
+                else
+                {
+                    m_newline_checker->sequence_length  = 2;
+                    m_newline_checker->newline_sequence = new char[2];
+                    m_newline_checker->newline_sequence[0] = '\0';
+                    m_newline_checker->newline_sequence[1] = '\n';
+                }
+                break;
+            }
+            default:
+            {
+                if(m_newline == NEWLINE_WINDOWS)
+                {
+                    m_newline_checker->sequence_length  = 2;
+                    m_newline_checker->newline_sequence = new char[2];
+                    m_newline_checker->newline_sequence[0] = '\r';
+                    m_newline_checker->newline_sequence[1] = '\n';
+                }
+                else
+                {
+                    m_newline_checker->sequence_length  = 1;
+                    m_newline_checker->newline_sequence = new char[1];
+                    m_newline_checker->newline_sequence[0] = '\n';
+                }
+                break;
+            }
+        }
+        m_newline_checker_valid = true;
+    }
+    // return the internal pointer
+    return m_newline_checker.get();
+}
+
+void FileReader::check_can_read()
+{
+    if(!m_open)
+    {
+        throw chaos::ex::StateError(
+            "File read cannot be performed while the FileReader is closed.");
+    }
+    if(eof())
+    {
+        throw chaos::io::sys::EOFError(
+            "File read cannot be performed as the EOF marker has been reached."
+        );
     }
 }
 

@@ -5,6 +5,8 @@
 #ifndef CHAOSCORE_IO_SYS_FILEREADER_HPP_
 #define CHAOSCORE_IO_SYS_FILEREADER_HPP_
 
+#include <memory>
+
 #include "chaoscore/io/sys/FileHandle.hpp"
 
 class ifstream;
@@ -15,6 +17,12 @@ namespace io
 {
 namespace sys
 {
+
+//------------------------------------------------------------------------------
+//                             FORWARD DECELERATIONS
+//------------------------------------------------------------------------------
+
+struct NewlineChecker;
 
 /*!
  * \brief Used for reading the contents of a file from disk.
@@ -193,6 +201,7 @@ public:
      *               of the file.
      *
      * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
      */
     void read(char* data, chaos::int64 length);
 
@@ -215,12 +224,35 @@ public:
      *               indicator to the end of the file.
      *
      * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
      */
     void read(chaos::str::UTF8String& data, chaos::int64 length = -1);
 
-    // TODO: read line (and only do with UTF8String?)
+    /*!
+     * \brief Reads a line of data from the file, allocates the memory to hold
+     *        the contents of the line and copies the line data to be returned.
+     *
+     * This function will return the raw data from the line in the file. The
+     * encoding of the data will not be modified and the data will not be null
+     * terminator. However the newline symbols will not be included in the
+     * returned data.
+     *
+     * \param data Returns allocated data for a line that has been read from
+     *             the file. The allocated data will be owned by the callee so
+     *             must be deleted.
+     * \returns The number of bytes that have been allocated and returned via
+     *          the data parameter.
+     *
+     * \throws chaos::ex::StateError If this FileReader is not open. If this
+     *                               exception is thrown no data will be
+     *                               allocated.
+     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
+     *                             If this exception is thrown no data will be
+     *                             allocated.
+     */
+    std::size_t read_line(char** data);
 
-    // TODO: UTF8String
+    // void read_line(chaos::str::UTF8String data);
 
 private:
 
@@ -237,6 +269,36 @@ private:
      * \brief The size of the file in bytes.
      */
     chaos::int64 m_size;
+
+    /*!
+     * \brief Whether the current static newline checker is valid for the
+     *        FileReader's encoding and newline symbol.
+     */
+    bool m_newline_checker_valid;
+    /*!
+     * \brief The newline checker being used by this file handle.
+     *
+     * \note This should be accessed through get_newline_checker().
+     */
+    std::unique_ptr<NewlineChecker> m_newline_checker;
+
+    //--------------------------------------------------------------------------
+    //                          PRIVATE MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Retrieves a the newline checker for this FileReader's encoding and
+     *        newline symbols.
+     *
+     * This function will initialise the checker if need be.
+     */
+    NewlineChecker* get_newline_checker();
+
+    /*!
+     * \brief Checks and throws common exception as to whether the file can be
+     *        read from.
+     */
+    void check_can_read();
 };
 
 } // namespace sys
