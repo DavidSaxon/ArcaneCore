@@ -26,8 +26,6 @@ struct NewlineChecker;
 
 /*!
  * \brief Used for reading the contents of a file from disk.
- *
- * TODO: usage
  */
 class FileReader : public chaos::io::sys::FileHandle2
 {
@@ -99,14 +97,6 @@ public:
     ~FileReader();
 
     //--------------------------------------------------------------------------
-    //                                 OPERATORS
-    //--------------------------------------------------------------------------
-
-    // TODO: << char*
-
-    // TODO: << chaos::str::UTF8String
-
-    //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
 
@@ -149,6 +139,7 @@ public:
      *                                          greater than the number of bytes
      *                                          in the file or is less than 0.
      */
+
     virtual void seek(chaos::int64 index);
 
     /*!

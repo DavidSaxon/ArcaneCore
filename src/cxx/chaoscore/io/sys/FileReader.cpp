@@ -123,7 +123,7 @@ FileReader::~FileReader()
 
 void FileReader::open()
 {
-    // ensure the file reader is not open
+    // ensure the file reader is not already open
     if(m_open)
     {
         throw chaos::ex::StateError(
@@ -142,7 +142,7 @@ void FileReader::open()
     // utf-16 path
     std::size_t length = 0;
     const char* p = chaos::str::utf8_to_utf16(
-        m_path.to_windows().get_raw(),
+        m_path.to_windows(),
         length,
         chaos::data::ENDIAN_LITTLE
     );
@@ -157,7 +157,7 @@ void FileReader::open()
 #else
 
     m_stream = new std::ifstream(
-        m_path.to_native().get_raw(),
+        m_path.to_native(),
         std::ios_base::in | std::ios_base::binary
     );
 
@@ -233,7 +233,7 @@ void FileReader::open(const chaos::io::sys::Path& path)
 
 void FileReader::close()
 {
-    // ensure the file reader is not already closed
+    // ensure the FileReader is not already closed
     if(!m_open)
     {
         throw chaos::ex::StateError(
@@ -507,6 +507,7 @@ void FileReader::read_line(chaos::str::UTF8String& data)
                 length,
                 chaos::data::ENDIAN_LITTLE
             );
+            delete[] c_data;
             break;
         }
         case ENCODING_UTF16_BIG_ENDIAN:
@@ -516,6 +517,7 @@ void FileReader::read_line(chaos::str::UTF8String& data)
                 length,
                 chaos::data::ENDIAN_BIG
             );
+            delete[] c_data;
             break;
         }
         default:

@@ -8,9 +8,6 @@ CHAOS_TEST_MODULE(io.sys.FileReader)
 #include <chaoscore/io/sys/FileReader.hpp>
 #include <chaoscore/io/sys/FileSystemExceptions.hpp>
 
-// TODO: REMOVE ME
-#include <fstream>
-
 namespace
 {
 
