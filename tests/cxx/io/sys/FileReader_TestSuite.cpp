@@ -24,8 +24,8 @@ public:
     chaos::io::sys::Path base_path;
 
     std::vector<chaos::io::sys::Path> paths;
-    std::vector<chaos::io::sys::FileHandle2::Encoding> encodings;
-    std::vector<chaos::io::sys::FileHandle2::Newline> newlines;
+    std::vector<chaos::io::sys::FileHandle::Encoding> encodings;
+    std::vector<chaos::io::sys::FileHandle::Newline> newlines;
     std::vector<chaos::int64> sizes;
     std::vector<std::size_t> bom_sizes;
     std::vector<const char*> boms;
@@ -43,8 +43,8 @@ public:
             chaos::io::sys::Path p(base_path);
             p << "empty_file";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             sizes.push_back(0);
             bom_sizes.push_back(0);
             boms.push_back("");
@@ -57,8 +57,8 @@ public:
             chaos::io::sys::Path p(base_path);
             p << "ascii.linux.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             sizes.push_back(121);
             bom_sizes.push_back(0);
             boms.push_back("");
@@ -79,8 +79,8 @@ public:
             chaos::io::sys::Path p(base_path);
             p << "ascii.windows.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
             sizes.push_back(129);
             bom_sizes.push_back(0);
             boms.push_back("");
@@ -101,8 +101,8 @@ public:
             chaos::io::sys::Path p(base_path);
             p << "utf8.linux.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_UTF8);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             sizes.push_back(90);
             bom_sizes.push_back(chaos::str::UTF8_BOM_SIZE);
             boms.push_back(chaos::str::UTF8_BOM);
@@ -122,8 +122,8 @@ public:
             chaos::io::sys::Path p(base_path);
             p << "utf8.windows.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_UTF8);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
             sizes.push_back(97);
             std::vector<size_t> ll;
             std::vector<const char*> l;
@@ -144,8 +144,8 @@ public:
             p << "utf16le.linux.txt";
             paths.push_back(p);
             encodings.push_back(
-                chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+                chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             sizes.push_back(136);
             bom_sizes.push_back(chaos::str::UTF16_BOM_SIZE);
             boms.push_back(chaos::str::UTF16LE_BOM);
@@ -166,8 +166,8 @@ public:
             p << "utf16le.windows.txt";
             paths.push_back(p);
             encodings.push_back(
-                chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+                chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
             sizes.push_back(150);
             bom_sizes.push_back(chaos::str::UTF16_BOM_SIZE);
             boms.push_back(chaos::str::UTF16LE_BOM);
@@ -188,8 +188,8 @@ public:
             p << "utf16be.linux.txt";
             paths.push_back(p);
             encodings.push_back(
-                chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+                chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             sizes.push_back(136);
             bom_sizes.push_back(chaos::str::UTF16_BOM_SIZE);
             boms.push_back(chaos::str::UTF16BE_BOM);
@@ -210,8 +210,8 @@ public:
             p << "utf16be.windows.txt";
             paths.push_back(p);
             encodings.push_back(
-                chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+                chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             sizes.push_back(150);
             bom_sizes.push_back(chaos::str::UTF16_BOM_SIZE);
             boms.push_back(chaos::str::UTF16BE_BOM);
@@ -314,7 +314,7 @@ CHAOS_TEST_UNIT_FIXTURE(detect_encoding, FileReaderFixture)
     {
         chaos::io::sys::FileReader r(
             fixture->paths[i],
-            chaos::io::sys::FileHandle2::ENCODING_DETECT,
+            chaos::io::sys::FileHandle::ENCODING_DETECT,
             fixture->newlines[i]
         );
         file_readers.push_back(std::move(r));
@@ -498,7 +498,7 @@ CHAOS_TEST_UNIT_FIXTURE(read_utf8, FileReaderFixture)
         for(std::size_t j = 0; j < fixture->lines[i].size(); ++j)
         {
             if(fixture->encodings[i] ==
-               chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN)
+               chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN)
             {
                 s += chaos::str::utf16_to_utf8(
                     fixture->lines[i][j],
@@ -507,7 +507,7 @@ CHAOS_TEST_UNIT_FIXTURE(read_utf8, FileReaderFixture)
                 );
             }
             else if(fixture->encodings[i] ==
-                    chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN)
+                    chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN)
             {
                 s += chaos::str::utf16_to_utf8(
                     fixture->lines[i][j],
@@ -573,16 +573,16 @@ CHAOS_TEST_UNIT_FIXTURE(read_line_char, FileReaderFixture)
         // calculate the newline size for this file
         std::size_t newline_size = 1;
         if(file_readers[i].get_encoding() ==
-           chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN
+           chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN
            ||
            file_readers[i].get_encoding() ==
-           chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN)
+           chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN)
         {
             newline_size = 2;
         }
         // apply os size
         if(file_readers[i].get_newline() ==
-           chaos::io::sys::FileHandle2::NEWLINE_WINDOWS)
+           chaos::io::sys::FileHandle::NEWLINE_WINDOWS)
         {
             newline_size *= 2;
         }
@@ -634,16 +634,16 @@ CHAOS_TEST_UNIT_FIXTURE(read_line_utf8, FileReaderFixture)
         // calculate the newline size for this file
         std::size_t newline_size = 1;
         if(file_readers[i].get_encoding() ==
-           chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN
+           chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN
            ||
            file_readers[i].get_encoding() ==
-           chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN)
+           chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN)
         {
             newline_size = 2;
         }
         // apply os size
         if(file_readers[i].get_newline() ==
-           chaos::io::sys::FileHandle2::NEWLINE_WINDOWS)
+           chaos::io::sys::FileHandle::NEWLINE_WINDOWS)
         {
             newline_size *= 2;
         }
@@ -660,7 +660,7 @@ CHAOS_TEST_UNIT_FIXTURE(read_line_utf8, FileReaderFixture)
             // get the fixture line as utf8
             chaos::str::UTF8String line;
             if(fixture->encodings[i] ==
-               chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN)
+               chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN)
             {
                 line = chaos::str::utf16_to_utf8(
                     fixture->lines[i][l_n],
@@ -669,7 +669,7 @@ CHAOS_TEST_UNIT_FIXTURE(read_line_utf8, FileReaderFixture)
                 );
             }
             else if(fixture->encodings[i] ==
-                    chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN)
+                    chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN)
             {
                 line = chaos::str::utf16_to_utf8(
                     fixture->lines[i][l_n],

@@ -64,7 +64,7 @@ struct NewlineChecker
 
 FileReader::FileReader(Encoding encoding, Newline newline)
     :
-    FileHandle2            (encoding, newline),
+    FileHandle            (encoding, newline),
     m_stream               (nullptr),
     m_size                 (0),
     m_newline_checker_valid(false),
@@ -78,7 +78,7 @@ FileReader::FileReader(
         Encoding encoding,
         Newline newline)
     :
-    FileHandle2            (path, encoding, newline),
+    FileHandle            (path, encoding, newline),
     m_stream               (nullptr),
     m_size                 (0),
     m_newline_checker_valid(false),
@@ -89,7 +89,7 @@ FileReader::FileReader(
 
 FileReader::FileReader(FileReader&& other)
     :
-    FileHandle2            (std::move(other)),
+    FileHandle            (std::move(other)),
     m_stream               (other.m_stream),
     m_size                 (other.m_size),
     m_newline_checker_valid(other.m_newline_checker_valid),
@@ -228,7 +228,7 @@ void FileReader::open(const chaos::io::sys::Path& path)
 {
     // just call super function, this function is only implemented here to avoid
     // C++ function hiding.
-    FileHandle2::open(path);
+    FileHandle::open(path);
 }
 
 void FileReader::close()

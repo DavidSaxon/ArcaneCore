@@ -19,11 +19,11 @@ namespace sys
  * \brief Abstract base class that represents an object used for providing
  *        access to a file.
  */
-class FileHandle2
+class FileHandle
 {
 private:
 
-    CHAOS_DISALLOW_COPY_AND_ASSIGN(FileHandle2);
+    CHAOS_DISALLOW_COPY_AND_ASSIGN(FileHandle);
 
 public:
 
@@ -69,15 +69,15 @@ public:
     /*!
      * \brief Move constructor.
      *
-     * \param other The FileHandle2 to move resources from.
+     * \param other The FileHandle to move resources from.
      */
-    FileHandle2(FileHandle2&& other);
+    FileHandle(FileHandle&& other);
 
     //--------------------------------------------------------------------------
     //                                 DESTRUCTOR
     //--------------------------------------------------------------------------
 
-    virtual ~FileHandle2()
+    virtual ~FileHandle()
     {
     }
 
@@ -86,7 +86,7 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Returns whether the FileHandle2 is currently open or not.
+     * \brief Returns whether the FileHandle is currently open or not.
      */
     bool is_open() const;
 
@@ -234,7 +234,7 @@ protected:
      *                 file.
      * \param newline The newline symbol which the FileHandle will use.
      */
-    FileHandle2(
+    FileHandle(
             Encoding encoding = ENCODING_DETECT,
             Newline newline   = NEWLINE_UNIX);
 
@@ -253,7 +253,7 @@ protected:
      *                 file.
      * \param newline The newline symbol which the FileHandle will use.
      */
-    FileHandle2(
+    FileHandle(
             const chaos::io::sys::Path& path,
             Encoding encoding = ENCODING_DETECT,
             Newline newline   = NEWLINE_UNIX);
@@ -266,187 +266,10 @@ private:
 
     /*!
      * \brief If this FileHandle's newline is currently set to
-     *        chaos::io::sys::FileHandle2::NEWLINE_DETECT this function will
+     *        chaos::io::sys::FileHandle::NEWLINE_DETECT this function will
      *        reassign the newline value based on the current Operating System.
      */
     void handle_newline_detect();
-};
-
-/*!
- * \brief Abstract base class used for representing an object that is writing or
- *        reading to/from a file.
- *
- * This object defines the specifications for chaos::io::sys::FileReader and
- * chaos::io::sys::FileWriter.
- */
-class FileHandle
-{
-private:
-
-    CHAOS_DISALLOW_COPY_AND_ASSIGN(FileHandle);
-
-public:
-
-    //--------------------------------------------------------------------------
-    //                              MOVE CONSTRUCTOR
-    //--------------------------------------------------------------------------
-
-    /*!
-     * \brief Move constructor.
-     *
-     * \param other The FileHandle to move resources from.
-     */
-    FileHandle(FileHandle&& other);
-
-    //--------------------------------------------------------------------------
-    //                                 DESTRUCTOR
-    //--------------------------------------------------------------------------
-
-    virtual ~FileHandle()
-    {
-    }
-
-    //--------------------------------------------------------------------------
-    //                          PUBLIC MEMBER FUNCTIONS
-    //--------------------------------------------------------------------------
-
-    /*!
-     * brief Returns whether the file handle is currently open or not.
-     */
-    bool is_open() const;
-
-    /*!
-     * \brief Opens the file handle to the internal path.
-     *
-     * \note This function is to be implemented by derived classes.
-     *
-     * \throws chaos::ex::StateError If this file handle is already open.
-     *
-     * \throws chaos::io::sys::InvalidPathError If the path cannot be opened
-     */
-    virtual void open() = 0;
-
-    /*!
-     * \brief Sets the path and opens this handle to it.
-     *
-     * This function is short hand for:
-     *
-     * \code
-     * my_file_handle.set_path(path);
-     * my_file_handle.open();
-     * \endcode
-     *
-     * \throws chaos::ex::StateError If this file handle is already open.
-     *
-     ** \throws chaos::io::sys::InvalidPathError If the path cannot be opened
-     */
-    void open(const chaos::io::sys::Path& path);
-
-    /*!
-     * \brief Closes this file handle.
-     *
-     * \note This function is to be implemented by derived classes.
-     */
-    virtual void close() = 0;
-
-    /*!
-     * \brief Returns the path being used by this file handle.
-     */
-    const chaos::io::sys::Path& get_path() const;
-
-    /*!
-     * \brief Sets the path to be used by this file handle.
-     *
-     * The path may only be set if the file handle is not currently open.
-     *
-     * \throws chaos::ex::StateError If this file handle is open.
-     */
-    void set_path(const chaos::io::sys::Path& path);
-
-    /*!
-     * \brief Returns the descriptor flags of the this file handle.
-     */
-    chaos::uint32 get_flags() const;
-
-    /*!
-     * \brief Sets the descriptor flags to be used by this file handle.
-     *
-     * Flags can only be set if the file handle is not currently open.
-     *
-     * \throws chaos::ex::StateError If this file handle is open.
-     */
-    void set_flags(chaos::uint32 flags);
-
-    /*!
-     * \brief Returns the string encoding being used by the file handle.
-     */
-    chaos::str::Encoding get_encoding() const;
-
-    /*!
-     * \brief Sets the string encoding to be used by the file handle.
-     *
-     * The encoding can only be set if the file handle is not currently open.
-     *
-     * \throws chaos::ex::StateError If this file handle is open.
-     */
-    void set_encoding(chaos::str::Encoding encoding);
-
-
-protected:
-
-    //--------------------------------------------------------------------------
-    //                            PROTECTED ATTRIBUTES
-    //--------------------------------------------------------------------------
-
-    /*!
-     * \brief The file path this handle is currently using.
-     */
-    chaos::io::sys::Path m_path;
-    /*!
-     * \brief Descriptor flags of the file handle.
-     */
-    chaos::uint32 m_flags;
-    /*!
-     * \brief Encoding of the file handle.
-     */
-    chaos::str::Encoding m_encoding;
-
-    /*!
-     * \brief Whether the file handle is currently open or not.
-     */
-    bool m_open;
-
-    //--------------------------------------------------------------------------
-    //                           PROTECTED CONSTRUCTORS
-    //--------------------------------------------------------------------------
-
-    /*!
-     * \brief Default super constructor.
-     *
-     * Super constructor used to create a new unopened file handle.
-     *
-     * \param flags Flags used to describe how the file handle should be opened.
-     * \param encoding The encoding of the file handle.
-     */
-    FileHandle(
-            chaos::uint32 flags = 0U,
-            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
-
-    /*!
-     * \brief Path super constructor.
-     *
-     * This does not open the File Handle. But the derived constructors for
-     * chaos::io::sys::FileReader and chaos::io::sys::FileWriter will open the
-     * file handle.
-     *
-     * \param path Path to the file to open.
-     * \param flags Flags used to describe how the file handle should be opened.
-     * \param encoding The encoding of the file handle.
-     */
-    FileHandle(
-            const chaos::io::sys::Path& path,
-            chaos::uint32 flags = 0U,
-            chaos::str::Encoding encoding = chaos::str::ENCODING_UTF8);
 };
 
 } // namespace sys

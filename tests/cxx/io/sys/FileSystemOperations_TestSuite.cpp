@@ -1,6 +1,6 @@
 #include "chaoscore/test/ChaosTest.hpp"
 
-CHAOS_TEST_MODULE( io.sys.file_system_operations )
+CHAOS_TEST_MODULE( io.sys.FileSystemOperations )
 
 #include <algorithm>
 
@@ -1121,8 +1121,8 @@ public:
             p << "delete_me.txt";
             files.push_back( p );
 
-            chaos::io::sys::FileWriter w( p );
-            w.write_line( "Hello World!" );
+            chaos::io::sys::FileWriter w(p);
+            w.write_line("Hello World!");
         }
         {
             chaos::io::sys::Path p( base_path );

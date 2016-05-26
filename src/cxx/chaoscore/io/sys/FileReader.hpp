@@ -27,7 +27,7 @@ struct NewlineChecker;
 /*!
  * \brief Used for reading the contents of a file from disk.
  */
-class FileReader : public chaos::io::sys::FileHandle2
+class FileReader : public chaos::io::sys::FileHandle
 {
 private:
 
@@ -45,11 +45,11 @@ public:
      * Creates a new unopened FileReader with no file path yet defined.
      *
      * \param encoding Defines the encoding of the contents of the file to read.
-     *                 If chaos::io::sys::FileHandle2::ENCODING_DETECT is used
+     *                 If chaos::io::sys::FileHandle::ENCODING_DETECT is used
      *                 the FileReader will attempt to detect the encoding used
      *                 in the file at the time of opening. If the encoding
      *                 cannot be detected
-     *                 chaos::io::sys::FileHandle2::ENCODING_RAW will be used.
+     *                 chaos::io::sys::FileHandle::ENCODING_RAW will be used.
      *                 The detected encoding can be queried using get_encoding()
      *                 once the file has been opened.
      * \param newline The newline symbol used in the file to read.
@@ -66,11 +66,11 @@ public:
      *
      * \param path The path to the file to read from.
      * \param encoding Defines the encoding of the contents of the file to read.
-     *                 If chaos::io::sys::FileHandle2::ENCODING_DETECT is used
+     *                 If chaos::io::sys::FileHandle::ENCODING_DETECT is used
      *                 the FileReader will attempt to detect the encoding used
      *                 in the file at the time of opening. If the encoding
      *                 cannot be detected
-     *                 chaos::io::sys::FileHandle2::ENCODING_RAW will be used.
+     *                 chaos::io::sys::FileHandle::ENCODING_RAW will be used.
      *                 The detected encoding can be queried using get_encoding()
      *                 once the file has been opened.
      * \param newline The newline symbol used in the file to read.

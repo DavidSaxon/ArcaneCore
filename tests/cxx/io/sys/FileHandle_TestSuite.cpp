@@ -11,37 +11,37 @@ namespace
 //                              TEST IMPLEMENTATION
 //------------------------------------------------------------------------------
 
-class TestFileHandle2 : public chaos::io::sys::FileHandle2
+class TestFileHandle : public chaos::io::sys::FileHandle
 {
 public:
 
     //-------------------------------CONSTRUCTORS-------------------------------
 
-    TestFileHandle2(
-            chaos::io::sys::FileHandle2::Encoding encoding =
-                chaos::io::sys::FileHandle2::ENCODING_DETECT,
-            chaos::io::sys::FileHandle2::Newline newline =
-                chaos::io::sys::FileHandle2::NEWLINE_UNIX)
+    TestFileHandle(
+            chaos::io::sys::FileHandle::Encoding encoding =
+                chaos::io::sys::FileHandle::ENCODING_DETECT,
+            chaos::io::sys::FileHandle::Newline newline =
+                chaos::io::sys::FileHandle::NEWLINE_UNIX)
         :
-        FileHandle2(encoding, newline)
+        FileHandle(encoding, newline)
     {
     }
 
-    TestFileHandle2(
+    TestFileHandle(
             const chaos::io::sys::Path& path,
-            chaos::io::sys::FileHandle2::Encoding encoding =
-                chaos::io::sys::FileHandle2::ENCODING_DETECT,
-            chaos::io::sys::FileHandle2::Newline newline =
-                chaos::io::sys::FileHandle2::NEWLINE_UNIX)
+            chaos::io::sys::FileHandle::Encoding encoding =
+                chaos::io::sys::FileHandle::ENCODING_DETECT,
+            chaos::io::sys::FileHandle::Newline newline =
+                chaos::io::sys::FileHandle::NEWLINE_UNIX)
         :
-        FileHandle2(path, encoding, newline)
+        FileHandle(path, encoding, newline)
     {
         open();
     }
 
-    TestFileHandle2(TestFileHandle2&& other)
+    TestFileHandle(TestFileHandle&& other)
         :
-        FileHandle2(std::move(other))
+        FileHandle(std::move(other))
     {
     }
 
@@ -76,15 +76,15 @@ public:
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
 
-class FileHandle2GenericFixture : public chaos::test::Fixture
+class FileHandleGenericFixture : public chaos::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
     std::vector<chaos::io::sys::Path> paths;
-    std::vector<chaos::io::sys::FileHandle2::Encoding> encodings;
-    std::vector<chaos::io::sys::FileHandle2::Newline> newlines;
+    std::vector<chaos::io::sys::FileHandle::Encoding> encodings;
+    std::vector<chaos::io::sys::FileHandle::Newline> newlines;
     std::vector<std::size_t> bom_sizes;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -96,16 +96,16 @@ public:
             chaos::io::sys::Path p;
             p << "file.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_DETECT);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_DETECT);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
             chaos::io::sys::Path p;
             p << "directory" << "file.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_UTF8);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_UTF8);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(3);
         }
         {
@@ -113,16 +113,16 @@ public:
             p << "/" << "f.png";
             paths.push_back(p);
             encodings.push_back(
-                chaos::io::sys::FileHandle2::ENCODING_UTF16_LITTLE_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+                chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
             bom_sizes.push_back(2);
         }
         {
             chaos::io::sys::Path p;
             p << "d1" << "d2" << "a_";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
@@ -130,24 +130,24 @@ public:
             p << "/" << "directory" << "file.txt";
             paths.push_back(p);
             encodings.push_back(
-                    chaos::io::sys::FileHandle2::ENCODING_UTF16_BIG_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+                    chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
             bom_sizes.push_back(2);
         }
         {
             chaos::io::sys::Path p;
             p << ".." << "file.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_DETECT);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_UNIX);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_DETECT);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
             chaos::io::sys::Path p;
             p << "." << "image.png";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle2::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle2::NEWLINE_WINDOWS);
+            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
             bom_sizes.push_back(0);
         }
     }
@@ -157,13 +157,13 @@ public:
 //                              DEFAULT CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileHandle2GenericFixture)
+CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileHandleGenericFixture)
 {
     // build file handles
-    std::vector<TestFileHandle2> handles;
+    std::vector<TestFileHandle> handles;
     for(std::size_t i = 0; i < fixture->encodings.size(); ++i)
     {
-        TestFileHandle2 f(fixture->encodings[i], fixture->newlines[i]);
+        TestFileHandle f(fixture->encodings[i], fixture->newlines[i]);
         handles.push_back(std::move(f));
     }
 
@@ -190,13 +190,13 @@ CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileHandle2GenericFixture)
 //                                PATH CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandle2GenericFixture)
+CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
 {
     // build file handles
-    std::vector<TestFileHandle2> handles;
+    std::vector<TestFileHandle> handles;
     for(std::size_t i = 0; i < fixture->encodings.size(); ++i)
     {
-        TestFileHandle2 f(
+        TestFileHandle f(
             fixture->paths[i],
             fixture->encodings[i],
             fixture->newlines[i]
