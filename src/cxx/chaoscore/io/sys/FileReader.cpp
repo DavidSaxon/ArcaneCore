@@ -157,7 +157,7 @@ void FileReader::open()
 #else
 
     m_stream = new std::ifstream(
-        m_path.to_native(),
+        m_path.to_native().get_raw(),
         std::ios_base::in | std::ios_base::binary
     );
 

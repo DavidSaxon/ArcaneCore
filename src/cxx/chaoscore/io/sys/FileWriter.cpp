@@ -116,7 +116,7 @@ void FileWriter::open()
 
 #else
 
-    m_stream = new std::ofstream(m_path.to_native(), stream_flags);
+    m_stream = new std::ofstream(m_path.to_native().get_raw(), stream_flags);
 
 #endif
 
