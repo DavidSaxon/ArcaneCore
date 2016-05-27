@@ -1,5 +1,5 @@
-#ifndef CHAOSCORE_BASE_STRING_HPP_
-#define CHAOSCORE_BASE_STRING_HPP_
+#ifndef CHAOSCORE_BASE_MATH_HPP_
+#define CHAOSCORE_BASE_MATH_HPP_
 
 namespace chaos
 {

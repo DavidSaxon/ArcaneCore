@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "chaoscore/io/sys/FileSystemExceptions.hpp"
 #include "chaoscore/io/sys/FileSystemOperations.hpp"
 #include "chaoscore/test/ChaosTest.hpp"
 #include "chaoscore/test/TestExceptions.hpp"
@@ -223,7 +222,7 @@ int deferred_main( int argc, char* argv[] )
             {
                 chaos::io::sys::validate( file_path );
             }
-            catch( chaos::io::sys::FileSystemError e )
+            catch(const chaos::ex::ChaosException& e)
             {
                 std::cerr << "\nERROR: validating the provided file output "
                           "path: \'" << file_path << "\' has failed with the "

@@ -6,7 +6,6 @@ CHAOS_TEST_MODULE(io.sys.FileReader)
 
 #include <chaoscore/base/str/StringOperations.hpp>
 #include <chaoscore/io/sys/FileReader.hpp>
-#include <chaoscore/io/sys/FileSystemExceptions.hpp>
 
 namespace
 {
@@ -547,7 +546,7 @@ CHAOS_TEST_UNIT_FIXTURE(read_utf8, FileReaderFixture)
         chaos::str::UTF8String read_data;
         CHAOS_CHECK_THROW(
             reader->read(read_data),
-            chaos::io::sys::EOFError
+            chaos::ex::EOFError
         );
         // reset the file
         reader->close();

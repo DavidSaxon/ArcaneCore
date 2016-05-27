@@ -3,9 +3,8 @@
 #include <cstddef>
 #include <fstream>
 
-#include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/Exceptions.hpp"
 #include "chaoscore/base/str/StringOperations.hpp"
-#include "chaoscore/io/sys/FileSystemExceptions.hpp"
 
 namespace chaos
 {
@@ -130,7 +129,7 @@ void FileWriter::open()
         chaos::str::UTF8String error_message;
         error_message << "Failed to open FileWriter to path: \'"
                       << m_path.to_native() << "\'.";
-        throw chaos::io::sys::InvalidPathError(error_message);
+        throw chaos::ex::InvalidPathError(error_message);
     }
 
     // TODO: write BOM

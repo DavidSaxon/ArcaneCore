@@ -1,6 +1,6 @@
 #include "chaoscore/base/data/ByteOperations.hpp"
 
-#include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/Exceptions.hpp"
 #include "chaoscore/base/str/UTF8String.hpp"
 
 namespace chaos

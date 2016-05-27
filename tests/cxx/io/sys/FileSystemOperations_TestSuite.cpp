@@ -1056,16 +1056,7 @@ CHAOS_TEST_UNIT_FIXTURE( create_directory, FileSysCreateDirectoryFixture )
     {
         CHAOS_CHECK_THROW(
                 chaos::io::sys::create_directory( *it_4 ),
-                chaos::io::sys::AmbiguousPathError
-        );
-    }
-
-    CHAOS_TEST_MESSAGE( "Checking invalid" );
-    CHAOS_FOR_EACH( it_5, fixture->invalid )
-    {
-        CHAOS_CHECK_THROW(
-                chaos::io::sys::create_directory( *it_5 ),
-                chaos::io::sys::CreateDirectoryError
+                chaos::ex::InvalidPathError
         );
     }
 }
@@ -1193,7 +1184,7 @@ CHAOS_TEST_UNIT_FIXTURE( delete_path, DeletePathFixture )
     {
         CHAOS_CHECK_THROW(
                 chaos::io::sys::delete_path( *it_3 ),
-                chaos::io::sys::InvalidPathError
+                chaos::ex::InvalidPathError
         );
     }
 }
@@ -1391,7 +1382,7 @@ CHAOS_TEST_UNIT_FIXTURE( delete_path_rec, DeletePathRecFixture )
     {
         CHAOS_CHECK_THROW(
                 chaos::io::sys::delete_path_rec( *it_3 ),
-                chaos::io::sys::InvalidPathError
+                chaos::ex::InvalidPathError
         );
     }
 }
@@ -1507,7 +1498,7 @@ CHAOS_TEST_UNIT_FIXTURE( validate, FileSysValidateFixture )
     {
         CHAOS_CHECK_THROW(
                 chaos::io::sys::validate( *it_2 ),
-                chaos::io::sys::AmbiguousPathError
+                chaos::ex::InvalidPathError
         );
     }
 }

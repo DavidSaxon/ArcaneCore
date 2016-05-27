@@ -15,6 +15,7 @@
 
 #endif
 
+#include "chaoscore/base/Exceptions.hpp"
 #include "chaoscore/base/os/OSOperations.hpp"
 #include "chaoscore/base/str/StringOperations.hpp"
 
@@ -351,7 +352,7 @@ bool create_directory( const chaos::io::sys::Path& path )
             error_message << "Directory path: \'" << path << "\' failed to be ";
             error_message << "created as it already exists but is not a ";
             error_message << "directory.";
-            throw AmbiguousPathError( error_message );
+            throw chaos::ex::InvalidPathError( error_message );
         }
         // no actions performed
         return false;
@@ -365,7 +366,7 @@ bool create_directory( const chaos::io::sys::Path& path )
         chaos::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
-        throw CreateDirectoryError( error_message );
+        throw chaos::ex::InvalidPathError( error_message );
     }
 
     return true;
@@ -388,7 +389,7 @@ bool create_directory( const chaos::io::sys::Path& path )
         chaos::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
-        throw CreateDirectoryError( error_message );
+        throw chaos::ex::InvalidPathError( error_message );
     }
 
     return true;
@@ -404,7 +405,7 @@ void delete_path( const chaos::io::sys::Path& path )
         chaos::str::UTF8String error_message;
         error_message << "Cannot delete path because it does not exist: \'";
         error_message << path.to_native() << "\'";
-        throw chaos::io::sys::InvalidPathError( error_message );
+        throw chaos::ex::InvalidPathError( error_message );
     }
 
 #ifdef CHAOS_OS_UNIX
@@ -415,7 +416,7 @@ void delete_path( const chaos::io::sys::Path& path )
         error_message << "Failed to delete path: \'" << path.to_native();
         error_message << " \'. OS error: ";
         error_message << chaos::os::get_last_system_error_message();
-        throw chaos::io::sys::InvalidPathError( error_message );
+        throw chaos::ex::InvalidPathError( error_message );
     }
 
 #elif defined( CHAOS_OS_WINDOWS )
@@ -445,7 +446,7 @@ void delete_path( const chaos::io::sys::Path& path )
         chaos::str::UTF8String error_message;
         error_message << "Deleting path failed with OS error: ";
         error_message << chaos::os::get_last_system_error_message();
-        throw InvalidPathError( error_message );
+        throw chaos::ex::InvalidPathError( error_message );
     }
 
 
@@ -460,7 +461,7 @@ void delete_path_rec( const chaos::io::sys::Path& path )
         chaos::str::UTF8String error_message;
         error_message << "Cannot delete path because it does not exist: \'";
         error_message << path.to_native() << "\'";
-        throw chaos::io::sys::InvalidPathError( error_message );
+        throw chaos::ex::InvalidPathError( error_message );
     }
 
     // is this a directory? do we need to traverse it?

@@ -1,6 +1,6 @@
 #include "chaoscore/io/sys/FileHandle.hpp"
 
-#include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/Exceptions.hpp"
 
 namespace chaos
 {

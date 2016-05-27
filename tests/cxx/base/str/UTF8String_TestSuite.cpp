@@ -5,7 +5,7 @@ CHAOS_TEST_MODULE(base.str.UTF8String)
 #include <algorithm>
 #include <cstring>
 
-#include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/Exceptions.hpp"
 #include "chaoscore/base/str/UTF8String.hpp"
 
 namespace utf8_string_tests

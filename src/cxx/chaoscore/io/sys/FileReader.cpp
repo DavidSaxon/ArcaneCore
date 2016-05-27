@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "chaoscore/base/str/StringOperations.hpp"
-#include "chaoscore/io/sys/FileSystemExceptions.hpp"
+#include "chaoscore/base/Exceptions.hpp"
 
 namespace chaos
 {
@@ -173,7 +173,7 @@ void FileReader::open()
         chaos::str::UTF8String error_message;
         error_message << "Failed to open FileReader to path: \'"
                       << m_path.to_native() << "\'.";
-        throw chaos::io::sys::InvalidPathError(error_message);
+        throw chaos::ex::InvalidPathError(error_message);
     }
 
     // retrieve the size of the file
@@ -619,7 +619,7 @@ void FileReader::check_can_read()
     }
     if(eof())
     {
-        throw chaos::io::sys::EOFError(
+        throw chaos::ex::EOFError(
             "File read cannot be performed as the EOF marker has been reached."
         );
     }

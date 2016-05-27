@@ -1,4 +1,4 @@
-#include "chaoscore/base/BaseExceptions.hpp"
+#include "chaoscore/base/Exceptions.hpp"
 #include "chaoscore/base/str/StringOperations.hpp"
 
 namespace chaos

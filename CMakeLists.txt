@@ -49,6 +49,7 @@ set(TESTS_SUITES
     tests/cxx/base/Types_TestSuite.cpp
     tests/cxx/base/data/BitwiseFloat_TestSuite.cpp
     tests/cxx/base/data/ByteOperations_TestSuite.cpp
+    tests/cxx/base/introspect/IntrospectOperations_TestSuite.cpp
     tests/cxx/base/math/MathOperations_TestSuite.cpp
     tests/cxx/base/str/UTF8String_TestSuite.cpp
     tests/cxx/base/str/StringOperations_TestSuite.cpp
