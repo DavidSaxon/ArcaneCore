@@ -256,6 +256,24 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                  PARSE ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns of error while parsing data.
+ */
+class ParseError : public ChaosException
+{
+public:
+
+    ParseError(const chaos::str::UTF8String& message)
+        :
+        ChaosException("ParseError", message)
+    {
+    }
+};
+
+//------------------------------------------------------------------------------
 //                               INVALID PATH ERROR
 //------------------------------------------------------------------------------
 
