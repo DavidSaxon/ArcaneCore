@@ -70,6 +70,19 @@ UTF8String::UTF8String(const UTF8String& other)
    assign_internal(other.m_data, other.m_data_length);
 }
 
+UTF8String::UTF8String(UTF8String&& other)
+    :
+    m_opt        (other.m_opt),
+    m_data       (other.m_data),
+    m_data_length(other.m_data_length),
+    m_length     (other.m_length)
+{
+    // reset the other's resources
+    other.m_data = nullptr;
+    other.m_data_length = 0;
+    other.m_length = 0;
+}
+
 //------------------------------------------------------------------------------
 //                                   DESTRUCTOR
 //------------------------------------------------------------------------------
@@ -77,7 +90,10 @@ UTF8String::UTF8String(const UTF8String& other)
 UTF8String::~UTF8String()
 {
     // ensure we delete the internal data buffer
-    delete[] m_data;
+    if(m_data)
+    {
+        delete[] m_data;
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -289,8 +305,9 @@ void UTF8String::assign( const UTF8String& other )
 
 void UTF8String::claim(char* data)
 {
-    // if there is already content in the internal buffer delete it
-    delete[] m_data;
+    // store the old data so we can delete it later if we need to
+    char* old_data = m_data;
+
     // reassign
     m_data = data;
     // get number of bytes in the data
@@ -298,6 +315,12 @@ void UTF8String::claim(char* data)
 
     // process the raw data
     process_raw();
+
+    // delete the old data if it exists
+    if(old_data)
+    {
+        delete[] old_data;
+    }
 }
 
 UTF8String& UTF8String::concatenate( const UTF8String& other )
@@ -908,9 +931,10 @@ void UTF8String::assign_internal(
         std::size_t existing_length )
 {
     // if there is already content in the internal buffer delete it
-    delete[] m_data;
+    // store the old data so we can delete it later
+    char* old_data = m_data;
 
-    // get number of bytes in the data
+    // get number ofa bytes in the data
     bool is_null_terminated = true;
     if ( existing_length == chaos::str::npos )
     {
@@ -943,6 +967,12 @@ void UTF8String::assign_internal(
 
     // process the raw data
     process_raw();
+
+    // delete old data if it exists
+    if(old_data)
+    {
+        delete[] old_data;
+    }
 }
 
 void UTF8String::check_symbol_index( std::size_t index ) const
