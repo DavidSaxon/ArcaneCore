@@ -132,8 +132,6 @@ void FileWriter::open()
         throw chaos::ex::InvalidPathError(error_message);
     }
 
-    // TODO: write BOM
-
     // write the BOM based on the encoding
     switch(m_encoding)
     {
