@@ -71,6 +71,23 @@ FileWriter::~FileWriter()
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
+FileWriter::OpenMode FileWriter::get_open_mode() const
+{
+    return m_open_mode;
+}
+
+void FileWriter::set_open_mode(OpenMode open_mode)
+{
+    // ensure the file writer isn't open
+    if(m_open)
+    {
+        throw chaos::ex::StateError(
+            "FileWriter OpenMode cannot be changed since the writer is open.");
+    }
+
+    m_open_mode = open_mode;
+}
+
 void FileWriter::open()
 {
     // ensure the file writer is not already open
