@@ -610,28 +610,71 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( list, ListFixture )
+CHAOS_TEST_UNIT_FIXTURE(list, ListFixture)
 {
-    std::vector< std::vector< chaos::io::sys::Path > > l;
-    CHAOS_FOR_EACH( it, fixture->dirs )
+    CHAOS_TEST_MESSAGE("Checking including special paths");
     {
-        l.push_back( chaos::io::sys::list( *it ) );
-    }
-
-
-    CHAOS_TEST_MESSAGE( "Checking returned lengths" );
-    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
-    {
-        CHAOS_CHECK_EQUAL( l[ i ].size(), fixture->results[ i ].size() );
-    }
-
-    CHAOS_TEST_MESSAGE( "Checking returned elements" );
-    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
-    {
-        std::size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
-        for ( std::size_t j = 0; j < s; ++j )
+        std::vector<std::vector< chaos::io::sys::Path>> l;
+        CHAOS_FOR_EACH(it, fixture->dirs)
         {
-            CHAOS_CHECK_EQUAL( l[ i ][ j ], fixture->results[ i ][ j ] );
+            l.push_back(chaos::io::sys::list(*it, true));
+        }
+
+
+        CHAOS_TEST_MESSAGE("Checking returned lengths");
+        for (std::size_t i = 0; i < fixture->dirs.size(); ++i)
+        {
+            CHAOS_CHECK_EQUAL(l[i].size(), fixture->results[i].size());
+        }
+
+        CHAOS_TEST_MESSAGE("Checking returned elements");
+        for (std::size_t i = 0; i < fixture->dirs.size(); ++i)
+        {
+            std::size_t s = std::min(l[i].size(), fixture->results[i].size());
+            for (std::size_t j = 0; j < s; ++j)
+            {
+                CHAOS_CHECK_EQUAL(l[i][j], fixture->results[i][j]);
+            }
+        }
+    }
+
+    CHAOS_TEST_MESSAGE("Checking not including special paths");
+    {
+        std::vector<std::vector< chaos::io::sys::Path>> l;
+        CHAOS_FOR_EACH(it, fixture->dirs)
+        {
+            l.push_back(chaos::io::sys::list(*it, false));
+        }
+
+
+        CHAOS_TEST_MESSAGE("Checking returned lengths");
+        for (std::size_t i = 0; i < fixture->dirs.size(); ++i)
+        {
+            std::size_t check_size = fixture->results[i].size();
+            if(check_size >= 2)
+            {
+                check_size -= 2;
+            }
+            CHAOS_CHECK_EQUAL(l[i].size(), check_size);
+        }
+
+        CHAOS_TEST_MESSAGE("Checking returned elements");
+        for (std::size_t i = 0; i < fixture->dirs.size(); ++i)
+        {
+            std::size_t s = std::min(l[i].size(), fixture->results[i].size());
+            std::size_t j_ = 0;
+            for (std::size_t j = 0; j < s; ++j)
+            {
+                // skip special
+                if(fixture->results[i][j].get_back() == "." ||
+                   fixture->results[i][j].get_back() == "..")
+                {
+                    continue;
+                }
+
+                CHAOS_CHECK_EQUAL(l[i][j_], fixture->results[i][j]);
+                ++j_;
+            }
         }
     }
 }
@@ -859,28 +902,28 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( list_rec, ListRecFixture )
+CHAOS_TEST_UNIT_FIXTURE(list_rec, ListRecFixture)
 {
-    std::vector< std::vector< chaos::io::sys::Path > > l;
-    CHAOS_FOR_EACH( it, fixture->dirs )
+    std::vector< std::vector<chaos::io::sys::Path>> l;
+    CHAOS_FOR_EACH(it, fixture->dirs)
     {
-        l.push_back( chaos::io::sys::list_rec( *it ) );
+        l.push_back(chaos::io::sys::list_rec(*it, true));
     }
 
 
-    CHAOS_TEST_MESSAGE( "Checking returned lengths" );
-    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
+    CHAOS_TEST_MESSAGE("Checking returned lengths");
+    for (std::size_t i = 0; i < fixture->dirs.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL( l[ i ].size(), fixture->results[ i ].size() );
+        CHAOS_CHECK_EQUAL(l[i].size(), fixture->results[i].size());
     }
 
-    CHAOS_TEST_MESSAGE( "Checking returned elements" );
-    for ( std::size_t i = 0; i < fixture->dirs.size(); ++i )
+    CHAOS_TEST_MESSAGE("Checking returned elements");
+    for (std::size_t i = 0; i < fixture->dirs.size(); ++i)
     {
-        std::size_t s = std::min( l[ i ].size(), fixture->results[ i ].size() );
-        for ( std::size_t j = 0; j < s; ++j )
+        std::size_t s = std::min(l[i].size(), fixture->results[i].size());
+        for (std::size_t j = 0; j < s; ++j)
         {
-            CHAOS_CHECK_EQUAL( l[ i ][ j ], fixture->results[ i ][ j ] );
+            CHAOS_CHECK_EQUAL(l[i][j], fixture->results[i][j]);
         }
     }
 }

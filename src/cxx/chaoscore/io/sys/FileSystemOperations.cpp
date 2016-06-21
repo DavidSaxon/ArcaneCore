@@ -234,13 +234,15 @@ bool is_symbolic_link( const chaos::io::sys::Path& path )
 #endif
 }
 
-std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
+std::vector<chaos::io::sys::Path> list(
+        const chaos::io::sys::Path& path,
+        bool include_special)
 {
     // vector to be returned
     std::vector< chaos::io::sys::Path > ret;
 
     // is the given path a directory?
-    if ( !is_directory( path, false ) )
+    if (!is_directory(path, false))
     {
         // not a directory so there are no sub-children
         return ret;
@@ -250,7 +252,7 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
 
     // open the directory
     DIR* dir;
-    if ( ( dir = opendir( path.to_unix().get_raw() ) ) == NULL )
+    if ((dir = opendir(path.to_unix().get_raw())) == NULL)
     {
         // TODO: should this throw an error?
         // failed to open the directory
@@ -258,19 +260,25 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     }
 
     struct dirent *dir_entry;
-    while( ( dir_entry = readdir( dir ) ) != NULL )
+    while((dir_entry = readdir(dir)) != NULL)
     {
-        chaos::io::sys::Path p( path );
+        chaos::io::sys::Path p(path);
         p << dir_entry->d_name;
-        ret.push_back( p );
+
+        // skip over . and ..?
+        if(!include_special && (p.get_back() == "." || p.get_back() == ".."))
+        {
+            continue;
+        }
+
+        ret.push_back(p);
     }
 
 #else
 
     // construct the directory path
-    chaos::str::UTF8String u( path.to_windows() );
-    // TODO: ends with
-    if ( !u.ends_with( "\\" ) )
+    chaos::str::UTF8String u(path.to_windows());
+    if (!u.ends_with("\\"))
     {
         u += "\\";
     }
@@ -285,10 +293,10 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     );
 
     WIN32_FIND_DATAW find_data;
-    HANDLE find_handle = FindFirstFileW( ( const wchar_t* ) p, &find_data );
+    HANDLE find_handle = FindFirstFileW((const wchar_t*) p, &find_data);
     delete[] p;
 
-    if ( find_handle == INVALID_HANDLE_VALUE )
+    if (find_handle == INVALID_HANDLE_VALUE)
     {
         // failed to open the directory
         // TODO: should this throw an error?
@@ -298,41 +306,48 @@ std::vector< chaos::io::sys::Path > list( const chaos::io::sys::Path& path )
     // iterate over sub paths
     do
     {
-        chaos::io::sys::Path sub_path( path );
-
+        chaos::io::sys::Path sub_path(path);
         sub_path << chaos::str::utf16_to_utf8(
-                ( const char* ) find_data.cFileName,
+                (const char*) find_data.cFileName,
                 chaos::str::npos
         );
 
-        ret.push_back( sub_path );
+        // skip over . and ..?
+        if(!include_special && (p.get_back() == "." || p.get_back() == ".."))
+        {
+            continue;
+        }
+
+        ret.push_back(sub_path);
     }
-    while ( FindNextFileW( find_handle, &find_data ) != 0 );
-    FindClose( find_handle );
+    while (FindNextFileW(find_handle, &find_data) != 0);
+    FindClose(find_handle );
 
 #endif
 
     // order alphabetically
-    std::sort( ret.begin(), ret.end() );
+    std::sort(ret.begin(), ret.end());
     return ret;
 }
 
-std::vector< chaos::io::sys::Path > list_rec( const chaos::io::sys::Path& path )
+std::vector<chaos::io::sys::Path> list_rec(
+        const chaos::io::sys::Path& path,
+        bool include_special)
 {
-    std::vector< chaos::io::sys::Path > ret;
+    std::vector<chaos::io::sys::Path> ret;
 
-    std::vector< chaos::io::sys::Path > ls( list( path ) );
-    CHAOS_FOR_EACH( it, ls )
+    std::vector<chaos::io::sys::Path> ls(list(path, include_special));
+    CHAOS_FOR_EACH(it, ls)
     {
-        ret.push_back( *it );
+        ret.push_back(*it);
         // recursively call and extend the return list
-        if ( it->get_components().back() != "." &&
-             it->get_components().back() != ".."   )
+        if (it->get_back() != "." && it->get_back() != "..")
         {
-            std::vector< chaos::io::sys::Path > d_ls( list_rec( *it ) );
-            CHAOS_FOR_EACH( d_it, d_ls )
+            std::vector<chaos::io::sys::Path> d_ls(
+                list_rec(*it, include_special));
+            CHAOS_FOR_EACH(d_it, d_ls)
             {
-                ret.push_back( *d_it );
+                ret.push_back(*d_it);
             }
         }
     }
