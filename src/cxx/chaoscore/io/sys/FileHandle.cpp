@@ -27,6 +27,26 @@ FileHandle::FileHandle(FileHandle&& other)
 }
 
 //------------------------------------------------------------------------------
+//                                   OPERATORS
+//------------------------------------------------------------------------------
+
+FileHandle& FileHandle::operator=(FileHandle&& other)
+{
+    // steal resources
+    m_open = other.m_open;
+    m_path = std::move(other.m_path);
+    m_encoding = other.m_encoding;
+    m_newline = other.m_newline;
+
+    // reset other resources
+    other.m_open = false;
+    other.m_encoding = ENCODING_DETECT;
+    other.m_newline  = NEWLINE_UNIX;
+
+    return *this;
+}
+
+//-----------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 

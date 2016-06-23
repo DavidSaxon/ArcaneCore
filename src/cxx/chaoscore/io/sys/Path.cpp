@@ -30,15 +30,12 @@ static const chaos::str::UTF8String WINDOWS_SEP( "\\" );
 //------------------------------------------------------------------------------
 
 Path::Path()
-    :
-    m_cstring_data( nullptr )
 {
 }
 
 Path::Path( const std::vector< chaos::str::UTF8String >& components )
     :
-    m_components  ( components ),
-    m_cstring_data( nullptr )
+    m_components  ( components )
 {
 }
 
@@ -46,14 +43,11 @@ Path::Path(
         const std::vector< chaos::str::UTF8String >::const_iterator& begin,
         const std::vector< chaos::str::UTF8String >::const_iterator& end )
     :
-    m_components  ( begin, end ),
-    m_cstring_data( nullptr )
+    m_components  ( begin, end )
 {
 }
 
 Path::Path( const chaos::str::UTF8String& string_path )
-    :
-    m_cstring_data( nullptr )
 {
     // split the path into components based on the operating system
 #ifdef CHAOS_OS_UNIX
@@ -85,18 +79,8 @@ Path::Path( const chaos::str::UTF8String& string_path )
 
 Path::Path( const Path& other )
     :
-    m_components  ( other.m_components ),
-    m_cstring_data( nullptr )
+    m_components  ( other.m_components )
 {
-}
-
-//------------------------------------------------------------------------------
-//                                   DESTRUCTOR
-//------------------------------------------------------------------------------
-
-Path::~Path()
-{
-    delete[] m_cstring_data;
 }
 
 //------------------------------------------------------------------------------

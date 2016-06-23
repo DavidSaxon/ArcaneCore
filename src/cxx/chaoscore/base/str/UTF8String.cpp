@@ -78,6 +78,7 @@ UTF8String::UTF8String(UTF8String&& other)
     m_length     (other.m_length)
 {
     // reset the other's resources
+    other.m_opt = default_opt;
     other.m_data = nullptr;
     other.m_data_length = 0;
     other.m_length = 0;
@@ -105,6 +106,23 @@ const UTF8String& UTF8String::operator=(const UTF8String& other)
     // copy optimisation parameters
     m_opt = other.m_opt;
     assign(other);
+    return *this;
+}
+
+UTF8String& UTF8String::operator=(UTF8String&& other)
+{
+    // move resources
+    m_opt = other.m_opt;
+    m_data = other.m_data;
+    m_data_length = other.m_data_length;
+    m_length = other.m_length;
+
+    // reset other resources
+    other.m_opt = default_opt;
+    other.m_data = nullptr;
+    other.m_data_length = 0;
+    other.m_length = 0;
+
     return *this;
 }
 

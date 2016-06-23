@@ -89,7 +89,7 @@ FileReader::FileReader(
 
 FileReader::FileReader(FileReader&& other)
     :
-    FileHandle            (std::move(other)),
+    FileHandle             (std::move(other)),
     m_stream               (other.m_stream),
     m_size                 (other.m_size),
     m_newline_checker_valid(other.m_newline_checker_valid),
@@ -99,6 +99,27 @@ FileReader::FileReader(FileReader&& other)
     other.m_stream = nullptr;
     other.m_size = 0;
     other.m_newline_checker_valid = false;
+}
+
+//------------------------------------------------------------------------------
+//                                   OPERATORS
+//------------------------------------------------------------------------------
+
+FileReader& FileReader::operator=(FileReader&& other)
+{
+    // steal
+    FileHandle::operator=(std::move(other));
+    m_stream = other.m_stream;
+    m_size = other.m_size;
+    m_newline_checker_valid =  other.m_newline_checker_valid;
+    m_newline_checker = std::move(other.m_newline_checker);
+
+    // reset
+    other.m_stream = nullptr;
+    other.m_size = 0;
+    other.m_newline_checker_valid = false;
+
+    return *this;
 }
 
 //------------------------------------------------------------------------------

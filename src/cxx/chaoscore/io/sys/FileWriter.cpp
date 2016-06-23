@@ -68,6 +68,23 @@ FileWriter::~FileWriter()
 }
 
 //------------------------------------------------------------------------------
+//                                   OPERATORS
+//------------------------------------------------------------------------------
+
+FileWriter& FileWriter::operator=(FileWriter&& other)
+{
+    // steal
+    FileHandle::operator=(std::move(other));
+    m_open_mode = other.m_open_mode;
+    m_stream = other.m_stream;
+
+    // reset
+    other.m_stream = nullptr;
+
+    return *this;
+}
+
+//------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
