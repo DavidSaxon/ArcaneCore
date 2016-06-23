@@ -313,7 +313,8 @@ std::vector<chaos::io::sys::Path> list(
         );
 
         // skip over . and ..?
-        if(!include_special && (p.get_back() == "." || p.get_back() == ".."))
+        if(!include_special &&
+           (sub_path.get_back() == "." || sub_path.get_back() == ".."))
         {
             continue;
         }
