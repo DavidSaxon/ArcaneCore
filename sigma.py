@@ -45,7 +45,7 @@ if mode != 'deploy':
     make_command = 'make '
     if mode == 'libs':
         make_command += \
-            'chaoscore_base chaoscore_io chaoscore_gfx chaoscore_test'
+            'arcanecore_base arcanecore_io arcanecore_gfx arcanecore_test'
     else:
         make_command += mode
 
@@ -77,7 +77,7 @@ if mode == 'all' or mode == 'deploy':
     patch += 1
 
     # generate deployment name name
-    deploy_name = 'ChaosCore-{0}.{1}.{2}'.format( major, minor, patch )
+    deploy_name = 'ArcaneCore-{0}.{1}.{2}'.format( major, minor, patch )
     deploy_location = 'deploy/' + deploy_name
 
     # does it exist?
