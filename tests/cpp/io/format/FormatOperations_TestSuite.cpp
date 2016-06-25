@@ -1,8 +1,8 @@
-#include "chaoscore/test/ChaosTest.hpp"
+#include "arcanecore/test/ArcTest.hpp"
 
-CHAOS_TEST_MODULE( io.format.format_operations )
+ARC_TEST_MODULE( io.format.format_operations )
 
-#include "chaoscore/io/format/FormatOperations.hpp"
+#include "arcanecore/io/format/FormatOperations.hpp"
 
 namespace format_operations_tests
 {
@@ -11,35 +11,35 @@ namespace format_operations_tests
 //                                 INT TO BINARY
 //------------------------------------------------------------------------------
 
-class IntToBinaryFixture : public chaos::test::Fixture
+class IntToBinaryFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::int16 > int16;
-    std::vector< chaos::str::UTF8String > int16_pad;
-    std::vector< chaos::str::UTF8String > int16_nopad;
+    std::vector< arc::int16 > int16;
+    std::vector< arc::str::UTF8String > int16_pad;
+    std::vector< arc::str::UTF8String > int16_nopad;
 
-    std::vector< chaos::uint16 > uint16;
-    std::vector< chaos::str::UTF8String > uint16_pad;
-    std::vector< chaos::str::UTF8String > uint16_nopad;
+    std::vector< arc::uint16 > uint16;
+    std::vector< arc::str::UTF8String > uint16_pad;
+    std::vector< arc::str::UTF8String > uint16_nopad;
 
-    std::vector< chaos::int32 > int32;
-    std::vector< chaos::str::UTF8String > int32_pad;
-    std::vector< chaos::str::UTF8String > int32_nopad;
+    std::vector< arc::int32 > int32;
+    std::vector< arc::str::UTF8String > int32_pad;
+    std::vector< arc::str::UTF8String > int32_nopad;
 
-    std::vector< chaos::uint32 > uint32;
-    std::vector< chaos::str::UTF8String > uint32_pad;
-    std::vector< chaos::str::UTF8String > uint32_nopad;
+    std::vector< arc::uint32 > uint32;
+    std::vector< arc::str::UTF8String > uint32_pad;
+    std::vector< arc::str::UTF8String > uint32_nopad;
 
-    std::vector< chaos::int64 > int64;
-    std::vector< chaos::str::UTF8String > int64_pad;
-    std::vector< chaos::str::UTF8String > int64_nopad;
+    std::vector< arc::int64 > int64;
+    std::vector< arc::str::UTF8String > int64_pad;
+    std::vector< arc::str::UTF8String > int64_nopad;
 
-    std::vector< chaos::uint64 > uint64;
-    std::vector< chaos::str::UTF8String > uint64_pad;
-    std::vector< chaos::str::UTF8String > uint64_nopad;
+    std::vector< arc::uint64 > uint64;
+    std::vector< arc::str::UTF8String > uint64_pad;
+    std::vector< arc::str::UTF8String > uint64_nopad;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -210,118 +210,118 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( int_to_binary, IntToBinaryFixture )
+ARC_TEST_UNIT_FIXTURE( int_to_binary, IntToBinaryFixture )
 {
     // --- int16 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded int16" );
+    ARC_TEST_MESSAGE( "Checking padded int16" );
     for ( std::size_t i = 0; i < fixture->int16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->int16[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->int16[ i ], true ),
                 fixture->int16_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad int16" );
+    ARC_TEST_MESSAGE( "Checking no pad int16" );
     for ( std::size_t i = 0; i < fixture->int16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->int16[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->int16[ i ], false ),
                 fixture->int16_nopad[ i ]
         );
     }
 
     // --- uint16 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded uint16" );
+    ARC_TEST_MESSAGE( "Checking padded uint16" );
     for ( std::size_t i = 0; i < fixture->uint16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->uint16[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->uint16[ i ], true ),
                 fixture->uint16_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad uint16" );
+    ARC_TEST_MESSAGE( "Checking no pad uint16" );
     for ( std::size_t i = 0; i < fixture->uint16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->uint16[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->uint16[ i ], false ),
                 fixture->uint16_nopad[ i ]
         );
     }
 
     // --- int32 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded int32" );
+    ARC_TEST_MESSAGE( "Checking padded int32" );
     for ( std::size_t i = 0; i < fixture->int32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->int32[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->int32[ i ], true ),
                 fixture->int32_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad int32" );
+    ARC_TEST_MESSAGE( "Checking no pad int32" );
     for ( std::size_t i = 0; i < fixture->int32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->int32[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->int32[ i ], false ),
                 fixture->int32_nopad[ i ]
         );
     }
 
     // --- uint32 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded uint32" );
+    ARC_TEST_MESSAGE( "Checking padded uint32" );
     for ( std::size_t i = 0; i < fixture->uint32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->uint32[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->uint32[ i ], true ),
                 fixture->uint32_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad uint32" );
+    ARC_TEST_MESSAGE( "Checking no pad uint32" );
     for ( std::size_t i = 0; i < fixture->uint32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->uint32[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->uint32[ i ], false ),
                 fixture->uint32_nopad[ i ]
         );
     }
 
     // --- int64 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded int64" );
+    ARC_TEST_MESSAGE( "Checking padded int64" );
     for ( std::size_t i = 0; i < fixture->int64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->int64[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->int64[ i ], true ),
                 fixture->int64_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad int64" );
+    ARC_TEST_MESSAGE( "Checking no pad int64" );
     for ( std::size_t i = 0; i < fixture->int64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->int64[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->int64[ i ], false ),
                 fixture->int64_nopad[ i ]
         );
     }
 
     // --- uint64 --
 
-    CHAOS_TEST_MESSAGE( "Checking padded uint64" );
+    ARC_TEST_MESSAGE( "Checking padded uint64" );
     for ( std::size_t i = 0; i < fixture->uint64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->uint64[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->uint64[ i ], true ),
                 fixture->uint64_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad uint64" );
+    ARC_TEST_MESSAGE( "Checking no pad uint64" );
     for ( std::size_t i = 0; i < fixture->uint64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_binary( fixture->uint64[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_binary( fixture->uint64[ i ], false ),
                 fixture->uint64_nopad[ i ]
         );
     }
@@ -331,35 +331,35 @@ CHAOS_TEST_UNIT_FIXTURE( int_to_binary, IntToBinaryFixture )
 //                                   INT TO HEX
 //------------------------------------------------------------------------------
 
-class IntToHexFixture : public chaos::test::Fixture
+class IntToHexFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::int16 > int16;
-    std::vector< chaos::str::UTF8String > int16_pad;
-    std::vector< chaos::str::UTF8String > int16_nopad;
+    std::vector< arc::int16 > int16;
+    std::vector< arc::str::UTF8String > int16_pad;
+    std::vector< arc::str::UTF8String > int16_nopad;
 
-    std::vector< chaos::uint16 > uint16;
-    std::vector< chaos::str::UTF8String > uint16_pad;
-    std::vector< chaos::str::UTF8String > uint16_nopad;
+    std::vector< arc::uint16 > uint16;
+    std::vector< arc::str::UTF8String > uint16_pad;
+    std::vector< arc::str::UTF8String > uint16_nopad;
 
-    std::vector< chaos::int32 > int32;
-    std::vector< chaos::str::UTF8String > int32_pad;
-    std::vector< chaos::str::UTF8String > int32_nopad;
+    std::vector< arc::int32 > int32;
+    std::vector< arc::str::UTF8String > int32_pad;
+    std::vector< arc::str::UTF8String > int32_nopad;
 
-    std::vector< chaos::uint32 > uint32;
-    std::vector< chaos::str::UTF8String > uint32_pad;
-    std::vector< chaos::str::UTF8String > uint32_nopad;
+    std::vector< arc::uint32 > uint32;
+    std::vector< arc::str::UTF8String > uint32_pad;
+    std::vector< arc::str::UTF8String > uint32_nopad;
 
-    std::vector< chaos::int64 > int64;
-    std::vector< chaos::str::UTF8String > int64_pad;
-    std::vector< chaos::str::UTF8String > int64_nopad;
+    std::vector< arc::int64 > int64;
+    std::vector< arc::str::UTF8String > int64_pad;
+    std::vector< arc::str::UTF8String > int64_nopad;
 
-    std::vector< chaos::uint64 > uint64;
-    std::vector< chaos::str::UTF8String > uint64_pad;
-    std::vector< chaos::str::UTF8String > uint64_nopad;
+    std::vector< arc::uint64 > uint64;
+    std::vector< arc::str::UTF8String > uint64_pad;
+    std::vector< arc::str::UTF8String > uint64_nopad;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -515,118 +515,118 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( int_to_hex, IntToHexFixture )
+ARC_TEST_UNIT_FIXTURE( int_to_hex, IntToHexFixture )
 {
     // --- int16 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded int16" );
+    ARC_TEST_MESSAGE( "Checking padded int16" );
     for ( std::size_t i = 0; i < fixture->int16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->int16[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->int16[ i ], true ),
                 fixture->int16_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad int16" );
+    ARC_TEST_MESSAGE( "Checking no pad int16" );
     for ( std::size_t i = 0; i < fixture->int16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->int16[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->int16[ i ], false ),
                 fixture->int16_nopad[ i ]
         );
     }
 
     // --- uint16 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded uint16" );
+    ARC_TEST_MESSAGE( "Checking padded uint16" );
     for ( std::size_t i = 0; i < fixture->uint16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->uint16[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->uint16[ i ], true ),
                 fixture->uint16_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad uint16" );
+    ARC_TEST_MESSAGE( "Checking no pad uint16" );
     for ( std::size_t i = 0; i < fixture->uint16.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->uint16[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->uint16[ i ], false ),
                 fixture->uint16_nopad[ i ]
         );
     }
 
     // --- int32 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded int32" );
+    ARC_TEST_MESSAGE( "Checking padded int32" );
     for ( std::size_t i = 0; i < fixture->int32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->int32[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->int32[ i ], true ),
                 fixture->int32_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad int32" );
+    ARC_TEST_MESSAGE( "Checking no pad int32" );
     for ( std::size_t i = 0; i < fixture->int32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->int32[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->int32[ i ], false ),
                 fixture->int32_nopad[ i ]
         );
     }
 
     // --- uint32 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded uint32" );
+    ARC_TEST_MESSAGE( "Checking padded uint32" );
     for ( std::size_t i = 0; i < fixture->uint32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->uint32[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->uint32[ i ], true ),
                 fixture->uint32_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad uint32" );
+    ARC_TEST_MESSAGE( "Checking no pad uint32" );
     for ( std::size_t i = 0; i < fixture->uint32.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->uint32[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->uint32[ i ], false ),
                 fixture->uint32_nopad[ i ]
         );
     }
 
     // --- int64 ---
 
-    CHAOS_TEST_MESSAGE( "Checking padded int64" );
+    ARC_TEST_MESSAGE( "Checking padded int64" );
     for ( std::size_t i = 0; i < fixture->int64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->int64[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->int64[ i ], true ),
                 fixture->int64_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad int64" );
+    ARC_TEST_MESSAGE( "Checking no pad int64" );
     for ( std::size_t i = 0; i < fixture->int64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->int64[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->int64[ i ], false ),
                 fixture->int64_nopad[ i ]
         );
     }
 
     // --- uint64 --
 
-    CHAOS_TEST_MESSAGE( "Checking padded uint64" );
+    ARC_TEST_MESSAGE( "Checking padded uint64" );
     for ( std::size_t i = 0; i < fixture->uint64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->uint64[ i ], true ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->uint64[ i ], true ),
                 fixture->uint64_pad[ i ]
         );
     }
-    CHAOS_TEST_MESSAGE( "Checking no pad uint64" );
+    ARC_TEST_MESSAGE( "Checking no pad uint64" );
     for ( std::size_t i = 0; i < fixture->uint64.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::io::format::int_to_hex( fixture->uint64[ i ], false ),
+        ARC_CHECK_EQUAL(
+                arc::io::format::int_to_hex( fixture->uint64[ i ], false ),
                 fixture->uint64_nopad[ i ]
         );
     }
@@ -636,16 +636,16 @@ CHAOS_TEST_UNIT_FIXTURE( int_to_hex, IntToHexFixture )
 //                                  CENTRE TEXT
 //------------------------------------------------------------------------------
 
-class CentreTextFixture : public chaos::test::Fixture
+class CentreTextFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > input;
-    std::vector< chaos::uint32 > line_lengths;
-    std::vector< chaos::str::UTF8String > no_trim_results;
-    std::vector< chaos::str::UTF8String > trim_results;
+    std::vector< arc::str::UTF8String > input;
+    std::vector< arc::uint32 > line_lengths;
+    std::vector< arc::str::UTF8String > no_trim_results;
+    std::vector< arc::str::UTF8String > trim_results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -698,24 +698,24 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( centre_text, CentreTextFixture )
+ARC_TEST_UNIT_FIXTURE( centre_text, CentreTextFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking no trim trailing spaces" );
+    ARC_TEST_MESSAGE( "Checking no trim trailing spaces" );
     for ( std::size_t i = 0; i < fixture->input.size(); ++i )
     {
-        chaos::str::UTF8String u( fixture->input[ i ] );
-        chaos::io::format::centre_text( u, fixture->line_lengths[ i ] );
+        arc::str::UTF8String u( fixture->input[ i ] );
+        arc::io::format::centre_text( u, fixture->line_lengths[ i ] );
 
-        CHAOS_CHECK_EQUAL( u, fixture->no_trim_results[ i ] );
+        ARC_CHECK_EQUAL( u, fixture->no_trim_results[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking trim trailing spaces" );
+    ARC_TEST_MESSAGE( "Checking trim trailing spaces" );
     for ( std::size_t i = 0; i < fixture->input.size(); ++i )
     {
-        chaos::str::UTF8String u( fixture->input[ i ] );
-        chaos::io::format::centre_text( u, fixture->line_lengths[ i ], true );
+        arc::str::UTF8String u( fixture->input[ i ] );
+        arc::io::format::centre_text( u, fixture->line_lengths[ i ], true );
 
-        CHAOS_CHECK_EQUAL( u, fixture->trim_results[ i ] );
+        ARC_CHECK_EQUAL( u, fixture->trim_results[ i ] );
     }
 }
 

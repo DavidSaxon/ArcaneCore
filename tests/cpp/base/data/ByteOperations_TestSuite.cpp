@@ -1,8 +1,8 @@
-#include "chaoscore/test/ChaosTest.hpp"
+#include "arcanecore/test/ArcTest.hpp"
 
-CHAOS_TEST_MODULE( base.data.byte_operations )
+ARC_TEST_MODULE( base.data.byte_operations )
 
-#include "chaoscore/base/data/ByteOperations.hpp"
+#include "arcanecore/base/data/ByteOperations.hpp"
 
 namespace byte_operations_tests
 {
@@ -11,7 +11,7 @@ namespace byte_operations_tests
 //                                BYTES TO UINT32
 //------------------------------------------------------------------------------
 
-class BytesToUint32Fixture : public chaos::test::Fixture
+class BytesToUint32Fixture : public arc::test::Fixture
 {
 public:
 
@@ -20,7 +20,7 @@ public:
     std::vector< unsigned char* >  big_endian_bytes;
     std::vector< unsigned char* >  little_endian_bytes;
     std::vector< std::size_t > lengths;
-    std::vector< chaos::uint32 > results;
+    std::vector< arc::uint32 > results;
 
     std::vector< unsigned char* > bad_bytes;
     std::vector< std::size_t > bad_lengths;
@@ -189,43 +189,43 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( bytes_to_uint32, BytesToUint32Fixture )
+ARC_TEST_UNIT_FIXTURE( bytes_to_uint32, BytesToUint32Fixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking big endian bytes" );
+    ARC_TEST_MESSAGE( "Checking big endian bytes" );
     for ( std::size_t i = 0; i < fixture->big_endian_bytes.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::data::bytes_to_uint32(
+        ARC_CHECK_EQUAL(
+                arc::data::bytes_to_uint32(
                         fixture->big_endian_bytes[ i ],
                         fixture->lengths[ i ],
-                        chaos::data::ENDIAN_BIG
+                        arc::data::ENDIAN_BIG
                 ),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking little endian bytes" );
+    ARC_TEST_MESSAGE( "Checking little endian bytes" );
     for ( std::size_t i = 0; i < fixture->little_endian_bytes.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::data::bytes_to_uint32(
+        ARC_CHECK_EQUAL(
+                arc::data::bytes_to_uint32(
                         fixture->little_endian_bytes[ i ],
                         fixture->lengths[ i ],
-                        chaos::data::ENDIAN_LITTLE
+                        arc::data::ENDIAN_LITTLE
                 ),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking conversion errors" );
+    ARC_TEST_MESSAGE( "Checking conversion errors" );
     for ( std::size_t i = 0; i < fixture->bad_bytes.size(); ++i )
     {
-        CHAOS_CHECK_THROW(
-                chaos::data::bytes_to_uint32(
+        ARC_CHECK_THROW(
+                arc::data::bytes_to_uint32(
                         fixture->bad_bytes[ i ],
                         fixture->bad_lengths[ i ]
                 ),
-                chaos::ex::ConversionDataError
+                arc::ex::ConversionDataError
         )
     }
 }

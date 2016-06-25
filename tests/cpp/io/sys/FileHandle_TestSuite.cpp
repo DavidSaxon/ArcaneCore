@@ -1,8 +1,8 @@
-#include <chaoscore/test/ChaosTest.hpp>
+#include <arcanecore/test/ArcTest.hpp>
 
-CHAOS_TEST_MODULE(io.sys.FileHandle)
+ARC_TEST_MODULE(io.sys.FileHandle)
 
-#include <chaoscore/io/sys/FileHandle.hpp>
+#include <arcanecore/io/sys/FileHandle.hpp>
 
 namespace
 {
@@ -11,28 +11,28 @@ namespace
 //                              TEST IMPLEMENTATION
 //------------------------------------------------------------------------------
 
-class TestFileHandle : public chaos::io::sys::FileHandle
+class TestFileHandle : public arc::io::sys::FileHandle
 {
 public:
 
     //-------------------------------CONSTRUCTORS-------------------------------
 
     TestFileHandle(
-            chaos::io::sys::FileHandle::Encoding encoding =
-                chaos::io::sys::FileHandle::ENCODING_DETECT,
-            chaos::io::sys::FileHandle::Newline newline =
-                chaos::io::sys::FileHandle::NEWLINE_UNIX)
+            arc::io::sys::FileHandle::Encoding encoding =
+                arc::io::sys::FileHandle::ENCODING_DETECT,
+            arc::io::sys::FileHandle::Newline newline =
+                arc::io::sys::FileHandle::NEWLINE_UNIX)
         :
         FileHandle(encoding, newline)
     {
     }
 
     TestFileHandle(
-            const chaos::io::sys::Path& path,
-            chaos::io::sys::FileHandle::Encoding encoding =
-                chaos::io::sys::FileHandle::ENCODING_DETECT,
-            chaos::io::sys::FileHandle::Newline newline =
-                chaos::io::sys::FileHandle::NEWLINE_UNIX)
+            const arc::io::sys::Path& path,
+            arc::io::sys::FileHandle::Encoding encoding =
+                arc::io::sys::FileHandle::ENCODING_DETECT,
+            arc::io::sys::FileHandle::Newline newline =
+                arc::io::sys::FileHandle::NEWLINE_UNIX)
         :
         FileHandle(path, encoding, newline)
     {
@@ -57,17 +57,17 @@ public:
         m_open = false;
     }
 
-    virtual chaos::int64 get_size() const
+    virtual arc::int64 get_size() const
     {
         return 0;
     }
 
-    virtual chaos::int64 tell() const
+    virtual arc::int64 tell() const
     {
         return 0;
     }
 
-    virtual void seek(chaos::int64 index)
+    virtual void seek(arc::int64 index)
     {
     }
 };
@@ -76,15 +76,15 @@ public:
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
 
-class FileHandleGenericFixture : public chaos::test::Fixture
+class FileHandleGenericFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector<chaos::io::sys::Path> paths;
-    std::vector<chaos::io::sys::FileHandle::Encoding> encodings;
-    std::vector<chaos::io::sys::FileHandle::Newline> newlines;
+    std::vector<arc::io::sys::Path> paths;
+    std::vector<arc::io::sys::FileHandle::Encoding> encodings;
+    std::vector<arc::io::sys::FileHandle::Newline> newlines;
     std::vector<std::size_t> bom_sizes;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -93,61 +93,61 @@ public:
     {
         // generate data
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << "file.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_DETECT);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
+            encodings.push_back(arc::io::sys::FileHandle::ENCODING_DETECT);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << "directory" << "file.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_UTF8);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
+            encodings.push_back(arc::io::sys::FileHandle::ENCODING_UTF8);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(3);
         }
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << "/" << "f.png";
             paths.push_back(p);
             encodings.push_back(
-                chaos::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
+                arc::io::sys::FileHandle::ENCODING_UTF16_LITTLE_ENDIAN);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_WINDOWS);
             bom_sizes.push_back(2);
         }
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << "d1" << "d2" << "a_";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
+            encodings.push_back(arc::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << "/" << "directory" << "file.txt";
             paths.push_back(p);
             encodings.push_back(
-                    chaos::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
+                    arc::io::sys::FileHandle::ENCODING_UTF16_BIG_ENDIAN);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_WINDOWS);
             bom_sizes.push_back(2);
         }
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << ".." << "file.txt";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_DETECT);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_UNIX);
+            encodings.push_back(arc::io::sys::FileHandle::ENCODING_DETECT);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_UNIX);
             bom_sizes.push_back(0);
         }
         {
-            chaos::io::sys::Path p;
+            arc::io::sys::Path p;
             p << "." << "image.png";
             paths.push_back(p);
-            encodings.push_back(chaos::io::sys::FileHandle::ENCODING_RAW);
-            newlines.push_back(chaos::io::sys::FileHandle::NEWLINE_WINDOWS);
+            encodings.push_back(arc::io::sys::FileHandle::ENCODING_RAW);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_WINDOWS);
             bom_sizes.push_back(0);
         }
     }
@@ -157,7 +157,7 @@ public:
 //                              DEFAULT CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileHandleGenericFixture)
+ARC_TEST_UNIT_FIXTURE(default_constructor, FileHandleGenericFixture)
 {
     // build file handles
     std::vector<TestFileHandle> handles;
@@ -167,22 +167,22 @@ CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileHandleGenericFixture)
         handles.push_back(std::move(f));
     }
 
-    CHAOS_TEST_MESSAGE("Checking encodings");
+    ARC_TEST_MESSAGE("Checking encodings");
     for(std::size_t i = 0; i < handles.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL(handles[i].get_encoding(), fixture->encodings[i]);
+        ARC_CHECK_EQUAL(handles[i].get_encoding(), fixture->encodings[i]);
     }
 
-    CHAOS_TEST_MESSAGE("Checking newlines");
+    ARC_TEST_MESSAGE("Checking newlines");
     for(std::size_t i = 0; i < handles.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL(handles[i].get_newline(), fixture->newlines[i]);
+        ARC_CHECK_EQUAL(handles[i].get_newline(), fixture->newlines[i]);
     }
 
-    CHAOS_TEST_MESSAGE("Checking that files are closed");
-    CHAOS_FOR_EACH(it, handles)
+    ARC_TEST_MESSAGE("Checking that files are closed");
+    ARC_FOR_EACH(it, handles)
     {
-        CHAOS_CHECK_FALSE(it->is_open());
+        ARC_CHECK_FALSE(it->is_open());
     }
 }
 
@@ -190,7 +190,7 @@ CHAOS_TEST_UNIT_FIXTURE(default_constructor, FileHandleGenericFixture)
 //                                PATH CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
+ARC_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
 {
     // build file handles
     std::vector<TestFileHandle> handles;
@@ -204,34 +204,34 @@ CHAOS_TEST_UNIT_FIXTURE(path_constructor, FileHandleGenericFixture)
         handles.push_back(std::move(f));
     }
 
-    CHAOS_TEST_MESSAGE("Checking paths");
+    ARC_TEST_MESSAGE("Checking paths");
     for(std::size_t i = 0; i < handles.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL(handles[i].get_path(), fixture->paths[i]);
+        ARC_CHECK_EQUAL(handles[i].get_path(), fixture->paths[i]);
     }
 
-    CHAOS_TEST_MESSAGE("Checking encodings");
+    ARC_TEST_MESSAGE("Checking encodings");
     for(std::size_t i = 0; i < handles.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL(handles[i].get_encoding(), fixture->encodings[i]);
+        ARC_CHECK_EQUAL(handles[i].get_encoding(), fixture->encodings[i]);
     }
 
-    CHAOS_TEST_MESSAGE("Checking newlines");
+    ARC_TEST_MESSAGE("Checking newlines");
     for(std::size_t i = 0; i < handles.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL(handles[i].get_newline(), fixture->newlines[i]);
+        ARC_CHECK_EQUAL(handles[i].get_newline(), fixture->newlines[i]);
     }
 
-    CHAOS_TEST_MESSAGE("Checking that files are open");
-    CHAOS_FOR_EACH(it, handles)
+    ARC_TEST_MESSAGE("Checking that files are open");
+    ARC_FOR_EACH(it, handles)
     {
-        CHAOS_CHECK_TRUE(it->is_open());
+        ARC_CHECK_TRUE(it->is_open());
     }
 
-    CHAOS_TEST_MESSAGE("Checking BOM sizes");
+    ARC_TEST_MESSAGE("Checking BOM sizes");
     for(std::size_t i = 0; i < handles.size(); ++i)
     {
-        CHAOS_CHECK_EQUAL(handles[i].get_bom_size(), fixture->bom_sizes[i]);
+        ARC_CHECK_EQUAL(handles[i].get_bom_size(), fixture->bom_sizes[i]);
     }
 }
 

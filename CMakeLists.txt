@@ -94,8 +94,8 @@ add_executable(tests ${TESTS_SUITES})
 
 target_link_libraries(tests
     arcanecore_test
-    arcanecore_base
     arcanecore_io
+    arcanecore_base
     arcanecore_gfx
     python3.4m
 )

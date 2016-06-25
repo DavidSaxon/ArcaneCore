@@ -1,8 +1,8 @@
-#include "chaoscore/test/ChaosTest.hpp"
+#include "arcanecore/test/ArcTest.hpp"
 
-CHAOS_TEST_MODULE(base.math.MathOperations)
+ARC_TEST_MODULE(base.math.MathOperations)
 
-#include "chaoscore/base/math/MathOperations.hpp"
+#include "arcanecore/base/math/MathOperations.hpp"
 
 namespace math_operations_tests
 {
@@ -11,7 +11,7 @@ namespace math_operations_tests
 //                                  FLOAT EQUALS
 //------------------------------------------------------------------------------
 
-class FloatEqualsFixture : public chaos::test::Fixture
+class FloatEqualsFixture : public arc::test::Fixture
 {
 public:
 
@@ -20,7 +20,7 @@ public:
     std::vector< float > reference;
     std::vector< float > literal;
     std::vector< float > precision_error;
-    // std::vector< chaos::uint32 > ulps;
+    // std::vector< arc::uint32 > ulps;
     // std::vector< float > delta;
     std::vector< bool > results;
 
@@ -98,7 +98,7 @@ public:
      */
     void generate_precision_errors()
     {
-        CHAOS_FOR_EACH( it, literal )
+        ARC_FOR_EACH( it, literal )
         {
             float p = *it;
             ++p;
@@ -111,22 +111,22 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( float_equals, FloatEqualsFixture )
+ARC_TEST_UNIT_FIXTURE( float_equals, FloatEqualsFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking literal equals" );
+    ARC_TEST_MESSAGE( "Checking literal equals" );
     for ( std::size_t i = 0; i < fixture->reference.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->reference[ i ] == fixture->literal[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking precision error equals" );
+    ARC_TEST_MESSAGE( "Checking precision error equals" );
     for ( std::size_t i = 0; i < fixture->reference.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
-                chaos::math::float_equals(
+        ARC_CHECK_EQUAL(
+                arc::math::float_equals(
                         fixture->reference[ i ],
                         fixture->precision_error[ i ]
                 ),

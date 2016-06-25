@@ -1,25 +1,25 @@
-#include "chaoscore/test/ChaosTest.hpp"
+#include "arcanecore/test/ArcTest.hpp"
 
-CHAOS_TEST_MODULE( gfx.vector_operations )
+ARC_TEST_MODULE( gfx.vector_operations )
 
-#include "chaoscore/gfx/VectorOperations.hpp"
+#include "arcanecore/gfx/VectorOperations.hpp"
 
 namespace vector_operations_tests
 {
 
-class VectorOperationsBaseFixture : public chaos::test::Fixture
+class VectorOperationsBaseFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::gfx::Vector2 > vec2;
-    std::vector< chaos::gfx::Vector3 > vec3;
-    std::vector< chaos::gfx::Vector4 > vec4;
+    std::vector< arc::gfx::Vector2 > vec2;
+    std::vector< arc::gfx::Vector3 > vec3;
+    std::vector< arc::gfx::Vector4 > vec4;
 
-    std::vector< chaos::gfx::Vector2 > vec2_sec;
-    std::vector< chaos::gfx::Vector3 > vec3_sec;
-    std::vector< chaos::gfx::Vector4 > vec4_sec;
+    std::vector< arc::gfx::Vector2 > vec2_sec;
+    std::vector< arc::gfx::Vector3 > vec3_sec;
+    std::vector< arc::gfx::Vector4 > vec4_sec;
 
 protected:
 
@@ -30,9 +30,9 @@ protected:
      */
     void build_vecs( float x, float y, float z, float w )
     {
-        vec2.push_back( chaos::gfx::Vector2( x, y ) );
-        vec3.push_back( chaos::gfx::Vector3( x, y, z ) );
-        vec4.push_back( chaos::gfx::Vector4( x, y, z, w ) );
+        vec2.push_back( arc::gfx::Vector2( x, y ) );
+        vec3.push_back( arc::gfx::Vector3( x, y, z ) );
+        vec4.push_back( arc::gfx::Vector4( x, y, z, w ) );
     }
 
     /*!
@@ -42,13 +42,13 @@ protected:
     void build_vecs( float x_1, float y_1, float z_1, float w_1,
                      float x_2, float y_2, float z_2, float w_2 )
     {
-        vec2.push_back( chaos::gfx::Vector2( x_1, y_1 ) );
-        vec3.push_back( chaos::gfx::Vector3( x_1, y_1, z_1 ) );
-        vec4.push_back( chaos::gfx::Vector4( x_1, y_1, z_1, w_1 ) );
+        vec2.push_back( arc::gfx::Vector2( x_1, y_1 ) );
+        vec3.push_back( arc::gfx::Vector3( x_1, y_1, z_1 ) );
+        vec4.push_back( arc::gfx::Vector4( x_1, y_1, z_1, w_1 ) );
 
-        vec2_sec.push_back( chaos::gfx::Vector2( x_2, y_2 ) );
-        vec3_sec.push_back( chaos::gfx::Vector3( x_2, y_2, z_2 ) );
-        vec4_sec.push_back( chaos::gfx::Vector4( x_2, y_2, z_2, w_2 ) );
+        vec2_sec.push_back( arc::gfx::Vector2( x_2, y_2 ) );
+        vec3_sec.push_back( arc::gfx::Vector3( x_2, y_2, z_2 ) );
+        vec4_sec.push_back( arc::gfx::Vector4( x_2, y_2, z_2, w_2 ) );
     }
 };
 
@@ -92,31 +92,31 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( magnitude, MagnitudeFixture )
+ARC_TEST_UNIT_FIXTURE( magnitude, MagnitudeFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking Vector2 magnitude" );
+    ARC_TEST_MESSAGE( "Checking Vector2 magnitude" );
     for ( std::size_t i = 0; i < fixture->vec2.size(); ++i )
     {
-        CHAOS_CHECK_FLOAT_EQUAL(
-                chaos::gfx::magnitude( fixture->vec2[ i ] ),
+        ARC_CHECK_FLOAT_EQUAL(
+                arc::gfx::magnitude( fixture->vec2[ i ] ),
                 fixture->vec2_results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking Vector3 magnitude" );
+    ARC_TEST_MESSAGE( "Checking Vector3 magnitude" );
     for ( std::size_t i = 0; i < fixture->vec3.size(); ++i )
     {
-        CHAOS_CHECK_FLOAT_EQUAL(
-                chaos::gfx::magnitude( fixture->vec3[ i ] ),
+        ARC_CHECK_FLOAT_EQUAL(
+                arc::gfx::magnitude( fixture->vec3[ i ] ),
                 fixture->vec3_results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking Vector4 magnitude" );
+    ARC_TEST_MESSAGE( "Checking Vector4 magnitude" );
     for ( std::size_t i = 0; i < fixture->vec4.size(); ++i )
     {
-        CHAOS_CHECK_FLOAT_EQUAL(
-                chaos::gfx::magnitude( fixture->vec4[ i ] ),
+        ARC_CHECK_FLOAT_EQUAL(
+                arc::gfx::magnitude( fixture->vec4[ i ] ),
                 fixture->vec4_results[ i ]
         );
     }
@@ -132,60 +132,60 @@ public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::gfx::Vector2 > vec2_results;
-    std::vector< chaos::gfx::Vector3 > vec3_results;
-    std::vector< chaos::gfx::Vector4 > vec4_results;
+    std::vector< arc::gfx::Vector2 > vec2_results;
+    std::vector< arc::gfx::Vector3 > vec3_results;
+    std::vector< arc::gfx::Vector4 > vec4_results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     virtual void setup()
     {
         build_vecs( 0.0F, 0.0F, 0.0F, 0.0F );
-        vec2_results.push_back( chaos::gfx::Vector2( 0.0F, 0.0F ) );
-        vec3_results.push_back( chaos::gfx::Vector3( 0.0F, 0.0F, 0.0F ) );
-        vec4_results.push_back( chaos::gfx::Vector4( 0.0F, 0.0F, 0.0F, 0.0F ) );
+        vec2_results.push_back( arc::gfx::Vector2( 0.0F, 0.0F ) );
+        vec3_results.push_back( arc::gfx::Vector3( 0.0F, 0.0F, 0.0F ) );
+        vec4_results.push_back( arc::gfx::Vector4( 0.0F, 0.0F, 0.0F, 0.0F ) );
 
         build_vecs( 1.0F, 0.0F, 2.0F, 0.0F );
-        vec2_results.push_back( chaos::gfx::Vector2( 1.0F, 0.0F ) );
-        vec3_results.push_back( chaos::gfx::Vector3(
+        vec2_results.push_back( arc::gfx::Vector2( 1.0F, 0.0F ) );
+        vec3_results.push_back( arc::gfx::Vector3(
                 0.447213595F, 0.0F, 0.894427191F ) );
-        vec4_results.push_back( chaos::gfx::Vector4(
+        vec4_results.push_back( arc::gfx::Vector4(
                 0.447213595F, 0.0F, 0.894427191F, 0.0F ) );
 
         build_vecs( -2.0F, 5.0F, 8.0F, -1.0F );
-        vec2_results.push_back( chaos::gfx::Vector2(
+        vec2_results.push_back( arc::gfx::Vector2(
                 -0.371390676F, 0.928476691F ) );
-        vec3_results.push_back( chaos::gfx::Vector3(
+        vec3_results.push_back( arc::gfx::Vector3(
                 -0.207390339F, 0.518475847F, 0.829561356F ) );
-        vec4_results.push_back( chaos::gfx::Vector4(
+        vec4_results.push_back( arc::gfx::Vector4(
                 -0.206284249F, 0.515710623F, 0.825136997F, -0.103142125F ) );
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( normalise, NormaliseFixture )
+ARC_TEST_UNIT_FIXTURE( normalise, NormaliseFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking normalise Vector2" );
+    ARC_TEST_MESSAGE( "Checking normalise Vector2" );
     for ( std::size_t i = 0; i < fixture->vec2.size(); ++i )
     {
-        chaos::gfx::Vector2 v( fixture->vec2[ i ] );
-        chaos::gfx::normalise( v );
-        CHAOS_CHECK_EQUAL( v, fixture->vec2_results[ i ] );
+        arc::gfx::Vector2 v( fixture->vec2[ i ] );
+        arc::gfx::normalise( v );
+        ARC_CHECK_EQUAL( v, fixture->vec2_results[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking normalise Vector3" );
+    ARC_TEST_MESSAGE( "Checking normalise Vector3" );
     for ( std::size_t i = 0; i < fixture->vec3.size(); ++i )
     {
-        chaos::gfx::Vector3 v( fixture->vec3[ i ] );
-        chaos::gfx::normalise( v );
-        CHAOS_CHECK_EQUAL( v, fixture->vec3_results[ i ] );
+        arc::gfx::Vector3 v( fixture->vec3[ i ] );
+        arc::gfx::normalise( v );
+        ARC_CHECK_EQUAL( v, fixture->vec3_results[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking normalise Vector4" );
+    ARC_TEST_MESSAGE( "Checking normalise Vector4" );
     for ( std::size_t i = 0; i < fixture->vec4.size(); ++i )
     {
-        chaos::gfx::Vector4 v( fixture->vec4[ i ] );
-        chaos::gfx::normalise( v );
-        CHAOS_CHECK_EQUAL( v, fixture->vec4_results[ i ] );
+        arc::gfx::Vector4 v( fixture->vec4[ i ] );
+        arc::gfx::normalise( v );
+        ARC_CHECK_EQUAL( v, fixture->vec4_results[ i ] );
     }
 }
 
@@ -239,13 +239,13 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( dot_product, DotProductFixture )
+ARC_TEST_UNIT_FIXTURE( dot_product, DotProductFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking Vector2 dot product" );
+    ARC_TEST_MESSAGE( "Checking Vector2 dot product" );
     for ( std::size_t i = 0; i < fixture->vec2.size(); ++i )
     {
-        CHAOS_CHECK_FLOAT_EQUAL(
-                chaos::gfx::dot_product(
+        ARC_CHECK_FLOAT_EQUAL(
+                arc::gfx::dot_product(
                         fixture->vec2[ i ],
                         fixture->vec2_sec[ i ]
                 ),
@@ -253,11 +253,11 @@ CHAOS_TEST_UNIT_FIXTURE( dot_product, DotProductFixture )
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking Vector3 dot product" );
+    ARC_TEST_MESSAGE( "Checking Vector3 dot product" );
     for ( std::size_t i = 0; i < fixture->vec3.size(); ++i )
     {
-        CHAOS_CHECK_FLOAT_EQUAL(
-                chaos::gfx::dot_product(
+        ARC_CHECK_FLOAT_EQUAL(
+                arc::gfx::dot_product(
                         fixture->vec3[ i ],
                         fixture->vec3_sec[ i ]
                 ),
@@ -265,11 +265,11 @@ CHAOS_TEST_UNIT_FIXTURE( dot_product, DotProductFixture )
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking Vector4 dot product" );
+    ARC_TEST_MESSAGE( "Checking Vector4 dot product" );
     for ( std::size_t i = 0; i < fixture->vec4.size(); ++i )
     {
-        CHAOS_CHECK_FLOAT_EQUAL(
-                chaos::gfx::dot_product(
+        ARC_CHECK_FLOAT_EQUAL(
+                arc::gfx::dot_product(
                         fixture->vec4[ i ],
                         fixture->vec4_sec[ i ]
                 ),

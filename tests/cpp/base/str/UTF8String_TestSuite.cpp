@@ -1,12 +1,12 @@
-#include "chaoscore/test/ChaosTest.hpp"
+#include "arcanecore/test/ArcTest.hpp"
 
-CHAOS_TEST_MODULE(base.str.UTF8String)
+ARC_TEST_MODULE(base.str.UTF8String)
 
 #include <algorithm>
 #include <cstring>
 
-#include "chaoscore/base/Exceptions.hpp"
-#include "chaoscore/base/str/UTF8String.hpp"
+#include "arcanecore/base/Exceptions.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
 namespace utf8_string_tests
 {
@@ -15,7 +15,7 @@ namespace utf8_string_tests
 //                                GENERIC FIXTURE
 //------------------------------------------------------------------------------
 
-class UTF8StringGenericFixture : public chaos::test::Fixture
+class UTF8StringGenericFixture : public arc::test::Fixture
 {
 public:
 
@@ -26,9 +26,9 @@ public:
     // lengths
     std::vector< std::size_t > lengths;
     // utf8strings
-    std::vector< chaos::str::UTF8String > utf8_strings;
+    std::vector< arc::str::UTF8String > utf8_strings;
     // symbols
-    std::vector< std::map< std::size_t, chaos::str::UTF8String > > symbols;
+    std::vector< std::map< std::size_t, arc::str::UTF8String > > symbols;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -38,26 +38,26 @@ public:
         cstrings.push_back( "" );
         lengths.push_back( 0 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
             symbols.push_back( symbol_map );
         }
 
         cstrings.push_back( "Hello World" );
         lengths.push_back( 11 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
-            symbol_map[ 0  ] = chaos::str::UTF8String( "H" );
-            symbol_map[ 3  ] = chaos::str::UTF8String( "l" );
-            symbol_map[ 7  ] = chaos::str::UTF8String( "o" );
-            symbol_map[ 10 ] = chaos::str::UTF8String( "d" );
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = arc::str::UTF8String( "H" );
+            symbol_map[ 3  ] = arc::str::UTF8String( "l" );
+            symbol_map[ 7  ] = arc::str::UTF8String( "o" );
+            symbol_map[ 10 ] = arc::str::UTF8String( "d" );
             symbols.push_back( symbol_map );
         }
 
         cstrings.push_back( "a" );
         lengths.push_back( 1 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
-            symbol_map[ 0 ] = chaos::str::UTF8String( "a" );
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
+            symbol_map[ 0 ] = arc::str::UTF8String( "a" );
             symbols.push_back( symbol_map );
         }
 
@@ -69,61 +69,61 @@ public:
         );
         lengths.push_back( 194 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
-            symbol_map[ 0   ] = chaos::str::UTF8String( "T" );
-            symbol_map[ 5   ] = chaos::str::UTF8String( "i" );
-            symbol_map[ 34  ] = chaos::str::UTF8String( " " );
-            symbol_map[ 87  ] = chaos::str::UTF8String( " " );
-            symbol_map[ 88  ] = chaos::str::UTF8String( "t" );
-            symbol_map[ 100 ] = chaos::str::UTF8String( "j" );
-            symbol_map[ 125 ] = chaos::str::UTF8String( "i" );
-            symbol_map[ 167 ] = chaos::str::UTF8String( "o" );
-            symbol_map[ 190 ] = chaos::str::UTF8String( "\n" );
-            symbol_map[ 193 ] = chaos::str::UTF8String( "\t" );
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
+            symbol_map[ 0   ] = arc::str::UTF8String( "T" );
+            symbol_map[ 5   ] = arc::str::UTF8String( "i" );
+            symbol_map[ 34  ] = arc::str::UTF8String( " " );
+            symbol_map[ 87  ] = arc::str::UTF8String( " " );
+            symbol_map[ 88  ] = arc::str::UTF8String( "t" );
+            symbol_map[ 100 ] = arc::str::UTF8String( "j" );
+            symbol_map[ 125 ] = arc::str::UTF8String( "i" );
+            symbol_map[ 167 ] = arc::str::UTF8String( "o" );
+            symbol_map[ 190 ] = arc::str::UTF8String( "\n" );
+            symbol_map[ 193 ] = arc::str::UTF8String( "\t" );
             symbols.push_back( symbol_map );
         }
 
         cstrings.push_back( "γειά σου Κόσμε" );
         lengths.push_back( 14 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
-            symbol_map[ 0  ] = chaos::str::UTF8String( "γ" );
-            symbol_map[ 1  ] = chaos::str::UTF8String( "ε" );
-            symbol_map[ 5  ] = chaos::str::UTF8String( "σ" );
-            symbol_map[ 8  ] = chaos::str::UTF8String( " " );
-            symbol_map[ 11 ] = chaos::str::UTF8String( "σ" );
-            symbol_map[ 13 ] = chaos::str::UTF8String( "ε" );
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = arc::str::UTF8String( "γ" );
+            symbol_map[ 1  ] = arc::str::UTF8String( "ε" );
+            symbol_map[ 5  ] = arc::str::UTF8String( "σ" );
+            symbol_map[ 8  ] = arc::str::UTF8String( " " );
+            symbol_map[ 11 ] = arc::str::UTF8String( "σ" );
+            symbol_map[ 13 ] = arc::str::UTF8String( "ε" );
             symbols.push_back( symbol_map );
         }
 
         cstrings.push_back( "this is a مزيج of text" );
         lengths.push_back( 22 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
-            symbol_map[ 0  ] = chaos::str::UTF8String( "t" );
-            symbol_map[ 2  ] = chaos::str::UTF8String( "i" );
-            symbol_map[ 9  ] = chaos::str::UTF8String( " " );
-            symbol_map[ 11 ] = chaos::str::UTF8String( "ز" );
-            symbol_map[ 13 ] = chaos::str::UTF8String( "ج" );
-            symbol_map[ 15 ] = chaos::str::UTF8String( "o" );
-            symbol_map[ 18 ] = chaos::str::UTF8String( "t" );
-            symbol_map[ 20 ] = chaos::str::UTF8String( "x" );
-            symbol_map[ 21 ] = chaos::str::UTF8String( "t" );
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = arc::str::UTF8String( "t" );
+            symbol_map[ 2  ] = arc::str::UTF8String( "i" );
+            symbol_map[ 9  ] = arc::str::UTF8String( " " );
+            symbol_map[ 11 ] = arc::str::UTF8String( "ز" );
+            symbol_map[ 13 ] = arc::str::UTF8String( "ج" );
+            symbol_map[ 15 ] = arc::str::UTF8String( "o" );
+            symbol_map[ 18 ] = arc::str::UTF8String( "t" );
+            symbol_map[ 20 ] = arc::str::UTF8String( "x" );
+            symbol_map[ 21 ] = arc::str::UTF8String( "t" );
             symbols.push_back( symbol_map );
         }
 
         cstrings.push_back( "간" );
         lengths.push_back( 1 );
         {
-            std::map< std::size_t, chaos::str::UTF8String > symbol_map;
-            symbol_map[ 0  ] = chaos::str::UTF8String( "간" );
+            std::map< std::size_t, arc::str::UTF8String > symbol_map;
+            symbol_map[ 0  ] = arc::str::UTF8String( "간" );
             symbols.push_back( symbol_map );
         }
 
         // copy to utf8string data
-        CHAOS_FOR_EACH( it, cstrings )
+        ARC_FOR_EACH( it, cstrings )
         {
-            utf8_strings.push_back( chaos::str::UTF8String( *it ) );
+            utf8_strings.push_back( arc::str::UTF8String( *it ) );
         }
     }
 };
@@ -132,15 +132,15 @@ public:
 //                                ADDITION FIXTURE
 //------------------------------------------------------------------------------
 
-class ConcatenateFixture : public chaos::test::Fixture
+class ConcatenateFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::str::UTF8String > comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::str::UTF8String > comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -180,15 +180,15 @@ public:
 //                                 REPEAT FIXTURE
 //------------------------------------------------------------------------------
 
-class RepeatFixture : public chaos::test::Fixture
+class RepeatFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp;
-    std::vector< chaos::uint32 >          count;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp;
+    std::vector< arc::uint32 >          count;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -228,14 +228,14 @@ public:
 //                                  FIND FIXTURE
 //------------------------------------------------------------------------------
 
-class FindFixture : public chaos::test::Fixture
+class FindFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > strings;
-    std::vector< chaos::str::UTF8String > find;
+    std::vector< arc::str::UTF8String > strings;
+    std::vector< arc::str::UTF8String > find;
     std::vector< std::size_t > first_results;
     std::vector< std::size_t > last_results;
 
@@ -260,8 +260,8 @@ public:
 
         strings.push_back( "Hello World" );
         find.push_back   ( "ጵ" );
-        first_results.push_back( chaos::str::npos );
-        last_results.push_back( chaos::str::npos );
+        first_results.push_back( arc::str::npos );
+        last_results.push_back( arc::str::npos );
 
         strings.push_back( "γειά σου Κόσμε!" );
         find.push_back   ( "μ" );
@@ -285,8 +285,8 @@ public:
 
         strings.push_back( "γειά σου Κόσμε" );
         find.push_back   ( "γειά σου Κόσμε!" );
-        first_results.push_back( chaos::str::npos );
-        last_results.push_back( chaos::str::npos );
+        first_results.push_back( arc::str::npos );
+        last_results.push_back( arc::str::npos );
     }
 };
 
@@ -294,14 +294,14 @@ public:
 //                                 INDEX FIXTURE
 //------------------------------------------------------------------------------
 
-class IndexFixture : public chaos::test::Fixture
+class IndexFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    chaos::str::UTF8String       symbols;
-    std::vector< chaos::uint32 > byte_indices;
+    arc::str::UTF8String       symbols;
+    std::vector< arc::uint32 > byte_indices;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -388,14 +388,14 @@ public:
 //                              DEFAULT CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT( default_constructor )
+ARC_TEST_UNIT( default_constructor )
 {
-    chaos::str::UTF8String empty;
-    CHAOS_CHECK_EQUAL(
+    arc::str::UTF8String empty;
+    ARC_CHECK_EQUAL(
             empty.get_length(),
             static_cast< std::size_t >( 0 )
     );
-    CHAOS_CHECK_EQUAL(
+    ARC_CHECK_EQUAL(
             empty.get_byte_length(),
             static_cast< std::size_t >( 1 )
     );
@@ -405,13 +405,13 @@ CHAOS_TEST_UNIT( default_constructor )
 //                              CSTRING CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-    CHAOS_FOR_EACH( it, fixture->cstrings )
+    ARC_TEST_MESSAGE( "Checking internal data matches original string" );
+    ARC_FOR_EACH( it, fixture->cstrings )
     {
-        chaos::str::UTF8String v( *it );
-        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
+        arc::str::UTF8String v( *it );
+        ARC_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -419,13 +419,13 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_constructor, UTF8StringGenericFixture )
 //                         CSTRING AND LENGTH CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-    CHAOS_FOR_EACH( it, fixture->cstrings )
+    ARC_TEST_MESSAGE( "Checking internal data matches original string" );
+    ARC_FOR_EACH( it, fixture->cstrings )
     {
-        chaos::str::UTF8String v( *it, strlen( *it ) );
-        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
+        arc::str::UTF8String v( *it, strlen( *it ) );
+        ARC_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -433,14 +433,14 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_constructor, UTF8StringGenericFixture )
 //                                COPY CONSTRUCTOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-    CHAOS_FOR_EACH( it, fixture->utf8_strings )
+    ARC_TEST_MESSAGE( "Checking internal data matches original string" );
+    ARC_FOR_EACH( it, fixture->utf8_strings )
     {
-        chaos::str::UTF8String copy( *it );
-        CHAOS_CHECK_EQUAL( copy, *it );
-        CHAOS_CHECK_EQUAL( strcmp( copy.get_raw(), it->get_raw() ), 0 );
+        arc::str::UTF8String copy( *it );
+        ARC_CHECK_EQUAL( copy, *it );
+        ARC_CHECK_EQUAL( strcmp( copy.get_raw(), it->get_raw() ), 0 );
     }
 }
 
@@ -448,39 +448,39 @@ CHAOS_TEST_UNIT_FIXTURE( copy_constructor, UTF8StringGenericFixture )
 //                              ASSIGNMENT OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
 {
     // populate strings to assign to
-    std::vector< chaos::str::UTF8String > assigns;
+    std::vector< arc::str::UTF8String > assigns;
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
         assigns.push_back( "data will be overridden" );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        chaos::str::UTF8String r = assigns[ i ] = fixture->utf8_strings[ i ];
-        CHAOS_CHECK_EQUAL( r, assigns[ i ] );
+        arc::str::UTF8String r = assigns[ i ] = fixture->utf8_strings[ i ];
+        ARC_CHECK_EQUAL( r, assigns[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking length" );
+    ARC_TEST_MESSAGE( "Checking length" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 assigns[ i ].get_byte_length(),
                 fixture->utf8_strings[ i ].get_byte_length()
         );
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 strlen( assigns[ i ].get_raw() ),
                 strlen( fixture->utf8_strings[ i ].get_raw() )
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking contents match" );
+    ARC_TEST_MESSAGE( "Checking contents match" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( assigns[ i ], fixture->utf8_strings[ i ] );
+        ARC_CHECK_EQUAL( assigns[ i ], fixture->utf8_strings[ i ] );
     }
 }
 
@@ -488,20 +488,20 @@ CHAOS_TEST_UNIT_FIXTURE( assignment_operator, UTF8StringGenericFixture )
 //                               EQUALITY OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking from literal data" );
+    ARC_TEST_MESSAGE( "Checking from literal data" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        chaos::str::UTF8String v( fixture->cstrings[ i ] );
-        CHAOS_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
+        arc::str::UTF8String v( fixture->cstrings[ i ] );
+        ARC_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking from copy constructor" );
+    ARC_TEST_MESSAGE( "Checking from copy constructor" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        chaos::str::UTF8String v( fixture->utf8_strings[ i ] );
-        CHAOS_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
+        arc::str::UTF8String v( fixture->utf8_strings[ i ] );
+        ARC_CHECK_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 }
 
@@ -509,21 +509,21 @@ CHAOS_TEST_UNIT_FIXTURE( equality_operator, UTF8StringGenericFixture )
 //                              INEQUALITY OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking from literal data" );
+    ARC_TEST_MESSAGE( "Checking from literal data" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        chaos::str::UTF8String v( "this שטריקל is not the same" );
-        CHAOS_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
+        arc::str::UTF8String v( "this שטריקל is not the same" );
+        ARC_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking from copy constructor" );
+    ARC_TEST_MESSAGE( "Checking from copy constructor" );
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        chaos::str::UTF8String org( "this שטריקל is not the same" );
-        chaos::str::UTF8String v( org );
-        CHAOS_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
+        arc::str::UTF8String org( "this שטריקל is not the same" );
+        arc::str::UTF8String v( org );
+        ARC_CHECK_NOT_EQUAL( v, fixture->utf8_strings[ i ] );
     }
 }
 
@@ -531,14 +531,14 @@ CHAOS_TEST_UNIT_FIXTURE( inequality_operator, UTF8StringGenericFixture )
 //                               LESS THAN OPERATOR
 //------------------------------------------------------------------------------
 
-class LessThanFixture : public chaos::test::Fixture
+class LessThanFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > less;
-    std::vector< chaos::str::UTF8String > more;
+    std::vector< arc::str::UTF8String > less;
+    std::vector< arc::str::UTF8String > more;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -567,28 +567,28 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
+ARC_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking less than cases" );
+    ARC_TEST_MESSAGE( "Checking less than cases" );
     for ( std::size_t i = 0; i < fixture->less.size(); ++i )
     {
-        CHAOS_CHECK_TRUE( fixture->less[ i ] < fixture->more[ i ] );
+        ARC_CHECK_TRUE( fixture->less[ i ] < fixture->more[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking greater than cases" );
+    ARC_TEST_MESSAGE( "Checking greater than cases" );
     for ( std::size_t i = 0; i < fixture->less.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
+        ARC_CHECK_FALSE( fixture->more[ i ] < fixture->less[ i ] );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking equals cases" );
+    ARC_TEST_MESSAGE( "Checking equals cases" );
     for ( std::size_t i = 0; i < fixture->less.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->less[ i ] < fixture->less[ i ] );
+        ARC_CHECK_FALSE( fixture->less[ i ] < fixture->less[ i ] );
     }
     for ( std::size_t i = 0; i < fixture->more.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->more[ i ] < fixture->more[ i ] );
+        ARC_CHECK_FALSE( fixture->more[ i ] < fixture->more[ i ] );
     }
 }
 
@@ -596,12 +596,12 @@ CHAOS_TEST_UNIT_FIXTURE( less_than_operator, LessThanFixture )
 //                               ADDITION OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( addition_operator, ConcatenateFixture )
+ARC_TEST_UNIT_FIXTURE( addition_operator, ConcatenateFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] + fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
@@ -612,21 +612,21 @@ CHAOS_TEST_UNIT_FIXTURE( addition_operator, ConcatenateFixture )
 //                           COMPOUND ADDITION OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
+ARC_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] += fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -634,12 +634,12 @@ CHAOS_TEST_UNIT_FIXTURE( compound_addition_operator, ConcatenateFixture )
 //                            MULTIPLICATION OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( multiplication_operator, RepeatFixture )
+ARC_TEST_UNIT_FIXTURE( multiplication_operator, RepeatFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp[ i ] * fixture->count[ i ],
                 fixture->results[ i ]
         );
@@ -650,21 +650,21 @@ CHAOS_TEST_UNIT_FIXTURE( multiplication_operator, RepeatFixture )
 //                        COMPOUND MULTIPLICATION OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
+ARC_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp[ i ] *= fixture->count[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
     }
 }
 
@@ -672,21 +672,21 @@ CHAOS_TEST_UNIT_FIXTURE( compound_multiplication_operator, RepeatFixture )
 //                              UTF8 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
+ARC_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -694,21 +694,21 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_stream_operator, ConcatenateFixture )
 //                            CSTRING STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
+ARC_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ].get_raw(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -716,21 +716,21 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_stream_operator, ConcatenateFixture )
 //                           STD STRING STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( stdstring_stream_operator, ConcatenateFixture )
+ARC_TEST_UNIT_FIXTURE( stdstring_stream_operator, ConcatenateFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ].to_std_string(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -738,15 +738,15 @@ CHAOS_TEST_UNIT_FIXTURE( stdstring_stream_operator, ConcatenateFixture )
 //                              BOOL STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class BoolStreamOperatorFixture : public chaos::test::Fixture
+class BoolStreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< arc::str::UTF8String > comp_1;
     std::vector< bool >                   comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -770,21 +770,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( bool_stream_operator, BoolStreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( bool_stream_operator, BoolStreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -792,15 +792,15 @@ CHAOS_TEST_UNIT_FIXTURE( bool_stream_operator, BoolStreamOperatorFixture )
 //                              CHAR STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class CharStreamOperatorFixture : public chaos::test::Fixture
+class CharStreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< arc::str::UTF8String > comp_1;
     std::vector< char >                   comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -824,21 +824,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( char_stream_operator, CharStreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( char_stream_operator, CharStreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -846,15 +846,15 @@ CHAOS_TEST_UNIT_FIXTURE( char_stream_operator, CharStreamOperatorFixture )
 //                              INT8 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Int8StreamOperatorFixture : public chaos::test::Fixture
+class Int8StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::int8 >            comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::int8 >            comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -878,21 +878,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( int8_stream_operator, Int8StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( int8_stream_operator, Int8StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -900,15 +900,15 @@ CHAOS_TEST_UNIT_FIXTURE( int8_stream_operator, Int8StreamOperatorFixture )
 //                             UINT8 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Uint8StreamOperatorFixture : public chaos::test::Fixture
+class Uint8StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::uint8 >           comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::uint8 >           comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -932,21 +932,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( uint8_stream_operator, Uint8StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( uint8_stream_operator, Uint8StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -954,15 +954,15 @@ CHAOS_TEST_UNIT_FIXTURE( uint8_stream_operator, Uint8StreamOperatorFixture )
 //                             INT16 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Int16StreamOperatorFixture : public chaos::test::Fixture
+class Int16StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::int16 >           comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::int16 >           comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -986,21 +986,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( int16_stream_operator, Int16StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( int16_stream_operator, Int16StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1008,15 +1008,15 @@ CHAOS_TEST_UNIT_FIXTURE( int16_stream_operator, Int16StreamOperatorFixture )
 //                             UINT16 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Uint16StreamOperatorFixture : public chaos::test::Fixture
+class Uint16StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::uint16 >          comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::uint16 >          comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1040,21 +1040,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( uint16_stream_operator, Uint16StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( uint16_stream_operator, Uint16StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1062,15 +1062,15 @@ CHAOS_TEST_UNIT_FIXTURE( uint16_stream_operator, Uint16StreamOperatorFixture )
 //                             INT32 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Int32StreamOperatorFixture : public chaos::test::Fixture
+class Int32StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::int32 >           comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::int32 >           comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1081,7 +1081,7 @@ public:
         results.push_back( "2048" );
 
         comp_1.push_back( "" );
-        comp_2.push_back( -static_cast< chaos::int32 >( 214483648 ) );
+        comp_2.push_back( -static_cast< arc::int32 >( 214483648 ) );
         results.push_back( "-214483648" );
 
         comp_1.push_back( "Hello" );
@@ -1094,21 +1094,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( int32_stream_operator, Int32StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( int32_stream_operator, Int32StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1116,15 +1116,15 @@ CHAOS_TEST_UNIT_FIXTURE( int32_stream_operator, Int32StreamOperatorFixture )
 //                             UINT32 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Uint32StreamOperatorFixture : public chaos::test::Fixture
+class Uint32StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::uint32 >          comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::uint32 >          comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1148,21 +1148,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( uint32_stream_operator, Uint32StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( uint32_stream_operator, Uint32StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1170,15 +1170,15 @@ CHAOS_TEST_UNIT_FIXTURE( uint32_stream_operator, Uint32StreamOperatorFixture )
 //                             INT64 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Int64StreamOperatorFixture : public chaos::test::Fixture
+class Int64StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::int64 >           comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::int64 >           comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1202,21 +1202,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( int64_stream_operator, Int64StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( int64_stream_operator, Int64StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1224,15 +1224,15 @@ CHAOS_TEST_UNIT_FIXTURE( int64_stream_operator, Int64StreamOperatorFixture )
 //                             UINT64 STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class Uint64StreamOperatorFixture : public chaos::test::Fixture
+class Uint64StreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
-    std::vector< chaos::uint64 >          comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > comp_1;
+    std::vector< arc::uint64 >          comp_2;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1256,21 +1256,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1278,15 +1278,15 @@ CHAOS_TEST_UNIT_FIXTURE( uint64_stream_operator, Uint64StreamOperatorFixture )
 //                             FLOAT STREAM OPERATOR
 //------------------------------------------------------------------------------
 
-class FloatStreamOperatorFixture : public chaos::test::Fixture
+class FloatStreamOperatorFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > comp_1;
+    std::vector< arc::str::UTF8String > comp_1;
     std::vector< float >                  comp_2;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1314,21 +1314,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( float_stream_operator, FloatStreamOperatorFixture )
+ARC_TEST_UNIT_FIXTURE( float_stream_operator, FloatStreamOperatorFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ] << fixture->comp_2[ i ],
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1337,14 +1337,14 @@ CHAOS_TEST_UNIT_FIXTURE( float_stream_operator, FloatStreamOperatorFixture )
 //------------------------------------------------------------------------------
 
 
-CHAOS_TEST_UNIT_FIXTURE( cstring_assign, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( cstring_assign, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-    CHAOS_FOR_EACH( it, fixture->cstrings )
+    ARC_TEST_MESSAGE( "Checking internal data matches original string" );
+    ARC_FOR_EACH( it, fixture->cstrings )
     {
-        chaos::str::UTF8String v;
+        arc::str::UTF8String v;
         v.assign( *it );
-        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
+        ARC_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -1352,14 +1352,14 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_assign, UTF8StringGenericFixture )
 //                           CSTRING AND LENGTH ASSIGN
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( cstring_length_assign, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( cstring_length_assign, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-    CHAOS_FOR_EACH( it, fixture->cstrings )
+    ARC_TEST_MESSAGE( "Checking internal data matches original string" );
+    ARC_FOR_EACH( it, fixture->cstrings )
     {
-        chaos::str::UTF8String v;
+        arc::str::UTF8String v;
         v.assign( *it, strlen( *it ) );
-        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
+        ARC_CHECK_EQUAL( strcmp( v.get_raw(), *it ), 0 );
     }
 }
 
@@ -1367,15 +1367,15 @@ CHAOS_TEST_UNIT_FIXTURE( cstring_length_assign, UTF8StringGenericFixture )
 //                                  UTF8 ASSIGN
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( utf8_assign, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( utf8_assign, UTF8StringGenericFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking internal data matches original string" );
-    CHAOS_FOR_EACH( it, fixture->utf8_strings )
+    ARC_TEST_MESSAGE( "Checking internal data matches original string" );
+    ARC_FOR_EACH( it, fixture->utf8_strings )
     {
-        chaos::str::UTF8String v;
+        arc::str::UTF8String v;
         v.assign( *it );
-        CHAOS_CHECK_EQUAL( v, *it );
-        CHAOS_CHECK_EQUAL( strcmp( v.get_raw(), it->get_raw() ), 0 );
+        ARC_CHECK_EQUAL( v, *it );
+        ARC_CHECK_EQUAL( strcmp( v.get_raw(), it->get_raw() ), 0 );
     }
 }
 
@@ -1383,18 +1383,18 @@ CHAOS_TEST_UNIT_FIXTURE( utf8_assign, UTF8StringGenericFixture )
 //                                     CLAIM
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE(claim, UTF8StringGenericFixture)
+ARC_TEST_UNIT_FIXTURE(claim, UTF8StringGenericFixture)
 {
-    CHAOS_FOR_EACH(it, fixture->cstrings)
+    ARC_FOR_EACH(it, fixture->cstrings)
     {
         // copy the string first
         std::size_t length = strlen(*it) + 1;
         char* copy = new char[length];
         memcpy(copy, *it, length);
 
-        chaos::str::UTF8String v;
+        arc::str::UTF8String v;
         v.claim(copy);
-        CHAOS_CHECK_EQUAL(strcmp( v.get_raw(), *it), 0);
+        ARC_CHECK_EQUAL(strcmp( v.get_raw(), *it), 0);
     }
 }
 
@@ -1402,21 +1402,21 @@ CHAOS_TEST_UNIT_FIXTURE(claim, UTF8StringGenericFixture)
 //                                  CONCATENATE
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( concatenate, ConcatenateFixture )
+ARC_TEST_UNIT_FIXTURE( concatenate, ConcatenateFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp_1[ i ].concatenate( fixture->comp_2[ i ] ),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp_1.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp_1[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1424,21 +1424,21 @@ CHAOS_TEST_UNIT_FIXTURE( concatenate, ConcatenateFixture )
 //                                     REPEAT
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( repeat, RepeatFixture )
+ARC_TEST_UNIT_FIXTURE( repeat, RepeatFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking return value" );
+    ARC_TEST_MESSAGE( "Checking return value" );
     for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->comp[ i ].repeat( fixture->count[ i ] ),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking in place modification" );
+    ARC_TEST_MESSAGE( "Checking in place modification" );
     for ( std::size_t i = 0; i < fixture->comp.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
+        ARC_CHECK_EQUAL( fixture->comp[ i ], fixture->results[ i ] );
     }
 }
 
@@ -1446,15 +1446,15 @@ CHAOS_TEST_UNIT_FIXTURE( repeat, RepeatFixture )
 //                                  STARTS WITH
 //------------------------------------------------------------------------------
 
-class StartsWithFixture : public chaos::test::Fixture
+class StartsWithFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > strings;
-    std::vector< chaos::str::UTF8String > starts_with;
-    std::vector< chaos::str::UTF8String > not_starts_with;
+    std::vector< arc::str::UTF8String > strings;
+    std::vector< arc::str::UTF8String > starts_with;
+    std::vector< arc::str::UTF8String > not_starts_with;
 
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -1487,20 +1487,20 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( starts_with, StartsWithFixture )
+ARC_TEST_UNIT_FIXTURE( starts_with, StartsWithFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    ARC_TEST_MESSAGE( "Checking true cases" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_TRUE(
+        ARC_CHECK_TRUE(
                 fixture->strings[ i ].starts_with( fixture->starts_with[ i ] )
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    ARC_TEST_MESSAGE( "Checking false cases" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->strings[ i ].starts_with(
+        ARC_CHECK_FALSE( fixture->strings[ i ].starts_with(
                 fixture->not_starts_with[ i ] ) );
     }
 }
@@ -1509,15 +1509,15 @@ CHAOS_TEST_UNIT_FIXTURE( starts_with, StartsWithFixture )
 //                                   ENDS WITH
 //------------------------------------------------------------------------------
 
-class EndsWithFixture : public chaos::test::Fixture
+class EndsWithFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > strings;
-    std::vector< chaos::str::UTF8String > ends_with;
-    std::vector< chaos::str::UTF8String > not_ends_with;
+    std::vector< arc::str::UTF8String > strings;
+    std::vector< arc::str::UTF8String > ends_with;
+    std::vector< arc::str::UTF8String > not_ends_with;
 
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -1550,20 +1550,20 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
+ARC_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    ARC_TEST_MESSAGE( "Checking true cases" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_TRUE(
+        ARC_CHECK_TRUE(
                 fixture->strings[ i ].ends_with( fixture->ends_with[ i ] )
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    ARC_TEST_MESSAGE( "Checking false cases" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->strings[ i ].ends_with(
+        ARC_CHECK_FALSE( fixture->strings[ i ].ends_with(
                 fixture->not_ends_with[ i ] ) );
     }
 }
@@ -1572,11 +1572,11 @@ CHAOS_TEST_UNIT_FIXTURE( ends_with, EndsWithFixture )
 //                                   FIND FIRST
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( find_first, FindFixture )
+ARC_TEST_UNIT_FIXTURE( find_first, FindFixture )
 {
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->strings[ i ].find_first( fixture->find[ i ] ),
                 fixture->first_results[ i ]
         );
@@ -1587,11 +1587,11 @@ CHAOS_TEST_UNIT_FIXTURE( find_first, FindFixture )
 //                                   FIND LAST
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( find_last, FindFixture )
+ARC_TEST_UNIT_FIXTURE( find_last, FindFixture )
 {
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->strings[ i ].find_last( fixture->find[ i ] ),
                 fixture->last_results[ i ]
         );
@@ -1602,15 +1602,15 @@ CHAOS_TEST_UNIT_FIXTURE( find_last, FindFixture )
 //                                     SPLIT
 //------------------------------------------------------------------------------
 
-class SplitFixture : public chaos::test::Fixture
+class SplitFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String >                strings;
-    std::vector< chaos::str::UTF8String >                delimiters;
-    std::vector< std::vector< chaos::str::UTF8String > > results;
+    std::vector< arc::str::UTF8String >                strings;
+    std::vector< arc::str::UTF8String >                delimiters;
+    std::vector< std::vector< arc::str::UTF8String > > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1619,7 +1619,7 @@ public:
         {
             strings.push_back   ( "" );
             delimiters.push_back( "!" );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "" );
             results.push_back( r );
         }
@@ -1627,7 +1627,7 @@ public:
         {
             strings.push_back   ( "Hello" );
             delimiters.push_back( "ጬ" );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "Hello" );
             results.push_back( r );
         }
@@ -1635,7 +1635,7 @@ public:
         {
             strings.push_back   ( "split this string" );
             delimiters.push_back( " " );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "split" );
             r.push_back( "this" );
             r.push_back( "string" );
@@ -1645,7 +1645,7 @@ public:
         {
             strings.push_back   ( "." );
             delimiters.push_back( "." );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "" );
             r.push_back( "" );
             results.push_back( r );
@@ -1654,7 +1654,7 @@ public:
         {
             strings.push_back   ( "γειά σου Κόσμε!" );
             delimiters.push_back( "!" );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "γειά σου Κόσμε" );
             r.push_back( "" );
             results.push_back( r );
@@ -1663,7 +1663,7 @@ public:
         {
             strings.push_back   ( "γειά σου Κόσμε!" );
             delimiters.push_back( "ε" );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "γ" );
             r.push_back( "ιά σου Κόσμ" );
             r.push_back( "!" );
@@ -1673,7 +1673,7 @@ public:
         {
             strings.push_back   ( "ጺጹጸጷጶጵጴጳጲጱጰጯጮጭጬᚡ" );
             delimiters.push_back( "ጺ" );
-            std::vector< chaos::str::UTF8String > r;
+            std::vector< arc::str::UTF8String > r;
             r.push_back( "" );
             r.push_back( "ጹጸጷጶጵጴጳጲጱጰጯጮጭጬᚡ" );
             results.push_back( r );
@@ -1681,26 +1681,26 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
+ARC_TEST_UNIT_FIXTURE( split, SplitFixture )
 {
-    std::vector< std::vector< chaos::str::UTF8String > > all_elements;
+    std::vector< std::vector< arc::str::UTF8String > > all_elements;
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        std::vector< chaos::str::UTF8String > elements =
+        std::vector< arc::str::UTF8String > elements =
                 fixture->strings[ i ].split( fixture->delimiters[ i ] );
         all_elements.push_back( elements );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking elements length" );
+    ARC_TEST_MESSAGE( "Checking elements length" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 all_elements[ i ].size(),
                 fixture->results[ i ].size()
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking elements contents" );
+    ARC_TEST_MESSAGE( "Checking elements contents" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
         std::size_t check_count = std::min(
@@ -1710,19 +1710,19 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
 
         for ( std::size_t j = 0; j < check_count; ++j )
         {
-            CHAOS_CHECK_EQUAL(
+            ARC_CHECK_EQUAL(
                     all_elements[ i ][ j ],
                     fixture->results[ i ][ j ]
             );
         }
     }
 
-    CHAOS_TEST_MESSAGE( "Checking empty delimiters" );
-    CHAOS_FOR_EACH( it, fixture->strings )
+    ARC_TEST_MESSAGE( "Checking empty delimiters" );
+    ARC_FOR_EACH( it, fixture->strings )
     {
-        CHAOS_CHECK_THROW(
+        ARC_CHECK_THROW(
                 it->split( ""),
-                chaos::ex::ValueError
+                arc::ex::ValueError
         );
     }
 }
@@ -1731,15 +1731,15 @@ CHAOS_TEST_UNIT_FIXTURE( split, SplitFixture )
 //                               REMOVE DUPLICATES
 //------------------------------------------------------------------------------
 
-class RemoveDuplicatesFixture : public chaos::test::Fixture
+class RemoveDuplicatesFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > inputs;
-    std::vector< chaos::str::UTF8String > substrings;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > inputs;
+    std::vector< arc::str::UTF8String > substrings;
+    std::vector< arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1787,12 +1787,12 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( remove_duplicates, RemoveDuplicatesFixture )
+ARC_TEST_UNIT_FIXTURE( remove_duplicates, RemoveDuplicatesFixture )
 {
     for( std::size_t i = 0; i < fixture->inputs.size(); ++i )
     {
         fixture->inputs[ i ].remove_duplicates( fixture->substrings[ i ] );
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->inputs[ i ],
                 fixture->results[ i ]
         );
@@ -1803,14 +1803,14 @@ CHAOS_TEST_UNIT_FIXTURE( remove_duplicates, RemoveDuplicatesFixture )
 //                                     IS INT
 //------------------------------------------------------------------------------
 
-class IsIntFixture : public chaos::test::Fixture
+class IsIntFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > ints;
-    std::vector< chaos::str::UTF8String > not_ints;
+    std::vector< arc::str::UTF8String > ints;
+    std::vector< arc::str::UTF8String > not_ints;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1846,18 +1846,18 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( is_int, IsIntFixture )
+ARC_TEST_UNIT_FIXTURE( is_int, IsIntFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    ARC_TEST_MESSAGE( "Checking true cases" );
     for ( std::size_t i = 0; i < fixture->ints.size(); ++i )
     {
-        CHAOS_CHECK_TRUE( fixture->ints[ i ].is_int() );
+        ARC_CHECK_TRUE( fixture->ints[ i ].is_int() );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    ARC_TEST_MESSAGE( "Checking false cases" );
     for ( std::size_t i = 0; i < fixture->not_ints.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->not_ints[ i ].is_int() );
+        ARC_CHECK_FALSE( fixture->not_ints[ i ].is_int() );
     }
 }
 
@@ -1865,14 +1865,14 @@ CHAOS_TEST_UNIT_FIXTURE( is_int, IsIntFixture )
 //                                    IS UINT
 //------------------------------------------------------------------------------
 
-class IsUintFixture : public chaos::test::Fixture
+class IsUintFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > uints;
-    std::vector< chaos::str::UTF8String > not_uints;
+    std::vector< arc::str::UTF8String > uints;
+    std::vector< arc::str::UTF8String > not_uints;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1906,18 +1906,18 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( is_uint, IsUintFixture )
+ARC_TEST_UNIT_FIXTURE( is_uint, IsUintFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    ARC_TEST_MESSAGE( "Checking true cases" );
     for ( std::size_t i = 0; i < fixture->uints.size(); ++i )
     {
-        CHAOS_CHECK_TRUE( fixture->uints[ i ].is_uint() );
+        ARC_CHECK_TRUE( fixture->uints[ i ].is_uint() );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    ARC_TEST_MESSAGE( "Checking false cases" );
     for ( std::size_t i = 0; i < fixture->not_uints.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->not_uints[ i ].is_uint() );
+        ARC_CHECK_FALSE( fixture->not_uints[ i ].is_uint() );
     }
 }
 
@@ -1925,14 +1925,14 @@ CHAOS_TEST_UNIT_FIXTURE( is_uint, IsUintFixture )
 //                                    IS FLOAT
 //------------------------------------------------------------------------------
 
-class IsFloatFixture : public chaos::test::Fixture
+class IsFloatFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > floats;
-    std::vector< chaos::str::UTF8String > not_floats;
+    std::vector< arc::str::UTF8String > floats;
+    std::vector< arc::str::UTF8String > not_floats;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -1969,18 +1969,18 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( is_float, IsFloatFixture )
+ARC_TEST_UNIT_FIXTURE( is_float, IsFloatFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking true cases" );
+    ARC_TEST_MESSAGE( "Checking true cases" );
     for ( std::size_t i = 0; i < fixture->floats.size(); ++i )
     {
-        CHAOS_CHECK_TRUE( fixture->floats[ i ].is_float() );
+        ARC_CHECK_TRUE( fixture->floats[ i ].is_float() );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking false cases" );
+    ARC_TEST_MESSAGE( "Checking false cases" );
     for ( std::size_t i = 0; i < fixture->not_floats.size(); ++i )
     {
-        CHAOS_CHECK_FALSE( fixture->not_floats[ i ].is_float() );
+        ARC_CHECK_FALSE( fixture->not_floats[ i ].is_float() );
     }
 }
 
@@ -1988,16 +1988,16 @@ CHAOS_TEST_UNIT_FIXTURE( is_float, IsFloatFixture )
 //                                   SUBSTRING
 //------------------------------------------------------------------------------
 
-class SubstringFixture : public chaos::test::Fixture
+class SubstringFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > strings;
+    std::vector< arc::str::UTF8String > strings;
     std::vector< std::size_t >                 indices;
     std::vector< std::size_t >                 lengths;
-    std::vector< chaos::str::UTF8String > results;
+    std::vector< arc::str::UTF8String > results;
     std::vector< std::size_t >                 out_of_bounds;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -2042,12 +2042,12 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
+ARC_TEST_UNIT_FIXTURE( substring, SubstringFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking values" );
+    ARC_TEST_MESSAGE( "Checking values" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->strings[ i ].substring(
                         fixture->indices[ i ], fixture->lengths[ i ]
                 ),
@@ -2055,14 +2055,14 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    ARC_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_THROW(
+        ARC_CHECK_THROW(
                 fixture->strings[ i ].substring(
                         fixture->out_of_bounds[ i ], 10
                 ),
-                chaos::ex::IndexOutOfBoundsError
+                arc::ex::IndexOutOfBoundsError
         );
     }
 }
@@ -2071,11 +2071,11 @@ CHAOS_TEST_UNIT_FIXTURE( substring, SubstringFixture )
 //                                 TO STD STRING
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( to_std_string, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( to_std_string, UTF8StringGenericFixture )
 {
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].to_std_string(),
                 std::string( fixture->cstrings[ i ] )
         );
@@ -2086,15 +2086,15 @@ CHAOS_TEST_UNIT_FIXTURE( to_std_string, UTF8StringGenericFixture )
 //                                    TO BOOL
 //------------------------------------------------------------------------------
 
-class ToBoolFixture : public chaos::test::Fixture
+class ToBoolFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > valid;
+    std::vector< arc::str::UTF8String > valid;
     std::vector< bool >                   results;
-    std::vector< chaos::str::UTF8String > invalid;
+    std::vector< arc::str::UTF8String > invalid;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -2146,21 +2146,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( to_bool, ToBoolFixture )
+ARC_TEST_UNIT_FIXTURE( to_bool, ToBoolFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    ARC_TEST_MESSAGE( "Checking valid cases" );
     for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->valid[ i ].to_bool(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
-    CHAOS_FOR_EACH( it, fixture->invalid )
+    ARC_TEST_MESSAGE( "Checking invalid cases" );
+    ARC_FOR_EACH( it, fixture->invalid )
     {
-        CHAOS_CHECK_THROW( it->to_bool(), chaos::ex::ConversionDataError );
+        ARC_CHECK_THROW( it->to_bool(), arc::ex::ConversionDataError );
     }
 }
 
@@ -2168,15 +2168,15 @@ CHAOS_TEST_UNIT_FIXTURE( to_bool, ToBoolFixture )
 //                                    TO INT32
 //------------------------------------------------------------------------------
 
-class ToInt32Fixture : public chaos::test::Fixture
+class ToInt32Fixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > valid;
-    std::vector< chaos::int32 >           results;
-    std::vector< chaos::str::UTF8String > invalid;
+    std::vector< arc::str::UTF8String > valid;
+    std::vector< arc::int32 >           results;
+    std::vector< arc::str::UTF8String > invalid;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -2234,21 +2234,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( to_int32, ToInt32Fixture )
+ARC_TEST_UNIT_FIXTURE( to_int32, ToInt32Fixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    ARC_TEST_MESSAGE( "Checking valid cases" );
     for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->valid[ i ].to_int32(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
-    CHAOS_FOR_EACH( it, fixture->invalid )
+    ARC_TEST_MESSAGE( "Checking invalid cases" );
+    ARC_FOR_EACH( it, fixture->invalid )
     {
-        CHAOS_CHECK_THROW( it->to_int32(), chaos::ex::ConversionDataError );
+        ARC_CHECK_THROW( it->to_int32(), arc::ex::ConversionDataError );
     }
 }
 
@@ -2256,15 +2256,15 @@ CHAOS_TEST_UNIT_FIXTURE( to_int32, ToInt32Fixture )
 //                                   TO UINT32
 //------------------------------------------------------------------------------
 
-class ToUint32Fixture : public chaos::test::Fixture
+class ToUint32Fixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > valid;
-    std::vector< chaos::uint32 >          results;
-    std::vector< chaos::str::UTF8String > invalid;
+    std::vector< arc::str::UTF8String > valid;
+    std::vector< arc::uint32 >          results;
+    std::vector< arc::str::UTF8String > invalid;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -2321,21 +2321,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( to_uint32, ToUint32Fixture )
+ARC_TEST_UNIT_FIXTURE( to_uint32, ToUint32Fixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    ARC_TEST_MESSAGE( "Checking valid cases" );
     for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->valid[ i ].to_uint32(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
-    CHAOS_FOR_EACH( it, fixture->invalid )
+    ARC_TEST_MESSAGE( "Checking invalid cases" );
+    ARC_FOR_EACH( it, fixture->invalid )
     {
-        CHAOS_CHECK_THROW( it->to_uint32(), chaos::ex::ConversionDataError );
+        ARC_CHECK_THROW( it->to_uint32(), arc::ex::ConversionDataError );
     }
 }
 
@@ -2343,21 +2343,21 @@ CHAOS_TEST_UNIT_FIXTURE( to_uint32, ToUint32Fixture )
 //                                    TO INT64
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( to_int64, ToInt32Fixture )
+ARC_TEST_UNIT_FIXTURE( to_int64, ToInt32Fixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    ARC_TEST_MESSAGE( "Checking valid cases" );
     for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->valid[ i ].to_int64(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
-    CHAOS_FOR_EACH( it, fixture->invalid )
+    ARC_TEST_MESSAGE( "Checking invalid cases" );
+    ARC_FOR_EACH( it, fixture->invalid )
     {
-        CHAOS_CHECK_THROW( it->to_int64(), chaos::ex::ConversionDataError );
+        ARC_CHECK_THROW( it->to_int64(), arc::ex::ConversionDataError );
     }
 }
 
@@ -2365,21 +2365,21 @@ CHAOS_TEST_UNIT_FIXTURE( to_int64, ToInt32Fixture )
 //                                   TO UINT64
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( to_uint64, ToUint32Fixture )
+ARC_TEST_UNIT_FIXTURE( to_uint64, ToUint32Fixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking valid cases" );
+    ARC_TEST_MESSAGE( "Checking valid cases" );
     for ( std::size_t i = 0; i < fixture->valid.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->valid[ i ].to_uint64(),
                 fixture->results[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking invalid cases" );
-    CHAOS_FOR_EACH( it, fixture->invalid )
+    ARC_TEST_MESSAGE( "Checking invalid cases" );
+    ARC_FOR_EACH( it, fixture->invalid )
     {
-        CHAOS_CHECK_THROW( it->to_uint64(), chaos::ex::ConversionDataError );
+        ARC_CHECK_THROW( it->to_uint64(), arc::ex::ConversionDataError );
     }
 }
 
@@ -2387,11 +2387,11 @@ CHAOS_TEST_UNIT_FIXTURE( to_uint64, ToUint32Fixture )
 //                                   GET LENGTH
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
 {
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].get_length(),
                 fixture->lengths[ i ]
         );
@@ -2402,13 +2402,13 @@ CHAOS_TEST_UNIT_FIXTURE( get_length, UTF8StringGenericFixture )
 //                                    IS EMPTY
 //------------------------------------------------------------------------------
 
-class IsEmptyFixture : public chaos::test::Fixture
+class IsEmptyFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String > strings;
+    std::vector< arc::str::UTF8String > strings;
     std::vector< bool >                   results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
@@ -2435,11 +2435,11 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
+ARC_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
 {
     for ( std::size_t i = 0; i < fixture->strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->strings[ i ].is_empty(),
                 fixture->results[ i ]
         );
@@ -2450,13 +2450,13 @@ CHAOS_TEST_UNIT_FIXTURE( is_empty, IsEmptyFixture )
 //                                   GET SYMBOL
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
 {
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_FOR_EACH( it, fixture->symbols[ i ] )
+        ARC_FOR_EACH( it, fixture->symbols[ i ] )
         {
-            CHAOS_CHECK_EQUAL(
+            ARC_CHECK_EQUAL(
                     fixture->utf8_strings[ i ].get_symbol( it->first ),
                     it->second
             );
@@ -2468,14 +2468,14 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol, UTF8StringGenericFixture )
 //                                GET SYMBOL VALUE
 //------------------------------------------------------------------------------
 
-class GetSymbolValueFixture : public chaos::test::Fixture
+class GetSymbolValueFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    chaos::str::UTF8String       symbols;
-    std::vector< chaos::uint32 > values;
+    arc::str::UTF8String       symbols;
+    std::vector< arc::uint32 > values;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -2561,11 +2561,11 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( get_symbol_value, GetSymbolValueFixture )
+ARC_TEST_UNIT_FIXTURE( get_symbol_value, GetSymbolValueFixture )
 {
     for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->symbols.get_symbol_value( i ),
                 fixture->values[ i ]
         );
@@ -2576,14 +2576,14 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_value, GetSymbolValueFixture )
 //                                 GET CODE POINT
 //------------------------------------------------------------------------------
 
-class GetCodePointFixture : public chaos::test::Fixture
+class GetCodePointFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    chaos::str::UTF8String       symbols;
-    std::vector< chaos::uint32 > code_points;
+    arc::str::UTF8String       symbols;
+    std::vector< arc::uint32 > code_points;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -2669,11 +2669,11 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
+ARC_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
 {
     for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->symbols.get_code_point( i ),
                 fixture->code_points[ i ]
         );
@@ -2684,21 +2684,21 @@ CHAOS_TEST_UNIT_FIXTURE( get_code_point, GetCodePointFixture )
 //                        GET BYTE INDEX FOR SYMBOL INDEX
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_byte_index_for_symbol_index, IndexFixture )
+ARC_TEST_UNIT_FIXTURE( get_byte_index_for_symbol_index, IndexFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking values" );
+    ARC_TEST_MESSAGE( "Checking values" );
     for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->symbols.get_byte_index_for_symbol_index( i ),
                 fixture->byte_indices[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
-    CHAOS_CHECK_THROW(
+    ARC_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    ARC_CHECK_THROW(
             fixture->symbols.get_byte_index_for_symbol_index( 58435 ),
-            chaos::ex::IndexOutOfBoundsError
+            arc::ex::IndexOutOfBoundsError
     );
 }
 
@@ -2706,14 +2706,14 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_index_for_symbol_index, IndexFixture )
 //                                GET SYMBOL WIDTH
 //------------------------------------------------------------------------------
 
-class GetSymbolWidthFixture : public chaos::test::Fixture
+class GetSymbolWidthFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    chaos::str::UTF8String       symbols;
-    std::vector< chaos::uint32 > widths;
+    arc::str::UTF8String       symbols;
+    std::vector< arc::uint32 > widths;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -2796,21 +2796,21 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
+ARC_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking values" );
+    ARC_TEST_MESSAGE( "Checking values" );
     for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->symbols.get_symbol_width( i ),
                 fixture->widths[ i ]
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
-    CHAOS_CHECK_THROW(
+    ARC_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    ARC_CHECK_THROW(
             fixture->symbols.get_symbol_width( 832423 ),
-            chaos::ex::IndexOutOfBoundsError
+            arc::ex::IndexOutOfBoundsError
     );
 }
 
@@ -2818,11 +2818,11 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_width, GetSymbolWidthFixture )
 //                                    GET RAW
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_raw, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( get_raw, UTF8StringGenericFixture )
 {
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL( strcmp(
+        ARC_CHECK_EQUAL( strcmp(
                 fixture->utf8_strings[ i ].get_raw(),
                 fixture->cstrings[ i ]
         ), 0 );
@@ -2833,11 +2833,11 @@ CHAOS_TEST_UNIT_FIXTURE( get_raw, UTF8StringGenericFixture )
 //                                GET BYTE LENGTH
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_byte_length, UTF8StringGenericFixture )
+ARC_TEST_UNIT_FIXTURE( get_byte_length, UTF8StringGenericFixture )
 {
     for ( std::size_t i = 0; i < fixture->utf8_strings.size(); ++i )
     {
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->utf8_strings[ i ].get_byte_length(),
                 strlen( fixture->cstrings[ i ] ) + 1
         );
@@ -2848,9 +2848,9 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_length, UTF8StringGenericFixture )
 //                        GET SYMBOL INDEX FOR BYTE INDEX
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
+ARC_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking values" );
+    ARC_TEST_MESSAGE( "Checking values" );
     std::size_t symbol_index = 0;
     for ( std::size_t i = 0; i < fixture->symbols.get_byte_length() - 1; ++i )
     {
@@ -2860,16 +2860,16 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
             ++symbol_index;
         }
 
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->symbols.get_symbol_index_for_byte_index( i ),
                 symbol_index
         );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
-    CHAOS_CHECK_THROW(
+    ARC_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    ARC_CHECK_THROW(
             fixture->symbols.get_symbol_index_for_byte_index( 512 ),
-            chaos::ex::IndexOutOfBoundsError
+            arc::ex::IndexOutOfBoundsError
     );
 }
 
@@ -2877,15 +2877,15 @@ CHAOS_TEST_UNIT_FIXTURE( get_symbol_index_for_byte_index, IndexFixture )
 //                                 GET BYTE WIDTH
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
+ARC_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking values" );
+    ARC_TEST_MESSAGE( "Checking values" );
     for ( std::size_t i = 0; i < fixture->symbols.get_length(); ++i )
     {
         std::size_t byte_index =
                 fixture->symbols.get_byte_index_for_symbol_index( i );
 
-        CHAOS_CHECK_EQUAL(
+        ARC_CHECK_EQUAL(
                 fixture->symbols.get_byte_width( byte_index ),
                 fixture->widths[ i ]
         );
@@ -2893,10 +2893,10 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
         i += fixture->widths[ i ];
     }
 
-    CHAOS_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
-    CHAOS_CHECK_THROW(
-            fixture->symbols.get_byte_width( chaos::str::npos ),
-            chaos::ex::IndexOutOfBoundsError
+    ARC_TEST_MESSAGE( "Checking IndexOutOfBoundsError" );
+    ARC_CHECK_THROW(
+            fixture->symbols.get_byte_width( arc::str::npos ),
+            arc::ex::IndexOutOfBoundsError
     );
 }
 
@@ -2904,17 +2904,17 @@ CHAOS_TEST_UNIT_FIXTURE( get_byte_width, GetSymbolWidthFixture )
 //                                 OPTIMISATIONS
 //------------------------------------------------------------------------------
 
-class OptimisationsFixture : public chaos::test::Fixture
+class OptimisationsFixture : public arc::test::Fixture
 {
 public:
 
     //--------------------------------ATTRIBUTES--------------------------------
 
-    chaos::str::UTF8String::Opt skip_valid;
+    arc::str::UTF8String::Opt skip_valid;
     std::vector<const char*> valid_utf8;
     std::vector<const char*> invalid_utf8;
 
-    chaos::str::UTF8String::Opt fixed_width;
+    arc::str::UTF8String::Opt fixed_width;
     std::vector<const char*> width_1;
     std::vector<const char*> width_mixed;
 
@@ -2924,7 +2924,7 @@ public:
 
     void setup()
     {
-        skip_valid.flags = chaos::str::UTF8String::Opt::SKIP_VALID_CHECK;
+        skip_valid.flags = arc::str::UTF8String::Opt::SKIP_VALID_CHECK;
 
         valid_utf8.push_back("");
         valid_utf8.push_back("Hello World");
@@ -2952,7 +2952,7 @@ public:
         invalid_utf8.push_back("\xFA\x80\x05");
         invalid_utf8.push_back("\xFA\x80\x80\xEE");
 
-        fixed_width.flags = chaos::str::UTF8String::Opt::FIXED_WIDTH;
+        fixed_width.flags = arc::str::UTF8String::Opt::FIXED_WIDTH;
 
         width_1.push_back("");
         width_1.push_back("Hello World");
@@ -2972,51 +2972,51 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE(optimisations, OptimisationsFixture)
+ARC_TEST_UNIT_FIXTURE(optimisations, OptimisationsFixture)
 {
-    CHAOS_TEST_MESSAGE("Testing valid UTF-8 with no optimisations");
-    CHAOS_FOR_EACH(it_1, fixture->valid_utf8)
+    ARC_TEST_MESSAGE("Testing valid UTF-8 with no optimisations");
+    ARC_FOR_EACH(it_1, fixture->valid_utf8)
     {
-        chaos::str::UTF8String s(*it_1);
+        arc::str::UTF8String s(*it_1);
     }
 
-    CHAOS_TEST_MESSAGE("Testing invalid UTF-8 with no optimisations");
-    CHAOS_FOR_EACH(it_2, fixture->invalid_utf8)
+    ARC_TEST_MESSAGE("Testing invalid UTF-8 with no optimisations");
+    ARC_FOR_EACH(it_2, fixture->invalid_utf8)
     {
-        CHAOS_CHECK_THROW(
-                chaos::str::UTF8String(*it_2),
-                chaos::ex::EncodingError
+        ARC_CHECK_THROW(
+                arc::str::UTF8String(*it_2),
+                arc::ex::EncodingError
         );
     }
 
-    CHAOS_TEST_MESSAGE("Testing valid UTF-8 with SKIP_VALID_CHECK");
-    CHAOS_FOR_EACH(it_3, fixture->valid_utf8)
+    ARC_TEST_MESSAGE("Testing valid UTF-8 with SKIP_VALID_CHECK");
+    ARC_FOR_EACH(it_3, fixture->valid_utf8)
     {
-        chaos::str::UTF8String(*it_3, fixture->skip_valid);
+        arc::str::UTF8String(*it_3, fixture->skip_valid);
     }
 
-    CHAOS_TEST_MESSAGE("Testing invalid UTF-8 with SKIP_VALID_CHECK");
-    CHAOS_FOR_EACH(it_4, fixture->invalid_utf8)
+    ARC_TEST_MESSAGE("Testing invalid UTF-8 with SKIP_VALID_CHECK");
+    ARC_FOR_EACH(it_4, fixture->invalid_utf8)
     {
-        chaos::str::UTF8String(*it_4, fixture->skip_valid);
+        arc::str::UTF8String(*it_4, fixture->skip_valid);
     }
 
-    CHAOS_TEST_MESSAGE("Testing 1 byte sized symbols with fixed width");
-    CHAOS_FOR_EACH(it_5, fixture->width_1)
+    ARC_TEST_MESSAGE("Testing 1 byte sized symbols with fixed width");
+    ARC_FOR_EACH(it_5, fixture->width_1)
     {
-        chaos::str::UTF8String s(*it_5);
-        chaos::str::UTF8String s_opt(*it_5, fixture->fixed_width);
+        arc::str::UTF8String s(*it_5);
+        arc::str::UTF8String s_opt(*it_5, fixture->fixed_width);
 
-        CHAOS_CHECK_EQUAL(s_opt.get_length(), s.get_length());
+        ARC_CHECK_EQUAL(s_opt.get_length(), s.get_length());
     }
 
-    CHAOS_TEST_MESSAGE("Testing mixed byte sized symbols with fixed width");
-    CHAOS_FOR_EACH(it_6, fixture->width_mixed)
+    ARC_TEST_MESSAGE("Testing mixed byte sized symbols with fixed width");
+    ARC_FOR_EACH(it_6, fixture->width_mixed)
     {
-        chaos::str::UTF8String s(*it_6);
-        chaos::str::UTF8String s_opt(*it_6, fixture->fixed_width);
+        arc::str::UTF8String s(*it_6);
+        arc::str::UTF8String s_opt(*it_6, fixture->fixed_width);
 
-        CHAOS_CHECK_NOT_EQUAL(s_opt.get_length(), s.get_length());
+        ARC_CHECK_NOT_EQUAL(s_opt.get_length(), s.get_length());
     }
 }
 

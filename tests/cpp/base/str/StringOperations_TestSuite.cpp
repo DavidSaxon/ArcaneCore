@@ -1,10 +1,10 @@
-#include "chaoscore/test/ChaosTest.hpp"
+#include "arcanecore/test/ArcTest.hpp"
 
-CHAOS_TEST_MODULE(base.str.StringOperations)
+ARC_TEST_MODULE(base.str.StringOperations)
 
 #include <cstring>
 
-#include "chaoscore/base/str/StringOperations.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
 
 namespace unicode_operations_tests
 {
@@ -13,14 +13,14 @@ namespace unicode_operations_tests
 //                                 UTF8_IS_DIGIT
 //------------------------------------------------------------------------------
 
-class IsDigitFixture : public chaos::test::Fixture
+class IsDigitFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::uint32 > valid;
-    std::vector< chaos::uint32 > invalid;
+    std::vector< arc::uint32 > valid;
+    std::vector< arc::uint32 > invalid;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
@@ -50,18 +50,18 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( is_digit, IsDigitFixture )
+ARC_TEST_UNIT_FIXTURE( is_digit, IsDigitFixture )
 {
-    CHAOS_TEST_MESSAGE( "Checking valid code points" );
-    CHAOS_FOR_EACH( it_1, fixture->valid )
+    ARC_TEST_MESSAGE( "Checking valid code points" );
+    ARC_FOR_EACH( it_1, fixture->valid )
     {
-        CHAOS_CHECK_TRUE( chaos::str::is_digit( *it_1 ) );
+        ARC_CHECK_TRUE( arc::str::is_digit( *it_1 ) );
     }
 
-    CHAOS_TEST_MESSAGE( "Checking invalid code points" );
-    CHAOS_FOR_EACH( it_2, fixture->invalid )
+    ARC_TEST_MESSAGE( "Checking invalid code points" );
+    ARC_FOR_EACH( it_2, fixture->invalid )
     {
-        CHAOS_CHECK_FALSE( chaos::str::is_digit( *it_2 ) );
+        ARC_CHECK_FALSE( arc::str::is_digit( *it_2 ) );
     }
 }
 
@@ -69,13 +69,13 @@ CHAOS_TEST_UNIT_FIXTURE( is_digit, IsDigitFixture )
 //                                 UTF8 TO UTF16
 //------------------------------------------------------------------------------
 
-class UTF8ToUTF16Fixture : public chaos::test::Fixture
+class UTF8ToUTF16Fixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< chaos::str::UTF8String >       utf8;
+    std::vector< arc::str::UTF8String >       utf8;
     std::vector< std::vector< unsigned char > > little_endian;
     std::vector< std::vector< unsigned char > > big_endian;
     std::vector< std::size_t >                       lengths;
@@ -257,25 +257,25 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE(utf8_to_utf16, UTF8ToUTF16Fixture)
+ARC_TEST_UNIT_FIXTURE(utf8_to_utf16, UTF8ToUTF16Fixture)
 {
-    CHAOS_TEST_MESSAGE("Checking little endian returned length");
+    ARC_TEST_MESSAGE("Checking little endian returned length");
     for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
-        const char* u = chaos::str::utf8_to_utf16(
-            fixture->utf8[i], length, chaos::data::ENDIAN_LITTLE);
-        CHAOS_CHECK_EQUAL(length, fixture->lengths[i]);
+        const char* u = arc::str::utf8_to_utf16(
+            fixture->utf8[i], length, arc::data::ENDIAN_LITTLE);
+        ARC_CHECK_EQUAL(length, fixture->lengths[i]);
         delete[] u;
     }
 
-    CHAOS_TEST_MESSAGE("Checking little endian contents");
+    ARC_TEST_MESSAGE("Checking little endian contents");
     for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
-        const char* u = chaos::str::utf8_to_utf16(
-            fixture->utf8[i], length, chaos::data::ENDIAN_LITTLE);
-        CHAOS_CHECK_EQUAL(
+        const char* u = arc::str::utf8_to_utf16(
+            fixture->utf8[i], length, arc::data::ENDIAN_LITTLE);
+        ARC_CHECK_EQUAL(
             memcmp(
                 u,
                 reinterpret_cast<const char*>(
@@ -287,23 +287,23 @@ CHAOS_TEST_UNIT_FIXTURE(utf8_to_utf16, UTF8ToUTF16Fixture)
         delete[] u;
     }
 
-    CHAOS_TEST_MESSAGE("Checking big endian returned length");
+    ARC_TEST_MESSAGE("Checking big endian returned length");
     for(std::size_t i = 0; i <fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
-        const char* u = chaos::str::utf8_to_utf16(
-            fixture->utf8[i], length, chaos::data::ENDIAN_BIG);
-        CHAOS_CHECK_EQUAL(length, fixture->lengths[i]);
+        const char* u = arc::str::utf8_to_utf16(
+            fixture->utf8[i], length, arc::data::ENDIAN_BIG);
+        ARC_CHECK_EQUAL(length, fixture->lengths[i]);
         delete[] u;
     }
 
-    CHAOS_TEST_MESSAGE("Checking big endian contents");
+    ARC_TEST_MESSAGE("Checking big endian contents");
     for(std::size_t i = 0; i <fixture->utf8.size(); ++i)
     {
         std::size_t length = 0;
-        const char* u = chaos::str::utf8_to_utf16(
-            fixture->utf8[i], length, chaos::data::ENDIAN_BIG);
-        CHAOS_CHECK_EQUAL(
+        const char* u = arc::str::utf8_to_utf16(
+            fixture->utf8[i], length, arc::data::ENDIAN_BIG);
+        ARC_CHECK_EQUAL(
             memcmp(
                 u,
                 reinterpret_cast<const char*>(
@@ -320,52 +320,52 @@ CHAOS_TEST_UNIT_FIXTURE(utf8_to_utf16, UTF8ToUTF16Fixture)
 //                                 UTF16 TO UTF8
 //------------------------------------------------------------------------------
 
-CHAOS_TEST_UNIT_FIXTURE(utf16_to_utf8, UTF8ToUTF16Fixture)
+ARC_TEST_UNIT_FIXTURE(utf16_to_utf8, UTF8ToUTF16Fixture)
 {
-    CHAOS_TEST_MESSAGE("Checking little endian conversion");
+    ARC_TEST_MESSAGE("Checking little endian conversion");
     for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
-        chaos::str::UTF8String u = chaos::str::utf16_to_utf8(
+        arc::str::UTF8String u = arc::str::utf16_to_utf8(
                 (const char*) &fixture->little_endian[ i ][ 0 ],
                 fixture->lengths[i] - 1,
-                chaos::data::ENDIAN_LITTLE
+                arc::data::ENDIAN_LITTLE
         );
-        CHAOS_CHECK_EQUAL(u, fixture->utf8[ i ]);
+        ARC_CHECK_EQUAL(u, fixture->utf8[ i ]);
     }
 
-    CHAOS_TEST_MESSAGE(
+    ARC_TEST_MESSAGE(
             "Checking little endian conversion with NULL terminator");
     for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
-        chaos::str::UTF8String u = chaos::str::utf16_to_utf8(
+        arc::str::UTF8String u = arc::str::utf16_to_utf8(
                 (const char*) &fixture->little_endian[ i ][ 0 ],
-                chaos::str::npos,
-                chaos::data::ENDIAN_LITTLE
+                arc::str::npos,
+                arc::data::ENDIAN_LITTLE
         );
-        CHAOS_CHECK_EQUAL(u, fixture->utf8[ i ]);
+        ARC_CHECK_EQUAL(u, fixture->utf8[ i ]);
     }
 
-    CHAOS_TEST_MESSAGE("Checking big endian conversion");
+    ARC_TEST_MESSAGE("Checking big endian conversion");
     for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
-        chaos::str::UTF8String u = chaos::str::utf16_to_utf8(
+        arc::str::UTF8String u = arc::str::utf16_to_utf8(
                 (const char*) &fixture->big_endian[ i ][ 0 ],
                 fixture->lengths[i] - 1,
-                chaos::data::ENDIAN_BIG
+                arc::data::ENDIAN_BIG
         );
-        CHAOS_CHECK_EQUAL(u, fixture->utf8[ i ]);
+        ARC_CHECK_EQUAL(u, fixture->utf8[ i ]);
     }
 
-    CHAOS_TEST_MESSAGE(
+    ARC_TEST_MESSAGE(
             "Checking big endian conversion with NULL terminator");
     for(std::size_t i = 0; i < fixture->utf8.size(); ++i)
     {
-        chaos::str::UTF8String u = chaos::str::utf16_to_utf8(
+        arc::str::UTF8String u = arc::str::utf16_to_utf8(
                 (const char*) &fixture->big_endian[ i ][ 0 ],
-                chaos::str::npos,
-                chaos::data::ENDIAN_BIG
+                arc::str::npos,
+                arc::data::ENDIAN_BIG
         );
-        CHAOS_CHECK_EQUAL(u, fixture->utf8[ i ]);
+        ARC_CHECK_EQUAL(u, fixture->utf8[ i ]);
     }
 }
 
@@ -373,7 +373,7 @@ CHAOS_TEST_UNIT_FIXTURE(utf16_to_utf8, UTF8ToUTF16Fixture)
 //                                    IS_UTF8
 //------------------------------------------------------------------------------
 
-class IsUtf8Fixture : public chaos::test::Fixture
+class IsUtf8Fixture : public arc::test::Fixture
 {
 public:
 
@@ -414,16 +414,16 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
+ARC_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
 {
-    CHAOS_TEST_MESSAGE("Checking valid data with null terminators");
-    CHAOS_FOR_EACH(it, fixture->valid)
+    ARC_TEST_MESSAGE("Checking valid data with null terminators");
+    ARC_FOR_EACH(it, fixture->valid)
     {
-        CHAOS_CHECK_TRUE(chaos::str::is_utf8(*it));
+        ARC_CHECK_TRUE(arc::str::is_utf8(*it));
     }
 
-    CHAOS_TEST_MESSAGE("Checking valid data without null terminators");
-    CHAOS_FOR_EACH(it, fixture->valid)
+    ARC_TEST_MESSAGE("Checking valid data without null terminators");
+    ARC_FOR_EACH(it, fixture->valid)
     {
         // get the length of the data
         std::size_t length = strlen(*it);
@@ -431,19 +431,19 @@ CHAOS_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
         char* cpy = new char[length];
         memcpy(cpy, *it, length);
         // check
-        CHAOS_CHECK_TRUE(chaos::str::is_utf8(cpy, length));
+        ARC_CHECK_TRUE(arc::str::is_utf8(cpy, length));
         // clean up
         delete[] cpy;
     }
 
-    CHAOS_TEST_MESSAGE("Checking invalid data with null terminators");
-    CHAOS_FOR_EACH(it, fixture->invalid)
+    ARC_TEST_MESSAGE("Checking invalid data with null terminators");
+    ARC_FOR_EACH(it, fixture->invalid)
     {
-        CHAOS_CHECK_FALSE(chaos::str::is_utf8(*it));
+        ARC_CHECK_FALSE(arc::str::is_utf8(*it));
     }
 
-    CHAOS_TEST_MESSAGE("Checking invalid data without null terminators");
-    CHAOS_FOR_EACH(it, fixture->invalid)
+    ARC_TEST_MESSAGE("Checking invalid data without null terminators");
+    ARC_FOR_EACH(it, fixture->invalid)
     {
         // get the length of the data
         std::size_t length = strlen(*it);
@@ -451,7 +451,7 @@ CHAOS_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
         char* cpy = new char[length];
         memcpy(cpy, *it, length);
         // check
-        CHAOS_CHECK_FALSE(chaos::str::is_utf8(cpy, length));
+        ARC_CHECK_FALSE(arc::str::is_utf8(cpy, length));
     }
 }
 
@@ -459,36 +459,36 @@ CHAOS_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
 //                                      JOIN
 //------------------------------------------------------------------------------
 
-class JoinFixture : public chaos::test::Fixture
+class JoinFixture : public arc::test::Fixture
 {
 public:
 
     //----------------------------PUBLIC ATTRIBUTES-----------------------------
 
-    std::vector< std::vector< chaos::str::UTF8String > > components;
-    std::vector < chaos::str::UTF8String > separators;
-    std::vector < chaos::str::UTF8String > results;
+    std::vector< std::vector< arc::str::UTF8String > > components;
+    std::vector < arc::str::UTF8String > separators;
+    std::vector < arc::str::UTF8String > results;
 
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     virtual void setup()
     {
         {
-            std::vector< chaos::str::UTF8String > c;
+            std::vector< arc::str::UTF8String > c;
             c.push_back( "" );
             components.push_back( c );
             separators.push_back( "!" );
             results.push_back( "" );
         }
         {
-            std::vector< chaos::str::UTF8String > c;
+            std::vector< arc::str::UTF8String > c;
             c.push_back( "Hello" );
             components.push_back( c );
             separators.push_back( "test" );
             results.push_back( "Hello" );
         }
         {
-            std::vector< chaos::str::UTF8String > c;
+            std::vector< arc::str::UTF8String > c;
             c.push_back( "Hello" );
             c.push_back( "World" );
             components.push_back( c );
@@ -496,7 +496,7 @@ public:
             results.push_back( "Hello_World" );
         }
         {
-            std::vector< chaos::str::UTF8String > c;
+            std::vector< arc::str::UTF8String > c;
             c.push_back( "this" );
             c.push_back( "is" );
             c.push_back( "a" );
@@ -510,7 +510,7 @@ public:
             );
         }
         {
-            std::vector< chaos::str::UTF8String > c;
+            std::vector< arc::str::UTF8String > c;
             c.push_back( "γειά" );
             c.push_back( "σου" );
             c.push_back( "Κόσμε" );
@@ -519,7 +519,7 @@ public:
             results.push_back( "γειά σου Κόσμε" );
         }
         {
-            std::vector< chaos::str::UTF8String > c;
+            std::vector< arc::str::UTF8String > c;
             c.push_back( "this" );
             c.push_back( "is" );
             c.push_back( "a مزيج" );
@@ -531,15 +531,15 @@ public:
     }
 };
 
-CHAOS_TEST_UNIT_FIXTURE( join, JoinFixture )
+ARC_TEST_UNIT_FIXTURE( join, JoinFixture )
 {
     for ( std::size_t i = 0; i < fixture->components.size(); ++i )
     {
-        chaos::str::UTF8String s = chaos::str::join(
+        arc::str::UTF8String s = arc::str::join(
                 fixture->components[ i ],
                 fixture->separators[ i ]
         );
-        CHAOS_CHECK_EQUAL( s, fixture->results[ i ] );
+        ARC_CHECK_EQUAL( s, fixture->results[ i ] );
     }
 }
 
