@@ -1,20 +1,20 @@
-#include "chaoscore/base/Exceptions.hpp"
-#include "chaoscore/base/str/StringOperations.hpp"
+#include "arcanecore/base/Exceptions.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace str
 {
 
-bool is_digit(chaos::uint32 code_point)
+bool is_digit(arc::uint32 code_point)
 {
     return code_point >= 48 && code_point <= 57;
 }
 
-chaos::str::UTF8String utf16_to_utf8(
+arc::str::UTF8String utf16_to_utf8(
         const char* data,
         std::size_t byte_length,
-        chaos::data::Endianness endianness)
+        arc::data::Endianness endianness)
 {
     // ensure data is unsigned
     const unsigned char* d = reinterpret_cast<const unsigned char*>(data);
@@ -22,48 +22,48 @@ chaos::str::UTF8String utf16_to_utf8(
     std::vector<unsigned char> utf8;
     // iterate over each character
     for(size_t i = 0;
-        byte_length == chaos::str::npos || i < byte_length;
+        byte_length == arc::str::npos || i < byte_length;
         i += 2)
     {
-        chaos::uint32 code_point = 0;
-        if(endianness == chaos::data::ENDIAN_BIG)
+        arc::uint32 code_point = 0;
+        if(endianness == arc::data::ENDIAN_BIG)
         {
-            code_point = (static_cast<chaos::uint32>(d[i]) << 8) |
-                          static_cast<chaos::uint32>(d[i + 1]);
+            code_point = (static_cast<arc::uint32>(d[i]) << 8) |
+                          static_cast<arc::uint32>(d[i + 1]);
         }
         else
         {
-            code_point = static_cast<chaos::uint32>(d[i]) |
-                         (static_cast<chaos::uint32>(d[i + 1] << 8));
+            code_point = static_cast<arc::uint32>(d[i]) |
+                         (static_cast<arc::uint32>(d[i + 1] << 8));
         }
 
         // is this actually a 4-byte UTF-16 symbol, if so decode the code point
-        if(code_point >= chaos::str::UTF16_HIGH_SURROGATE_MIN &&
-           code_point <= chaos::str::UTF16_HIGH_SURROGATE_MAX    )
+        if(code_point >= arc::str::UTF16_HIGH_SURROGATE_MIN &&
+           code_point <= arc::str::UTF16_HIGH_SURROGATE_MAX    )
         {
-            chaos::uint32 high_surrogate = code_point;
-            chaos::uint32 low_surrogate = 0;
-            if(endianness == chaos::data::ENDIAN_BIG)
+            arc::uint32 high_surrogate = code_point;
+            arc::uint32 low_surrogate = 0;
+            if(endianness == arc::data::ENDIAN_BIG)
             {
-                low_surrogate = (static_cast<chaos::uint32>(d[i + 2]) << 8) |
-                                 static_cast<chaos::uint32>(d[i + 3]);
+                low_surrogate = (static_cast<arc::uint32>(d[i + 2]) << 8) |
+                                 static_cast<arc::uint32>(d[i + 3]);
             }
             else
             {
-                low_surrogate = static_cast<chaos::uint32>(d[i + 2]) |
-                               (static_cast<chaos::uint32>(d[i + 3] << 8));
+                low_surrogate = static_cast<arc::uint32>(d[i + 2]) |
+                               (static_cast<arc::uint32>(d[i + 3] << 8));
             }
             // decompose the surrogates
-            high_surrogate -= chaos::str::UTF16_HIGH_SURROGATE_MIN;
-            low_surrogate  -= chaos::str::UTF16_LOW_SURROGATE_MIN;
+            high_surrogate -= arc::str::UTF16_HIGH_SURROGATE_MIN;
+            low_surrogate  -= arc::str::UTF16_LOW_SURROGATE_MIN;
             code_point = (high_surrogate << 10) | low_surrogate;
-            code_point += chaos::str::UTF16_4BYTE_OFFSET;
+            code_point += arc::str::UTF16_4BYTE_OFFSET;
             // we passed an extra two bytes
             i += 2;
         }
 
         // null?
-        if(code_point == 0 && byte_length == chaos::str::npos)
+        if(code_point == 0 && byte_length == arc::str::npos)
         {
             break;
         }
@@ -114,36 +114,36 @@ chaos::str::UTF8String utf16_to_utf8(
         }
     }
 
-    return chaos::str::UTF8String((const char*) &utf8[0], utf8.size());
+    return arc::str::UTF8String((const char*) &utf8[0], utf8.size());
 }
 
 char* utf8_to_utf16(
-        const chaos::str::UTF8String& data,
+        const arc::str::UTF8String& data,
         std::size_t& r_length,
-        chaos::data::Endianness endianness,
+        arc::data::Endianness endianness,
         bool null_terminated)
 {
     std::vector<unsigned char> v_str;
     // convert
     for(std::size_t i = 0; i < data.get_length(); ++i)
     {
-        chaos::uint32 code_point = data.get_code_point(i);
+        arc::uint32 code_point = data.get_code_point(i);
         // if this is a 4 byte character apply the surrogate to the code point
         bool is_surrogate_pair = false;
-        if(code_point > chaos::str::UTF16_MAX_2BYTE)
+        if(code_point > arc::str::UTF16_MAX_2BYTE)
         {
             // StringOperations
             is_surrogate_pair = true;
-            code_point -= chaos::str::UTF16_4BYTE_OFFSET;
-            chaos::uint32 high_surrogate =
-                chaos::str::UTF16_HIGH_SURROGATE_MIN +
+            code_point -= arc::str::UTF16_4BYTE_OFFSET;
+            arc::uint32 high_surrogate =
+                arc::str::UTF16_HIGH_SURROGATE_MIN +
                 ((code_point >> 10) & 0x3FF);
-            chaos::uint32 low_surrogate =
-                chaos::str::UTF16_LOW_SURROGATE_MIN + (code_point & 0x3FF);
+            arc::uint32 low_surrogate =
+                arc::str::UTF16_LOW_SURROGATE_MIN + (code_point & 0x3FF);
             code_point = (high_surrogate << 16) | low_surrogate;
         }
 
-        if(endianness == chaos::data::ENDIAN_LITTLE)
+        if(endianness == arc::data::ENDIAN_LITTLE)
         {
             if(is_surrogate_pair)
             {
@@ -186,12 +186,12 @@ bool is_utf8(const char* data, std::size_t length)
 {
     // marks the number of bytes after a primary byte that are required to start
     // with 10xxxxxx
-    chaos::uint8 following_bytes = 0;
+    arc::uint8 following_bytes = 0;
     // iterate over the data
     for(std::size_t i = 0; i < length; ++i)
     {
         // check for null terminator
-        if(length == chaos::str::npos && data[i] == '\0')
+        if(length == arc::str::npos && data[i] == '\0')
         {
             return true;
         }
@@ -247,11 +247,11 @@ bool is_utf8(const char* data, std::size_t length)
     return true;
 }
 
-chaos::str::UTF8String join(
-        const std::vector<chaos::str::UTF8String>& components,
-        const chaos::str::UTF8String& seperator)
+arc::str::UTF8String join(
+        const std::vector<arc::str::UTF8String>& components,
+        const arc::str::UTF8String& seperator)
 {
-    chaos::str::UTF8String ret;
+    arc::str::UTF8String ret;
 
     for(std::size_t i = 0; i < components.size(); ++i)
     {
@@ -266,4 +266,4 @@ chaos::str::UTF8String join(
 }
 
 } // namespace str
-} // namespace chaos
+} // namespace arc

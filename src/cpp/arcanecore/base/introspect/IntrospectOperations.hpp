@@ -3,8 +3,8 @@
  * \brief Operations relating to code introspection.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_INTROSPECTOPERATIONS_HPP_
-#define CHAOSCORE_BASE_INTROSPECTOPERATIONS_HPP_
+#ifndef ARCANECORE_BASE_INTROSPECTOPERATIONS_HPP_
+#define ARCANECORE_BASE_INTROSPECTOPERATIONS_HPP_
 
 #include <typeinfo>
 
@@ -12,9 +12,9 @@
     #include <cxxabi.h>
 #endif
 
-#include "chaoscore/base/str/UTF8String.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace introspect
 {
@@ -25,7 +25,7 @@ namespace introspect
  * For example:
  *
  * \code
- * chaos::introspect::get_typename<int>();
+ * arc::introspect::get_typename<int>();
  * \endcode
  *
  * Would return "int".
@@ -34,11 +34,11 @@ namespace introspect
  *       across different compilers.
  */
 template<typename Type>
-chaos::str::UTF8String get_typename()
+arc::str::UTF8String get_typename()
 {
 #ifdef __GNUC__
 
-    chaos::str::UTF8String ret("TYPE UNKNOWN");
+    arc::str::UTF8String ret("TYPE UNKNOWN");
     int status;
     char* demangled_name =
         abi::__cxa_demangle(typeid(Type).name(), NULL, NULL, &status);
@@ -51,12 +51,12 @@ chaos::str::UTF8String get_typename()
 
 #else
 
-    return chaos::str::UTF8String(typeid(Type).name());
+    return arc::str::UTF8String(typeid(Type).name());
 
 #endif
 }
 
 } // namespace introspect
-} // namespace chaos
+} // namespace arc
 
 #endif

@@ -3,14 +3,14 @@
  * \brief Global constants relating to Unicode data.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_STR_STRINGCONSTANTS_HPP_
-#define CHAOSCORE_BASE_STR_STRINGCONSTANTS_HPP_
+#ifndef ARCANECORE_BASE_STR_STRINGCONSTANTS_HPP_
+#define ARCANECORE_BASE_STR_STRINGCONSTANTS_HPP_
 
 #include <cstddef>
 
-#include "chaoscore/base/Types.hpp"
+#include "arcanecore/base/Types.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace str
 {
@@ -67,27 +67,27 @@ extern const char UTF16BE_BOM[];
  * \brief The maximum code point that will be stored within 2 bytes when encoded
  *        using UTF-16.
  */
-extern const chaos::uint32 UTF16_MAX_2BYTE;
+extern const arc::uint32 UTF16_MAX_2BYTE;
 /*!
  * \brief Value to be subtracted from code points in order to produce the 20-bit
  *        number used to calculate the surrogate pairs of a 4-byte UTF-16
  *        encoded symbol.
  */
-extern const chaos::uint32 UTF16_4BYTE_OFFSET;
+extern const arc::uint32 UTF16_4BYTE_OFFSET;
 /*!
  * \brief The minimum value for a 4-byte encoded UTF-16 symbol's high surrogate.
  */
-extern const chaos::uint32 UTF16_HIGH_SURROGATE_MIN;
+extern const arc::uint32 UTF16_HIGH_SURROGATE_MIN;
 /*!
  * \brief The maximum value for a 4-byte encoded UTF-16 symbol's high surrogate.
  */
-extern const chaos::uint32 UTF16_HIGH_SURROGATE_MAX;
+extern const arc::uint32 UTF16_HIGH_SURROGATE_MAX;
 /*!
  * \brief The minimum value for a 4-byte encoded UTF-16 symbol's low surrogate.
  */
-extern const chaos::uint32 UTF16_LOW_SURROGATE_MIN;
+extern const arc::uint32 UTF16_LOW_SURROGATE_MIN;
 
 } // namespace str
-} // namespace chaos
+} // namespace arc
 
 #endif

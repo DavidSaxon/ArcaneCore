@@ -3,14 +3,14 @@
  * \brief Operations relating to string data.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_STR_STRINGOPERATIONS_HPP_
-#define CHAOSCORE_BASE_STR_STRINGOPERATIONS_HPP_
+#ifndef ARCANECORE_BASE_STR_STRINGOPERATIONS_HPP_
+#define ARCANECORE_BASE_STR_STRINGOPERATIONS_HPP_
 
-#include "chaoscore/base/Types.hpp"
-#include "chaoscore/base/data/BinaryOperations.hpp"
-#include "chaoscore/base/str/UTF8String.hpp"
+#include "arcanecore/base/Types.hpp"
+#include "arcanecore/base/data/BinaryOperations.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace str
 {
@@ -25,29 +25,29 @@ namespace str
  * Example usage:
  *
  * \code
- * chaos::str::UTF8String s("5");
- * chaos::str::is_digit(s.get_code_point(0)); // returns: true
+ * arc::str::UTF8String s("5");
+ * arc::str::is_digit(s.get_code_point(0)); // returns: true
  * \endcode
  *
  */
-bool is_digit(chaos::uint32 code_point);
+bool is_digit(arc::uint32 code_point);
 
 /*!
  * \brief Converts the given data stream of UTF-16 encoded text to new
- *        chaos::str::UTF8String.
+ *        arc::str::UTF8String.
  *
  * \param data UTF-16 string stored as 2-4 chars per symbol.
  * \param byte_length The number of bytes in the input data. If this parameter
- *                      is set to chaos::str::npos the length of the input will
+ *                      is set to arc::str::npos the length of the input will
  *                      be calculated with the assumption it is null terminated.
  */
-chaos::str::UTF8String utf16_to_utf8(
+arc::str::UTF8String utf16_to_utf8(
         const char* data,
         std::size_t byte_length,
-        chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE);
+        arc::data::Endianness endianness = arc::data::ENDIAN_LITTLE);
 
 /*!
- * \brief Converts the given chaos::str::UTF8String encoded data to a new c
+ * \brief Converts the given arc::str::UTF8String encoded data to a new c
  *        style string of UTF-16 encoded data.
  *
  * The resulting UTF-16 data will be null terminated with `0x00`, `0x00`.
@@ -65,9 +65,9 @@ chaos::str::UTF8String utf16_to_utf8(
  * \return Newly allocated UTF-16 encoded string.
  */
 char* utf8_to_utf16(
-        const chaos::str::UTF8String& data,
+        const arc::str::UTF8String& data,
         std::size_t& r_length,
-        chaos::data::Endianness endianness = chaos::data::ENDIAN_LITTLE,
+        arc::data::Endianness endianness = arc::data::ENDIAN_LITTLE,
         bool null_terminated = true);
 
 /*!
@@ -80,16 +80,16 @@ char* utf8_to_utf16(
  * - Three byte symbol: `1110xxxx 10xxxxxx 10xxxxxx`
  * - Four byte symbol: `11110xxx 10xxxxxx 10xxxxxx 10xxxxxx`
  *
- * \param length The length of that data provided, if set to chaos::str::npos
+ * \param length The length of that data provided, if set to arc::str::npos
  *        (default) it will be assumed that the character data ends with a null
  *        terminator.
  *
  * \return Whether the data is UTF-8 encoded.
  */
-bool is_utf8(const char* data, std::size_t length = chaos::str::npos);
+bool is_utf8(const char* data, std::size_t length = arc::str::npos);
 
 /*!
- * \brief Joins the given vector into a single chaos::str::UTF8String.
+ * \brief Joins the given vector into a single arc::str::UTF8String.
  *
  * The components of the vector will be concatenated together with the separator
  * string between each component.
@@ -97,22 +97,22 @@ bool is_utf8(const char* data, std::size_t length = chaos::str::npos);
  * Example usage:
  *
  * \code
- * std::vector<chaos::str::UTF8String> components;
+ * std::vector<arc::str::UTF8String> components;
  * components.push_back("Hello");
  * components.push_back("World");
- * chaos::str::join(components, "_"); returns: "Hello_World";
+ * arc::str::join(components, "_"); returns: "Hello_World";
  * \endcode
  *
  * \param components Vector of string components to join together as a single
  *                   string.
- * \param separator chaos::str::UTF8String to join each component together with.
- * \return New chaos::str::UTF8String containing the results of the operation.
+ * \param separator arc::str::UTF8String to join each component together with.
+ * \return New arc::str::UTF8String containing the results of the operation.
  */
-chaos::str::UTF8String join(
-        const std::vector<chaos::str::UTF8String>& components,
-        const chaos::str::UTF8String& separator);
+arc::str::UTF8String join(
+        const std::vector<arc::str::UTF8String>& components,
+        const arc::str::UTF8String& separator);
 
 } // namespace str
-} // namespace chaos
+} // namespace arc
 
 #endif

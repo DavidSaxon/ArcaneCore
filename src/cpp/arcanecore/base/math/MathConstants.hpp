@@ -3,12 +3,12 @@
  * \brief Global constants relating to math.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_MATH_MATHCONSTANTS_HPP_
-#define CHAOSCORE_BASE_MATH_MATHCONSTANTS_HPP_
+#ifndef ARCANECORE_BASE_MATH_MATHCONSTANTS_HPP_
+#define ARCANECORE_BASE_MATH_MATHCONSTANTS_HPP_
 
-#include "chaoscore/base/Types.hpp"
+#include "arcanecore/base/Types.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace math
 {
@@ -20,6 +20,6 @@ namespace math
 extern const float EPSILON;
 
 } // namespace math
-} // namespace chaos
+} // namespace arc
 
 #endif

@@ -2,12 +2,12 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_GFX_VECTOR3_HPP_
-#define CHAOSCORE_GFX_VECTOR3_HPP_
+#ifndef ARCANECORE_GFX_VECTOR3_HPP_
+#define ARCANECORE_GFX_VECTOR3_HPP_
 
-#include "chaoscore/base/str/UTF8String.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace gfx
 {
@@ -65,7 +65,7 @@ public:
      *
      * Creates a new Vector3 with the given x, y, and z component values.
      */
-    Vector3( float x, float y, float z );
+    Vector3(float x, float y, float z);
 
     /*!
      * \brief Scalar constructor.
@@ -73,14 +73,14 @@ public:
      * Creates a new Vector3 with the x, y, and z components initialised to the
      * given scalar.
      */
-    Vector3( float scalar );
+    Vector3(float scalar);
 
     /*!
      * \brief Copy constructor
      *
      * Creates a new copy of the given Vector3.
      */
-    Vector3( const Vector3& other );
+    Vector3(const Vector3& other);
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS
@@ -95,20 +95,20 @@ public:
      * \param other Vector3 to copy data from.
      * \return A reference to this Vector3 once the assignment has taken place.
      */
-    Vector3& operator=( const Vector3& other );
+    Vector3& operator=(const Vector3& other);
 
     /*!
      * \brief Equality operator.
      *
      * Compares whether this Vector3 and the other given Vector3 are considered
      * "equal". A comparison of the components of the vector is performed using
-     * chaos::math::float_equals using he default values for
+     * arc::math::float_equals using he default values for
      * ```delta_threshold``` and ```ulps_threshold```.
      *
      * \param other Vector3 to compare this vector against.
      * \return Whether the vectors are considered equal.
      */
-    bool operator==( const Vector3& other ) const;
+    bool operator==(const Vector3& other) const;
 
     /*!
      * \brief Inequality operator.
@@ -119,7 +119,7 @@ public:
      * \param other Vector3 to compare this vector against.
      * \return Whether the vectors are not considered equal.
      */
-    bool operator!=( const Vector3& other ) const;
+    bool operator!=(const Vector3& other) const;
 
     /*!
      * \brief Inverse operator.
@@ -135,7 +135,7 @@ public:
      * \param scalar The scalar to add to this Vector3.
      * \return A new Vector3 containing the results of the addition.
      */
-    Vector3 operator+( float scalar ) const;
+    Vector3 operator+(float scalar) const;
 
     /*!
      * \brief Scalar compound addition operator.
@@ -143,7 +143,7 @@ public:
      * \param scalar The scalar to add to this Vector3.
      * \return A reference to this Vector3 once the addition has taken place.
      */
-    Vector3& operator+=( float scalar );
+    Vector3& operator+=(float scalar);
 
     /*!
      * \brief Vector addition operator.
@@ -151,7 +151,7 @@ public:
      * \param other The other Vector3 to add to this Vector3
      * \return A new Vector3 containing the results of the addition.
      */
-    Vector3 operator+( const Vector3& other ) const;
+    Vector3 operator+(const Vector3& other) const;
 
     /*!
      * \brief Vector compound addition operator.
@@ -159,7 +159,7 @@ public:
      * \param other The other Vector3 to add to this Vector3.
      * \return A reference to this Vector3 once the addition has taken place.
      */
-    Vector3& operator+=( const Vector3& other );
+    Vector3& operator+=(const Vector3& other);
 
     /*!
      * \brief Scalar subtraction operator.
@@ -167,7 +167,7 @@ public:
      * \param scalar The scalar to subtract from this Vector3.
      * \return A new Vector3 containing the results of the subtraction.
      */
-    Vector3 operator-( float scalar ) const;
+    Vector3 operator-(float scalar) const;
 
     /*!
      * \brief Scalar compound subtraction operator.
@@ -175,7 +175,7 @@ public:
      * \param scalar The scalar to subtract from this Vector3.
      * \return A reference to this Vector3 once the subtraction has taken place.
      */
-    Vector3& operator-=( float scalar );
+    Vector3& operator-=(float scalar);
 
     /*!
      * \brief Vector subtraction operator.
@@ -183,7 +183,7 @@ public:
      * \param other The other Vector3 to subtract from this Vector3.
      * \return A new Vector3 containing the results of the subtraction.
      */
-    Vector3 operator-( const Vector3& other ) const;
+    Vector3 operator-(const Vector3& other) const;
 
     /*!
      * \brief Vector compound subtraction operator.
@@ -191,7 +191,7 @@ public:
      * \param other The other Vector3 to subtract from this Vector3.
      * \return A reference to this Vector3 once the subtraction has taken place.
      */
-    Vector3& operator-=( const Vector3& other );
+    Vector3& operator-=(const Vector3& other);
 
     /*!
      * \brief Scalar multiplication operator.
@@ -199,7 +199,7 @@ public:
      * \param scalar The scalar to multiply this Vector3 by.
      * \return A new vector containing the results of the multiplication.
      */
-    Vector3 operator*( float scalar ) const;
+    Vector3 operator*(float scalar) const;
 
     /*!
      * \brief Scalar compound multiplication operator.
@@ -208,7 +208,7 @@ public:
      * \return A reference to this Vector3 once the multiplication has taken
      *         place.
      */
-    Vector3& operator*=( float scalar );
+    Vector3& operator*=(float scalar);
 
     /*!
      * \brief Vector multiplication operator.
@@ -216,7 +216,7 @@ public:
      * \param other The other Vector3 to multiply this Vector3 by.
      * \return A new Vector3 containing the results of the multiplication.
      */
-    Vector3 operator*( const Vector3& other ) const;
+    Vector3 operator*(const Vector3& other) const;
 
     /*!
      * \brief Vector compound multiplication operator.
@@ -225,7 +225,7 @@ public:
      * \return A reference to this Vector3 once the multiplication has taken
      *         place.
      */
-    Vector3& operator*=( const Vector3& other );
+    Vector3& operator*=(const Vector3& other);
 
     /*!
      * \brief Scalar division operator.
@@ -233,7 +233,7 @@ public:
      * \param scalar The scalar to divide this Vector3 by.
      * \return A new Vector3 containing the results of the division.
      */
-    Vector3 operator/( float scalar ) const;
+    Vector3 operator/(float scalar) const;
 
     /*!
      * \brief Scalar compound division operator.
@@ -241,7 +241,7 @@ public:
      * \param scalar The scalar to divide this Vector3 by.
      * \return A reference to this Vector3 once the division has taken place.
      */
-    Vector3& operator/=( float scalar );
+    Vector3& operator/=(float scalar);
 
     /*!
      * \brief Vector division operator.
@@ -249,7 +249,7 @@ public:
      * \param other The other Vector3 to divide this Vector3 by.
      * \return A new Vector3 containing the results of the division.
      */
-    Vector3 operator/( const Vector3& other ) const;
+    Vector3 operator/(const Vector3& other) const;
 
     /*!
      * \brief Vector compound division operator.
@@ -258,7 +258,7 @@ public:
      * \return A reference to this Vector3 once the division has taken
      *         place.
      */
-    Vector3& operator/=( const Vector3& other );
+    Vector3& operator/=(const Vector3& other);
 
 };
 
@@ -266,13 +266,13 @@ public:
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-chaos::str::UTF8String& operator<<(
-        chaos::str::UTF8String& s,
-        const Vector3& v );
+arc::str::UTF8String& operator<<(
+        arc::str::UTF8String& s,
+        const Vector3& v);
 
-std::ostream& operator<<( std::ostream& stream, const Vector3& v );
+std::ostream& operator<<(std::ostream& stream, const Vector3& v);
 
 } // namespace gfx
-} // namespace chaos
+} // namespace arc
 
 #endif

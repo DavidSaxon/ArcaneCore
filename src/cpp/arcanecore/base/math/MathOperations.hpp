@@ -3,14 +3,14 @@
  * \brief Operations relating to math.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_BASE_MATHOPERATIONS_HPP_
-#define CHAOSCORE_BASE_MATHOPERATIONS_HPP_
+#ifndef ARCANECORE_BASE_MATHOPERATIONS_HPP_
+#define ARCANECORE_BASE_MATHOPERATIONS_HPP_
 
 #include <cfloat>
 
-#include "chaoscore/base/math/MathConstants.hpp"
+#include "arcanecore/base/math/MathConstants.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace math
 {
@@ -49,9 +49,9 @@ bool float_equals(
         float a,
         float b,
         float delta_threshold = FLT_EPSILON,
-        chaos::uint32 ulps_threshold = 8 );
+        arc::uint32 ulps_threshold = 8);
 
 } // namespace math
-} // namespace chaos
+} // namespace arc
 
 #endif

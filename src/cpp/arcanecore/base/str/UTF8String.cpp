@@ -3,12 +3,12 @@
 #include <cstring>
 #include <sstream>
 
-#include "chaoscore/base/Exceptions.hpp"
-#include "chaoscore/base/data/ByteOperations.hpp"
-#include "chaoscore/base/str/UTF8String.hpp"
-#include "chaoscore/base/str/StringOperations.hpp"
+#include "arcanecore/base/Exceptions.hpp"
+#include "arcanecore/base/data/ByteOperations.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace str
 {
@@ -149,8 +149,8 @@ bool UTF8String::operator<( const UTF8String& other ) const
     {
         // do a straight comparison on each code point until we find a character
         // that is less than
-        chaos::uint32 a = get_code_point( i );
-        chaos::uint32 b = other.get_code_point( i );
+        arc::uint32 a = get_code_point( i );
+        arc::uint32 b = other.get_code_point( i );
         if ( a < b )
         {
             return true;
@@ -174,12 +174,12 @@ UTF8String& UTF8String::operator+=( const UTF8String& other )
     return this->concatenate( other );
 }
 
-UTF8String UTF8String::operator*( chaos::uint32 count ) const
+UTF8String UTF8String::operator*( arc::uint32 count ) const
 {
     return UTF8String( *this ).repeat( count );
 }
 
-UTF8String& UTF8String::operator*=( chaos::uint32 count )
+UTF8String& UTF8String::operator*=( arc::uint32 count )
 {
     return this->repeat( count );
 }
@@ -216,7 +216,7 @@ UTF8String& UTF8String::operator<<( char other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-#ifdef CHAOS_OS_WINDOWS
+#ifdef ARC_OS_WINDOWS
 
 UTF8String& UTF8String::operator<<( unsigned long other )
 {
@@ -227,8 +227,9 @@ UTF8String& UTF8String::operator<<( unsigned long other )
 }
 
 #endif
+// ARC_OS_WINDOWS
 
-UTF8String& UTF8String::operator<<( chaos::int8 other )
+UTF8String& UTF8String::operator<<( arc::int8 other )
 {
     // TODO: if over 128 cast to int to avoid encoding errors?
     // TODO: implement correctly
@@ -237,7 +238,7 @@ UTF8String& UTF8String::operator<<( chaos::int8 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::uint8 other )
+UTF8String& UTF8String::operator<<( arc::uint8 other )
 {
     // TODO: if over 128 cast to int to avoid encoding errors?
     // TODO: implement correctly
@@ -246,7 +247,7 @@ UTF8String& UTF8String::operator<<( chaos::uint8 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::int16 other )
+UTF8String& UTF8String::operator<<( arc::int16 other )
 {
     // TODO: implement correctly
     std::stringstream ss;
@@ -254,7 +255,7 @@ UTF8String& UTF8String::operator<<( chaos::int16 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::uint16 other )
+UTF8String& UTF8String::operator<<( arc::uint16 other )
 {
     // TODO: implement correctly
     std::stringstream ss;
@@ -262,7 +263,7 @@ UTF8String& UTF8String::operator<<( chaos::uint16 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::int32 other )
+UTF8String& UTF8String::operator<<( arc::int32 other )
 {
     // TODO: implement correctly
     std::stringstream ss;
@@ -270,7 +271,7 @@ UTF8String& UTF8String::operator<<( chaos::int32 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::uint32 other )
+UTF8String& UTF8String::operator<<( arc::uint32 other )
 {
     // TODO: implement correctly
     std::stringstream ss;
@@ -278,7 +279,7 @@ UTF8String& UTF8String::operator<<( chaos::uint32 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::int64 other )
+UTF8String& UTF8String::operator<<( arc::int64 other )
 {
     // TODO: implement correctly
     std::stringstream ss;
@@ -286,7 +287,7 @@ UTF8String& UTF8String::operator<<( chaos::int64 other )
     return this->concatenate( UTF8String( ss.str().c_str() ) );
 }
 
-UTF8String& UTF8String::operator<<( chaos::uint64 other )
+UTF8String& UTF8String::operator<<( arc::uint64 other )
 {
     // TODO: implement correctly
     std::stringstream ss;
@@ -361,7 +362,7 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
     return *this;
 }
 
-UTF8String& UTF8String::repeat( chaos::uint32 count )
+UTF8String& UTF8String::repeat( arc::uint32 count )
 {
     std::size_t c_length = m_data_length - 1;
     // calculate the new length
@@ -430,7 +431,7 @@ std::size_t UTF8String::find_first( const UTF8String& substring ) const
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
     {
-        return chaos::str::npos;
+        return arc::str::npos;
     }
     // check against each character
     for( std::size_t i = 0; i < m_length - ( substring.m_length - 1 ); ++i )
@@ -451,7 +452,7 @@ std::size_t UTF8String::find_first( const UTF8String& substring ) const
             return i;
         }
     }
-    return chaos::str::npos;
+    return arc::str::npos;
 }
 
 std::size_t UTF8String::find_last( const UTF8String& substring ) const
@@ -459,11 +460,11 @@ std::size_t UTF8String::find_last( const UTF8String& substring ) const
     // the substring must be shorter than the actual string
     if ( substring.m_length > m_length )
     {
-        return chaos::str::npos;
+        return arc::str::npos;
     }
     // check against each character
     for( std::size_t i = m_length - substring.m_length;
-         i != chaos::str::npos;
+         i != arc::str::npos;
          --i )
     {
         // check that each symbol matches
@@ -481,7 +482,7 @@ std::size_t UTF8String::find_last( const UTF8String& substring ) const
             return i;
         }
     }
-    return chaos::str::npos;
+    return arc::str::npos;
 }
 
 std::vector< UTF8String > UTF8String::split(
@@ -490,7 +491,7 @@ std::vector< UTF8String > UTF8String::split(
     // check the delimiter
     if ( delimiter.is_empty() )
     {
-        throw chaos::ex::ValueError( "Provided delimiter is empty." );
+        throw arc::ex::ValueError( "Provided delimiter is empty." );
     }
 
     // create the vector to return
@@ -537,7 +538,7 @@ void UTF8String::remove_duplicates( const UTF8String& substring )
     UTF8String output;
 
     std::size_t i = input.find_first( substring );
-    while( i != chaos::str::npos )
+    while( i != arc::str::npos )
     {
         // add up to and including the substring
         output << input.substring(
@@ -569,17 +570,17 @@ bool UTF8String::is_int() const
     // iterate over each code point and ensure that it's a digit
     for ( std::size_t i = 0; i < m_length; ++i )
     {
-        chaos::uint32 code_point = get_code_point( i );
+        arc::uint32 code_point = get_code_point( i );
 
         // the first symbol is allowed to be '-'
         if ( i == 0                                  &&
             get_symbol( i ) != "-"                   &&
-            !chaos::str::is_digit( code_point )    )
+            !arc::str::is_digit( code_point )    )
         {
             return false;
         }
         // every other character must be a digit
-        else if ( i != 0 && !chaos::str::is_digit( code_point ) )
+        else if ( i != 0 && !arc::str::is_digit( code_point ) )
         {
             return false;
         }
@@ -593,7 +594,7 @@ bool UTF8String::is_uint() const
     // iterate of each code point and ensure that it's a digit
     for ( std::size_t i = 0; i < m_length; ++i )
     {
-        if ( !chaos::str::is_digit( get_symbol_value( i ) ) )
+        if ( !arc::str::is_digit( get_symbol_value( i ) ) )
         {
             // not a digit
             return false;
@@ -609,9 +610,9 @@ bool UTF8String::is_float() const
     // iterate of each code point
     for ( std::size_t i = 0; i < m_length; ++i )
     {
-        chaos::uint32 code_point = get_symbol_value( i );
+        arc::uint32 code_point = get_symbol_value( i );
 
-        if ( !chaos::str::is_digit( code_point ) )
+        if ( !arc::str::is_digit( code_point ) )
         {
             if ( i == 0 && get_symbol( i ) == "-" )
             {
@@ -668,7 +669,7 @@ bool UTF8String::to_bool() const
         UTF8String error_message;
         error_message << "Cannot convert: \'" << *this << " to bool as it is "
                       << "not valid.";
-        throw chaos::ex::ConversionDataError( error_message );
+        throw arc::ex::ConversionDataError( error_message );
     }
     // do conversion and return
     for ( std::size_t i = 0; i < get_length(); ++i )
@@ -681,7 +682,7 @@ bool UTF8String::to_bool() const
     return false;
 }
 
-chaos::int32 UTF8String::to_int32() const
+arc::int32 UTF8String::to_int32() const
 {
     // is the conversion valid?
     if ( !is_int() )
@@ -689,13 +690,13 @@ chaos::int32 UTF8String::to_int32() const
         UTF8String error_message;
         error_message << "Cannot convert: \'" << *this << " to int32 as it is "
                       << "not valid.";
-        throw chaos::ex::ConversionDataError( error_message );
+        throw arc::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::int32 >( std::strtol( get_raw(), NULL, 0 ) );
+    return static_cast< arc::int32 >( std::strtol( get_raw(), NULL, 0 ) );
 }
 
-chaos::uint32 UTF8String::to_uint32() const
+arc::uint32 UTF8String::to_uint32() const
 {
     // is the conversion valid?
     if ( !is_uint() )
@@ -703,13 +704,13 @@ chaos::uint32 UTF8String::to_uint32() const
         UTF8String error_message;
         error_message << "Cannot convert: \'" << *this << " to uint32 as it is "
                       << "not valid.";
-        throw chaos::ex::ConversionDataError( error_message );
+        throw arc::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::uint32 >( strtoul( get_raw(), NULL, 0 ) );
+    return static_cast< arc::uint32 >( strtoul( get_raw(), NULL, 0 ) );
 }
 
-chaos::int64 UTF8String::to_int64() const
+arc::int64 UTF8String::to_int64() const
 {
     // is the conversion valid?
     if ( !is_int() )
@@ -717,13 +718,13 @@ chaos::int64 UTF8String::to_int64() const
         UTF8String error_message;
         error_message << "Cannot convert: \'" << *this << " to int64 as it is "
                       << "not valid.";
-        throw chaos::ex::ConversionDataError( error_message );
+        throw arc::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::int64 >( std::strtol( get_raw(), NULL, 0 ) );
+    return static_cast< arc::int64 >( std::strtol( get_raw(), NULL, 0 ) );
 }
 
-chaos::int64 UTF8String::to_uint64() const
+arc::int64 UTF8String::to_uint64() const
 {
     // is the conversion valid?
     if ( !is_uint() )
@@ -731,10 +732,10 @@ chaos::int64 UTF8String::to_uint64() const
         UTF8String error_message;
         error_message << "Cannot convert: \'" << *this << " to uint64 as it is "
                       << "not valid.";
-        throw chaos::ex::ConversionDataError( error_message );
+        throw arc::ex::ConversionDataError( error_message );
     }
     // do and return conversion
-    return static_cast< chaos::uint64 >(
+    return static_cast< arc::uint64 >(
             std::strtoul( get_raw(), NULL, 0 ) );
 }
 
@@ -764,7 +765,7 @@ UTF8String UTF8String::get_symbol( std::size_t index ) const
     return UTF8String( &m_data[ byte_index ], byte_width );
 }
 
-chaos::uint32 UTF8String::get_symbol_value( std::size_t index ) const
+arc::uint32 UTF8String::get_symbol_value( std::size_t index ) const
 {
     // is the index valid?
     check_symbol_index( index );
@@ -773,17 +774,17 @@ chaos::uint32 UTF8String::get_symbol_value( std::size_t index ) const
     std::size_t byte_index = get_byte_index_for_symbol_index( index );
     std::size_t byte_width = get_byte_width( byte_index );
 
-    return chaos::data::bytes_to_uint32( &m_data[ byte_index ], byte_width );
+    return arc::data::bytes_to_uint32( &m_data[ byte_index ], byte_width );
 }
 
-chaos::uint32 UTF8String::get_code_point( std::size_t index ) const
+arc::uint32 UTF8String::get_code_point( std::size_t index ) const
 {
     // is the index valid?
     check_symbol_index( index );
 
     // get the width so we know how to convert
     std::size_t width = get_symbol_width( index );
-    chaos::uint32 value = get_symbol_value( index );
+    arc::uint32 value = get_symbol_value( index );
 
     if ( width == 1 )
     {
@@ -835,7 +836,7 @@ std::size_t UTF8String::get_byte_index_for_symbol_index(
     }
 
     // something broke
-    return chaos::str::npos;
+    return arc::str::npos;
 }
 
 std::size_t UTF8String::get_symbol_width(std::size_t index) const
@@ -891,7 +892,7 @@ std::size_t UTF8String::get_symbol_index_for_byte_index(
     }
 
     // something broke
-    return chaos::str::npos;
+    return arc::str::npos;
 }
 
 std::size_t UTF8String::get_byte_width(std::size_t byte_index) const
@@ -954,7 +955,7 @@ void UTF8String::assign_internal(
 
     // get number ofa bytes in the data
     bool is_null_terminated = true;
-    if ( existing_length == chaos::str::npos )
+    if ( existing_length == arc::str::npos )
     {
         // the length includes the NULL terminator
         existing_length = strlen( data ) + 1;
@@ -1000,7 +1001,7 @@ void UTF8String::check_symbol_index( std::size_t index ) const
         UTF8String error_message;
         error_message << "Provided index: " << index << " is greater or equal "
                       << "to the number of symbols in the string: " << m_length;
-        throw chaos::ex::IndexOutOfBoundsError( error_message );
+        throw arc::ex::IndexOutOfBoundsError( error_message );
     }
 }
 
@@ -1012,7 +1013,7 @@ void UTF8String::check_byte_index( std::size_t index ) const
         error_message << "Provided index: " << index << " is greater or equal "
                       << "to the number of bytes in the string: "
                       << m_data_length;
-        throw chaos::ex::IndexOutOfBoundsError( error_message );
+        throw arc::ex::IndexOutOfBoundsError( error_message );
     }
 }
 
@@ -1043,10 +1044,10 @@ void UTF8String::process_raw()
     std::size_t last_byte = 0;
     std::size_t last_symbol = 0;
     // the number of bytes in the current symbol
-    chaos::uint16 current_width = 0;
+    arc::uint16 current_width = 0;
     // marks the number of bytes after a primary byte that are required to start
     // with 10xxxxxx, needed for checking validity
-    chaos::uint8 following_bytes = 0;
+    arc::uint8 following_bytes = 0;
     // iterate over each bytes
     for(std::size_t i = 0; i < char_count; ++i)
     {
@@ -1062,13 +1063,13 @@ void UTF8String::process_raw()
             }
             else
             {
-                chaos::str::UTF8String error_message;
+                arc::str::UTF8String error_message;
                 error_message << "Error while reading byte: \'" << m_data[i]
                               << "\' following symbol at byte: " << last_byte
                               << " and symbol index: " << last_symbol << ". "
                               << "Expected symbol to consist of "
                               << current_width << " bytes.";
-                throw chaos::ex::EncodingError(error_message);
+                throw arc::ex::EncodingError(error_message);
             }
         }
 
@@ -1103,15 +1104,15 @@ void UTF8String::process_raw()
         }
         else
         {
-            chaos::str::UTF8String error_message;
+            arc::str::UTF8String error_message;
             error_message << "Error while reading first byte: \'"
-                          << static_cast<chaos::int32>(m_data[i])
+                          << static_cast<arc::int32>(m_data[i])
                           << "\' of symbol at byte: " << last_byte << " and "
                           << "symbol index: " << last_symbol << ". Expected "
                           << "byte to match one of the following binary "
                           << "patterns: 0xxxxxxx, 110xxxxx, 1110xxxx, or "
                           << "11110xxx.";
-            throw chaos::ex::EncodingError(error_message);
+            throw arc::ex::EncodingError(error_message);
         }
 
         // update the current symbol
@@ -1138,7 +1139,7 @@ void UTF8String::process_raw()
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-std::ostream& operator<<( std::ostream& stream, const UTF8String& s )
+std::ostream& operator<<(std::ostream& stream, const UTF8String& s)
 {
     // TODO: proper printing
     stream << s.get_raw();
@@ -1146,4 +1147,4 @@ std::ostream& operator<<( std::ostream& stream, const UTF8String& s )
 }
 
 } // namespace str
-} // namespace chaos
+} // namespace arc

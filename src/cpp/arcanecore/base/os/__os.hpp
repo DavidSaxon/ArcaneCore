@@ -1,7 +1,7 @@
-#ifndef CHAOSCORE_BASE_OS_HPP_
-#define CHAOSCORE_BASE_OS_HPP_
+#ifndef ARCANE_BASE_OS_HPP_
+#define ARCANE_BASE_OS_HPP_
 
-namespace chaos
+namespace arc
 {
 
 /*!
@@ -11,6 +11,6 @@ namespace os
 {
 } // namespace os
 
-} // namespace chaos
+} // namespace arc
 
 #endif

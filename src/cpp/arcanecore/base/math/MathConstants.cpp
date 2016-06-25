@@ -1,6 +1,6 @@
-#include "chaoscore/base/math/MathConstants.hpp"
+#include "arcanecore/base/math/MathConstants.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace math
 {
@@ -8,4 +8,4 @@ namespace math
 extern const float EPSILON = 0.000001F;
 
 } // namespace math
-} // namespace chaos
+} // namespace arc

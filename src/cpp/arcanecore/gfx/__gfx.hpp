@@ -1,7 +1,7 @@
-#ifndef CHAOSCORE_GFX_HPP_
-#define CHAOSCORE_GFX_HPP_
+#ifndef ARCANECORE_GFX_HPP_
+#define ARCANECORE_GFX_HPP_
 
-namespace chaos
+namespace arc
 {
 
 /*!
@@ -11,6 +11,6 @@ namespace gfx
 {
 } // namespace gfx
 
-} // namespace chaos
+} // namespace arc
 
 #endif

@@ -1,20 +1,20 @@
-#include "chaoscore/base/os/OSOperations.hpp"
+#include "arcanecore/base/os/OSOperations.hpp"
 
-#ifdef CHAOS_OS_UNIX
+#ifdef ARC_OS_UNIX
 
     #include <cstring>
     #include <cerrno>
 
-#elif defined( CHAOS_OS_WINDOWS )
+#elif defined(ARC_OS_WINDOWS)
 
     #include <windows.h>
 
 #endif
 
-#include "chaoscore/base/Exceptions.hpp"
-#include "chaoscore/base/str/StringOperations.hpp"
+#include "arcanecore/base/Exceptions.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace os
 {
@@ -23,37 +23,37 @@ namespace os
  * \brief Gets the last system error message.
  *
  * This should be used after platform specific call that has failed. The related
- * error message will attempt to be retrieved as an chaos::str::UTF8String.
+ * error message will attempt to be retrieved as an arc::str::UTF8String.
  */
-chaos::str::UTF8String get_last_system_error_message()
+arc::str::UTF8String get_last_system_error_message()
 {
-#ifdef CHAOS_OS_UNIX
+#ifdef ARC_OS_UNIX
 
-    return chaos::str::UTF8String( strerror( errno ) );
+    return arc::str::UTF8String(strerror(errno));
 
-#elif defined( CHAOS_OS_WINDOWS )
+#elif defined(ARC_OS_WINDOWS)
 
-    wchar_t error_message[ 512 ];
+    wchar_t error_message[512];
     FormatMessageW(
             FORMAT_MESSAGE_FROM_SYSTEM,
             NULL,
             GetLastError(),
-            MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ),
+            MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
             error_message,
             512,
             NULL
     );
 
-    return chaos::str::UTF8String(
-            chaos::str::utf16_to_utf8(
-                    ( const char* ) error_message,
-                    chaos::str::npos
+    return arc::str::UTF8String(
+            arc::str::utf16_to_utf8(
+                    (const char*) error_message,
+                    arc::str::npos
             )
     );
 
 #else
 
-    throw chaos::ex::NotImplementedError(
+    throw arc::ex::NotImplementedError(
             "get_last_system_error_message has not yet been implemented for "
             "this platform"
     );
@@ -62,4 +62,4 @@ chaos::str::UTF8String get_last_system_error_message()
 }
 
 } // namespace os
-} // namespace chaos
+} // namespace arc

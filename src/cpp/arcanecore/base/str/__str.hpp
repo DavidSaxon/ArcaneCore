@@ -1,7 +1,7 @@
-#ifndef CHAOSCORE_BASE_STR_HPP_
-#define CHAOSCORE_BASE_STR_HPP_
+#ifndef ARCANECORE_BASE_STR_HPP_
+#define ARCANECORE_BASE_STR_HPP_
 
-namespace chaos
+namespace arc
 {
 
 /*!
@@ -11,6 +11,6 @@ namespace str
 {
 } // namespace str
 
-} // namespace chaos
+} // namespace arc
 
 #endif
