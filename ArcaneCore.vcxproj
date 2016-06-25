@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Base_lib|Win32">
+      <Configuration>Base_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="GFX_lib|Win32">
+      <Configuration>GFX_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="IO_lib|Win32">
+      <Configuration>IO_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="tests|Win32">
+      <Configuration>tests</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Test_lib|Win32">
+      <Configuration>Test_lib</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Base_lib'">
+    <ClCompile Include="src\cpp\arcanecore\base\clock\ClockOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\data\BinaryOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\data\BitwiseFloat.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\data\ByteOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\math\MathConstants.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\math\MathOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\os\OSOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\str\StringConstants.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\str\StringOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\str\UTF8String.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='IO_lib'">
+    <ClCompile Include="src/cpp/arcanecore/io/format/ANSI.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/io/format/FormatOperations.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/io/sys/FileHandle.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/io/sys/FileReader.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/io/sys/FileSystemOperations.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/io/sys/FileWriter.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/io/sys/Path.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='GFX_lib'">
+    <ClCompile Include="src/cpp/arcanecore/gfx/Vector2.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/gfx/Vector3.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/gfx/Vector4.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/gfx/VectorOperations.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Test_lib'">
+    <ClCompile Include="src/cpp/arcanecore/test/ArcTest.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/ArcTestMain.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/TestLogger.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/log_formatter/AbstractTestLogFormatter.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/log_formatter/HTMLTestLogFormatter.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/log_formatter/PlainTestLogFormatter.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/log_formatter/PrettyTestLogFormatter.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/test/log_formatter/XMLTestLogFormatter.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='tests'">
+    <ClCompile Include="tests/cpp/TestsMain.cpp" />
+    <ClCompile Include="tests/cpp/base/PreProc_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/Types_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/data/BitwiseFloat_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/data/ByteOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/introspect/IntrospectOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/math/MathOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/str/UTF8String_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/str/StringOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/io/format/FormatOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/io/sys/FileHandle_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/io/sys/FileReader_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/io/sys/Path_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/Vector2_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/Vector3_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/Vector4_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/VectorOperations_TestSuite.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7C254EB9-DDDB-4418-B5C9-1CB0431C4472}</ProjectGuid>
+    <RootNamespace>ArcaneCore</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tests|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='tests|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_base</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='tests|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>tests</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_gfx</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_io</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_test</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='tests|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Users\David\AppData\Local\Programs\Python\Python35-32\include;D:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Users\David\AppData\Local\Programs\Python\Python35-32\libs;D:\Dropbox\Development\ArcaneCore\ArcaneCore\build\win_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>arcanecore_test.lib;arcanecore_io.lib;arcanecore_base.lib;arcanecore_gfx.lib;python35.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
