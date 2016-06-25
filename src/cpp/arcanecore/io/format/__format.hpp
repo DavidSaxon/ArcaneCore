@@ -1,7 +1,7 @@
-#ifndef CHAOSCORE_IO_FORMAT_HPP_
-#define CHAOSCORE_IO_FORMAT_HPP_
+#ifndef ARCANECORE_IO_FORMAT_HPP_
+#define ARCANECORE_IO_FORMAT_HPP_
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -14,6 +14,6 @@ namespace format
 } // namespace format
 
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif

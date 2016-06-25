@@ -1,6 +1,6 @@
-#include "chaoscore/test/log_formatter/AbstractTestLogFormatter.hpp"
+#include "arcanecore/test/log_formatter/AbstractTestLogFormatter.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
@@ -12,11 +12,11 @@ namespace log_formatter
 //------------------------------------------------------------------------------
 
 AbstractTestLogFormatter::AbstractTestLogFormatter(
-        chaos::uint16  verbosity,
-        std::ostream* stream )
+        arc::uint16 verbosity,
+        std::ostream* stream)
     :
-    m_verbosity( verbosity ),
-    m_stream   ( stream )
+    m_verbosity(verbosity),
+    m_stream   (stream)
 {
 }
 
@@ -25,28 +25,28 @@ AbstractTestLogFormatter::AbstractTestLogFormatter(
 //------------------------------------------------------------------------------
 
 void AbstractTestLogFormatter::add_occurrence(
-        const chaos::str::UTF8String& entry )
+        const arc::str::UTF8String& entry)
 {
     // is there no occurrence yet?
-    if ( m_occurrence_map.find( entry ) == m_occurrence_map.end() )
+    if(m_occurrence_map.find(entry) == m_occurrence_map.end())
     {
-        m_occurrence_map[ entry ] = 1;
-        m_occurrence_order.push_back( entry );
+        m_occurrence_map[entry] = 1;
+        m_occurrence_order.push_back(entry);
     }
     else
     {
-        ++m_occurrence_map[ entry ];
+        ++m_occurrence_map[entry];
     }
 
     // check against the previous occurrence
-    if ( !m_occurrences.empty() && m_occurrences.back().entry == entry )
+    if(!m_occurrences.empty() && m_occurrences.back().entry == entry)
     {
         // update the current occurrence
         ++m_occurrences.back().count;
     }
     else
     {
-        m_occurrences.push_back( LogOccurence() );
+        m_occurrences.push_back(LogOccurence());
         m_occurrences.back().entry = entry;
         m_occurrences.back().count = 1;
     }
@@ -54,4 +54,4 @@ void AbstractTestLogFormatter::add_occurrence(
 
 } // namespace log_formatter
 } // namespace test
-} // namespace chaos
+} // namespace arc

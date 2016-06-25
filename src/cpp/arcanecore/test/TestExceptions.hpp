@@ -2,17 +2,17 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_TEST_EXCEPTIONS_HPP_
-#define CHAOSCORE_TEST_EXCEPTIONS_HPP_
+#ifndef ARCANECORE_TEST_EXCEPTIONS_HPP_
+#define ARCANECORE_TEST_EXCEPTIONS_HPP_
 
-#include "chaoscore/base/Exceptions.hpp"
+#include "arcanecore/base/Exceptions.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
 /*!
- * \brief Exceptions relating to ChaosCore's testing module.
+ * \brief Exceptions relating to ArcaneCore's testing module.
  */
 namespace ex
 {
@@ -21,15 +21,15 @@ namespace ex
  * \brief Abstract base exception that warns of an unexpected error during
  *        testing procedures.
  */
-class TestError : public chaos::ex::ChaosException
+class TestError : public arc::ex::ArcException
 {
 protected:
 
     TestError(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& message)
+        const arc::str::UTF8String& type,
+        const arc::str::UTF8String& message)
         :
-        ChaosException(type, message)
+        ArcException(type, message)
     {
     }
 };
@@ -41,7 +41,7 @@ class TestDeclerationError : public TestError
 {
 public:
 
-    TestDeclerationError(const chaos::str::UTF8String& message)
+    TestDeclerationError(const arc::str::UTF8String& message)
         :
         TestError("TestDeclerationError", message)
     {
@@ -55,7 +55,7 @@ class TestRuntimeError : public TestError
 {
 public:
 
-    TestRuntimeError(const chaos::str::UTF8String& message)
+    TestRuntimeError(const arc::str::UTF8String& message)
         :
         TestError("TestRuntimeError", message)
     {
@@ -69,7 +69,7 @@ class InvalidPathError : public TestError
 {
 public:
 
-    InvalidPathError(const chaos::str::UTF8String& message)
+    InvalidPathError(const arc::str::UTF8String& message)
         :
         TestError("InvalidPathError", message)
     {
@@ -78,6 +78,6 @@ public:
 
 } // namespace ex
 } // namespace test
-} // namespace chaos
+} // namespace arc
 
 #endif

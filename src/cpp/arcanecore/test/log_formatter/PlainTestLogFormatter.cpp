@@ -1,8 +1,8 @@
-#include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"
+#include "arcanecore/test/log_formatter/PlainTestLogFormatter.hpp"
 
 #include <ostream>
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
@@ -14,9 +14,9 @@ namespace log_formatter
 //------------------------------------------------------------------------------
 
 PlainTestLogFormatter::PlainTestLogFormatter(
-        chaos::uint16 verbosity, std::ostream* stream )
+        arc::uint16 verbosity, std::ostream* stream)
     :
-    AbstractTestLogFormatter( verbosity, stream )
+    AbstractTestLogFormatter(verbosity, stream)
 {
 }
 
@@ -30,18 +30,18 @@ void PlainTestLogFormatter::open_log()
 }
 
 void PlainTestLogFormatter::close_log(
-        chaos::int32  units_passed,
-        chaos::int32  units_failed,
-        chaos::int32  units_errored,
-        chaos::uint64 checks_passed,
-        chaos::uint64 checks_failed )
+        arc::int32  units_passed,
+        arc::int32  units_failed,
+        arc::int32  units_errored,
+        arc::uint64 checks_passed,
+        arc::uint64 checks_failed)
 {
     // do nothing for plain text
 }
 
 void PlainTestLogFormatter::open_test(
-        const chaos::str::UTF8String& path,
-        const chaos::str::UTF8String& id )
+        const arc::str::UTF8String& path,
+        const arc::str::UTF8String& id)
 {
     // TODO:
 }
@@ -51,41 +51,41 @@ void PlainTestLogFormatter::close_test()
     // TODO:
 }
 
-void PlainTestLogFormatter::report_crash( const chaos::str::UTF8String& info )
+void PlainTestLogFormatter::report_crash(const arc::str::UTF8String& info)
 {
     // TODO:
 }
 
 void PlainTestLogFormatter::report_check_pass(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
-              chaos::int32            line )
+        const arc::str::UTF8String& type,
+        const arc::str::UTF8String& file,
+        arc::int32 line)
 {
     // TODO:
 }
 
 void PlainTestLogFormatter::report_check_fail(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
-              chaos::int32            line,
-        const chaos::str::UTF8String& message )
+        const arc::str::UTF8String& type,
+        const arc::str::UTF8String& file,
+        arc::int32 line,
+        const arc::str::UTF8String& message)
 {
     // TODO:
 }
 
 void PlainTestLogFormatter::write_message(
-        const chaos::str::UTF8String& message )
+        const arc::str::UTF8String& message)
 {
     // TODO:
 }
 
 void PlainTestLogFormatter::finialise_test_report(
-        chaos::uint64 checks_passed,
-        chaos::uint64 checks_failed )
+        arc::uint64 checks_passed,
+        arc::uint64 checks_failed)
 {
     // TODO:
 }
 
 } // namespace log_formatter
 } // namespace test
-} // namespace chaos
+} // namespace arc

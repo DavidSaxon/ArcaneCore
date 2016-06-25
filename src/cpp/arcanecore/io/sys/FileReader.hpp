@@ -2,16 +2,16 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_IO_SYS_FILEREADER_HPP_
-#define CHAOSCORE_IO_SYS_FILEREADER_HPP_
+#ifndef ARCANECORE_IO_SYS_FILEREADER_HPP_
+#define ARCANECORE_IO_SYS_FILEREADER_HPP_
 
 #include <memory>
 
-#include "chaoscore/io/sys/FileHandle.hpp"
+#include "arcanecore/io/sys/FileHandle.hpp"
 
 class ifstream;
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -27,11 +27,11 @@ struct NewlineChecker;
 /*!
  * \brief Used for reading the contents of a file from disk.
  */
-class FileReader : public chaos::io::sys::FileHandle
+class FileReader : public arc::io::sys::FileHandle
 {
 private:
 
-    CHAOS_DISALLOW_COPY_AND_ASSIGN(FileReader);
+    ARC_DISALLOW_COPY_AND_ASSIGN(FileReader);
 
 public:
 
@@ -45,11 +45,11 @@ public:
      * Creates a new unopened FileReader with no file path yet defined.
      *
      * \param encoding Defines the encoding of the contents of the file to read.
-     *                 If chaos::io::sys::FileHandle::ENCODING_DETECT is used
+     *                 If arc::io::sys::FileHandle::ENCODING_DETECT is used
      *                 the FileReader will attempt to detect the encoding used
      *                 in the file at the time of opening. If the encoding
      *                 cannot be detected
-     *                 chaos::io::sys::FileHandle::ENCODING_RAW will be used.
+     *                 arc::io::sys::FileHandle::ENCODING_RAW will be used.
      *                 The detected encoding can be queried using get_encoding()
      *                 once the file has been opened.
      * \param newline The newline symbol used in the file to read.
@@ -66,20 +66,20 @@ public:
      *
      * \param path The path to the file to read from.
      * \param encoding Defines the encoding of the contents of the file to read.
-     *                 If chaos::io::sys::FileHandle::ENCODING_DETECT is used
+     *                 If arc::io::sys::FileHandle::ENCODING_DETECT is used
      *                 the FileReader will attempt to detect the encoding used
      *                 in the file at the time of opening. If the encoding
      *                 cannot be detected
-     *                 chaos::io::sys::FileHandle::ENCODING_RAW will be used.
+     *                 arc::io::sys::FileHandle::ENCODING_RAW will be used.
      *                 The detected encoding can be queried using get_encoding()
      *                 once the file has been opened.
      * \param newline The newline symbol used in the file to read.
      *                See set_newline().
      *
-     * \throws chaos::ex::InvalidPathError If the path cannot be opened.
+     * \throws arc::ex::InvalidPathError If the path cannot be opened.
      */
     FileReader(
-            const chaos::io::sys::Path& path,
+            const arc::io::sys::Path& path,
             Encoding encoding = ENCODING_DETECT,
             Newline newline   = NEWLINE_UNIX);
 
@@ -116,13 +116,13 @@ public:
     /*!
      * \brief Opens this FileReader to the internal path.
      *
-     * \throws chaos::ex::StateError If this FileReader is already open.
-     * \throws chaos::ex::InvalidPathError If the path cannot be opened.
+     * \throws arc::ex::StateError If this FileReader is already open.
+     * \throws arc::ex::InvalidPathError If the path cannot be opened.
      */
     virtual void open();
 
     // override to avoid C++ function hiding
-    virtual void open(const chaos::io::sys::Path& path);
+    virtual void open(const arc::io::sys::Path& path);
 
     /*!
      * \brief Closes this FileReader.
@@ -132,33 +132,33 @@ public:
     /*!
      * \brief Returns the size of the file being read in bytes.
      *
-     * \throws chaos::ex::StateError If the FileReader is not open.
+     * \throws arc::ex::StateError If the FileReader is not open.
      */
-    virtual chaos::int64 get_size() const;
+    virtual arc::int64 get_size() const;
 
     /*!
      * \brief Returns the index of the byte the file position indicator is
      *        currently at.
      *
-     * \throws chaos::ex::StateError If the FileReader is not open.
+     * \throws arc::ex::StateError If the FileReader is not open.
      */
-    virtual chaos::int64 tell() const;
+    virtual arc::int64 tell() const;
 
     /*!
      * \brief Sets the file position indicator to the given byte index.
      *
-     * \throws chaos::ex::StateError If the FileReader is not open.
-     * \throws chaos::ex::IndexOutOfBoundsError If the given byte index is
+     * \throws arc::ex::StateError If the FileReader is not open.
+     * \throws arc::ex::IndexOutOfBoundsError If the given byte index is
      *                                          greater than the number of bytes
      *                                          in the file or is less than 0.
      */
 
-    virtual void seek(chaos::int64 index);
+    virtual void seek(arc::int64 index);
 
     /*!
      * \brief Returns whether file position indicated is at the End of File.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws arc::ex::StateError If this FileReader is not open.
      */
     bool eof() const;
 
@@ -173,7 +173,7 @@ public:
      *          beginning of the file to check for the BOM, then moved back to
      *          its initial position before this function was called.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
+     * \throws arc::ex::StateError If this FileReader is not open.
      */
     bool has_bom();
 
@@ -188,7 +188,7 @@ public:
      *
      * \returns The file position indicator after this action has been applied.
      */
-    chaos::int64 seek_to_data_start();
+    arc::int64 seek_to_data_start();
 
     /*!
      * \brief Reads a block of data from the file and moves the position
@@ -204,15 +204,15 @@ public:
      *               function will read the remaining characters up to the end
      *               of the file.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
-     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
+     * \throws arc::ex::StateError If this FileReader is not open.
+     * \throws arc::ex::EOFError If the End of File Marker has been reached.
      */
-    void read(char* data, chaos::int64 length);
+    void read(char* data, arc::int64 length);
 
     /*!
      * \brief Reads a block of data from the file and returns it (converting
      *        the data encoding if needed) represented as a
-     *        chaos::str::UTF8String.
+     *        arc::str::UTF8String.
      *
      * This function will return data from the file ensuring that it is UTF-8
      * encoded. This function does not affect the newlines of the data, they
@@ -227,10 +227,10 @@ public:
      *               provided this function will read from file position
      *               indicator to the end of the file.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open.
-     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
+     * \throws arc::ex::StateError If this FileReader is not open.
+     * \throws arc::ex::EOFError If the End of File Marker has been reached.
      */
-    void read(chaos::str::UTF8String& data, chaos::int64 length = -1);
+    void read(arc::str::UTF8String& data, arc::int64 length = -1);
 
     /*!
      * \brief Reads a line of data from the file, allocates the memory to hold
@@ -252,10 +252,10 @@ public:
      * \returns The number of bytes that have been allocated and returned via
      *          the data parameter.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open. If this
+     * \throws arc::ex::StateError If this FileReader is not open. If this
      *                               exception is thrown no data will be
      *                               allocated.
-     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
+     * \throws arc::ex::EOFError If the End of File Marker has been reached.
      *                             If this exception is thrown no data will be
      *                             allocated.
      */
@@ -263,7 +263,7 @@ public:
 
     /*!
      * \brief Reads a line of data from the file and returns it (converting the
-     *        data encoding if needed) represented as a chaos::str::UTF8String.
+     *        data encoding if needed) represented as a arc::str::UTF8String.
      *
      * This function will return the next line in the file from the file
      * position indicator and ensure that it is UTF-8 encoded. The newline
@@ -277,14 +277,14 @@ public:
      * \param data String that the next line in the file will be read into. This
      *             function will remove any existing data in the UTF8String.
      *
-     * \throws chaos::ex::StateError If this FileReader is not open. If this
+     * \throws arc::ex::StateError If this FileReader is not open. If this
      *                               exception is thrown no data will be
      *                               allocated.
-     * \throws chaos::ex::EOFError If the End of File Marker has been reached.
+     * \throws arc::ex::EOFError If the End of File Marker has been reached.
      *                             If this exception is thrown no data will be
      *                             allocated.
      */
-    void read_line(chaos::str::UTF8String& data);
+    void read_line(arc::str::UTF8String& data);
 
 private:
 
@@ -300,7 +300,7 @@ private:
     /*!
      * \brief The size of the file in bytes.
      */
-    chaos::int64 m_size;
+    arc::int64 m_size;
 
     /*!
      * \brief Whether the current static newline checker is valid for the
@@ -335,6 +335,6 @@ private:
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif

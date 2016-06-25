@@ -1,6 +1,6 @@
-#include "chaoscore/io/format/FormatOperations.hpp"
+#include "arcanecore/io/format/FormatOperations.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -12,8 +12,8 @@ namespace format
 //------------------------------------------------------------------------------
 
 void centre_text(
-        chaos::str::UTF8String& text,
-        const chaos::uint32     line_length,
+        arc::str::UTF8String& text,
+        const arc::uint32     line_length,
         bool                    trim_trailing )
 {
     // is the text too long?
@@ -23,18 +23,18 @@ void centre_text(
     }
 
     // get the amount of whitespace to add
-    chaos::uint32 whitespace = line_length - text.get_length();
-    chaos::uint32 half = whitespace / 2;
+    arc::uint32 whitespace = line_length - text.get_length();
+    arc::uint32 half = whitespace / 2;
 
     // prefix white-space
-    chaos::str::UTF8String s( " " );
+    arc::str::UTF8String s( " " );
     s *= ( whitespace - half );
     // text
     s << text;
     // trailing whitespace
     if ( !trim_trailing )
     {
-        s << chaos::str::UTF8String( " " ) * half;
+        s << arc::str::UTF8String( " " ) * half;
     }
 
     // done
@@ -43,4 +43,4 @@ void centre_text(
 
 } // namespace format
 } // namespace io
-} // namespace chaos
+} // namespace arc

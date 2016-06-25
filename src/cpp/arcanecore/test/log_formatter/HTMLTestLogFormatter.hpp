@@ -2,15 +2,15 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_TEST_LOGFORMATTER_HTMLLOGFORMATTER_HPP_
-#define CHAOSCORE_TEST_LOGFORMATTER_HTMLLOGFORMATTER_HPP_
+#ifndef ARCANECORE_TEST_LOGFORMATTER_HTMLLOGFORMATTER_HPP_
+#define ARCANECORE_TEST_LOGFORMATTER_HTMLLOGFORMATTER_HPP_
 
 // hide from doxygen
 #ifndef IN_DOXYGEN
 
-#include "chaoscore/test/log_formatter/AbstractTestLogFormatter.hpp"
+#include "arcanecore/test/log_formatter/AbstractTestLogFormatter.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
@@ -31,7 +31,7 @@ public:
     /*!
      * \brief Creates a new HTML Test Log Formatter.
      */
-    HTMLTestLogFormatter( chaos::uint16 verbosity, std::ostream* stream );
+    HTMLTestLogFormatter(arc::uint16 verbosity, std::ostream* stream);
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -40,41 +40,41 @@ public:
     virtual void open_log();
 
     virtual void close_log(
-            chaos::int32  units_passed,
-            chaos::int32  units_failed,
-            chaos::int32  units_errored,
-            chaos::uint64 checks_passed,
-            chaos::uint64 checks_failed  );
+            arc::int32 units_passed,
+            arc::int32 units_failed,
+            arc::int32 units_errored,
+            arc::uint64 checks_passed,
+            arc::uint64 checks_failed );
 
     virtual void open_test(
-            const chaos::str::UTF8String& path,
-            const chaos::str::UTF8String& id );
+            const arc::str::UTF8String& path,
+            const arc::str::UTF8String& id);
 
     virtual void close_test();
 
-    virtual void report_crash( const chaos::str::UTF8String& info );
+    virtual void report_crash(const arc::str::UTF8String& info);
 
     virtual void report_check_pass(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
-                  chaos::int32            line );
+            const arc::str::UTF8String& type,
+            const arc::str::UTF8String& file,
+            arc::int32 line);
 
     virtual void report_check_fail(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
-                  chaos::int32            line,
-            const chaos::str::UTF8String& message );
+            const arc::str::UTF8String& type,
+            const arc::str::UTF8String& file,
+            arc::int32 line,
+            const arc::str::UTF8String& message);
 
-    virtual void write_message( const chaos::str::UTF8String& message );
+    virtual void write_message(const arc::str::UTF8String& message);
 
     virtual void finialise_test_report(
-            chaos::uint64 checks_passed,
-            chaos::uint64 checks_failed );
+            arc::uint64 checks_passed,
+            arc::uint64 checks_failed);
 };
 
 } // namespace log_formatter
 } // namespace test
-} // namespace chaos
+} // namespace arc
 
 #endif
 

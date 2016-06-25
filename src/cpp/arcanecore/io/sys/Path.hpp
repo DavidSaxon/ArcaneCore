@@ -2,14 +2,14 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_IO_FILE_PATH_HPP_
-#define CHAOSCORE_IO_FILE_PATH_HPP_
+#ifndef ARCANECORE_IO_FILE_PATH_HPP_
+#define ARCANECORE_IO_FILE_PATH_HPP_
 
 #include <ostream>
 
-#include "chaoscore/base/str/UTF8String.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -58,15 +58,15 @@ public:
      * Would be passed to this constructor like so:
      *
      * \code
-     * std::vector< chaos::str::UTF8String > components;
-     * components.push_back( "path" );
-     * components.push_back( "to" );
-     * components.push_back( "file.txt" );
+     * std::vector< arc::str::UTF8String > components;
+     * components.push_back("path");
+     * components.push_back("to");
+     * components.push_back("file.txt");
      *
-     * chaos::io::file::Path p( components );
+     * arc::io::file::Path p(components);
      * \endcode
      */
-    Path( const std::vector< chaos::str::UTF8String >& components );
+    Path(const std::vector< arc::str::UTF8String >& components);
 
     /*!
      * \brief Iterator constructor
@@ -77,17 +77,17 @@ public:
      * Example usage:
      *
      * \code
-     * std::vector< chaos::str::UTF8String > components;
-     * components.push_back( "path" );
-     * components.push_back( "to" );
-     * components.push_back( "file.txt" );
+     * std::vector< arc::str::UTF8String > components;
+     * components.push_back("path");
+     * components.push_back("to");
+     * components.push_back("file.txt");
      *
-     * chaos::io::file::Path p( components.begin(), components.end() );
+     * arc::io::file::Path p(components.begin(), components.end());
      * \endcode
      */
     Path(
-            const std::vector< chaos::str::UTF8String >::const_iterator& begin,
-            const std::vector< chaos::str::UTF8String >::const_iterator& end );
+            const std::vector< arc::str::UTF8String >::const_iterator& begin,
+            const std::vector< arc::str::UTF8String >::const_iterator& end);
 
 
     /*!
@@ -101,14 +101,14 @@ public:
      * On Unix systems this will split the given string into components using
      * the "/" symbol. Likewise on Windows systems the "\" symbol will be used.
      */
-    Path( const chaos::str::UTF8String& string_path );
+    Path(const arc::str::UTF8String& string_path);
 
     /*!
      * \brief Copy constructor.
      *
      * Creates a new Path by copying the contents of the provided Path.
      */
-    Path( const Path& other );
+    Path(const Path& other);
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS
@@ -123,7 +123,7 @@ public:
      * \param other Path to copy from.
      * \return Reference to this Path after the assignment has taken place.
      */
-    const Path& operator=( const Path& other );
+    const Path& operator=(const Path& other);
 
     /*!
      * \brief Equality operator.
@@ -133,7 +133,7 @@ public:
      * \param other Path to compare this against.
      * \return Whether the paths are equal.
      */
-    bool operator==( const Path& other ) const;
+    bool operator==(const Path& other) const;
 
     /*!
      * \brief Inequality operator.
@@ -144,7 +144,7 @@ public:
      * \param other Path to compare this against.
      * \return Whether the paths are equal.
      */
-    bool operator!=( const Path& other ) const;
+    bool operator!=(const Path& other) const;
 
     /*!
      * \brief Less than operator.
@@ -162,27 +162,27 @@ public:
      * \param other Path to compare this against.
      * \return Whether this Path is less than the other.
      */
-    bool operator<( const Path& other ) const;
+    bool operator<(const Path& other) const;
 
     /*!
      * \brief Returns a reference to the component of this Path at the given
      *        index.
      *
-     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     * \throws arc::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the number of
      *                                          components in this Path.
      */
-    chaos::str::UTF8String& operator[]( std::size_t index );
+    arc::str::UTF8String& operator[](std::size_t index);
 
     /*!
      * \brief Returns a const reference to the component of this Path at the
      *        given index.
      *
-     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     * \throws arc::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the number of
      *                                          components in this Path.
      */
-    const chaos::str::UTF8String& operator[]( std::size_t index ) const;
+    const arc::str::UTF8String& operator[](std::size_t index) const;
 
     /*!
      * \brief Addition operator.
@@ -193,18 +193,18 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p1;
+     * arc::io::file::Path p1;
      * p1 << "two" << "part";
      *
-     * chaos::io::file::Path p2;
+     * arc::io::file::Path p2;
      * p2 << "path" << "to" << "file.txt";
      *
-     * chaos::io::file::Path p3 = p1 + p2;
-     * // p3 contains [ "two", "part", "path", "to", "file.txt" ]
+     * arc::io::file::Path p3 = p1 + p2;
+     * // p3 contains ["two", "part", "path", "to", "file.txt"]
      * \endcode
      *
      */
-    Path operator+( const Path& other ) const;
+    Path operator+(const Path& other) const;
 
     /*!
      * \brief Compound addition operator.
@@ -214,18 +214,18 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p1;
+     * arc::io::file::Path p1;
      * p1 << "two" << "part";
      *
-     * chaos::io::file::Path p2;
+     * arc::io::file::Path p2;
      * p2 << "path" << "to" << "file.txt";
      *
      * p1 += p2;
-     * // p1 contains [ "two", "part", "path", "to", "file.txt" ]
+     * // p1 contains ["two", "part", "path", "to", "file.txt"]
      * \endcode
      *
      */
-    Path& operator+=( const Path& other );
+    Path& operator+=(const Path& other);
 
     /*!
      * \brief Join operator.
@@ -236,16 +236,16 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * // p now contains [ "path", "to", "file" ]
+     * // p now contains ["path", "to", "file"]
      * \endcode
      *
      * \param component String to be appended to the end of this Path as a
      *                  component.
      * \return Reference to this Path after the join has taken place.
      */
-    Path& operator<<( const chaos::str::UTF8String& component );
+    Path& operator<<(const arc::str::UTF8String& component);
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
@@ -260,16 +260,16 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
-     * p.join( "path" ).join( "to" ).join( "file.txt" );
-     * // p now contains [ "path", "to", "file" ]
+     * arc::io::file::Path p;
+     * p.join("path").join("to").join("file.txt");
+     * // p now contains ["path", "to", "file"]
      * \endcode
      *
-     * \param component chaos::str::UTF8String to be appended to the end of this
+     * \param component arc::str::UTF8String to be appended to the end of this
      *                  Path as a component.
      * \return Reference to this Path after the join has taken place.
      */
-    Path& join( const chaos::str::UTF8String& component );
+    Path& join(const arc::str::UTF8String& component);
 
     /*!
      * \brief Inserts the component at the given index in this Path.
@@ -288,21 +288,21 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "file.txt";
-     * p.insert( 1, "to" );
-     * // p now contains [ "path", "to", "file.txt" ]
+     * p.insert(1, "to");
+     * // p now contains ["path", "to", "file.txt"]
      * \endcode
      *
-     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is greater
+     * \throws arc::ex::IndexOutOfBoundsError If the provided index is greater
      *                                          than the number of components
      *                                          currently in this Path.
      *
      * \param index Position to insert the new component at.
-     * \param component chaos::str::UTF8String representing the new component to
+     * \param component arc::str::UTF8String representing the new component to
      *                  be inserted.
      */
-    void insert( std::size_t index, const chaos::str::UTF8String& component );
+    void insert(std::size_t index, const arc::str::UTF8String& component);
 
     /*!
      * \brief Reverts this Path to be an empty path.
@@ -314,24 +314,24 @@ public:
     /*!
      * \brief Removes the component from this Path at the given index.
      *
-     * \throws chaos::ex::IndexOutOfBoundsError If the provided index is out of
+     * \throws arc::ex::IndexOutOfBoundsError If the provided index is out of
      *                                          bounds of the number of
      *                                          components in this Path.
      *
      * \param index The index of the component to remove from this path.
      */
-    void remove( std::size_t index );
+    void remove(std::size_t index);
 
     /*!
-     * \brief Returns a chaos::str::UTF8String representation of this Path for
+     * \brief Returns a arc::str::UTF8String representation of this Path for
      *        the current operating system.
      *
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::str::UTF8String s = p.to_native();
+     * arc::str::UTF8String s = p.to_native();
      * // on Unix systems s will be "path/to/file.txt"
      * // on Windows systems s will be "path\to\file.txt"
      * \endcode
@@ -340,46 +340,46 @@ public:
      *          use with platform files systems. For example Windows requires
      *          file paths to be little endian UTF-16 encoded in order to access
      *          non-ascii file paths. It is recommend that file system actions
-     *          are done through ChaosCore, functions that take a Path object as
-     *          a parameter (e.g chaos::io::sys::create_directory()) will
+     *          are done through ArcaneCore, functions that take a Path object
+     *          as a parameter (e.g arc::io::sys::create_directory()) will
      *          automatically handle platform specific encodings on your behalf.
      *
      */
-    chaos::str::UTF8String to_native() const;
+    arc::str::UTF8String to_native() const;
 
     /*!
-     * \brief Returns the chaos::str::UTF8String representation of this Path for
+     * \brief Returns the arc::str::UTF8String representation of this Path for
      *        Unix based operating systems.
      *
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::str::UTF8String s = p.to_unix();
+     * arc::str::UTF8String s = p.to_unix();
      * // s is "path/to/file.txt"
      * \endcode
      *
      * \warning The returned path is UTF-8 encoded. See to_native() for details.
      */
-    chaos::str::UTF8String to_unix() const;
+    arc::str::UTF8String to_unix() const;
 
     /*!
-     * \brief Returns the chaos::str::UTF8String representation of this Path for
+     * \brief Returns the arc::str::UTF8String representation of this Path for
      *        Windows based operating systems.
      *
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::str::UTF8String s = p.to_windows();
+     * arc::str::UTF8String s = p.to_windows();
      * // s is "path\to\file.txt"
      * \endcode
      *
      * \warning The returned path is UTF-8 encoded. See to_native() for details.
      */
-    chaos::str::UTF8String to_windows() const;
+    arc::str::UTF8String to_windows() const;
 
 
     //--------------------------------ACCESSORS---------------------------------
@@ -390,7 +390,7 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "to" << "file.txt";
      * p.get_length(); // returns: 3
      * \endcode
@@ -417,31 +417,31 @@ public:
      * Stored correctly in a Path object:
      *
      * \code
-     * chaos::io::file::Path path;
+     * arc::io::file::Path path;
      * path << "path" << "to" << "file.txt";
      * \endcode
      *
      * Would contain the components:
      *
      * \code
-     * [ "path", "to", "file.txt" ]
+     * ["path", "to", "file.txt"]
      * \endcode
      */
-    const std::vector< chaos::str::UTF8String >& get_components() const;
+    const std::vector< arc::str::UTF8String >& get_components() const;
 
         /*!
      * \brief Returns the first component of this path.
      *
-     * \throws chaos::ex::IndexOutOfBoundsError If this path is empty.
+     * \throws arc::ex::IndexOutOfBoundsError If this path is empty.
      */
-    const chaos::str::UTF8String& get_front() const;
+    const arc::str::UTF8String& get_front() const;
 
     /*!
      * \brief Returns the last component of this path.
      *
-     * \throws chaos::ex::IndexOutOfBoundsError If this path is empty.
+     * \throws arc::ex::IndexOutOfBoundsError If this path is empty.
      */
-    const chaos::str::UTF8String& get_back() const;
+    const arc::str::UTF8String& get_back() const;
 
     /*!
      * \brief Returns the file extension of the leaf component of this Path.
@@ -449,14 +449,14 @@ public:
      * Example usage:
      *
      * \code
-     * chaos::io::file::Path p;
+     * arc::io::file::Path p;
      * p << "path" << "to" << "file.txt";
-     * chaos::str::UTF8String ext = p.get_extension();
+     * arc::str::UTF8String ext = p.get_extension();
      * // ext is "txt"
      * \endcode
      *
      */
-    chaos::str::UTF8String get_extension() const;
+    arc::str::UTF8String get_extension() const;
 
  private:
 
@@ -467,19 +467,19 @@ public:
     /*!
      * \brief List containing each individual component of this path.
      */
-    std::vector< chaos::str::UTF8String > m_components;
+    std::vector< arc::str::UTF8String > m_components;
 };
 
 //------------------------------------------------------------------------------
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-chaos::str::UTF8String& operator<<( chaos::str::UTF8String& s, const Path& p );
+arc::str::UTF8String& operator<<(arc::str::UTF8String& s, const Path& p);
 
-std::ostream& operator<<( std::ostream& stream, const Path& p );
+std::ostream& operator<<(std::ostream& stream, const Path& p);
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif

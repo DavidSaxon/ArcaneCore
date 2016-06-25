@@ -1,12 +1,12 @@
-#include "chaoscore/io/sys/Path.hpp"
+#include "arcanecore/io/sys/Path.hpp"
 
 #include <cstddef>
 #include <cstring>
 
-#include "chaoscore/base/Exceptions.hpp"
-#include "chaoscore/base/str/StringOperations.hpp"
+#include "arcanecore/base/Exceptions.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -20,8 +20,8 @@ namespace sys
 namespace
 {
 
-static const chaos::str::UTF8String UNIX_SEP   ( "/" );
-static const chaos::str::UTF8String WINDOWS_SEP( "\\" );
+static const arc::str::UTF8String UNIX_SEP   ("/");
+static const arc::str::UTF8String WINDOWS_SEP("\\");
 
 } // namespace anonymous
 
@@ -33,53 +33,53 @@ Path::Path()
 {
 }
 
-Path::Path( const std::vector< chaos::str::UTF8String >& components )
+Path::Path(const std::vector<arc::str::UTF8String>& components)
     :
-    m_components  ( components )
+    m_components(components)
 {
 }
 
 Path::Path(
-        const std::vector< chaos::str::UTF8String >::const_iterator& begin,
-        const std::vector< chaos::str::UTF8String >::const_iterator& end )
+        const std::vector<arc::str::UTF8String>::const_iterator& begin,
+        const std::vector<arc::str::UTF8String>::const_iterator& end)
     :
-    m_components  ( begin, end )
+    m_components(begin, end)
 {
 }
 
-Path::Path( const chaos::str::UTF8String& string_path )
+Path::Path(const arc::str::UTF8String& string_path)
 {
     // split the path into components based on the operating system
-#ifdef CHAOS_OS_UNIX
+#ifdef ARC_OS_UNIX
 
-    chaos::str::UTF8String santised_path( string_path );
-    santised_path.remove_duplicates( UNIX_SEP );
-    m_components = santised_path.split( UNIX_SEP );
+    arc::str::UTF8String santised_path(string_path);
+    santised_path.remove_duplicates(UNIX_SEP);
+    m_components = santised_path.split(UNIX_SEP);
 
-    if ( m_components.size() > 0 && m_components[ 0 ] == "" )
+    if(m_components.size() > 0 && m_components[0] == "")
     {
-        m_components[ 0 ] = "/";
+        m_components[0] = "/";
     }
 
-#elif defined( CHAOS_OS_WINDOWS )
+#elif defined(ARC_OS_WINDOWS)
 
-    chaos::str::UTF8String santised_path( string_path );
-    santised_path.remove_duplicates( WINDOWS_SEP );
-    m_components = santised_path.split( WINDOWS_SEP );
+    arc::str::UTF8String santised_path(string_path);
+    santised_path.remove_duplicates(WINDOWS_SEP);
+    m_components = santised_path.split(WINDOWS_SEP);
 
 #endif
 
     // remove final space if the path ended with /
-    if ( m_components.size() > 0 && m_components.back() == "" )
+    if(m_components.size() > 0 && m_components.back() == "")
     {
-        m_components = std::vector< chaos::str::UTF8String >(
-            m_components.begin(), m_components.end() - 1 );
+        m_components = std::vector<arc::str::UTF8String>(
+            m_components.begin(), m_components.end() - 1);
     }
 }
 
-Path::Path( const Path& other )
+Path::Path(const Path& other)
     :
-    m_components  ( other.m_components )
+    m_components(other.m_components)
 {
 }
 
@@ -87,24 +87,24 @@ Path::Path( const Path& other )
 //                                   OPERATORS
 //------------------------------------------------------------------------------
 
-const Path& Path::operator=( const Path& other )
+const Path& Path::operator=(const Path& other)
 {
     m_components = other.m_components;
     return *this;
 }
 
-bool Path::operator==( const Path& other ) const
+bool Path::operator==(const Path& other) const
 {
     // check length first
-    if ( m_components.size() != other.m_components.size() )
+    if(m_components.size() != other.m_components.size())
     {
         return false;
     }
 
     // check each component
-    for ( std::size_t i = 0; i < m_components.size(); ++i )
+    for(std::size_t i = 0; i < m_components.size(); ++i)
     {
-        if ( m_components[ i ] != other.m_components [ i ] )
+        if(m_components[i] != other.m_components [i])
         {
             return false;
         }
@@ -113,22 +113,22 @@ bool Path::operator==( const Path& other ) const
     return true;
 }
 
-bool Path::operator!=( const Path& other ) const
+bool Path::operator!=(const Path& other) const
 {
-    return !( ( *this ) == other );
+    return !((*this) == other);
 }
 
-bool Path::operator<( const Path& other ) const
+bool Path::operator<(const Path& other) const
 {
     // do the paths have the same length?
-    if ( m_components.size() == other.m_components.size() )
+    if(m_components.size() == other.m_components.size())
     {
         // perform check on each component
-        for ( std::size_t i = 0; i < m_components.size(); ++i )
+        for(std::size_t i = 0; i < m_components.size(); ++i)
         {
-            if ( m_components[ i ] != other.m_components[ i ] )
+            if(m_components[i] != other.m_components[i])
             {
-                return m_components[ i ] < other.m_components[ i ];
+                return m_components[i] < other.m_components[i];
             }
         }
         return false;
@@ -138,78 +138,78 @@ bool Path::operator<( const Path& other ) const
     return m_components.size() < other.m_components.size();
 }
 
-chaos::str::UTF8String& Path::operator[]( std::size_t index )
+arc::str::UTF8String& Path::operator[](std::size_t index)
 {
-    return m_components[ index ];
+    return m_components[index];
 }
 
-const chaos::str::UTF8String& Path::operator[]( std::size_t index ) const
+const arc::str::UTF8String& Path::operator[](std::size_t index) const
 {
-    return m_components[ index ];
+    return m_components[index];
 }
 
-Path Path::operator+( const Path& other ) const
+Path Path::operator+(const Path& other) const
 {
     // create a new path which is a copy of this path
-    Path copy( *this );
+    Path copy(*this);
     // now use compound operator
     return copy += other;
 }
 
-Path& Path::operator+=( const Path& other )
+Path& Path::operator+=(const Path& other)
 {
     // extend with other path's components
-    CHAOS_FOR_EACH( it, other.m_components )
+    ARC_FOR_EACH(it, other.m_components)
     {
-        m_components.push_back( *it );
+        m_components.push_back(*it);
     }
 
     return *this;
 }
 
-Path& Path::operator<<( const chaos::str::UTF8String& component )
+Path& Path::operator<<(const arc::str::UTF8String& component)
 {
-    return join( component );
+    return join(component);
 }
 
 //------------------------------------------------------------------------------
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-Path& Path::join( const chaos::str::UTF8String& component )
+Path& Path::join(const arc::str::UTF8String& component)
 {
-    m_components.push_back( component );
+    m_components.push_back(component);
     return *this;
 }
 
-void Path::insert( std::size_t index, const chaos::str::UTF8String& component )
+void Path::insert(std::size_t index, const arc::str::UTF8String& component)
 {
     // check bounds
-    if ( index > m_components.size() )
+    if(index > m_components.size())
     {
-        chaos::str::UTF8String error_message;
+        arc::str::UTF8String error_message;
         error_message << "Provided index: " << index << " is greater than the "
                       << "number of components in the path: "
                       << m_components.size();
-        throw chaos::ex::IndexOutOfBoundsError( error_message );
+        throw arc::ex::IndexOutOfBoundsError(error_message);
     }
 
     // new vector to contain components
-    std::vector< chaos::str::UTF8String > components;
+    std::vector<arc::str::UTF8String> components;
     // copy with the insert
-    for ( std::size_t i = 0; i <= m_components.size(); ++i )
+    for(std::size_t i = 0; i <= m_components.size(); ++i)
     {
-        if ( i < index )
+        if(i < index)
         {
-            components.push_back( m_components[ i ] );
+            components.push_back(m_components[i]);
         }
-        else if ( i > index )
+        else if(i > index)
         {
-            components.push_back( m_components[ i - 1 ] );
+            components.push_back(m_components[i - 1]);
         }
         else
         {
-            components.push_back( component );
+            components.push_back(component);
         }
     }
     // replace the current list of components
@@ -221,77 +221,77 @@ void Path::clear()
     m_components.clear();
 }
 
-void Path::remove( std::size_t index )
+void Path::remove(std::size_t index)
 {
     // check bounds
-    if ( index >= m_components.size() )
+    if(index >= m_components.size())
     {
-        chaos::str::UTF8String error_message;
+        arc::str::UTF8String error_message;
         error_message << "Provided index: " << index << " is greater or equal "
                       << "to the number of components in the path: "
                       << m_components.size();
-        throw chaos::ex::IndexOutOfBoundsError( error_message );
+        throw arc::ex::IndexOutOfBoundsError(error_message);
     }
 
     // new vector to contain components
-    std::vector< chaos::str::UTF8String > components;
+    std::vector<arc::str::UTF8String> components;
     // copy with the remove
-    for ( std::size_t i = 0; i < m_components.size(); ++i )
+    for(std::size_t i = 0; i < m_components.size(); ++i)
     {
-        if ( i < index )
+        if(i < index)
         {
-            components.push_back( m_components[ i ] );
+            components.push_back(m_components[i]);
         }
-        else if ( i > index )
+        else if(i > index)
         {
-            components.push_back( m_components[ i ] );
+            components.push_back(m_components[i]);
         }
     }
     // replace the current list of components
     m_components = components;
 }
 
-chaos::str::UTF8String Path::to_native() const
+arc::str::UTF8String Path::to_native() const
 {
-#ifdef CHAOS_OS_UNIX
+#ifdef ARC_OS_UNIX
 
     return to_unix();
 
-#elif defined( CHAOS_OS_WINDOWS )
+#elif defined(ARC_OS_WINDOWS)
 
     return to_windows();
 
 #endif
 }
 
-chaos::str::UTF8String Path::to_unix() const
+arc::str::UTF8String Path::to_unix() const
 {
-    std::vector< chaos::str::UTF8String > components;
-    // special case for root ( / )
+    std::vector<arc::str::UTF8String> components;
+    // special case for root (/)
     bool is_root = false;
-    if ( m_components.size() > 0 && m_components[ 0 ] == "/"  )
+    if(m_components.size() > 0 && m_components[0] == "/" )
     {
         is_root = true;
-        components = std::vector< chaos::str::UTF8String >(
-                m_components.begin() + 1, m_components.end() );
+        components = std::vector<arc::str::UTF8String>(
+                m_components.begin() + 1, m_components.end());
     }
     else
     {
         components = m_components;
     }
 
-    chaos::str::UTF8String ret = chaos::str::join( components, "/" );
-    if ( is_root )
+    arc::str::UTF8String ret = arc::str::join(components, "/");
+    if(is_root)
     {
-        ret = chaos::str::UTF8String( "/" ) + ret;
+        ret = arc::str::UTF8String("/") + ret;
     }
 
     return ret;
 }
 
-chaos::str::UTF8String Path::to_windows() const
+arc::str::UTF8String Path::to_windows() const
 {
-    return chaos::str::join( m_components, "\\" );
+    return arc::str::join(m_components, "\\");
 }
 
 //----------------------------------ACCESSORS-----------------------------------
@@ -306,17 +306,17 @@ bool Path::is_empty() const
     return get_length() == 0;
 }
 
-const std::vector< chaos::str::UTF8String >& Path::get_components() const
+const std::vector<arc::str::UTF8String>& Path::get_components() const
 {
     return m_components;
 }
 
-const chaos::str::UTF8String& Path::get_front() const
+const arc::str::UTF8String& Path::get_front() const
 {
     // is the path empty?
-    if ( is_empty() )
+    if(is_empty())
     {
-        throw chaos::ex::IndexOutOfBoundsError(
+        throw arc::ex::IndexOutOfBoundsError(
                 "Cannot get the front component of an empty path."
         );
     }
@@ -324,12 +324,12 @@ const chaos::str::UTF8String& Path::get_front() const
     return m_components.front();
 }
 
-const chaos::str::UTF8String& Path::get_back() const
+const arc::str::UTF8String& Path::get_back() const
 {
     // is the path empty?
-    if ( is_empty() )
+    if(is_empty())
     {
-        throw chaos::ex::IndexOutOfBoundsError(
+        throw arc::ex::IndexOutOfBoundsError(
                 "Cannot get the back component of an empty path."
         );
     }
@@ -337,14 +337,14 @@ const chaos::str::UTF8String& Path::get_back() const
     return m_components.back();
 }
 
-chaos::str::UTF8String Path::get_extension() const
+arc::str::UTF8String Path::get_extension() const
 {
     // is there a final component?
-    if ( !m_components.empty() )
+    if(!m_components.empty())
     {
         // does the final component contain a period?
-        std::size_t loc = m_components.back().find_last( "." );
-        if ( loc != chaos::str::npos )
+        std::size_t loc = m_components.back().find_last(".");
+        if(loc != arc::str::npos)
         {
             // return the extension substring
             return m_components.back().substring(
@@ -361,13 +361,13 @@ chaos::str::UTF8String Path::get_extension() const
 //                               EXTERNAL OPERATORS
 //------------------------------------------------------------------------------
 
-chaos::str::UTF8String& operator<<( chaos::str::UTF8String& s, const Path& p )
+arc::str::UTF8String& operator<<(arc::str::UTF8String& s, const Path& p)
 {
     s << p.to_native();
     return s;
 }
 
-std::ostream& operator<<( std::ostream& stream, const Path& p )
+std::ostream& operator<<(std::ostream& stream, const Path& p)
 {
     stream << p.to_native();
     return stream;
@@ -375,4 +375,4 @@ std::ostream& operator<<( std::ostream& stream, const Path& p )
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc

@@ -3,12 +3,12 @@
  * \brief Operations relating to the file system.
  * \author David Saxon
  */
-#ifndef CHAOSCORE_IO_SYS_FILESYSTEMOPERATIONS
-#define CHAOSCORE_IO_SYS_FILESYSTEMOPERATIONS
+#ifndef ARCANECORE_IO_SYS_FILESYSTEMOPERATIONS
+#define ARCANECORE_IO_SYS_FILESYSTEMOPERATIONS
 
-#include "chaoscore/io/sys/Path.hpp"
+#include "arcanecore/io/sys/Path.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -30,7 +30,7 @@ namespace sys
  *                      symbolic linking is not supported by Windows.
  * \return Returns True if the path exists, false otherwise.
  */
-bool exists( const chaos::io::sys::Path& path, bool resolve_links = false );
+bool exists(const arc::io::sys::Path& path, bool resolve_links = false);
 
 /*!
  * \brief Returns whether the given path is a regular file.
@@ -45,7 +45,7 @@ bool exists( const chaos::io::sys::Path& path, bool resolve_links = false );
  *                      symbolic linking is not supported by Windows.
  * \return Returns True if the given path is a file, false otherwise.
  */
-bool is_file( const chaos::io::sys::Path& path, bool resolve_links = false );
+bool is_file(const arc::io::sys::Path& path, bool resolve_links = false);
 
 /*!
  * \brief Returns whether the given path is a directory.
@@ -61,15 +61,15 @@ bool is_file( const chaos::io::sys::Path& path, bool resolve_links = false );
  * \return Returns True if the given path is a directory, false otherwise.
  */
 bool is_directory(
-        const chaos::io::sys::Path& path,
-        bool resolve_links = true );
+        const arc::io::sys::Path& path,
+        bool resolve_links = true);
 
 /*!
  * \brief Returns whether the given path is a symbolic link.
  *
  * \note If the path does not exist this operation will return false.
  */
-bool is_symbolic_link( const chaos::io::sys::Path& path );
+bool is_symbolic_link(const arc::io::sys::Path& path);
 
 /*!
  * \brief Lists the file system paths located under the given path.
@@ -83,8 +83,8 @@ bool is_symbolic_link( const chaos::io::sys::Path& path );
  * \param include_special Whether the special symbols "." and ".." while be
  *                        included with the returned paths.
  */
-std::vector<chaos::io::sys::Path> list(
-        const chaos::io::sys::Path& path,
+std::vector<arc::io::sys::Path> list(
+        const arc::io::sys::Path& path,
         bool include_special = false);
 
 /*!
@@ -95,50 +95,50 @@ std::vector<chaos::io::sys::Path> list(
  * function returns all paths that are a descendant of the given path. This
  * function will not resolve symbolics in order to avoid infinite recursion.
  */
-std::vector< chaos::io::sys::Path> list_rec(
-        const chaos::io::sys::Path& path,
+std::vector< arc::io::sys::Path> list_rec(
+        const arc::io::sys::Path& path,
         bool include_special = false);
 
 /*!
  * \brief Attempts to create the directory at the given path.
  *
- * \throws chaos::ex::InvalidPathError If directory creation was attempted
+ * \throws arc::ex::InvalidPathError If directory creation was attempted
  *                                          but failed.
  *
  * \return True is a new directory was created, false if the directory already
  *         exists.
  */
-bool create_directory( const chaos::io::sys::Path& path );
+bool create_directory(const arc::io::sys::Path& path);
 
 /*!
  * \brief Deletes the given Path on the file system if it exists.
  *
  * This operation will fail if the given path is a non-empty directory, see
- * chaos::io::sys::delete_path_rec() to delete non-empty directories.
+ * arc::io::sys::delete_path_rec() to delete non-empty directories.
  *
  * \note This operation will delete symbolic link objects but will not follow
  *       them to delete the path they point to.
  *
- * \throws chaos::ex::InvalidPathError If the path cannot be accessed
+ * \throws arc::ex::InvalidPathError If the path cannot be accessed
  *                                          and/or modified to be deleted.
  */
-void delete_path( const chaos::io::sys::Path& path );
+void delete_path(const arc::io::sys::Path& path);
 
 /*!
  * \brief Deletes the given path on the file system and all subsequent paths
  *        under the given path.
  *
- * This effectively performs the same job as chaos::io::sys::delete_path()
+ * This effectively performs the same job as arc::io::sys::delete_path()
  * except that non-empty directories will also be deleted by this operation.
  *
  * \note This operation will delete symbolic link objects but will not follow
  *       them to delete the path they point to.
  *
- * \throws chaos::ex::InvalidPathError If a path in the directory hierarchy
+ * \throws arc::ex::InvalidPathError If a path in the directory hierarchy
  *                                          cannot be accessed and/or modified
  *                                          to be deleted.
  */
-void delete_path_rec( const chaos::io::sys::Path& path );
+void delete_path_rec(const arc::io::sys::Path& path);
 
 /*!
  * \brief Attempts to ensure all directories up to the provided path exist.
@@ -152,25 +152,25 @@ void delete_path_rec( const chaos::io::sys::Path& path );
  * Example usage:
  *
  * \code
- * chaos::io::sys::Path p;
+ * arc::io::sys::Path p;
  * p << "example" << "path" << "to" << "filename.txt";
- * chaos::io::sys::validate( p );
+ * arc::io::sys::validate(p);
  * // this will attempt to ensure example/path/to/ exists, if this operations
  * // failed an exception would have been thrown.
  * // We can now begin writing to filename.txt knowing that it's containing
  * // directory exists.
- * std::ofstream open_file( p.to_native().get_raw() );
+ * std::ofstream open_file(p.to_native().get_raw());
  *
  * \endcode
  *
- * \throws chaos::ex::InvalidPathError If one of the directories in the
+ * \throws arc::ex::InvalidPathError If one of the directories in the
  *                                          path was attempted to be created but
  *                                          failed.
  */
- void validate( const chaos::io::sys::Path& path );
+ void validate(const arc::io::sys::Path& path);
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif

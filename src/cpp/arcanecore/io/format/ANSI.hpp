@@ -3,12 +3,12 @@
  * \brief Operations relating to ANSI codes.
  * author David Saxon
  */
-#ifndef CHAOSCORE_IO_FORMAT_ANSI_HPP_
-#define CHAOSCORE_IO_FORMAT_ANSI_HPP_
+#ifndef ARCANECORE_IO_FORMAT_ANSI_HPP_
+#define ARCANECORE_IO_FORMAT_ANSI_HPP_
 
-#include "chaoscore/base/str/UTF8String.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -84,12 +84,12 @@ enum ANSIAttribute
  * \param attribute the attribute to use on the text.
  */
 void apply_escape_sequence(
-        chaos::str::UTF8String& text,
-        ANSIColour              colour,
-        ANSIAttribute           attribute = ANSI_ATTR_NONE );
+        arc::str::UTF8String& text,
+        ANSIColour colour,
+        ANSIAttribute attribute = ANSI_ATTR_NONE);
 
 } // namespace format
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif

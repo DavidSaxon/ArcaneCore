@@ -1,16 +1,16 @@
 #include <iostream>
 
-#include "chaoscore/io/sys/FileSystemOperations.hpp"
-#include "chaoscore/test/ChaosTest.hpp"
-#include "chaoscore/test/TestExceptions.hpp"
+#include "arcanecore/io/sys/FileSystemOperations.hpp"
+#include "arcanecore/test/ArcTest.hpp"
+#include "arcanecore/test/TestExceptions.hpp"
 
-#ifdef CHAOS_OS_WINDOWS
+#ifdef ARC_OS_WINDOWS
 
     #include <windows.h>
 
 #endif
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
@@ -21,20 +21,20 @@ namespace test
 
 //----------------------------COMMAND LINE ARGUMENTS----------------------------
 
-static chaos::str::UTF8String ARG_SINGLE_PROC   = "--single_proc";
-static chaos::str::UTF8String ARG_SUB_PROC      = "--sub_proc";
-static chaos::str::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
-static chaos::str::UTF8String ARG_TEST_PATH     = "--test";
-static chaos::str::UTF8String ARG_STDOUT        = "--stdout";
-static chaos::str::UTF8String ARG_FILEOUT       = "--fileout";
-static chaos::str::UTF8String ARG_HELP          = "--help";
+static arc::str::UTF8String ARG_SINGLE_PROC   = "--single_proc";
+static arc::str::UTF8String ARG_SUB_PROC      = "--sub_proc";
+static arc::str::UTF8String ARG_SILENT_CRASH  = "--silent_crash";
+static arc::str::UTF8String ARG_TEST_PATH     = "--test";
+static arc::str::UTF8String ARG_STDOUT        = "--stdout";
+static arc::str::UTF8String ARG_FILEOUT       = "--fileout";
+static arc::str::UTF8String ARG_HELP          = "--help";
 
 //-----------------------------COMMAND LINE OPTIONS-----------------------------
 
-static chaos::str::UTF8String OPT_FORMAT_PLAIN  = "plain";
-static chaos::str::UTF8String OPT_FORMAT_PRETTY = "pretty";
-static chaos::str::UTF8String OPT_FORMAT_XML    = "xml";
-static chaos::str::UTF8String OPT_FORMAT_HTML   = "html";
+static arc::str::UTF8String OPT_FORMAT_PLAIN  = "plain";
+static arc::str::UTF8String OPT_FORMAT_PRETTY = "pretty";
+static arc::str::UTF8String OPT_FORMAT_XML    = "xml";
+static arc::str::UTF8String OPT_FORMAT_HTML   = "html";
 
 //------------------------------------------------------------------------------
 //                                   PROTOTYPES
@@ -48,8 +48,8 @@ static chaos::str::UTF8String OPT_FORMAT_HTML   = "html";
  * \return Whether the input string was valid or not.
  */
 bool string_to_format(
-        const chaos::str::UTF8String&              str,
-              chaos::test::TestLogger::OutFormat&  format );
+        const arc::str::UTF8String& str,
+        arc::test::TestLogger::OutFormat& format);
 
 /*!
  * \brief Prints usage information.
@@ -60,27 +60,27 @@ void usage();
 //                                 MAIN FUNCTION
 //------------------------------------------------------------------------------
 
-int deferred_main( int argc, char* argv[] )
+int deferred_main(int argc, char* argv[])
 {
     // create run configuration information with default values
-    chaos::test::internal::RunInfo run_info;
+    arc::test::internal::RunInfo run_info;
 
     // whether a standard output has been defined
     bool stdout_defined = false;
 
     // parse args
-    for ( std::size_t i = 1; i < static_cast< std::size_t >( argc ); ++i )
+    for(std::size_t i = 1; i < static_cast<std::size_t>(argc); ++i)
     {
         // --single_proc
-        if ( ARG_SINGLE_PROC == argv[ i ] )
+        if(ARG_SINGLE_PROC == argv[i])
         {
             run_info.single_proc = true;
         }
         // --sub_proc
-        else if ( ARG_SUB_PROC == argv[ i ] )
+        else if(ARG_SUB_PROC == argv[i])
         {
             // ensure there is another argument
-            if ( argc - i <= 1 )
+            if(argc - i <= 1)
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_SINGLE_PROC << "must be followed by the "
@@ -89,31 +89,31 @@ int deferred_main( int argc, char* argv[] )
             }
 
             run_info.sub_proc = true;
-            run_info.id = chaos::str::UTF8String( argv[ ++i ] );
+            run_info.id = arc::str::UTF8String(argv[++i]);
         }
         // --silent_crash
-        else if ( ARG_SILENT_CRASH == argv[ i ] )
+        else if(ARG_SILENT_CRASH == argv[i])
         {
-            #ifdef CHAOS_OS_WINDOWS
+            #ifdef ARC_OS_WINDOWS
 
                 // we don't want show a dialog box when this crashes
-                SetErrorMode( SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX );
-                _set_abort_behavior( 0, _WRITE_ABORT_MSG );
+                SetErrorMode(SEM_FAILCRITICALERRORS | SEM_NOGPFAULTERRORBOX);
+                _set_abort_behavior(0, _WRITE_ABORT_MSG);
 
             #else
 
-                chaos::str::UTF8String error_message( ARG_SILENT_CRASH );
+                arc::str::UTF8String error_message(ARG_SILENT_CRASH);
                 error_message << ARG_SILENT_CRASH
                               << " only supported on Windows systems.";
-                throw chaos::test::ex::TestRuntimeError( error_message );
+                throw arc::test::ex::TestRuntimeError(error_message);
 
             #endif
         }
         // --test
-        else if ( ARG_TEST_PATH == argv[ i ] )
+        else if(ARG_TEST_PATH == argv[i])
         {
             // ensure there is another argument
-            if ( argc - i <= 1 )
+            if(argc - i <= 1)
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_TEST_PATH << "\' must be followed by a test "
@@ -122,13 +122,13 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // get the next argument
-            run_info.paths.insert( chaos::str::UTF8String( argv[ ++i ] ) );
+            run_info.paths.insert(arc::str::UTF8String(argv[++i]));
         }
         // --stdout
-        else if ( ARG_STDOUT == argv[ i ] )
+        else if(ARG_STDOUT == argv[i])
         {
             // ensure there is another two arguments
-            if ( argc - i <= 2 )
+            if(argc - i <= 2)
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_STDOUT << "\' must be followed by the format "
@@ -138,7 +138,7 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // ensure that stdout has not already been defined
-            if ( stdout_defined )
+            if(stdout_defined)
             {
                 std::cerr << "\nERROR: Multiple definitions for stdout format. "
                           << "Currently only one stdout stream is supported "
@@ -147,9 +147,9 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // get the format to be use
-            chaos::test::TestLogger::OutFormat out_format;
-            chaos::str::UTF8String opt( argv[ ++i ] );
-            if ( !string_to_format( opt, out_format ) )
+            arc::test::TestLogger::OutFormat out_format;
+            arc::str::UTF8String opt(argv[++i]);
+            if(!string_to_format(opt, out_format))
             {
                 std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
                           << "command line argument: \'" << ARG_STDOUT << "\'. "
@@ -159,8 +159,8 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // get the verbosity level
-            chaos::str::UTF8String verbosityString( argv[ ++i ] );
-            if ( !verbosityString.is_uint() )
+            arc::str::UTF8String verbosityString(argv[++i]);
+            if(!verbosityString.is_uint())
             {
                 std::cerr << "\nERROR: Verbosity level: \'" << verbosityString
                           << "\' provided for the argument: \'" << ARG_STDOUT
@@ -169,8 +169,8 @@ int deferred_main( int argc, char* argv[] )
                 return -1;
             }
             // get as int and check range
-            chaos::uint32 verbosity = verbosityString.to_uint32();
-            if ( verbosity == 0 || verbosity > 4 )
+            arc::uint32 verbosity = verbosityString.to_uint32();
+            if(verbosity == 0 || verbosity > 4)
             {
                 std::cerr << "\nERROR: Verbosity level: \'" << verbosity
                           << "\' provided for the argument: \'" << ARG_STDOUT
@@ -182,16 +182,16 @@ int deferred_main( int argc, char* argv[] )
             // add to the run information
             run_info.use_stdout = true;
             run_info.stdout_info.verbosity =
-                    static_cast< chaos::uint16 >( verbosity );
+                    static_cast< arc::uint16 >(verbosity);
             run_info.stdout_info.format = out_format;
             // standard out has now been defined
             stdout_defined = true;
         }
         // --fileout
-        else if ( ARG_FILEOUT == argv[ i ] )
+        else if(ARG_FILEOUT == argv[i])
         {
             // ensure there is another three arguments
-            if ( argc - i <= 3 )
+            if(argc - i <= 3)
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_FILEOUT << "\' must be followed by the file "
@@ -202,10 +202,10 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // get provided path to write to
-            chaos::str::UTF8String path_arg( argv[ ++i ] );
+            arc::str::UTF8String path_arg(argv[++i]);
             // ensure the provided path is a file path
-            if ( path_arg.get_symbol( path_arg.get_length() - 1 ) == "/" ||
-                 path_arg.get_symbol( path_arg.get_length() - 1 ) == "\\"   )
+            if(path_arg.get_symbol(path_arg.get_length() - 1) == "/" ||
+                 path_arg.get_symbol(path_arg.get_length() - 1) == "\\"  )
             {
                 std::cerr << "\nERROR: Command line argument \'"
                           << ARG_FILEOUT << "\' has been provided with an "
@@ -216,13 +216,13 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // create as a path
-            chaos::io::sys::Path file_path( path_arg );
+            arc::io::sys::Path file_path(path_arg);
             // attempt to validate the path
             try
             {
-                chaos::io::sys::validate( file_path );
+                arc::io::sys::validate(file_path);
             }
-            catch(const chaos::ex::ChaosException& e)
+            catch(const arc::ex::ArcException& e)
             {
                 std::cerr << "\nERROR: validating the provided file output "
                           "path: \'" << file_path << "\' has failed with the "
@@ -230,8 +230,8 @@ int deferred_main( int argc, char* argv[] )
                 return -1;
             }
             // does the path already exists but is not a regular file?
-            if ( chaos::io::sys::exists( file_path ) &&
-                 !chaos::io::sys::is_file( file_path )   )
+            if(arc::io::sys::exists(file_path) &&
+               !arc::io::sys::is_file(file_path))
             {
                 std::cerr << "\nERROR: The provided output file path: \'"
                           << file_path << "\' cannot be written to because it "
@@ -240,9 +240,9 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // get the format to be use
-            chaos::test::TestLogger::OutFormat out_format;
-            chaos::str::UTF8String opt( argv[ ++i ] );
-            if ( !string_to_format( opt, out_format ) )
+            arc::test::TestLogger::OutFormat out_format;
+            arc::str::UTF8String opt(argv[++i]);
+            if(!string_to_format(opt, out_format))
             {
                 std::cerr << "\nERROR: Unknown option: \'" << opt << "\' for "
                           << "command line argument: \'" << ARG_FILEOUT
@@ -252,8 +252,8 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // does the file output already exist?
-            if ( run_info.files.find( file_path.to_native() ) !=
-                run_info.files.end() )
+            if(run_info.files.find(file_path.to_native()) !=
+                run_info.files.end())
             {
                 std::cerr << "\nMultiple output definitions for the file: \'"
                           << file_path << "\'.\n" << std::endl;
@@ -261,8 +261,8 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // get the verbosity level
-            chaos::str::UTF8String verbosityString( argv[ ++i ] );
-            if ( !verbosityString.is_uint() )
+            arc::str::UTF8String verbosityString(argv[++i]);
+            if(!verbosityString.is_uint())
             {
                 std::cerr << "\nERROR: Verbosity level: \'" << verbosityString
                           << "\' provided for the argument: \'" << ARG_FILEOUT
@@ -271,8 +271,8 @@ int deferred_main( int argc, char* argv[] )
                 return -1;
             }
             // get as int and check range
-            chaos::uint32 verbosity = verbosityString.to_uint32();
-            if ( verbosity == 0 || verbosity > 4 )
+            arc::uint32 verbosity = verbosityString.to_uint32();
+            if(verbosity == 0 || verbosity > 4)
             {
                 std::cerr << "\nERROR: Verbosity level: \'" << verbosity
                           << "\' provided for the argument: \'" << ARG_FILEOUT
@@ -282,16 +282,16 @@ int deferred_main( int argc, char* argv[] )
             }
 
             // add to run information
-            run_info.files[ file_path.to_native() ] =
-                    new chaos::test::internal::OutInfo( verbosity, out_format );
+            run_info.files[file_path.to_native()] =
+                    new arc::test::internal::OutInfo(verbosity, out_format);
             // if stdout hasn't be defined removed it
-            if ( !stdout_defined )
+            if(!stdout_defined)
             {
                 run_info.use_stdout = false;
             }
         }
         // --help
-        else if ( ARG_HELP == argv[ i ] )
+        else if(ARG_HELP == argv[i])
         {
             usage();
             return 0;
@@ -300,7 +300,7 @@ int deferred_main( int argc, char* argv[] )
         else
         {
             std::cerr << "\nERROR: unknown command line argument: \'"
-                      << argv[ i ] << "\'. Use \'" << ARG_HELP << "\' for "
+                      << argv[i] << "\'. Use \'" << ARG_HELP << "\' for "
                       << "usage information.\n" << std::endl;
             return -1;
         }
@@ -308,9 +308,9 @@ int deferred_main( int argc, char* argv[] )
 
     try
     {
-        chaos::test::internal::TestCore( "", NULL, "", 0, false, &run_info );
+        arc::test::internal::TestCore("", NULL, "", 0, false, &run_info);
     }
-    catch ( const chaos::test::ex::InvalidPathError& e )
+    catch (const arc::test::ex::InvalidPathError& e)
     {
         std::cerr << "\nERROR: Invalid test path supplied: \'"
                   << e.get_message() << "\'\n" << std::endl;
@@ -324,28 +324,28 @@ int deferred_main( int argc, char* argv[] )
 //------------------------------------------------------------------------------
 
 bool string_to_format(
-        const chaos::str::UTF8String&              str,
-              chaos::test::TestLogger::OutFormat&  format )
+        const arc::str::UTF8String&              str,
+              arc::test::TestLogger::OutFormat&  format)
 {
     // check against know types
-    if ( str == OPT_FORMAT_PLAIN )
+    if(str == OPT_FORMAT_PLAIN)
     {
-        format = chaos::test::TestLogger::OUT_PLAIN_TEXT;
+        format = arc::test::TestLogger::OUT_PLAIN_TEXT;
         return true;
     }
-    else if ( str == OPT_FORMAT_PRETTY )
+    else if(str == OPT_FORMAT_PRETTY)
     {
-        format = chaos::test::TestLogger::OUT_PRETTY_TEXT;
+        format = arc::test::TestLogger::OUT_PRETTY_TEXT;
         return true;
     }
-    else if ( str == OPT_FORMAT_XML )
+    else if(str == OPT_FORMAT_XML)
     {
-        format = chaos::test::TestLogger::OUT_XML;
+        format = arc::test::TestLogger::OUT_XML;
         return true;
     }
-    else if ( str == OPT_FORMAT_HTML )
+    else if(str == OPT_FORMAT_HTML)
     {
-        format = chaos::test::TestLogger::OUT_HTML;
+        format = arc::test::TestLogger::OUT_HTML;
         return true;
     }
 
@@ -356,7 +356,7 @@ bool string_to_format(
 void usage()
 {
 std::cout << "\n" <<
-"ChaosCore Testing Runtime Usage:"
+"ArcaneCore Testing Runtime Usage:"
 << "\n" << "\n" <<
 "  --test [path]                             : Runs all unit test that are"
 << "\n" <<
@@ -419,4 +419,4 @@ std::cout << "\n" <<
 }
 
 } // namespace test
-} // namespace chaos
+} // namespace arc

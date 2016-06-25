@@ -2,8 +2,8 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_TEST_TESTLOGGER_HPP_
-#define CHAOSCORE_TEST_TESTLOGGER_HPP_
+#ifndef ARCANECORE_TEST_TESTLOGGER_HPP_
+#define ARCANECORE_TEST_TESTLOGGER_HPP_
 
 // hide from doxygen
 #ifndef IN_DOXYGEN
@@ -13,10 +13,10 @@
 #include <map>
 #include <vector>
 
-#include "chaoscore/base/str/UTF8String.hpp"
-#include "chaoscore/io/sys/Path.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
+#include "arcanecore/io/sys/Path.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
@@ -37,7 +37,7 @@ class TestLogger
 {
 private:
 
-    CHAOS_DISALLOW_COPY_AND_ASSIGN( TestLogger );
+    ARC_DISALLOW_COPY_AND_ASSIGN(TestLogger);
 
 public:
 
@@ -84,7 +84,7 @@ public:
     /*!
      * \brief Sets the global testing id for the logger.
      */
-    void set_global_id( const chaos::str::UTF8String& id );
+    void set_global_id(const arc::str::UTF8String& id);
 
     /*!
      * \brief Sets this logger as the parent logger.
@@ -93,7 +93,7 @@ public:
      * any sub logs made child processes and will also handle actions like
      * opening and closing the log.
      */
-    void set_as_parent( bool state );
+    void set_as_parent(bool state);
 
     /*!
      * \brief Adds a standard output for writing.
@@ -105,7 +105,7 @@ public:
      * \param verbosity The verbosity level of standard output.
      * \param format The format to write standard output in.
      */
-    void add_stdout( chaos::uint16 verbosity, OutFormat format );
+    void add_stdout(arc::uint16 verbosity, OutFormat format);
 
     /*!
      * \brief Adds a file output for writing.
@@ -116,9 +116,9 @@ public:
      * \param format The format to write to the file in.
      */
     void add_file_output(
-            const chaos::str::UTF8String& path,
-                  chaos::uint16           verbosity,
-                  OutFormat               format );
+            const arc::str::UTF8String& path,
+            arc::uint16 verbosity,
+            OutFormat format);
 
     /*!
      * \brief Opening statement of the log.
@@ -137,22 +137,22 @@ public:
      * \param id The unique id of this test.
      */
     void open_test(
-            const chaos::str::UTF8String& path,
-            const chaos::str::UTF8String& id );
+            const arc::str::UTF8String& path,
+            const arc::str::UTF8String& id);
 
     /*!
      * \brief Closing of a unit test.
      *
      * \param id The unique id of this test.
      */
-    void close_test( const chaos::str::UTF8String& id );
+    void close_test(const arc::str::UTF8String& id);
 
     /*!
      * \breif Reports a unit test crash.
      */
     void report_crash(
-            const chaos::str::UTF8String& id,
-            const chaos::str::UTF8String& info );
+            const arc::str::UTF8String& id,
+            const arc::str::UTF8String& info);
 
     /*!
      * \brief Reports a check pass.
@@ -162,9 +162,9 @@ public:
      * \param line The line in the file that pass occurred at.
      */
     void report_check_pass(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
-                  chaos::int32            line );
+            const arc::str::UTF8String& type,
+            const arc::str::UTF8String& file,
+            arc::int32 line);
 
     /*!
      * \brief Reports a check failure.
@@ -175,17 +175,17 @@ public:
      * \param message A message that was provided with the failure.
      */
     void report_check_fail(
-            const chaos::str::UTF8String& type,
-            const chaos::str::UTF8String& file,
-                  chaos::int32            line,
-            const chaos::str::UTF8String& message );
+            const arc::str::UTF8String& type,
+            const arc::str::UTF8String& file,
+            arc::int32 line,
+            const arc::str::UTF8String& message);
 
     /*!
      * \brief Writes a message to the to test log.
      *
      * \param message The contents of the message to write.
      */
-    void write_message( const chaos::str::UTF8String& message );
+    void write_message(const arc::str::UTF8String& message);
 
     /*!
      * \brief Finalises reports for a unit test
@@ -201,7 +201,7 @@ private:
     /*!
      * \brief Global id of this logger.
      */
-    chaos::str::UTF8String m_global_id;
+    arc::str::UTF8String m_global_id;
     /*!
      * \brief Whether this is the parent logger or not.
      */
@@ -210,7 +210,7 @@ private:
     /*!
      * \brief List of TestLogFormatters being used by this logger.
      */
-    std::vector< log_formatter::AbstractTestLogFormatter* > m_formatters;
+    std::vector<log_formatter::AbstractTestLogFormatter*> m_formatters;
     /*!
      * \brief Whether the logger is using the standard output stream.
      */
@@ -218,44 +218,44 @@ private:
     /*!
      * \brief Mapping from filenames to the streams writing to them.
      */
-    std::map< chaos::str::UTF8String, std::ostream* > m_file_streams;
+    std::map<arc::str::UTF8String, std::ostream*> m_file_streams;
 
     /*!
      * \brief Path to metadata file.
      */
-    chaos::io::sys::Path m_meta_path;
+    arc::io::sys::Path m_meta_path;
 
     /*!
      * \brief The number of unit tests that have had a 100% pass rate.
      */
-    chaos::uint32 m_unit_passes;
+    arc::uint32 m_unit_passes;
     /*!
      * \brief The number of unit tests that have not had a 100% pass rate, but
      *        still completed.
      */
-    chaos::uint32 m_unit_failures;
+    arc::uint32 m_unit_failures;
     /*!
      * \brief The number of unit tests that encountered a critical error during
      *        execution.
      */
-    chaos::uint32 m_unit_errors;
+    arc::uint32 m_unit_errors;
     /*!
      * \brief Total number of checks passed across all tests.
      */
-    chaos::uint64 m_global_check_pass_count;
+    arc::uint64 m_global_check_pass_count;
     /*!
      * \brief Total number of checks failed across all tests.
      */
-    chaos::uint64 m_global_check_fail_count;
+    arc::uint64 m_global_check_fail_count;
 
     /*!
      * \brief The number of checks passed in the current unit.
      */
-    chaos::uint64 m_check_pass_count;
+    arc::uint64 m_check_pass_count;
     /*!
      * \brief The number of checks failed in the current unit.
      */
-    chaos::uint64 m_check_fail_count;
+    arc::uint64 m_check_fail_count;
 
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS
@@ -267,13 +267,13 @@ private:
      */
     void create_formatter(
             std::ostream* stream,
-            chaos::uint16 verbosity,
-            OutFormat     format,
-            bool          is_stdout = false );
+            arc::uint16 verbosity,
+            OutFormat format,
+            bool is_stdout = false);
 };
 
 } // namespace test
-} // namespace chaos
+} // namespace arc
 
 #endif
 

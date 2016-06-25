@@ -1,7 +1,7 @@
-#ifndef CHAOSCORE_IO_SYS_HPP_
-#define CHAOSCORE_IO_SYS_HPP_
+#ifndef ARCANECORE_IO_SYS_HPP_
+#define ARCANECORE_IO_SYS_HPP_
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -14,6 +14,6 @@ namespace sys
 } // namespace sys
 
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif

@@ -1,8 +1,8 @@
-#include "chaoscore/io/sys/FileHandle.hpp"
+#include "arcanecore/io/sys/FileHandle.hpp"
 
-#include "chaoscore/base/Exceptions.hpp"
+#include "arcanecore/base/Exceptions.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -55,7 +55,7 @@ bool FileHandle::is_open() const
     return m_open;
 }
 
-const chaos::io::sys::Path& FileHandle::get_path() const
+const arc::io::sys::Path& FileHandle::get_path() const
 {
     return m_path;
 }
@@ -70,12 +70,12 @@ FileHandle::Newline FileHandle::get_newline() const
     return m_newline;
 }
 
-void FileHandle::set_path(const chaos::io::sys::Path& path)
+void FileHandle::set_path(const arc::io::sys::Path& path)
 {
     // ensure the handle isn't open
     if(m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileHandle path cannot be changed since the handle is open.");
     }
 
@@ -87,7 +87,7 @@ void FileHandle::set_encoding(Encoding encoding)
     // ensure the handle isn't open
     if(m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileHandle encoding cannot be changed since the handle is "
             "open."
         );
@@ -101,7 +101,7 @@ void FileHandle::set_newline(Newline newline)
     // ensure the handle isn't open
     if(m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileHandle newline symbol cannot be changed since the handle is "
             "open."
         );
@@ -111,7 +111,7 @@ void FileHandle::set_newline(Newline newline)
     handle_newline_detect();
 }
 
-void FileHandle::open(const chaos::io::sys::Path& path)
+void FileHandle::open(const arc::io::sys::Path& path)
 {
     set_path(path);
     open();
@@ -122,11 +122,11 @@ std::size_t FileHandle::get_bom_size() const
     switch(m_encoding)
     {
         case ENCODING_UTF8:
-            return chaos::str::UTF8_BOM_SIZE;
+            return arc::str::UTF8_BOM_SIZE;
         case ENCODING_UTF16_LITTLE_ENDIAN:
-            return chaos::str::UTF16_BOM_SIZE;
+            return arc::str::UTF16_BOM_SIZE;
         case ENCODING_UTF16_BIG_ENDIAN:
-            return chaos::str::UTF16_BOM_SIZE;
+            return arc::str::UTF16_BOM_SIZE;
         default:
             return 0;
     }
@@ -146,7 +146,7 @@ FileHandle::FileHandle(Encoding encoding, Newline newline)
 }
 
 FileHandle::FileHandle(
-        const chaos::io::sys::Path& path,
+        const arc::io::sys::Path& path,
         Encoding encoding,
         Newline newline)
     :
@@ -166,7 +166,7 @@ void FileHandle::handle_newline_detect()
 {
     if(m_newline == NEWLINE_DETECT)
     {
-#ifdef CHAOS_OS_WINDOWS
+#ifdef ARC_OS_WINDOWS
         m_newline = NEWLINE_WINDOWS;
 #else
         m_newline = NEWLINE_UNIX;
@@ -176,4 +176,4 @@ void FileHandle::handle_newline_detect()
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc

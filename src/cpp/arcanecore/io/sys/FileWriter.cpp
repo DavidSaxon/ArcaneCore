@@ -1,12 +1,12 @@
-#include "chaoscore/io/sys/FileWriter.hpp"
+#include "arcanecore/io/sys/FileWriter.hpp"
 
 #include <cstddef>
 #include <fstream>
 
-#include "chaoscore/base/Exceptions.hpp"
-#include "chaoscore/base/str/StringOperations.hpp"
+#include "arcanecore/base/Exceptions.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -29,7 +29,7 @@ FileWriter::FileWriter(
 }
 
 FileWriter::FileWriter(
-        const chaos::io::sys::Path& path,
+        const arc::io::sys::Path& path,
         OpenMode open_mode,
         Encoding encoding,
         Newline newline)
@@ -98,7 +98,7 @@ void FileWriter::set_open_mode(OpenMode open_mode)
     // ensure the file writer isn't open
     if(m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileWriter OpenMode cannot be changed since the writer is open.");
     }
 
@@ -110,7 +110,7 @@ void FileWriter::open()
     // ensure the file writer is not already open
     if(m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileWriter cannot be opened since it is already open.");
     }
 
@@ -133,14 +133,14 @@ void FileWriter::open()
     }
 
     // create a new stream
-#ifdef CHAOS_OS_WINDOWS
+#ifdef ARC_OS_WINDOWS
 
     // utf-16 path
     std::size_t length = 0;
-    const char* p = chaos::str::utf8_to_utf16(
+    const char* p = arc::str::utf8_to_utf16(
         m_path.to_windows(),
         length,
-        chaos::data::ENDIAN_LITTLE
+        arc::data::ENDIAN_LITTLE
     );
 
     m_stream = new std::ofstream((const wchar_t*) p, stream_flags);
@@ -160,10 +160,10 @@ void FileWriter::open()
         delete m_stream;
 
         // throw exception
-        chaos::str::UTF8String error_message;
+        arc::str::UTF8String error_message;
         error_message << "Failed to open FileWriter to path: \'"
                       << m_path.to_native() << "\'.";
-        throw chaos::ex::InvalidPathError(error_message);
+        throw arc::ex::InvalidPathError(error_message);
     }
 
     // write the BOM based on the encoding
@@ -171,22 +171,22 @@ void FileWriter::open()
     {
         case ENCODING_UTF8:
         {
-            m_stream->write(chaos::str::UTF8_BOM, chaos::str::UTF8_BOM_SIZE);
+            m_stream->write(arc::str::UTF8_BOM, arc::str::UTF8_BOM_SIZE);
             break;
         }
         case ENCODING_UTF16_LITTLE_ENDIAN:
         {
             m_stream->write(
-                chaos::str::UTF16LE_BOM,
-                chaos::str::UTF16_BOM_SIZE
+                arc::str::UTF16LE_BOM,
+                arc::str::UTF16_BOM_SIZE
             );
             break;
         }
         case ENCODING_UTF16_BIG_ENDIAN:
         {
             m_stream->write(
-                chaos::str::UTF16BE_BOM,
-                chaos::str::UTF16_BOM_SIZE
+                arc::str::UTF16BE_BOM,
+                arc::str::UTF16_BOM_SIZE
             );
             break;
         }
@@ -201,7 +201,7 @@ void FileWriter::open()
     m_open = true;
 }
 
-void FileWriter::open(const chaos::io::sys::Path& path)
+void FileWriter::open(const arc::io::sys::Path& path)
 {
     // just call super function, this function is only implemented here to avoid
     // C++ function hiding.
@@ -213,7 +213,7 @@ void FileWriter::close()
     // ensure the FileWriter is not already closed
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileWriter cannot be closed since it is already closed.");
     }
 
@@ -224,30 +224,30 @@ void FileWriter::close()
     m_open = false;
 }
 
-chaos::int64 FileWriter::get_size() const
+arc::int64 FileWriter::get_size() const
 {
     // ensure the FileWriter is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File size cannot be queried while the FileWriter is closed.");
     }
 
     // dynamically find the size
-    chaos::int64 current = m_stream->tellp();
+    arc::int64 current = m_stream->tellp();
     m_stream->seekp(0, std::ios_base::end);
-    chaos::int64 size = m_stream->tellp();
+    arc::int64 size = m_stream->tellp();
     m_stream->seekp(current, std::ios_base::beg);
 
     return size;
 }
 
-chaos::int64 FileWriter::tell() const
+arc::int64 FileWriter::tell() const
 {
     // ensure the FileWriter is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File position indicator cannot be queried while the FileWriter is "
             "closed."
         );
@@ -256,12 +256,12 @@ chaos::int64 FileWriter::tell() const
     return m_stream->tellp();
 }
 
-void FileWriter::seek(chaos::int64 index)
+void FileWriter::seek(arc::int64 index)
 {
     // ensure the FileWriter is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File position indicator cannot be moved while the FileWriter is "
             "closed."
         );
@@ -277,19 +277,19 @@ void FileWriter::write(const char* data, std::size_t length)
     // ensure the FileWriter is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File write cannot be performed while the FileWriter is closed.");
     }
 
     m_stream->write(data, length);
 }
 
-void FileWriter::write(const chaos::str::UTF8String& data)
+void FileWriter::write(const arc::str::UTF8String& data)
 {
     // ensure the FileWriter is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File write cannot be performed while the FileWriter is closed.");
     }
 
@@ -299,10 +299,10 @@ void FileWriter::write(const chaos::str::UTF8String& data)
         case ENCODING_UTF16_LITTLE_ENDIAN:
         {
             std::size_t data_length = 0;
-            const char* u_data = chaos::str::utf8_to_utf16(
+            const char* u_data = arc::str::utf8_to_utf16(
                 data,
                 data_length,
-                chaos::data::ENDIAN_LITTLE,
+                arc::data::ENDIAN_LITTLE,
                 false
             );
             write(u_data, data_length);
@@ -312,10 +312,10 @@ void FileWriter::write(const chaos::str::UTF8String& data)
         case ENCODING_UTF16_BIG_ENDIAN:
         {
             std::size_t data_length = 0;
-            const char* u_data = chaos::str::utf8_to_utf16(
+            const char* u_data = arc::str::utf8_to_utf16(
                 data,
                 data_length,
-                chaos::data::ENDIAN_BIG,
+                arc::data::ENDIAN_BIG,
                 false
             );
             write(u_data, data_length);
@@ -395,7 +395,7 @@ void FileWriter::write_line(const char* data, std::size_t length)
     }
 }
 
-void FileWriter::write_line(const chaos::str::UTF8String& data)
+void FileWriter::write_line(const arc::str::UTF8String& data)
 {
     // write string
     write(data);
@@ -405,4 +405,4 @@ void FileWriter::write_line(const chaos::str::UTF8String& data)
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc

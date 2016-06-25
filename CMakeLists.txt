@@ -32,8 +32,8 @@ set(GFX_SRC
 )
 
 set(TEST_SRC
-    src/cpp/arcanecore/test/ChaosTest.cpp
-    src/cpp/arcanecore/test/ChaosTestMain.cpp
+    src/cpp/arcanecore/test/ArcTest.cpp
+    src/cpp/arcanecore/test/ArcTestMain.cpp
     src/cpp/arcanecore/test/TestLogger.cpp
     src/cpp/arcanecore/test/log_formatter/AbstractTestLogFormatter.cpp
     src/cpp/arcanecore/test/log_formatter/HTMLTestLogFormatter.cpp

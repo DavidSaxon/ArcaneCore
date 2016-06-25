@@ -1,6 +1,6 @@
-#include "chaoscore/io/format/ANSI.hpp"
+#include "arcanecore/io/format/ANSI.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -12,14 +12,14 @@ namespace format
 //------------------------------------------------------------------------------
 
 void apply_escape_sequence(
-        chaos::str::UTF8String& text,
+        arc::str::UTF8String& text,
         ANSIColour              colour,
-        ANSIAttribute           attribute )
+        ANSIAttribute           attribute)
 {
     // start the opening escape sequence
-    chaos::str::UTF8String r( "\033[" );
+    arc::str::UTF8String r("\033[");
     // write the attribute
-    switch ( attribute )
+    switch (attribute)
     {
         case ANSI_ATTR_NONE:
         {
@@ -48,13 +48,13 @@ void apply_escape_sequence(
         }
     }
     // write the colour
-    r << static_cast< chaos::uint32 >( colour ) << "m";
+    r << static_cast< arc::uint32 >(colour) << "m";
     // write the string and closing sequence
     r << text << "\033[00m";
     // done
-    text.assign( r );
+    text.assign(r);
 }
 
 } // namespace format
 } // namespace io
-} // namespace chaos
+} // namespace arc

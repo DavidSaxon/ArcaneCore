@@ -1,16 +1,16 @@
-#include "chaoscore/test/TestLogger.hpp"
+#include "arcanecore/test/TestLogger.hpp"
 
 #include <fstream>
 #include <iostream>
 
-#include "chaoscore/io/sys/FileSystemOperations.hpp"
-#include "chaoscore/test/TestExceptions.hpp"
-#include "chaoscore/test/log_formatter/HTMLTestLogFormatter.hpp"
-#include "chaoscore/test/log_formatter/PlainTestLogFormatter.hpp"
-#include "chaoscore/test/log_formatter/PrettyTestLogFormatter.hpp"
-#include "chaoscore/test/log_formatter/XMLTestLogFormatter.hpp"
+#include "arcanecore/io/sys/FileSystemOperations.hpp"
+#include "arcanecore/test/TestExceptions.hpp"
+#include "arcanecore/test/log_formatter/HTMLTestLogFormatter.hpp"
+#include "arcanecore/test/log_formatter/PlainTestLogFormatter.hpp"
+#include "arcanecore/test/log_formatter/PrettyTestLogFormatter.hpp"
+#include "arcanecore/test/log_formatter/XMLTestLogFormatter.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace test
 {
@@ -21,15 +21,15 @@ namespace test
 
 TestLogger::TestLogger()
     :
-    m_is_parent              ( false ),
-    m_using_stdout           ( false ),
-    m_unit_passes            ( 0 ),
-    m_unit_failures          ( 0 ),
-    m_unit_errors            ( 0 ),
-    m_global_check_pass_count( 0 ),
-    m_global_check_fail_count( 0 ),
-    m_check_pass_count       ( 0 ),
-    m_check_fail_count       ( 0 )
+    m_is_parent              (false),
+    m_using_stdout           (false),
+    m_unit_passes            (0),
+    m_unit_failures          (0),
+    m_unit_errors            (0),
+    m_global_check_pass_count(0),
+    m_global_check_fail_count(0),
+    m_check_pass_count       (0),
+    m_check_fail_count       (0)
 {
 }
 
@@ -40,14 +40,14 @@ TestLogger::TestLogger()
 TestLogger::~TestLogger()
 {
     // delete the formatters
-    CHAOS_FOR_EACH( f_it, m_formatters )
+    ARC_FOR_EACH(f_it, m_formatters)
     {
         delete *f_it;
     }
     // close and delete the file streams
-    CHAOS_FOR_EACH( f_s_it, m_file_streams )
+    ARC_FOR_EACH(f_s_it, m_file_streams)
     {
-        static_cast< std::ofstream* >( f_s_it->second )->close();
+        static_cast<std::ofstream*>(f_s_it->second)->close();
         delete f_s_it->second;
     }
 }
@@ -56,24 +56,24 @@ TestLogger::~TestLogger()
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void TestLogger::set_global_id( const chaos::str::UTF8String& id )
+void TestLogger::set_global_id(const arc::str::UTF8String& id)
 {
     // set global id and meta path
     m_global_id = id;
-    m_meta_path = chaos::io::sys::Path( id + ".metadata" );
+    m_meta_path = arc::io::sys::Path(id + ".metadata");
 }
 
-void TestLogger::set_as_parent( bool state )
+void TestLogger::set_as_parent(bool state)
 {
     m_is_parent = state;
 }
 
-void TestLogger::add_stdout( chaos::uint16 verbosity, OutFormat format )
+void TestLogger::add_stdout(arc::uint16 verbosity, OutFormat format)
 {
     // safety to ensure two std outs are not defined
-    if ( m_using_stdout )
+    if(m_using_stdout)
     {
-        throw chaos::test::ex::TestRuntimeError(
+        throw arc::test::ex::TestRuntimeError(
                 "A standard out test logger has already been defined. "
                 "Currently only one standard out test logger is supported."
         );
@@ -82,108 +82,108 @@ void TestLogger::add_stdout( chaos::uint16 verbosity, OutFormat format )
     m_using_stdout = true;
 
     // create formatter
-    create_formatter( &std::cout, verbosity, format, true );
+    create_formatter(&std::cout, verbosity, format, true);
 
 }
 
 void TestLogger::add_file_output(
-        const chaos::str::UTF8String& path,
-              chaos::uint16           verbosity,
-              OutFormat               format )
+        const arc::str::UTF8String& path,
+        arc::uint16 verbosity,
+        OutFormat format)
 {
     // open a file stream
-    std::ofstream* file_stream = new std::ofstream( path.get_raw() );
+    std::ofstream* file_stream = new std::ofstream(path.get_raw());
     // did the stream open ok?
-    if ( !file_stream->good() )
+    if(!file_stream->good())
     {
         file_stream->close();
-        chaos::str::UTF8String error_message;
+        arc::str::UTF8String error_message;
         error_message << "Failed to open path for logging: " << path;
-        throw chaos::test::ex::TestRuntimeError( error_message );
+        throw arc::test::ex::TestRuntimeError(error_message);
     }
 
     // store the file name and stream
-    m_file_streams[ path ] = file_stream;
+    m_file_streams[path] = file_stream;
 
     // create a formatter
-    create_formatter( file_stream, verbosity, format );
+    create_formatter(file_stream, verbosity, format);
 }
 
 void TestLogger::open_log()
 {
     // only handled by the parent logger
-    if ( !m_is_parent )
+    if(!m_is_parent)
     {
         return;
     }
 
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->open_log();
+        (*it)->open_log();
     }
 }
 
 void TestLogger::close_log()
 {
     // only handled by the parent logger
-    if ( !m_is_parent )
+    if(!m_is_parent)
     {
         return;
     }
 
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->close_log(
+        (*it)->close_log(
                 m_unit_passes,
                 m_unit_failures,
                 m_unit_errors,
                 m_global_check_pass_count,
-                m_global_check_fail_count );
+                m_global_check_fail_count);
     }
 }
 
 void TestLogger::open_test(
-        const chaos::str::UTF8String& path,
-        const chaos::str::UTF8String& id )
+        const arc::str::UTF8String& path,
+        const arc::str::UTF8String& id)
 {
     // only handled by the parent logger
-    if ( !m_is_parent )
+    if(!m_is_parent)
     {
         return;
     }
 
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->open_test( path, id );
+        (*it)->open_test(path, id);
     }
 }
 
-void TestLogger::close_test( const chaos::str::UTF8String& id )
+void TestLogger::close_test(const arc::str::UTF8String& id)
 {
     // only handled by the parent logger
-    if ( !m_is_parent )
+    if(!m_is_parent)
     {
         return;
     }
 
     // look for open sub files and append them into the main files
-    CHAOS_FOR_EACH( f_it, m_file_streams )
+    ARC_FOR_EACH(f_it, m_file_streams)
     {
         // add the id as to the filename
-        chaos::io::sys::Path sub_path( f_it->first + "." + id );
+        arc::io::sys::Path sub_path(f_it->first + "." + id);
         // does the sub file exist?
-        if ( chaos::io::sys::exists ( sub_path ) &&
-             chaos::io::sys::is_file( sub_path )    )
+        if(arc::io::sys::exists (sub_path) &&
+             arc::io::sys::is_file(sub_path)   )
         {
             // TODO: this doesn't support windows utf-16 encoded paths
             // open the file and read the contents into the matching stream
-            std::ifstream in_file( sub_path.to_native().get_raw() );
-            if ( in_file.is_open() )
+            std::ifstream in_file(sub_path.to_native().get_raw());
+            if(in_file.is_open())
             {
                 std::string line;
-                while( getline( in_file, line ) )
+                while(getline(in_file, line))
                 {
-                    ( *f_it->second ) << line << std::endl;
+                    (*f_it->second) << line << std::endl;
                 }
             }
             // close stream
@@ -191,29 +191,29 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
             // delete the file
             try
             {
-                chaos::io::sys::delete_path( sub_path );
+                arc::io::sys::delete_path(sub_path);
             }
-            catch( ... ) {}
+            catch(...) {}
         }
     }
 
     // send the close to formatters
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->close_test();
+        (*it)->close_test();
     }
 
     // read in metadata file
-    if ( chaos::io::sys::exists ( m_meta_path ) &&
-         chaos::io::sys::is_file( m_meta_path )    )
+    if(arc::io::sys::exists (m_meta_path) &&
+       arc::io::sys::is_file(m_meta_path)   )
     {
         // TODO: this doesn't support Windows UTF-16 encoded file paths
-        std::ifstream metadata( m_meta_path.to_native().get_raw() );
+        std::ifstream metadata(m_meta_path.to_native().get_raw());
         std::string line;
-        if( getline( metadata, line ) )
+        if(getline(metadata, line))
         {
-            bool unit_pass = chaos::str::UTF8String( line.c_str() ).to_bool();
-            if ( unit_pass )
+            bool unit_pass = arc::str::UTF8String(line.c_str()).to_bool();
+            if(unit_pass)
             {
                 ++m_unit_passes;
             }
@@ -222,119 +222,119 @@ void TestLogger::close_test( const chaos::str::UTF8String& id )
                 ++m_unit_failures;
             }
         }
-        if( getline( metadata, line ) )
+        if(getline(metadata, line))
         {
             m_global_check_pass_count +=
-                    chaos::str::UTF8String( line.c_str() ).to_uint64();
+                    arc::str::UTF8String(line.c_str()).to_uint64();
         }
-        if( getline( metadata, line ) )
+        if(getline(metadata, line))
         {
             m_global_check_fail_count +=
-                    chaos::str::UTF8String( line.c_str() ).to_uint64();
+                    arc::str::UTF8String(line.c_str()).to_uint64();
         }
 
         // clean up metadata
         metadata.close();
         try
         {
-            chaos::io::sys::delete_path( m_meta_path );
+            arc::io::sys::delete_path(m_meta_path);
         }
-        catch( ... ) {}
+        catch(...) {}
     }
 }
 
 void TestLogger::report_crash(
-        const chaos::str::UTF8String& id,
-        const chaos::str::UTF8String& info )
+        const arc::str::UTF8String& id,
+        const arc::str::UTF8String& info)
 {
     // clean up the sub files and metadata -- there's no point reading as they're
     // likely incomplete or corrupted
-    CHAOS_FOR_EACH( f_it, m_file_streams )
+    ARC_FOR_EACH(f_it, m_file_streams)
     {
         // add the id as to the filename
-        chaos::io::sys::Path sub_path( f_it->first + "." + id );
-        if ( chaos::io::sys::exists ( sub_path ) &&
-             chaos::io::sys::is_file( sub_path )    )
+        arc::io::sys::Path sub_path(f_it->first + "." + id);
+        if(arc::io::sys::exists (sub_path) &&
+             arc::io::sys::is_file(sub_path)   )
         {
             try
             {
-                chaos::io::sys::delete_path( sub_path );
+                arc::io::sys::delete_path(sub_path);
             }
-            catch( ... ) {}
+            catch(...) {}
         }
     }
-    if ( chaos::io::sys::exists ( m_meta_path ) &&
-         chaos::io::sys::is_file( m_meta_path )    )
+    if(arc::io::sys::exists (m_meta_path) &&
+         arc::io::sys::is_file(m_meta_path)   )
     {
         try
         {
-            chaos::io::sys::delete_path( m_meta_path );
+            arc::io::sys::delete_path(m_meta_path);
         }
-        catch( ... ) {}
+        catch(...) {}
     }
 
     // increment errored tests
     ++m_unit_errors;
 
     // send to formatters
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->report_crash( info );
+        (*it)->report_crash(info);
     }
 }
 
 void TestLogger::report_check_pass(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
-              chaos::int32            line )
+        const arc::str::UTF8String& type,
+        const arc::str::UTF8String& file,
+        arc::int32 line)
 {
     // record success
     ++m_check_pass_count;
     // send to formatters
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->report_check_pass( type, file, line );
+        (*it)->report_check_pass(type, file, line);
     }
 }
 
 void TestLogger::report_check_fail(
-        const chaos::str::UTF8String& type,
-        const chaos::str::UTF8String& file,
-              chaos::int32            line,
-        const chaos::str::UTF8String& message )
+        const arc::str::UTF8String& type,
+        const arc::str::UTF8String& file,
+        arc::int32 line,
+        const arc::str::UTF8String& message)
 {
     // record failure
     ++m_check_fail_count;
     // send to formatters
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->report_check_fail( type, file, line, message );
+        (*it)->report_check_fail(type, file, line, message);
     }
 }
 
-void TestLogger::write_message( const chaos::str::UTF8String& message )
+void TestLogger::write_message(const arc::str::UTF8String& message)
 {
     // send to formatters
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->write_message( message );
+        (*it)->write_message(message);
     }
 }
 
 void TestLogger::finialise_test_report()
 {
     // send to formatters
-    CHAOS_FOR_EACH( it, m_formatters )
+    ARC_FOR_EACH(it, m_formatters)
     {
-        ( *it )->finialise_test_report(
-                m_check_pass_count, m_check_fail_count );
+        (*it)->finialise_test_report(
+                m_check_pass_count, m_check_fail_count);
     }
     // write to meta-data
-    chaos::str::UTF8String contents;
-    contents << ( m_check_fail_count == 0 ) << "\n" << m_check_pass_count
+    arc::str::UTF8String contents;
+    contents << (m_check_fail_count == 0) << "\n" << m_check_pass_count
              << "\n" << m_check_fail_count << "\n";
     // TODO: this doesn't support Windows UTF-16 encoded data
-    std::ofstream metadata( m_meta_path.to_native().get_raw() );
+    std::ofstream metadata(m_meta_path.to_native().get_raw());
     metadata << contents.get_raw() << std::endl;
     metadata.close();
     // clear
@@ -348,42 +348,42 @@ void TestLogger::finialise_test_report()
 
 void TestLogger::create_formatter(
         std::ostream* stream,
-        chaos::uint16 verbosity,
-        OutFormat     format,
-        bool          is_stdout )
+        arc::uint16 verbosity,
+        OutFormat format,
+        bool is_stdout)
 {
     // create a new log formatter based on the output type
     log_formatter::AbstractTestLogFormatter* formatter;
-    switch( format )
+    switch(format)
     {
         case OUT_PLAIN_TEXT:
         {
             formatter = new log_formatter::PlainTestLogFormatter(
-                    verbosity, stream );
+                    verbosity, stream);
             break;
         }
         case OUT_PRETTY_TEXT:
         {
             formatter = new log_formatter::PrettyTestLogFormatter(
-                    verbosity, stream, is_stdout );
+                    verbosity, stream, is_stdout);
             break;
         }
         case OUT_XML:
         {
             formatter = new log_formatter::XMLTestLogFormatter(
-                    verbosity, stream );
+                    verbosity, stream);
             break;
         }
         case OUT_HTML:
         {
             formatter = new log_formatter::HTMLTestLogFormatter(
-                    verbosity, stream );
+                    verbosity, stream);
             break;
         }
     }
     // store
-    m_formatters.push_back( formatter );
+    m_formatters.push_back(formatter);
 }
 
 } // namespace test
-} // namespace chaos
+} // namespace arc

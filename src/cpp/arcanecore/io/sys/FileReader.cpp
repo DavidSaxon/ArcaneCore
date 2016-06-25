@@ -1,12 +1,12 @@
-#include "chaoscore/io/sys/FileReader.hpp"
+#include "arcanecore/io/sys/FileReader.hpp"
 
 #include <cstring>
 #include <fstream>
 
-#include "chaoscore/base/str/StringOperations.hpp"
-#include "chaoscore/base/Exceptions.hpp"
+#include "arcanecore/base/str/StringOperations.hpp"
+#include "arcanecore/base/Exceptions.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -74,7 +74,7 @@ FileReader::FileReader(Encoding encoding, Newline newline)
 
 
 FileReader::FileReader(
-        const chaos::io::sys::Path& path,
+        const arc::io::sys::Path& path,
         Encoding encoding,
         Newline newline)
     :
@@ -147,7 +147,7 @@ void FileReader::open()
     // ensure the file reader is not already open
     if(m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileReader cannot be opened since it is already open.");
     }
 
@@ -158,14 +158,14 @@ void FileReader::open()
     }
 
     // create a new stream
-#ifdef CHAOS_OS_WINDOWS
+#ifdef ARC_OS_WINDOWS
 
     // utf-16 path
     std::size_t length = 0;
-    const char* p = chaos::str::utf8_to_utf16(
+    const char* p = arc::str::utf8_to_utf16(
         m_path.to_windows(),
         length,
-        chaos::data::ENDIAN_LITTLE
+        arc::data::ENDIAN_LITTLE
     );
 
     m_stream = new std::ifstream(
@@ -191,10 +191,10 @@ void FileReader::open()
         delete m_stream;
 
         // throw exception
-        chaos::str::UTF8String error_message;
+        arc::str::UTF8String error_message;
         error_message << "Failed to open FileReader to path: \'"
                       << m_path.to_native() << "\'.";
-        throw chaos::ex::InvalidPathError(error_message);
+        throw arc::ex::InvalidPathError(error_message);
     }
 
     // retrieve the size of the file
@@ -205,11 +205,11 @@ void FileReader::open()
     // should we detect the encoding, check for UTF-8 first since it's the most
     // common
     std::size_t size_st = static_cast<std::size_t>(m_size);
-    if(m_encoding == ENCODING_DETECT && size_st >= chaos::str::UTF8_BOM_SIZE)
+    if(m_encoding == ENCODING_DETECT && size_st >= arc::str::UTF8_BOM_SIZE)
     {
-        char* bom = new char[chaos::str::UTF8_BOM_SIZE];
-        m_stream->read(bom, chaos::str::UTF8_BOM_SIZE);
-        if(memcmp(bom, chaos::str::UTF8_BOM, chaos::str::UTF8_BOM_SIZE) == 0)
+        char* bom = new char[arc::str::UTF8_BOM_SIZE];
+        m_stream->read(bom, arc::str::UTF8_BOM_SIZE);
+        if(memcmp(bom, arc::str::UTF8_BOM, arc::str::UTF8_BOM_SIZE) == 0)
         {
             m_encoding = ENCODING_UTF8;
         }
@@ -217,16 +217,16 @@ void FileReader::open()
         delete[] bom;
     }
     // the encoding still hasn't been detected, check for UTF-16 encodings next
-    if(m_encoding == ENCODING_DETECT && size_st >= chaos::str::UTF16_BOM_SIZE)
+    if(m_encoding == ENCODING_DETECT && size_st >= arc::str::UTF16_BOM_SIZE)
     {
-        char* bom = new char[chaos::str::UTF16_BOM_SIZE];
-        m_stream->read(bom, chaos::str::UTF16_BOM_SIZE);
-        if(memcmp(bom, chaos::str::UTF16LE_BOM, chaos::str::UTF16_BOM_SIZE)
+        char* bom = new char[arc::str::UTF16_BOM_SIZE];
+        m_stream->read(bom, arc::str::UTF16_BOM_SIZE);
+        if(memcmp(bom, arc::str::UTF16LE_BOM, arc::str::UTF16_BOM_SIZE)
            == 0)
         {
             m_encoding = ENCODING_UTF16_LITTLE_ENDIAN;
         }
-        else if(memcmp(bom, chaos::str::UTF16BE_BOM, chaos::str::UTF16_BOM_SIZE)
+        else if(memcmp(bom, arc::str::UTF16BE_BOM, arc::str::UTF16_BOM_SIZE)
                 == 0)
         {
             m_encoding = ENCODING_UTF16_BIG_ENDIAN;
@@ -245,7 +245,7 @@ void FileReader::open()
     m_newline_checker_valid = false;
 }
 
-void FileReader::open(const chaos::io::sys::Path& path)
+void FileReader::open(const arc::io::sys::Path& path)
 {
     // just call super function, this function is only implemented here to avoid
     // C++ function hiding.
@@ -257,7 +257,7 @@ void FileReader::close()
     // ensure the FileReader is not already closed
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "FileReader cannot be closed since it is already closed.");
     }
 
@@ -268,26 +268,26 @@ void FileReader::close()
     m_open = false;
 }
 
-chaos::int64 FileReader::get_size() const
+arc::int64 FileReader::get_size() const
 {
     // TODO: should size be dynamic?
 
     // ensure the FileReader is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File size cannot be queried while the FileReader is closed.");
     }
 
     return m_size;
 }
 
-chaos::int64 FileReader::tell() const
+arc::int64 FileReader::tell() const
 {
     // ensure the FileReader is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File position indicator cannot be queried while the FileReader is "
             "closed."
         );
@@ -296,12 +296,12 @@ chaos::int64 FileReader::tell() const
     return m_stream->tellg();
 }
 
-void FileReader::seek(chaos::int64 index)
+void FileReader::seek(arc::int64 index)
 {
     // ensure the FileReader is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File position indicator cannot be moved while the FileReader is "
             "closed."
         );
@@ -317,7 +317,7 @@ bool FileReader::eof() const
     // ensure the FileReader is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "End of File cannot be queried while the FileReader is closed."
         );
     }
@@ -330,7 +330,7 @@ bool FileReader::has_bom()
     // ensure the FileReader is open
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "Unicode BOM cannot be queried while the FileReader is closed."
         );
     }
@@ -338,7 +338,7 @@ bool FileReader::has_bom()
 
     // does this encoding actually use a BOM? and is there actually enough data
     // in the file?
-    chaos::int64 bom_size = static_cast<chaos::int64>(get_bom_size());
+    arc::int64 bom_size = static_cast<arc::int64>(get_bom_size());
     std::size_t bom_size_t = static_cast<std::size_t>(bom_size);
     if(bom_size == 0 || m_size < bom_size)
     {
@@ -346,7 +346,7 @@ bool FileReader::has_bom()
     }
 
     // store the current position indicator
-    chaos::int64 pos = tell();
+    arc::int64 pos = tell();
     // seek to the beginning of the file
     seek(0);
     // read the BOM character
@@ -357,19 +357,19 @@ bool FileReader::has_bom()
     switch(m_encoding)
     {
         case ENCODING_UTF8:
-            correct = memcmp(bom, chaos::str::UTF8_BOM, bom_size_t) == 0;
+            correct = memcmp(bom, arc::str::UTF8_BOM, bom_size_t) == 0;
             break;
         case ENCODING_UTF16_LITTLE_ENDIAN:
-            correct = memcmp(bom, chaos::str::UTF16LE_BOM, bom_size_t) == 0;
+            correct = memcmp(bom, arc::str::UTF16LE_BOM, bom_size_t) == 0;
             break;
         case ENCODING_UTF16_BIG_ENDIAN:
-            correct = memcmp(bom, chaos::str::UTF16BE_BOM, bom_size_t) == 0;
+            correct = memcmp(bom, arc::str::UTF16BE_BOM, bom_size_t) == 0;
             break;
         default:
-            chaos::str::UTF8String error_message;
+            arc::str::UTF8String error_message;
             error_message << "Unexpected file encoding when checking for BOM: "
                           << m_encoding;
-            throw chaos::ex::NotImplementedError(error_message);
+            throw arc::ex::NotImplementedError(error_message);
     }
 
     // clean up
@@ -379,12 +379,12 @@ bool FileReader::has_bom()
     return correct;
 }
 
-chaos::int64 FileReader::seek_to_data_start()
+arc::int64 FileReader::seek_to_data_start()
 {
     // does the file have a byte order marker, if so seek past it
     if(has_bom())
     {
-        seek(static_cast<chaos::int64>(get_bom_size()));
+        seek(static_cast<arc::int64>(get_bom_size()));
     }
     // else seek to the start of the file
     else
@@ -394,7 +394,7 @@ chaos::int64 FileReader::seek_to_data_start()
     return tell();
 }
 
-void FileReader::read(char* data, chaos::int64 length)
+void FileReader::read(char* data, arc::int64 length)
 {
     check_can_read();
 
@@ -409,12 +409,12 @@ void FileReader::read(char* data, chaos::int64 length)
     }
 }
 
-void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
+void FileReader::read(arc::str::UTF8String& data, arc::int64 length)
 {
     check_can_read();
 
     // is length negative or greater than the remainder of the file
-    chaos::int64 remaining_length = get_size() - tell();
+    arc::int64 remaining_length = get_size() - tell();
     if(length < 0 || length > remaining_length)
     {
         length = remaining_length;
@@ -423,7 +423,7 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
     // if we are the beginning of the file, skip the BOM if there is one.
     if(tell() == 0 && has_bom())
     {
-        chaos::int64 bom_size = static_cast<chaos::int64>(get_bom_size());
+        arc::int64 bom_size = static_cast<arc::int64>(get_bom_size());
         // are we not reading past the BOM?
         if(length < bom_size)
         {
@@ -447,19 +447,19 @@ void FileReader::read(chaos::str::UTF8String& data, chaos::int64 length)
     {
         case ENCODING_UTF16_LITTLE_ENDIAN:
         {
-            data = chaos::str::utf16_to_utf8(
+            data = arc::str::utf16_to_utf8(
                 c_data,
                 length_t,
-                chaos::data::ENDIAN_LITTLE
+                arc::data::ENDIAN_LITTLE
             );
             break;
         }
         case ENCODING_UTF16_BIG_ENDIAN:
         {
-            data = chaos::str::utf16_to_utf8(
+            data = arc::str::utf16_to_utf8(
                 c_data,
                 length_t,
-                chaos::data::ENDIAN_BIG
+                arc::data::ENDIAN_BIG
             );
             break;
         }
@@ -512,7 +512,7 @@ std::size_t FileReader::read_line(char** data)
     return data_size;
 }
 
-void FileReader::read_line(chaos::str::UTF8String& data)
+void FileReader::read_line(arc::str::UTF8String& data)
 {
     // get raw
     char* c_data;
@@ -523,20 +523,20 @@ void FileReader::read_line(chaos::str::UTF8String& data)
     {
         case ENCODING_UTF16_LITTLE_ENDIAN:
         {
-            data = chaos::str::utf16_to_utf8(
+            data = arc::str::utf16_to_utf8(
                 c_data,
                 length,
-                chaos::data::ENDIAN_LITTLE
+                arc::data::ENDIAN_LITTLE
             );
             delete[] c_data;
             break;
         }
         case ENCODING_UTF16_BIG_ENDIAN:
         {
-            data = chaos::str::utf16_to_utf8(
+            data = arc::str::utf16_to_utf8(
                 c_data,
                 length,
-                chaos::data::ENDIAN_BIG
+                arc::data::ENDIAN_BIG
             );
             delete[] c_data;
             break;
@@ -635,12 +635,12 @@ void FileReader::check_can_read()
 {
     if(!m_open)
     {
-        throw chaos::ex::StateError(
+        throw arc::ex::StateError(
             "File read cannot be performed while the FileReader is closed.");
     }
     if(eof())
     {
-        throw chaos::ex::EOFError(
+        throw arc::ex::EOFError(
             "File read cannot be performed as the EOF marker has been reached."
         );
     }
@@ -648,4 +648,4 @@ void FileReader::check_can_read()
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc

@@ -2,13 +2,13 @@
  * \file
  * \author David Saxon
  */
-#ifndef CHAOSCORE_IO_SYS_FILEHANDLE_HPP_
-#define CHAOSCORE_IO_SYS_FILEHANDLE_HPP_
+#ifndef ARCANECORE_IO_SYS_FILEHANDLE_HPP_
+#define ARCANECORE_IO_SYS_FILEHANDLE_HPP_
 
-#include "chaoscore/base/Types.hpp"
-#include "chaoscore/io/sys/Path.hpp"
+#include "arcanecore/base/Types.hpp"
+#include "arcanecore/io/sys/Path.hpp"
 
-namespace chaos
+namespace arc
 {
 namespace io
 {
@@ -23,7 +23,7 @@ class FileHandle
 {
 private:
 
-    CHAOS_DISALLOW_COPY_AND_ASSIGN(FileHandle);
+    ARC_DISALLOW_COPY_AND_ASSIGN(FileHandle);
 
 public:
 
@@ -106,7 +106,7 @@ public:
     /*!
      * \brief Returns the path being used by this FileHandle.
      */
-    const chaos::io::sys::Path& get_path() const;
+    const arc::io::sys::Path& get_path() const;
 
     /*!
      * \brief Returns the encoding being used by this FileHandle.
@@ -123,9 +123,9 @@ public:
      *
      * \note The path can only be set if this FileHandle is not currently open.
      *
-     * \throws chaos::ex::StateError If this FileHandle is open.
+     * \throws arc::ex::StateError If this FileHandle is open.
      */
-    void set_path(const chaos::io::sys::Path& path);
+    void set_path(const arc::io::sys::Path& path);
 
     /*!
      * \brief Sets the encoding to be used by this FileHandle.
@@ -133,7 +133,7 @@ public:
      * \note The encoding can only be set if this FileHandle is not currently
      *       open.
      *
-     * \throws chaos::ex::StateError If this FileHandle is open.
+     * \throws arc::ex::StateError If this FileHandle is open.
      */
     void set_encoding(Encoding encoding);
 
@@ -143,15 +143,15 @@ public:
      * \note The newline symbol can only be set if this FileHandle is not
      *       currently open.
      *
-     * \throws chaos::ex::StateError If this FileHandle is open.
+     * \throws arc::ex::StateError If this FileHandle is open.
      */
     void set_newline(Newline newline);
 
     /*!
      * \brief Opens the FileHandle to the internal path.
      *
-     * \throws chaos::ex::StateError If this FileHandle is already open.
-     * \throws chaos::ex::InvalidPathError If the path cannot be opened.
+     * \throws arc::ex::StateError If this FileHandle is already open.
+     * \throws arc::ex::InvalidPathError If the path cannot be opened.
      */
     virtual void open() = 0;
 
@@ -167,10 +167,10 @@ public:
      *
      * \param path The path to the file to use.
      *
-     * \throws chaos::ex::StateError If this FileHandle is already open.
-     * \throws chaos::ex::InvalidPathError If the path cannot be opened.
+     * \throws arc::ex::StateError If this FileHandle is already open.
+     * \throws arc::ex::InvalidPathError If the path cannot be opened.
      */
-    virtual void open(const chaos::io::sys::Path& path);
+    virtual void open(const arc::io::sys::Path& path);
 
     /*!
      * \brief Closes this FileHandle.
@@ -180,9 +180,9 @@ public:
     /*!
      * \brief Returns the size of the file in bytes.
      *
-     * \throws chaos::ex::StateError If the FileHandle is not open.
+     * \throws arc::ex::StateError If the FileHandle is not open.
      */
-    virtual chaos::int64 get_size() const = 0;
+    virtual arc::int64 get_size() const = 0;
 
     /*!
      * \brief Returns the size in bytes of the Byte Order Marker that should be
@@ -196,19 +196,19 @@ public:
      * \brief Returns the index of the byte the file position indicator is
      *        currently at.
      *
-     * \throws chaos::ex::StateError If the FileHandle is not open.
+     * \throws arc::ex::StateError If the FileHandle is not open.
      */
-    virtual chaos::int64 tell() const = 0;
+    virtual arc::int64 tell() const = 0;
 
     /*!
      * \brief Sets the file position indicator to the given byte index.
      *
-     * \throws chaos::ex::StateError If the FileHandle is not open.
-     * \throws chaos::ex::IndexOutOfBoundsError If the given byte index is
+     * \throws arc::ex::StateError If the FileHandle is not open.
+     * \throws arc::ex::IndexOutOfBoundsError If the given byte index is
      *                                          greater than the number of bytes
      *                                          in the file or is less than 0.
      */
-    virtual void seek(chaos::int64 index) = 0;
+    virtual void seek(arc::int64 index) = 0;
 
 protected:
 
@@ -224,7 +224,7 @@ protected:
     /*!
      * \brief The path this FileHandle is using.
      */
-    chaos::io::sys::Path m_path;
+    arc::io::sys::Path m_path;
     /*!
      * \brief The encoding this FileHandle is using.
      */
@@ -249,7 +249,7 @@ protected:
      */
     FileHandle(
             Encoding encoding = ENCODING_DETECT,
-            Newline newline   = NEWLINE_UNIX);
+            Newline newline = NEWLINE_UNIX);
 
     /*!
      * \brief Path super constructor.
@@ -267,9 +267,9 @@ protected:
      * \param newline The newline symbol which the FileHandle will use.
      */
     FileHandle(
-            const chaos::io::sys::Path& path,
+            const arc::io::sys::Path& path,
             Encoding encoding = ENCODING_DETECT,
-            Newline newline   = NEWLINE_UNIX);
+            Newline newline = NEWLINE_UNIX);
 
 private:
 
@@ -279,7 +279,7 @@ private:
 
     /*!
      * \brief If this FileHandle's newline is currently set to
-     *        chaos::io::sys::FileHandle::NEWLINE_DETECT this function will
+     *        arc::io::sys::FileHandle::NEWLINE_DETECT this function will
      *        reassign the newline value based on the current Operating System.
      */
     void handle_newline_detect();
@@ -287,6 +287,6 @@ private:
 
 } // namespace sys
 } // namespace io
-} // namespace chaos
+} // namespace arc
 
 #endif
