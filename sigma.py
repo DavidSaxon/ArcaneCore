@@ -99,8 +99,10 @@ if mode == 'all' or mode == 'deploy':
     # move libs in
     linux_build_dir = BUILD_DIR + '/linux_x86'
     for f in os.listdir( linux_build_dir ):
-        if f.endswith( '.so' ) or f.endswith( '.lib' ):
-            shutil.copy( linux_build_dir + '/' + f, linux_libs_location )
+        for ext in LIB_EXTS:
+            if f.endswith(ext):
+                shutil.copy( linux_build_dir + '/' + f, linux_libs_location )
+                break
 
     # create linux lib director
     win_libs_location = libs_location + '/win_x86'
