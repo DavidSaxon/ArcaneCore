@@ -12,7 +12,8 @@ import sys
 ARGS = [ 'all', 'libs', 'deploy' ]
 TEST_LOG_PATH = 'logs/tests/log.xml'
 BUILD_DIR = 'build'
-SRC_DIR = 'src/cxx'
+SRC_DIR = 'src/cpp'
+LIB_EXTS = ['.a', '.so', '.lib', '.dll']
 
 DIVIDER = '-' * 80
 
@@ -108,8 +109,10 @@ if mode == 'all' or mode == 'deploy':
     # move libs in
     win_build_dir = BUILD_DIR + '/win_x86'
     for f in os.listdir( win_build_dir ):
-        if f.endswith( '.so' ) or f.endswith( '.lib' ):
-            shutil.copy( win_build_dir + '/' + f, win_libs_location )
+        for ext in LIB_EXTS:
+            if f.endswith(ext):
+                shutil.copy( win_build_dir + '/' + f, win_libs_location )
+                break
 
     # create the include directory
     include_location = deploy_location + '/include'
@@ -123,7 +126,8 @@ if mode == 'all' or mode == 'deploy':
             os.makedirs( current_dir + '/' + d )
         # copy files
         for f in files:
-            if not f.startswith( '__' ) and f.endswith( '.hpp' ):
+            if not f.startswith('__') and \
+               (f.endswith('.hpp') or f.endswith('.h') or f.endswith('.inl')):
                 shutil.copy( root + '/' + f, current_dir )
 
     # create a meta file with the version number
