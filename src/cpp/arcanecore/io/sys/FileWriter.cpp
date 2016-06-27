@@ -272,7 +272,7 @@ void FileWriter::seek(arc::int64 index)
     m_stream->seekp(index);
 }
 
-void FileWriter::write(const char* data, std::size_t length)
+void FileWriter::write(const char* data, std::size_t length, bool _flush)
 {
     // ensure the FileWriter is open
     if(!m_open)
@@ -282,9 +282,15 @@ void FileWriter::write(const char* data, std::size_t length)
     }
 
     m_stream->write(data, length);
+
+    // flush?
+    if(_flush)
+    {
+        flush();
+    }
 }
 
-void FileWriter::write(const arc::str::UTF8String& data)
+void FileWriter::write(const arc::str::UTF8String& data, bool _flush)
 {
     // ensure the FileWriter is open
     if(!m_open)
@@ -305,7 +311,7 @@ void FileWriter::write(const arc::str::UTF8String& data)
                 arc::data::ENDIAN_LITTLE,
                 false
             );
-            write(u_data, data_length);
+            write(u_data, data_length, false);
             delete[] u_data;
             break;
         }
@@ -318,25 +324,31 @@ void FileWriter::write(const arc::str::UTF8String& data)
                 arc::data::ENDIAN_BIG,
                 false
             );
-            write(u_data, data_length);
+            write(u_data, data_length, false);
             delete[] u_data;
             break;
         }
         default:
         {
-            write(data.get_raw(), data.get_byte_length() - 1);
+            write(data.get_raw(), data.get_byte_length() - 1, false);
             break;
         }
+    }
+
+    // flush?
+    if(_flush)
+    {
+        flush();
     }
 }
 
 
-void FileWriter::write_line(const char* data, std::size_t length)
+void FileWriter::write_line(const char* data, std::size_t length, bool _flush)
 {
     // straight write the bytes first
     if(length > 0)
     {
-        write(data, length);
+        write(data, length, false);
     }
 
     // followed by a newline symbol
@@ -349,13 +361,13 @@ void FileWriter::write_line(const char* data, std::size_t length)
                 const std::size_t newline_length = 4;
                 const char newline_symbol[newline_length]
                     = {'\r', '\0', '\n', '\0'};
-                write(newline_symbol, newline_length);
+                write(newline_symbol, newline_length, false);
             }
             else
             {
                 const std::size_t newline_length = 2;
                 const char newline_symbol[newline_length] = {'\n', '\0'};
-                write(newline_symbol, newline_length);
+                write(newline_symbol, newline_length, false);
             }
             break;
         }
@@ -366,13 +378,13 @@ void FileWriter::write_line(const char* data, std::size_t length)
                 const std::size_t newline_length = 4;
                 const char newline_symbol[newline_length]
                     = {'\0', '\r', '\0', '\n'};
-                write(newline_symbol, newline_length);
+                write(newline_symbol, newline_length, false);
             }
             else
             {
                 const std::size_t newline_length = 2;
                 const char newline_symbol[newline_length] = {'\0', '\n'};
-                write(newline_symbol, newline_length);
+                write(newline_symbol, newline_length, false);
             }
             break;
         }
@@ -382,25 +394,43 @@ void FileWriter::write_line(const char* data, std::size_t length)
             {
                 const std::size_t newline_length = 2;
                 const char newline_symbol[newline_length] = {'\r', '\n'};
-                write(newline_symbol, newline_length);
+                write(newline_symbol, newline_length, false);
             }
             else
             {
                 const std::size_t newline_length = 1;
                 const char newline_symbol[newline_length] = {'\n'};
-                write(newline_symbol, newline_length);
+                write(newline_symbol, newline_length, false);
             }
             break;
         }
     }
+
+    // flush?
+    if(_flush)
+    {
+        flush();
+    }
 }
 
-void FileWriter::write_line(const arc::str::UTF8String& data)
+void FileWriter::write_line(const arc::str::UTF8String& data, bool _flush)
 {
     // write string
-    write(data);
+    write(data, false);
     // then write newline
-    write_line("", 0);
+    write_line("", 0, _flush);
+}
+
+void FileWriter::flush()
+{
+    // ensure the FileWriter is open
+    if(!m_open)
+    {
+        throw arc::ex::StateError(
+            "Flush cannot be performed while the FileWriter is closed.");
+    }
+
+    m_stream->flush();
 }
 
 } // namespace sys
