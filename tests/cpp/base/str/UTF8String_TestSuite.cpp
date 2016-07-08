@@ -1333,6 +1333,64 @@ ARC_TEST_UNIT_FIXTURE( float_stream_operator, FloatStreamOperatorFixture )
 }
 
 //------------------------------------------------------------------------------
+//                             DOUBLE STREAM OPERATOR
+//------------------------------------------------------------------------------
+
+class DoubleStreamOperator : public arc::test::Fixture
+{
+public:
+
+    //----------------------------PUBLIC ATTRIBUTES-----------------------------
+
+    std::vector<arc::str::UTF8String> comp_1;
+    std::vector<double> comp_2;
+    std::vector<arc::str::UTF8String> results;
+
+    //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
+
+    virtual void setup()
+    {
+        comp_1.push_back("");
+        comp_2.push_back(0.0);
+        results.push_back("0");
+
+        comp_1.push_back("");
+        comp_2.push_back(1.0);
+        results.push_back("1");
+
+        comp_1.push_back("");
+        comp_2.push_back(3.14);
+        results.push_back("3.14");
+
+        comp_1.push_back("Hello");
+        comp_2.push_back(12.3456);
+        results.push_back("Hello12.3456");
+
+        comp_1.push_back("Κόσμε ");
+        comp_2.push_back(0.00034);
+        results.push_back("Κόσμε 0.00034");
+    }
+};
+
+ARC_TEST_UNIT_FIXTURE(double_stream_operator, DoubleStreamOperator)
+{
+    ARC_TEST_MESSAGE("Checking return value");
+    for (std::size_t i = 0; i < fixture->comp_1.size(); ++i)
+    {
+        ARC_CHECK_EQUAL(
+                fixture->comp_1[i] << fixture->comp_2[i],
+                fixture->results[i]
+        );
+    }
+
+    ARC_TEST_MESSAGE("Checking in place modification" );
+    for (std::size_t i = 0; i < fixture->comp_1.size(); ++i )
+    {
+        ARC_CHECK_EQUAL(fixture->comp_1[i], fixture->results[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                 CSTRING ASSIGN
 //------------------------------------------------------------------------------
 
