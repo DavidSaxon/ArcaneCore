@@ -368,7 +368,7 @@ bool create_directory(const arc::io::sys::Path& path)
             error_message << "Directory path: \'" << path << "\' failed to be ";
             error_message << "created as it already exists but is not a ";
             error_message << "directory.";
-            throw arc::ex::InvalidPathError(error_message);
+            throw arc::ex::IOError(error_message);
         }
         // no actions performed
         return false;
@@ -382,7 +382,7 @@ bool create_directory(const arc::io::sys::Path& path)
         arc::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
         error_message << arc::os::get_last_system_error_message();
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
     return true;
@@ -405,7 +405,7 @@ bool create_directory(const arc::io::sys::Path& path)
         arc::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
         error_message << arc::os::get_last_system_error_message();
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
     return true;
@@ -421,7 +421,7 @@ void delete_path(const arc::io::sys::Path& path)
         arc::str::UTF8String error_message;
         error_message << "Cannot delete path because it does not exist: \'";
         error_message << path.to_native() << "\'";
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
 #ifdef ARC_OS_UNIX
@@ -432,7 +432,7 @@ void delete_path(const arc::io::sys::Path& path)
         error_message << "Failed to delete path: \'" << path.to_native();
         error_message << " \'. OS error: ";
         error_message << arc::os::get_last_system_error_message();
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
 #elif defined(ARC_OS_WINDOWS)
@@ -462,7 +462,7 @@ void delete_path(const arc::io::sys::Path& path)
         arc::str::UTF8String error_message;
         error_message << "Deleting path failed with OS error: ";
         error_message << arc::os::get_last_system_error_message();
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
 
@@ -477,7 +477,7 @@ void delete_path_rec(const arc::io::sys::Path& path)
         arc::str::UTF8String error_message;
         error_message << "Cannot delete path because it does not exist: \'";
         error_message << path.to_native() << "\'";
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
     // is this a directory? do we need to traverse it?

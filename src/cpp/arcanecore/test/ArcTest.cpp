@@ -298,7 +298,7 @@ void TestCore::run(RunInfo* run_info)
         // this isn't a valid test path
         if(!match)
         {
-            throw arc::test::ex::InvalidPathError(*p_it);
+            throw arc::ex::IOError(*p_it);
             continue;
         }
 

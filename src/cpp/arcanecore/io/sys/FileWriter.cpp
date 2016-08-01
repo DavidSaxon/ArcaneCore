@@ -163,7 +163,7 @@ void FileWriter::open()
         arc::str::UTF8String error_message;
         error_message << "Failed to open FileWriter to path: \'"
                       << m_path.to_native() << "\'.";
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
     // write the BOM based on the encoding

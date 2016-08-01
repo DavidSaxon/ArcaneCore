@@ -310,7 +310,7 @@ int deferred_main(int argc, char* argv[])
     {
         arc::test::internal::TestCore("", NULL, "", 0, false, &run_info);
     }
-    catch (const arc::test::ex::InvalidPathError& e)
+    catch (const arc::ex::IOError& e)
     {
         std::cerr << "\nERROR: Invalid test path supplied: \'"
                   << e.get_message() << "\'\n" << std::endl;

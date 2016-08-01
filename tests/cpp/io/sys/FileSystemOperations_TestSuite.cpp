@@ -1099,7 +1099,7 @@ ARC_TEST_UNIT_FIXTURE( create_directory, FileSysCreateDirectoryFixture )
     {
         ARC_CHECK_THROW(
                 arc::io::sys::create_directory( *it_4 ),
-                arc::ex::InvalidPathError
+                arc::ex::IOError
         );
     }
 }
@@ -1222,12 +1222,12 @@ ARC_TEST_UNIT_FIXTURE( delete_path, DeletePathFixture )
         ARC_CHECK_FALSE( arc::io::sys::exists( *it_2 ) );
     }
 
-    ARC_TEST_MESSAGE( "Checking InvalidPathError" );
+    ARC_TEST_MESSAGE( "Checking IOError" );
     ARC_FOR_EACH( it_3, fixture->invalid )
     {
         ARC_CHECK_THROW(
                 arc::io::sys::delete_path( *it_3 ),
-                arc::ex::InvalidPathError
+                arc::ex::IOError
         );
     }
 }
@@ -1420,12 +1420,12 @@ ARC_TEST_UNIT_FIXTURE( delete_path_rec, DeletePathRecFixture )
         ARC_CHECK_FALSE( arc::io::sys::exists( *it_2 ) );
     }
 
-    ARC_TEST_MESSAGE( "Checking InvalidPathError" );
+    ARC_TEST_MESSAGE( "Checking IOError" );
     ARC_FOR_EACH( it_3, fixture->invalid )
     {
         ARC_CHECK_THROW(
                 arc::io::sys::delete_path_rec( *it_3 ),
-                arc::ex::InvalidPathError
+                arc::ex::IOError
         );
     }
 }
@@ -1541,7 +1541,7 @@ ARC_TEST_UNIT_FIXTURE( validate, FileSysValidateFixture )
     {
         ARC_CHECK_THROW(
                 arc::io::sys::validate( *it_2 ),
-                arc::ex::InvalidPathError
+                arc::ex::IOError
         );
     }
 }

@@ -194,7 +194,7 @@ void FileReader::open()
         arc::str::UTF8String error_message;
         error_message << "Failed to open FileReader to path: \'"
                       << m_path.to_native() << "\'.";
-        throw arc::ex::InvalidPathError(error_message);
+        throw arc::ex::IOError(error_message);
     }
 
     // retrieve the size of the file
