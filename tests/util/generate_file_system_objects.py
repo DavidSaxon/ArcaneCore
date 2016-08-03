@@ -108,6 +108,9 @@ touch_file(os.path.join(LIST_DIR_A_2, 'dir_c_2/file_g_2'))
 with open(os.path.join(BASE_DIR, 'empty_file'), 'bw+') as f:
     pass
 
+with codecs.open(os.path.join(BASE_DIR, 'empty_file.utf8'), 'w', 'utf-8') as f:
+    f.write(u'\ufeff')
+
 with open(os.path.join(BASE_DIR, 'ascii.linux.txt'), 'bw+') as f:
     f.write(b'Hello World!\n')
     f.write(b'This is another line.\n')

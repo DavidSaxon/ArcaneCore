@@ -213,7 +213,8 @@ void FileReader::open()
         {
             m_encoding = ENCODING_UTF8;
         }
-        m_stream->seekg(0);
+        m_stream->clear();
+        m_stream->seekg(0, std::ios_base::beg);
         delete[] bom;
     }
     // the encoding still hasn't been detected, check for UTF-16 encodings next
@@ -231,7 +232,8 @@ void FileReader::open()
         {
             m_encoding = ENCODING_UTF16_BIG_ENDIAN;
         }
-        m_stream->seekg(0);
+        m_stream->clear();
+        m_stream->seekg(0, std::ios_base::beg);
         delete[] bom;
     }
     // still no encoding, assume RAW
@@ -352,6 +354,9 @@ bool FileReader::has_bom()
     // read the BOM character
     char* bom = new char[bom_size_t];
     read(bom, bom_size);
+
+    // reset EOF flag
+    m_stream->clear();
 
     bool correct = false;
     switch(m_encoding)

@@ -54,6 +54,20 @@ public:
         }
         {
             arc::io::sys::Path p(base_path);
+            p << "empty_file.utf8";
+            paths.push_back(p);
+            encodings.push_back(arc::io::sys::FileHandle::ENCODING_UTF8);
+            newlines.push_back(arc::io::sys::FileHandle::NEWLINE_UNIX);
+            sizes.push_back(3);
+            bom_sizes.push_back(arc::str::UTF8_BOM_SIZE);
+            boms.push_back(arc::str::UTF8_BOM);
+            std::vector<size_t> ll;
+            std::vector<const char*> l;
+            line_lengths.push_back(ll);
+            lines.push_back(l);
+        }
+        {
+            arc::io::sys::Path p(base_path);
             p << "ascii.linux.txt";
             paths.push_back(p);
             encodings.push_back(arc::io::sys::FileHandle::ENCODING_RAW);
@@ -695,7 +709,6 @@ ARC_TEST_UNIT_FIXTURE(read_line_utf8, FileReaderFixture)
             ++l_n;
         }
     }
-
 }
 
 } // namespace anonymous
