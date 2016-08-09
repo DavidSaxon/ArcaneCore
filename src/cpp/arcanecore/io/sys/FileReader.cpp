@@ -64,7 +64,7 @@ struct NewlineChecker
 
 FileReader::FileReader(Encoding encoding, Newline newline)
     :
-    FileHandle            (encoding, newline),
+    FileHandle             (encoding, newline),
     m_stream               (nullptr),
     m_size                 (0),
     m_newline_checker_valid(false),
@@ -78,7 +78,7 @@ FileReader::FileReader(
         Encoding encoding,
         Newline newline)
     :
-    FileHandle            (path, encoding, newline),
+    FileHandle             (path, encoding, newline),
     m_stream               (nullptr),
     m_size                 (0),
     m_newline_checker_valid(false),
@@ -126,7 +126,7 @@ FileReader& FileReader::operator=(FileReader&& other)
 //                                   DESTRUCTOR
 //------------------------------------------------------------------------------
 
-FileReader::~FileReader()
+inline FileReader::~FileReader()
 {
     if(m_open)
     {
@@ -311,6 +311,9 @@ void FileReader::seek(arc::int64 index)
 
     // TODO: check size
 
+    // clear any eof file flags before seeking
+    m_stream->clear();
+
     m_stream->seekg(index);
 }
 
@@ -354,9 +357,6 @@ bool FileReader::has_bom()
     // read the BOM character
     char* bom = new char[bom_size_t];
     read(bom, bom_size);
-
-    // reset EOF flag
-    m_stream->clear();
 
     bool correct = false;
     switch(m_encoding)
@@ -491,13 +491,15 @@ std::size_t FileReader::read_line(char** data)
     // get the newline checker to use
     NewlineChecker* newline_checker = get_newline_checker();
 
+    // TODO: this can be optimised to read blocks of data
+
     // read characters into a vector
     std::vector<char> read_data;
     std::size_t data_size = 0;
-    while(!m_stream->eof())
+    while(!eof())
     {
         read_data.push_back('\0');
-        m_stream->get(read_data[read_data.size() - 1]);
+        read(&read_data[read_data.size() - 1], 1);
         data_size = read_data.size();
         // have we read the newline character?
         if(newline_checker->check(read_data))

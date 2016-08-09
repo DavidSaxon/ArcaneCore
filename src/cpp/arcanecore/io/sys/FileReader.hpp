@@ -94,7 +94,7 @@ public:
     //                                 DESTRUCTOR
     //--------------------------------------------------------------------------
 
-    ~FileReader();
+    virtual ~FileReader();
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS
@@ -160,7 +160,7 @@ public:
      *
      * \throws arc::ex::StateError If this FileReader is not open.
      */
-    bool eof() const;
+    virtual bool eof() const;
 
     /*!
      * \brief Returns whether this file starts with a Unicode Byte Order Marker.
@@ -207,7 +207,7 @@ public:
      * \throws arc::ex::StateError If this FileReader is not open.
      * \throws arc::ex::EOFError If the End of File Marker has been reached.
      */
-    void read(char* data, arc::int64 length);
+    virtual void read(char* data, arc::int64 length);
 
     /*!
      * \brief Reads a block of data from the file and returns it (converting
@@ -286,10 +286,10 @@ public:
      */
     void read_line(arc::str::UTF8String& data);
 
-private:
+protected:
 
     //--------------------------------------------------------------------------
-    //                             PRIVATE ATTRIBUTES
+    //                            PROTECTED ATTRIBUTES
     //--------------------------------------------------------------------------
 
     /*!
@@ -301,6 +301,12 @@ private:
      * \brief The size of the file in bytes.
      */
     arc::int64 m_size;
+
+private:
+
+    //--------------------------------------------------------------------------
+    //                             PRIVATE ATTRIBUTES
+    //--------------------------------------------------------------------------
 
     /*!
      * \brief Whether the current static newline checker is valid for the
