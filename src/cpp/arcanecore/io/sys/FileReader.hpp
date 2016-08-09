@@ -230,7 +230,7 @@ public:
      * \throws arc::ex::StateError If this FileReader is not open.
      * \throws arc::ex::EOFError If the End of File Marker has been reached.
      */
-    void read(arc::str::UTF8String& data, arc::int64 length = -1);
+    virtual void read(arc::str::UTF8String& data, arc::int64 length = -1);
 
     /*!
      * \brief Reads a line of data from the file, allocates the memory to hold
