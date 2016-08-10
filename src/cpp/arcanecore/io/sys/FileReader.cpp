@@ -202,49 +202,15 @@ void FileReader::open()
     m_size = m_stream->tellg();
     m_stream->seekg(0, std::ios_base::beg);
 
-    // should we detect the encoding, check for UTF-8 first since it's the most
-    // common
-    std::size_t size_st = static_cast<std::size_t>(m_size);
-    if(m_encoding == ENCODING_DETECT && size_st >= arc::str::UTF8_BOM_SIZE)
-    {
-        char* bom = new char[arc::str::UTF8_BOM_SIZE];
-        m_stream->read(bom, arc::str::UTF8_BOM_SIZE);
-        if(memcmp(bom, arc::str::UTF8_BOM, arc::str::UTF8_BOM_SIZE) == 0)
-        {
-            m_encoding = ENCODING_UTF8;
-        }
-        m_stream->clear();
-        m_stream->seekg(0, std::ios_base::beg);
-        delete[] bom;
-    }
-    // the encoding still hasn't been detected, check for UTF-16 encodings next
-    if(m_encoding == ENCODING_DETECT && size_st >= arc::str::UTF16_BOM_SIZE)
-    {
-        char* bom = new char[arc::str::UTF16_BOM_SIZE];
-        m_stream->read(bom, arc::str::UTF16_BOM_SIZE);
-        if(memcmp(bom, arc::str::UTF16LE_BOM, arc::str::UTF16_BOM_SIZE)
-           == 0)
-        {
-            m_encoding = ENCODING_UTF16_LITTLE_ENDIAN;
-        }
-        else if(memcmp(bom, arc::str::UTF16BE_BOM, arc::str::UTF16_BOM_SIZE)
-                == 0)
-        {
-            m_encoding = ENCODING_UTF16_BIG_ENDIAN;
-        }
-        m_stream->clear();
-        m_stream->seekg(0, std::ios_base::beg);
-        delete[] bom;
-    }
-    // still no encoding, assume RAW
-    if(m_encoding == ENCODING_DETECT)
-    {
-        m_encoding = ENCODING_RAW;
-    }
-
     // file reader is open
     m_open = true;
     m_newline_checker_valid = false;
+
+    // detect the encoding if needed
+    if(m_encoding == ENCODING_DETECT)
+    {
+        m_encoding = detect_encoding();
+    }
 }
 
 void FileReader::open(const arc::io::sys::Path& path)
@@ -559,6 +525,60 @@ void FileReader::read_line(arc::str::UTF8String& data)
 //------------------------------------------------------------------------------
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
+
+FileHandle::Encoding FileReader::detect_encoding()
+{
+    // store the current position
+    arc::int64 revert_pos = tell();
+
+    Encoding ret = ENCODING_DETECT;
+    // should we detect the encoding, check for UTF-8 first since it's the most
+    // common
+    std::size_t size_st = static_cast<std::size_t>(m_size);
+    if(size_st >= arc::str::UTF8_BOM_SIZE)
+    {
+        char* bom = new char[arc::str::UTF8_BOM_SIZE];
+        read(bom, arc::str::UTF8_BOM_SIZE);
+        if(memcmp(bom, arc::str::UTF8_BOM, arc::str::UTF8_BOM_SIZE) == 0)
+        {
+            ret = ENCODING_UTF8;
+        }
+        seek(revert_pos);
+        delete[] bom;
+        // return?
+        if(ret != ENCODING_DETECT)
+        {
+            return ret;
+        }
+    }
+
+    // check for UTF-16 encodings next
+    if(size_st >= arc::str::UTF16_BOM_SIZE)
+    {
+        char* bom = new char[arc::str::UTF16_BOM_SIZE];
+        read(bom, arc::str::UTF16_BOM_SIZE);
+        if(memcmp(bom, arc::str::UTF16LE_BOM, arc::str::UTF16_BOM_SIZE)
+           == 0)
+        {
+            ret = ENCODING_UTF16_LITTLE_ENDIAN;
+        }
+        else if(memcmp(bom, arc::str::UTF16BE_BOM, arc::str::UTF16_BOM_SIZE)
+                == 0)
+        {
+            ret = ENCODING_UTF16_BIG_ENDIAN;
+        }
+        seek(revert_pos);
+        delete[] bom;
+        // return?
+        if(ret != ENCODING_DETECT)
+        {
+            return ret;
+        }
+    }
+
+    // still no encoding, assume RAW
+    return ENCODING_RAW;
+}
 
 NewlineChecker* FileReader::get_newline_checker()
 {

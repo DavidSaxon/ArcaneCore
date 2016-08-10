@@ -325,6 +325,11 @@ private:
     //--------------------------------------------------------------------------
 
     /*!
+     * \brief Attempts to detect the current file's encoding mode.
+     */
+    Encoding detect_encoding();
+
+    /*!
      * \brief Retrieves a the newline checker for this FileReader's encoding and
      *        newline symbols.
      *
