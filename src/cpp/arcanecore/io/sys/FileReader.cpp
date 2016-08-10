@@ -523,7 +523,7 @@ void FileReader::read_line(arc::str::UTF8String& data)
 }
 
 //------------------------------------------------------------------------------
-//                            PRIVATE MEMBER FUNCTIONS
+//                           PROTECTED MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
 FileHandle::Encoding FileReader::detect_encoding()
@@ -579,6 +579,10 @@ FileHandle::Encoding FileReader::detect_encoding()
     // still no encoding, assume RAW
     return ENCODING_RAW;
 }
+
+//------------------------------------------------------------------------------
+//                            PRIVATE MEMBER FUNCTIONS
+//------------------------------------------------------------------------------
 
 NewlineChecker* FileReader::get_newline_checker()
 {

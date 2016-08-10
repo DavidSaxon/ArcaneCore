@@ -302,17 +302,27 @@ protected:
      */
     arc::int64 m_size;
 
+    /*!
+     * \brief Whether the current static newline checker is valid for the
+     *        FileReader's encoding and newline symbol.
+     */
+    bool m_newline_checker_valid;
+
+    //--------------------------------------------------------------------------
+    //                         PROTECTED MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Attempts to detect the current file's encoding mode.
+     */
+    Encoding detect_encoding();
+
 private:
 
     //--------------------------------------------------------------------------
     //                             PRIVATE ATTRIBUTES
     //--------------------------------------------------------------------------
 
-    /*!
-     * \brief Whether the current static newline checker is valid for the
-     *        FileReader's encoding and newline symbol.
-     */
-    bool m_newline_checker_valid;
     /*!
      * \brief The newline checker being used by this file handle.
      *
@@ -323,11 +333,6 @@ private:
     //--------------------------------------------------------------------------
     //                          PRIVATE MEMBER FUNCTIONS
     //--------------------------------------------------------------------------
-
-    /*!
-     * \brief Attempts to detect the current file's encoding mode.
-     */
-    Encoding detect_encoding();
 
     /*!
      * \brief Retrieves a the newline checker for this FileReader's encoding and
