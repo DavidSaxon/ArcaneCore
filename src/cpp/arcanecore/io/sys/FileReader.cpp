@@ -275,10 +275,16 @@ void FileReader::seek(arc::int64 index)
         );
     }
 
-    // TODO: check size
-
-    // clear any eof file flags before seeking
-    m_stream->clear();
+    // clamp to the file size
+    if(index >= m_size)
+    {
+        index = m_size;
+    }
+    // clear any eof file flags before seeking within the file range
+    else
+    {
+        m_stream->clear();
+    }
 
     m_stream->seekg(index);
 }
@@ -376,7 +382,7 @@ void FileReader::read(char* data, arc::int64 length)
     // set it if the we are at the end of the file.
     if(!eof() && tell() >= get_size())
     {
-        m_stream->get();
+        m_stream->setstate(std::ios_base::eofbit);
     }
 }
 
@@ -580,6 +586,21 @@ FileHandle::Encoding FileReader::detect_encoding()
     return ENCODING_RAW;
 }
 
+void FileReader::check_can_read()
+{
+    if(!m_open)
+    {
+        throw arc::ex::StateError(
+            "File read cannot be performed while the FileReader is closed.");
+    }
+    if(eof())
+    {
+        throw arc::ex::EOFError(
+            "File read cannot be performed as the EOF marker has been reached."
+        );
+    }
+}
+
 //------------------------------------------------------------------------------
 //                            PRIVATE MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
@@ -660,21 +681,6 @@ NewlineChecker* FileReader::get_newline_checker()
     }
     // return the internal pointer
     return m_newline_checker.get();
-}
-
-void FileReader::check_can_read()
-{
-    if(!m_open)
-    {
-        throw arc::ex::StateError(
-            "File read cannot be performed while the FileReader is closed.");
-    }
-    if(eof())
-    {
-        throw arc::ex::EOFError(
-            "File read cannot be performed as the EOF marker has been reached."
-        );
-    }
 }
 
 } // namespace sys

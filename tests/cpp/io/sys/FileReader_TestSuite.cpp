@@ -355,6 +355,27 @@ ARC_TEST_UNIT_FIXTURE(get_size, FileReaderFixture)
     }
 }
 
+ARC_TEST_UNIT_FIXTURE(seek, FileReaderFixture)
+{
+    // create readers
+    std::vector<arc::io::sys::FileReader> file_readers;
+    fixture->build_file_readers(file_readers);
+
+    ARC_TEST_MESSAGE("Checking EOF is not set");
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        ARC_CHECK_FALSE(file_readers[i].eof());
+    }
+
+    ARC_TEST_MESSAGE(
+        "Checking EOF is still unset after seeking to the end of reader");
+    for(std::size_t i = 0; i < file_readers.size(); ++i)
+    {
+        file_readers[i].seek(file_readers[i].get_size());
+        ARC_CHECK_FALSE(file_readers[i].eof());
+    }
+}
+
 ARC_TEST_UNIT_FIXTURE(has_bom, FileReaderFixture)
 {
     // create readers
