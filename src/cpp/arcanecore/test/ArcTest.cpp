@@ -1,4 +1,4 @@
-#include <queue>
+#include <stack>
 
 #include "arcanecore/test/ArcTest.hpp"
 
@@ -32,7 +32,7 @@ namespace
 // global fixture setup functions
 static std::vector<void (*)()> global_fixture_setup;
 // global fixture teardown functions
-static std::queue<void (*)()> global_fixture_teardown;
+static std::stack<void (*)()> global_fixture_teardown;
 
 } // namespace anonymous
 
@@ -55,6 +55,21 @@ void register_global_fixture(void (*setup)(), void (*teardown)())
 
 namespace internal
 {
+
+//------------------------------------------------------------------------------
+//                                   DESTRUCTOR
+//------------------------------------------------------------------------------
+
+TestCore::~TestCore()
+{
+    // clean up unit test pointers
+    std::map<arc::str::UTF8String, UnitTest*>& t_m = test_map();
+    ARC_FOR_EACH(t_it, t_m)
+    {
+        delete t_it->second;
+    }
+    t_m.clear();
+}
 
 //------------------------------------------------------------------------------
 //                               TESTCORE FUNCTIONS
@@ -230,24 +245,15 @@ void TestCore::teardown(RunInfo* run_info)
         // call global fixture teardown functions
         while(!global_fixture_teardown.empty())
         {
-            (*global_fixture_teardown.back())();
+            (*global_fixture_teardown.top())();
             global_fixture_teardown.pop();
         }
-        // ARC_FOR_EACH(it, global_fixture_teardown)
-        // {
-        //     (**it)();
-        // }
     }
 
     // clean up run info
     ARC_FOR_EACH(r_t_it, run_info->files)
     {
         delete r_t_it->second;
-    }
-    // clean up unit test pointers
-    ARC_FOR_EACH(t_it, test_map())
-    {
-        delete t_it->second;
     }
 }
 
@@ -352,7 +358,7 @@ void TestCore::run(RunInfo* run_info)
                 continue;
             }
             // extract the path to the test
-            arc::str::UTF8String path = m_it->first;
+            arc::str::UTF8String path(m_it->first);
             // find the last period
             std::size_t lastIndex = path.find_last(".");
             if(lastIndex == arc::str::npos)

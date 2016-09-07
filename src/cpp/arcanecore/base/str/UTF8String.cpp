@@ -8,6 +8,9 @@
 #include "arcanecore/base/str/UTF8String.hpp"
 #include "arcanecore/base/str/StringOperations.hpp"
 
+// TODO:
+#include <iostream>
+
 namespace arc
 {
 namespace str
@@ -111,6 +114,12 @@ const UTF8String& UTF8String::operator=(const UTF8String& other)
 
 UTF8String& UTF8String::operator=(UTF8String&& other)
 {
+    // delete the current data
+    if(m_data)
+    {
+        delete[] m_data;
+    }
+
     // move resources
     m_opt = other.m_opt;
     m_data = other.m_data;
@@ -332,8 +341,11 @@ void UTF8String::assign( const UTF8String& other )
 
 void UTF8String::claim(char* data)
 {
-    // store the old data so we can delete it later if we need to
-    char* old_data = m_data;
+    // delete the current data
+    if(m_data)
+    {
+        delete[] m_data;
+    }
 
     // reassign
     m_data = data;
@@ -342,12 +354,6 @@ void UTF8String::claim(char* data)
 
     // process the raw data
     process_raw();
-
-    // delete the old data if it exists
-    if(old_data)
-    {
-        delete[] old_data;
-    }
 }
 
 UTF8String& UTF8String::concatenate( const UTF8String& other )
@@ -366,7 +372,8 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
         other.m_data_length
     );
     // finally assign and return
-    assign_internal( new_data, new_length );
+    claim(new_data);
+    // assign_internal( new_data, new_length );
     return *this;
 }
 
@@ -387,9 +394,11 @@ UTF8String& UTF8String::repeat( arc::uint32 count )
         );
     }
     // add the null terminator
-    new_data[ new_length - 1 ] = '\0';
+    new_data[new_length - 1] = '\0';
     // finally assign and return
-    assign_internal( new_data, new_length );
+    assign_internal(new_data, new_length);
+    // clean up
+    delete[] new_data;
     return *this;
 }
 
@@ -957,9 +966,11 @@ void UTF8String::assign_internal(
         const char* data,
         std::size_t existing_length )
 {
-    // if there is already content in the internal buffer delete it
-    // store the old data so we can delete it later
-    char* old_data = m_data;
+    // if there is existing data delete it
+    if(m_data)
+    {
+        delete[] m_data;
+    }
 
     // get number ofa bytes in the data
     bool is_null_terminated = true;
@@ -983,23 +994,17 @@ void UTF8String::assign_internal(
     }
 
     // allocate storage for the internal data buffer
-    m_data = new char[ m_data_length ];
+    m_data = new char[m_data_length];
     // copy data to internal array
     memcpy( m_data, data, existing_length );
     // should a NULL terminator be added to the end?
     if ( !is_null_terminated )
     {
-        m_data[ m_data_length - 1 ] = '\0';
+        m_data[m_data_length - 1] = '\0';
     }
 
     // process the raw data
     process_raw();
-
-    // delete old data if it exists
-    if(old_data)
-    {
-        delete[] old_data;
-    }
 }
 
 void UTF8String::check_symbol_index( std::size_t index ) const

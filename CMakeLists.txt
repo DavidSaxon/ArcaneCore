@@ -45,25 +45,25 @@ set(TEST_SRC
 set(TESTS_SUITES
     tests/cpp/TestsMain.cpp
 
-    tests/cpp/base/Preproc_TestSuite.cpp
-    tests/cpp/base/Types_TestSuite.cpp
+#    tests/cpp/base/Preproc_TestSuite.cpp
+#    tests/cpp/base/Types_TestSuite.cpp
     tests/cpp/base/data/BitwiseFloat_TestSuite.cpp
-    tests/cpp/base/data/ByteOperations_TestSuite.cpp
-    tests/cpp/base/introspect/IntrospectOperations_TestSuite.cpp
-    tests/cpp/base/math/MathOperations_TestSuite.cpp
-    tests/cpp/base/str/UTF8String_TestSuite.cpp
-    tests/cpp/base/str/StringOperations_TestSuite.cpp
-
-    tests/cpp/io/format/FormatOperations_TestSuite.cpp
-    tests/cpp/io/sys/FileHandle_TestSuite.cpp
-    tests/cpp/io/sys/FileReader_TestSuite.cpp
-    tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp
-    tests/cpp/io/sys/Path_TestSuite.cpp
-
-    tests/cpp/gfx/Vector2_TestSuite.cpp
-    tests/cpp/gfx/Vector3_TestSuite.cpp
-    tests/cpp/gfx/Vector4_TestSuite.cpp
-    tests/cpp/gfx/VectorOperations_TestSuite.cpp
+#    tests/cpp/base/data/ByteOperations_TestSuite.cpp
+#    tests/cpp/base/introspect/IntrospectOperations_TestSuite.cpp
+#    tests/cpp/base/math/MathOperations_TestSuite.cpp
+#    tests/cpp/base/str/UTF8String_TestSuite.cpp
+#    tests/cpp/base/str/StringOperations_TestSuite.cpp
+#
+#    tests/cpp/io/format/FormatOperations_TestSuite.cpp
+#    tests/cpp/io/sys/FileHandle_TestSuite.cpp
+#    tests/cpp/io/sys/FileReader_TestSuite.cpp
+#    tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp
+#    tests/cpp/io/sys/Path_TestSuite.cpp
+#
+#    tests/cpp/gfx/Vector2_TestSuite.cpp
+#    tests/cpp/gfx/Vector3_TestSuite.cpp
+#    tests/cpp/gfx/Vector4_TestSuite.cpp
+#    tests/cpp/gfx/VectorOperations_TestSuite.cpp
 )
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)

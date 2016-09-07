@@ -1,0 +1,31 @@
+{
+   name
+   Memcheck:Leak
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libpython3.4m.so.1.0
+   ...
+}
+
+{
+   name
+   Memcheck:Addr4
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libpython3.4m.so.1.0
+   ...
+}
+
+{
+   name
+   Memcheck:Cond
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libpython3.4m.so.1.0
+   ...
+}
+
+{
+   name
+   Memcheck:Value8
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libpython3.4m.so.1.0
+   ...
+}

@@ -39,7 +39,45 @@ public:
     }
 };
 
-ARC_TEST_UNIT_FIXTURE( for_each, ForEachFixture )
+// ARC_TEST_UNIT_FIXTURE(for_each, ForEachFixture)
+
+namespace
+{
+struct for_each : public arc::test::internal::UnitTest
+{
+    ForEachFixture* fixture;
+
+    for_each()
+        :
+        UnitTest("for_each"),
+        fixture (nullptr)
+    {
+    }
+
+    virtual ~for_each()
+    {
+        delete fixture;
+
+    }
+    virtual arc::test::Fixture* get_fixture()
+    {
+        if(fixture == nullptr)
+        {
+            fixture = new ForEachFixture();
+        }
+        return fixture;
+    }
+
+    virtual void execute();
+};
+
+static arc::test::internal::TestCore object_for_each(
+        "for_each", new for_each(), __FILE__, __LINE__);
+
+} // namespace anonymous
+
+
+void for_each::execute()
 {
     // test on a vector
     std::vector< arc::int32 > v1 = fixture->getIntVector( 100 );
