@@ -452,6 +452,7 @@ ARC_TEST_UNIT_FIXTURE(is_utf8, IsUtf8Fixture)
         memcpy(cpy, *it, length);
         // check
         ARC_CHECK_FALSE(arc::str::is_utf8(cpy, length));
+        delete[] cpy;
     }
 }
 

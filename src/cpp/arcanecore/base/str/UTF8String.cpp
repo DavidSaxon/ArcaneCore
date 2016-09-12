@@ -8,9 +8,6 @@
 #include "arcanecore/base/str/UTF8String.hpp"
 #include "arcanecore/base/str/StringOperations.hpp"
 
-// TODO:
-#include <iostream>
-
 namespace arc
 {
 namespace str
@@ -34,7 +31,19 @@ UTF8String::UTF8String(Opt optimisations)
     m_length     (0)
 {
     // assign the empty string
-    assign_internal("", 0);
+    try
+    {
+        assign_internal("", 0);
+    }
+    catch(...)
+    {
+        if(m_data)
+        {
+            delete[] m_data;
+            m_data = nullptr;
+        }
+        throw;
+    }
 }
 
 UTF8String::UTF8String(const char* data, Opt optimisations)
@@ -45,7 +54,19 @@ UTF8String::UTF8String(const char* data, Opt optimisations)
     m_length     (0)
 {
     // assign the data
-    assign_internal(data);
+    try
+    {
+        assign_internal(data);
+    }
+    catch(...)
+    {
+        if(m_data)
+        {
+            delete[] m_data;
+            m_data = nullptr;
+        }
+        throw;
+    }
 }
 
 UTF8String::UTF8String(
@@ -59,7 +80,19 @@ UTF8String::UTF8String(
     m_length     (0)
 {
     // assign the data
-    assign_internal(data, length);
+    try
+    {
+        assign_internal(data, length);
+    }
+    catch(...)
+    {
+        if(m_data)
+        {
+            delete[] m_data;
+            m_data = nullptr;
+        }
+        throw;
+    }
 }
 
 UTF8String::UTF8String(const UTF8String& other)
@@ -69,8 +102,20 @@ UTF8String::UTF8String(const UTF8String& other)
     m_data_length(0),
     m_length     (0)
 {
-    // assign the data with the known length
-   assign_internal(other.m_data, other.m_data_length);
+    // assign the data
+    try
+    {
+        assign_internal(other.m_data, other.m_data_length);
+    }
+    catch(...)
+    {
+        if(m_data)
+        {
+            delete[] m_data;
+            m_data = nullptr;
+        }
+        throw;
+    }
 }
 
 UTF8String::UTF8String(UTF8String&& other)
@@ -324,19 +369,31 @@ UTF8String& UTF8String::operator<<(double other)
 //                            PUBLIC MEMBER FUNCTIONS
 //------------------------------------------------------------------------------
 
-void UTF8String::assign( const char* data )
+void UTF8String::assign(const char* data)
 {
-    assign_internal( data );
+    assign_internal(data);
 }
 
-void UTF8String::assign( const char* data, std::size_t length )
+void UTF8String::assign(const char* data, std::size_t length)
 {
-    assign_internal( data, length );
+    assign_internal(data, length);
 }
 
-void UTF8String::assign( const UTF8String& other )
+void UTF8String::assign(const UTF8String& other)
 {
-    assign_internal( other.m_data, other.m_data_length );
+    // delete the current data
+    if(m_data)
+    {
+        delete[] m_data;
+    }
+
+    // since we know the data is coming from another UTF8String we can do a
+    // direct memory copy if the data
+    m_data = new char[other.m_data_length];
+    memcpy(m_data, other.m_data, other.m_data_length);
+    // update the length
+    m_data_length = other.m_data_length;
+    m_length = other.m_length;
 }
 
 void UTF8String::claim(char* data)
@@ -356,7 +413,7 @@ void UTF8String::claim(char* data)
     process_raw();
 }
 
-UTF8String& UTF8String::concatenate( const UTF8String& other )
+UTF8String& UTF8String::concatenate(const UTF8String& other)
 {
     // calculate the new size of the data (but remove the first string's NULL
     // terminator)
@@ -377,18 +434,18 @@ UTF8String& UTF8String::concatenate( const UTF8String& other )
     return *this;
 }
 
-UTF8String& UTF8String::repeat( arc::uint32 count )
+UTF8String& UTF8String::repeat(arc::uint32 count)
 {
     std::size_t c_length = m_data_length - 1;
     // calculate the new length
-    std::size_t new_length = ( c_length * count ) + 1;
+    std::size_t new_length = (c_length * count) + 1;
     // allocate a new block of data
-    char* new_data = new char[ new_length ];
+    char* new_data = new char[new_length];
     // write new data
-    for( std::size_t i = 0; i < count; ++i )
+    for(std::size_t i = 0; i < count; ++i)
     {
         memcpy(
-                new_data + ( c_length * i ),
+                new_data + (c_length * i),
                 m_data,
                 m_data_length - 1
         );

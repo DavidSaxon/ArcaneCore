@@ -429,6 +429,7 @@ void FileReader::read(arc::str::UTF8String& data, arc::int64 length)
                 length_t,
                 arc::data::ENDIAN_LITTLE
             );
+            delete[] c_data;
             break;
         }
         case ENCODING_UTF16_BIG_ENDIAN:
@@ -438,6 +439,7 @@ void FileReader::read(arc::str::UTF8String& data, arc::int64 length)
                 length_t,
                 arc::data::ENDIAN_BIG
             );
+            delete[] c_data;
             break;
         }
         default:
@@ -523,6 +525,7 @@ void FileReader::read_line(arc::str::UTF8String& data)
         default:
         {
             data.assign(c_data, length);
+            delete[] c_data;
             break;
         }
     }

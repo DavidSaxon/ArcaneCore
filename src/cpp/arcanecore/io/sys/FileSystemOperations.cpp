@@ -259,7 +259,7 @@ std::vector<arc::io::sys::Path> list(
         return ret;
     }
 
-    struct dirent *dir_entry;
+    struct dirent* dir_entry;
     while((dir_entry = readdir(dir)) != NULL)
     {
         arc::io::sys::Path p(path);
@@ -273,6 +273,7 @@ std::vector<arc::io::sys::Path> list(
 
         ret.push_back(p);
     }
+    closedir(dir);
 
 #else
 
