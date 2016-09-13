@@ -105,7 +105,8 @@ UTF8String::UTF8String(const UTF8String& other)
     // assign the data
     try
     {
-        assign_internal(other.m_data, other.m_data_length);
+        assign(other);
+        // assign_internal(other.m_data, other.m_data_length);
     }
     catch(...)
     {
@@ -381,19 +382,21 @@ void UTF8String::assign(const char* data, std::size_t length)
 
 void UTF8String::assign(const UTF8String& other)
 {
-    // delete the current data
-    if(m_data)
-    {
-        delete[] m_data;
-    }
+    // // delete the current data
+    // if(m_data)
+    // {
+    //     delete[] m_data;
+    // }
 
-    // since we know the data is coming from another UTF8String we can do a
-    // direct memory copy if the data
-    m_data = new char[other.m_data_length];
-    memcpy(m_data, other.m_data, other.m_data_length);
-    // update the length
-    m_data_length = other.m_data_length;
-    m_length = other.m_length;
+    // // since we know the data is coming from another UTF8String we can do a
+    // // direct memory copy of the data
+    // m_data = new char[other.m_data_length];
+    // memcpy(m_data, other.m_data, other.m_data_length);
+    // // update the length
+    // m_data_length = other.m_data_length;
+    // m_length = other.m_length;
+
+    assign_internal(other.m_data, other.m_data_length);
 }
 
 void UTF8String::claim(char* data)
@@ -1023,13 +1026,19 @@ void UTF8String::assign_internal(
         const char* data,
         std::size_t existing_length )
 {
+    // if we are assigning from the same object we don't need to do anything
+    if(data == m_data)
+    {
+        return;
+    }
+
     // if there is existing data delete it
     if(m_data)
     {
         delete[] m_data;
     }
 
-    // get number ofa bytes in the data
+    // get number of bytes in the data
     bool is_null_terminated = true;
     if ( existing_length == arc::str::npos )
     {
@@ -1053,7 +1062,7 @@ void UTF8String::assign_internal(
     // allocate storage for the internal data buffer
     m_data = new char[m_data_length];
     // copy data to internal array
-    memcpy( m_data, data, existing_length );
+    memcpy(m_data, data, existing_length);
     // should a NULL terminator be added to the end?
     if ( !is_null_terminated )
     {

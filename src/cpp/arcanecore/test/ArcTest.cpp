@@ -62,6 +62,12 @@ namespace internal
 
 TestCore::~TestCore()
 {
+    // TODO: FIX ME
+    // I can't quite remember the state of this, as each test process comes to
+    // an end, and then the final process also ends.
+    // It's obviously different between Linux and Windows, due to fork vs new
+    // process
+#ifndef ARC_OS_WINDOWS
     // clean up unit test pointers
     std::map<arc::str::UTF8String, UnitTest*>& t_m = test_map();
     ARC_FOR_EACH(t_it, t_m)
@@ -69,6 +75,7 @@ TestCore::~TestCore()
         delete t_it->second;
     }
     t_m.clear();
+#endif
 }
 
 //------------------------------------------------------------------------------

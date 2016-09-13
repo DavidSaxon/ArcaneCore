@@ -114,6 +114,12 @@ arc::str::UTF8String utf16_to_utf8(
         }
     }
 
+    // no data? return the empty string
+    if(utf8.empty())
+    {
+        return arc::str::UTF8String();
+    }
+
     return arc::str::UTF8String((const char*) &utf8[0], utf8.size());
 }
 
