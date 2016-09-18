@@ -69,15 +69,19 @@
     <ClCompile Include="tests/cpp/base/math/MathOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/base/str/UTF8String_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/base/str/StringOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/Vector2_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/Vector3_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/Vector4_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gfx/VectorOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/graphics_math/Vec2_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/graphics_math/Vec2Operations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/graphics_math/Vec3_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/graphics_math/Vec3Operations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/format/FormatOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileHandle_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileReader_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/Path_TestSuite.cpp" />
-    <ClCompile Include="tests/cpp/gfx/Vector2_TestSuite.cpp" />
-    <ClCompile Include="tests/cpp/gfx/Vector3_TestSuite.cpp" />
-    <ClCompile Include="tests/cpp/gfx/Vector4_TestSuite.cpp" />
-    <ClCompile Include="tests/cpp/gfx/VectorOperations_TestSuite.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7C254EB9-DDDB-4418-B5C9-1CB0431C4472}</ProjectGuid>
