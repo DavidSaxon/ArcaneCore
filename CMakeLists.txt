@@ -63,6 +63,8 @@ set(TESTS_SUITES
     tests/cpp/graphics_math/Vec2Operations_TestSuite.cpp
     tests/cpp/graphics_math/Vec3_TestSuite.cpp
     tests/cpp/graphics_math/Vec3Operations_TestSuite.cpp
+    tests/cpp/graphics_math/Vec4_TestSuite.cpp
+    tests/cpp/graphics_math/Vec4Operations_TestSuite.cpp
 
     tests/cpp/io/format/FormatOperations_TestSuite.cpp
     tests/cpp/io/sys/FileHandle_TestSuite.cpp

@@ -83,7 +83,8 @@ Vec2<DataType> operator-(const Vec2<DataType>& v)
 /*!
  * \brief Addition operator.
  *
- * Adds the two Vec2 objects together and returns the result in a new Vec2.
+ * Adds the Vec2 ```b``` to the Vec2 ```a``` and returns the result as a new
+ * Vec2.
  */
 template <typename DataType>
 Vec2<DataType> operator+(const Vec2<DataType>& a, const Vec2<DataType>& b)
@@ -94,7 +95,7 @@ Vec2<DataType> operator+(const Vec2<DataType>& a, const Vec2<DataType>& b)
 /*!
  * \brief Compound addition operator.
  *
- * Adds the two Vec2 objects together and applies the results to ```a```.
+ * Adds the Vec2 ```b``` to the Vec2 ```a``` and applies the result to ```a```.
  *
  * \returns A reference to ```a``` after the addition has been performed.
  */
@@ -132,6 +133,180 @@ Vec2<DataType>& operator+=(Vec2<DataType>& v, const DataType& scalar)
 {
     v.x += scalar;
     v.y += scalar;
+
+    return v;
+}
+
+/*!
+ * \brief Subtraction operator.
+ *
+ * Subtracts the Vec2 ```b``` from the Vec2 ```a``` and returns the result as a
+ * new Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> operator-(const Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    return Vec2<DataType>(a.x - b.x, a.y - b.y);
+}
+
+/*!
+ * \brief Compound subtraction operator operator.
+ *
+ * Subtracts the Vec2 ```b``` from the Vec2 ```a`` and applies the result to
+ * ```a```.
+ *
+ * \returns A reference to ```a``` after the subtraction has been performed.
+ */
+template <typename DataType>
+Vec2<DataType>& operator-=(Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    a.x -= b.x;
+    a.y -= b.y;
+
+    return a;
+}
+
+/*!
+ * \brief Scalar subtraction operator.
+ *
+ * Subtracts the given scalar from each component of the Vec2 and returns the
+ * results as a new Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> operator-(const Vec2<DataType>& v, const DataType& scalar)
+{
+    return Vec2<DataType>(v.x - scalar, v.y - scalar);
+}
+
+/*!
+ * \brief Scalar compound subtraction operator.
+ *
+ * Subtracts the given scalar from each component of the Vec2 and applies the
+ * results to the Vec2.
+ *
+ * \returns A reference to the Vec2 after the subtraction has been performed.
+ */
+template <typename DataType>
+Vec2<DataType>& operator-=(Vec2<DataType>& v, const DataType& scalar)
+{
+    v.x -= scalar;
+    v.y -= scalar;
+
+    return v;
+}
+
+/*!
+ * \brief Multiplication operator.
+ *
+ * Multiplies the Vec2 ```a``` by the Vec2 ```b``` and returns the result as a
+ * new Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> operator*(const Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    return Vec2<DataType>(a.x * b.x, a.y * b.y);
+}
+
+/*!
+ * \brief Compound multiplication operator operator.
+ *
+ * Multiplies the Vec2 ```a``` by the Vec2 ```b`` and applies the result to
+ * ```a```.
+ *
+ * \returns A reference to ```a``` after the multiplication has been performed.
+ */
+template <typename DataType>
+Vec2<DataType>& operator*=(Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    a.x *= b.x;
+    a.y *= b.y;
+
+    return a;
+}
+
+/*!
+ * \brief Scalar multiplication operator.
+ *
+ * Multiplies the given scalar by each component of the Vec2 and returns the
+ * results as a new Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> operator*(const Vec2<DataType>& v, const DataType& scalar)
+{
+    return Vec2<DataType>(v.x * scalar, v.y * scalar);
+}
+
+/*!
+ * \brief Scalar compound multiplication operator.
+ *
+ * Multiplies the given scalar by each component of the Vec2 and applies the
+ * results to the Vec2.
+ *
+ * \returns A reference to the Vec2 after the multiplication has been performed.
+ */
+template <typename DataType>
+Vec2<DataType>& operator*=(Vec2<DataType>& v, const DataType& scalar)
+{
+    v.x *= scalar;
+    v.y *= scalar;
+
+    return v;
+}
+
+/*!
+ * \brief Division operator.
+ *
+ * Divides the Vec2 ```a``` by the Vec2 ```b``` and returns the result as a
+ * new Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> operator/(const Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    return Vec2<DataType>(a.x / b.x, a.y / b.y);
+}
+
+/*!
+ * \brief Compound division operator operator.
+ *
+ * Divides the Vec2 ```a``` by the Vec2 ```b`` and applies the result to
+ * ```a```.
+ *
+ * \returns A reference to ```a``` after the division has been performed.
+ */
+template <typename DataType>
+Vec2<DataType>& operator/=(Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    a.x /= b.x;
+    a.y /= b.y;
+
+    return a;
+}
+
+/*!
+ * \brief Scalar division operator.
+ *
+ * Divides the given scalar by each component of the Vec2 and returns the
+ * results as a new Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> operator/(const Vec2<DataType>& v, const DataType& scalar)
+{
+    return Vec2<DataType>(v.x / scalar, v.y / scalar);
+}
+
+/*!
+ * \brief Scalar compound division operator.
+ *
+ * Divides the given scalar by each component of the Vec2 and applies the
+ * results to the Vec2.
+ *
+ * \returns A reference to the Vec2 after the division has been performed.
+ */
+template <typename DataType>
+Vec2<DataType>& operator/=(Vec2<DataType>& v, const DataType& scalar)
+{
+    v.x /= scalar;
+    v.y /= scalar;
 
     return v;
 }

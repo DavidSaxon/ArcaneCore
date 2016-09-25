@@ -189,6 +189,7 @@ ARC_TEST_UNIT_FIXTURE(negation_operator, NegationOperatorFixture)
         TestVec3 v(-vec);
         ARC_CHECK_EQUAL(v.x, -vec.x);
         ARC_CHECK_EQUAL(v.y, -vec.y);
+        ARC_CHECK_EQUAL(v.z, -vec.z);
     }
 }
 
@@ -331,6 +332,242 @@ ARC_TEST_UNIT_FIXTURE(
         ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x + fixture->scalars[i]);
         ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y + fixture->scalars[i]);
         ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z + fixture->scalars[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                              SUBTRACTION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(subtraction_operator, BinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs1.size(); i++)
+    {
+        TestVec3 v(fixture->vecs1[i] - fixture->vecs2[i]);
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs1[i].x - fixture->vecs2[i].x);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs1[i].y - fixture->vecs2[i].y);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs1[i].z - fixture->vecs2[i].z);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                         COMPOUND SUBTRACTION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(compound_subtraction_operator, BinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs1.size(); i++)
+    {
+        TestVec3 v(fixture->vecs1[i]);
+        v -= fixture->vecs2[i];
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs1[i].x - fixture->vecs2[i].x);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs1[i].y - fixture->vecs2[i].y);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs1[i].z - fixture->vecs2[i].z);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                          SCALAR SUBTRACTION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(scalar_subtraction_operator, ScalarBinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs.size(); i++)
+    {
+        TestVec3 v(fixture->vecs[i] - fixture->scalars[i]);
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x - fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y - fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z - fixture->scalars[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                      SCALAR COMPOUND SUBTRACTION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(
+        scalar_compound_subtraction_operator,
+        ScalarBinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs.size(); i++)
+    {
+        TestVec3 v(fixture->vecs[i]);
+        v -= fixture->scalars[i];
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x - fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y - fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z - fixture->scalars[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                            MULTIPLICATION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(multiplication_operator, BinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs1.size(); i++)
+    {
+        TestVec3 v(fixture->vecs1[i] * fixture->vecs2[i]);
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs1[i].x * fixture->vecs2[i].x);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs1[i].y * fixture->vecs2[i].y);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs1[i].z * fixture->vecs2[i].z);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                        COMPOUND MULTIPLICATION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(compound_multiplication_operator, BinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs1.size(); i++)
+    {
+        TestVec3 v(fixture->vecs1[i]);
+        v *= fixture->vecs2[i];
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs1[i].x * fixture->vecs2[i].x);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs1[i].y * fixture->vecs2[i].y);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs1[i].z * fixture->vecs2[i].z);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                         SCALAR MULTIPLICATION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(
+        scalar_multiplication_operator,
+        ScalarBinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs.size(); i++)
+    {
+        TestVec3 v(fixture->vecs[i] * fixture->scalars[i]);
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x * fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y * fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z * fixture->scalars[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                    SCALAR COMPOUND MULTIPLICATION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(
+        scalar_compound_multiplication_operator,
+        ScalarBinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs.size(); i++)
+    {
+        TestVec3 v(fixture->vecs[i]);
+        v *= fixture->scalars[i];
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x * fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y * fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z * fixture->scalars[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                               DIVISION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(division_operator, BinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs1.size(); i++)
+    {
+        // avoid divide by zero
+        if(fixture->vecs2[i].x == 0 ||
+           fixture->vecs2[i].y == 0 ||
+           fixture->vecs2[i].z == 0)
+        {
+            continue;
+        }
+
+        TestVec3 v(fixture->vecs1[i] / fixture->vecs2[i]);
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs1[i].x / fixture->vecs2[i].x);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs1[i].y / fixture->vecs2[i].y);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs1[i].z / fixture->vecs2[i].z);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                           COMPOUND DIVISION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(compound_division_operator, BinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs1.size(); i++)
+    {
+        // avoid divide by zero
+        if(fixture->vecs2[i].x == 0 ||
+           fixture->vecs2[i].y == 0 ||
+           fixture->vecs2[i].z == 0)
+        {
+            continue;
+        }
+
+        TestVec3 v(fixture->vecs1[i]);
+        v /= fixture->vecs2[i];
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs1[i].x / fixture->vecs2[i].x);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs1[i].y / fixture->vecs2[i].y);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs1[i].z / fixture->vecs2[i].z);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                            SCALAR DIVISION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(
+        scalar_division_operator,
+        ScalarBinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs.size(); i++)
+    {
+        // avoid divide by zero
+        if(fixture->scalars[i] == 0)
+        {
+            continue;
+        }
+
+        TestVec3 v(fixture->vecs[i] / fixture->scalars[i]);
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x / fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y / fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z / fixture->scalars[i]);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                       SCALAR COMPOUND DIVISION OPERATOR
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT_FIXTURE(
+        scalar_compound_division_operator,
+        ScalarBinaryOperatorsFixture)
+{
+    for(std::size_t i = 0; i < fixture->vecs.size(); i++)
+    {
+        // avoid divide by zero
+        if(fixture->scalars[i] == 0)
+        {
+            continue;
+        }
+
+        TestVec3 v(fixture->vecs[i]);
+        v /= fixture->scalars[i];
+
+        ARC_CHECK_EQUAL(v.x, fixture->vecs[i].x / fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.y, fixture->vecs[i].y / fixture->scalars[i]);
+        ARC_CHECK_EQUAL(v.z, fixture->vecs[i].z / fixture->scalars[i]);
     }
 }
 

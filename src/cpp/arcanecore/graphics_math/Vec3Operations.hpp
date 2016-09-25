@@ -138,6 +138,186 @@ Vec3<DataType>& operator+=(Vec3<DataType>& v, const DataType& scalar)
     return v;
 }
 
+/*!
+ * \brief Subtraction operator.
+ *
+ * Subtracts the Vec3 ```b``` from the Vec3 ```a``` and returns the result as a
+ * new Vec3.
+ */
+template <typename DataType>
+Vec3<DataType> operator-(const Vec3<DataType>& a, const Vec3<DataType>& b)
+{
+    return Vec3<DataType>(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
+/*!
+ * \brief Compound subtraction operator operator.
+ *
+ * Subtracts the Vec3 ```b``` from the Vec3 ```a`` and applies the result to
+ * ```a```.
+ *
+ * \returns A reference to ```a``` after the subtraction has been performed.
+ */
+template <typename DataType>
+Vec3<DataType>& operator-=(Vec3<DataType>& a, const Vec3<DataType>& b)
+{
+    a.x -= b.x;
+    a.y -= b.y;
+    a.z -= b.z;
+
+    return a;
+}
+
+/*!
+ * \brief Scalar subtraction operator.
+ *
+ * Subtracts the given scalar from each component of the Vec3 and returns the
+ * results as a new Vec3.
+ */
+template <typename DataType>
+Vec3<DataType> operator-(const Vec3<DataType>& v, const DataType& scalar)
+{
+    return Vec3<DataType>(v.x - scalar, v.y - scalar, v.z - scalar);
+}
+
+/*!
+ * \brief Scalar compound subtraction operator.
+ *
+ * Subtracts the given scalar from each component of the Vec3 and applies the
+ * results to the Vec3.
+ *
+ * \returns A reference to the Vec3 after the subtraction has been performed.
+ */
+template <typename DataType>
+Vec3<DataType>& operator-=(Vec3<DataType>& v, const DataType& scalar)
+{
+    v.x -= scalar;
+    v.y -= scalar;
+    v.z -= scalar;
+
+    return v;
+}
+
+/*!
+ * \brief Multiplication operator.
+ *
+ * Multiplies the Vec3 ```a``` by the Vec3 ```b``` and returns the result as a
+ * new Vec3.
+ */
+template <typename DataType>
+Vec3<DataType> operator*(const Vec3<DataType>& a, const Vec3<DataType>& b)
+{
+    return Vec3<DataType>(a.x * b.x, a.y * b.y, a.z * b.z);
+}
+
+/*!
+ * \brief Compound multiplication operator operator.
+ *
+ * Multiplies the Vec3 ```a``` by the Vec3 ```b`` and applies the result to
+ * ```a```.
+ *
+ * \returns A reference to ```a``` after the multiplication has been performed.
+ */
+template <typename DataType>
+Vec3<DataType>& operator*=(Vec3<DataType>& a, const Vec3<DataType>& b)
+{
+    a.x *= b.x;
+    a.y *= b.y;
+    a.z *= b.z;
+
+    return a;
+}
+
+/*!
+ * \brief Scalar multiplication operator.
+ *
+ * Multiplies the given scalar by each component of the Vec3 and returns the
+ * results as a new Vec3.
+ */
+template <typename DataType>
+Vec3<DataType> operator*(const Vec3<DataType>& v, const DataType& scalar)
+{
+    return Vec3<DataType>(v.x * scalar, v.y * scalar, v.z  * scalar);
+}
+
+/*!
+ * \brief Scalar compound multiplication operator.
+ *
+ * Multiplies the given scalar by each component of the Vec3 and applies the
+ * results to the Vec3.
+ *
+ * \returns A reference to the Vec3 after the multiplication has been performed.
+ */
+template <typename DataType>
+Vec3<DataType>& operator*=(Vec3<DataType>& v, const DataType& scalar)
+{
+    v.x *= scalar;
+    v.y *= scalar;
+    v.z *= scalar;
+
+    return v;
+}
+
+/*!
+ * \brief Division operator.
+ *
+ * Divides the Vec3 ```a``` by the Vec3 ```b``` and returns the result as a
+ * new Vec3.
+ */
+template <typename DataType>
+Vec3<DataType> operator/(const Vec3<DataType>& a, const Vec3<DataType>& b)
+{
+    return Vec3<DataType>(a.x / b.x, a.y / b.y, a.z / b.z);
+}
+
+/*!
+ * \brief Compound division operator operator.
+ *
+ * Divides the Vec3 ```a``` by the Vec3 ```b`` and applies the result to
+ * ```a```.
+ *
+ * \returns A reference to ```a``` after the division has been performed.
+ */
+template <typename DataType>
+Vec3<DataType>& operator/=(Vec3<DataType>& a, const Vec3<DataType>& b)
+{
+    a.x /= b.x;
+    a.y /= b.y;
+    a.z /= b.z;
+
+    return a;
+}
+
+/*!
+ * \brief Scalar division operator.
+ *
+ * Divides the given scalar by each component of the Vec3 and returns the
+ * results as a new Vec3.
+ */
+template <typename DataType>
+Vec3<DataType> operator/(const Vec3<DataType>& v, const DataType& scalar)
+{
+    return Vec3<DataType>(v.x / scalar, v.y / scalar, v.z / scalar);
+}
+
+/*!
+ * \brief Scalar compound division operator.
+ *
+ * Divides the given scalar by each component of the Vec3 and applies the
+ * results to the Vec3.
+ *
+ * \returns A reference to the Vec3 after the division has been performed.
+ */
+template <typename DataType>
+Vec3<DataType>& operator/=(Vec3<DataType>& v, const DataType& scalar)
+{
+    v.x /= scalar;
+    v.y /= scalar;
+    v.z /= scalar;
+
+    return v;
+}
+
 } // namespace gm
 } // namespace arc
 
