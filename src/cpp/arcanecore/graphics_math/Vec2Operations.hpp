@@ -9,6 +9,8 @@
 #ifndef ARCANECORE_GM_VEC2OPERATIONS_HPP_
 #define ARCANECORE_GM_VEC2OPERATIONS_HPP_
 
+#include <cmath>
+
 #include "arcanecore/base/str/UTF8String.hpp"
 #include "arcanecore/graphics_math/Vec2.hpp"
 
@@ -309,6 +311,60 @@ Vec2<DataType>& operator/=(Vec2<DataType>& v, const DataType& scalar)
     v.y /= scalar;
 
     return v;
+}
+
+//------------------------------------------------------------------------------
+//                                   FUNCTIONS
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Calculates and returns the squared magnitude of the given Vec2.
+ *
+ * \note When this can be used (e.g. finding the difference between magnitudes)
+ *       this is more efficient than magnitude() since it avoid have to
+ *       calculate the squared root.
+ */
+template <typename DataType>
+DataType magnitude2(const Vec2<DataType>& v)
+{
+    return (v.x * v.x) + (v.y * v.y);
+}
+
+/*!
+ * \brief Calculates and returns the magnitude of the given Vec2.
+ */
+template <typename DataType>
+DataType magnitude(const Vec2<DataType>& v)
+{
+    return static_cast<DataType>(std::sqrt(magnitude2(v)));
+}
+
+/*!
+ * \brief Returns a normalised copy of the given Vec2.
+ */
+template <typename DataType>
+Vec2<DataType> normalise(const Vec2<DataType>& v)
+{
+    // copy to return
+    Vec2<DataType> ret(v);
+    // use squared magnitude here, since we may not need to the squared value
+    DataType mag = magnitude2(v);
+    if(mag > 0)
+    {
+        DataType inverse =
+            static_cast<DataType>(1) / static_cast<DataType>(std::sqrt(mag));
+        ret *= inverse;
+    }
+    return ret;
+}
+
+/*!
+ * \brief Computes and returns the dot product of the Vec2s.
+ */
+template <typename DataType>
+DataType dot(const Vec2<DataType>& a, const Vec2<DataType>& b)
+{
+    return (a.x * b.x) + (a.y * b.y);
 }
 
 } // namespace gm

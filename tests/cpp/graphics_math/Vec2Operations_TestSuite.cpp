@@ -550,4 +550,52 @@ ARC_TEST_UNIT_FIXTURE(
     }
 }
 
+//------------------------------------------------------------------------------
+// Most of the following tests are just here to make sure the template functions
+// actually compile. At some point I need to come back and make them proper
+// tests.
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
+//                               SQUARED MAGNITUDE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(magnitude2)
+{
+    TestVec2 v(2, 4);
+    ARC_CHECK_EQUAL(arc::gm::magnitude2(v), 20);
+}
+
+//------------------------------------------------------------------------------
+//                                   MAGNITUDE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(magnitude)
+{
+    TestVec2 v(2, 4);
+    ARC_CHECK_EQUAL(arc::gm::magnitude(v), 4);
+}
+
+//------------------------------------------------------------------------------
+//                                   NORMALISE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(normalise)
+{
+    TestVec2 v(2, 4);
+    TestVec2 r(0, 0);
+    ARC_CHECK_EQUAL(arc::gm::normalise(v), r);
+}
+
+//------------------------------------------------------------------------------
+//                                  DOT PRODUCT
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(dot)
+{
+    TestVec2 a(3, 4);
+    TestVec2 b(5, 6);
+    ARC_CHECK_EQUAL(arc::gm::dot(a, b), 39);
+}
+
 } // namespace anonymous
