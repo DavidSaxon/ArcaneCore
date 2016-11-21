@@ -81,14 +81,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs -fPIC")
 
 include_directories(
     ${INCLUDE_DIRECTORIES}
-    /usr/include/python3.4
+    /usr/include/python3.5
     src/cpp
     tests/cpp
 )
 
 link_directories(
     ${LINK_DIRECTORIES}
-    /usr/lib/python3.4/
+    /usr/lib/python3.5/
     ${CMAKE_BINARY_DIR}/build/linux_x86
 )
 
@@ -104,5 +104,5 @@ target_link_libraries(tests
     arcanecore_io
     arcanecore_base
     arcanecore_gfx
-    python3.4m
+    python3.5m
 )
