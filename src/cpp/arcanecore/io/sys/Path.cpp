@@ -14,18 +14,6 @@ namespace sys
 {
 
 //------------------------------------------------------------------------------
-//                                   CONSTANTS
-//------------------------------------------------------------------------------
-
-namespace
-{
-
-static const arc::str::UTF8String UNIX_SEP   ("/");
-static const arc::str::UTF8String WINDOWS_SEP("\\");
-
-} // namespace anonymous
-
-//------------------------------------------------------------------------------
 //                                  CONSTRUCTORS
 //------------------------------------------------------------------------------
 
@@ -53,6 +41,7 @@ Path::Path(const arc::str::UTF8String& string_path)
 #ifdef ARC_OS_UNIX
 
     arc::str::UTF8String santised_path(string_path);
+    static const arc::str::UTF8String UNIX_SEP("/");
     santised_path.remove_duplicates(UNIX_SEP);
     m_components = santised_path.split(UNIX_SEP);
 
@@ -64,6 +53,7 @@ Path::Path(const arc::str::UTF8String& string_path)
 #elif defined(ARC_OS_WINDOWS)
 
     arc::str::UTF8String santised_path(string_path);
+    const arc::str::UTF8String WINDOWS_SEP("\\");
     santised_path.remove_duplicates(WINDOWS_SEP);
     m_components = santised_path.split(WINDOWS_SEP);
 
