@@ -33,23 +33,41 @@ arc::str::UTF8String get_last_system_error_message()
 
 #elif defined(ARC_OS_WINDOWS)
 
-    wchar_t error_message[512];
-    FormatMessageW(
-            FORMAT_MESSAGE_FROM_SYSTEM,
+    LPWSTR error_message = nullptr;
+    std::size_t message_size = FormatMessageW(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER |
+            FORMAT_MESSAGE_FROM_SYSTEM     |
+            FORMAT_MESSAGE_IGNORE_INSERTS,
             NULL,
             GetLastError(),
             MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-            error_message,
-            512,
+            (LPWSTR) &error_message,
+            0,
             NULL
     );
 
-    return arc::str::UTF8String(
-            arc::str::utf16_to_utf8(
-                    (const char*) error_message,
-                    arc::str::npos
-            )
+    // copy to UTF8String
+    arc::str::UTF8String r_string(
+        arc::str::utf16_to_utf8(
+                (const char*) error_message,
+                message_size * sizeof(wchar_t)
+        )
     );
+    // destroy the system string
+    LocalFree(error_message);
+
+    // remove a newline from the end of the message if it exists
+    if(r_string.ends_with("\n"))
+    {
+        r_string = r_string.substring(0, r_string.get_length() - 1);
+    }
+    // remove a carriage return from the end of the message if it exists
+    if(r_string.ends_with("\r"))
+    {
+        r_string = r_string.substring(0, r_string.get_length() - 1);
+    }
+
+    return r_string;
 
 #else
 
