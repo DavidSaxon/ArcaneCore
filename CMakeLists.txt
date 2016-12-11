@@ -15,6 +15,7 @@ set(BASE_SRC
 )
 
 set(IO_SRC
+    src/cpp/arcanecore/io/dl/DLOperations.cpp
     src/cpp/arcanecore/io/format/ANSI.cpp
     src/cpp/arcanecore/io/format/FormatOperations.cpp
     src/cpp/arcanecore/io/sys/FileHandle.cpp
@@ -105,4 +106,5 @@ target_link_libraries(tests
     arcanecore_base
     arcanecore_gfx
     python3.5m
+    dl
 )

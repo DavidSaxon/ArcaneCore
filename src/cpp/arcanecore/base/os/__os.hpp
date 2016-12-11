@@ -5,7 +5,7 @@ namespace arc
 {
 
 /*!
- * \brief Module operating system related actions.
+ * \brief Module for operating system related actions.
  */
 namespace os
 {

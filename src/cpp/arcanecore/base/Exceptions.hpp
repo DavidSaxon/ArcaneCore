@@ -365,6 +365,24 @@ public:
     }
 };
 
+//------------------------------------------------------------------------------
+//                               DYNAMIC LINK ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns of error relating to dynamic linking.
+ */
+class DynamicLinkError : public ArcException
+{
+public:
+
+    DynamicLinkError(const arc::str::UTF8String& message)
+        :
+        ArcException("DynamicLinkError", message)
+    {
+    }
+};
+
 } // namespace ex
 } // namespace arc
 
