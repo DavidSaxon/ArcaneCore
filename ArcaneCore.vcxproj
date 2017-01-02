@@ -35,6 +35,7 @@
     <ClCompile Include="src\cpp\arcanecore\base\str\UTF8String.cpp" />
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)'=='IO_lib'">
+    <ClCompile Include="src/cpp/arcanecore/io/dl/DLOperations.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/format/ANSI.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/format/FormatOperations.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/sys/FileHandle.cpp" />

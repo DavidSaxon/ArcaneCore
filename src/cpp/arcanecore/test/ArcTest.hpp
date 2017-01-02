@@ -619,6 +619,84 @@ private:
     }
 
 /*!
+ * \brief Checks whether the given iterable objects are considered equal.
+ *
+ * If a and b are equal this check will pass, else this will cause test failure.
+ */
+#define ARC_CHECK_ITER_EQUAL(a, b)                                             \
+    {                                                                          \
+    auto _a = (a); auto _b = _a; _b = (b);                                     \
+    bool not_equal = false;                                                    \
+    if(_a.size() != b.size())                                                  \
+    {                                                                          \
+        arc::str::UTF8String f_e_m;                                            \
+        f_e_m << "Size " << _a.size() << " do not match size " << _b.size();   \
+        arc::test::internal::TestCore::logger().report_check_fail(             \
+                "ARC_CHECK_ITER_EQUAL", __FILE__, __LINE__, f_e_m);            \
+        not_equal = true;                                                      \
+    }                                                                          \
+    if(!not_equal)                                                             \
+    {                                                                          \
+        for(std::size_t i = 0; i < _a.size(); ++i)                             \
+        {                                                                      \
+            if(_a[i] != _b[i])                                                 \
+            {                                                                  \
+                arc::str::UTF8String f_e_m;                                    \
+                f_e_m << "Element at index " << i << ": " << _a[i] << " does " \
+                      << "not equal " << _b[i];                                \
+                arc::test::internal::TestCore::logger().report_check_fail(     \
+                        "ARC_CHECK_ITER_EQUAL", __FILE__, __LINE__, f_e_m);    \
+                not_equal = true;                                              \
+                break;                                                         \
+            }                                                                  \
+        }                                                                      \
+    }                                                                          \
+    if(!not_equal)                                                             \
+    {                                                                          \
+        arc::test::internal::TestCore::logger().report_check_pass(             \
+                "ARC_CHECK_ITER_EQUAL", __FILE__, __LINE__);                   \
+    }                                                                          \
+    }
+
+/*!
+ * \brief Checks whether the given iterable objects are considered not equal.
+ *
+ * If a and b are not equal this check will pass, else this will cause test
+ * failure.
+ */
+#define ARC_CHECK_ITER_NOT_EQUAL(a, b)                                         \
+    {                                                                          \
+    auto _a = (a); auto _b = _a; _b = (b);                                     \
+    bool not_equal = false;                                                    \
+    if(_a.size() != b.size())                                                  \
+    {                                                                          \
+        arc::test::internal::TestCore::logger().report_check_pass(             \
+                "ARC_CHECK_ITER_NOT_EQUAL", __FILE__, __LINE__);               \
+        not_equal = true;                                                      \
+    }                                                                          \
+    if(!not_equal)                                                             \
+    {                                                                          \
+        for(std::size_t i = 0; i < _a.size(); ++i)                             \
+        {                                                                      \
+            if(_a[i] != _b[i])                                                 \
+            {                                                                  \
+                arc::test::internal::TestCore::logger().report_check_pass(     \
+                        "ARC_CHECK_ITER_NOT_EQUAL", __FILE__, __LINE__);       \
+                not_equal = true;                                              \
+                break;                                                         \
+            }                                                                  \
+        }                                                                      \
+    }                                                                          \
+    if(!not_equal)                                                             \
+    {                                                                          \
+        arc::str::UTF8String f_e_m;                                            \
+        f_e_m << "Iterable objects are equal";                                 \
+        arc::test::internal::TestCore::logger().report_check_fail(             \
+                "ARC_CHECK_ITER_NOT_EQUAL", __FILE__, __LINE__, f_e_m);        \
+    }                                                                          \
+    }
+
+/*!
  * \brief Checks whether the given statement throws the exception type.
  *
  * If the statement throws the given exception type the check will pass, else

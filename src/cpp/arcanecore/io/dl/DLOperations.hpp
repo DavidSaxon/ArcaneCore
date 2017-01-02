@@ -1,12 +1,11 @@
 #ifndef ARCANECORE_IO_DL_DLLOPERATIONS_HPP_
 #define ARCANECORE_IO_DL_DLLOPERATIONS_HPP_
 
-#include <dlfcn.h>
-
 #include <arcanecore/base/Exceptions.hpp>
 #include <arcanecore/base/Preproc.hpp>
 #include <arcanecore/base/introspect/IntrospectOperations.hpp>
 #include <arcanecore/base/os/OSOperations.hpp>
+#include <arcanecore/base/str/StringOperations.hpp>
 #include <arcanecore/base/str/UTF8String.hpp>
 #include <arcanecore/io/sys/Path.hpp>
 
@@ -19,10 +18,12 @@
  */
 #define ARC_IO_DL_EXPORT
 #ifdef ARC_OS_WINDOWS
+#   include <windows.h>
 #   undef ARC_IO_DL_EXPORT
 #   define ARC_IO_DL_EXPORT __declspec(dllexport)
 // TODO: should be if GCC?
 #elif defined(ARC_OS_LINUX)
+#   include <dlfcn.h>
 #   undef ARC_IO_DL_EXPORT
 #   define ARC_IO_DL_EXPORT __attribute__((visibility("default")))
 #endif
@@ -81,15 +82,9 @@ SymbolType* bind_symbol(Handle handle, const arc::str::UTF8String& name)
 
     #ifdef ARC_OS_WINDOWS
 
-        // utf 16
-        std::size_t length = 0;
-        const char* utf16 = arc::str::utf8_to_utf16(
-                name.get_raw(),
-                length,
-                arc::data::ENDIAN_LITTLE
-        );
+        // note - this doesn't support Unicode function names
         // get the handle
-        symbol_handle = GetProcAddressW(handle, utf16);
+        symbol_handle = GetProcAddress((HMODULE) handle, name.get_raw());
 
     #elif defined(ARC_OS_UNIX)
 

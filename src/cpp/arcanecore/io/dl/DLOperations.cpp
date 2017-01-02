@@ -31,7 +31,7 @@ Handle open_library(const arc::io::sys::Path& path)
                 arc::data::ENDIAN_LITTLE
         );
         // get the handle
-        handle = LoadLibraryW(handle, utf16);
+        handle = LoadLibraryW((const wchar_t*) utf16);
 
     #elif defined(ARC_OS_UNIX)
 
@@ -65,7 +65,7 @@ void close_library(Handle handle)
 
     #ifdef ARC_OS_WINDOWS
 
-        error = !FreeLibrary((handle);
+        error = !FreeLibrary((HMODULE) handle);
 
     #elif defined(ARC_OS_UNIX)
 
