@@ -122,7 +122,7 @@ namespace str
  *
  * The UTF8String class provides many convenience functions for manipulating
  * string data, such as `split`, `trim`, `starts_with`, `find_first`,
- * `to_raw`, `to_stdstring`, etc.
+ * `to_raw`, `to_std_string`, etc.
  * \endcode
  *
  * TODO: optimisations
@@ -1167,6 +1167,25 @@ std::ostream& operator<<(std::ostream& stream, const UTF8String& s);
 } // namespace str
 } // namespace arc
 
+//------------------------------------------------------------------------------
+//                                      HASH
+//------------------------------------------------------------------------------
 
+namespace std
+{
+
+template<>
+struct hash<arc::str::UTF8String> :
+    public unary_function<arc::str::UTF8String, std::size_t>
+{
+    std::size_t operator()(const arc::str::UTF8String& value) const
+    {
+        // TODO: could use custom hash here
+        std::hash<std::string> hasher;
+        return hasher(value.to_std_string());
+    }
+};
+
+} // namespace std
 
 #endif

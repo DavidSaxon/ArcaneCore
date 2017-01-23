@@ -482,4 +482,25 @@ std::ostream& operator<<(std::ostream& stream, const Path& p);
 } // namespace io
 } // namespace arc
 
+//------------------------------------------------------------------------------
+//                                      HASH
+//------------------------------------------------------------------------------
+
+namespace std
+{
+
+template<>
+struct hash<arc::io::sys::Path> :
+    public unary_function<arc::io::sys::Path, size_t>
+{
+    std::size_t operator()(const arc::io::sys::Path& value) const
+    {
+        // TODO: could use custom faster hash here
+        std::hash<arc::str::UTF8String> hasher;
+        return hasher(value.to_unix());
+    }
+};
+
+} // namespace std
+
 #endif
