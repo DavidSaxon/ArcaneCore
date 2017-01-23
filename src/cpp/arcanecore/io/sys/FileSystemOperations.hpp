@@ -95,7 +95,7 @@ std::vector<arc::io::sys::Path> list(
  * function returns all paths that are a descendant of the given path. This
  * function will not resolve symbolics in order to avoid infinite recursion.
  */
-std::vector< arc::io::sys::Path> list_rec(
+std::vector<arc::io::sys::Path> list_rec(
         const arc::io::sys::Path& path,
         bool include_special = false);
 
