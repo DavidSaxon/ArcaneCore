@@ -6,6 +6,17 @@
 #include "arcanecore/base/Exceptions.hpp"
 #include "arcanecore/base/str/StringOperations.hpp"
 
+#ifdef ARC_OS_UNIX
+
+    #include <limits.h>
+    #include <unistd.h>
+
+#elif defined(ARC_OS_WINDOWS)
+
+    #include <windows.h>
+
+#endif
+
 namespace arc
 {
 namespace io
@@ -282,6 +293,58 @@ arc::str::UTF8String Path::to_unix() const
 arc::str::UTF8String Path::to_windows() const
 {
     return arc::str::join(m_components, "\\");
+}
+
+Path Path::to_absolute() const
+{
+    // TODO: resolve . and ..
+
+#ifdef ARC_OS_UNIX
+
+    // if the path is already from root just return a copy of it
+    if(!is_empty() && get_front() == "/")
+    {
+        return Path(*this);
+    }
+
+    // otherwise get the current working directory and prepend it to this path
+    char cwd[PATH_MAX];
+    getcwd(cwd, PATH_MAX);
+    // create a new path and append
+    Path abs_path(cwd);
+    abs_path += *this;
+    return abs_path;
+
+#elif defined(ARC_OS_WINDOWS)
+
+    // get the path as utf-16
+    std::size_t length = 0;
+    const char* p = arc::str::utf8_to_utf16(
+            to_windows(),
+            length,
+            arc::data::ENDIAN_LITTLE
+    );
+
+    wchar_t full_path[MAX_PATH];
+    GetFullPathNameW((const wchar_t*) p, MAX_PATH, full_path, NULL);
+
+    // convert back to utf-8
+    arc::str::UTF8String utf8_fullpath(
+        arc::str::utf16_to_utf8(
+            (const char*) full_path,
+            arc::str::npos
+        )
+    );
+
+    return Path(utf8_fullpath);
+
+#else
+
+    throw arc::test::ex::NotImplementedError(
+            "Path::to_absolute() is not yet supported for the current platform"
+    );
+
+#endif
 }
 
 //----------------------------------ACCESSORS-----------------------------------

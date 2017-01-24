@@ -381,6 +381,11 @@ public:
      */
     arc::str::UTF8String to_windows() const;
 
+    /*!
+     * \brief Returns a new arc::io::sys::Path instance that represents this
+     *        path as an absolute path.
+     */
+    Path to_absolute() const;
 
     //--------------------------------ACCESSORS---------------------------------
 
