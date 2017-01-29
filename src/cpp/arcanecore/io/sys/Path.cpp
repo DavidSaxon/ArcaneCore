@@ -85,6 +85,60 @@ Path::Path(const Path& other)
 }
 
 //------------------------------------------------------------------------------
+//                                   DESTRUCTOR
+//------------------------------------------------------------------------------
+
+Path::~Path()
+{
+}
+
+//------------------------------------------------------------------------------
+//                            PUBLIC STATIC FUNCTIONS
+//------------------------------------------------------------------------------
+
+Path Path::from_unix_string(const arc::str::UTF8String& string_path)
+{
+    arc::str::UTF8String santised_path(string_path);
+    static const arc::str::UTF8String UNIX_SEP("/");
+    santised_path.remove_duplicates(UNIX_SEP);
+    std::vector<arc::str::UTF8String> components =
+        santised_path.split(UNIX_SEP);
+
+    // start the path with / if the split returned a space
+    if(components.size() > 0 && components[0] == "")
+    {
+        components[0] = "/";
+    }
+
+    // remove final space if the path ended with /
+    if(components.size() > 0 && components.back() == "")
+    {
+        components = std::vector<arc::str::UTF8String>(
+            components.begin(), components.end() - 1);
+    }
+
+    return Path(components);
+}
+
+Path Path::from_windows_string(const arc::str::UTF8String& string_path)
+{
+    arc::str::UTF8String santised_path(string_path);
+    const arc::str::UTF8String WINDOWS_SEP("\\");
+    santised_path.remove_duplicates(WINDOWS_SEP);
+     std::vector<arc::str::UTF8String> components =
+        santised_path.split(WINDOWS_SEP);
+
+    // remove final space if the path ended with /
+    if(components.size() > 0 && components.back() == "")
+    {
+        components = std::vector<arc::str::UTF8String>(
+            components.begin(), components.end() - 1);
+    }
+
+    return Path(components);
+}
+
+//------------------------------------------------------------------------------
 //                                   OPERATORS
 //------------------------------------------------------------------------------
 

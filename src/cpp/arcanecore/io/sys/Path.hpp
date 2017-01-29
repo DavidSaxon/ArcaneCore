@@ -111,6 +111,28 @@ public:
     Path(const Path& other);
 
     //--------------------------------------------------------------------------
+    //                                 DESTRUCTOR
+    //--------------------------------------------------------------------------
+
+    virtual ~Path();
+
+    //--------------------------------------------------------------------------
+    //                          PUBLIC STATIC FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Returns a new Path that is built by splitting a Unix-style path
+     *        contained within a single string.
+     */
+    static Path from_unix_string(const arc::str::UTF8String& string_path);
+
+    /*!
+     * \brief Returns a new Path that is built by splitting a Windows-style path
+     *        contained within a single string.
+     */
+    static Path from_windows_string(const arc::str::UTF8String& string_path);
+
+    //--------------------------------------------------------------------------
     //                                 OPERATORS
     //--------------------------------------------------------------------------
 
@@ -321,6 +343,8 @@ public:
      * \param index The index of the component to remove from this path.
      */
     void remove(std::size_t index);
+
+    void assign_from_unix_string();
 
     /*!
      * \brief Returns a arc::str::UTF8String representation of this Path for
