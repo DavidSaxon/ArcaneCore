@@ -1164,6 +1164,11 @@ private:
 
 std::ostream& operator<<(std::ostream& stream, const UTF8String& s);
 
+UTF8String operator+(const UTF8String& a, const char* b);
+
+UTF8String operator+(const char* a, const UTF8String& b);
+
+
 } // namespace str
 } // namespace arc
 
