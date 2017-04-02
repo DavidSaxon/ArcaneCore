@@ -69,5 +69,23 @@
     <ClCompile Include="tests/cpp/gfx/VectorOperations_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests/cpp/graphics_math/Vec2_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/graphics_math/Vec2Operations_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/graphics_math/Vec3_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/graphics_math/Vec3Operations_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/graphics_math/Vec4_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/graphics_math/Vec4Operations_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
