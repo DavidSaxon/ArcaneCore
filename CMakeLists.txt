@@ -55,17 +55,7 @@ set(TESTS_SUITES
     tests/cpp/base/str/UTF8String_TestSuite.cpp
     tests/cpp/base/str/StringOperations_TestSuite.cpp
 
-    tests/cpp/gfx/Vector2_TestSuite.cpp
-    tests/cpp/gfx/Vector3_TestSuite.cpp
-    tests/cpp/gfx/Vector4_TestSuite.cpp
-    tests/cpp/gfx/VectorOperations_TestSuite.cpp
-
-    tests/cpp/graphics_math/Vec2_TestSuite.cpp
-    tests/cpp/graphics_math/Vec2Operations_TestSuite.cpp
-    tests/cpp/graphics_math/Vec3_TestSuite.cpp
-    tests/cpp/graphics_math/Vec3Operations_TestSuite.cpp
-    tests/cpp/graphics_math/Vec4_TestSuite.cpp
-    tests/cpp/graphics_math/Vec4Operations_TestSuite.cpp
+    tests/cpp/gm/Vector_TestSuite.cpp
 
     tests/cpp/io/format/FormatOperations_TestSuite.cpp
     tests/cpp/io/sys/FileHandle_TestSuite.cpp
@@ -78,7 +68,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs -fPIC")
+set(CMAKE_CXX_FLAGS
+    "${CMAKE_CXX_FLAGS} -g -std=c++0x -Wall -Wno-varargs -fPIC -msse3"
+)
 
 include_directories(
     ${INCLUDE_DIRECTORIES}

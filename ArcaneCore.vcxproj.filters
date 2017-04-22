@@ -57,34 +57,7 @@
     <ClCompile Include="tests/cpp/io/sys/Path_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests/cpp/gfx/Vector2_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/gfx/Vector3_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/gfx/Vector4_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/gfx/VectorOperations_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/graphics_math/Vec2_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/graphics_math/Vec2Operations_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/graphics_math/Vec3_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/graphics_math/Vec3Operations_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/graphics_math/Vec4_TestSuite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="tests/cpp/graphics_math/Vec4Operations_TestSuite.cpp">
+    <ClCompile Include="tests/cpp/gm/Vector_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
