@@ -11,6 +11,8 @@ ARC_TEST_UNIT(proto)
 {
     // typedef arc::gm::Vector<float, 3, 16> vType;
     std::cout << "align of float: " << alignof(float) << std::endl;
+    // arc::gm::Vector<float, 3, true> v;
+    // arc::gm::Vector3f v = ;
     arc::gm::SimdVector3f* v = new arc::gm::SimdVector3f(1.0, 2.0, 3.0);
 }
 

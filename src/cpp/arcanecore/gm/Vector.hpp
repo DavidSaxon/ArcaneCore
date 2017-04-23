@@ -30,7 +30,13 @@ struct VectorStorage;
 //                                     VECTOR
 //------------------------------------------------------------------------------
 
+class testA
+{
+
+};
+
 // TODO: should we always force inline for vector operations?
+// TODO: inherit from VectorStorage?
 /*!
  * \brief TODO
  */

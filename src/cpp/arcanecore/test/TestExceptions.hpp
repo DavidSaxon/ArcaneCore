@@ -25,11 +25,11 @@ class TestError : public arc::ex::ArcException
 {
 protected:
 
+    template<typename T_derived_type>
     TestError(
-        const arc::str::UTF8String& type,
-        const arc::str::UTF8String& message)
-        :
-        ArcException(type, message)
+            const arc::str::UTF8String& message,
+            const T_derived_type* derived)
+        : ArcException(message, derived)
     {
     }
 };
@@ -42,8 +42,7 @@ class TestDeclerationError : public TestError
 public:
 
     TestDeclerationError(const arc::str::UTF8String& message)
-        :
-        TestError("TestDeclerationError", message)
+        : TestError(message, this)
     {
     }
 };
@@ -56,8 +55,7 @@ class TestRuntimeError : public TestError
 public:
 
     TestRuntimeError(const arc::str::UTF8String& message)
-        :
-        TestError("TestRuntimeError", message)
+        : TestError(message, this)
     {
     }
 };

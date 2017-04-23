@@ -40,20 +40,15 @@ namespace memory
  * \brief Base class for objects that require non-standard (8-byte) alignment on
  *        the heap.
  */
-template<class T_DerivedClass>
+template<class T_derived_class>
 class AlignedBase
 {
 private:
 
     /*!
-     * \brief The expected alignment of the the derived class.
-     *
-     * This cannot be smaller than sizeof(void*) as this is the minimum
-     * alignable size.
+     * \brief The minimum size memory can be aligned to.
      */
-    static constexpr std::size_t ALIGNMENT =
-        (alignof(T_DerivedClass) < sizeof(void*)) ?
-            sizeof(void*) : alignof(T_DerivedClass);
+    static const std::size_t s_minimum_alignment = sizeof(void*);
 
 public:
 
@@ -63,14 +58,18 @@ public:
 
     void* operator new(std::size_t count) throw()
     {
+        // TODO: check requirements on multiplies
+        // calculate alignment
+        std::size_t alignment = alignof(T_derived_class);
+        if(alignment < s_minimum_alignment)
+        {
+            alignment = s_minimum_alignment;
+        }
+
         #if defined(__GNUC__) || defined(__INTEL_COMPILER)
 
-            std::cout << "ALIGNED NEW: " << ALIGNMENT << " : " << count
-                      << std::endl;
-
             void* ptr = nullptr;
-            int error_code = posix_memalign(&ptr, ALIGNMENT, count);
-            // int error_code = posix_memalign(&ptr, 4, count);
+            int error_code = posix_memalign(&ptr, alignment, count);
             // TODO TEST ERROR
             if(error_code != 0)
             {
@@ -81,7 +80,13 @@ public:
 
         #elif defined(_MSC_VER)
 
-            // TODO:
+            void* ptr = _aligned_malloc(count, alignment);
+            if(ptr = nullptr)
+            {
+                // TODO:
+                std::cout << "ALIGN MALLOC FAILURE" << std::endl;
+            }
+            return ptr;
 
         #else
 

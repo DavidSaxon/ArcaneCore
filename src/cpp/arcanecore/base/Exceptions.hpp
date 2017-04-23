@@ -5,8 +5,9 @@
 #ifndef ARCANECORE_BASE_EXCEPTIONS_HPP_
 #define ARCANECORE_BASE_EXCEPTIONS_HPP_
 
-#include <exception>
+#include <stdexcept>
 
+#include "arcanecore/base/introspect/IntrospectOperations.hpp"
 #include "arcanecore/base/str/UTF8String.hpp"
 
 namespace arc
@@ -25,11 +26,26 @@ namespace ex
 /*!
  * \brief Abstract base class that all ArcaneCore Exceptions extend from.
  *
- * This class directly inherits from std::exception.
+ * This class directly inherits from std::runtime_error.
  */
-class ArcException : public std::exception
+class ArcException : public std::runtime_error
 {
 public:
+
+    //-------------------------------CONSTRUCTOR--------------------------------
+
+    /*!
+     * \brief Creates a new generic ArcException.
+     *
+     * \param message A message describing the reason for the exception.
+     */
+    ArcException(const arc::str::UTF8String& message)
+        :
+        std::runtime_error(
+            arc::str::UTF8String("[ArcException] " + message).get_raw()
+        )
+    {
+    }
 
     //--------------------------------DESTRUCTOR--------------------------------
 
@@ -40,6 +56,14 @@ public:
     //-------------------------PUBLIC MEMBER FUNCTIONS--------------------------
 
     /*!
+     * \return The reason for the exception.
+     */
+    const arc::str::UTF8String get_message() const
+    {
+        return arc::str::UTF8String(what());
+    }
+
+    /*!
      * \brief Returns the type of this exception as a string.
      */
     const arc::str::UTF8String& get_type() const
@@ -47,38 +71,32 @@ public:
         return m_type;
     }
 
-    /*!
-     * \return The reason for the exception.
-     */
-    virtual const char* what() const throw()
-    {
-        return m_message.get_raw();
-    }
-
-    /*!
-     * \return The reason for the exception.
-     */
-    const arc::str::UTF8String& get_message() const
-    {
-        return m_message;
-    }
-
 protected:
 
     //-------------------------------CONSTRUCTOR--------------------------------
 
     /*!
-     * \brief Super constructor for objects derived from ArcException.
+     * \brief Super constructor for derived classes of ArcException.
      *
-     * \param message A message decribing the reason for the exception.
+     * The type name of the derived class will be prefixed to the exception
+     * message.
+     *
+     * \tparam T_derived_type The type of the class that is inheriting from
+     *                        ArcException.
+     *
+     * \param message A message describing the reason for the exception.
      */
+    template<typename T_derived_type>
     ArcException(
-            const arc::str::UTF8String& type,
-            const arc::str::UTF8String& message)
-        :
-        std::exception(),
-        m_type        (type),
-        m_message     (message)
+            const arc::str::UTF8String& message,
+            const T_derived_type* derived)
+        : std::runtime_error(
+            arc::str::UTF8String(
+                "[" + arc::introspect::get_typename<T_derived_type>() +
+                "] " + message
+            ).get_raw()
+          )
+        , m_type(arc::introspect::get_typename<T_derived_type>())
     {
     }
 
@@ -88,8 +106,6 @@ private:
 
     // The string representing the type of this exception
     const arc::str::UTF8String m_type;
-    // The message explaining the reason for the exception
-    const arc::str::UTF8String m_message;
 };
 
 //------------------------------------------------------------------------------
@@ -104,8 +120,7 @@ class RuntimeError : public ArcException
 public:
 
     RuntimeError(const arc::str::UTF8String& message)
-        :
-        ArcException("RuntimeError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -123,8 +138,7 @@ class NotImplementedError : public ArcException
 public:
 
     NotImplementedError(const arc::str::UTF8String& message)
-        :
-        ArcException("NotImplementedError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -141,8 +155,7 @@ class TypeError : public ArcException
 public:
 
     TypeError(const arc::str::UTF8String& message)
-        :
-        ArcException("TypeError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -160,8 +173,7 @@ class ValueError : public ArcException
 public:
 
     ValueError(const arc::str::UTF8String& message)
-        :
-        ArcException("ValueError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -179,8 +191,7 @@ class StateError : public ArcException
 public:
 
     StateError(const arc::str::UTF8String& message)
-        :
-        ArcException("StateError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -197,8 +208,7 @@ class IllegalActionError : public ArcException
 public:
 
     IllegalActionError(const arc::str::UTF8String& message)
-        :
-        ArcException("IllegalActionError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -215,8 +225,7 @@ class IndexOutOfBoundsError : public ArcException
 public:
 
     IndexOutOfBoundsError(const arc::str::UTF8String& message)
-        :
-        ArcException("IndexOutOfBoundsError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -233,8 +242,7 @@ class KeyError : public ArcException
 public:
 
     KeyError(const arc::str::UTF8String& message)
-        :
-        ArcException("KeyError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -251,8 +259,7 @@ class ArithmeticError : public ArcException
 public:
 
     ArithmeticError(const arc::str::UTF8String& message)
-        :
-        ArcException("ArithmeticError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -269,8 +276,7 @@ class EncodingError : public ArcException
 public:
 
     EncodingError(const arc::str::UTF8String& message)
-        :
-        ArcException("EncodingError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -287,8 +293,7 @@ class ConversionDataError : public ArcException
 public:
 
     ConversionDataError(const arc::str::UTF8String& message)
-        :
-        ArcException("ConversionDataError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -305,8 +310,7 @@ class ValidationError : public ArcException
 public:
 
     ValidationError(const arc::str::UTF8String& message)
-        :
-        ArcException("ValidationError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -323,8 +327,7 @@ class ParseError : public ArcException
 public:
 
     ParseError(const arc::str::UTF8String& message)
-        :
-        ArcException("ParseError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -341,8 +344,7 @@ class IOError : public ArcException
 public:
 
     IOError(const arc::str::UTF8String& message)
-        :
-        ArcException("IOError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -359,8 +361,7 @@ class EOFError : public ArcException
 public:
 
     EOFError(const arc::str::UTF8String& message)
-        :
-        ArcException("EOFError", message)
+        : ArcException(message, this)
     {
     }
 };
@@ -377,8 +378,7 @@ class DynamicLinkError : public ArcException
 public:
 
     DynamicLinkError(const arc::str::UTF8String& message)
-        :
-        ArcException("DynamicLinkError", message)
+        : ArcException(message, this)
     {
     }
 };
