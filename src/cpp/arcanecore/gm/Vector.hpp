@@ -7,6 +7,11 @@
 
 #include <arcanecore/base/Types.hpp>
 #include <arcanecore/base/memory/Alignment.hpp>
+#include <arcanecore/base/str/UTF8String.hpp>
+
+#ifndef ARC_GM_DISABLE_SSE
+    #include <arcanecore/base/simd/Include.hpp>
+#endif
 
 namespace arc
 {
@@ -17,30 +22,78 @@ namespace gm
 //                                 VECTOR STORAGE
 //------------------------------------------------------------------------------
 
-// TODO: can this be internal to the driver
 /*!
  * \brief The internal storage of vectors.
  *
- * TODO: finish docs.
+ * \tparam T_scalar The scalar type that this is storing vector information for.
+ * \tparam T_dimensions The number of dimensions of the vector that is using
+ *                      this storage.
+ * \tparam T_use_simd Whether this storage should be formatted in memory for
+ *                    simd use.
  */
-template<typename T_scalar, arc::uint32 T_dimensions, bool T_use_simd>
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
 struct VectorStorage;
+
+//-------------------------SUPPORTED SIMD STORAGE TYPES-------------------------
+
+template<>
+struct VectorStorage<float, 3, true>
+{
+    typedef __m128 SimdData;
+    ARC_MEMORY_ALIGN(16) float data[3];
+};
+
+template<>
+struct VectorStorage<float, 4, true>
+{
+    typedef __m128 SimdData;
+    ARC_MEMORY_ALIGN(16) float data[4];
+};
+
+template<>
+struct VectorStorage<double, 2, true>
+{
+    typedef __m128d SimdData;
+    ARC_MEMORY_ALIGN(16) double data[2];
+};
+
+template<>
+struct VectorStorage<arc::uint32, 4, true>
+{
+    typedef __m128i SimdData;
+    ARC_MEMORY_ALIGN(16) arc::uint32 data[4];
+};
+
+template<>
+struct VectorStorage<arc::int32, 4, true>
+{
+    typedef __m128i SimdData;
+    ARC_MEMORY_ALIGN(16) arc::int32 data[4];
+};
+
+//-----------------------------DEFAULT STORAGE TYPE-----------------------------
+
+template<typename T_scalar, std::size_t T_dimensions>
+struct VectorStorage<T_scalar, T_dimensions, false>
+{
+    typedef char SimdData;
+    T_scalar data[T_dimensions];
+};
 
 //------------------------------------------------------------------------------
 //                                     VECTOR
 //------------------------------------------------------------------------------
 
-class testA
-{
-
-};
-
-// TODO: should we always force inline for vector operations?
-// TODO: inherit from VectorStorage?
 /*!
- * \brief TODO
+ * \brief A generic linear algebra vector object with simd support.
+ *
+ * \tparam T_scalar The scalar type of this vector (e.g. float).
+ * \tparam T_dimensions The number of dimensions in this vector, this should be
+ *                      greater than 0.
+ * \tparam T_use_simd Whether this vector should be formatted in memory for simd
+ *                    use.
  */
-template<typename T_scalar, arc::uint32 T_dimensions, bool T_use_simd = false>
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd = false>
 class Vector
     : public arc::memory::AlignedBase<Vector<
         T_scalar,
@@ -51,45 +104,575 @@ class Vector
 public:
 
     //--------------------------------------------------------------------------
+    //                            TYPEDEF DEFINITIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief The storage object this vector is using.
+     */
+    typedef VectorStorage<T_scalar, T_dimensions, T_use_simd> Storage;
+    /*!
+     * \brief The simd data of this object (if valid).
+     */
+    typedef typename VectorStorage<T_scalar, T_dimensions, T_use_simd>::SimdData
+        SimdType;
+
+    //--------------------------------------------------------------------------
     //                                CONSTRUCTORS
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief TODO:
+     * \brief Creates a new vector with all components initialised to 0.
      */
-    inline Vector();
+    Vector()
+    {
+        // initialise to zero
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
 
     /*!
-     * \brief TODO:
+     * \brief Creates a new vector with all components initialised to the given
+     *        scalar
      */
-    inline Vector(T_scalar x, T_scalar y, T_scalar z);
+    Vector(T_scalar scalar)
+    {
+        // initialise to scalar
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] = scalar;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector with the x and y components initialised to
+     *        the given values, and any further components initialised to 0.
+     *
+     * \note The vector must have 2 or more dimensions.
+     */
+    Vector(T_scalar x, T_scalar y)
+    {
+        static_assert(
+            T_dimensions >= 2,
+            "Constructor only valid for vectors with a dimensionality of 2 or "
+            "more"
+        );
+
+        (*this)[0] = x;
+        (*this)[1] = y;
+
+        // initialise to zero
+        for(std::size_t i = 2; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector with the x, y, and z components initialised
+     *        to the given values, and any further components initialised to 0.
+     *
+     * \note The vector must have 3 or more dimensions.
+     */
+    Vector(T_scalar x, T_scalar y, T_scalar z)
+    {
+        static_assert(
+            T_dimensions >= 3,
+            "Constructor only valid for vectors with a dimensionality of 3 or "
+            "more"
+        );
+
+        (*this)[0] = x;
+        (*this)[1] = y;
+        (*this)[2] = z;
+
+        // initialise to zero
+        for(std::size_t i = 3; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector with the x, y, z, and w components
+     *        initialised to the given values, and any further components
+     *        initialised to 0.
+     *
+     * \note The vector must have 4 or more dimensions.
+     */
+    Vector(T_scalar x, T_scalar y, T_scalar z, T_scalar w)
+    {
+        static_assert(
+            T_dimensions >= 4,
+            "Constructor only valid for vectors with a dimensionality of 4 or "
+            "more"
+        );
+
+        (*this)[0] = x;
+        (*this)[1] = y;
+        (*this)[2] = z;
+        (*this)[3] = w;
+
+        // initialise to zero
+        for(std::size_t i = 4; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector using the x and y components from the xy
+     *        2-dimensional vector and the z value as the z component.
+     *
+     * \note The vector must have 3 or more dimensions.
+     */
+    template<bool T_other_use_simd>
+    Vector(
+            const Vector<T_scalar, 2, T_other_use_simd>& xy,
+            T_scalar z)
+    {
+        static_assert(
+            T_dimensions >= 3,
+            "Constructor only valid for vectors with a dimensionality of 3 or "
+            "more"
+        );
+
+        (*this)[0] = xy[0];
+        (*this)[1] = xy[1];
+        (*this)[2] = z;
+
+        // initialise to zero
+        for(std::size_t i = 3; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector using the x and y components from the xy
+     *        2-dimensional vector and the z and w components from zw
+     *        2-dimensional vector. Any further component are initialised to 0.
+     *
+     * \note The vector must have 4 or more dimensions.
+     */
+    template<bool T_other_use_simd>
+    Vector(
+            const Vector<T_scalar, 2, T_other_use_simd>& xy,
+            const Vector<T_scalar, 2, T_other_use_simd>& zw)
+    {
+        static_assert(
+            T_dimensions >= 4,
+            "Constructor only valid for vectors with a dimensionality of 4 or "
+            "more"
+        );
+
+        (*this)[0] = xy[0];
+        (*this)[1] = xy[1];
+        (*this)[2] = zw[0];
+        (*this)[3] = zw[1];
+
+        // initialise to zero
+        for(std::size_t i = 4; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector using the x, y, and z components from the xyz
+     *        3-dimensional vector and the w value as the w component.
+     *
+     * \note The vector must have 3 or more dimensions.
+     */
+    template<bool T_other_use_simd>
+    Vector(
+            const Vector<T_scalar, 3, T_other_use_simd>& xyz,
+            T_scalar w)
+    {
+        static_assert(
+            T_dimensions >= 4,
+            "Constructor only valid for vectors with a dimensionality of 4 or "
+            "more"
+        );
+
+        (*this)[0] = xyz[0];
+        (*this)[1] = xyz[1];
+        (*this)[2] = xyz[2];
+        (*this)[3] = w;
+
+        // initialise to zero
+        for(std::size_t i = 4; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Copies the values from the other given vector of the same scalar
+     *        type and dimensions to this vector.
+     */
+    template<bool T_other_use_simd>
+    Vector(const Vector<T_scalar, T_dimensions, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] = v[i];
+        }
+    }
+
+    /*!
+     * \brief Copies the values from the other given vector of the same scalar
+     *        type to this vector.
+     *
+     * If the other vector has less dimensions than this vector, this vector's
+     * extra components will be initialized to zero. Likewise if the other
+     * vector has more dimensions than this vector the extra components will be
+     * truncated.
+     */
+    template<std::size_t T_other_dimensions, bool T_other_use_simd>
+    Vector(const Vector<T_scalar, T_other_dimensions, T_other_use_simd>& v)
+    {
+        if(T_dimensions < T_other_dimensions)
+        {
+            for(std::size_t i = 0; i < T_dimensions; ++i)
+            {
+                (*this)[i] = v[i];
+            }
+        }
+        else
+        {
+            for(std::size_t i = 0; i < T_other_dimensions; ++i)
+            {
+                (*this)[i] = v[i];
+            }
+            for(std::size_t i = T_other_dimensions; i < T_dimensions; ++i)
+            {
+                (*this)[i] = 0;
+            }
+        }
+    }
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief TODO:
+     * \brief Assigns the components of this vector to be the given scalar
+     *        value.
      */
-    inline T_scalar& operator[](std::size_t index);
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator=(T_scalar scalar)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] = scalar;
+        }
+        return *this;
+    }
 
     /*!
-     * \brief TODO:
+     * \brief Assigns the components of this vector to be a copy of the other
+     *        vectors components.
      */
-    inline const T_scalar& operator[](std::size_t index) const;
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator=(
+            const Vector<T_scalar, T_dimensions, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] = v[i];
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Assigns the components of this vector to be a copy of the other
+     *        vectors components.
+     *
+     * If the other vector has less dimensions than this vector, this vector's
+     * extra components will be initialized to zero. Likewise if the other
+     * vector has more dimensions than this vector the extra components will be
+     * truncated.
+     */
+    template<std::size_t T_other_dimensions, bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator=(
+            const Vector<T_scalar, T_other_dimensions, T_other_use_simd>& v)
+    {
+        if(T_dimensions < T_other_dimensions)
+        {
+            for(std::size_t i = 0; i < T_dimensions; ++i)
+            {
+                (*this)[i] = v[i];
+            }
+        }
+        else
+        {
+            for(std::size_t i = 0; i < T_other_dimensions; ++i)
+            {
+                (*this)[i] = v[i];
+            }
+            for(std::size_t i = T_other_dimensions; i < T_dimensions; ++i)
+            {
+                (*this)[i] = 0;
+            }
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Compares whether the given vectors are considered equal.
+     *
+     * \note If the dimensions differ the vectors will never be considered
+     *       equal. However whether the the vector is formated in memory for
+     *       simd or not will not affect this equality check.
+     *
+     * \warning This performs a standard equality check of the individual
+     *          components of the vectors, so beware of comparing floating point
+     *          vector types.
+     */
+    template<std::size_t T_other_dimensions, bool T_other_use_simd>
+    bool operator==(
+            const Vector<
+                T_scalar,
+                T_other_dimensions,
+                T_other_use_simd
+            >& v) const
+    {
+        if(T_other_dimensions != T_dimensions)
+        {
+            return false;
+        }
+
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            if((*this)[i] != v[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*!
+     * \brief Compares whether the given vectors are considered not equal.
+     *
+     * \note If the dimensions differ the vectors will never be considered
+     *       equal. However whether the the vector is formated in memory for
+     *       simd or not will not affect this equality check.
+     *
+     * \warning This performs a standard equality check of the individual
+     *          components of the vectors, so beware of comparing floating point
+     *          vector types.
+     */
+    template<std::size_t T_other_dimensions, bool T_other_use_simd>
+    bool operator!=(
+            const Vector<
+                T_scalar,
+                T_other_dimensions,
+                T_other_use_simd
+            >& v) const
+    {
+        return !((*this) == v);
+    }
+
+    /*!
+     * \brief Returns the scalar component for the given index.
+     *
+     * \note This does not check whether the index is within range of the
+     *       vector's dimensionality.
+     */
+    T_scalar& operator[](std::size_t index)
+    {
+        return m_storage.data[index];
+    }
+
+    /*!
+     * \brief Returns the const scalar component for the given index.
+     *
+     * \note This does not check whether the index is within range of the
+     *       vector's dimensionality.
+     */
+    const T_scalar& operator[](std::size_t index) const
+    {
+        return m_storage.data[index];
+    }
+
+    // arthmitic operators
+
+    //--------------------------------------------------------------------------
+    //                          PUBLIC MEMBER FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Provides access the first component of this vector.
+     */
+    T_scalar& x()
+    {
+        return (*this)[0];
+    }
+
+    /*!
+     * \brief Provides const access the first component of this vector.
+     */
+    const T_scalar& x() const
+    {
+        return (*this)[0];
+    }
+
+    /*!
+     * \brief Provides access the second component of this vector.
+     *
+     * \note This vector must have 2 or more dimensions.
+     */
+    T_scalar& y()
+    {
+        static_assert(
+            T_dimensions >= 2,
+            "y() function only valid for vectors with a dimensionality of 2 or "
+            "more"
+        );
+
+        return (*this)[1];
+    }
+
+    /*!
+     * \brief Provides const access the second component of this vector.
+     *
+     * \note This vector must have 2 or more dimensions.
+     */
+    const T_scalar& y() const
+    {
+        static_assert(
+            T_dimensions >= 2,
+            "y() function only valid for vectors with a dimensionality of 2 or "
+            "more"
+        );
+
+        return (*this)[1];
+    }
+
+    /*!
+     * \brief Provides access the third component of this vector.
+     *
+     * \note This vector must have 3 or more dimensions.
+     */
+    T_scalar& z()
+    {
+        static_assert(
+            T_dimensions >= 3,
+            "z() function only valid for vectors with a dimensionality of 3 or "
+            "more"
+        );
+
+        return (*this)[2];
+    }
+
+    /*!
+     * \brief Provides const access the third component of this vector.
+     *
+     * \note This vector must have 3 or more dimensions.
+     */
+    const T_scalar& z() const
+    {
+        static_assert(
+            T_dimensions >= 3,
+            "z() function only valid for vectors with a dimensionality of 3 or "
+            "more"
+        );
+
+        return (*this)[2];
+    }
+
+    /*!
+     * \brief Provides access the fourth component of this vector.
+     *
+     * \note This vector must have 4 or more dimensions.
+     */
+    T_scalar& w()
+    {
+        static_assert(
+            T_dimensions >= 4,
+            "w() function only valid for vectors with a dimensionality of 4 or "
+            "more"
+        );
+
+        return (*this)[3];
+    }
+
+    /*!
+     * \brief Provides const access the fourth component of this vector.
+     *
+     * \note This vector must have 4 or more dimensions.
+     */
+    const T_scalar& w() const
+    {
+        static_assert(
+            T_dimensions >= 4,
+            "w() function only valid for vectors with a dimensionality of 4 or "
+            "more"
+        );
+
+        return (*this)[3];
+    }
+
+    /*!
+     * \brief Returns the number of dimensions this vector has.
+     */
+    std::size_t get_dimensions() const
+    {
+        return T_dimensions;
+    }
+
+    /*!
+     * \brief Returns whether this vector has a valid simd data representation.
+     */
+    bool has_simd() const
+    {
+        return T_use_simd;
+    }
+
+
+    /*!
+     * \brief Returns the simd representation of this Vector's data.
+     *
+     * \note This should only be used on vectors that are using simd.
+     */
+    SimdType& get_simd()
+    {
+        static_assert(
+            T_use_simd == true,
+            "Vector does not have simd data"
+        );
+
+        return m_simd_data;
+    }
+
+    /*!
+     * \brief Returns the const simd representation of this Vector's data.
+     *
+     * \note This should only be used on vectors that are using simd.
+     */
+    const SimdType& get_simd() const
+    {
+        static_assert(
+            T_use_simd == true,
+            "Vector does not have simd data"
+        );
+
+        return m_simd_data;
+    }
 
 private:
-
-    //--------------------------------------------------------------------------
-    //                            TYPEDEF DEFINITIONS
-    //--------------------------------------------------------------------------
-
-    typedef VectorStorage<T_scalar, T_dimensions, T_use_simd> Storage;
 
     //--------------------------------------------------------------------------
     //                             PRIVATE ATTRIBUTES
     //--------------------------------------------------------------------------
 
+    /*!
+     * \brief The storage of this vector, union-ed with the simd type so it can
+     *        be used interchangeably.
+     */
     union
     {
         Storage m_storage;
@@ -97,19 +680,49 @@ private:
     };
 };
 
-} // namespace gm
-} // namespace arc
+//------------------------------------------------------------------------------
+//                               EXTERNAL OPERATORS
+//------------------------------------------------------------------------------
 
-#include "arcanecore/gm/Vector.inl"
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+inline arc::str::UTF8String& operator<<(
+        arc::str::UTF8String& s,
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    s << "(";
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        s << v[i];
+        if(i < (T_dimensions - 1))
+        {
+            s << ", ";
+        }
+    }
+    s << ")";
+    return s;
+}
+
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+inline std::ostream& operator<<(
+        std::ostream& s,
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    s << "(";
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        s << v[i];
+        if(i < (T_dimensions - 1))
+        {
+            s << ", ";
+        }
+    }
+    s << ")";
+    return s;
+}
 
 //------------------------------------------------------------------------------
 //                                TYPE DEFINITIONS
 //------------------------------------------------------------------------------
-
-namespace arc
-{
-namespace gm
-{
 
 typedef Vector<float, 2> Vector2f;
 typedef Vector<float, 3> Vector3f;

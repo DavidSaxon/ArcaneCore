@@ -9,11 +9,13 @@ namespace
 
 ARC_TEST_UNIT(proto)
 {
-    // typedef arc::gm::Vector<float, 3, 16> vType;
-    std::cout << "align of float: " << alignof(float) << std::endl;
-    // arc::gm::Vector<float, 3, true> v;
-    // arc::gm::Vector3f v = ;
     arc::gm::SimdVector3f* v = new arc::gm::SimdVector3f(1.0, 2.0, 3.0);
+    arc::gm::Vector2f v2(*v);
+    arc::gm::Vector3f v3(6.03F, 3.0F, -124.4F);
+    v2 = v3;
+    std::cout << "v: " << v2 << std::endl;
+    std::cout << "dim: " << v2.get_dimensions() << std::endl;
+    std::cout << "eq: " << (v3 != v3) << std::endl;
 }
 
 } // namespace anonymous

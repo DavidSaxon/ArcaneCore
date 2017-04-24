@@ -248,6 +248,24 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                  MEMORY ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns that of an error relating to allocating, deleting or accessing
+ *        memory.
+ */
+class MemoryError : public ArcException
+{
+public:
+
+    MemoryError(const arc::str::UTF8String& message)
+        : ArcException(message, this)
+    {
+    }
+};
+
+//------------------------------------------------------------------------------
 //                                ARITHMETIC ERROR
 //------------------------------------------------------------------------------
 

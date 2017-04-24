@@ -7,9 +7,6 @@
 #include "arcanecore/base/Preproc.hpp"
 #include "arcanecore/base/os/OSOperations.hpp"
 
-// TODO: REMOVE ME
-#include <iostream>
-
 /*!
  * \brief Declaration specifier to set the minimum alignment of the the type in
  *        bytes.
@@ -56,9 +53,8 @@ public:
     //                                 OPERATORS
     //--------------------------------------------------------------------------
 
-    void* operator new(std::size_t count) throw()
+    void* operator new(std::size_t count)
     {
-        // TODO: check requirements on multiplies
         // calculate alignment
         std::size_t alignment = alignof(T_derived_class);
         if(alignment < s_minimum_alignment)
@@ -70,10 +66,12 @@ public:
 
             void* ptr = nullptr;
             int error_code = posix_memalign(&ptr, alignment, count);
-            // TODO TEST ERROR
             if(error_code != 0)
             {
-                std::cout << "error code: " << error_code << std::endl;
+                arc::str::UTF8String error_message;
+                error_message << "Failed to allocate memory with " << alignment
+                              << "-byte alignment.";
+                throw arc::ex::MemoryError(error_message);
             }
             return ptr;
 
@@ -81,10 +79,12 @@ public:
         #elif defined(_MSC_VER)
 
             void* ptr = _aligned_malloc(count, alignment);
-            if(ptr = nullptr)
+            if(ptr == nullptr)
             {
-                // TODO:
-                std::cout << "ALIGN MALLOC FAILURE" << std::endl;
+                arc::str::UTF8String error_message;
+                error_message << "Failed to allocate memory with " << alignment
+                              << "-byte alignment.";
+                throw arc::ex::MemoryError(error_message);
             }
             return ptr;
 
@@ -97,30 +97,59 @@ public:
         #endif
     }
 
-    // void* operator new(std::size_t count, void* ptr) throw()
-    // {
+    void operator delete(void* ptr)
+    {
+        free(ptr);
+    }
 
-    // }
+    void* operator new[](std::size_t count)
+    {
+        // calculate alignment
+        std::size_t alignment = alignof(T_derived_class);
+        if(alignment < s_minimum_alignment)
+        {
+            alignment = s_minimum_alignment;
+        }
 
-    // void operator delete(void* ptr) throw()
-    // {
+        #if defined(__GNUC__) || defined(__INTEL_COMPILER)
 
-    // }
+            void* ptr = nullptr;
+            int error_code = posix_memalign(&ptr, alignment, count);
+            if(error_code != 0)
+            {
+                arc::str::UTF8String error_message;
+                error_message << "Failed to allocate memory with " << alignment
+                              << "-byte alignment.";
+                throw arc::ex::MemoryError(error_message);
+            }
+            return ptr;
 
-    // void operator delete(void* ptr, void* place) throw()
-    // {
 
-    // }
+        #elif defined(_MSC_VER)
 
-    // void* operator new[](std::size_t count) throw()
-    // {
+            void* ptr = _aligned_malloc(count, alignment);
+            if(ptr == nullptr)
+            {
+                arc::str::UTF8String error_message;
+                error_message << "Failed to allocate memory with " << alignment
+                              << "-byte alignment.";
+                throw arc::ex::MemoryError(error_message);
+            }
+            return ptr;
 
-    // }
+        #else
 
-    // void operator delete[](void* ptr) throw()
-    // {
+            throw arc::ex::NotImplementedError(
+                "AlignedBase not implemented for this compiler"
+            );
 
-    // }
+        #endif
+    }
+
+    void operator delete[](void* ptr)
+    {
+        free(ptr);
+    }
 };
 
 } // namespace memory
