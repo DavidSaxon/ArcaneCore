@@ -498,7 +498,279 @@ public:
         return m_storage.data[index];
     }
 
-    // arthmitic operators
+    /*!
+     * \brief Negation operator.
+     *
+     * Returns a copy of this vector with its components negated.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd> operator-() const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = -(*this)[i];
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Scalar addition operator.
+     *
+     * Adds the given scalar to each component of this vector and returns the
+     * result as a new vector.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd> operator+(T_scalar scalar) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] + scalar;
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Scalar compound assignment addition operator.
+     *
+     * Adds the given scalar to each component of this vector.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator+=(T_scalar scalar)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] += scalar;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Addition operator.
+     *
+     * Adds each component of the given vector to each component of this vector
+     * and returns the result as a new vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd> operator+(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] + v[i];
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Compound assignment addition operator.
+     *
+     * Adds each component of the given vector to each component of this vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator+=(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] += v[i];
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Scalar subtraction operator.
+     *
+     * Subtracts the given scalar from each component of this vector and returns
+     * the result as a new vector.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd> operator-(T_scalar scalar) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] - scalar;
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Scalar compound assignment subtraction operator.
+     *
+     * Subtracts the given scalar from each component of this vector.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator-=(T_scalar scalar)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] -= scalar;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Subtraction operator.
+     *
+     * Subtracts each component of the given vector from each component of this
+     * vector and returns the result as a new vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd> operator-(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] - v[i];
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Compound assignment subtraction operator.
+     *
+     * Subtracts each component of the given vector from each component of this
+     * vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator-=(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] -= v[i];
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Scalar multiplication operator.
+     *
+     * Multiplies each component of this vector by the given scalar and returns
+     * the result as a new vector.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd> operator*(T_scalar scalar) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] * scalar;
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Scalar compound assignment multiplication operator.
+     *
+     * Multiplies each component of this vector by the given scalar.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator*=(T_scalar scalar)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] *= scalar;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Multiplication operator.
+     *
+     * Multiplies each component of this given vector by each component of the
+     * given vector and returns the result as a new vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd> operator*(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] * v[i];
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Compound assignment multiplication operator.
+     *
+     * Multiplies each component of this vector by each component of the given
+     * vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator*=(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] *= v[i];
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Scalar division operator.
+     *
+     * Divides each component of this vector by the given scalar and returns
+     * the result as a new vector.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd> operator/(T_scalar scalar) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] / scalar;
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Scalar compound assignment division operator.
+     *
+     * Divides each component of this vector by the given scalar.
+     */
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator/=(T_scalar scalar)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] /= scalar;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Division operator.
+     *
+     * Divides each component of this given vector by each component of the
+     * given vector and returns the result as a new vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd> operator/(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v) const
+    {
+        Vector<T_scalar, T_dimensions, T_use_simd> r;
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            r[i] = (*this)[i] / v[i];
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Compound assignment division operator.
+     *
+     * Multiplies each component of this vector by each component of the given
+     * vector.
+     */
+    template<bool T_other_use_simd>
+    Vector<T_scalar, T_dimensions, T_use_simd>& operator/=(
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_dimensions; ++i)
+        {
+            (*this)[i] /= v[i];
+        }
+        return *this;
+    }
 
     //--------------------------------------------------------------------------
     //                          PUBLIC MEMBER FUNCTIONS
