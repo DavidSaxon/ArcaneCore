@@ -1,6 +1,5 @@
 #include "arcanecore/base/math/MathOperations.hpp"
 
-#include <cmath>
 #include <cstdlib>
 
 #include "arcanecore/base/data/BitwiseFloat.hpp"

@@ -7,13 +7,110 @@
 #define ARCANECORE_BASE_MATHOPERATIONS_HPP_
 
 #include <cfloat>
+#include <cmath>
+#include <limits>
 
 #include "arcanecore/base/math/MathConstants.hpp"
+
+// TODO: REMOVE ME
+#include <iostream>
 
 namespace arc
 {
 namespace math
 {
+
+/*!
+ * \brief Returns absolute form value of the given value.
+ */
+template<typename T_data>
+inline T_data abs(T_data v)
+{
+    // branches should be optimised out
+    if(std::numeric_limits<T_data>::is_signed)
+    {
+        return static_cast<T_data>(::abs(static_cast<int>(v)));
+    }
+    return v;
+}
+
+//---------------T E M P L A T E -- S P E C I A L I S A T I O N S---------------
+
+template<>
+inline float abs<float>(float v)
+{
+    return fabsf(v);
+}
+
+template<>
+inline double abs<double>(double v)
+{
+    return fabs(v);
+}
+
+template<>
+inline long double abs<long double>(long double v)
+{
+    return fabsl(v);
+}
+
+template<>
+inline arc::int64 abs<arc::int64>(arc::int64 v)
+{
+     return static_cast<arc::int64>(llabs(v));
+}
+
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Clamps the given value so that it is greater than or equal to the
+ *        threshold.
+ */
+template<typename T_data>
+inline T_data clamp_above(T_data v, T_data threshold)
+{
+    if(v <= threshold)
+    {
+        return threshold;
+    }
+    return v;
+}
+
+/*!
+ * \brief Clamps the given value so that it is less than or equal to the
+ *        threshold.
+ */
+template<typename T_data>
+inline T_data clamp_below(T_data v, T_data threshold)
+{
+    if(v >= threshold)
+    {
+        return threshold;
+    }
+    return v;
+}
+
+/*!
+ * \brief Clamps the given value so that it is greater than or equal to the
+ *        lower threshold and less than or equal to the upper threshold.
+ *
+ * \warning If upper_threshold is less than lower_threshold the result of this
+ *          function is undefined.
+ */
+template<typename T_data>
+inline T_data clamp(T_data v, T_data lower_threshold, T_data upper_threshold)
+{
+    if(v <= lower_threshold)
+    {
+        return lower_threshold;
+    }
+    if(v >= upper_threshold)
+    {
+        return upper_threshold;
+    }
+
+    return v;
+}
 
 /*!
  * \brief Checks whether two floating point values are equal or almost equal.

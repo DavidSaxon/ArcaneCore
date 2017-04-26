@@ -8,6 +8,63 @@ namespace math_operations_tests
 {
 
 //------------------------------------------------------------------------------
+//                                      ABS
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(abs)
+{
+    {
+        int v = -1;
+        ARC_CHECK_EQUAL((arc::math::abs(v)), 1);
+    }
+    {
+        float v = 3.0F;
+        ARC_CHECK_EQUAL((arc::math::abs(v)), 3.0F);
+    }
+    {
+        float v = -11.0F;
+        ARC_CHECK_EQUAL((arc::math::abs(v)), 11.0F);
+    }
+    {
+        arc::uint32 v = 34;
+        ARC_CHECK_EQUAL((arc::math::abs(v)), 34);
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                  CLAMP ABOVE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(clamp_above)
+{
+    ARC_CHECK_EQUAL((arc::math::clamp_above(10, 0)), 10);
+    ARC_CHECK_EQUAL((arc::math::clamp_above(-19, -3)), -3);
+    ARC_CHECK_EQUAL((arc::math::clamp_above(5, 5)), 5);
+}
+
+//------------------------------------------------------------------------------
+//                                  CLAMP BELOW
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(clamp_below)
+{
+    ARC_CHECK_EQUAL((arc::math::clamp_below(10, 0)), 0);
+    ARC_CHECK_EQUAL((arc::math::clamp_below(-19, -3)), -19);
+    ARC_CHECK_EQUAL((arc::math::clamp_below(5, 5)), 5);
+}
+
+//------------------------------------------------------------------------------
+//                                     CLAMP
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(clamp)
+{
+    ARC_CHECK_EQUAL((arc::math::clamp(10, 0, 15)), 10);
+    ARC_CHECK_EQUAL((arc::math::clamp(-19, -20, -2)), -19);
+    ARC_CHECK_EQUAL((arc::math::clamp(1, -2, 2)), 1);
+}
+
+//------------------------------------------------------------------------------
 //                                  FLOAT EQUALS
 //------------------------------------------------------------------------------
 

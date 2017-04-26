@@ -2,8 +2,8 @@
  * \file
  * \author David Saxon
  */
-#ifndef ARCANECORE_GM_VEC_HPP_
-#define ARCANECORE_GM_VEC_HPP_
+#ifndef ARCANECORE_GM_VECTOR_HPP_
+#define ARCANECORE_GM_VECTOR_HPP_
 
 #include <arcanecore/base/Types.hpp>
 #include <arcanecore/base/memory/Alignment.hpp>

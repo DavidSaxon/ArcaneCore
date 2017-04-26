@@ -71,6 +71,7 @@
     <ClCompile Include="tests/cpp/base/str/UTF8String_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/base/str/StringOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/gm/Vector_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gm/VectorMath_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/format/FormatOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileHandle_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileReader_TestSuite.cpp" />
