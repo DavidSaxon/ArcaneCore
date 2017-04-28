@@ -1036,4 +1036,7 @@ typedef Vector<arc::int32, 4, ARC_GM_USE_SIMD>  SimdVector4i;
 } // namespace gm
 } // namespace arc
 
+//----------------------I N L I N E -- E X T E N S I O N S----------------------
+#include "arcanecore/gm/VectorSimd.inl"
+
 #endif

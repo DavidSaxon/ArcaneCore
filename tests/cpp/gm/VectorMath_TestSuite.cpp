@@ -74,5 +74,27 @@ ARC_TEST_UNIT(clamp_below_vector)
     );
 }
 
+ARC_TEST_UNIT(clamp_scalar)
+{
+    arc::gm::Vector4i v1(1, 6, -3, -30);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::clamp(v1, -3, 1),
+        arc::gm::Vector4i(1, 1, -3, -3)
+    );
+}
+
+ARC_TEST_UNIT(clamp_vector)
+{
+    arc::gm::Vector4i v1( 1, 6,  4, -30);
+    arc::gm::Vector4i v2(-2, 6,  5, -80);
+    arc::gm::Vector4i v3( 5, 6, 10, -40);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::clamp(v1, v2, v3),
+        arc::gm::Vector4i(1, 6, 5, -40)
+    );
+}
+
 
 } // namespace anonymous
