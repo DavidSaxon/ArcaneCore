@@ -354,6 +354,20 @@ public:
         }
     }
 
+    /*!
+     * \brief Optimisation constructor which directly assigns the internal SIMD
+     *        data of the vector to the given data.
+     *
+     * \param data The SIMD data the will be assigned to the internal data of
+     *             this vector.
+     * \param dummy A dummy parameter which differentiates this constructor from
+     *              the scalar constructor.
+     */
+    Vector(SimdType data, bool dummy)
+        : m_simd_data(data)
+    {
+    }
+
     //--------------------------------------------------------------------------
     //                                 OPERATORS
     //--------------------------------------------------------------------------
@@ -1037,6 +1051,7 @@ typedef Vector<arc::int32, 4, ARC_GM_USE_SIMD>  SimdVector4i;
 } // namespace arc
 
 //----------------------I N L I N E -- E X T E N S I O N S----------------------
-#include "arcanecore/gm/VectorSimd.inl"
+#include "arcanecore/gm/VectorSimd3f.inl"
+#include "arcanecore/gm/VectorSimd4f.inl"
 
 #endif
