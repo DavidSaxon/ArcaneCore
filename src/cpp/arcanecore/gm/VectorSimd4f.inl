@@ -41,6 +41,91 @@ inline SimdVector4f::Vector(const SimdVector4f& v)
     m_simd_data = v.m_simd_data;
 }
 
+//----------------------------SWIZZLE 4 CONSTRUCTOR-----------------------------
+
+template<
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    std::size_t T_w_component,
+    std::size_t T_dimensions,
+    bool T_use_simd>
+inline void swizzle4_4f(
+        const Vector<float, T_dimensions, T_use_simd>& a,
+        SimdVector4f& b)
+{
+    // default behavior
+    b[0] = a[T_x_component];
+    b[1] = a[T_y_component];
+    b[2] = a[T_z_component];
+    b[3] = a[T_w_component];
+    for(std::size_t i = 4; i < 3; ++i)
+    {
+        b[i] = 0;
+    }
+}
+
+template<
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    std::size_t T_w_component,
+    std::size_t T_dimensions>
+inline void swizzle4_4f(
+        const Vector<float, T_dimensions, true>& a,
+        SimdVector4f& b)
+{
+    b.get_simd() = _mm_shuffle_ps(
+        a.get_simd(),
+        a.get_simd(),
+        _MM_SHUFFLE(T_w_component, T_z_component, T_y_component, T_x_component)
+    );
+}
+
+template<>
+template<
+    std::size_t T_other_dimensions,
+    bool T_other_use_simd,
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    std::size_t T_w_component
+>
+inline SimdVector4f::Vector(
+        const Vector<float, T_other_dimensions, T_other_use_simd>& v,
+        const Swizzle4<
+            T_x_component,
+            T_y_component,
+            T_z_component,
+            T_w_component
+        >& swizzle)
+{
+    // check swizzle indices
+    static_assert(
+        T_x_component < T_other_dimensions,
+        "Swizzle x component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_y_component < T_other_dimensions,
+        "Swizzle y component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_z_component < T_other_dimensions,
+        "Swizzle z component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_w_component < T_other_dimensions,
+        "Swizzle w component index out of the given vector's bounds"
+    );
+
+    swizzle4_4f<
+        T_x_component,
+        T_y_component,
+        T_z_component,
+        T_w_component
+    >(v, *this);
+}
+
 //------------------------------------------------------------------------------
 //                                   OPERATORS
 //------------------------------------------------------------------------------

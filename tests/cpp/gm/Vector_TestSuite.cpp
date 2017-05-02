@@ -53,6 +53,69 @@ ARC_TEST_UNIT(constructor)
     ARC_CHECK_EQUAL(s3.x(), 1.0F);
     ARC_CHECK_EQUAL(s3.y(), 2.0F);
     ARC_CHECK_EQUAL(s3.z(), 3.0F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing 2D swizzle constructor");
+
+    arc::gm::Vector4i v4(1, -2, 3, 4);
+    ARC_CHECK_EQUAL(
+        arc::gm::Vector2i(v4, arc::gm::Swizzle2<3, 1>()),
+        arc::gm::Vector2i(4, -2)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing 3D swizzle constructor");
+
+    arc::gm::Vector4i v5(1, -2, 3, 4);
+    ARC_CHECK_EQUAL(
+        arc::gm::Vector3i(v5, arc::gm::Swizzle3<0, 1, 3>()),
+        arc::gm::Vector3i(1, -2, 4)
+    );
+
+    arc::gm::Vector4f v6(5.0F, -3.0F, 14.0F, 0.5F);
+    ARC_CHECK_EQUAL(
+        arc::gm::SimdVector3f(v6, arc::gm::Swizzle3<2, 1, 3>()),
+        arc::gm::Vector3f(14.0F, -3.0F, 0.5F)
+    );
+
+    arc::gm::SimdVector4f v7(5.0F, -3.0F, 14.0F, 0.5F);
+    ARC_CHECK_EQUAL(
+        arc::gm::SimdVector3f(v7, arc::gm::Swizzle3<2, 1, 3>()),
+        arc::gm::SimdVector3f(14.0F, -3.0F, 0.5F)
+    );
+
+    arc::gm::SimdVector3f v8(2.0F, -6.0F, 0.0F);
+    ARC_CHECK_EQUAL(
+        arc::gm::SimdVector3f(v8, arc::gm::Swizzle3<1, 1, 1>()),
+        arc::gm::SimdVector3f(-6.0F, -6.0F, -6.0F)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing 4D swizzle constructor");
+
+    arc::gm::Vector2i v9(8, -8);
+    ARC_CHECK_EQUAL(
+        arc::gm::Vector4i(v9, arc::gm::Swizzle4<1, 0, 0, 1>()),
+        arc::gm::Vector4i(-8, 8, 8, -8)
+    );
+
+    arc::gm::Vector4f v10(5.0F, -3.0F, 14.0F, 0.5F);
+    ARC_CHECK_EQUAL(
+        arc::gm::SimdVector4f(v10, arc::gm::Swizzle4<2, 1, 3, 1>()),
+        arc::gm::SimdVector4f(14.0F, -3.0F, 0.5F, -3.0F)
+    );
+
+    arc::gm::SimdVector4f v11(5.0F, -3.0F, 14.0F, 0.5F);
+    ARC_CHECK_EQUAL(
+        arc::gm::SimdVector4f(v11, arc::gm::Swizzle4<2, 1, 3, 0>()),
+        arc::gm::SimdVector4f(14.0F, -3.0F, 0.5F, 5.0F)
+    );
+
+    arc::gm::SimdVector3f v12(5.0F, -3.0F, 14.0F);
+    ARC_CHECK_EQUAL(
+        arc::gm::SimdVector4f(v12, arc::gm::Swizzle4<1, 1, 1, 1>()),
+        arc::gm::SimdVector4f(-3.0F, -3.0F, -3.0F, -3.0F)
+    );
 }
 
 //------------------------------------------------------------------------------

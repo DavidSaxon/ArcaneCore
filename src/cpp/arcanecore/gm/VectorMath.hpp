@@ -18,6 +18,82 @@ namespace gm
 {
 
 /*!
+ * \brief Rearranges the components of the given vector into a new 2-dimensional
+ *        vector.
+ *
+ * \tpaaram T_x_component The index of the component in the given vector to use
+ *                        as the x component of the new vector.
+ * \tpaaram T_y_component The index of the component in the given vector to use
+ *                        as the y component of the new vector.
+ */
+template<
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd
+>
+inline Vector<T_scalar, 2, T_use_simd> swizzle2(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    static_assert(
+        T_x_component < T_dimensions,
+        "Template x component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_y_component < T_dimensions,
+        "Template y component index out of the given vector's bounds"
+    );
+
+    return Vector<T_scalar, 2, T_use_simd>(
+        v[T_x_component],
+        v[T_y_component]
+    );
+}
+
+/*!
+ * \brief Rearranges the components of the given vector into a new 3-dimensional
+ *        vector.
+ *
+ * \tpaaram T_x_component The index of the component in the given vector to use
+ *                        as the x component of the new vector.
+ * \tpaaram T_y_component The index of the component in the given vector to use
+ *                        as the y component of the new vector.
+ * \tpaaram T_z_component The index of the component in the given vector to use
+ *                        as the z component of the new vector.
+ */
+template<
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd
+>
+inline Vector<T_scalar, 3, T_use_simd> swizzle3(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    static_assert(
+        T_x_component < T_dimensions,
+        "Template x component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_y_component < T_dimensions,
+        "Template y component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_z_component < T_dimensions,
+        "Template z component index out of the given vector's bounds"
+    );
+
+    return Vector<T_scalar, 3, T_use_simd>(
+        v[T_x_component],
+        v[T_y_component],
+        v[T_z_component]
+    );
+}
+
+/*!
  * \brief Returns a copy of the given vector with all components made absolute.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
@@ -196,5 +272,10 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> clamp(
 
 } // namespace gm
 } // namespace arc
+
+//----------------------I N L I N E -- E X T E N S I O N S----------------------
+#ifndef ARC_GM_DISABLE_SSE
+    #include "arcanecore/gm/VectorMathSimd3f.inl"
+#endif
 
 #endif

@@ -19,6 +19,40 @@ namespace gm
 {
 
 //------------------------------------------------------------------------------
+//                                 SWIZZLING TAGS
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Is used to signify at compile time which vector components should be
+ *        used in 2-dimensional swizzling constructor.
+ */
+template <std::size_t T_x_component, std::size_t T_y_component>
+struct Swizzle2 {};
+
+/*!
+ * \brief Is used to signify at compile time which vector components should be
+ *        used in 3-dimensional swizzling constructor.
+ */
+template <
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component
+>
+struct Swizzle3 {};
+
+/*!
+ * \brief Is used to signify at compile time which vector components should be
+ *        used in 4-dimensional swizzling constructor.
+ */
+template <
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    std::size_t T_w_component
+>
+struct Swizzle4 {};
+
+//------------------------------------------------------------------------------
 //                                 VECTOR STORAGE
 //------------------------------------------------------------------------------
 
@@ -351,6 +385,186 @@ public:
             {
                 (*this)[i] = 0;
             }
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector with the x and y components sourced from
+     *        the given vector using the indices defines via the template type
+     *        of the swizzle parameter, while other components are initialised
+     *        to zero.
+     *
+     * \tparam T_x_component The index of the component to use from the given
+     *                       vector for this vector's x component.
+     * \tparam T_y_component The index of the component to use from the given
+     *                       vector for this vector's y component.
+     *
+     * \note The vector must have 2 or more dimensions.
+     */
+    template<
+        std::size_t T_other_dimensions,
+        bool T_other_use_simd,
+        std::size_t T_x_component,
+        std::size_t T_y_component
+    >
+    Vector(
+            const Vector<T_scalar, T_other_dimensions, T_other_use_simd>& v,
+            const Swizzle2<T_x_component, T_y_component>& swizzle)
+    {
+        // check dimensionality
+        static_assert(
+            T_dimensions >= 2,
+            "Constructor only valid for vectors with a dimensionality of 2 or "
+            "more"
+        );
+
+        // check swizzle indices
+        static_assert(
+            T_x_component < T_other_dimensions,
+            "Swizzle x component index out of the given vector's bounds"
+        );
+        static_assert(
+            T_y_component < T_other_dimensions,
+            "Swizzle y component index out of the given vector's bounds"
+        );
+
+        // initialise to component or zero
+        (*this)[0] = v[T_x_component];
+        (*this)[1] = v[T_y_component];
+        for(std::size_t i = 2; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector with the x, y, and z components sourced from
+     *        the given vector using the indices defines via the template type
+     *        of the swizzle parameter, while other components are initialised
+     *        to zero.
+     *
+     * \tparam T_x_component The index of the component to use from the given
+     *                       vector for this vector's x component.
+     * \tparam T_y_component The index of the component to use from the given
+     *                       vector for this vector's y component.
+     * \tparam T_z_component The index of the component to use from the given
+     *                       vector for this vector's z component.
+     *
+     * \note The vector must have 3 or more dimensions.
+     */
+    template<
+        std::size_t T_other_dimensions,
+        bool T_other_use_simd,
+        std::size_t T_x_component,
+        std::size_t T_y_component,
+        std::size_t T_z_component
+    >
+    Vector(
+            const Vector<T_scalar, T_other_dimensions, T_other_use_simd>& v,
+            const Swizzle3<
+                T_x_component,
+                T_y_component,
+                T_z_component
+            >& swizzle)
+    {
+        // check dimensionality
+        static_assert(
+            T_dimensions >= 3,
+            "Constructor only valid for vectors with a dimensionality of 3 or "
+            "more"
+        );
+
+        // check swizzle indices
+        static_assert(
+            T_x_component < T_other_dimensions,
+            "Swizzle x component index out of the given vector's bounds"
+        );
+        static_assert(
+            T_y_component < T_other_dimensions,
+            "Swizzle y component index out of the given vector's bounds"
+        );
+        static_assert(
+            T_z_component < T_other_dimensions,
+            "Swizzle z component index out of the given vector's bounds"
+        );
+
+        // initialise to component or zero
+        (*this)[0] = v[T_x_component];
+        (*this)[1] = v[T_y_component];
+        (*this)[2] = v[T_z_component];
+        for(std::size_t i = 3; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
+        }
+    }
+
+    /*!
+     * \brief Creates a new vector with the x, y, z, and w components sourced
+     *        from the given vector using the indices defines via the template
+     *        type of the swizzle parameter, while other components are
+     *        initialised to zero.
+     *
+     * \tparam T_x_component The index of the component to use from the given
+     *                       vector for this vector's x component.
+     * \tparam T_y_component The index of the component to use from the given
+     *                       vector for this vector's y component.
+     * \tparam T_z_component The index of the component to use from the given
+     *                       vector for this vector's z component.
+     * \tparam T_w_component The index of the component to use from the given
+     *                       vector for this vector's w component.
+     *
+     * \note The vector must have 3 or more dimensions.
+     */
+    template<
+        std::size_t T_other_dimensions,
+        bool T_other_use_simd,
+        std::size_t T_x_component,
+        std::size_t T_y_component,
+        std::size_t T_z_component,
+        std::size_t T_w_component
+    >
+    Vector(
+            const Vector<T_scalar, T_other_dimensions, T_other_use_simd>& v,
+            const Swizzle4<
+                T_x_component,
+                T_y_component,
+                T_z_component,
+                T_w_component
+            >& swizzle)
+    {
+        // check dimensionality
+        static_assert(
+            T_dimensions >= 4,
+            "Constructor only valid for vectors with a dimensionality of 4 or "
+            "more"
+        );
+
+        // check swizzle indices
+        static_assert(
+            T_x_component < T_other_dimensions,
+            "Swizzle x component index out of the given vector's bounds"
+        );
+        static_assert(
+            T_y_component < T_other_dimensions,
+            "Swizzle y component index out of the given vector's bounds"
+        );
+        static_assert(
+            T_z_component < T_other_dimensions,
+            "Swizzle z component index out of the given vector's bounds"
+        );
+        static_assert(
+            T_w_component < T_other_dimensions,
+            "Swizzle w component index out of the given vector's bounds"
+        );
+
+        // initialise to component or zero
+        (*this)[0] = v[T_x_component];
+        (*this)[1] = v[T_y_component];
+        (*this)[2] = v[T_z_component];
+        (*this)[3] = v[T_w_component];
+        for(std::size_t i = 4; i < T_dimensions; ++i)
+        {
+            (*this)[i] = 0;
         }
     }
 
@@ -1051,7 +1265,9 @@ typedef Vector<arc::int32, 4, ARC_GM_USE_SIMD>  SimdVector4i;
 } // namespace arc
 
 //----------------------I N L I N E -- E X T E N S I O N S----------------------
-#include "arcanecore/gm/VectorSimd3f.inl"
-#include "arcanecore/gm/VectorSimd4f.inl"
+#ifndef ARC_GM_DISABLE_SSE
+    #include "arcanecore/gm/VectorSimd3f.inl"
+    #include "arcanecore/gm/VectorSimd4f.inl"
+#endif
 
 #endif

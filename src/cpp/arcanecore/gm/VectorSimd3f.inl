@@ -42,6 +42,77 @@ inline SimdVector3f::Vector(const SimdVector3f& v)
     m_simd_data = v.m_simd_data;
 }
 
+//----------------------------SWIZZLE 3 CONSTRUCTOR-----------------------------
+
+template<
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    std::size_t T_dimensions,
+    bool T_use_simd>
+inline void swizzle3_3f(
+        const Vector<float, T_dimensions, T_use_simd>& a,
+        SimdVector3f& b)
+{
+    // default behavior
+    b[0] = a[T_x_component];
+    b[1] = a[T_y_component];
+    b[2] = a[T_z_component];
+    for(std::size_t i = 3; i < 3; ++i)
+    {
+        b[i] = 0;
+    }
+}
+
+template<
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component,
+    std::size_t T_dimensions>
+inline void swizzle3_3f(
+        const Vector<float, T_dimensions, true>& a,
+        SimdVector3f& b)
+{
+    b.get_simd() = _mm_shuffle_ps(
+        a.get_simd(),
+        a.get_simd(),
+        _MM_SHUFFLE(3, T_z_component, T_y_component, T_x_component)
+    );
+}
+
+template<>
+template<
+    std::size_t T_other_dimensions,
+    bool T_other_use_simd,
+    std::size_t T_x_component,
+    std::size_t T_y_component,
+    std::size_t T_z_component
+>
+inline SimdVector3f::Vector(
+        const Vector<float, T_other_dimensions, T_other_use_simd>& v,
+        const Swizzle3<
+            T_x_component,
+            T_y_component,
+            T_z_component
+        >& swizzle)
+{
+    // check swizzle indices
+    static_assert(
+        T_x_component < T_other_dimensions,
+        "Swizzle x component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_y_component < T_other_dimensions,
+        "Swizzle y component index out of the given vector's bounds"
+    );
+    static_assert(
+        T_z_component < T_other_dimensions,
+        "Swizzle z component index out of the given vector's bounds"
+    );
+
+    swizzle3_3f<T_x_component, T_y_component, T_z_component>(v, *this);
+}
+
 //------------------------------------------------------------------------------
 //                                   OPERATORS
 //------------------------------------------------------------------------------

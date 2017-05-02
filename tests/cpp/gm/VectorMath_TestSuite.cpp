@@ -7,6 +7,32 @@ ARC_TEST_MODULE(gm.VectorMath)
 namespace
 {
 
+ARC_TEST_UNIT(swizzle2)
+{
+    arc::gm::Vector4f v1(1.0F, 2.0F, 3.0F, 4.0F);
+    ARC_CHECK_EQUAL(
+        (arc::gm::swizzle2<3, 1>(v1)),
+        arc::gm::Vector2f(4.0F, 2.0F)
+    );
+}
+
+ARC_TEST_UNIT(swizzle3)
+{
+    arc::gm::Vector4f v1(1.0F, 2.0F, 3.0F, 4.0F);
+    ARC_CHECK_EQUAL(
+        (arc::gm::swizzle3<0, 3, 2>(v1)),
+        arc::gm::Vector3f(1.0F, 4.0F, 3.0F)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+    arc::gm::SimdVector4f s1(1.0F, 2.0F, 3.0F, 4.0F);
+    ARC_CHECK_EQUAL(
+        (arc::gm::swizzle3<0, 3, 2>(s1)),
+        arc::gm::SimdVector3f(1.0F, 4.0F, 3.0F)
+    );
+}
+
 ARC_TEST_UNIT(abs)
 {
     arc::gm::Vector4i v1(1, 2, -3, 4);
