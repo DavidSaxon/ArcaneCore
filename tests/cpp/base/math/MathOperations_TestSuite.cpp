@@ -168,6 +168,19 @@ public:
     }
 };
 
+ARC_TEST_UNIT(rsqrt)
+{
+    {
+        double v = 16.0;
+        ARC_CHECK_EQUAL((arc::math::rsqrt(v)), 0.25F);
+    }
+    {
+        // fast inverse square root
+        float v = 16.0F;
+        ARC_CHECK_TRUE(arc::math::abs(arc::math::rsqrt(v) - 0.25F) < 0.01F);
+    }
+}
+
 ARC_TEST_UNIT_FIXTURE( float_equals, FloatEqualsFixture )
 {
     ARC_TEST_MESSAGE( "Checking literal equals" );

@@ -113,6 +113,44 @@ inline T_data clamp(T_data v, T_data lower_threshold, T_data upper_threshold)
 }
 
 /*!
+ * \brief Computes the reciprocal (or multiplicative inverse) of the square
+ *        for the given value.
+ *
+ * \note If T_data is float this will use the Fast Inverse Square Root to
+ *       perform the calculation.
+ */
+template<typename T_data>
+inline T_data rsqrt(T_data v)
+{
+    return static_cast<T_data>(1) / static_cast<T_data>(std::sqrt(v));
+}
+
+//---------------T E M P L A T E -- S P E C I A L I S A T I O N S---------------
+
+template<>
+inline float rsqrt(float v)
+{
+    // straight from Quake III Arena
+    static const float threehalfs = 1.5F;
+
+    float x2 = v * 0.5F;
+    float y  = v;
+    // evil floating point bit level hacking
+    uint32_t i  = *((long*) &y);
+    // what the fuck?
+    i  = 0x5f3759DF - (i >> 1);
+    y  = *((float*) &i);
+    // 1st iteration
+    y  = y * (threehalfs - (x2 * y * y));
+    // 2nd iteration, this can be removed
+    //  y  = y * (threehalfs - (x2 * y * y));
+
+    return y;
+}
+
+//------------------------------------------------------------------------------
+
+/*!
  * \brief Checks whether two floating point values are equal or almost equal.
  *
  * This performs a two stage check:

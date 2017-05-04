@@ -7,6 +7,7 @@
 #define ARCANECORE_GM_VECTORMATH_HPP_
 
 #include <algorithm>
+#include <cmath>
 
 #include <arcanecore/base/math/MathOperations.hpp>
 
@@ -16,82 +17,6 @@ namespace arc
 {
 namespace gm
 {
-
-/*!
- * \brief Rearranges the components of the given vector into a new 2-dimensional
- *        vector.
- *
- * \tpaaram T_x_component The index of the component in the given vector to use
- *                        as the x component of the new vector.
- * \tpaaram T_y_component The index of the component in the given vector to use
- *                        as the y component of the new vector.
- */
-template<
-    std::size_t T_x_component,
-    std::size_t T_y_component,
-    typename T_scalar,
-    std::size_t T_dimensions,
-    bool T_use_simd
->
-inline Vector<T_scalar, 2, T_use_simd> swizzle2(
-        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
-{
-    static_assert(
-        T_x_component < T_dimensions,
-        "Template x component index out of the given vector's bounds"
-    );
-    static_assert(
-        T_y_component < T_dimensions,
-        "Template y component index out of the given vector's bounds"
-    );
-
-    return Vector<T_scalar, 2, T_use_simd>(
-        v[T_x_component],
-        v[T_y_component]
-    );
-}
-
-/*!
- * \brief Rearranges the components of the given vector into a new 3-dimensional
- *        vector.
- *
- * \tpaaram T_x_component The index of the component in the given vector to use
- *                        as the x component of the new vector.
- * \tpaaram T_y_component The index of the component in the given vector to use
- *                        as the y component of the new vector.
- * \tpaaram T_z_component The index of the component in the given vector to use
- *                        as the z component of the new vector.
- */
-template<
-    std::size_t T_x_component,
-    std::size_t T_y_component,
-    std::size_t T_z_component,
-    typename T_scalar,
-    std::size_t T_dimensions,
-    bool T_use_simd
->
-inline Vector<T_scalar, 3, T_use_simd> swizzle3(
-        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
-{
-    static_assert(
-        T_x_component < T_dimensions,
-        "Template x component index out of the given vector's bounds"
-    );
-    static_assert(
-        T_y_component < T_dimensions,
-        "Template y component index out of the given vector's bounds"
-    );
-    static_assert(
-        T_z_component < T_dimensions,
-        "Template z component index out of the given vector's bounds"
-    );
-
-    return Vector<T_scalar, 3, T_use_simd>(
-        v[T_x_component],
-        v[T_y_component],
-        v[T_z_component]
-    );
-}
 
 /*!
  * \brief Returns a copy of the given vector with all components made absolute.
@@ -270,12 +195,174 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> clamp(
     return r;
 }
 
+/*!
+ * \brief Returns a normalised copy of the given vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> normalise(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    return v * arc::math::rsqrt(dot(v, v));
+}
+
+/*!
+ * \brief Computes the dot product of vectors a and b.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+T_scalar dot(
+    const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+    const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
+    T_scalar r = 0;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r += a[i] * b[i];
+    }
+    return r;
+}
+
+/*!
+ * \brief Computes the cross product of vectors a and b.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+Vector<T_scalar, T_dimensions, T_use_simd> cross(
+    const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+    const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
+    // check dimensionality
+    static_assert(
+        T_dimensions == 3,
+        "Cross product is only valid for vectors with a dimensionality of 3"
+    );
+
+    return Vector<T_scalar, T_dimensions, T_use_simd>(
+        (a[1] * b[2]) - (b[1] * a[2]),
+        (a[2] * b[0]) - (b[2] * a[0]),
+        (a[0] * b[1]) - (b[0] * a[1])
+    );
+}
+
+/*!
+ * \brief Calculates and returns the squared magnitude of the given vector.
+ *
+ * \note When this can be used (e.g. finding the difference between magnitudes)
+ *       this is more efficient than magnitude() since it avoid have to
+ *       calculate the squared root.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+T_scalar magnitude2(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    return dot(v, v);
+}
+
+/*!
+ * \brief Calculates and returns the magnitude of the given vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+T_scalar magnitude(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    return static_cast<T_scalar>(std::sqrt(magnitude2(v)));
+}
+
+/*!
+ * \brief Calculates the distance between the vectors a and b.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+T_scalar distance(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        const Vector<T_scalar, T_dimensions, T_use_simd>& b)
+{
+    return magnitude(b - a);
+}
+
+/*!
+ * \brief Returns the direction vector between the two points a and b.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+Vector<T_scalar, T_dimensions, T_use_simd> direction(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> diff(b - a);
+    return Vector<T_scalar, T_dimensions, T_use_simd>(diff / magnitude(diff));
+}
+
+/*!
+ * \brief Returns the single value directional angle of the difference between
+ *        the x and y components of the vectors a and b.
+ *
+ * \note The directional vector between a and b is (1.0, 0.0), then the angle
+ * would be 0.0, likewise if it were (-1.0, 0.0) the angle would be pi,
+ * (0.0, 1.0) would have angle of pi/2, and (0.0, -1.0) would have angle of
+ * -pi/2.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+T_scalar angle2(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
+    // check dimensionality
+    static_assert(
+        T_dimensions >= 2,
+        "angle2 is only valid for vectors with a dimensionality of 2 or more"
+    );
+
+    Vector<T_scalar, T_dimensions, T_use_simd> d(direction(a, b));
+    return std::atan2(d[1], d[0]);
+}
+
+// TODO: cast (takes template type and move to the top)
+
+// TODO: floor?
+
+// TODO: ceil?
+
+// TODO: IsFinite
+
+// TODO: pow?
+
+// TODO: Sqrt
+
+// TODO: Rsqrt
+
+// TODO: Recip
+
+// TODO: log?
+
+// TODO: log2?
+
+// TODO: Exp?
+
+// TODO: Exp2?
+
+
 } // namespace gm
 } // namespace arc
 
 //----------------------I N L I N E -- E X T E N S I O N S----------------------
 #ifndef ARC_GM_DISABLE_SSE
     #include "arcanecore/gm/VectorMathSimd3f.inl"
+    #include "arcanecore/gm/VectorMathSimd4f.inl"
 #endif
 
 #endif

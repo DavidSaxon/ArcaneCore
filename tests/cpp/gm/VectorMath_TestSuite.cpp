@@ -7,32 +7,6 @@ ARC_TEST_MODULE(gm.VectorMath)
 namespace
 {
 
-ARC_TEST_UNIT(swizzle2)
-{
-    arc::gm::Vector4f v1(1.0F, 2.0F, 3.0F, 4.0F);
-    ARC_CHECK_EQUAL(
-        (arc::gm::swizzle2<3, 1>(v1)),
-        arc::gm::Vector2f(4.0F, 2.0F)
-    );
-}
-
-ARC_TEST_UNIT(swizzle3)
-{
-    arc::gm::Vector4f v1(1.0F, 2.0F, 3.0F, 4.0F);
-    ARC_CHECK_EQUAL(
-        (arc::gm::swizzle3<0, 3, 2>(v1)),
-        arc::gm::Vector3f(1.0F, 4.0F, 3.0F)
-    );
-
-    //--------------------------------------------------------------------------
-    ARC_TEST_MESSAGE("Testing Simd");
-    arc::gm::SimdVector4f s1(1.0F, 2.0F, 3.0F, 4.0F);
-    ARC_CHECK_EQUAL(
-        (arc::gm::swizzle3<0, 3, 2>(s1)),
-        arc::gm::SimdVector3f(1.0F, 4.0F, 3.0F)
-    );
-}
-
 ARC_TEST_UNIT(abs)
 {
     arc::gm::Vector4i v1(1, 2, -3, 4);
@@ -122,5 +96,120 @@ ARC_TEST_UNIT(clamp_vector)
     );
 }
 
+ARC_TEST_UNIT(normalise)
+{
+    arc::gm::Vector3f v1(1.0F, 2.0F, 3.0F);
+    arc::gm::Vector3f n1 = arc::gm::normalise(v1);
+
+    ARC_CHECK_TRUE(arc::math::abs(n1.x() - 0.2672612419124244F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(n1.y() - 0.5345224838248488F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(n1.z() - 0.8017837257372732F) < 0.01F);
+}
+
+ARC_TEST_UNIT(dot)
+{
+    arc::gm::Vector3f v1(1.0F, 2.0F, 3.0F);
+    arc::gm::Vector3f v2(5.0F, 6.0F, 7.0F);
+    ARC_CHECK_FLOAT_EQUAL(
+        arc::gm::dot(v1, v2),
+        38.0F
+    );
+
+    arc::gm::Vector4f v3(1.0F, 2.0F, -3.0F, 8.0F);
+    arc::gm::Vector4f v4(5.0F, -6.0F, 7.0F, 8.0F);
+    ARC_CHECK_FLOAT_EQUAL(
+        arc::gm::dot(v3, v4),
+        36.0F
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, 2.0F, 3.0F);
+    arc::gm::SimdVector3f s2(5.0F, 6.0F, 7.0F);
+
+    ARC_CHECK_FLOAT_EQUAL(
+        arc::gm::dot(s1, s2),
+        38.0F
+    );
+
+    arc::gm::SimdVector4f s3(1.0F, 2.0F, -3.0F, 8.0F);
+    arc::gm::SimdVector4f s4(5.0F, -6.0F, 7.0F, 8.0F);
+    ARC_CHECK_FLOAT_EQUAL(
+        arc::gm::dot(s3, s4),
+        36.0F
+    );
+}
+
+ARC_TEST_UNIT(cross)
+{
+    arc::gm::Vector3f v1(5.0F, 1.0F, 3.0F);
+    arc::gm::Vector3f v2(4.0F, 0.0F, 11.0F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::cross(v1, v2),
+        arc::gm::Vector3f(11.0F, -43.0F, -4.0F)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(5.0F, 1.0F, 3.0F);
+    arc::gm::SimdVector3f s2(4.0F, 0.0F, 11.0F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::cross(s1, s2),
+        arc::gm::SimdVector3f(11.0F, -43.0F, -4.0F)
+    );
+}
+
+ARC_TEST_UNIT(magnitude2)
+{
+    arc::gm::SimdVector3f v1(1.0F, 2.0F, 3.0F);
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::magnitude2(v1), 14.0F);
+}
+
+ARC_TEST_UNIT(magnitude)
+{
+    arc::gm::SimdVector4f v1(2.0F);
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::magnitude(v1), 4.0F);
+}
+
+ARC_TEST_UNIT(distance)
+{
+    arc::gm::Vector3f v1(1.0F, 2.0F, 3.0F);
+    arc::gm::Vector3f v2(4.0F, 5.0F, 6.0F);
+
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::distance(v1, v2), 5.19615F);
+}
+
+ARC_TEST_UNIT(direction)
+{
+    arc::gm::Vector3f v1(0.0F, 0.0F, 0.0F);
+    arc::gm::Vector3f v2(1.0F, 0.0F, 0.0F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::direction(v1, v2),
+        arc::gm::Vector3f(1.0F, 0.0F, 0.0F)
+    );
+
+    ARC_CHECK_EQUAL(
+        arc::gm::direction(v2, v1),
+        arc::gm::Vector3f(-1.0F, 0.0F, 0.0F)
+    );
+}
+
+ARC_TEST_UNIT(angle2)
+{
+    arc::gm::Vector3f v1(0.0F, 0.0F, 0.0F);
+    arc::gm::Vector3f v2(1.0F, 0.0F, 0.0F);
+    arc::gm::Vector3f v3(0.0F, 1.0F, 0.0F);
+    arc::gm::Vector3f v4(0.0F, -1.0F, 0.0F);
+
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::angle2(v1, v2), 0.0F);
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::angle2(v2, v1), 3.14159265359F);
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::angle2(v1, v3), 1.57079632679F);
+    ARC_CHECK_FLOAT_EQUAL(arc::gm::angle2(v1, v4), -1.57079632679F);
+}
 
 } // namespace anonymous

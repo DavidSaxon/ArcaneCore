@@ -13,67 +13,48 @@ namespace arc
 namespace gm
 {
 
-// template<
-//     std::size_t T_x_component,
-//     std::size_t T_y_component,
-//     std::size_t T_z_component,
-//     bool T_use_simd,
-//     bool T_other_simd
-// >
-// inline SimdVector3f swizzle3(const Vector<float, 2, true>& v)
-// {
-//     static_assert(
-//         T_x_component < 2,
-//         "Template x component index out of the given vector's bounds"
-//     );
-//     static_assert(
-//         T_y_component < 2,
-//         "Template y component index out of the given vector's bounds"
-//     );
-//     static_assert(
-//         T_z_component < 2,
-//         "Template z component index out of the given vector's bounds"
-//     );
+//-------------------------------------DOT--------------------------------------
 
-//     // TODO: REMOVE ME
-//     std::cout << "USING SIMD SWIZZLE3" << std::endl;
+template<>
+float dot(const SimdVector3f& a, const SimdVector3f& b)
+{
+    SimdVector3f r(_mm_dp_ps(a.get_simd(), b.get_simd(), 0x71), true);
+    return r[0];
+}
 
-//     return SimdVector3f(
-//         v[T_x_component],
-//         v[T_y_component],
-//         v[T_z_component]
-//     );
-// }
+template<>
+SimdVector3f cross(const SimdVector3f& a, const SimdVector3f& b)
+{
+    // align the vectors for the cross product
+    const __m128 align_a1 = _mm_shuffle_ps(
+        a.get_simd(),
+        a.get_simd(),
+        _MM_SHUFFLE(3, 0, 2, 1)
+    );
+    const __m128 align_a2 = _mm_shuffle_ps(
+        a.get_simd(),
+        a.get_simd(),
+        _MM_SHUFFLE(3, 1, 0, 2)
+    );
+    const __m128 align_b1 = _mm_shuffle_ps(
+        b.get_simd(),
+        b.get_simd(),
+        _MM_SHUFFLE(3, 1, 0, 2)
+    );
+    const __m128 align_b2 = _mm_shuffle_ps(
+        b.get_simd(),
+        b.get_simd(),
+        _MM_SHUFFLE(3, 0, 2, 1)
+    );
 
-// template<
-//     std::size_t T_x_component,
-//     std::size_t T_y_component,
-//     std::size_t T_z_component
-// >
-// inline SimdVector3f swizzle3(const Vector<float, 4, true>& v)
-// {
-//     static_assert(
-//         T_x_component < 4,
-//         "Template x component index out of the given vector's bounds"
-//     );
-//     static_assert(
-//         T_y_component < 4,
-//         "Template y component index out of the given vector's bounds"
-//     );
-//     static_assert(
-//         T_z_component < 4,
-//         "Template z component index out of the given vector's bounds"
-//     );
-
-//     // TODO: REMOVE ME
-//     std::cout << "USING SIMD SWIZZLE3" << std::endl;
-
-//     return SimdVector3f(
-//         v[T_x_component],
-//         v[T_y_component],
-//         v[T_z_component]
-//     );
-// }
+    return SimdVector3f(
+        _mm_sub_ps(
+            _mm_mul_ps(align_a1, align_b1),
+            _mm_mul_ps(align_b2, align_a2)
+        ),
+        true
+    );
+}
 
 } // namespace gm
 } // namespace arc
