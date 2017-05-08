@@ -141,7 +141,10 @@ inline SimdVector3f& SimdVector3f::operator=(const SimdVector3f& v)
 template<>
 inline SimdVector3f SimdVector3f::operator-() const
 {
-    return SimdVector3f(_mm_xor_ps(m_simd_data, _mm_set1_ps(-0.f)), true);
+    return SimdVector3f(
+        _mm_xor_ps(m_simd_data, _mm_set1_ps(-0.f)),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 //-------------------------------SCALAR ADDITION--------------------------------
@@ -149,7 +152,10 @@ inline SimdVector3f SimdVector3f::operator-() const
 template<>
 inline SimdVector3f SimdVector3f::operator+(float scalar) const
 {
-    return SimdVector3f(_mm_add_ps(m_simd_data, _mm_set_ps1(scalar)), true);
+    return SimdVector3f(
+        _mm_add_ps(m_simd_data, _mm_set_ps1(scalar)),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -165,7 +171,10 @@ template<>
 template<>
 inline SimdVector3f SimdVector3f::operator+(const SimdVector3f& v) const
 {
-    return SimdVector3f(_mm_add_ps(m_simd_data, v.m_simd_data), true);
+    return SimdVector3f(
+        _mm_add_ps(m_simd_data, v.m_simd_data),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -181,7 +190,10 @@ inline SimdVector3f& SimdVector3f::operator+=(const SimdVector3f& v)
 template<>
 inline SimdVector3f SimdVector3f::operator-(float scalar) const
 {
-    return SimdVector3f(_mm_sub_ps(m_simd_data, _mm_set_ps1(scalar)), true);
+    return SimdVector3f(
+        _mm_sub_ps(m_simd_data, _mm_set_ps1(scalar)),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -197,7 +209,10 @@ template<>
 template<>
 inline SimdVector3f SimdVector3f::operator-(const SimdVector3f& v) const
 {
-    return SimdVector3f(_mm_sub_ps(m_simd_data, v.m_simd_data), true);
+    return SimdVector3f(
+        _mm_sub_ps(m_simd_data, v.m_simd_data),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -213,7 +228,10 @@ inline SimdVector3f& SimdVector3f::operator-=(const SimdVector3f& v)
 template<>
 inline SimdVector3f SimdVector3f::operator*(float scalar) const
 {
-    return SimdVector3f(_mm_mul_ps(m_simd_data, _mm_set_ps1(scalar)), true);
+    return SimdVector3f(
+        _mm_mul_ps(m_simd_data, _mm_set_ps1(scalar)),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -229,7 +247,10 @@ template<>
 template<>
 inline SimdVector3f SimdVector3f::operator*(const SimdVector3f& v) const
 {
-    return SimdVector3f(_mm_mul_ps(m_simd_data, v.m_simd_data), true);
+    return SimdVector3f(
+        _mm_mul_ps(m_simd_data, v.m_simd_data),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -245,7 +266,10 @@ inline SimdVector3f& SimdVector3f::operator*=(const SimdVector3f& v)
 template<>
 inline SimdVector3f SimdVector3f::operator/(float scalar) const
 {
-    return SimdVector3f(_mm_div_ps(m_simd_data, _mm_set_ps1(scalar)), true);
+    return SimdVector3f(
+        _mm_div_ps(m_simd_data, _mm_set_ps1(scalar)),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>
@@ -261,7 +285,10 @@ template<>
 template<>
 inline SimdVector3f SimdVector3f::operator/(const SimdVector3f& v) const
 {
-    return SimdVector3f(_mm_div_ps(m_simd_data, v.m_simd_data), true);
+    return SimdVector3f(
+        _mm_div_ps(m_simd_data, v.m_simd_data),
+        SimdVector3f::kSimdAssignTag
+    );
 }
 
 template<>

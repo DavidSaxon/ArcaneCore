@@ -35,6 +35,16 @@ enum Endianness
  */
 Endianness get_system_endianness();
 
+/*!
+ * \brief Casts the given value from T_in_type to T_out_type without changing
+ *        the bits of the data.
+ */
+template<typename T_out_type, typename T_in_type>
+T_out_type bit_cast(const T_in_type& v)
+{
+    return *((T_out_type*)&v);
+}
+
 } // namespace data
 } // namespace arc
 

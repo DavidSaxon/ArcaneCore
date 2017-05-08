@@ -92,10 +92,24 @@ struct VectorStorage<double, 2, true>
 };
 
 template<>
+struct VectorStorage<arc::uint32, 3, true>
+{
+    typedef __m128i SimdData;
+    ARC_MEMORY_ALIGN(16) arc::uint32 data[3];
+};
+
+template<>
 struct VectorStorage<arc::uint32, 4, true>
 {
     typedef __m128i SimdData;
     ARC_MEMORY_ALIGN(16) arc::uint32 data[4];
+};
+
+template<>
+struct VectorStorage<arc::int32, 3, true>
+{
+    typedef __m128i SimdData;
+    ARC_MEMORY_ALIGN(16) arc::int32 data[3];
 };
 
 template<>
@@ -569,6 +583,15 @@ public:
     }
 
     /*!
+     * \brief Tag that is used to provided a unique typed argument to the Simd
+     *        direct assignment constructor.
+     */
+    enum SimdAssign
+    {
+        kSimdAssignTag
+    };
+
+    /*!
      * \brief Optimisation constructor which directly assigns the internal SIMD
      *        data of the vector to the given data.
      *
@@ -577,7 +600,7 @@ public:
      * \param dummy A dummy parameter which differentiates this constructor from
      *              the scalar constructor.
      */
-    Vector(SimdType data, bool dummy)
+    Vector(SimdType data, SimdAssign tag)
         : m_simd_data(data)
     {
     }
@@ -1255,10 +1278,12 @@ typedef Vector<float, 4, ARC_GM_USE_SIMD>       SimdVector4f;
 
 typedef Vector<double, 2, ARC_GM_USE_SIMD>      SimdVector2d;
 
-// TODO 2u and 3u?
+// TODO 2u?
+typedef Vector<arc::uint32, 3, ARC_GM_USE_SIMD> SimdVector3u;
 typedef Vector<arc::uint32, 4, ARC_GM_USE_SIMD> SimdVector4u;
 
-// TODO: 2i and 3i?
+// TODO: 2i?
+typedef Vector<arc::int32, 3, ARC_GM_USE_SIMD>  SimdVector3i;
 typedef Vector<arc::int32, 4, ARC_GM_USE_SIMD>  SimdVector4i;
 
 } // namespace gm

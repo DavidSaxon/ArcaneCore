@@ -19,6 +19,27 @@ namespace gm
 {
 
 /*!
+ * \brief Casts the components of the given vector to a new vector with
+ *        T_out_scalar as the type.
+ */
+template<
+    typename T_out_scalar,
+    typename T_in_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd
+>
+inline Vector<T_out_scalar, T_dimensions, T_use_simd> cast(
+        const Vector<T_in_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_out_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = static_cast<T_out_scalar>(v[i]);
+    }
+    return r;
+}
+
+/*!
  * \brief Returns a copy of the given vector with all components made absolute.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
@@ -37,10 +58,15 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> abs(
  * \brief Returns a new vector which has the smallest of each of of the
  *        components of the vectors a and b.
  */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
 inline Vector<T_scalar, T_dimensions, T_use_simd> min(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
-        const Vector<T_scalar, T_dimensions, T_use_simd>& b)
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
     for(std::size_t i = 0; i < T_dimensions; ++i)
@@ -54,85 +80,20 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> min(
  * \brief Returns a new vector which has the largest of each of of the
  *        components of the vectors a and b.
  */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
 inline Vector<T_scalar, T_dimensions, T_use_simd> max(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
-        const Vector<T_scalar, T_dimensions, T_use_simd>& b)
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
     for(std::size_t i = 0; i < T_dimensions; ++i)
     {
         r[i] = std::max<T_scalar>(a[i], b[i]);
-    }
-    return r;
-}
-
-/*!
- * \brief Clamps the each component in the given vector so that it is greater
- *        than or equal to the scalar and returns the result as a new vector.
- */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-inline Vector<T_scalar, T_dimensions, T_use_simd> clamp_above(
-        const Vector<T_scalar, T_dimensions, T_use_simd>& v,
-        T_scalar threshold)
-{
-    Vector<T_scalar, T_dimensions, T_use_simd> r;
-    for(std::size_t i = 0; i < T_dimensions; ++i)
-    {
-        r[i] = arc::math::clamp_above<T_scalar>(v[i], threshold);
-    }
-    return r;
-}
-
-/*!
- * \brief Clamps the each component in the given vector so that it is greater
- *        than or equal to the respective component in the threshold vector and
- *        returns the result as a new vector.
- */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-inline Vector<T_scalar, T_dimensions, T_use_simd> clamp_above(
-        const Vector<T_scalar, T_dimensions, T_use_simd>& v,
-        const Vector<T_scalar, T_dimensions, T_use_simd>& threshold)
-{
-    Vector<T_scalar, T_dimensions, T_use_simd> r;
-    for(std::size_t i = 0; i < T_dimensions; ++i)
-    {
-        r[i] = arc::math::clamp_above<T_scalar>(v[i], threshold[i]);
-    }
-    return r;
-}
-
-/*!
- * \brief Clamps the each component in the given vector so that it is less
- *        than or equal to the scalar and returns the result as a new vector.
- */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-inline Vector<T_scalar, T_dimensions, T_use_simd> clamp_below(
-        const Vector<T_scalar, T_dimensions, T_use_simd>& v,
-        T_scalar threshold)
-{
-    Vector<T_scalar, T_dimensions, T_use_simd> r;
-    for(std::size_t i = 0; i < T_dimensions; ++i)
-    {
-        r[i] = arc::math::clamp_below<T_scalar>(v[i], threshold);
-    }
-    return r;
-}
-
-/*!
- * \brief Clamps the each component in the given vector so that it is less
- *        than or equal to the respective component in the threshold vector and
- *        returns the result as a new vector.
- */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-inline Vector<T_scalar, T_dimensions, T_use_simd> clamp_below(
-        const Vector<T_scalar, T_dimensions, T_use_simd>& v,
-        const Vector<T_scalar, T_dimensions, T_use_simd>& threshold)
-{
-    Vector<T_scalar, T_dimensions, T_use_simd> r;
-    for(std::size_t i = 0; i < T_dimensions; ++i)
-    {
-        r[i] = arc::math::clamp_below<T_scalar>(v[i], threshold[i]);
     }
     return r;
 }
@@ -177,11 +138,17 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> clamp(
  *
  * \return The result as a new vector.
  */
-template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_lower_use_simd,
+    bool T_upper_use_simd
+>
 inline Vector<T_scalar, T_dimensions, T_use_simd> clamp(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v,
-        const Vector<T_scalar, T_dimensions, T_use_simd>& lower_threshold,
-        const Vector<T_scalar, T_dimensions, T_use_simd>& upper_threshold)
+        const Vector<T_scalar, T_dimensions, T_lower_use_simd>& lower_threshold,
+        const Vector<T_scalar, T_dimensions, T_upper_use_simd>& upper_threshold)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
     for(std::size_t i = 0; i < T_dimensions; ++i)
@@ -331,15 +298,64 @@ T_scalar angle2(
     return std::atan2(d[1], d[0]);
 }
 
-// TODO: cast (takes template type and move to the top)
+/*!
+ * \brief Returns the natural base e logarithm of each component of this vector
+ *        and returns the result in a new vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> log(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = std::log(v[i]);
+    }
+    return r;
+}
 
-// TODO: floor?
+/*!
+ * \brief Returns the binary (base 2) logarithm of each component of this vector
+ *        and returns the result in a new vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> log2(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = std::log2(v[i]);
+    }
+    return r;
+}
 
-// TODO: ceil?
+/*!
+ * \brief Returns the base-e exponential function of each component of this
+ *        vector and returns the result in a new vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> exp(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = std::exp(v[i]);
+    }
+    return r;
+}
 
-// TODO: IsFinite
+// TODO: Exp?
+//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
+
+// TODO: floor and ceil
+//      floor is in exp
+
+// TODO: Exp2?
 
 // TODO: pow?
+//      http://stackoverflow.com/questions/25936031/pow-for-sse-types
 
 // TODO: Sqrt
 
@@ -347,14 +363,14 @@ T_scalar angle2(
 
 // TODO: Recip
 
-// TODO: log?
+// TODO: sin:
+//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
 
-// TODO: log2?
+// TODO: cos
+//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
 
-// TODO: Exp?
-
-// TODO: Exp2?
-
+// TODO: sin cos
+//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
 
 } // namespace gm
 } // namespace arc
