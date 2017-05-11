@@ -19,6 +19,19 @@ namespace math
  */
 extern const float EPSILON;
 
+/*!
+ * \brief Pi as a float.
+ */
+extern const float PI_F;
+/*!
+ * \brief Pi as a double.
+ */
+extern const double PI_D;
+/*!
+ * \brief Pi as a long double.
+ */
+extern const long double PI_L;
+
 } // namespace math
 } // namespace arc
 

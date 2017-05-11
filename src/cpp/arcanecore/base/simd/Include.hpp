@@ -7,28 +7,33 @@
 #ifndef ARCANECORE_BASE_SIMD_INCLUDE_HPP_
 #define ARCANECORE_BASE_SIMD_INCLUDE_HPP_
 
-#if defined(__SSE__)
-    #include <xmmintrin.h>
-#elif defined(__SSE2__)
-    #include <emmintrin.h>
-    #include <xmmintrin.h>
-#elif defined(__SSE3__)
-    #include <pmmintrin.h>
-    #include <xmmintrin.h>
-#elif defined(__SSE4_1__)
-    #include <smmintrin.h>
-    #include <xmmintrin.h>
-#elif defined(__SSE4_2__ )
-    #include <nmmintrin.h>
-    #include <xmmintrin.h>
-#elif defined(__AVX__)
-    #include <immintrin.h>
-    #include <xmmintrin.h>
-#elif defined(__AVX2__)
-    #include <emmintrin.h>
-    #include <xmmintrin.h>
-#else
-    #error No SMID instruction set found
-#endif
+// #if defined(__SSE__)
+//     #include <xmmintrin.h>
+// #elif defined(__SSE2__)
+//     #include <emmintrin.h>
+//     #include <xmmintrin.h>
+// #elif defined(__SSE3__)
+//     #include <pmmintrin.h>
+//     #include <xmmintrin.h>
+// #elif defined(__SSE4_1__)
+//     #include <smmintrin.h>
+//     #include <xmmintrin.h>
+// #elif defined(__SSE4_2__ )
+//     #include <nmmintrin.h>
+//     #include <xmmintrin.h>
+// #elif defined(__AVX__)
+//     #include <immintrin.h>
+//     #include <xmmintrin.h>
+// #elif defined(__AVX2__)
+//     #include <emmintrin.h>
+//     #include <xmmintrin.h>
+// #else
+//     #error No SMID instruction set found
+// #endif
+
+// only SSE3 for now for compatibility reasons
+#include <pmmintrin.h>
+#include <xmmintrin.h>
+
 
 #endif

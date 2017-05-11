@@ -106,6 +106,87 @@ ARC_TEST_UNIT(clamp_vector)
     );
 }
 
+ARC_TEST_UNIT(floor)
+{
+    arc::gm::Vector3f v1(1.0F, 2.9F, -3.3F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::floor(v1),
+        arc::gm::Vector3f(1.0F, 2.0F, -4.0F)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, 2.9F, -3.3F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::floor(s1),
+        arc::gm::SimdVector3f(1.0F, 2.0F, -4.0F)
+    );
+
+    arc::gm::SimdVector4f s2(1.0F, 2.9F, -3.3F, 88607.0F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::floor(s2),
+        arc::gm::SimdVector4f(1.0F, 2.0F, -4.0F, 88607.0F)
+    );
+}
+
+ARC_TEST_UNIT(ceil)
+{
+    arc::gm::Vector3f v1(1.0F, 2.9F, -3.3F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::ceil(v1),
+        arc::gm::Vector3f(1.0F, 3.0F, -3.0F)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, 2.9F, -3.3F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::ceil(s1),
+        arc::gm::SimdVector3f(1.0F, 3.0F, -3.0F)
+    );
+
+    arc::gm::SimdVector4f s2(1.0F, 2.9F, -3.3F, 88607.0F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::ceil(s2),
+        arc::gm::SimdVector4f(1.0F, 3.0F, -3.0F, 88607.0F)
+    );
+}
+
+ARC_TEST_UNIT(round)
+{
+    arc::gm::Vector3f v1(1.0F, 2.5F, -3.3F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::round(v1),
+        arc::gm::Vector3f(1.0F, 3.0F, -3.0F)
+    );
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, 2.5F, -3.3F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::round(s1),
+        arc::gm::SimdVector3f(1.0F, 3.0F, -3.0F)
+    );
+
+    arc::gm::SimdVector4f s2(1.0F, 2.5F, -3.3F, 88607.0F);
+
+    ARC_CHECK_EQUAL(
+        arc::gm::round(s2),
+        arc::gm::SimdVector4f(1.0F, 3.0F, -3.0F, 88607.0F)
+    );
+}
+
 ARC_TEST_UNIT(normalise)
 {
     arc::gm::Vector3f v1(1.0F, 2.0F, 3.0F);
@@ -306,6 +387,284 @@ ARC_TEST_UNIT(exp)
     ARC_CHECK_TRUE(arc::math::abs(rs2.y() - 7.3890560989306502F) < 0.01F);
     ARC_CHECK_TRUE(arc::math::abs(rs2.z() - 20.0855369231876677F) < 0.01F);
     ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 7.3890560989306502F) < 0.01F);
+}
+
+ARC_TEST_UNIT(pow_vector)
+{
+    arc::gm::Vector3f v1(5.0F, 2.0F, -23.3F);
+    arc::gm::Vector3f v2(0.0F, 5.5F, 3.0F);
+    arc::gm::Vector3f r1(arc::gm::pow(v1, v2));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() - 1.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - 45.2548339959390415F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - -12649.337F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(5.0F, 2.0F, -23.3F);
+    arc::gm::SimdVector3f s2(0.0F, 5.5F, 3.0F);
+    arc::gm::SimdVector3f rs1(arc::gm::pow(s1, s2));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 1.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 45.2548339959390415F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - -12649.337F) < 0.01F);
+
+    arc::gm::SimdVector4f s3(5.0F, 2.0F, -23.3F, 3.0F);
+    arc::gm::SimdVector4f s4(0.0F, 5.5F, 3.0F, -3.7F);
+    arc::gm::SimdVector4f rs2(arc::gm::pow(s3, s4));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() - 1.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() - 45.2548339959390415F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - -12649.337F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 0.017165298398961843F) < 0.0001F);
+}
+
+ARC_TEST_UNIT(pow_scalar)
+{
+    arc::gm::Vector3f v1(5.0F, 2.0F, -23.3F);
+    arc::gm::Vector3f r1(arc::gm::pow(v1, 3.0F));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() - 125.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - 8.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - -12649.337F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(5.0F, 2.0F, -23.3F);
+    arc::gm::SimdVector3f rs1(arc::gm::pow(s1, 3.0F));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 125.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 8.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - -12649.337F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(5.0F, 2.0F, -23.3F, 0.5F);
+    arc::gm::SimdVector4f rs2(arc::gm::pow(s2, 3.0F));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() - 125.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() - 8.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - -12649.337F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 0.125F) < 0.0001F);
+}
+
+ARC_TEST_UNIT(pow_fast_vector)
+{
+    arc::gm::Vector3f v1(5.0F, 2.0F, 23.3F);
+    arc::gm::Vector3f v2(0.0F, 5.5F, 3.0F);
+    arc::gm::Vector3f r1(arc::gm::pow_fast(v1, v2));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() - 1.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - 45.2548339959390415F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - 12649.337F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(5.0F, 2.0F, 23.3F);
+    arc::gm::SimdVector3f s2(0.0F, 5.5F, 3.0F);
+    arc::gm::SimdVector3f rs1(arc::gm::pow_fast(s1, s2));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 1.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 45.2548339959390415F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - 12649.337F) < 0.01F);
+
+    arc::gm::SimdVector4f s3(5.0F, 2.0F, 23.3F, 3.0F);
+    arc::gm::SimdVector4f s4(0.0F, 5.5F, 3.0F, -3.7F);
+    arc::gm::SimdVector4f rs2(arc::gm::pow_fast(s3, s4));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() - 1.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() - 45.2548339959390415F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - 12649.337F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 0.017165298398961843F) < 0.0001F);
+}
+
+ARC_TEST_UNIT(pow_fast_scalar)
+{
+    arc::gm::Vector3f v1(5.0F, 2.0F, 23.3F);
+    arc::gm::Vector3f r1(arc::gm::pow_fast(v1, 3.0F));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() - 125.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - 8.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - 12649.337F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(5.0F, 2.0F, 23.3F);
+    arc::gm::SimdVector3f rs1(arc::gm::pow_fast(s1, 3.0F));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 125.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 8.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - 12649.337F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(5.0F, 2.0F, 23.3F, 0.5F);
+    arc::gm::SimdVector4f rs2(arc::gm::pow_fast(s2, 3.0F));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() - 125.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() - 8.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - 12649.337F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 0.125F) < 0.0001F);
+}
+
+
+ARC_TEST_UNIT(sqrt)
+{
+    arc::gm::Vector3f v1(16.0F, 16777216.0F, 7.7F);
+    arc::gm::Vector3f r1(arc::gm::sqrt(v1));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() - 4.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - 4096.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - 2.7748873851023215F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(16.0F, 16777216.0F, 7.7F);
+    arc::gm::SimdVector3f rs1(arc::gm::sqrt(s1));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 4.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 4096.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - 2.7748873851023215F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(16.0F, 16777216.0F, 7.7F, 16777216.0F);
+    arc::gm::SimdVector4f rs2(arc::gm::sqrt(s2));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() - 4.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() - 4096.0F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - 2.7748873851023215F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 4096.0F) < 0.01F);
+}
+
+ARC_TEST_UNIT(rsqrt)
+{
+    arc::gm::Vector3f v1(16.0F, 16777216.0F, 7.7F);
+    arc::gm::Vector3f r1(arc::gm::rsqrt(v1));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() - 0.25F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - 0.000244140625F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - 0.360375F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(16.0F, 16777216.0F, 7.7F);
+    arc::gm::SimdVector3f rs1(arc::gm::rsqrt(s1));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 0.25F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 0.000244140625F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - 0.360375F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(16.0F, 16777216.0F, 7.7F, 16777216.0F);
+    arc::gm::SimdVector4f rs2(arc::gm::rsqrt(s2));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() - 0.25F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - 0.000244140625F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - 0.360375F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - 0.000244140625F) < 0.000001F);
+}
+
+ARC_TEST_UNIT(sin)
+{
+    arc::gm::Vector3f v1(1.0F, -0.39F, 745.7F);
+    arc::gm::Vector3f r1(arc::gm::sin(v1));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() -  0.841470984807F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() - -0.380188415123F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - -0.909691710435F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, -0.39F, 745.7F);
+    arc::gm::SimdVector3f rs1(arc::gm::sin(s1));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() -  0.841470984807F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() - -0.380188415123F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - -0.909691710435F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(1.0F, -0.39F, 745.7F, -0.39F);
+    arc::gm::SimdVector4f rs2(arc::gm::sin(s2));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() -  0.841470984807F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() - -0.380188415123F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - -0.909691710435F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() - -0.380188415123F) < 0.000001F);
+}
+
+ARC_TEST_UNIT(cos)
+{
+    arc::gm::Vector3f v1(1.0F, 0.89F, -3491.08F);
+    arc::gm::Vector3f r1(arc::gm::cos(v1));
+
+    ARC_CHECK_TRUE(arc::math::abs(r1.x() -  0.540302305868F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.y() -  0.629412026573F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(r1.z() - -0.717519424557F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, 0.89F, -3491.08F);
+    arc::gm::SimdVector3f rs1(arc::gm::cos(s1));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs1.x() -  0.540302305868F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.y() -  0.629412026573F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(rs1.z() - -0.717519424557F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(1.0F, 0.89F, -3491.08F, 0.89F);
+    arc::gm::SimdVector4f rs2(arc::gm::cos(s2));
+
+    ARC_CHECK_TRUE(arc::math::abs(rs2.x() -  0.540302305868F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.y() -  0.629412026573F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.z() - -0.717519424557F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(rs2.w() -  0.629412026573F) < 0.000001F);
+}
+
+ARC_TEST_UNIT(sincos)
+{
+    arc::gm::Vector3f v1(1.0F, -0.39F, 745.7F);
+    arc::gm::Vector3f r1_sin;
+    arc::gm::Vector3f r1_cos;
+    arc::gm::sincos(v1, r1_sin, r1_cos);
+
+    ARC_CHECK_TRUE(arc::math::abs(r1_sin.x() -  0.841470984807F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1_sin.y() - -0.380188415123F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(r1_sin.z() - -0.909691710435F) < 0.01F);
+
+    ARC_CHECK_TRUE(arc::math::abs(r1_cos.x() -  0.540302305868F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(r1_cos.y() -  0.924909059857F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(r1_cos.z() - -0.415284230334F) < 0.01F);
+
+    //--------------------------------------------------------------------------
+    ARC_TEST_MESSAGE("Testing Simd");
+
+    arc::gm::SimdVector3f s1(1.0F, -0.39F, 745.7F);
+    arc::gm::SimdVector3f s1_sin;
+    arc::gm::SimdVector3f s1_cos;
+    arc::gm::sincos(s1, s1_sin, s1_cos);
+
+    ARC_CHECK_TRUE(arc::math::abs(s1_sin.x() -  0.841470984807F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(s1_sin.y() - -0.380188415123F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(s1_sin.z() - -0.909691710435F) < 0.01F);
+
+    ARC_CHECK_TRUE(arc::math::abs(s1_cos.x() -  0.540302305868F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(s1_cos.y() -  0.924909059857F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(s1_cos.z() - -0.415284230334F) < 0.01F);
+
+    arc::gm::SimdVector4f s2(1.0F, -0.39F, 745.7F, -0.39F);
+    arc::gm::SimdVector4f s2_sin;
+    arc::gm::SimdVector4f s2_cos;
+    arc::gm::sincos(s2, s2_sin, s2_cos);
+
+    ARC_CHECK_TRUE(arc::math::abs(s2_sin.x() -  0.841470984807F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(s2_sin.y() - -0.380188415123F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(s2_sin.z() - -0.909691710435F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(s2_sin.w() - -0.380188415123F) < 0.000001F);
+
+    ARC_CHECK_TRUE(arc::math::abs(s2_cos.x() -  0.540302305868F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(s2_cos.y() -  0.924909059857F) < 0.000001F);
+    ARC_CHECK_TRUE(arc::math::abs(s2_cos.z() - -0.415284230334F) < 0.01F);
+    ARC_CHECK_TRUE(arc::math::abs(s2_cos.w() -  0.924909059857F) < 0.000001F);
 }
 
 } // namespace anonymous

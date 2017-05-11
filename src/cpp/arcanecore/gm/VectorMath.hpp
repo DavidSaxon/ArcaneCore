@@ -163,6 +163,54 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> clamp(
 }
 
 /*!
+ * \brief Computes the floor of each component of this vector and returns the
+ *        result in a new vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> floor(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = std::floor(v[i]);
+    }
+    return r;
+}
+
+/*!
+ * \brief Computes the ceil of each component of this vector and returns the
+ *        result in a new vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> ceil(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = std::ceil(v[i]);
+    }
+    return r;
+}
+
+/*!
+ * \brief Computes the rounded value of each component of this vector and
+ *        returns the result in a new vector.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> round(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = std::round(v[i]);
+    }
+    return r;
+}
+
+/*!
  * \brief Returns a normalised copy of the given vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
@@ -299,8 +347,8 @@ T_scalar angle2(
 }
 
 /*!
- * \brief Returns the natural base e logarithm of each component of this vector
- *        and returns the result in a new vector.
+ * \brief Calculates the natural base e logarithm of each component of this
+ *        vector and returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
 Vector<T_scalar, T_dimensions, T_use_simd> log(
@@ -315,8 +363,8 @@ Vector<T_scalar, T_dimensions, T_use_simd> log(
 }
 
 /*!
- * \brief Returns the binary (base 2) logarithm of each component of this vector
- *        and returns the result in a new vector.
+ * \brief Calculates the binary (base 2) logarithm of each component of this
+ *        vector and returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
 Vector<T_scalar, T_dimensions, T_use_simd> log2(
@@ -331,7 +379,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> log2(
 }
 
 /*!
- * \brief Returns the base-e exponential function of each component of this
+ * \brief Calculates the base-e exponential function of each component of this
  *        vector and returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
@@ -346,31 +394,165 @@ Vector<T_scalar, T_dimensions, T_use_simd> exp(
     return r;
 }
 
-// TODO: Exp?
-//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
+/*!
+ * \brief Calculates each component of the vector a raised to the power of the
+ *        respective component in vector b.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+Vector<T_scalar, T_dimensions, T_use_simd> pow(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
 
-// TODO: floor and ceil
-//      floor is in exp
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = static_cast<T_scalar>(std::pow(a[i], b[i]));
+    }
+    return r;
+}
 
-// TODO: Exp2?
+/*!
+ * \brief Calculates each component of the vector a raised to the power of the
+ *        scalar b.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> pow(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        T_scalar b)
+{
+    return pow(a, Vector<T_scalar, T_dimensions, T_use_simd>(b));
+}
 
-// TODO: pow?
-//      http://stackoverflow.com/questions/25936031/pow-for-sse-types
+/*!
+ * \brief Calculates each component of the vector a raised to the power of the
+ *        respective component in vector b.
+ *
+ * This is a performance orientated version of power that does not support
+ * negative exponents.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
+    return exp(b * log(a));
+}
 
-// TODO: Sqrt
+/*!
+ * \brief Calculates each component of the vector a raised to the power of the
+ *        scalar b.
+ *
+ * This is a performance orientated version of power that does not support
+ * negative exponents.
+ */
+template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+        T_scalar b)
+{
+    return pow_fast(a, Vector<T_scalar, T_dimensions, T_use_simd>(b));
+}
 
-// TODO: Rsqrt
+/*!
+ * \brief Calculates the square root of each component in the given vector.
+ */
+template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> sqrt(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = static_cast<T_scalar>(std::sqrt(v[i]));
+    }
+    return r;
+}
 
-// TODO: Recip
+/*!
+ * \brief Calculates the reciprocal (or multiplicative inverse) of the square
+ *        root for each component in the vector.
+ */
+template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> rsqrt(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = static_cast<T_scalar>(arc::math::rsqrt(v[i]));
+    }
+    return r;
+}
 
-// TODO: sin:
-//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
+/*!
+ * \brief Calculates the sine of each component in the given vector.
+ */
+template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> sin(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = static_cast<T_scalar>(std::sin(v[i]));
+    }
+    return r;
+}
 
-// TODO: cos
-//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
+/*!
+ * \brief Calculates the cosine of each component in the given vector.
+ */
+template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
+Vector<T_scalar, T_dimensions, T_use_simd> cos(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+{
+    Vector<T_scalar, T_dimensions, T_use_simd> r;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r[i] = static_cast<T_scalar>(std::cos(v[i]));
+    }
+    return r;
+}
 
-// TODO: sin cos
-//      http://gruntthepeon.free.fr/ssemath/sse_mathfun.h
+/*!
+ * \brief Calculates the both the sin and the cos of each component in the
+ *        given vector.
+ *
+ * \note This is implemented for efficiency when using SIMD types since sin and
+ *       cos can be computed simultaneously with almost no extra overhead.
+ */
+template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
+void sincos(
+        const Vector<T_scalar, T_dimensions, T_use_simd>& v,
+        Vector<T_scalar, T_dimensions, T_use_simd>& r_sin,
+        Vector<T_scalar, T_dimensions, T_use_simd>& r_cos)
+{
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r_sin[i] = static_cast<T_scalar>(std::sin(v[i]));
+        r_cos[i] = static_cast<T_scalar>(std::cos(v[i]));
+    }
+}
+
+// TODO: tan:
+//      https://github.com/to-miz/sse_mathfun_extension
+
+// TODO: asin
+
+// TODO: acos
+
+// TODO: atan
 
 } // namespace gm
 } // namespace arc

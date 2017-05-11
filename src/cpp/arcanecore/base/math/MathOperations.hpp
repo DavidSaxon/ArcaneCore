@@ -113,8 +113,20 @@ inline T_data clamp(T_data v, T_data lower_threshold, T_data upper_threshold)
 }
 
 /*!
+ * \brief Calculates the exponent a raised to the power of b.
+ *
+ * \warning This is a performance orientated version of power that does not
+ *          support negative exponents.
+ */
+template<typename T_data>
+T_data pow_fast(T_data a, T_data b)
+{
+    return std::exp(b * std::log(a));
+}
+
+/*!
  * \brief Computes the reciprocal (or multiplicative inverse) of the square
- *        for the given value.
+ *        root for the given value.
  *
  * \note If T_data is float this will use the Fast Inverse Square Root to
  *       perform the calculation.

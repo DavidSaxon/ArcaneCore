@@ -65,6 +65,51 @@ ARC_TEST_UNIT(clamp)
 }
 
 //------------------------------------------------------------------------------
+//                                    POW FAST
+//------------------------------------------------------------------------------
+
+
+ARC_TEST_UNIT(pow_fast)
+{
+    {
+        double v1 = 16.0;
+        double v2 = 2.0;
+        ARC_CHECK_TRUE(
+            arc::math::abs(
+                arc::math::pow_fast(v1, v2) - 256.0
+            ) < 0.00001
+        );
+    }
+    {
+        // fast inverse square root
+        float v3 = 5.0F;
+        float v4 = 3.3F;
+        ARC_CHECK_TRUE(
+            arc::math::abs(
+                arc::math::pow_fast(v3, v4) - 202.5820745865953F
+            ) < 0.01F
+        );
+    }
+}
+
+//------------------------------------------------------------------------------
+//                                     RSQRT
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(rsqrt)
+{
+    {
+        double v = 16.0;
+        ARC_CHECK_EQUAL((arc::math::rsqrt(v)), 0.25F);
+    }
+    {
+        // fast inverse square root
+        float v = 16.0F;
+        ARC_CHECK_TRUE(arc::math::abs(arc::math::rsqrt(v) - 0.25F) < 0.01F);
+    }
+}
+
+//------------------------------------------------------------------------------
 //                                  FLOAT EQUALS
 //------------------------------------------------------------------------------
 
@@ -167,19 +212,6 @@ public:
         }
     }
 };
-
-ARC_TEST_UNIT(rsqrt)
-{
-    {
-        double v = 16.0;
-        ARC_CHECK_EQUAL((arc::math::rsqrt(v)), 0.25F);
-    }
-    {
-        // fast inverse square root
-        float v = 16.0F;
-        ARC_CHECK_TRUE(arc::math::abs(arc::math::rsqrt(v) - 0.25F) < 0.01F);
-    }
-}
 
 ARC_TEST_UNIT_FIXTURE( float_equals, FloatEqualsFixture )
 {
