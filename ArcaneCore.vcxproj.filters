@@ -42,6 +42,12 @@
     <ClCompile Include="tests/cpp/base/str/StringOperations_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests/cpp/gm/Vector_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/gm/VectorMath_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="tests/cpp/io/format/FormatOperations_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -57,7 +63,28 @@
     <ClCompile Include="tests/cpp/io/sys/Path_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests/cpp/gm/Vector_TestSuite.cpp">
+    <ClCompile Include="tests/cpp/log/Log_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/config/Document_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/config/Variant_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/config/visitors/PathVisitor_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/config/visitors/PrimitiveVisitor_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/config/visitors/StringVisitor_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/col/Read_TestSuite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tests/cpp/col/Write_TestSuite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

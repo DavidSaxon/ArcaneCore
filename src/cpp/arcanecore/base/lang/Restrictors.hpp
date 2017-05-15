@@ -13,7 +13,7 @@ namespace lang
 {
 
 /*!
- * \brief Classes the privately inherit from this class will not be copyable.
+ * \brief Classes that privately inherit from this class will not be copyable.
  */
 class Noncopyable
 {
@@ -29,7 +29,7 @@ private:
 };
 
 /*!
- * \brief Classes the privately inherit from this class will not be movable.
+ * \brief Classes that privately inherit from this class will not be movable.
  */
 class Nonmovable
 {
@@ -45,7 +45,7 @@ private:
 };
 
 /*!
- * \brief Classes the privately inherit from this class will not be comparable.
+ * \brief Classes that privately inherit from this class will not be comparable.
  */
 class Noncomparable
 {

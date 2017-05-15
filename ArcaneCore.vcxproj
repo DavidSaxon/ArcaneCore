@@ -1,28 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Base_lib|Win32">
-      <Configuration>Base_lib</Configuration>
+    <ProjectConfiguration Include="arcanecore_collate|Win32">
+      <Configuration>arcanecore_collate</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="GFX_lib|Win32">
-      <Configuration>GFX_lib</Configuration>
+    <ProjectConfiguration Include="arcanecore_config|Win32">
+      <Configuration>arcanecore_config</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="IO_lib|Win32">
-      <Configuration>IO_lib</Configuration>
+    <ProjectConfiguration Include="arcanecore_json|Win32">
+      <Configuration>arcanecore_json</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="arcanecore_log_shared|Win32">
+      <Configuration>arcanecore_log_shared</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="arcanecore_log|Win32">
+      <Configuration>arcanecore_log</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="arc_collate_tool|Win32">
+      <Configuration>arc_collate_tool</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="arcanecore_base|Win32">
+      <Configuration>arcanecore_base</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="arcanecore_io|Win32">
+      <Configuration>arcanecore_io</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="tests|Win32">
       <Configuration>tests</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Test_lib|Win32">
-      <Configuration>Test_lib</Configuration>
+    <ProjectConfiguration Include="arcanecore_test|Win32">
+      <Configuration>arcanecore_test</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='Base_lib'">
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_base'">
     <ClCompile Include="src\cpp\arcanecore\base\clock\ClockOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\data\BinaryOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\data\BitwiseFloat.cpp" />
@@ -34,7 +54,7 @@
     <ClCompile Include="src\cpp\arcanecore\base\str\StringOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\UTF8String.cpp" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='IO_lib'">
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_io'">
     <ClCompile Include="src/cpp/arcanecore/io/dl/DLOperations.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/format/ANSI.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/format/FormatOperations.cpp" />
@@ -44,13 +64,37 @@
     <ClCompile Include="src/cpp/arcanecore/io/sys/FileWriter.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/sys/Path.cpp" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='GFX_lib'">
-    <ClCompile Include="src/cpp/arcanecore/gfx/Vector2.cpp" />
-    <ClCompile Include="src/cpp/arcanecore/gfx/Vector3.cpp" />
-    <ClCompile Include="src/cpp/arcanecore/gfx/Vector4.cpp" />
-    <ClCompile Include="src/cpp/arcanecore/gfx/VectorOperations.cpp" />
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_log'">
+    <ClCompile Include="src/cpp/arcanecore/log/AbstractOutput.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/log/Input.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/log/LogHandler.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/log/Stream.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/log/outputs/FileOutput.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/log/outputs/StdOutput.cpp" />
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)'=='Test_lib'">
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_log_shared'">
+    <ClCompile Include="src/cpp/arcanecore/log/Shared.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_json'">
+    <ClCompile Include="src/cpp/json/jsoncpp.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_config'">
+    <ClCompile Include="src/cpp/arcanecore/config/Document.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/config/Variant.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/config/visitors/Path.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/config/visitors/Primitive.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/config/visitors/String.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_collate'">
+    <ClCompile Include="src/cpp/arcanecore/col/Accessor.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/col/Collator.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/col/Reader.cpp" />
+    <ClCompile Include="src/cpp/arcanecore/col/TableOfContents.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='arc_collate_tool'">
+    <ClCompile Include="src/cpp/arcanecore/col/__cmd/CommandLineTool.cpp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='arcanecore_test'">
     <ClCompile Include="src/cpp/arcanecore/test/ArcTest.cpp" />
     <ClCompile Include="src/cpp/arcanecore/test/ArcTestMain.cpp" />
     <ClCompile Include="src/cpp/arcanecore/test/TestLogger.cpp" />
@@ -77,6 +121,14 @@
     <ClCompile Include="tests/cpp/io/sys/FileReader_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/Path_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/log/Log_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/config/Document_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/config/Variant_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/config/visitors/PathVisitor_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/config/visitors/PrimitiveVisitor_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/config/visitors/StringVisitor_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/col/Read_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/col/Write_TestSuite.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7C254EB9-DDDB-4418-B5C9-1CB0431C4472}</ProjectGuid>
@@ -84,7 +136,7 @@
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_base|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
@@ -98,21 +150,56 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_io|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_json|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_config|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_collate|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arc_collate_tool|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log_shared|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_test|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
@@ -122,23 +209,38 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_base|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='tests|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_io|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_json|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_config|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_collate|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arc_collate_tool|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log_shared|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_test|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_base|Win32'">
     <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
     <IntDir>intermediate\$(Configuration)\</IntDir>
     <TargetName>arcanecore_base</TargetName>
@@ -150,25 +252,55 @@
     <TargetName>tests</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'">
-    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
-    <IntDir>intermediate\$(Configuration)\</IntDir>
-    <TargetName>arcanecore_gfx</TargetName>
-    <TargetExt>.lib</TargetExt>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_io|Win32'">
     <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
     <IntDir>intermediate\$(Configuration)\</IntDir>
     <TargetName>arcanecore_io</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_log</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_json|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_json</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_config|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_config</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_collate|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_collate</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arc_collate_tool|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arc_collate_tool</TargetName>
+    <TargetExt>.exe</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log_shared|Win32'">
+    <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
+    <IntDir>intermediate\$(Configuration)\</IntDir>
+    <TargetName>arcanecore_log_shared</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_test|Win32'">
     <OutDir>$(SolutionDir)\$(ProjectName)\build\win_x86\</OutDir>
     <IntDir>intermediate\$(Configuration)\</IntDir>
     <TargetName>arcanecore_test</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Base_lib|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_base|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
@@ -198,10 +330,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>C:\Users\David\AppData\Local\Programs\Python\Python36-32\libs;C:\Dropbox\Development\ArcaneCore\ArcaneCore\build\win_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>arcanecore_test.lib;arcanecore_io.lib;arcanecore_base.lib;arcanecore_gfx.lib;python3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>python3.lib;arcanecore_base.lib;arcanecore_io.lib;arcanecore_log.lib;arcanecore_json.lib;arcanecore_config.lib;arcanecore_collate.lib;arcanecore_test.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='GFX_lib|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_io|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
@@ -216,7 +348,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='IO_lib|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
@@ -231,7 +363,87 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Test_lib|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_json|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_config|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_collate|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arc_collate_tool|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\build\win_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>arcanecore_base.lib;arcanecore_io.lib;arcanecore_log.lib;arcanecore_log_shared.lib;arcanecore_collate.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_log_shared|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\src\cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ARCANECORE_LOG_GLOBAL_EXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Dropbox\Development\ArcaneCore\ArcaneCore\build\win_x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>arcanecore_base.lib;arcanecore_io.lib;arcanecore_log.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='arcanecore_test|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>

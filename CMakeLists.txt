@@ -25,11 +25,40 @@ set(IO_SRC
     src/cpp/arcanecore/io/sys/Path.cpp
 )
 
-set(GFX_SRC
-    src/cpp/arcanecore/gfx/Vector2.cpp
-    src/cpp/arcanecore/gfx/Vector3.cpp
-    src/cpp/arcanecore/gfx/Vector4.cpp
-    src/cpp/arcanecore/gfx/VectorOperations.cpp
+set(LOG_SRC
+    src/cpp/arcanecore/log/AbstractOutput.cpp
+    src/cpp/arcanecore/log/Input.cpp
+    src/cpp/arcanecore/log/LogHandler.cpp
+    src/cpp/arcanecore/log/Stream.cpp
+    src/cpp/arcanecore/log/outputs/FileOutput.cpp
+    src/cpp/arcanecore/log/outputs/StdOutput.cpp
+)
+
+set(LOG_SHARED_SRC
+    src/cpp/arcanecore/log/Shared.cpp
+)
+
+set(JSON_SRC
+    src/cpp/json/jsoncpp.cpp
+)
+
+set(CONFIG_SRC
+    src/cpp/arcanecore/config/Document.cpp
+    src/cpp/arcanecore/config/Variant.cpp
+    src/cpp/arcanecore/config/visitors/Path.cpp
+    src/cpp/arcanecore/config/visitors/Primitive.cpp
+    src/cpp/arcanecore/config/visitors/String.cpp
+)
+
+set(COLLATE_SRC
+    src/cpp/arcanecore/col/Accessor.cpp
+    src/cpp/arcanecore/col/Collator.cpp
+    src/cpp/arcanecore/col/Reader.cpp
+    src/cpp/arcanecore/col/TableOfContents.cpp
+)
+
+set(COLLATE_CMD_SRC
+    src/cpp/arcanecore/col/__cmd/CommandLineTool.cpp
 )
 
 set(TEST_SRC
@@ -63,7 +92,19 @@ set(TESTS_SUITES
     tests/cpp/io/sys/FileReader_TestSuite.cpp
     tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp
     tests/cpp/io/sys/Path_TestSuite.cpp
+
+    tests/cpp/log/Log_TestSuite.cpp
+
+    tests/cpp/config/Document_TestSuite.cpp
+    tests/cpp/config/Variant_TestSuite.cpp
+    tests/cpp/config/visitors/PathVisitor_TestSuite.cpp
+    tests/cpp/config/visitors/PrimitiveVisitor_TestSuite.cpp
+    tests/cpp/config/visitors/StringVisitor_TestSuite.cpp
+
+    tests/cpp/col/Read_TestSuite.cpp
+    tests/cpp/col/Write_TestSuite.cpp
 )
+
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/linux_x86)
@@ -88,16 +129,40 @@ link_directories(
 
 add_library(arcanecore_base STATIC ${BASE_SRC})
 add_library(arcanecore_io STATIC ${IO_SRC})
-add_library(arcanecore_gfx STATIC ${GFX_SRC})
+add_library(arcanecore_log STATIC ${LOG_SRC})
+add_library(arcanecore_json STATIC ${JSON_SRC})
+add_library(arcanecore_config STATIC ${CONFIG_SRC})
+add_library(arcanecore_collate STATIC ${COLLATE_SRC})
 add_library(arcanecore_test STATIC ${TEST_SRC})
+
+add_library(arcanecore_log_shared SHARED ${LOG_SHARED_SRC})
+
+target_link_libraries(arcanecore_log_shared
+    arcanecore_log
+    arcanecore_io
+    arcanecore_base
+)
+
+add_executable(arc_collate_tool ${COLLATE_CMD_SRC})
+
+target_link_libraries(arc_collate_tool
+    arcanecore_collate
+    arcanecore_log_shared
+    arcanecore_log
+    arcanecore_io
+    arcanecore_base
+)
 
 add_executable(tests ${TESTS_SUITES})
 
 target_link_libraries(tests
     arcanecore_test
+    arcanecore_collate
+    arcanecore_config
+    arcanecore_json
+    arcanecore_log
     arcanecore_io
     arcanecore_base
-    arcanecore_gfx
     python3.5m
     dl
 )

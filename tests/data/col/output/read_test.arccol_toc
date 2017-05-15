@@ -1,0 +1,4 @@
+﻿tests/data/col/file_1.txt,tests/data/col/output/read_test.arccol,0,0,115
+tests/data/col/file_2.txt,tests/data/col/output/read_test.arccol,0,115,64
+tests/data/col/file_3.json,tests/data/col/output/read_test.arccol,0,179,75
+tests/data/col/file_4.bin,tests/data/col/output/read_test.arccol,0,254,440
