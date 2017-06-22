@@ -14,44 +14,44 @@
 /*!
  * \brief Shorthand for arc::config::PathV::instance()
  */
-#define ME_PATHV arc::config::PathV::instance()
+#define AC_PATHV arc::config::PathV::instance()
 /*!
  * \brief Shorthand for arc::config::PathVectorV::instance()
  */
-#define ME_PATHVECV arc::config::PathVectorV::instance()
+#define AC_PATHVECV arc::config::PathVectorV::instance()
 
 /*!
  * \brief Shorthand for arc::config::BoolV::instance()
  */
-#define ME_BOOLV arc::config::BoolV::instance()
+#define AC_BOOLV arc::config::BoolV::instance()
 /*!
  * \brief Shorthand for arc::config::BoolVectorV::instance()
  */
-#define ME_BOOLVECV arc::config::BoolVectorV::instance()
+#define AC_BOOLVECV arc::config::BoolVectorV::instance()
 /*!
  * \brief Shorthand for arc::config::IntV<IntType>::instance()
  */
-#define ME_INTV(IntType) arc::config::IntV<IntType>::instance()
+#define AC_INTV(IntType) arc::config::IntV<IntType>::instance()
 /*!
  * \brief Shorthand for arc::config::IntVectorV<IntType>::instance()
  */
-#define ME_INTVECV(IntType) arc::config::IntVectorV<IntType>::instance()
+#define AC_INTVECV(IntType) arc::config::IntVectorV<IntType>::instance()
 /*!
  * \brief Shorthand for arc::config::FloatV<FloatType>::instance()
  */
-#define ME_FLOATV(FloatType) arc::config::FloatV<FloatType>::instance()
+#define AC_FLOATV(FloatType) arc::config::FloatV<FloatType>::instance()
 /*!
  * \brief Shorthand for arc::config::FloatVectorV<FloatType>::instance()
  */
-#define ME_FLOATVECV(FloatType) arc::config::FloatVectorV<FloatType>::instance()
+#define AC_FLOATVECV(FloatType) arc::config::FloatVectorV<FloatType>::instance()
 
 /*!
  * \brief Shorthand for arc::config::UTF8StringV::instance()
  */
-#define ME_U8STRV arc::config::UTF8StringV::instance()
+#define AC_U8STRV arc::config::UTF8StringV::instance()
 /*!
  * \brief Shorthand for arc::config::UTF8StringVectorV::instance()
  */
-#define ME_U8STRVECV arc::config::UTF8StringVectorV::instance()
+#define AC_U8STRVECV arc::config::UTF8StringVectorV::instance()
 
 #endif

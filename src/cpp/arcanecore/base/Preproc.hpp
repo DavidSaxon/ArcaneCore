@@ -72,6 +72,15 @@
     #undef ARC_OS_UNKNOWN
 #endif
 
+/*!
+ * Uses the name of the given preprocessor as a string literal.
+ */
+#define ARC_STRINGIFY_NAME(Var) #Var
+/*!
+ * Uses the value of the given preprocessor as a string literal.
+ */
+#define ARC_STRINGIFY_VALUE(Var) ARC_STRINGIFY_NAME(Var)
+
 //------------------------------CONSTRUCTOR MACROS------------------------------
 
 /*!

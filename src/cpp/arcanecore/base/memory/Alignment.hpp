@@ -7,6 +7,7 @@
 #include "arcanecore/base/Preproc.hpp"
 #include "arcanecore/base/os/OSOperations.hpp"
 
+
 /*!
  * \brief Declaration specifier to set the minimum alignment of the the type in
  *        bytes.
@@ -99,7 +100,11 @@ public:
 
     void operator delete(void* ptr)
     {
-        free(ptr);
+        #ifdef _MSC_VER
+            _aligned_free(ptr);
+        #else
+            free(ptr);
+        #endif
     }
 
     void* operator new[](std::size_t count)
@@ -148,7 +153,11 @@ public:
 
     void operator delete[](void* ptr)
     {
-        free(ptr);
+        #ifdef _MSC_VER
+            _aligned_free(ptr);
+        #else
+            free(ptr);
+        #endif
     }
 };
 

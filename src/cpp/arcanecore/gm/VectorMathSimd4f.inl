@@ -168,7 +168,7 @@ inline SimdVector4f clamp(
 //------------------------------------FLOOR-------------------------------------
 
 template<>
-SimdVector4f floor(const SimdVector4f& v)
+inline SimdVector4f floor(const SimdVector4f& v)
 {
     __m128i v0 = _mm_setzero_si128();
     __m128i v1 = _mm_cmpeq_epi32(v0, v0);
@@ -185,7 +185,7 @@ SimdVector4f floor(const SimdVector4f& v)
 //-------------------------------------CEIL-------------------------------------
 
 template<>
-SimdVector4f ceil(const SimdVector4f& v)
+inline SimdVector4f ceil(const SimdVector4f& v)
 {
     __m128i v0 = _mm_setzero_si128();
     __m128i v1 = _mm_cmpeq_epi32(v0, v0);
@@ -202,7 +202,7 @@ SimdVector4f ceil(const SimdVector4f& v)
 //------------------------------------ROUND-------------------------------------
 
 template<>
-SimdVector4f round(const SimdVector4f& v)
+inline SimdVector4f round(const SimdVector4f& v)
 {
     __m128 v0 = _mm_setzero_ps();
     __m128 v1 = _mm_cmpeq_ps(v0, v0);
@@ -226,7 +226,7 @@ SimdVector4f round(const SimdVector4f& v)
 //-------------------------------------DOT--------------------------------------
 
 template<>
-float dot(const SimdVector4f& a, const SimdVector4f& b)
+inline float dot(const SimdVector4f& a, const SimdVector4f& b)
 {
     __m128 r1 = _mm_mul_ps(a.get_simd(), b.get_simd());
     __m128 r2 = _mm_hadd_ps(r1, r1);
@@ -258,7 +258,7 @@ static const SimdVector4f LOG_Q2_4f( 0.693359375F);
 } // namespace anonymous
 
 template<>
-SimdVector4f log(const SimdVector4f& v)
+inline SimdVector4f log(const SimdVector4f& v)
 {
      // mask for any component that are invalid (less than or equal to 0)
      __m128 invalid_mask = _mm_cmple_ps(v.get_simd(), _mm_setzero_ps());
@@ -351,7 +351,7 @@ static const Log2LookupTableInit4f Log2LookupTableInit4fInstance;
 } // namespace anonymous
 
 template<>
-SimdVector4f log2(const SimdVector4f& v)
+inline SimdVector4f log2(const SimdVector4f& v)
 {
     __m128i exponent_mask = _mm_set1_epi32(0x7F800000);
     __m128i mantissa_mask = _mm_set1_epi32(0x007FFFFF);
@@ -404,7 +404,7 @@ static const SimdVector4f EXP_P5_4f(5.0000001201E-1F);
 } // namespace anonymous
 
 template<>
-SimdVector4f exp(const SimdVector4f& v)
+inline SimdVector4f exp(const SimdVector4f& v)
 {
     // setup the result and clamp between EXP_LOW and EXP_HIGH
     __m128 x = _mm_max_ps(v.get_simd(), EXP_LOW_4f.get_simd());
@@ -461,7 +461,7 @@ SimdVector4f exp(const SimdVector4f& v)
 //-------------------------------------SQRT-------------------------------------
 
 template<>
-SimdVector4f sqrt(const SimdVector4f& v)
+inline SimdVector4f sqrt(const SimdVector4f& v)
 {
     return SimdVector4f(
         _mm_sqrt_ps(v.get_simd()),
@@ -472,7 +472,7 @@ SimdVector4f sqrt(const SimdVector4f& v)
 //------------------------------------RSQRT-------------------------------------
 
 template<>
-SimdVector4f rsqrt(const SimdVector4f& v)
+inline SimdVector4f rsqrt(const SimdVector4f& v)
 {
     return SimdVector4f(
         _mm_rsqrt_ps(v.get_simd()),
@@ -499,7 +499,7 @@ static const SimdVector4f TRIG_COS_COF_P2_4f(4.166664568298827e-2F);
 } // namespace anonymous
 
 template<>
-SimdVector4f sin(const SimdVector4f& v)
+inline SimdVector4f sin(const SimdVector4f& v)
 {
     __m128 x = v.get_simd();
     __m128 sign_bit = x;
@@ -582,7 +582,7 @@ SimdVector4f sin(const SimdVector4f& v)
 //-------------------------------------COS--------------------------------------
 
 template<>
-SimdVector4f cos(const SimdVector4f& v)
+inline SimdVector4f cos(const SimdVector4f& v)
 {
     __m128 x = v.get_simd();
     // take the absolute value
@@ -663,7 +663,7 @@ SimdVector4f cos(const SimdVector4f& v)
 //------------------------------------SINCOS------------------------------------
 
 template<>
-void sincos(
+inline void sincos(
         const SimdVector4f& v,
         SimdVector4f& r_sin,
         SimdVector4f& r_cos)

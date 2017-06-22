@@ -167,7 +167,7 @@ inline Vector<T_scalar, T_dimensions, T_use_simd> clamp(
  *        result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> floor(
+inline Vector<T_scalar, T_dimensions, T_use_simd> floor(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -183,7 +183,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> floor(
  *        result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> ceil(
+inline Vector<T_scalar, T_dimensions, T_use_simd> ceil(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -199,7 +199,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> ceil(
  *        returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> round(
+inline Vector<T_scalar, T_dimensions, T_use_simd> round(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -214,7 +214,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> round(
  * \brief Returns a normalised copy of the given vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> normalise(
+inline Vector<T_scalar, T_dimensions, T_use_simd> normalise(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     return v * arc::math::rsqrt(dot(v, v));
@@ -229,7 +229,7 @@ template<
     bool T_use_simd,
     bool T_other_use_simd
 >
-T_scalar dot(
+inline T_scalar dot(
     const Vector<T_scalar, T_dimensions, T_use_simd>& a,
     const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
@@ -242,6 +242,28 @@ T_scalar dot(
 }
 
 /*!
+ * \brief Computes the dot product of vectors a and b and returns the result
+ *        copied across the components of a vector.
+ */
+template<
+    typename T_scalar,
+    std::size_t T_dimensions,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+inline Vector<T_scalar, T_dimensions, T_use_simd> dot_vector(
+    const Vector<T_scalar, T_dimensions, T_use_simd>& a,
+    const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
+{
+    T_scalar r = 0;
+    for(std::size_t i = 0; i < T_dimensions; ++i)
+    {
+        r += a[i] * b[i];
+    }
+    return Vector<T_scalar, T_dimensions, T_use_simd>(r);
+}
+
+/*!
  * \brief Computes the cross product of vectors a and b.
  */
 template<
@@ -250,7 +272,7 @@ template<
     bool T_use_simd,
     bool T_other_use_simd
 >
-Vector<T_scalar, T_dimensions, T_use_simd> cross(
+inline Vector<T_scalar, T_dimensions, T_use_simd> cross(
     const Vector<T_scalar, T_dimensions, T_use_simd>& a,
     const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
@@ -275,7 +297,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> cross(
  *       calculate the squared root.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-T_scalar magnitude2(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+inline T_scalar magnitude2(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     return dot(v, v);
 }
@@ -284,7 +306,7 @@ T_scalar magnitude2(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
  * \brief Calculates and returns the magnitude of the given vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-T_scalar magnitude(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
+inline T_scalar magnitude(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     return static_cast<T_scalar>(std::sqrt(magnitude2(v)));
 }
@@ -293,7 +315,7 @@ T_scalar magnitude(const Vector<T_scalar, T_dimensions, T_use_simd>& v)
  * \brief Calculates the distance between the vectors a and b.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-T_scalar distance(
+inline T_scalar distance(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         const Vector<T_scalar, T_dimensions, T_use_simd>& b)
 {
@@ -309,7 +331,7 @@ template<
     bool T_use_simd,
     bool T_other_use_simd
 >
-Vector<T_scalar, T_dimensions, T_use_simd> direction(
+inline Vector<T_scalar, T_dimensions, T_use_simd> direction(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
@@ -332,7 +354,7 @@ template<
     bool T_use_simd,
     bool T_other_use_simd
 >
-T_scalar angle2(
+inline T_scalar angle2(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
@@ -351,7 +373,7 @@ T_scalar angle2(
  *        vector and returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> log(
+inline Vector<T_scalar, T_dimensions, T_use_simd> log(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -367,7 +389,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> log(
  *        vector and returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> log2(
+inline Vector<T_scalar, T_dimensions, T_use_simd> log2(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -383,7 +405,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> log2(
  *        vector and returns the result in a new vector.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> exp(
+inline Vector<T_scalar, T_dimensions, T_use_simd> exp(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -404,7 +426,7 @@ template<
     bool T_use_simd,
     bool T_other_use_simd
 >
-Vector<T_scalar, T_dimensions, T_use_simd> pow(
+inline Vector<T_scalar, T_dimensions, T_use_simd> pow(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
@@ -422,7 +444,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> pow(
  *        scalar b.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> pow(
+inline Vector<T_scalar, T_dimensions, T_use_simd> pow(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         T_scalar b)
 {
@@ -442,7 +464,7 @@ template<
     bool T_use_simd,
     bool T_other_use_simd
 >
-Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
+inline Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         const Vector<T_scalar, T_dimensions, T_other_use_simd>& b)
 {
@@ -457,7 +479,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
  * negative exponents.
  */
 template<typename T_scalar, std::size_t T_dimensions, bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
+inline Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
         const Vector<T_scalar, T_dimensions, T_use_simd>& a,
         T_scalar b)
 {
@@ -468,7 +490,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> pow_fast(
  * \brief Calculates the square root of each component in the given vector.
  */
 template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> sqrt(
+inline Vector<T_scalar, T_dimensions, T_use_simd> sqrt(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -484,7 +506,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> sqrt(
  *        root for each component in the vector.
  */
 template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> rsqrt(
+inline Vector<T_scalar, T_dimensions, T_use_simd> rsqrt(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -499,7 +521,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> rsqrt(
  * \brief Calculates the sine of each component in the given vector.
  */
 template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> sin(
+inline Vector<T_scalar, T_dimensions, T_use_simd> sin(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -514,7 +536,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> sin(
  * \brief Calculates the cosine of each component in the given vector.
  */
 template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
-Vector<T_scalar, T_dimensions, T_use_simd> cos(
+inline Vector<T_scalar, T_dimensions, T_use_simd> cos(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v)
 {
     Vector<T_scalar, T_dimensions, T_use_simd> r;
@@ -533,7 +555,7 @@ Vector<T_scalar, T_dimensions, T_use_simd> cos(
  *       cos can be computed simultaneously with almost no extra overhead.
  */
 template<typename T_scalar,std::size_t T_dimensions,bool T_use_simd>
-void sincos(
+inline void sincos(
         const Vector<T_scalar, T_dimensions, T_use_simd>& v,
         Vector<T_scalar, T_dimensions, T_use_simd>& r_sin,
         Vector<T_scalar, T_dimensions, T_use_simd>& r_cos)

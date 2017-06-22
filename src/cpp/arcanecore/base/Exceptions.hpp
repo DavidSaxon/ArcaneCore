@@ -385,11 +385,28 @@ public:
 };
 
 //------------------------------------------------------------------------------
+//                                 CONTEXT ERROR
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief Warns of an error relating to the current runtime context.
+ */
+class ContextError : public ArcException
+{
+public:
+
+    ContextError(const arc::str::UTF8String& message)
+        : ArcException(message, this)
+    {
+    }
+};
+
+//------------------------------------------------------------------------------
 //                               DYNAMIC LINK ERROR
 //------------------------------------------------------------------------------
 
 /*!
- * \brief Warns of error relating to dynamic linking.
+ * \brief Warns of an error relating to dynamic linking.
  */
 class DynamicLinkError : public ArcException
 {

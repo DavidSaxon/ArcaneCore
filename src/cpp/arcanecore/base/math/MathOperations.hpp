@@ -9,6 +9,7 @@
 #include <cfloat>
 #include <cmath>
 #include <limits>
+#include <cstring>
 
 #include "arcanecore/base/math/MathConstants.hpp"
 
@@ -148,15 +149,15 @@ inline float rsqrt(float v)
     float x2 = v * 0.5F;
     float y  = v;
     // evil floating point bit level hacking
-    uint32_t i  = *((long*) &y);
+    arc::uint32 i;
+    std::memcpy(&i, &y, sizeof(float));
     // what the fuck?
     i  = 0x5f3759DF - (i >> 1);
-    y  = *((float*) &i);
+    std::memcpy(&y, &i, sizeof(float));
+    // y  = *((float*) &i);
     // 1st iteration
     y  = y * (threehalfs - (x2 * y * y));
     // 2nd iteration, this can be removed
-    //  y  = y * (threehalfs - (x2 * y * y));
-
     return y;
 }
 

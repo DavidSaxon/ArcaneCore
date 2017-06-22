@@ -9,9 +9,12 @@
 #include <arcanecore/base/memory/Alignment.hpp>
 #include <arcanecore/base/str/UTF8String.hpp>
 
+// #define ARC_GM_DISABLE_SSE
+
 #ifndef ARC_GM_DISABLE_SSE
     #include <arcanecore/base/simd/Include.hpp>
 #endif
+
 
 namespace arc
 {
@@ -70,54 +73,59 @@ struct VectorStorage;
 
 //-------------------------SUPPORTED SIMD STORAGE TYPES-------------------------
 
-template<>
-struct VectorStorage<float, 3, true>
-{
-    typedef __m128 SimdData;
-    ARC_MEMORY_ALIGN(16) float data[3];
-};
+#ifndef ARC_GM_DISABLE_SSE
 
-template<>
-struct VectorStorage<float, 4, true>
-{
-    typedef __m128 SimdData;
-    ARC_MEMORY_ALIGN(16) float data[4];
-};
+    template<>
+    struct VectorStorage<float, 3, true>
+    {
+        typedef __m128 SimdData;
+        ARC_MEMORY_ALIGN(16) float data[3];
+        // __attribute__((aligned(16))) float data[3];
+    };
 
-template<>
-struct VectorStorage<double, 2, true>
-{
-    typedef __m128d SimdData;
-    ARC_MEMORY_ALIGN(16) double data[2];
-};
+    template<>
+    struct VectorStorage<float, 4, true>
+    {
+        typedef __m128 SimdData;
+        ARC_MEMORY_ALIGN(16) float data[4];
+    };
 
-template<>
-struct VectorStorage<arc::uint32, 3, true>
-{
-    typedef __m128i SimdData;
-    ARC_MEMORY_ALIGN(16) arc::uint32 data[3];
-};
+    template<>
+    struct VectorStorage<double, 2, true>
+    {
+        typedef __m128d SimdData;
+        ARC_MEMORY_ALIGN(16) double data[2];
+    };
 
-template<>
-struct VectorStorage<arc::uint32, 4, true>
-{
-    typedef __m128i SimdData;
-    ARC_MEMORY_ALIGN(16) arc::uint32 data[4];
-};
+    template<>
+    struct VectorStorage<arc::uint32, 3, true>
+    {
+        typedef __m128i SimdData;
+        ARC_MEMORY_ALIGN(16) arc::uint32 data[3];
+    };
 
-template<>
-struct VectorStorage<arc::int32, 3, true>
-{
-    typedef __m128i SimdData;
-    ARC_MEMORY_ALIGN(16) arc::int32 data[3];
-};
+    template<>
+    struct VectorStorage<arc::uint32, 4, true>
+    {
+        typedef __m128i SimdData;
+        ARC_MEMORY_ALIGN(16) arc::uint32 data[4];
+    };
 
-template<>
-struct VectorStorage<arc::int32, 4, true>
-{
-    typedef __m128i SimdData;
-    ARC_MEMORY_ALIGN(16) arc::int32 data[4];
-};
+    template<>
+    struct VectorStorage<arc::int32, 3, true>
+    {
+        typedef __m128i SimdData;
+        ARC_MEMORY_ALIGN(16) arc::int32 data[3];
+    };
+
+    template<>
+    struct VectorStorage<arc::int32, 4, true>
+    {
+        typedef __m128i SimdData;
+        ARC_MEMORY_ALIGN(16) arc::int32 data[4];
+    };
+
+#endif
 
 //-----------------------------DEFAULT STORAGE TYPE-----------------------------
 
@@ -198,7 +206,7 @@ public:
      * \brief Creates a new vector with the x and y components initialised to
      *        the given values, and any further components initialised to 0.
      *
-     * \note The vector must have 2 or more dimensions.
+     * \note The vector type must have 2 or more dimensions.
      */
     Vector(T_scalar x, T_scalar y)
     {
@@ -222,7 +230,7 @@ public:
      * \brief Creates a new vector with the x, y, and z components initialised
      *        to the given values, and any further components initialised to 0.
      *
-     * \note The vector must have 3 or more dimensions.
+     * \note The vector type must have 3 or more dimensions.
      */
     Vector(T_scalar x, T_scalar y, T_scalar z)
     {
@@ -248,7 +256,7 @@ public:
      *        initialised to the given values, and any further components
      *        initialised to 0.
      *
-     * \note The vector must have 4 or more dimensions.
+     * \note The vector type must have 4 or more dimensions.
      */
     Vector(T_scalar x, T_scalar y, T_scalar z, T_scalar w)
     {
@@ -274,7 +282,7 @@ public:
      * \brief Creates a new vector using the x and y components from the xy
      *        2-dimensional vector and the z value as the z component.
      *
-     * \note The vector must have 3 or more dimensions.
+     * \note The vector type must have 3 or more dimensions.
      */
     template<bool T_other_use_simd>
     Vector(
@@ -303,7 +311,7 @@ public:
      *        2-dimensional vector and the z and w components from zw
      *        2-dimensional vector. Any further component are initialised to 0.
      *
-     * \note The vector must have 4 or more dimensions.
+     * \note The vector type must have 4 or more dimensions.
      */
     template<bool T_other_use_simd>
     Vector(
@@ -332,7 +340,7 @@ public:
      * \brief Creates a new vector using the x, y, and z components from the xyz
      *        3-dimensional vector and the w value as the w component.
      *
-     * \note The vector must have 3 or more dimensions.
+     * \note The vector type must have 3 or more dimensions.
      */
     template<bool T_other_use_simd>
     Vector(
@@ -413,7 +421,7 @@ public:
      * \tparam T_y_component The index of the component to use from the given
      *                       vector for this vector's y component.
      *
-     * \note The vector must have 2 or more dimensions.
+     * \note The vector type must have 2 or more dimensions.
      */
     template<
         std::size_t T_other_dimensions,
@@ -464,7 +472,7 @@ public:
      * \tparam T_z_component The index of the component to use from the given
      *                       vector for this vector's z component.
      *
-     * \note The vector must have 3 or more dimensions.
+     * \note The vector type must have 3 or more dimensions.
      */
     template<
         std::size_t T_other_dimensions,
@@ -527,7 +535,7 @@ public:
      * \tparam T_w_component The index of the component to use from the given
      *                       vector for this vector's w component.
      *
-     * \note The vector must have 3 or more dimensions.
+     * \note The vector type must have 3 or more dimensions.
      */
     template<
         std::size_t T_other_dimensions,
@@ -675,7 +683,7 @@ public:
      * \brief Compares whether the given vectors are considered equal.
      *
      * \note If the dimensions differ the vectors will never be considered
-     *       equal. However whether the the vector is formated in memory for
+     *       equal. However whether the the vector is formatted in memory for
      *       simd or not will not affect this equality check.
      *
      * \warning This performs a standard equality check of the individual
@@ -709,7 +717,7 @@ public:
      * \brief Compares whether the given vectors are considered not equal.
      *
      * \note If the dimensions differ the vectors will never be considered
-     *       equal. However whether the the vector is formated in memory for
+     *       equal. However whether the the vector is formatted in memory for
      *       simd or not will not affect this equality check.
      *
      * \warning This performs a standard equality check of the individual
@@ -1266,6 +1274,7 @@ typedef Vector<arc::int32, 4> Vector4i;
 // define the Simd types whether or not it's enabled, since we want to be able
 // turn it off and on easily without having to update the vector types
 // everywhere in the code.
+#undef ARC_GM_USE_SIMD
 #ifndef ARC_GM_DISABLE_SSE
     #define ARC_GM_USE_SIMD true
 #else
