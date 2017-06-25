@@ -20,7 +20,18 @@ namespace gm
 {
 
 /*!
- * \brief TODO: column major
+ * \brief A generic linear algebra matrix object with simd support.
+ *
+ * Arcanecore Matrix types consist of vectors in column major order. All the
+ * data components of matrices are guaranteed to contiguous in memory.
+ *
+ * \tparam T_scalar The scalar type of this matrix (e.g. float).
+ * \tparam T_cols The number of columns in the matrix, this should be greater
+ *                than 0.
+ * \tparam T_rows The number of rows in the matrix, this should be greater than
+ *                0.
+ * \tparam T_use_simd Whether this matrix should be formatted in memory for simd
+ *                    use.
  */
 template<
     typename T_scalar,
@@ -361,18 +372,176 @@ public:
     }
 
     /*!
-     * \brief Negation operator.
+     * \brief Scalar addition operator.
      *
-     * Returns a copy of this vector with each of its components negated.
+     * Adds the scalar to each component of this matrix and returns the result
+     * as a new matrix.
      */
-    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator-() const
+     Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator+(T_scalar v)
     {
-        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r;
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r += v;
+    }
+
+    /*!
+     * \brief Scalar compound addition operator.
+     *
+     * Adds the scalar to each component of this matrix.
+     */
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator+=(T_scalar v)
+    {
         for(std::size_t i = 0; i < T_cols; ++i)
         {
-            r[i] = -m_storage[i];
+            (*this)[i] += v;
         }
-        return r;
+        return *this;
+    }
+
+    /*!
+     * \brief Vector addition operator.
+     *
+     * Adds the vector to each column of this matrix and returns the result
+     * as a new matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator+(
+        const Vector<T_scalar, T_rows, T_other_use_simd>& v)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r += v;
+    }
+
+    /*!
+     * \brief Vector compound addition operator.
+     *
+     * Adds the vector to each column of this matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator+=(
+        const Vector<T_scalar, T_rows, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            (*this)[i] += v;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Matrix addition operator.
+     *
+     * Adds each component of the given matrix to each component of this matrix
+     * and returns the result as a new matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator+(
+        const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r += m;
+    }
+
+    /*!
+     * \brief Matrix compound addition operator.
+     *
+     * Adds each component of the given matrix to each component of this matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator+=(
+        const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
+    {
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            (*this)[i] += m[i];
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Scalar subtraction operator.
+     *
+     * Subtracts the scalar from each component of this matrix and returns the
+     * result as a new matrix.
+     */
+     Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator-(T_scalar v)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r -= v;
+    }
+
+    /*!
+     * \brief Scalar compound subtraction operator.
+     *
+     * Subtracts the scalar from each component of this matrix.
+     */
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator-=(T_scalar v)
+    {
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            (*this)[i] -= v;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Vector subtraction operator.
+     *
+     * Subtracts the vector from each column of this matrix and returns the
+     * result as a new matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator-(
+        const Vector<T_scalar, T_rows, T_other_use_simd>& v)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r -= v;
+    }
+
+    /*!
+     * \brief Vector compound subtraction operator.
+     *
+     * Subtracts the vector from each column of this matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator-=(
+        const Vector<T_scalar, T_rows, T_other_use_simd>& v)
+    {
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            (*this)[i] -= v;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Matrix subtraction operator.
+     *
+     * Subtracts each component of the given matrix from each component of this
+     * matrix and returns the result as a new matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator-(
+        const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r -= m;
+    }
+
+    /*!
+     * \brief Matrix compound subtraction operator.
+     *
+     * Subtracts each component of the given matrix from each component of this
+     * matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator-=(
+        const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
+    {
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            (*this)[i] -= m[i];
+        }
+        return *this;
     }
 
 private:
@@ -387,6 +556,56 @@ private:
     VectorType m_storage[T_cols];
 
 };
+
+//------------------------------------------------------------------------------
+//                               EXTERNAL OPERATORS
+//------------------------------------------------------------------------------
+
+template<
+    typename T_scalar,
+    std::size_t T_cols,
+    std::size_t T_rows,
+    bool T_use_simd = false
+>
+inline arc::str::UTF8String& operator<<(
+        arc::str::UTF8String& s,
+        const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
+{
+    s << "[";
+    for(std::size_t i = 0; i < T_cols; ++i)
+    {
+        s << m[i];
+        if(i < (T_cols - 1))
+        {
+            s << ", ";
+        }
+    }
+    s << "]";
+    return s;
+}
+
+template<
+    typename T_scalar,
+    std::size_t T_cols,
+    std::size_t T_rows,
+    bool T_use_simd = false
+>
+inline std::ostream& operator<<(
+        std::ostream& s,
+        const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
+{
+    s << "[";
+    for(std::size_t i = 0; i < T_cols; ++i)
+    {
+        s << m[i];
+        if(i < (T_cols - 1))
+        {
+            s << ", ";
+        }
+    }
+    s << "]";
+    return s;
+}
 
 //------------------------------------------------------------------------------
 //                                TYPE DEFINITIONS

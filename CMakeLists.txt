@@ -85,6 +85,7 @@ set(TESTS_SUITES
     tests/cpp/base/str/StringOperations_TestSuite.cpp
 
     tests/cpp/gm/Matrix_TestSuite.cpp
+    tests/cpp/gm/MatrixMath_TestSuite.cpp
     tests/cpp/gm/Vector_TestSuite.cpp
     tests/cpp/gm/VectorMath_TestSuite.cpp
 

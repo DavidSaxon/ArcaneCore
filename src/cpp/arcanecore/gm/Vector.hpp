@@ -143,6 +143,8 @@ struct VectorStorage<T_scalar, T_dimensions, false>
 /*!
  * \brief A generic linear algebra vector object with simd support.
  *
+ * The components of vectors are guaranteed to contiguous in memory.
+ *
  * \tparam T_scalar The scalar type of this vector (e.g. float).
  * \tparam T_dimensions The number of dimensions in this vector, this should be
  *                      greater than 0.
