@@ -30,8 +30,18 @@ namespace arc
 
     // typedefs for the built-in C++ types
 
+    /*!
+     * \brief An 8-bit signed byte type.
+     */
+    typedef signed char byte;
+
+    /*!
+     * \brief An 8-bit unsigned byte type.
+     */
+    typedef unsigned char ubyte;
+
     /**
-      * \brief a 8-bit signed integer type
+      * \brief An 8-bit signed integer type
       *
       * \note This may not necessarily `typedef` a `int8_t` as it is platform
       *       specific. If the platform cannot be resolved this will naively
@@ -40,7 +50,7 @@ namespace arc
     typedef std::int8_t int8;
 
     /**
-      * \brief a 8-bit unsigned integer type
+      * \brief An 8-bit unsigned integer type
       *
       * \note This may not necessarily `typedef` a `uint8_t` as it is platform
       *       specific. If the platform cannot be resolved this will naively

@@ -8,30 +8,49 @@ namespace
 {
 
 //------------------------------------------------------------------------------
-//                             SCALAR MULTIPLICATION
+//                                   TRANSPOSE
 //------------------------------------------------------------------------------
 
-
-ARC_TEST_UNIT(scalar_multiplication)
+ARC_TEST_UNIT(transpose)
 {
-    arc::gm::Matrix44f m(
-        arc::gm::Vector4f(1.0F, 2.0F, 2.0F, 2.0F),
-        arc::gm::Vector4f(2.0F, 1.0F, 2.0F, 2.0F),
-        arc::gm::Vector4f(2.0F, 2.0F, 1.0F, 2.0F),
-        arc::gm::Vector4f(2.0F, 2.0F, 2.0F, 1.0F)
+    arc::gm::Matrix33f m1(
+        arc::gm::Vector3f(1.0F, 2.0F, 3.0F),
+        arc::gm::Vector3f(4.0F, 5.0F, 6.0F),
+        arc::gm::Vector3f(7.0F, 8.0F, 9.0F)
     );
-    arc::gm::Matrix44f r(
-        arc::gm::Vector4f(4.4F, 8.8F, 8.8F, 8.8F),
-        arc::gm::Vector4f(8.8F, 4.4F, 8.8F, 8.8F),
-        arc::gm::Vector4f(8.8F, 8.8F, 4.4F, 8.8F),
-        arc::gm::Vector4f(8.8F, 8.8F, 8.8F, 4.4F)
+    arc::gm::Matrix33f r1(
+        arc::gm::Vector3f(1.0F, 4.0F, 7.0F),
+        arc::gm::Vector3f(2.0F, 5.0F, 8.0F),
+        arc::gm::Vector3f(3.0F, 6.0F, 9.0F)
     );
-    ARC_CHECK_EQUAL(m * 4.4F, r);
+    ARC_CHECK_EQUAL(arc::gm::transpose(m1), r1);
 
-    m *= 8.8F;
-    ARC_CHECK_EQUAL(m, r * 2.0F);
+    arc::gm::Matrix34f m2(
+        arc::gm::Vector4f(1.0F,  2.0F,  3.0F,  4.0F),
+        arc::gm::Vector4f(5.0F,  6.0F,  7.0F,  8.0F),
+        arc::gm::Vector4f(9.0F, 10.0F, 11.0F, 12.0F)
+    );
+    arc::gm::Matrix<float, 4, 3> r2(
+        arc::gm::Vector3f(1.0F,  5.0,   9.0F),
+        arc::gm::Vector3f(2.0F,  6.0,  10.0F),
+        arc::gm::Vector3f(3.0F,  7.0,  11.0F),
+        arc::gm::Vector3f(4.0F,  8.0,  12.0F)
+    );
+    ARC_CHECK_EQUAL(arc::gm::transpose(m2), r2);
+
+    arc::gm::Matrix44f m3(
+        arc::gm::Vector4f( 1.0F,  2.0F,  3.0F,  4.0F),
+        arc::gm::Vector4f( 5.0F,  6.0F,  7.0F,  8.0F),
+        arc::gm::Vector4f( 9.0F, 10.0F, 11.0F, 12.0F),
+        arc::gm::Vector4f(13.0F, 14.0F, 15.0F, 16.0F)
+    );
+    arc::gm::Matrix44f r3(
+        arc::gm::Vector4f(1.0F, 5.0F, 9.0F,  13.0F),
+        arc::gm::Vector4f(2.0F, 6.0F, 10.0F, 14.0F),
+        arc::gm::Vector4f(3.0F, 7.0F, 11.0F, 15.0F),
+        arc::gm::Vector4f(4.0F, 8.0F, 12.0F, 16.0F)
+    );
+    ARC_CHECK_EQUAL(arc::gm::transpose(m3), r3);
 }
-
-// TODO: test vector multiplication
 
 } // namespace anonymous

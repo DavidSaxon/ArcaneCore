@@ -544,6 +544,87 @@ public:
         return *this;
     }
 
+    /*!
+     * \brief Scalar multiplication operator.
+     *
+     * Multiplies each component of this matrix by the given scalar and returns
+     * the result as a new matrix.
+     */
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator*(T_scalar v)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        return r *= v;
+    }
+
+    /*!
+     * \brief Scalar compound multiplication operator.
+     *
+     * Multiplies each component of this matrix by the given scalar.
+     */
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator*=(T_scalar v)
+    {
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            (*this)[i] *= v;
+        }
+        return *this;
+    }
+
+    /*!
+     * \brief Vector multiplication operator.
+     *
+     * Multiplies this matrix by the given vector and returns the result as a
+     * new matrix.
+     */
+    template<bool T_other_use_simd>
+    VectorType operator*(const Vector<T_scalar, T_rows, T_other_use_simd>& v)
+    {
+        VectorType result;
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            result += (*this)[i] * VectorType(v[i]);
+        }
+        return result;
+    }
+
+    /*!
+     * \brief Matrix multiplication operator.
+     *
+     * Multiplies each component of this matrix by the each component in the
+     * given matrix and returns the result as a new matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> operator*(
+            const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
+    {
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(*this);
+        for(std::size_t i = 0; i < T_cols; ++i)
+        {
+            r[i] = (*this) * m[i];
+        }
+        return r;
+    }
+
+    /*!
+     * \brief Matrix compound multiplication operator.
+     *
+     * Multiplies each component of this matrix by the each component in the
+     * given matrix.
+     */
+    template<bool T_other_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& operator*=(
+            const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
+    {
+        static_assert(
+            T_cols -== T_rows,
+            "Only matrices with the number of columns equal to the number of "
+            "rows may be multiplied"
+        );
+
+        *this = (*this) * m;
+        return *this;
+    }
+
 private:
 
     //--------------------------------------------------------------------------
@@ -565,7 +646,7 @@ template<
     typename T_scalar,
     std::size_t T_cols,
     std::size_t T_rows,
-    bool T_use_simd = false
+    bool T_use_simd
 >
 inline arc::str::UTF8String& operator<<(
         arc::str::UTF8String& s,
@@ -588,7 +669,7 @@ template<
     typename T_scalar,
     std::size_t T_cols,
     std::size_t T_rows,
-    bool T_use_simd = false
+    bool T_use_simd
 >
 inline std::ostream& operator<<(
         std::ostream& s,

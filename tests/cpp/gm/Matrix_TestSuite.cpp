@@ -430,4 +430,101 @@ ARC_TEST_UNIT(matrix_subtraction)
     ARC_CHECK_EQUAL(m1, r);
 }
 
+//------------------------------------------------------------------------------
+//                             SCALAR MULTIPLICATION
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(scalar_multiplication)
+{
+    arc::gm::Matrix44f m(
+        arc::gm::Vector4f(1.0F, 2.0F, 2.0F, 2.0F),
+        arc::gm::Vector4f(2.0F, 1.0F, 2.0F, 2.0F),
+        arc::gm::Vector4f(2.0F, 2.0F, 1.0F, 2.0F),
+        arc::gm::Vector4f(2.0F, 2.0F, 2.0F, 1.0F)
+    );
+    arc::gm::Matrix44f r(
+        arc::gm::Vector4f(4.4F, 8.8F, 8.8F, 8.8F),
+        arc::gm::Vector4f(8.8F, 4.4F, 8.8F, 8.8F),
+        arc::gm::Vector4f(8.8F, 8.8F, 4.4F, 8.8F),
+        arc::gm::Vector4f(8.8F, 8.8F, 8.8F, 4.4F)
+    );
+    ARC_CHECK_EQUAL(m * 4.4F, r);
+
+    m *= 8.8F;
+    ARC_CHECK_EQUAL(m, r * 2.0F);
+}
+
+//------------------------------------------------------------------------------
+//                             VECTOR MULTIPLICATION
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(vector_multiplication)
+{
+    arc::gm::Matrix44f m1(
+        arc::gm::Vector4f( 0.0F,  1.0F,  2.0F,  3.0F),
+        arc::gm::Vector4f( 4.0F,  5.0F,  6.0F,  7.0F),
+        arc::gm::Vector4f( 8.0F,  9.0F, 10.0F, 11.0F),
+        arc::gm::Vector4f(12.0F, 13.0F, 14.0F, 15.0F)
+    );
+    arc::gm::Vector4f r1(80.0F, 90.0F, 100.0F, 110.0F);
+
+    ARC_CHECK_EQUAL(m1 * arc::gm::Vector4f(1.0F, 2.0F, 3.0F, 4.0F), r1);
+
+    arc::gm::Matrix44f m2(
+        arc::gm::Vector4f(0.0F, 4.0F,  8.0F, 12.0F),
+        arc::gm::Vector4f(1.0F, 5.0F,  9.0F, 13.0F),
+        arc::gm::Vector4f(2.0F, 6.0F, 10.0F, 14.0F),
+        arc::gm::Vector4f(3.0F, 7.0F, 11.0F, 15.0F)
+    );
+    arc::gm::Vector4f r2(20.0F, 60.0F, 100.0F, 140.0F);
+
+    ARC_CHECK_EQUAL(m2 * arc::gm::Vector4f(1.0F, 2.0F, 3.0F, 4.0F), r2);
+}
+
+//------------------------------------------------------------------------------
+//                             MATRIX MULTIPLICATION
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(matrix_multiplication)
+{
+    arc::gm::Matrix44f m1(
+        arc::gm::Vector4f(0.0F, 4.0F, 3.0F, 9.0F),
+        arc::gm::Vector4f(3.0F, 0.0F, 5.0F, 5.0F),
+        arc::gm::Vector4f(2.0F, 2.0F, 1.0F, 0.0F),
+        arc::gm::Vector4f(1.0F, 1.0F, 1.0F, 2.0F)
+    );
+    arc::gm::Matrix44f m2(
+        arc::gm::Vector4f(3.0F, 3.0F,  5.0F, 1.0F),
+        arc::gm::Vector4f(5.0F, 3.0F,  3.0F, 2.0F),
+        arc::gm::Vector4f(1.0F, 3.0F, -2.0F, 2.0F),
+        arc::gm::Vector4f(5.0F, 1.0F, -5.0F, 3.0F)
+    );
+    arc::gm::Matrix44f r1(
+        arc::gm::Vector4f(20.0F, 23.0F, 30.0F, 44.0F),
+        arc::gm::Vector4f(17.0F, 28.0F, 35.0F, 64.0F),
+        arc::gm::Vector4f( 7.0F,  2.0F, 18.0F, 28.0F),
+        arc::gm::Vector4f(-4.0F, 13.0F, 18.0F, 56.0F)
+    );
+
+    ARC_CHECK_EQUAL(m1 * m2, r1);
+
+    arc::gm::Matrix33f m3(
+        arc::gm::Vector3f( 1.0F, -4.0F, 16.0F),
+        arc::gm::Vector3f(-2.0F, -3.0F,  0.0F),
+        arc::gm::Vector3f(15.0F, 12.0F,  2.0F)
+    );
+    arc::gm::Matrix33f m4(
+        arc::gm::Vector3f(-5.0F, 15.0F, -3.0F),
+        arc::gm::Vector3f(11.0F,  7.0F, -1.0F),
+        arc::gm::Vector3f(-4.0F,  5.0F, -3.0F)
+    );
+    arc::gm::Matrix33f r2(
+        arc::gm::Vector3f(-80.0F, -61.0F, -86.0F),
+        arc::gm::Vector3f(-18.0F, -77.0F, 174.0F),
+        arc::gm::Vector3f(-59.0F, -35.0F, -70.0F)
+    );
+
+    ARC_CHECK_EQUAL(m3 * m4, r2);
+}
+
 } // namespace anonymous

@@ -14,10 +14,16 @@ namespace arc
 namespace gm
 {
 
+//------------------------------------------------------------------------------
+//                                   TRANSPOSE
+//------------------------------------------------------------------------------
+
 /*!
- * \brief Matrix by scalar component assignment multiplication operator.
+ * \brief Flips a matrix over its diagonal, i.e. switches the row and column
+ *        indices of the matrix.
  *
- *  Multiplies the components of the matrix by the scalar.
+ * \note If T_cols does not equals T_rows the resulting matrices will have
+ *       differently dimensionality to the given matrix.
  */
 template<
     typename T_scalar,
@@ -25,81 +31,58 @@ template<
     std::size_t T_rows,
     bool T_use_simd
 >
-Matrix<T_scalar, T_rows, T_cols, T_use_simd>& operator*=(
-        Matrix<T_scalar, T_rows, T_cols, T_use_simd>& m,
-        T_scalar v)
+Matrix<T_scalar, T_rows, T_cols, T_use_simd> transpose(
+        const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
 {
-    for(std::size_t i = 0; i < T_cols; ++i)
+    Matrix<T_scalar, T_rows, T_cols, T_use_simd> r;
+    for(std::size_t i = 0; i < T_rows; ++i)
     {
-        m[i] *= v;
+        Vector<T_scalar, T_cols, T_use_simd> v;
+        for(std::size_t j = 0; j < T_cols; ++j)
+        {
+            v[j] = m[j][i];
+        }
+        r[i] = v;
     }
-    return m;
+    return r;
 }
 
-/*!
- * \brief Matrix by scalar multiplication operator.
- *
- * Multiplies the components of the matrix by the scalar and returns the result
- * as a new matrix.
- */
-template<
-    typename T_scalar,
-    std::size_t T_cols,
-    std::size_t T_rows,
-    bool T_use_simd
->
-Matrix<T_scalar, T_rows, T_cols, T_use_simd> operator*(
-        const Matrix<T_scalar, T_rows, T_cols, T_use_simd>& m,
-        T_scalar v)
+//------------------------S P E C I A L I S A T I O N S-------------------------
+
+template<typename T_scalar, bool T_use_simd>
+Matrix<T_scalar, 3, 3, T_use_simd> transpose(
+        const Matrix<T_scalar, 3, 3, T_use_simd>& m)
 {
-    Matrix<T_scalar, T_cols, T_rows, T_use_simd> r(m);
-    return r *= v;
+    return Matrix<T_scalar, 3, 3, T_use_simd>(
+        Vector<T_scalar, 3, T_use_simd>(m[0][0], m[1][0], m[2][0]),
+        Vector<T_scalar, 3, T_use_simd>(m[0][1], m[1][1], m[2][1]),
+        Vector<T_scalar, 3, T_use_simd>(m[0][2], m[1][2], m[2][2])
+    );
 }
 
-/*!
- * \brief Vector by matrix multiplication operator.
- *
- * Multiplies the vector by the matrix and returns the result as a new vector.
- */
-template<
-    typename T_scalar,
-    std::size_t T_cols,
-    std::size_t T_rows,
-    bool T_use_simd_1,
-    bool T_use_simd_2
->
-Vector<T_scalar, T_cols, T_use_simd_1> operator*(
-        const Vector<T_scalar, T_cols, T_use_simd_1>& v,
-        const Matrix<T_scalar, T_rows, T_cols, T_use_simd_2>& m)
+template<typename T_scalar, bool T_use_simd>
+Matrix<T_scalar, 3, 4, T_use_simd> transpose(
+        const Matrix<T_scalar, 3, 4, T_use_simd>& m)
 {
-    Vector<T_scalar, T_cols, T_use_simd_1> result;
-    for(std::size_t i = 0; i < T_cols; ++i)
-    {
-        result += m[i] * v[i];
-    }
-    return result;
+    return Matrix<T_scalar, 4, 3, T_use_simd>(
+        Vector<T_scalar, 3, T_use_simd>(m[0][0], m[1][0], m[2][0]),
+        Vector<T_scalar, 3, T_use_simd>(m[0][1], m[1][1], m[2][1]),
+        Vector<T_scalar, 3, T_use_simd>(m[0][2], m[1][2], m[2][2]),
+        Vector<T_scalar, 3, T_use_simd>(m[0][3], m[1][3], m[2][3])
+    );
 }
 
-/*!
- * \brief Vector by Matrix component assignment multiplication operator.
- *
- *  Multiplies the vector by the matrix.
- */
-template<
-    typename T_scalar,
-    std::size_t T_cols,
-    std::size_t T_rows,
-    bool T_use_simd_1,
-    bool T_use_simd_2
->
-Vector<T_scalar, T_cols, T_use_simd_1>& operator*=(
-        Vector<T_scalar, T_cols, T_use_simd_1>& v,
-        const Matrix<T_scalar, T_rows, T_cols, T_use_simd_2>& m)
+template<typename T_scalar, bool T_use_simd>
+Matrix<T_scalar, 4, 4, T_use_simd> transpose(
+        const Matrix<T_scalar, 4, 4, T_use_simd>& m)
 {
-    v = v * m;
+    return Matrix<T_scalar, 4, 4, T_use_simd>(
+        Vector<T_scalar, 4, T_use_simd>(m[0][0], m[1][0], m[2][0], m[3][0]),
+        Vector<T_scalar, 4, T_use_simd>(m[0][1], m[1][1], m[2][1], m[3][1]),
+        Vector<T_scalar, 4, T_use_simd>(m[0][2], m[1][2], m[2][2], m[3][2]),
+        Vector<T_scalar, 4, T_use_simd>(m[0][3], m[1][3], m[2][3], m[3][3])
+    );
 }
-
-
 
 } // namespace gm
 } // namespace arc
