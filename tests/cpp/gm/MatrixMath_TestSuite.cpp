@@ -53,4 +53,33 @@ ARC_TEST_UNIT(transpose)
     ARC_CHECK_EQUAL(arc::gm::transpose(m3), r3);
 }
 
+//------------------------------------------------------------------------------
+//                                  DETERMINANT
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(determinant)
+{
+    arc::gm::Matrix22f m1(
+        arc::gm::Vector2f(5.0F, 7.0F),
+        arc::gm::Vector2f(-2.0F, 3.0F)
+    );
+    ARC_CHECK_EQUAL(arc::gm::determinant(m1), 29.0F);
+
+    arc::gm::Matrix33f m2(
+        arc::gm::Vector3f(-1.0F, 11.0F, -4.0F),
+        arc::gm::Vector3f( 2.0F,  1.0F,  7.0F),
+        arc::gm::Vector3f(14.0F,  8.0F, -3.0F)
+    );
+    ARC_CHECK_EQUAL(arc::gm::determinant(m2), 1195.0F);
+
+    arc::gm::Matrix44f m3(
+        arc::gm::Vector4f(-1.0F, 11.0F, -4.0F,   3.0F),
+        arc::gm::Vector4f( 2.0F,  1.0F,  7.0F,  -6.0F),
+        arc::gm::Vector4f(14.0F,  8.0F, -3.0F, -12.0F),
+        arc::gm::Vector4f( 1.0F, -1.0F,  5.0F,   4.0F)
+    );
+    ARC_CHECK_EQUAL(arc::gm::determinant(m3), 9355.0F);
+
+}
+
 } // namespace anonymous

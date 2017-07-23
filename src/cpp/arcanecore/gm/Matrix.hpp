@@ -112,6 +112,24 @@ public:
     }
 
     /*!
+     * \brief Creates a new matrix using a copy of the 2 given vectors as the
+     *        the first 2 columns of the matrix.
+     *
+     * \note The matrix type must have 2 or more columns.
+     */
+    Matrix(const VectorType& v1, const VectorType& v2)
+    {
+        static_assert(
+            T_cols >= 2,
+            "Constructor only valid for matrices with a dimensionality of 2 or "
+            "more columns"
+        );
+
+        m_storage[0] = v1;
+        m_storage[1] = v2;
+    }
+
+    /*!
      * \brief Creates a new matrix using a copy of the 3 given vectors as the
      *        the first 3 columns of the matrix.
      *
@@ -616,7 +634,7 @@ public:
             const Matrix<T_scalar, T_cols, T_rows, T_other_use_simd>& m)
     {
         static_assert(
-            T_cols -== T_rows,
+            T_cols == T_rows,
             "Only matrices with the number of columns equal to the number of "
             "rows may be multiplied"
         );
@@ -646,7 +664,7 @@ template<
     typename T_scalar,
     std::size_t T_cols,
     std::size_t T_rows,
-    bool T_use_simd
+    bool T_use_simd = false
 >
 inline arc::str::UTF8String& operator<<(
         arc::str::UTF8String& s,
@@ -669,7 +687,7 @@ template<
     typename T_scalar,
     std::size_t T_cols,
     std::size_t T_rows,
-    bool T_use_simd
+    bool T_use_simd = false
 >
 inline std::ostream& operator<<(
         std::ostream& s,
@@ -692,10 +710,12 @@ inline std::ostream& operator<<(
 //                                TYPE DEFINITIONS
 //------------------------------------------------------------------------------
 
+typedef Matrix<float, 2, 2> Matrix22f;
 typedef Matrix<float, 3, 3> Matrix33f;
 typedef Matrix<float, 3, 4> Matrix34f;
 typedef Matrix<float, 4, 4> Matrix44f;
 
+typedef Matrix<double, 2, 2> Matrix22d;
 typedef Matrix<double, 3, 3> Matrix33d;
 typedef Matrix<double, 3, 4> Matrix34d;
 typedef Matrix<double, 4, 4> Matrix44d;
