@@ -527,4 +527,16 @@ ARC_TEST_UNIT(matrix_multiplication)
     ARC_CHECK_EQUAL(m3 * m4, r2);
 }
 
+//------------------------------------------------------------------------------
+//                                  TRANSLATION
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(translate)
+{
+    arc::gm::Matrix33f t1 =
+        arc::gm::Matrix33f::translate(arc::gm::Vector2f(2.0F, -3.0F));
+    // TODO: REMOVE ME
+    std::cout << t1 << std::endl;
+}
+
 } // namespace anonymous

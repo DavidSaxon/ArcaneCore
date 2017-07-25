@@ -31,7 +31,7 @@ template<
     std::size_t T_rows,
     bool T_use_simd
 >
-Matrix<T_scalar, T_rows, T_cols, T_use_simd> transpose(
+inline Matrix<T_scalar, T_rows, T_cols, T_use_simd> transpose(
         const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
 {
     Matrix<T_scalar, T_rows, T_cols, T_use_simd> r;
@@ -50,7 +50,7 @@ Matrix<T_scalar, T_rows, T_cols, T_use_simd> transpose(
 //------------------------S P E C I A L I S A T I O N S-------------------------
 
 template<typename T_scalar, bool T_use_simd>
-Matrix<T_scalar, 3, 3, T_use_simd> transpose(
+inline Matrix<T_scalar, 3, 3, T_use_simd> transpose(
         const Matrix<T_scalar, 3, 3, T_use_simd>& m)
 {
     return Matrix<T_scalar, 3, 3, T_use_simd>(
@@ -61,7 +61,7 @@ Matrix<T_scalar, 3, 3, T_use_simd> transpose(
 }
 
 template<typename T_scalar, bool T_use_simd>
-Matrix<T_scalar, 3, 4, T_use_simd> transpose(
+inline Matrix<T_scalar, 3, 4, T_use_simd> transpose(
         const Matrix<T_scalar, 3, 4, T_use_simd>& m)
 {
     return Matrix<T_scalar, 4, 3, T_use_simd>(
@@ -73,7 +73,7 @@ Matrix<T_scalar, 3, 4, T_use_simd> transpose(
 }
 
 template<typename T_scalar, bool T_use_simd>
-Matrix<T_scalar, 4, 4, T_use_simd> transpose(
+inline Matrix<T_scalar, 4, 4, T_use_simd> transpose(
         const Matrix<T_scalar, 4, 4, T_use_simd>& m)
 {
     return Matrix<T_scalar, 4, 4, T_use_simd>(
@@ -97,7 +97,8 @@ template<
     std::size_t T_rows,
     bool T_use_simd
 >
-T_scalar determinant(const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
+inline T_scalar determinant(
+        const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
 {
     static_assert(
         T_cols == T_rows,
@@ -114,19 +115,19 @@ T_scalar determinant(const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
 //------------------------S P E C I A L I S A T I O N S-------------------------
 
 template<typename T_scalar, bool T_use_simd>
-T_scalar determinant(const Matrix<T_scalar, 1, 1, T_use_simd>& m)
+inline T_scalar determinant(const Matrix<T_scalar, 1, 1, T_use_simd>& m)
 {
     return m[0][0];
 }
 
 template<typename T_scalar, bool T_use_simd>
-T_scalar determinant(const Matrix<T_scalar, 2, 2, T_use_simd>& m)
+inline T_scalar determinant(const Matrix<T_scalar, 2, 2, T_use_simd>& m)
 {
     return (m[0][0] * m[1][1]) - (m[1][0] * m[0][1]);
 }
 
 template<typename T_scalar, bool T_use_simd>
-T_scalar determinant(const Matrix<T_scalar, 3, 3, T_use_simd>& m)
+inline T_scalar determinant(const Matrix<T_scalar, 3, 3, T_use_simd>& m)
 {
     T_scalar t0 = (m[1][1] * m[2][2]) - (m[2][1] * m[1][2]);
     T_scalar t1 = (m[0][1] * m[2][2]) - (m[2][1] * m[0][2]);
@@ -136,7 +137,7 @@ T_scalar determinant(const Matrix<T_scalar, 3, 3, T_use_simd>& m)
 }
 
 template<typename T_scalar, bool T_use_simd>
-T_scalar determinant(const Matrix<T_scalar, 4, 4, T_use_simd>& m)
+inline T_scalar determinant(const Matrix<T_scalar, 4, 4, T_use_simd>& m)
 {
     T_scalar t0u0 = (m[2][2] * m[3][3]) - (m[3][2] * m[2][3]);
     T_scalar t0u1 = (m[1][2] * m[3][3]) - (m[3][2] * m[1][3]);

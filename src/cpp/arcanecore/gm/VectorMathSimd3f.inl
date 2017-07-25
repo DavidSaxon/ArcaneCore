@@ -11,6 +11,7 @@
 #include <arcanecore/base/simd/Include.hpp>
 #include <arcanecore/base/data/BinaryOperations.hpp>
 
+
 namespace arc
 {
 namespace gm

@@ -214,6 +214,29 @@ public:
     }
 
     //--------------------------------------------------------------------------
+    //                          PUBLIC STATIC FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief Returns matrix that represents a x, y, z translation given vector.
+     */
+    template<bool T_other_use_simd>
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> translate(
+            const Vector<T_scalar, 2, T_other_use_simd>& t);
+
+    // TODO: euler rotate
+
+    // TODO: axis rotate
+
+    // TODO: quaternion rotate
+
+    // TODO: scale
+
+    // TODO: perspective
+
+    // TODO: orthographic
+
+    //--------------------------------------------------------------------------
     //                                 OPERATORS
     //--------------------------------------------------------------------------
 
@@ -736,6 +759,9 @@ typedef Matrix<float, 4, 4, ARC_GM_USE_SIMD> SimdMatrix44f;
 
 } // namespace gm
 } // namespace arc
+
+//----------------------I N L I N E -- E X T E N S I O N S----------------------
+#include "arcanecore/gm/MatrixTransformations.inl"
 
 
 #endif
