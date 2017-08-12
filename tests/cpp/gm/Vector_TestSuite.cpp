@@ -14,7 +14,7 @@ namespace
 ARC_TEST_UNIT(constructor)
 {
     //--------------------------------------------------------------------------
-    ARC_TEST_MESSAGE("Testing Zero constructor");
+    ARC_TEST_MESSAGE("Testing zero constructor");
 
     arc::gm::Vector3f v1;
     ARC_CHECK_EQUAL(v1.x(), 0.0F);

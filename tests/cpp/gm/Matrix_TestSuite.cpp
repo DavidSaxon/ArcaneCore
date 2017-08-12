@@ -535,8 +535,75 @@ ARC_TEST_UNIT(translate)
 {
     arc::gm::Matrix33f t1 =
         arc::gm::Matrix33f::translate(arc::gm::Vector2f(2.0F, -3.0F));
-    // TODO: REMOVE ME
-    std::cout << t1 << std::endl;
+    arc::gm::Matrix33f r1(
+        arc::gm::Vector3f(1.0F,  0.0F, 0.0F),
+        arc::gm::Vector3f(0.0F,  1.0F, 0.0F),
+        arc::gm::Vector3f(2.0F, -3.0F, 1.0F)
+    );
+    ARC_CHECK_EQUAL(t1, r1);
+
+    arc::gm::Matrix34f t2 =
+        arc::gm::Matrix34f::translate(arc::gm::Vector3f(-3.0F, 12.0F, 8.0F));
+    arc::gm::Matrix34f r2(
+        arc::gm::Vector4f(1.0F, 0.0F, 0.0F, -3.0F),
+        arc::gm::Vector4f(0.0F, 1.0F, 0.0F, 12.0F),
+        arc::gm::Vector4f(0.0F, 0.0F, 1.0F,  8.0F)
+    );
+    ARC_CHECK_EQUAL(t2, r2);
+
+    arc::gm::Matrix44f t3 =
+        arc::gm::Matrix44f::translate(arc::gm::Vector3f(1.0F, 4.0F, -7.0F));
+    arc::gm::Matrix44f r3(
+        arc::gm::Vector4f(1.0F, 0.0F,  0.0F, 0.0F),
+        arc::gm::Vector4f(0.0F, 1.0F,  0.0F, 0.0F),
+        arc::gm::Vector4f(0.0F, 0.0F,  1.0F, 0.0F),
+        arc::gm::Vector4f(1.0F, 4.0F, -7.0F, 1.0F)
+    );
+    ARC_CHECK_EQUAL(t3, r3);
+}
+
+//------------------------------------------------------------------------------
+//                                   ROTATE 2D
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(rotate_2d)
+{
+    // TODO: write some proper tests - this pretty much just tests that the code
+    //       compiles
+    arc::gm::Matrix22f r1 = arc::gm::Matrix22f::rotate_2d(1.5707F);
+
+    ARC_CHECK_EQUAL(r1, r1);
+}
+
+//------------------------------------------------------------------------------
+//                                  EULER ROTATE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(euler_rotate)
+{
+    // TODO: write some proper tests - this pretty much just tests that the code
+    //       compiles
+    arc::gm::Matrix33f r1 = arc::gm::Matrix33f::euler_rotate(
+        arc::gm::Vector3f(1.5707F, 0.0F, 0.0F)
+    );
+
+    ARC_CHECK_EQUAL(r1, r1);
+}
+
+//------------------------------------------------------------------------------
+//                                  AXIS ROTATE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(axis_rotate)
+{
+    // TODO: write some proper tests - this pretty much just tests that the code
+    //       compiles
+    arc::gm::Matrix44f r1 = arc::gm::Matrix33f::axis_rotate(
+        1.5707F,
+        arc::gm::Vector3f(1.0F, 0.0F, 0.5F)
+    );
+
+    std::cout << "result: " << r1 << std::endl;
 }
 
 } // namespace anonymous

@@ -14,12 +14,6 @@ namespace math
 {
 
 /*!
- * \brief Small value used for the default margin of error in floating point
- *        comparisons.
- */
-extern const float EPSILON;
-
-/*!
  * \brief Pi as a float.
  */
 extern const float PI_F;

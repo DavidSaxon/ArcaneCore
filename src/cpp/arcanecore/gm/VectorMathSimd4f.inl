@@ -6,6 +6,7 @@
 #ifndef ARCANECORE_GM_VECTORMATHSIMD4F_INL_
 #define ARCANECORE_GM_VECTORMATHSIMD4F_INL_
 
+#include <arcanecore/base/math/MathConstants.hpp>
 #include <arcanecore/base/simd/Include.hpp>
 #include <arcanecore/base/data/BinaryOperations.hpp>
 

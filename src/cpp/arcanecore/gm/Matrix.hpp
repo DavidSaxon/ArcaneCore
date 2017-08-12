@@ -8,6 +8,7 @@
 #include <algorithm>
 
 #include <arcanecore/base/Types.hpp>
+#include <arcanecore/base/math/MathConstants.hpp>
 #include <arcanecore/base/memory/Alignment.hpp>
 #include <arcanecore/base/str/UTF8String.hpp>
 
@@ -57,6 +58,24 @@ public:
      * \brief the arc::gm::Vector type being used for the matrix columns.
      */
     typedef Vector<T_scalar, T_rows, T_use_simd> VectorType;
+
+    //--------------------------------------------------------------------------
+    //                                 ENUMERATOR
+    //--------------------------------------------------------------------------
+
+    /*!
+     * \brief The possible orders in which 3-dimensional rotation components can
+     *        be applied to matrices.
+     */
+    enum RotationOrder
+    {
+        kOrderXYZ,
+        kOrderXZY,
+        kOrderYXZ,
+        kOrderYZX,
+        kOrderZXY,
+        kOrderZYX
+    };
 
     //--------------------------------------------------------------------------
     //                                CONSTRUCTORS
@@ -218,15 +237,201 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Returns matrix that represents a x, y, z translation given vector.
+     * \brief Returns a matrix that represents a translation by the given
+     *        vector.
      */
     template<bool T_other_use_simd>
     static Matrix<T_scalar, T_cols, T_rows, T_use_simd> translate(
-            const Vector<T_scalar, 2, T_other_use_simd>& t);
+            const Vector<T_scalar, T_rows - 1, T_other_use_simd>& t);
 
-    // TODO: euler rotate
+    /*!
+     * \brief Returns a matrix that represents a 2D rotation by the given angle.
+     */
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> rotate_2d(
+            T_scalar angle);
 
-    // TODO: axis rotate
+    /*!
+     * \brief Returns a matrix that represents a rotation by the given 3
+     *        dimensional Euler angle.
+     *
+     * \param order The order in which the Euler angles will be applied to the
+     *              matrix.
+     */
+    template<bool T_other_use_simd>
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> euler_rotate(
+            const Vector<T_scalar, 3, T_other_use_simd>& euler,
+            RotationOrder order = kOrderZYX)
+    {
+        static_assert(
+            T_cols >= 3,
+            "Euler rotate is only valid for matrices with 3 or more columns"
+        );
+        static_assert(
+            T_rows >= 3,
+            "Euler rotate is only valid for matrices with 3 or more rows"
+        );
+
+        // build rotation matrices
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> x(1);
+        x[1][1] =  std::cos(euler[0]);
+        x[1][2] =  std::sin(euler[0]);
+        x[2][1] = -std::sin(euler[0]);
+        x[2][2] =  std::cos(euler[0]);
+
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> y(1);
+        y[0][0] =  std::cos(euler[1]);
+        y[0][2] = -std::sin(euler[1]);
+        y[2][0] =  std::sin(euler[1]);
+        y[2][2] =  std::cos(euler[1]);
+
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> z(1);
+        z[0][0] =  std::cos(euler[2]);
+        z[0][1] =  std::sin(euler[2]);
+        z[1][0] = -std::sin(euler[2]);
+        z[1][1] =  std::cos(euler[2]);
+
+        // multiply based on the rotation order
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> identity(1);
+        // TODO: is this round the right way? check with work code
+        switch(order)
+        {
+            case kOrderXYZ:
+            {
+                x *= y;
+                x *= z;
+                return x;
+            }
+            case kOrderXZY:
+            {
+                x *= z;
+                x *= y;
+                return x;
+            }
+            case kOrderYXZ:
+            {
+                y *= x;
+                y *= z;
+                return y;
+            }
+            case kOrderYZX:
+            {
+                y *= z;
+                y *= x;
+                return y;
+            }
+            case kOrderZXY:
+            {
+                z *= x;
+                z *= y;
+                return z;
+            }
+            default:
+            {
+                z *= y;
+                z *= x;
+                return z;
+            }
+        }
+    }
+
+    /*!
+     * \brief Returns a matrix that represents a rotation by the given angle
+     *        rotated around the given 3 dimensional axis values.
+     *
+     * \param angle The angle (in radians) to rotate by.
+     * \param axis The axis quantities to rotate by (where 1.0 means rotate
+     *             around the angle by the full angle, and 0.0 means no
+     *             rotation around the respective axis),
+     * \param order The order in which the axis rotations will be applied to the
+     *              matrix.
+     */
+    template<bool T_other_use_simd>
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> axis_rotate(
+            T_scalar angle,
+            const Vector<T_scalar, 3, T_other_use_simd>& axis,
+            RotationOrder order = kOrderZYX)
+    {
+        static_assert(
+            T_cols >= 3,
+            "Axis rotate is only valid for matrices with 3 or more columns"
+        );
+        static_assert(
+            T_rows >= 3,
+            "Axis rotate is only valid for matrices with 3 or more rows"
+        );
+
+        // build rotation matrices
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> x(1);
+        // TODO: change epsilon to float epsilon
+        if(axis[0] >= std::numeric_limits<float>::epsilon())
+        {
+            x[1][1] =  std::cos(angle * axis[0]);
+            x[1][2] =  std::sin(angle * axis[0]);
+            x[2][1] = -std::sin(angle * axis[0]);
+            x[2][2] =  std::cos(angle * axis[0]);
+        }
+
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> y(1);
+        if(axis[1] >= std::numeric_limits<float>::epsilon())
+        {
+            y[0][0] =  std::cos(axis[1]);
+            y[0][2] = -std::sin(axis[1]);
+            y[2][0] =  std::sin(axis[1]);
+            y[2][2] =  std::cos(axis[1]);
+        }
+
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> z(1);
+        if(axis[2] >= std::numeric_limits<float>::epsilon())
+        {
+            z[0][0] =  std::cos(axis[2]);
+            z[0][1] =  std::sin(axis[2]);
+            z[1][0] = -std::sin(axis[2]);
+            z[1][1] =  std::cos(axis[2]);
+        }
+
+        // multiply based on the rotation order
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd> identity(1);
+        // TODO: is this round the right way? check with work code
+        switch(order)
+        {
+            case kOrderXYZ:
+            {
+                x *= y;
+                x *= z;
+                return x;
+            }
+            case kOrderXZY:
+            {
+                x *= z;
+                x *= y;
+                return x;
+            }
+            case kOrderYXZ:
+            {
+                y *= x;
+                y *= z;
+                return y;
+            }
+            case kOrderYZX:
+            {
+                y *= z;
+                y *= x;
+                return y;
+            }
+            case kOrderZXY:
+            {
+                z *= x;
+                z *= y;
+                return z;
+            }
+            default:
+            {
+                z *= y;
+                z *= x;
+                return z;
+            }
+        }
+    }
 
     // TODO: quaternion rotate
 
@@ -425,7 +630,7 @@ public:
     }
 
     /*!
-     * \brief Scalar compound addition operator.
+     * \brief Scalar compound assignment addition operator.
      *
      * Adds the scalar to each component of this matrix.
      */
@@ -453,7 +658,7 @@ public:
     }
 
     /*!
-     * \brief Vector compound addition operator.
+     * \brief Vector compound assignment addition operator.
      *
      * Adds the vector to each column of this matrix.
      */
@@ -483,7 +688,7 @@ public:
     }
 
     /*!
-     * \brief Matrix compound addition operator.
+     * \brief Matrix compound assignment addition operator.
      *
      * Adds each component of the given matrix to each component of this matrix.
      */
@@ -511,7 +716,7 @@ public:
     }
 
     /*!
-     * \brief Scalar compound subtraction operator.
+     * \brief Scalar compound assignment subtraction operator.
      *
      * Subtracts the scalar from each component of this matrix.
      */
@@ -539,7 +744,7 @@ public:
     }
 
     /*!
-     * \brief Vector compound subtraction operator.
+     * \brief Vector compound assignment subtraction operator.
      *
      * Subtracts the vector from each column of this matrix.
      */
@@ -569,7 +774,7 @@ public:
     }
 
     /*!
-     * \brief Matrix compound subtraction operator.
+     * \brief Matrix compound assignment subtraction operator.
      *
      * Subtracts each component of the given matrix from each component of this
      * matrix.
@@ -598,7 +803,7 @@ public:
     }
 
     /*!
-     * \brief Scalar compound multiplication operator.
+     * \brief Scalar compound assignment multiplication operator.
      *
      * Multiplies each component of this matrix by the given scalar.
      */
@@ -615,7 +820,7 @@ public:
      * \brief Vector multiplication operator.
      *
      * Multiplies this matrix by the given vector and returns the result as a
-     * new matrix.
+     * new vector.
      */
     template<bool T_other_use_simd>
     VectorType operator*(const Vector<T_scalar, T_rows, T_other_use_simd>& v)
@@ -647,7 +852,7 @@ public:
     }
 
     /*!
-     * \brief Matrix compound multiplication operator.
+     * \brief Matrix compound assignment multiplication operator.
      *
      * Multiplies each component of this matrix by the each component in the
      * given matrix.

@@ -634,7 +634,7 @@ public:
 
     /*!
      * \brief Assigns the components of this vector to be a copy of the other
-     *        vectors components.
+     *        vector's components.
      */
     template<bool T_other_use_simd>
     Vector<T_scalar, T_dimensions, T_use_simd>& operator=(
@@ -1164,7 +1164,6 @@ public:
     {
         return T_use_simd;
     }
-
 
     /*!
      * \brief Returns the simd representation of this Vector's data.

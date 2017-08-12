@@ -98,19 +98,7 @@ template<
     bool T_use_simd
 >
 inline T_scalar determinant(
-        const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m)
-{
-    static_assert(
-        T_cols == T_rows,
-        "The determinant can only be calculated for matrices with the number "
-        "of columns equal to the number of rows"
-    );
-
-    static_assert(
-        false,
-        "Determinant not yet implemented for the given matrix dimensions"
-    );
-}
+        const Matrix<T_scalar, T_cols, T_rows, T_use_simd>& m);
 
 //------------------------S P E C I A L I S A T I O N S-------------------------
 

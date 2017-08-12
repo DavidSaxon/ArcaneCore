@@ -6,15 +6,13 @@
 #ifndef ARCANECORE_BASE_MATHOPERATIONS_HPP_
 #define ARCANECORE_BASE_MATHOPERATIONS_HPP_
 
-#include <cfloat>
+#include <cstdlib>
 #include <cmath>
 #include <limits>
 #include <cstring>
 
-#include "arcanecore/base/math/MathConstants.hpp"
+#include "arcanecore/base/Types.hpp"
 
-// TODO: REMOVE ME
-#include <iostream>
 
 namespace arc
 {
@@ -196,7 +194,7 @@ inline float rsqrt(float v)
 bool float_equals(
         float a,
         float b,
-        float delta_threshold = FLT_EPSILON,
+        float delta_threshold = std::numeric_limits<float>::epsilon(),
         arc::uint32 ulps_threshold = 8);
 
 } // namespace math

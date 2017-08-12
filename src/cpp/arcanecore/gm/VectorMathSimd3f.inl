@@ -8,6 +8,7 @@
 
 #include <limits>
 
+#include <arcanecore/base/math/MathConstants.hpp>
 #include <arcanecore/base/simd/Include.hpp>
 #include <arcanecore/base/data/BinaryOperations.hpp>
 
