@@ -12,6 +12,7 @@
 #include <arcanecore/base/memory/Alignment.hpp>
 #include <arcanecore/base/str/UTF8String.hpp>
 
+#include "arcanecore/gm/QuaternionMath.hpp"
 #include "arcanecore/gm/Vector.hpp"
 
 
@@ -262,6 +263,8 @@ public:
             const Vector<T_scalar, 3, T_other_use_simd>& euler,
             RotationOrder order = kOrderZYX)
     {
+        // TODO: this can probably be optimised in a single matrix build
+
         static_assert(
             T_cols >= 3,
             "Euler rotate is only valid for matrices with 3 or more columns"
@@ -351,6 +354,8 @@ public:
             const Vector<T_scalar, 3, T_other_use_simd>& axis,
             RotationOrder order = kOrderZYX)
     {
+        // TODO: this can probably be optimised in a single matrix build
+
         static_assert(
             T_cols >= 3,
             "Axis rotate is only valid for matrices with 3 or more columns"
@@ -433,7 +438,23 @@ public:
         }
     }
 
-    // TODO: quaternion rotate
+    /*!
+     * \brief Returns a matrix that represents the rotation defined by the given
+     *        quaternion.
+     */
+    template<bool T_other_use_simd>
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> quaternion_rotate(
+            const Quaternion<T_scalar, T_other_use_simd>& q,
+            RotationOrder order = kOrderZYX)
+    {
+        // TODO: this can probably be optimised in a single matrix build
+
+        // get the axis angle rotation
+        T_scalar angle = static_cast<T_scalar>(0);
+        Vector<T_scalar, 3> axis;
+        to_axis_angle(q, angle, axis);
+        return axis_rotate(angle, axis, order);
+    }
 
     // TODO: scale
 

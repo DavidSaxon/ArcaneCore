@@ -40,7 +40,7 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Creates a new Quaternion initialised to [0, 0, 0, 1].
+     * \brief Creates a new quaternion initialised to [0, 0, 0, 1].
      */
     Quaternion()
     {
@@ -51,7 +51,7 @@ public:
     }
 
     /*!
-     * \brief Creates a new Quaternion initialised with the four given x, y, z,
+     * \brief Creates a new quaternion initialised with the four given x, y, z,
      *        and w values.
      */
     Quaternion(T_scalar x_, T_scalar y_, T_scalar z_, T_scalar w_)
@@ -100,8 +100,8 @@ public:
     }
 
     /*!
-     * \brief Copies the values of the other given Quaternion of the same scalar
-     *        type to this Quaternion.
+     * \brief Copies the values of the other given quaternion of the same scalar
+     *        type to this quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion(const Quaternion<T_scalar, T_other_use_simd>& q)
@@ -123,10 +123,10 @@ public:
 
     /*!
      * \brief Optimisation constructor which directly assigns the internal simd
-     *        data of the Quaternion to the given data.
+     *        data of the quaternion to the given data.
      *
      * \param data The simd data the will be assigned to the internal data of
-     *             this Quaternion.
+     *             this quaternion.
      * \param dummy A dummy parameter which differentiates this constructor.
      */
     Quaternion(SimdType data, SimdAssign tag)
@@ -139,8 +139,8 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Assigns the components of this Quaternion to be a copy of the
-     *        other Quaternion's components.
+     * \brief Assigns the components of this quaternion to be a copy of the
+     *        other quaternion's components.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd>& operator=(
@@ -154,10 +154,10 @@ public:
     }
 
     /*!
-     * \brief Compares whether the given Quaternions are considered equal.
+     * \brief Compares whether the given quaternions are considered equal.
      *
      * \warning This performs a standard equality check of the individual
-     *          components of the Quaternions, so beware of comparing floating
+     *          components of the quaternions, so beware of comparing floating
      *          point Quaternion types.
      */
     template<bool T_other_use_simd>
@@ -168,10 +168,10 @@ public:
     }
 
     /*!
-     * \brief Compares whether the given Quaternions are considered not equal.
+     * \brief Compares whether the given quaternions are considered not equal.
      *
      * \warning This performs a standard equality check of the individual
-     *          components of the Quaternions, so beware of comparing floating
+     *          components of the quaternions, so beware of comparing floating
      *          point Quaternion types.
      */
     template<bool T_other_use_simd>
@@ -184,8 +184,8 @@ public:
     /*!
      * \brief Addition operator.
      *
-     * Adds each component of the given Quaternion to each component of this
-     * Quaternion and returns the result as a new Quaternion.
+     * Adds each component of the given quaternion to each component of this
+     * quaternion and returns the result as a new quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd> operator+(
@@ -202,8 +202,8 @@ public:
     /*!
      * \brief Compound assignment addition operator.
      *
-     * Adds each component of the given Quaternion to each component of this
-     * Quaternion.
+     * Adds each component of the given quaternion to each component of this
+     * quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd>& operator+=(
@@ -220,8 +220,8 @@ public:
     /*!
      * \brief Subtraction operator.
      *
-     * Subtracts each component of the given Quaternion from each component of
-     * this Quaternion and returns the result as a new Quaternion.
+     * Subtracts each component of the given quaternion from each component of
+     * this quaternion and returns the result as a new quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd> operator-(
@@ -238,8 +238,8 @@ public:
     /*!
      * \brief Compound assignment subtraction operator.
      *
-     * Subtracts each component of the given Quaternion from each component of
-     * this Quaternion.
+     * Subtracts each component of the given quaternion from each component of
+     * this quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd>& operator-=(
@@ -256,8 +256,8 @@ public:
     /*!
      * \brief Multiplication operator.
      *
-     * Multiplies this Quaternion by the given Quaternion and returns the result
-     * as a new Quaternion.
+     * Multiplies this quaternion by the given quaternion and returns the result
+     * as a new quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd> operator*(
@@ -274,7 +274,7 @@ public:
     /*!
      * \brief Compound assignment multiplication operator.
      *
-     * Multiplies this Quaternion by the given Quaternion.
+     * Multiplies this quaternion by the given quaternion.
      */
     template<bool T_other_use_simd>
     Quaternion<T_scalar, T_use_simd>& operator*=(
@@ -293,7 +293,7 @@ public:
     //--------------------------------------------------------------------------
 
     /*!
-     * \brief Provides access the x component of this Quaternion.
+     * \brief Provides access the x component of this quaternion.
      */
     T_scalar& x()
     {
@@ -301,7 +301,7 @@ public:
     }
 
     /*!
-     * \brief Provides const access the x component of this Quaternion.
+     * \brief Provides const access the x component of this quaternion.
      */
     const T_scalar& x() const
     {
@@ -309,7 +309,7 @@ public:
     }
 
     /*!
-     * \brief Provides access the y component of this Quaternion.
+     * \brief Provides access the y component of this quaternion.
      */
     T_scalar& y()
     {
@@ -317,7 +317,7 @@ public:
     }
 
     /*!
-     * \brief Provides const access the y component of this Quaternion.
+     * \brief Provides const access the y component of this quaternion.
      */
     const T_scalar& y() const
     {
@@ -325,7 +325,7 @@ public:
     }
 
     /*!
-     * \brief Provides access the z component of this Quaternion.
+     * \brief Provides access the z component of this quaternion.
      */
     T_scalar& z()
     {
@@ -333,7 +333,7 @@ public:
     }
 
     /*!
-     * \brief Provides const access the z component of this Quaternion.
+     * \brief Provides const access the z component of this quaternion.
      */
     const T_scalar& z() const
     {
@@ -341,7 +341,7 @@ public:
     }
 
     /*!
-     * \brief Provides access the w component of this Quaternion.
+     * \brief Provides access the w component of this quaternion.
      */
     T_scalar& w()
     {
@@ -349,25 +349,15 @@ public:
     }
 
     /*!
-     * \brief Provides const access the w component of this Quaternion.
+     * \brief Provides const access the w component of this quaternion.
      */
     const T_scalar& w() const
     {
         return m_storage.data[3];
     }
 
-    // TODO: magnitude (math?)
-
-    // TODO: normalise (math?)
-
-    // TODO: to euler
-
-    // TODO: to axis angle
-
-    // TODO: to matrix??
-
     /*!
-     * \brief Returns whether this Quaternion has a valid simd data
+     * \brief Returns whether this quaternion has a valid simd data
      *        representation.
      */
     bool has_simd() const
@@ -391,7 +381,7 @@ public:
     }
 
     /*!
-     * \brief Returns the const simd representation of this Quaternion's data.
+     * \brief Returns the const simd representation of this quaternion's data.
      *
      * \note This should only be used on Quaternions that are using simd.
      */
@@ -454,7 +444,7 @@ typedef Quaternion<float> Quaternionf;
 typedef Quaternion<double> Quaterniond;
 
 // define the Simd types whether or not it's enabled, since we want to be able
-// turn it off and on easily without having to update the vector types
+// turn it off and on easily without having to update the quaternion types
 // everywhere in the code.
 #undef ARC_GM_USE_SIMD
 #ifndef ARC_GM_DISABLE_SSE

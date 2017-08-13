@@ -13,6 +13,7 @@
 
 #include "arcanecore/gm/Vector.hpp"
 
+
 namespace arc
 {
 namespace gm

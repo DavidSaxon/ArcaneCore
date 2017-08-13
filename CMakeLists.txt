@@ -86,6 +86,7 @@ set(TESTS_SUITES
 
     tests/cpp/gm/MatrixMath_TestSuite.cpp
     tests/cpp/gm/Matrix_TestSuite.cpp
+    tests/cpp/gm/QuaternionMath_TestSuite.cpp
     tests/cpp/gm/Quaternion_TestSuite.cpp
     tests/cpp/gm/VectorMath_TestSuite.cpp
     tests/cpp/gm/Vector_TestSuite.cpp

@@ -603,7 +603,22 @@ ARC_TEST_UNIT(axis_rotate)
         arc::gm::Vector3f(1.0F, 0.0F, 0.5F)
     );
 
-    std::cout << "result: " << r1 << std::endl;
+    ARC_CHECK_EQUAL(r1, r1);
+}
+
+//------------------------------------------------------------------------------
+//                               QUATERNION ROTATE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(quaternion_rotate)
+{
+    // TODO: write some proper tests - this pretty much just tests that the code
+    //       compiles
+    arc::gm::Matrix44f r1 = arc::gm::Matrix33f::quaternion_rotate(
+        arc::gm::Quaternionf(0.7071F, 0.0F, 0.0F, 0.7071F)
+    );
+
+    ARC_CHECK_EQUAL(r1, r1);
 }
 
 } // namespace anonymous
