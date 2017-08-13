@@ -614,8 +614,72 @@ ARC_TEST_UNIT(quaternion_rotate)
 {
     // TODO: write some proper tests - this pretty much just tests that the code
     //       compiles
-    arc::gm::Matrix44f r1 = arc::gm::Matrix33f::quaternion_rotate(
+    arc::gm::Matrix44f r1 = arc::gm::Matrix44f::quaternion_rotate(
         arc::gm::Quaternionf(0.7071F, 0.0F, 0.0F, 0.7071F)
+    );
+
+    ARC_CHECK_EQUAL(r1, r1);
+}
+
+//------------------------------------------------------------------------------
+//                                     SCALE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(scale)
+{
+    arc::gm::Matrix22f s1 =
+        arc::gm::Matrix22f::scale(arc::gm::Vector2f(2.5F, -3.0F));
+    arc::gm::Matrix22f r1(
+        arc::gm::Vector2f(2.5F,   0.0F),
+        arc::gm::Vector2f(0.0F,  -3.0F)
+    );
+    ARC_CHECK_EQUAL(s1, r1);
+
+    arc::gm::Matrix34f s2 =
+        arc::gm::Matrix34f::scale(arc::gm::Vector3f(5.0F, 1.0F, 2.0F));
+    arc::gm::Matrix34f r2(
+        arc::gm::Vector4f(5.0F, 0.0F, 0.0F, 0.0F),
+        arc::gm::Vector4f(0.0F, 1.0F, 0.0F, 0.0F),
+        arc::gm::Vector4f(0.0F, 0.0F, 2.0F, 0.0F)
+    );
+    ARC_CHECK_EQUAL(s2, r2);
+
+    arc::gm::Matrix44f s3 =
+        arc::gm::Matrix44f::scale(arc::gm::Vector3f(-1.0F, 5.6F, 3.0F));
+    arc::gm::Matrix44f r3(
+        arc::gm::Vector4f(-1.0F, 0.0F, 0.0F, 0.0F),
+        arc::gm::Vector4f( 0.0F, 5.6F, 0.0F, 0.0F),
+        arc::gm::Vector4f( 0.0F, 0.0F, 3.0F, 0.0F),
+        arc::gm::Vector4f( 0.0F, 0.0F, 0.0F, 1.0F)
+    );
+    ARC_CHECK_EQUAL(s3, r3);
+}
+
+//------------------------------------------------------------------------------
+//                                  PERSPECTIVE
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(perspective)
+{
+    // TODO: write some proper tests - this pretty much just tests that the code
+    //       compiles
+    arc::gm::Matrix44f r1 = arc::gm::Matrix44f::perspective(
+        -1.0F, 1.0F, -1.0F, 1.0F, 0.01F, 10000.0F
+    );
+
+    ARC_CHECK_EQUAL(r1, r1);
+}
+
+//------------------------------------------------------------------------------
+//                                  ORTHOGRAPHIC
+//------------------------------------------------------------------------------
+
+ARC_TEST_UNIT(orthographic)
+{
+    // TODO: write some proper tests - this pretty much just tests that the code
+    //       compiles
+    arc::gm::Matrix44f r1 = arc::gm::Matrix44f::orthographic(
+        -1.0F, 1.0F, -1.0F, 1.0F, 0.01F, 10000.0F
     );
 
     ARC_CHECK_EQUAL(r1, r1);

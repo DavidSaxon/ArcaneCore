@@ -116,6 +116,8 @@
     <ClCompile Include="tests/cpp/base/str/StringOperations_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/gm/Matrix_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/gm/MatrixMath_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gm/QuaternionMath_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/gm/Quaternion_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/gm/Vector_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/gm/VectorMath_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/format/FormatOperations_TestSuite.cpp" />

@@ -241,9 +241,9 @@ public:
      * \brief Returns a matrix that represents a translation by the given
      *        vector.
      */
-    template<bool T_other_use_simd>
+    template<std::size_t T_trans_dimensions, bool T_other_use_simd>
     static Matrix<T_scalar, T_cols, T_rows, T_use_simd> translate(
-            const Vector<T_scalar, T_rows - 1, T_other_use_simd>& t);
+            const Vector<T_scalar, T_trans_dimensions, T_other_use_simd>& t);
 
     /*!
      * \brief Returns a matrix that represents a 2D rotation by the given angle.
@@ -456,11 +456,165 @@ public:
         return axis_rotate(angle, axis, order);
     }
 
-    // TODO: scale
+    /*!
+     * \brief Returns a matrix that represents a scaling by the given vector.
+     */
+    template<std::size_t T_scale_dimensions, bool T_other_use_simd>
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> scale(
+            const Vector<T_scalar, T_scale_dimensions, T_other_use_simd>& s);
 
-    // TODO: perspective
+    // TODO: maybe should just remove this function
+    // TODO: consolidate left/right handed co-ordinate system
+    /*!
+     * \brief Returns a matrix that represents a perspective projection based on
+     *        the given frustum parameters.
+     */
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> perspective(
+            T_scalar left,
+            T_scalar right,
+            T_scalar top,
+            T_scalar bottom,
+            T_scalar near_clip,
+            T_scalar far_clip)
+    {
+        static_assert(
+            T_cols == 4 && T_rows == 4,
+            "Perspective is only valid for 4x4 matrices"
+        );
 
-    // TODO: orthographic
+        T_scalar width = right - left;
+        T_scalar height = top - bottom;
+        T_scalar distance = near_clip - far_clip;
+        T_scalar near2 = near_clip * static_cast<T_scalar>(2);
+
+        return Matrix<T_scalar, T_cols, T_rows, T_use_simd>(
+            Vector<T_scalar, 4, T_use_simd>(
+                near2 / width,
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                near2 / height,
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                (right + left) / width,
+                (top + bottom) / height,
+                near_clip / distance,
+                static_cast<T_scalar>(-1)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                (near_clip * far_clip) / distance,
+                static_cast<T_scalar>(0)
+            )
+        );
+    }
+
+    // TODO: consolidate left/right handed co-ordinate system
+    /*!
+     * \brief Returns a matrix that represents a perspective projection based on
+     *        the given parameters.
+     *
+     * \param fov The horizontal field of view the camera.
+     * \param aspect_ratio The aspect ration of the camera.
+     * \param near_clip The distance of the near clipping plane from the camera.
+     * \param far_clip The distance of the far clipping plane from the camera.
+     */
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> perspective(
+            T_scalar fov,
+            T_scalar aspect_ratio,
+            T_scalar near_clip,
+            T_scalar far_clip)
+    {
+        static_assert(
+            T_cols == 4 && T_rows == 4,
+            "Perspective is only valid for 4x4 matrices"
+        );
+
+        T_scalar right = near_clip * std::tan(fov / static_cast<T_scalar>(2));
+        T_scalar recip = static_cast<T_scalar>(1) / (near_clip - far_clip);
+
+        return Matrix<T_scalar, T_cols, T_rows, T_use_simd>(
+            Vector<T_scalar, 4, T_use_simd>(
+                near_clip * (static_cast<T_scalar>(1) / right),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                near_clip * (static_cast<T_scalar>(1) / (aspect_ratio / right)),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                (far_clip + near_clip) * recip,
+                static_cast<T_scalar>(-1)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(2) * far_clip * near_clip * recip,
+                static_cast<T_scalar>(0)
+            )
+        );
+    }
+
+    /*!
+     * \brief Returns a matrix that represents a orthographic projection based
+     *        on the given frustum parameters.
+     */
+    static Matrix<T_scalar, T_cols, T_rows, T_use_simd> orthographic(
+            T_scalar left,
+            T_scalar right,
+            T_scalar top,
+            T_scalar bottom,
+            T_scalar near_clip,
+            T_scalar far_clip)
+    {
+        static_assert(
+            T_cols == 4 && T_rows == 4,
+            "Orthographic is only valid for 4x4 matrices"
+        );
+
+        T_scalar width = right - left;
+        T_scalar height = top - bottom;
+        T_scalar distance = far_clip - near_clip;
+
+        return Matrix<T_scalar, T_cols, T_rows, T_use_simd>(
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(2) / width,
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(2) / height,
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(0),
+                static_cast<T_scalar>(-2) / distance,
+                static_cast<T_scalar>(0)
+            ),
+            Vector<T_scalar, 4, T_use_simd>(
+                (-(right + left)) / width,
+                (-(top + bottom)) / height,
+                (-(far_clip + near_clip)) / distance,
+                static_cast<T_scalar>(1)
+            )
+        );
+    }
 
     //--------------------------------------------------------------------------
     //                                 OPERATORS

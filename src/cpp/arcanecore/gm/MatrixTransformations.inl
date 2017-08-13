@@ -23,10 +23,11 @@ template<
     std::size_t T_cols,
     std::size_t T_rows,
     bool T_use_simd,
+    std::size_t T_trans_dimensions,
     bool T_other_use_simd
 >
 inline void translate_(
-        const Vector<T_scalar, T_rows - 1, T_other_use_simd>& t,
+        const Vector<T_scalar, T_trans_dimensions, T_other_use_simd>& t,
         Matrix<T_scalar, T_cols, T_rows, T_use_simd>& identity);
 
 //---------------T E M P L A T E    S P E C I A L I S A T I O N S---------------
@@ -80,10 +81,10 @@ template<
     std::size_t T_rows,
     bool T_use_simd
 >
-template<bool T_other_use_simd>
+template<std::size_t T_trans_dimensions, bool T_other_use_simd>
 inline Matrix<T_scalar, T_cols, T_rows, T_use_simd>
     Matrix<T_scalar, T_cols, T_rows, T_use_simd>::translate(
-        const Vector<T_scalar, T_rows - 1, T_other_use_simd>& t)
+        const Vector<T_scalar, T_trans_dimensions, T_other_use_simd>& t)
 {
     // hand of to implementation function
     Matrix<T_scalar, T_cols, T_rows, T_use_simd> identity(1);
@@ -194,6 +195,94 @@ inline Matrix<T_scalar, T_cols, T_rows, T_use_simd>
 //     euler_rotate_(euler, identity);
 //     return identity;
 // }
+
+//------------------------------------------------------------------------------
+//                                     SCALE
+//------------------------------------------------------------------------------
+
+//--------------------T E M P L A T E    D E F I N I T I O N--------------------
+
+template<
+    typename T_scalar,
+    std::size_t T_cols,
+    std::size_t T_rows,
+    bool T_use_simd,
+    std::size_t T_scale_dimensions,
+    bool T_other_use_simd
+>
+inline void scale_(
+        const Vector<T_scalar, T_scale_dimensions, T_other_use_simd>& s,
+        Matrix<T_scalar, T_cols, T_rows, T_use_simd>& identity);
+
+//---------------T E M P L A T E    S P E C I A L I S A T I O N S---------------
+
+template<
+    typename T_scalar,
+    std::size_t T_cols,
+    std::size_t T_rows,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+inline void scale_(
+    const Vector<T_scalar, 2, T_other_use_simd>& s,
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& identity)
+{
+    static_assert(
+        T_cols >= 2,
+        "2-dimensional scale is only valid for matrices with 2 or more columns"
+    );
+    static_assert(
+        T_rows >= 2,
+        "2-dimensional scale is only valid for matrices with 2 or more rows"
+    );
+
+    identity[0][0] *= s[0];
+    identity[1][1] *= s[1];
+}
+
+template<
+    typename T_scalar,
+    std::size_t T_cols,
+    std::size_t T_rows,
+    bool T_use_simd,
+    bool T_other_use_simd
+>
+inline void scale_(
+    const Vector<T_scalar, 3, T_other_use_simd>& s,
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>& identity)
+{
+    static_assert(
+        T_cols >= 3,
+        "2-dimensional scale is only valid for matrices with 2 or more columns"
+    );
+    static_assert(
+        T_rows >= 3,
+        "2-dimensional scale is only valid for matrices with 2 or more rows"
+    );
+
+    identity[0][0] *= s[0];
+    identity[1][1] *= s[1];
+    identity[2][2] *= s[2];
+}
+
+//-------------------------C L A S S    F U N C T I O N-------------------------
+
+template<
+    typename T_scalar,
+    std::size_t T_cols,
+    std::size_t T_rows,
+    bool T_use_simd
+>
+template<std::size_t T_scale_dimensions, bool T_other_use_simd>
+inline Matrix<T_scalar, T_cols, T_rows, T_use_simd>
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd>::scale(
+        const Vector<T_scalar, T_scale_dimensions, T_other_use_simd>& s)
+{
+    // hand of to implementation function
+    Matrix<T_scalar, T_cols, T_rows, T_use_simd> identity(1);
+    scale_(s, identity);
+    return identity;
+}
 
 } // namespace gm
 } // namespace arc

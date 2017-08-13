@@ -14,7 +14,11 @@ namespace gm
 {
 
 /*!
- * \brief TODO: comment
+ * \brief A generic linear algebra quaternion object with simd support.
+ *
+ * \tparam T_scalar The scalar type of this quaternion (e.g. float).
+ * \tparam T_use_simd Whether this quaternions should be formatted in memory for
+ *                    simd use.
  */
 template<typename T_scalar, bool T_use_simd = false>
 class Quaternion
