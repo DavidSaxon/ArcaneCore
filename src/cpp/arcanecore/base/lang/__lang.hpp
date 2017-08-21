@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \brief Documents the arc::lang namespace.
+ * \author David Saxon
+ */
 #ifndef ARCANECORE_BASE_LANG_HPP_
 #define ARCANECORE_BASE_LANG_HPP_
 

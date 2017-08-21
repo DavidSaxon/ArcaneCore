@@ -107,6 +107,7 @@
   <ItemGroup Condition="'$(Configuration)'=='tests'">
     <ClCompile Include="tests/cpp/TestsMain.cpp" />
     <ClCompile Include="tests/cpp/base/PreProc_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/base/container/ConstWeakArray_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/base/Types_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/base/data/BitwiseFloat_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/base/data/ByteOperations_TestSuite.cpp" />

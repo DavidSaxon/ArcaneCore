@@ -77,6 +77,7 @@ set(TESTS_SUITES
 
     tests/cpp/base/Preproc_TestSuite.cpp
     tests/cpp/base/Types_TestSuite.cpp
+    tests/cpp/base/container/ConstWeakArray_TestSuite.cpp
     tests/cpp/base/data/BitwiseFloat_TestSuite.cpp
     tests/cpp/base/data/ByteOperations_TestSuite.cpp
     tests/cpp/base/introspect/IntrospectOperations_TestSuite.cpp

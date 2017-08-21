@@ -8,7 +8,7 @@ ARC_TEST_MODULE(base.str.UTF8String)
 #include "arcanecore/base/Exceptions.hpp"
 #include "arcanecore/base/str/UTF8String.hpp"
 
-namespace utf8_string_tests
+namespace
 {
 
 //------------------------------------------------------------------------------
@@ -3078,4 +3078,4 @@ ARC_TEST_UNIT_FIXTURE(optimisations, OptimisationsFixture)
     }
 }
 
-} // namespace utf8_string_tests
+} // namespace anonymous
