@@ -25,6 +25,10 @@ set(IO_SRC
     src/cpp/arcanecore/io/sys/Path.cpp
 )
 
+set(CRYPT_SRC
+    src/cpp/arcanecore/crypt/FNV.cpp
+)
+
 set(LOG_SRC
     src/cpp/arcanecore/log/AbstractOutput.cpp
     src/cpp/arcanecore/log/Input.cpp
@@ -98,6 +102,8 @@ set(TESTS_SUITES
     tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp
     tests/cpp/io/sys/Path_TestSuite.cpp
 
+    tests/cpp/crypt/FNV_TestSuite.cpp
+
     tests/cpp/log/Log_TestSuite.cpp
 
     tests/cpp/config/Document_TestSuite.cpp
@@ -134,6 +140,7 @@ link_directories(
 
 add_library(arcanecore_base STATIC ${BASE_SRC})
 add_library(arcanecore_io STATIC ${IO_SRC})
+add_library(arcanecore_crypt STATIC ${CRYPT_SRC})
 add_library(arcanecore_log STATIC ${LOG_SRC})
 add_library(arcanecore_json STATIC ${JSON_SRC})
 add_library(arcanecore_config STATIC ${CONFIG_SRC})
@@ -166,6 +173,7 @@ target_link_libraries(tests
     arcanecore_config
     arcanecore_json
     arcanecore_log
+    arcanecore_crypt
     arcanecore_io
     arcanecore_base
     python3.5m
