@@ -26,7 +26,10 @@ namespace crypt
  *
  * \return The 32-bit result of the hash.
  */
-arc::uint32 fnv1a_32(const void* data, std::size_t size);
+arc::uint32 fnv1a_32(
+        const void* data,
+        std::size_t size,
+        arc::uint32 initial = 0x811C9DC5);
 
 /*!
  * \brief Computes a 64-bit FNV-1a hash of the given data.
@@ -36,7 +39,10 @@ arc::uint32 fnv1a_32(const void* data, std::size_t size);
  *
  * \return The 64-bit result of the hash.
  */
-arc::uint64 fnv1a_64(const void* data, std::size_t size);
+arc::uint64 fnv1a_64(
+        const void* data,
+        std::size_t size,
+        arc::uint64 initial = 0xCBF29CE484222325);
 
 } // namespace crypt
 } // namespace arc

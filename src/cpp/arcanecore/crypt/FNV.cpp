@@ -1,5 +1,6 @@
 #include "arcanecore/crypt/FNV.hpp"
 
+
 namespace arc
 {
 namespace crypt
@@ -9,10 +10,10 @@ namespace crypt
 //                                   FUNCTIONS
 //------------------------------------------------------------------------------
 
-arc::uint32 fnv1a_32(const void* data, std::size_t size)
+arc::uint32 fnv1a_32(const void* data, std::size_t size, arc::uint32 initial)
 {
     const arc::uint8* bytes = static_cast<const arc::uint8*>(data);
-    arc::uint32 hash = 0x811C9DC5;
+    arc::uint32 hash = initial;
     for(std::size_t i = 0; i < size; ++i)
     {
         hash = hash ^ bytes[i];
@@ -21,7 +22,7 @@ arc::uint32 fnv1a_32(const void* data, std::size_t size)
     return hash;
 }
 
-arc::uint64 fnv1a_64(const void* data, std::size_t size)
+arc::uint64 fnv1a_64(const void* data, std::size_t size, arc::uint64 initial)
 {
     const arc::uint8* bytes = static_cast<const arc::uint8*>(data);
     arc::uint64 hash = 0xCBF29CE484222325;
