@@ -1,5 +1,6 @@
 msbuild ..\ArcaneCore.sln /v:n /p:Configuration=arcanecore_base
 msbuild ..\ArcaneCore.sln /v:n /p:Configuration=arcanecore_io
+msbuild ..\ArcaneCore.sln /v:n /p:Configuration=arcanecore_crypt
 msbuild ..\ArcaneCore.sln /v:n /p:Configuration=arcanecore_log
 msbuild ..\ArcaneCore.sln /v:n /p:Configuration=arcanecore_log_shared
 msbuild ..\ArcaneCore.sln /v:n /p:Configuration=arcanecore_json

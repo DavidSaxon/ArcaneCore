@@ -26,7 +26,8 @@ set(IO_SRC
 )
 
 set(CRYPT_SRC
-    src/cpp/arcanecore/crypt/FNV.cpp
+    src/cpp/arcanecore/crypt/hash/FNV.cpp
+    src/cpp/arcanecore/crypt/hash/Spooky.cpp
 )
 
 set(LOG_SRC
@@ -102,7 +103,8 @@ set(TESTS_SUITES
     tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp
     tests/cpp/io/sys/Path_TestSuite.cpp
 
-    tests/cpp/crypt/FNV_TestSuite.cpp
+    tests/cpp/crypt/hash/FNV_TestSuite.cpp
+    tests/cpp/crypt/hash/Spooky_TestSuite.cpp
 
     tests/cpp/log/Log_TestSuite.cpp
 

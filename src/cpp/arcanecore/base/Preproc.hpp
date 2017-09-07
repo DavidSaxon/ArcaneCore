@@ -81,6 +81,20 @@
  */
 #define ARC_STRINGIFY_VALUE(Var) ARC_STRINGIFY_NAME(Var)
 
+/*!
+ * \brief Marco used to force inlining of a function.
+ *
+ * \note Unfortunately GCC doesn't allow for forced inlining.
+ */
+#define ARC_FORCE_INLINE inline
+#if defined(_MSC_VER)
+    #undef ARC_FORCE_INLINE
+    #define ARC_FORCE_INLINE __forceinline
+#elif defined(__INTEL_COMPILER)
+    #undef ARC_FORCE_INLINE
+    #define ARC_FORCE_INLINE __attribute__((always_inline))
+#endif
+
 //------------------------------CONSTRUCTOR MACROS------------------------------
 
 /*!
