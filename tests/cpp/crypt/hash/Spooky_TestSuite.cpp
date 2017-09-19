@@ -112,9 +112,9 @@ ARC_TEST_UNIT(spooky_32)
     arc::uint32 saw[buffer_size];
     for(std::size_t i = 0; i < buffer_size; ++i)
     {
-        buffer[i] = i + 128;
+        buffer[i] = static_cast<arc::uint8>(i + 128);
         saw[i] = arc::crypt::hash::spooky_32(buffer, i);
-        ARC_CHECK_EQUAL(saw[i], expected[i]);
+        ARC_CHECK_EQUAL(static_cast<arc::uint64>(saw[i]), expected[i]);
     }
 }
 

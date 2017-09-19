@@ -892,6 +892,19 @@ public:
      */
     arc::int64 to_uint64() const;
 
+    /*!
+     * \brief Returns this UTF8String as a floating point type.
+     *
+     * If the string is not a valid floating point number, 0.0 will be returned.
+     */
+    float to_float() const;
+
+    /*!
+     * \brief Returns this UTF8String as a double precision floating point type.
+     *
+     * If the string is not a valid double, 0.0 will be returned.
+     */
+    double to_double() const;
 
     //--------------------------------ACCESSORS---------------------------------
 

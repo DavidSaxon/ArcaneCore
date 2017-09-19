@@ -816,6 +816,16 @@ arc::int64 UTF8String::to_uint64() const
             std::strtoul( get_raw(), NULL, 0 ) );
 }
 
+float UTF8String::to_float() const
+{
+    return std::strtof(get_raw(), nullptr);
+}
+
+double UTF8String::to_double() const
+{
+    return std::strtod(get_raw(), nullptr);
+}
+
 //----------------------------------ACCESSORS-----------------------------------
 
 std::size_t UTF8String::get_length() const

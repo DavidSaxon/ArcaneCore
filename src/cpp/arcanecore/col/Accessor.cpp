@@ -247,7 +247,19 @@ std::vector<arc::io::sys::Path> Accessor::list(const arc::io::sys::Path& path)
     // use real resources?
     if(Accessor::force_real_resources)
     {
-        return arc::io::sys::list(path, false);
+        std::vector<arc::io::sys::Path> initial =
+            arc::io::sys::list(path, false);
+        // strip directories
+        std::vector<arc::io::sys::Path> ret;
+        ret.reserve(initial.size());
+        for(const arc::io::sys::Path& p : initial)
+        {
+            if(arc::io::sys::is_file(p, true))
+            {
+                ret.push_back(p);
+            }
+        }
+        return ret;
     }
 
     std::vector<arc::io::sys::Path> ret;
@@ -288,7 +300,19 @@ std::vector< arc::io::sys::Path> Accessor::list_rec(
     // use real resources?
     if(Accessor::force_real_resources)
     {
-        return arc::io::sys::list_rec(path, false);
+        std::vector<arc::io::sys::Path> initial =
+            arc::io::sys::list_rec(path, false);
+        // strip directories
+        std::vector<arc::io::sys::Path> ret;
+        ret.reserve(initial.size());
+        for(const arc::io::sys::Path& p : initial)
+        {
+            if(arc::io::sys::is_file(p, true))
+            {
+                ret.push_back(p);
+            }
+        }
+        return ret;
     }
 
     std::vector<arc::io::sys::Path> ret;

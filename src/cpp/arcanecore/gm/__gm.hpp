@@ -1,3 +1,8 @@
+/*!
+ * \file
+ * \author David Saxon
+ * \brief Documents the arc::gm namespace
+ */
 #ifndef ARCANECORE_GM_HPP_
 #define ARCANECORE_GM_HPP_
 
