@@ -2,6 +2,7 @@
 
 #include <chrono>
 
+
 namespace arc
 {
 namespace clock
@@ -18,6 +19,24 @@ arc::uint64 get_current_time(TimeMetric metric)
                     std::chrono::system_clock::now().time_since_epoch()
             ).count()
     ) / static_cast<arc::uint64>(metric);
+}
+
+arc::str::UTF8String get_datetime(
+        arc::uint64 t,
+        arc::str::UTF8String format,
+        TimeMetric metric)
+{
+    // convert to time_t
+    time_t t_t = static_cast<time_t>(t / (METRIC_SECONDS / metric));
+    // get the date
+    char buffer[50];
+    strftime(
+        buffer,
+        sizeof(buffer),
+        format.get_raw(),
+        std::localtime(&t_t)
+    );
+    return arc::str::UTF8String(buffer);
 }
 
 } // namespace clock

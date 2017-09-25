@@ -9,6 +9,7 @@ set(BASE_SRC
     src/cpp/arcanecore/base/math/MathConstants.cpp
     src/cpp/arcanecore/base/math/MathOperations.cpp
     src/cpp/arcanecore/base/os/OSOperations.cpp
+    src/cpp/arcanecore/base/str/FnMatch.cpp
     src/cpp/arcanecore/base/str/StringConstants.cpp
     src/cpp/arcanecore/base/str/StringOperations.cpp
     src/cpp/arcanecore/base/str/UTF8String.cpp

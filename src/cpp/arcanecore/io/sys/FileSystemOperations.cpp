@@ -275,7 +275,7 @@ std::vector<arc::io::sys::Path> list(
     }
     closedir(dir);
 
-#else
+#elif defined(ARC_OS_WINDOWS)
 
     // construct the directory path
     arc::str::UTF8String u(path.to_windows());
@@ -324,6 +324,13 @@ std::vector<arc::io::sys::Path> list(
     }
     while (FindNextFileW(find_handle, &find_data) != 0);
     FindClose(find_handle);
+
+#else
+
+    throw arc::ex::NotImplementedError(
+            "arc::io::sys::lsit has not yet been implemented for this "
+            "platform"
+    );
 
 #endif
 

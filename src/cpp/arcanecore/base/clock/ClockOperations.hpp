@@ -7,6 +7,7 @@
 #define ARCANECORE_BASE_CLOCK_CLOCKOPERATIONS_HPP_
 
 #include "arcanecore/base/Types.hpp"
+#include "arcanecore/base/str/UTF8String.hpp"
 
 namespace arc
 {
@@ -39,6 +40,19 @@ enum TimeMetric
  *               METRIC_MILLISECONDS
  */
 arc::uint64 get_current_time(TimeMetric metric = METRIC_MILLISECONDS);
+
+/*!
+ * \brief Returns the time as a formated string.
+ *
+ * \param t The time (sine Linux Epoch) that should be formated as a string.
+ * \param format Represents the way in which the returned string should be
+ *               formated.
+ * \param metric The time metric which t is measured in.
+ */
+arc::str::UTF8String get_datetime(
+        arc::uint64 t,
+        arc::str::UTF8String format,
+        TimeMetric metric = METRIC_MILLISECONDS);
 
 } // namespace clock
 } // namespace arc

@@ -54,6 +54,7 @@
     <ClCompile Include="src\cpp\arcanecore\base\math\MathConstants.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\math\MathOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\os\OSOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\str\FnMatch.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\StringConstants.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\StringOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\UTF8String.cpp" />
