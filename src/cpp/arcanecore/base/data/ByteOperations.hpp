@@ -12,6 +12,7 @@
 #include "arcanecore/base/Types.hpp"
 #include "arcanecore/base/data/BinaryOperations.hpp"
 
+
 namespace arc
 {
 namespace data

@@ -1,7 +1,13 @@
+/*!
+ * \file
+ * \brief General operating system functionality.
+ * \author David Saxon
+ */
 #ifndef ARCANECORE_BASE_OS_OSOPERATIONS_HPP_
 #define ARCANECORE_BASE_OS_OSOPERATIONS_HPP_
 
 #include "arcanecore/base/str/UTF8String.hpp"
+
 
 namespace arc
 {

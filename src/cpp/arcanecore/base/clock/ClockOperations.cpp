@@ -1,6 +1,12 @@
 #include "arcanecore/base/clock/ClockOperations.hpp"
 
 #include <chrono>
+#include <ctime>
+
+// allows us to use std::localtime, without warning it's unsafe.
+#ifdef ARC_OS_WINDOWS
+    #pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
+#endif
 
 
 namespace arc

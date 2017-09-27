@@ -8,6 +8,7 @@
 
 #include "arcanecore/base/Types.hpp"
 
+
 namespace arc
 {
 namespace math

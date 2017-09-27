@@ -6,8 +6,10 @@ set(BASE_SRC
     src/cpp/arcanecore/base/data/BinaryOperations.cpp
     src/cpp/arcanecore/base/data/BitwiseFloat.cpp
     src/cpp/arcanecore/base/data/ByteOperations.cpp
+    src/cpp/arcanecore/base/data/DataConstants.cpp
     src/cpp/arcanecore/base/math/MathConstants.cpp
     src/cpp/arcanecore/base/math/MathOperations.cpp
+    src/cpp/arcanecore/base/os/MemoryOperations.cpp
     src/cpp/arcanecore/base/os/OSOperations.cpp
     src/cpp/arcanecore/base/str/FnMatch.cpp
     src/cpp/arcanecore/base/str/StringConstants.cpp
