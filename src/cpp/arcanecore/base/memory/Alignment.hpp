@@ -5,7 +5,6 @@
 
 #include "arcanecore/base/Exceptions.hpp"
 #include "arcanecore/base/Preproc.hpp"
-#include "arcanecore/base/os/OSOperations.hpp"
 
 
 /*!

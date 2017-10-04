@@ -53,7 +53,7 @@ Handle open_library(const arc::io::sys::Path& path)
     if(handle == nullptr)
     {
         throw arc::ex::DynamicLinkError(
-            arc::os::get_last_system_error_message());
+            arc::io::os::get_last_system_error_message());
     }
 
     return handle;
@@ -85,7 +85,7 @@ void close_library(Handle handle)
     if(error)
     {
         throw arc::ex::DynamicLinkError(
-            arc::os::get_last_system_error_message());
+            arc::io::os::get_last_system_error_message());
     }
 }
 

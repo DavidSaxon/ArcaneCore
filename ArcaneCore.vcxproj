@@ -51,9 +51,9 @@
     <ClCompile Include="src\cpp\arcanecore\base\data\BinaryOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\data\BitwiseFloat.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\data\ByteOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\base\data\DataConstants.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\math\MathConstants.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\math\MathOperations.cpp" />
-    <ClCompile Include="src\cpp\arcanecore\base\os\OSOperations.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\FnMatch.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\StringConstants.cpp" />
     <ClCompile Include="src\cpp\arcanecore\base\str\StringOperations.cpp" />
@@ -63,6 +63,8 @@
     <ClCompile Include="src/cpp/arcanecore/io/dl/DLOperations.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/format/ANSI.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/format/FormatOperations.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\io\os\ErrorState.cpp" />
+    <ClCompile Include="src\cpp\arcanecore\io\os\SysInfo.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/sys/FileHandle.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/sys/FileReader.cpp" />
     <ClCompile Include="src/cpp/arcanecore/io/sys/FileSystemOperations.cpp" />
@@ -131,6 +133,7 @@
     <ClCompile Include="tests/cpp/gm/Vector_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/gm/VectorMath_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/format/FormatOperations_TestSuite.cpp" />
+    <ClCompile Include="tests/cpp/io/os/SysInfo_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileHandle_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileReader_TestSuite.cpp" />
     <ClCompile Include="tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp" />

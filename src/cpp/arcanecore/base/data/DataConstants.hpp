@@ -6,7 +6,7 @@
 #ifndef ARCANECORE_BASE_DATA_DATACONSTANTS_HPP_
 #define ARCANECORE_BASE_DATA_DATACONSTANTS_HPP_
 
-#include "arcanecore/base/Types.hpp"
+#include <cstddef>
 
 
 namespace arc

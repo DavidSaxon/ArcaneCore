@@ -16,8 +16,8 @@
 #endif
 
 #include "arcanecore/base/Exceptions.hpp"
-#include "arcanecore/base/os/OSOperations.hpp"
 #include "arcanecore/base/str/StringOperations.hpp"
+#include "arcanecore/io/os/ErrorState.hpp"
 
 namespace arc
 {
@@ -389,7 +389,7 @@ bool create_directory(const arc::io::sys::Path& path)
     {
         arc::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
-        error_message << arc::os::get_last_system_error_message();
+        error_message << arc::io::os::get_last_system_error_message();
         throw arc::ex::IOError(error_message);
     }
 
@@ -412,7 +412,7 @@ bool create_directory(const arc::io::sys::Path& path)
     {
         arc::str::UTF8String error_message;
         error_message << "Directory creation failed with OS error: ";
-        error_message << arc::os::get_last_system_error_message();
+        error_message << arc::io::os::get_last_system_error_message();
         throw arc::ex::IOError(error_message);
     }
 
@@ -439,7 +439,7 @@ void delete_path(const arc::io::sys::Path& path)
         arc::str::UTF8String error_message;
         error_message << "Failed to delete path: \'" << path.to_native();
         error_message << " \'. OS error: ";
-        error_message << arc::os::get_last_system_error_message();
+        error_message << arc::io::os::get_last_system_error_message();
         throw arc::ex::IOError(error_message);
     }
 
@@ -469,7 +469,7 @@ void delete_path(const arc::io::sys::Path& path)
 
         arc::str::UTF8String error_message;
         error_message << "Deleting path failed with OS error: ";
-        error_message << arc::os::get_last_system_error_message();
+        error_message << arc::io::os::get_last_system_error_message();
         throw arc::ex::IOError(error_message);
     }
 

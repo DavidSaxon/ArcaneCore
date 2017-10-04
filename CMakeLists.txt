@@ -9,8 +9,6 @@ set(BASE_SRC
     src/cpp/arcanecore/base/data/DataConstants.cpp
     src/cpp/arcanecore/base/math/MathConstants.cpp
     src/cpp/arcanecore/base/math/MathOperations.cpp
-    src/cpp/arcanecore/base/os/MemoryOperations.cpp
-    src/cpp/arcanecore/base/os/OSOperations.cpp
     src/cpp/arcanecore/base/str/FnMatch.cpp
     src/cpp/arcanecore/base/str/StringConstants.cpp
     src/cpp/arcanecore/base/str/StringOperations.cpp
@@ -21,6 +19,8 @@ set(IO_SRC
     src/cpp/arcanecore/io/dl/DLOperations.cpp
     src/cpp/arcanecore/io/format/ANSI.cpp
     src/cpp/arcanecore/io/format/FormatOperations.cpp
+    src/cpp/arcanecore/io/os/ErrorState.cpp
+    src/cpp/arcanecore/io/os/SysInfo.cpp
     src/cpp/arcanecore/io/sys/FileHandle.cpp
     src/cpp/arcanecore/io/sys/FileReader.cpp
     src/cpp/arcanecore/io/sys/FileSystemOperations.cpp
@@ -101,6 +101,7 @@ set(TESTS_SUITES
     tests/cpp/gm/Vector_TestSuite.cpp
 
     tests/cpp/io/format/FormatOperations_TestSuite.cpp
+    tests/cpp/io/os/SysInfo_TestSuite.cpp
     tests/cpp/io/sys/FileHandle_TestSuite.cpp
     tests/cpp/io/sys/FileReader_TestSuite.cpp
     tests/cpp/io/sys/FileSystemOperations_TestSuite.cpp

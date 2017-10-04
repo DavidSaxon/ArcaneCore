@@ -4,7 +4,7 @@
 #include <arcanecore/base/Exceptions.hpp>
 #include <arcanecore/base/Preproc.hpp>
 #include <arcanecore/base/introspect/IntrospectOperations.hpp>
-#include <arcanecore/base/os/OSOperations.hpp>
+#include <arcanecore/io/os/ErrorState.hpp>
 #include <arcanecore/base/str/StringOperations.hpp>
 #include <arcanecore/base/str/UTF8String.hpp>
 #include <arcanecore/io/sys/Path.hpp>
@@ -106,7 +106,8 @@ SymbolType* bind_symbol(Handle handle, const arc::str::UTF8String& name)
     if(symbol_handle == nullptr)
     {
         throw arc::ex::DynamicLinkError(
-            arc::os::get_last_system_error_message());
+            arc::io::os::get_last_system_error_message()
+        );
     }
 
     // attempt to cast handle
