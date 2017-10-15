@@ -36,6 +36,42 @@ namespace dl
 {
 
 //------------------------------------------------------------------------------
+//                                  ENUMERATORS
+//------------------------------------------------------------------------------
+
+/*!
+ * \brief The various flags that can be used when opening libraries (Unix only).
+ */
+enum OpenFlag
+{
+    /// Performs lazy binding. Only resolve symbols as the code references them
+    /// is execute. If the symbol is never reference, then it is never resolved.
+    /// (Lazy binding is only performed for function references; references to
+    /// variables are always immediately bound when the library is loaded.)
+    kOpenLazy     = 1UL,
+    /// If this value is specified, all undefined symbols in the library are
+    /// resolved before open_library returns. If it cannot be done, an error is
+    /// returned.
+    kOpenNow      = 1UL << 1,
+    /// The symbols defined by this library will be made available for symbol
+    /// resolution of subsequently loaded libraries.
+    kOpenGlobal   = 1UL << 2,
+    /// This is the converse of kOpenGlobal, and the default if neither flag is
+    /// specified. Symbols defined in this library are not made available to
+    /// resolve references in subsequently loaded libraries.
+    kOpenLocal    = 1UL << 3,
+    /// Do not unload the library during close_library(). Consequently, the
+    /// library's static variables are not reinitialized if the library is
+    /// reloaded with open_library() at a later time.
+    kOpenNoDelete = 1UL << 4,
+    /// Place the lookup scope of the symbols in this library ahead of the
+    /// global scope. This means that a self-contained library will use its own
+    /// symbols in preference to global symbols with the same name contained in
+    /// libraries that have already been loaded.
+    kOpenDeepBind = 1UL << 6
+};
+
+//------------------------------------------------------------------------------
 //                                TYPE DEFINITIONS
 //------------------------------------------------------------------------------
 
@@ -44,17 +80,24 @@ namespace dl
  */
 typedef void* Handle;
 
+//------------------------------------------------------------------------------
+//                                   FUNCTIONS
+//------------------------------------------------------------------------------
+
 /*!
  * \brief Opens the dynamic library at the given location.
  *
  * \param path The path to the library.
+ * \param flags The flags that will be used to open the library (Unix only).
  * \return The handle for the loaded library.
  *
  * \throws arc::ex::IOError If the given path does not exist.
  * \throws arc::ex::DynamicLinkError If the file cannot be opened as a dynamic
  *                                   library.
  */
-Handle open_library(const arc::io::sys::Path& path);
+Handle open_library(
+        const arc::io::sys::Path& path,
+        int flags = kOpenLazy);
 
 /*!
  * \brief Closes the library pointed to be the given handle.

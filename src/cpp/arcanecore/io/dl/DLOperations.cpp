@@ -9,7 +9,7 @@ namespace io
 namespace dl
 {
 
-Handle open_library(const arc::io::sys::Path& path)
+Handle open_library(const arc::io::sys::Path& path, int flags)
 {
     if(!arc::io::sys::exists(path))
     {
@@ -35,8 +35,35 @@ Handle open_library(const arc::io::sys::Path& path)
 
     #elif defined(ARC_OS_UNIX)
 
+        // build the flags
+        int i_flags = 0;
+        if(flags | kOpenLazy)
+        {
+            i_flags |= RTLD_LAZY;
+        }
+        if(flags | kOpenNow)
+        {
+            i_flags |= RTLD_NOW;
+        }
+        if(flags | kOpenGlobal)
+        {
+            i_flags |= RTLD_GLOBAL;
+        }
+        if(flags | kOpenLocal)
+        {
+            i_flags |= RTLD_LOCAL;
+        }
+        if(flags | kOpenNoDelete)
+        {
+            i_flags |= RTLD_NODELETE;
+        }
+        if(flags | kOpenDeepBind)
+        {
+            i_flags |= RTLD_DEEPBIND;
+        }
+
         // get the handle
-        handle = dlopen(path.to_native().get_raw(), RTLD_LAZY);
+        handle = dlopen(path.to_native().get_raw(), i_flags);
         if(handle == nullptr)
         {
             throw arc::ex::DynamicLinkError(dlerror());

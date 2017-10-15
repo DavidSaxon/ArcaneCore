@@ -51,7 +51,7 @@ bool LogHandler::remove_input(arc::log::Input* input)
             return true;
         }
     }
-    return true;
+    return false;
 }
 
 const LogHandler::OutputVector& LogHandler::get_outputs() const
